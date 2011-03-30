@@ -3,41 +3,40 @@ NULL =
 public_icons_themes = hicolor
 
 dist_noinst_DATA = \
-	hicolor_apps_16x16_gnome-aisleriot.png \
-	hicolor_apps_22x22_gnome-aisleriot.png \
-	hicolor_apps_24x24_gnome-aisleriot.png \
-	hicolor_apps_32x32_gnome-aisleriot.png \
-	hicolor_apps_48x48_gnome-aisleriot.png \
-	hicolor_apps_256x256_gnome-aisleriot.png \
-	hicolor_apps_scalable_gnome-aisleriot.svg \
-	hicolor_apps_16x16_gnome-freecell.png \
-	hicolor_apps_22x22_gnome-freecell.png \
-	hicolor_apps_24x24_gnome-freecell.png \
-	hicolor_apps_32x32_gnome-freecell.png \
-	hicolor_apps_48x48_gnome-freecell.png \
-	hicolor_apps_scalable_gnome-freecell.svg \
-	$(NULL)
-
-EXTRA_DIST = \
-	hicolor_apps_256x256_gnome-aisleriot.svg \
+	hicolor/16x16/apps/gnome-aisleriot.png \
+	hicolor/22x22/apps/gnome-aisleriot.png \
+	hicolor/24x24/apps/gnome-aisleriot.png \
+	hicolor/26x26/apps/gnome-aisleriot.png \
+	hicolor/32x32/apps/gnome-aisleriot.png \
+	hicolor/34x34/apps/gnome-aisleriot.png \
+	hicolor/40x40/apps/gnome-aisleriot.png \
+	hicolor/48x48/apps/gnome-aisleriot.png \
+	hicolor/50x50/apps/gnome-aisleriot.png \
+	hicolor/64x50/apps/gnome-aisleriot.png \
+	hicolor/256x256/apps/gnome-aisleriot.png \
+	hicolor/16x16/apps/gnome-freecell.png \
+	hicolor/22x22/apps/gnome-freecell.png \
+	hicolor/24x24/apps/gnome-freecell.png \
+	hicolor/32x32/apps/gnome-freecell.png \
+	hicolor/48x48/apps/gnome-freecell.png \
 	$(NULL)
 
 install-public-icons:
 	for icon in $(dist_noinst_DATA); do \
-		THEME=`echo $$icon | cut -d_ -f1`; \
-		CONTEXT=`echo $$icon | cut -d_ -f2`; \
-		SIZE=`echo $$icon | cut -d_ -f3`; \
-		ICONFILE=`echo $$icon | cut -d_ -f4`; \
+		THEME=`echo $$icon | cut -d/ -f1`; \
+		SIZE=`echo $$icon | cut -d/ -f2`; \
+		CONTEXT=`echo $$icon | cut -d/ -f3`; \
+		ICONFILE=`echo $$icon | cut -d/ -f4`; \
 		mkdir -p $(DESTDIR)$(datadir)/icons/$$THEME/$$SIZE/$$CONTEXT; \
 		$(INSTALL_DATA) $(srcdir)/$$icon $(DESTDIR)$(datadir)/icons/$$THEME/$$SIZE/$$CONTEXT/$$ICONFILE; \
 	done
 
 uninstall-public-icons:
 	-for icon in $(dist_noinst_DATA); do \
-		THEME=`echo $$icon | cut -d_ -f1`; \
-		CONTEXT=`echo $$icon | cut -d_ -f2`; \
-		SIZE=`echo $$icon | cut -d_ -f3`; \
-		ICONFILE=`echo $$icon | cut -d_ -f4`; \
+		THEME=`echo $$icon | cut -d/ -f1`; \
+		SIZE=`echo $$icon | cut -d/ -f2`; \
+		CONTEXT=`echo $$icon | cut -d/ -f3`; \
+		ICONFILE=`echo $$icon | cut -d/ -f4`; \
 		rm -f $(DESTDIR)$(datadir)/icons/$$THEME/$$SIZE/$$CONTEXT/$$ICONFILE; \
 	done
 
