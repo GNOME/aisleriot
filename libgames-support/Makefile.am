@@ -199,9 +199,6 @@ libgames_support_gi_la_LIBADD = $(libgames_support_la_LIBADD)
 
 BUILT_GIRSOURCES = GnomeGamesSupport-1.0.gir
 
-# FIXMEchpe: change GIR version for the gtk+-3.0 based one...
-# or just remove introspection support for the gtk+-2.0 build
-
 GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(libgames_support_gi_la_SOURCES)
 	$(AM_V_GEN) $(INTROSPECTION_SCANNER) -v \
 	--namespace GnomeGamesSupport --nsversion=1.0 \
@@ -222,13 +219,7 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(lib
 	-I$(top_builddir) \
 	$(filter games%,$^)
 
-# FIXMEchpe: this looks bogus. If the introspection.m4 macro gets it wrong, fix it!
-# INTROSPECTION_GIRDIR/INTROSPECTION_TYPELIBDIR aren't the right place to
-# install anything - we need to install inside our prefix.
-girdir = $(datadir)/gir-1.0
-gir_DATA = $(BUILT_GIRSOURCES)
-
-typelibsdir = $(libdir)/girepository-1.0
+typelibsdir = $(pkglibdir)
 typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
 
 %.typelib: %.gir $(INTROSPECTION_COMPILER)
