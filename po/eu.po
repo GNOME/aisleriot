@@ -1,20 +1,20 @@
-# translation of eu_to_be_translate.po to Basque
+# translation of eu.po to Basque
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2008, 2009, 2010, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: eu_to_be_translate\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-16 21:23+0100\n"
-"PO-Revision-Date: 2011-02-16 22:07+0100\n"
+"Project-Id-Version: eu\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-21 14:35+0000\n"
+"PO-Revision-Date: 2011-03-30 23:08+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../aisleriot/aisleriot.schemas.in.h:1
@@ -95,7 +95,7 @@ msgid "Whether or not to show the toolbar"
 msgstr "Tresna-barra erakutsiko den ala ez adierazten du."
 
 #. Now construct the window contents
-#: ../aisleriot/ar-game-chooser.c:238 ../aisleriot/window.c:2560
+#: ../aisleriot/ar-game-chooser.c:238 ../aisleriot/window.c:2456
 msgid "Select Game"
 msgstr "Hautatu jokoa"
 
@@ -103,8 +103,8 @@ msgstr "Hautatu jokoa"
 msgid "_Select"
 msgstr "_Hautatu"
 
-#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:323
-#: ../aisleriot/window.c:455 ../aisleriot/window.c:463
+#: ../aisleriot/freecell.desktop.in.in.h:1 ../aisleriot/sol.c:295
+#: ../aisleriot/window.c:434 ../aisleriot/window.c:442
 msgid "FreeCell Solitaire"
 msgstr "FreeCell bakar-jokoa"
 
@@ -112,7 +112,7 @@ msgstr "FreeCell bakar-jokoa"
 msgid "Play the popular FreeCell card game"
 msgstr "Jolastu FreeCell karta-joko ezagunera"
 
-#: ../aisleriot/game.c:1165
+#: ../aisleriot/game.c:1148
 #, c-format
 msgid ""
 "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
@@ -121,11 +121,76 @@ msgstr ""
 "Aisleriot-ek ezin izan du fitxategi hau kargatu: \"%s\". Begiratu Aisleriot-"
 "en instalazioa ondo dagoen."
 
-#: ../aisleriot/game.c:1721
+#. Translators: this is the name of a type of card slot
+#: ../aisleriot/game.c:1399
+msgctxt "slot type"
+msgid "foundation"
+msgstr "oinarria"
+
+#. Translators: this is the name of a type of card slot
+#: ../aisleriot/game.c:1403
+msgctxt "slot type"
+msgid "reserve"
+msgstr "biltegia"
+
+#. Translators: this is the name of a type of card slot
+#: ../aisleriot/game.c:1407
+msgctxt "slot type"
+msgid "stock"
+msgstr "sorta"
+
+#. Translators: this is the name of a type of card slot
+#: ../aisleriot/game.c:1411
+msgctxt "slot type"
+msgid "tableau"
+msgstr "mahaia"
+
+#. Translators: this is the name of a type of card slot
+#: ../aisleriot/game.c:1415
+msgctxt "slot type"
+msgid "waste"
+msgstr "hondarra"
+
+#. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
+#: ../aisleriot/game.c:1447
+#, c-format
+msgctxt "slot hint"
+msgid "%s on foundation"
+msgstr "%s oinarrian"
+
+#. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
+#: ../aisleriot/game.c:1451
+#, c-format
+msgctxt "slot hint"
+msgid "%s on reserve"
+msgstr "%s biltegian"
+
+#. Translators: %s is the name of the card; "stock" is the name of a type of card slot
+#: ../aisleriot/game.c:1455
+#, c-format
+msgctxt "slot hint"
+msgid "%s on stock"
+msgstr "%s sortan"
+
+#. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
+#: ../aisleriot/game.c:1459
+#, c-format
+msgctxt "slot hint"
+msgid "%s on tableau"
+msgstr "%s mahaian"
+
+#. Translators: %s is the name of the card; "waste" is the name of a type of card slot
+#: ../aisleriot/game.c:1463
+#, c-format
+msgctxt "slot hint"
+msgid "%s on waste"
+msgstr "%s hondarran"
+
+#: ../aisleriot/game.c:1704
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot-ek ezin du aurkitu azken jolastutako jokoa"
 
-#: ../aisleriot/game.c:1722
+#: ../aisleriot/game.c:1705
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -135,7 +200,7 @@ msgstr ""
 "eta bertsio horrek azken jolastu duzun jokoa ez duelako. Joko lehenetsia, "
 "Klondike, abiaraziko da horren ordez."
 
-#: ../aisleriot/game.c:2080
+#: ../aisleriot/game.c:2063
 msgid "This game does not have hint support yet."
 msgstr "Joko honek ez du oraindik iradokizunik egiten."
 
@@ -143,17 +208,17 @@ msgstr "Joko honek ez du oraindik iradokizunik egiten."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../aisleriot/game.c:2114 ../aisleriot/game.c:2142
+#: ../aisleriot/game.c:2097 ../aisleriot/game.c:2125
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Eraman %s %s(e)ra."
 
-#: ../aisleriot/game.c:2164
+#: ../aisleriot/game.c:2147
 #, c-format
 msgid "You are searching for a %s."
 msgstr "%s(r)en bila zabiltza."
 
-#: ../aisleriot/game.c:2169
+#: ../aisleriot/game.c:2152
 msgid "This game is unable to provide a hint."
 msgstr "Joko honek ezin du iradokizunik egin."
 
@@ -961,36 +1026,36 @@ msgid "Hopscotch"
 msgstr "Tokean"
 
 #. String reserve
-#: ../aisleriot/sol.c:69
+#: ../aisleriot/sol.c:59
 msgid "Solitaire"
 msgstr "Bakar-jokoa"
 
-#: ../aisleriot/sol.c:70
+#: ../aisleriot/sol.c:60
 msgid "GNOME Solitaire"
 msgstr "GNOMEko bakar-jokoa"
 
-#: ../aisleriot/sol.c:71
+#: ../aisleriot/sol.c:61
 msgid "About Solitaire"
 msgstr "Bakar-jokoari buruz"
 
-#: ../aisleriot/sol.c:210
+#: ../aisleriot/sol.c:200
 msgid "Select the game type to play"
 msgstr "Hautatu joko mota"
 
-#: ../aisleriot/sol.c:210 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
+#: ../aisleriot/sol.c:200 ../gnobots2/gnobots.c:85 ../gnobots2/gnobots.c:87
 msgid "NAME"
 msgstr "IZENA"
 
-#: ../aisleriot/sol.c:212
+#: ../aisleriot/sol.c:202
 msgid "Select the game number"
 msgstr "Hautatu joko-zenbakia"
 
-#: ../aisleriot/sol.c:212 ../gnomine/gnomine.c:929 ../gtali/gyahtzee.c:107
+#: ../aisleriot/sol.c:202 ../gnomine/gnomine.c:929 ../gtali/gyahtzee.c:107
 #: ../gtali/gyahtzee.c:109 ../gtali/gyahtzee.c:113 ../gtali/gyahtzee.c:115
 msgid "NUMBER"
 msgstr "KOPURUA"
 
-#: ../aisleriot/sol.c:323 ../aisleriot/window.c:464 ../aisleriot/window.c:2024
+#: ../aisleriot/sol.c:295 ../aisleriot/window.c:443 ../aisleriot/window.c:1986
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1387,41 +1452,41 @@ msgstr "%d:%02d"
 msgid "Could not show help for “%s”"
 msgstr "Ezin izan da honen laguntza erakutsi: \"%s\""
 
-#: ../aisleriot/window.c:261
+#: ../aisleriot/window.c:248
 msgid "Congratulations, you have won!"
 msgstr "Zorionak! Irabazi egin duzu!"
 
-#: ../aisleriot/window.c:265
+#: ../aisleriot/window.c:252
 msgid "There are no more moves"
 msgstr "Ezin da mugimendu gehiago egin"
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:278 ../quadrapassel/blockops.cpp:788
+#: ../aisleriot/window.c:265 ../quadrapassel/blockops.cpp:788
 msgid "Game Over"
 msgstr "Jokoa amaitu da"
 
-#: ../aisleriot/window.c:412 ../gnomine/gnomine.c:437
+#: ../aisleriot/window.c:391 ../gnomine/gnomine.c:437
 #: ../mahjongg/mahjongg.c:867
 msgid "Main game:"
 msgstr "Joko nagusia:"
 
-#: ../aisleriot/window.c:420
+#: ../aisleriot/window.c:399
 msgid "Card games:"
 msgstr "Karta-jokoak:"
 
-#: ../aisleriot/window.c:434
+#: ../aisleriot/window.c:413
 msgid "Card themes:"
 msgstr "Karten gaiak:"
 
-#: ../aisleriot/window.c:466
+#: ../aisleriot/window.c:445
 msgid "About FreeCell Solitaire"
 msgstr "FreeCell bakar-jokoari buruz"
 
-#: ../aisleriot/window.c:467
+#: ../aisleriot/window.c:446
 msgid "About AisleRiot"
 msgstr "AisleRiot-i buruz"
 
-#: ../aisleriot/window.c:473
+#: ../aisleriot/window.c:452
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played.\n"
@@ -1433,9 +1498,9 @@ msgstr ""
 "GNOME Games-ekoa da AisleRiot."
 
 #. this doesn't work for anyone
-#: ../aisleriot/window.c:484 ../glines/glines.c:1216 ../gnect/src/main.c:878
+#: ../aisleriot/window.c:463 ../glines/glines.c:1216 ../gnect/src/main.c:878
 #: ../gnibbles/main.c:208 ../gnobots2/menu.c:267
-#: ../quadrapassel/tetris.cpp:1303 ../gnome-sudoku/src/lib/main.py:709
+#: ../quadrapassel/tetris.cpp:1316 ../gnome-sudoku/src/lib/main.py:709
 #: ../gnomine/gnomine.c:477 ../gnotravex/gnotravex.c:1613
 #: ../gnotski/gnotski.c:1487 ../gtali/gyahtzee.c:617 ../iagno/gnothello.c:270
 #: ../lightsoff/src/About.js:20 ../mahjongg/mahjongg.c:908
@@ -1443,9 +1508,9 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>"
 
-#: ../aisleriot/window.c:488 ../glines/glines.c:1219 ../gnect/src/main.c:875
+#: ../aisleriot/window.c:467 ../glines/glines.c:1219 ../gnect/src/main.c:875
 #: ../gnibbles/main.c:211 ../gnobots2/menu.c:263
-#: ../quadrapassel/tetris.cpp:1300 ../gnome-sudoku/src/lib/defaults.py.in:45
+#: ../quadrapassel/tetris.cpp:1313 ../gnome-sudoku/src/lib/defaults.py.in:45
 #: ../gnomine/gnomine.c:480 ../gnotravex/gnotravex.c:1616
 #: ../gnotski/gnotski.c:1490 ../gtali/gyahtzee.c:621 ../iagno/gnothello.c:272
 #: ../lightsoff/src/About.js:19 ../mahjongg/mahjongg.c:911
@@ -1453,44 +1518,54 @@ msgstr "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>"
 msgid "GNOME Games web site"
 msgstr "GNOME Games webgunea"
 
-#: ../aisleriot/window.c:1360
+#: ../aisleriot/window.c:1339
 #, c-format
 msgid "Play “%s”"
 msgstr "Jolastu honetan: \"%s\""
 
-#: ../aisleriot/window.c:1531
+#: ../aisleriot/window.c:1510
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Bistaratu karta-gai hau duten kartak: \"%s\""
 
-#: ../aisleriot/window.c:1893
+#. Translators: if you want to use localised digits for the game score,
+#. * then translate this string to "%I6d", else to "%6d".
+#. * Do not translate it to anything else!
+#.
+#: ../aisleriot/window.c:1605
+#, c-format
+msgctxt "score"
+msgid "%6d"
+msgstr "%6d"
+
+#: ../aisleriot/window.c:1872
 msgid "A scheme exception occurred"
 msgstr "Eskema-salbuespena gertatu da"
 
-#: ../aisleriot/window.c:1896
+#: ../aisleriot/window.c:1875
 msgid "Please report this bug to the developers."
 msgstr "Eman garatzaileei errore horren berri."
 
 #. Empty title shows up as "<unnamed>" on maemo
-#: ../aisleriot/window.c:1900 ../libgames-support/games-show.c:151
+#: ../aisleriot/window.c:1879 ../libgames-support/games-show.c:151
 msgid "Error"
 msgstr "Errorea"
 
-#: ../aisleriot/window.c:1908
+#: ../aisleriot/window.c:1887
 msgid "_Don't report"
 msgstr "_Ez jakinarazi"
 
-#: ../aisleriot/window.c:1909
+#: ../aisleriot/window.c:1888
 msgid "_Report"
 msgstr "_Jakinarazi"
 
-#: ../aisleriot/window.c:2022
+#: ../aisleriot/window.c:1984
 msgid "Freecell Solitaire"
 msgstr "FreeCell bakar-jokoa"
 
 #. Menu actions
 #. Game menu name
-#: ../aisleriot/window.c:2187 ../glchess/data/glchess.ui.h:22
+#: ../aisleriot/window.c:2118 ../glchess/data/glchess.ui.h:22
 #: ../glines/glines.c:1640 ../gnect/src/main.c:1242 ../gnibbles/main.c:687
 #: ../gnobots2/menu.c:66 ../quadrapassel/tetris.cpp:108
 #: ../gnome-sudoku/src/lib/main.py:231 ../gnomine/gnomine.c:769
@@ -1501,17 +1576,17 @@ msgstr "FreeCell bakar-jokoa"
 msgid "_Game"
 msgstr "J_okoa"
 
-#: ../aisleriot/window.c:2188 ../gnect/src/main.c:1243 ../gnibbles/main.c:688
+#: ../aisleriot/window.c:2119 ../gnect/src/main.c:1243 ../gnibbles/main.c:688
 #: ../gnobots2/menu.c:67 ../gnotski/gnotski.c:410
 msgid "_View"
 msgstr "_Ikuspegia"
 
-#: ../aisleriot/window.c:2189
+#: ../aisleriot/window.c:2120
 msgid "_Control"
 msgstr "_Kontrola"
 
 #. Help menu item
-#: ../aisleriot/window.c:2191 ../glchess/data/glchess.ui.h:24
+#: ../aisleriot/window.c:2122 ../glchess/data/glchess.ui.h:24
 #: ../glines/glines.c:1642 ../gnect/src/main.c:1245 ../gnibbles/main.c:690
 #: ../gnobots2/menu.c:70 ../quadrapassel/tetris.cpp:110
 #: ../gnome-sudoku/src/lib/main.py:254 ../gnomine/gnomine.c:771
@@ -1523,138 +1598,214 @@ msgid "_Help"
 msgstr "La_guntza"
 
 #. Tooltip for start new game toolbar button
-#: ../aisleriot/window.c:2196 ../glchess/data/glchess.ui.h:16
+#: ../aisleriot/window.c:2127 ../glchess/data/glchess.ui.h:16
 #: ../gnobots2/menu.c:71 ../libgames-support/games-stock.c:59
 #: ../mahjongg/mahjongg.c:1203
 msgid "Start a new game"
 msgstr "Beste joko bat hasten du"
 
-#: ../aisleriot/window.c:2199 ../libgames-support/games-stock.c:63
+#: ../aisleriot/window.c:2130 ../libgames-support/games-stock.c:63
 msgid "Restart the game"
 msgstr "Jokoa berrabiarazten du"
 
-#: ../aisleriot/window.c:2201
+#: ../aisleriot/window.c:2132
 msgid "_Select Game..."
 msgstr "_Hautatu jokoa..."
 
-#: ../aisleriot/window.c:2203
+#: ../aisleriot/window.c:2134
 msgid "Play a different game"
 msgstr "Beste joko batean jolasteko"
 
-#: ../aisleriot/window.c:2205
+#: ../aisleriot/window.c:2136
 msgid "_Recently Played"
 msgstr "_Oraintsu jolastutakoak"
 
-#: ../aisleriot/window.c:2206
+#: ../aisleriot/window.c:2137
 msgid "S_tatistics"
 msgstr "_Estatistikak"
 
-#: ../aisleriot/window.c:2207
+#: ../aisleriot/window.c:2138
 msgid "Show gameplay statistics"
 msgstr "Jokoen estatistikak erakusten ditu"
 
-#: ../aisleriot/window.c:2210 ../libgames-support/games-stock.c:68
+#: ../aisleriot/window.c:2141 ../libgames-support/games-stock.c:68
 msgid "Close this window"
 msgstr "Leiho hau ixten du"
 
-#: ../aisleriot/window.c:2213 ../libgames-support/games-stock.c:66
+#: ../aisleriot/window.c:2144 ../libgames-support/games-stock.c:66
 #: ../mahjongg/mahjongg.c:1207
 msgid "Undo the last move"
 msgstr "Azken mugimendua desegiten du"
 
-#: ../aisleriot/window.c:2216 ../libgames-support/games-stock.c:62
+#: ../aisleriot/window.c:2147 ../libgames-support/games-stock.c:62
 msgid "Redo the undone move"
 msgstr "Desegindako mugimendua berregiten du"
 
-#: ../aisleriot/window.c:2219
+#: ../aisleriot/window.c:2150
 msgid "Deal next card or cards"
 msgstr "Hurrengo karta(k) banatzen d(it)u"
 
-#: ../aisleriot/window.c:2222 ../libgames-support/games-stock.c:55
+#: ../aisleriot/window.c:2153 ../libgames-support/games-stock.c:55
 msgid "Get a hint for your next move"
 msgstr "Hurrengo mugimendua iradokitzen du"
 
-#: ../aisleriot/window.c:2225
+#: ../aisleriot/window.c:2156
 msgid "View help for Aisleriot"
 msgstr "Ikusi Aisleriot-en laguntza"
 
-#: ../aisleriot/window.c:2229 ../libgames-support/games-stock.c:52
+#: ../aisleriot/window.c:2160 ../libgames-support/games-stock.c:52
 msgid "View help for this game"
 msgstr "Ikusi joko honen laguntza"
 
-#: ../aisleriot/window.c:2232 ../libgames-support/games-stock.c:67
+#: ../aisleriot/window.c:2163 ../libgames-support/games-stock.c:67
 msgid "About this game"
 msgstr "Joko honi buruz"
 
-#: ../aisleriot/window.c:2235
+#: ../aisleriot/window.c:2166
 msgid "Install card themes…"
 msgstr "Instalatu karta-gaiak..."
 
-#: ../aisleriot/window.c:2236
+#: ../aisleriot/window.c:2167
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Instalatu karta-gai berriak banaketako paketeen biltegietatik"
 
-#: ../aisleriot/window.c:2244
+#: ../aisleriot/window.c:2175
 msgid "_Card Style"
 msgstr "_Karta-estiloa"
 
-#: ../aisleriot/window.c:2285 ../gnobots2/menu.c:90
+#: ../aisleriot/window.c:2218 ../gnobots2/menu.c:90
 #: ../mahjongg/mahjongg.c:1223
 msgid "_Toolbar"
 msgstr "_Tresna-barra"
 
-#: ../aisleriot/window.c:2286 ../gnobots2/menu.c:90
+#: ../aisleriot/window.c:2219 ../gnobots2/menu.c:90
 #: ../mahjongg/mahjongg.c:1223
 msgid "Show or hide the toolbar"
 msgstr "Tresna-barra erakusten edo ezkutatzen du"
 
-#: ../aisleriot/window.c:2291
+#: ../aisleriot/window.c:2224
 msgid "_Statusbar"
 msgstr "_Egoera-barra"
 
-#: ../aisleriot/window.c:2292
+#: ../aisleriot/window.c:2225
 msgid "Show or hide statusbar"
 msgstr "Egoera-barra erakusten edo ezkutatzen du"
 
-#: ../aisleriot/window.c:2297 ../gnotravex/gnotravex.c:1731
+#: ../aisleriot/window.c:2230 ../gnotravex/gnotravex.c:1731
 msgid "_Click to Move"
 msgstr "_Egin klik mugitzeko"
 
-#: ../aisleriot/window.c:2298
+#: ../aisleriot/window.c:2231
 msgid "Pick up and drop cards by clicking"
 msgstr "Klik eginez hartzen eta uzten ditu kartak"
 
-#: ../aisleriot/window.c:2302
+#: ../aisleriot/window.c:2235
 msgid "_Sound"
 msgstr "_Soinua"
 
-#: ../aisleriot/window.c:2303
+#: ../aisleriot/window.c:2236
 msgid "Whether or not to play event sounds"
 msgstr "Gertaera-soinuak erreproduzituko diren ala ez adierazten du."
 
-#: ../aisleriot/window.c:2308
-msgid "_Animations"
-msgstr "_Animazioak"
-
-#: ../aisleriot/window.c:2309
-msgid "Whether or not to animate card moves"
-msgstr "Animazioa erabiliko den karten mugimenduetan ala ez adierazten du."
-
-#: ../aisleriot/window.c:2616 ../glines/glines.c:1841
+#: ../aisleriot/window.c:2507 ../glines/glines.c:1841
 #: ../gnobots2/statusbar.c:67 ../quadrapassel/scoreframe.cpp:47
 #: ../gnomine/gnomine.c:440
 msgid "Score:"
 msgstr "Puntuazioa:"
 
-#: ../aisleriot/window.c:2628 ../gnotravex/gnotravex.c:1402
+#: ../aisleriot/window.c:2519 ../gnotravex/gnotravex.c:1402
 #: ../mahjongg/mahjongg.c:1407
 msgid "Time:"
 msgstr "Denbora:"
 
-#: ../aisleriot/window.c:2977
+#: ../aisleriot/window.c:2851
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Ezin izan da '%s' jokoa abiarazi"
+
+#. Translators: this is the symbol that's on a Joker card
+#: ../aisleriot/lib/ar-card.c:182
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "KOMODINA"
+
+#. Translators: this is the symbol that's on an Ace card
+#: ../aisleriot/lib/ar-card.c:184 ../aisleriot/lib/ar-card.c:208
+msgctxt "card symbol"
+msgid "A"
+msgstr "A"
+
+#. Translators: this is the symbol that's on a 2 card
+#: ../aisleriot/lib/ar-card.c:186
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: ../aisleriot/lib/ar-card.c:188
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: ../aisleriot/lib/ar-card.c:190
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: ../aisleriot/lib/ar-card.c:192
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: ../aisleriot/lib/ar-card.c:194
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: ../aisleriot/lib/ar-card.c:196
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: ../aisleriot/lib/ar-card.c:198
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: ../aisleriot/lib/ar-card.c:200
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: ../aisleriot/lib/ar-card.c:202
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: ../aisleriot/lib/ar-card.c:204
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: ../aisleriot/lib/ar-card.c:206
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: ../aisleriot/lib/ar-card.c:210
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
 
 #: ../aisleriot/lib/ar-card.c:252
 msgid "ace of clubs"
@@ -2089,53 +2240,63 @@ msgstr "Eraman karta bat oinarrira"
 msgid "Move something into the empty Tableau slot"
 msgstr "Eraman zerbait mahaiko toki hutsera"
 
-#: ../aisleriot/rules/clock.scm.h:1
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:2
 msgid "Consistency is key"
 msgstr "Iraunkortasuna da gakoa"
 
-#: ../aisleriot/rules/clock.scm.h:2
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:4
 msgid "Fishing wire makes bad dental floss"
 msgstr "Pitak ez du hortzetako hari gisa balio"
 
-#: ../aisleriot/rules/clock.scm.h:3
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:6
 msgid "Have you read the help file?"
 msgstr "Irakurri duzu laguntza-fitxategia?"
 
-#: ../aisleriot/rules/clock.scm.h:4
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:8
 msgid "I could sure use a backrub right about now..."
 msgstr "Oraintxe gustura hartuko nuke masajetxo bat bizkarrean..."
 
-#: ../aisleriot/rules/clock.scm.h:5
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:10
 msgid "If you're ever lost and alone in the woods, hug a tree"
 msgstr "Inoiz basoan galduta eta bakarrik bazaude, besarkatu zuhaitz bat"
 
-#: ../aisleriot/rules/clock.scm.h:6
-msgid ""
-"Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
-msgstr ""
-"Oinezkoen bideak joko-taularen itxura izateak ez du esan nahi hala denik"
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:12
+msgid "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
+msgstr "Oinezkoen bideak joko-taularen itxura izateak ez du esan nahi hala denik"
 
-#: ../aisleriot/rules/clock.scm.h:7
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:14
 msgid "Look both ways before you cross the street"
 msgstr "Kalea zeharkatu aurretik albo bietara begiratu"
 
-#: ../aisleriot/rules/clock.scm.h:8
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:16
 msgid "Monitors won't give you Vitamin D -- but sunlight will..."
 msgstr "Monitoreak ez dizu D bitaminarik ematen; eguzkiak, aldiz, bai ..."
 
-#: ../aisleriot/rules/clock.scm.h:9
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:18
 msgid "Never blow in a dog's ear"
 msgstr "Ez egin sekula putz txakur baten belarrian"
 
-#: ../aisleriot/rules/clock.scm.h:10
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:20
 msgid "Odessa is a better game.  Really."
 msgstr "Odessa joko hobea da, egia esan."
 
-#: ../aisleriot/rules/clock.scm.h:11
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:22
 msgid "Tourniquets are not recommended unless in the direst emergency"
 msgstr "Torniketeak egitea ez da gomendagarria, larrialdietan izan ezik"
 
-#: ../aisleriot/rules/clock.scm.h:12
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../aisleriot/rules/clock.scm.h:24
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Grapagailurik ezean, grapak eta erregela erabili"
 
@@ -2418,8 +2579,7 @@ msgstr "Oinarrizko karta:"
 msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
-msgstr ""
-"Saiatu uneko diseinura hobekien egokitzen diren moduan antolatzen irudiak."
+msgstr "Saiatu uneko diseinura hobekien egokitzen diren moduan antolatzen irudiak."
 
 #: ../aisleriot/rules/osmosis.scm.h:2
 msgid "Deal new cards from the deck"
@@ -2565,6 +2725,109 @@ msgstr "Eraman karta multzoa mahaiko toki hutsera"
 msgid "the appropriate Foundation pile"
 msgstr "oinarri-pila egokia"
 
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:1
+msgid "A flag to enable 3D mode"
+msgstr "3Dko modua gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:2
+msgid "A flag to enable board numbering"
+msgstr "Taulei zenbakia jartzea gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:3
+msgid "A flag to enable fullscreen mode"
+msgstr "Pantaila osoko modua gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:4
+msgid "A flag to enable maximised mode"
+msgstr "Modu maximizatua gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:5
+msgid "A flag to enable move hints"
+msgstr "Mugitzeko iradokizunak gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:6
+msgid "A flag to enable the move history browser"
+msgstr "Historia-arakatzailea mugitzea gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:7
+msgid "A flag to enable the toolbar"
+msgstr "Tresna-barra gaitzeko bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:8
+msgid "A flag to smooth (anti-alias) the 3D display"
+msgstr "3D pantaila leuntzeko (antialiasing-a) bandera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:9
+msgid ""
+"Can be 'human' (play against another human player), '' (use the first "
+"available chess engine) or the name of a specific engine to play against"
+msgstr "'human' (pertsona) izan daiteke (jokatu beste giza jokalariaren aurka), '' (erabili aurreneko xakeko motor erabilgarria) edo motor zehatz baten izena haren aurka jokatzeko."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:10
+msgid "Difficulty of the opponent chess engine"
+msgstr "Xake motor aurkariaren zailtasuna"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:11
+msgid "The directory to open the load game dialog in"
+msgstr "Jokoa kargatzeko elkarrizketa-koadroa irekitzeko direktorioa"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:12
+msgid "The directory to open the save game dialog in"
+msgstr "Jokoa gordetzeko elkarrizketa-koadroa irekitzeko direktorioa"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:13
+msgid "The duration of a game in seconds (0 for no limit)"
+msgstr "Jokoaren iraupena segundotan (0 mugarik ez)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:14
+msgid "The format to display moves in"
+msgstr "Mugimenduak bistaratzeko formatua"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:15
+msgid "The height of the main window in pixels."
+msgstr "Leiho nagusiaren altuera (pixeletan)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:16
+msgid "The height of the window"
+msgstr "Leihoaren altuera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:17
+#| msgid "The puzzle in play"
+msgid "The opponent player"
+msgstr "Aurkako jokalaria"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:18
+#| msgid "The theme to use"
+msgid "The piece theme to use"
+msgstr "Piezaren gaia erabiltzeko"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:19
+msgid "The piece to promote pawns to"
+msgstr "Peoiak zein pieza bihurtu"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:20
+#| msgid ""
+#| "The piece to promote to when a human player moves a pawn to the far rank. "
+#| "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
+msgid "The piece to promote to when a human player moves a pawn to the far rank"
+msgstr "Giza jokalariek peoiak muturreko lauki batera eramatean peoia beste pieza bat bihurtuko da."
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:21
+msgid "The side of the board that is in the foreground"
+msgstr "Aurreko planoan dagoen taularen alboa"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:22
+msgid "The width of the main window in pixels."
+msgstr "Leiho nagusiaren zabalera (pixeletan)"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:23
+msgid "The width of the window"
+msgstr "Leihoaren zabalera"
+
+#: ../glchess/data/org.gnome.glchess.gschema.xml.in.h:24
+msgid "true if the human player is playing white"
+msgstr "true (egia) giza jokalariak zuriekin jokatzen badu"
+
 #. Claim draw menu item
 #: ../glchess/data/glchess.ui.h:2
 msgid "Claim _Draw"
@@ -2608,7 +2871,7 @@ msgstr "Desegin mugimendua"
 
 #. Help contents menu item
 #: ../glchess/data/glchess.ui.h:20 ../gnome-sudoku/src/lib/main.py:255
-#: ../libgames-support/games-stock.c:294
+#: ../libgames-support/games-stock.c:296
 msgid "_Contents"
 msgstr "_Edukia"
 
@@ -2628,7 +2891,7 @@ msgid "_Settings"
 msgstr "E_zarpenak"
 
 #. Undo move menu item
-#: ../glchess/data/glchess.ui.h:30 ../libgames-support/games-stock.c:306
+#: ../glchess/data/glchess.ui.h:30 ../libgames-support/games-stock.c:308
 msgid "_Undo Move"
 msgstr "_Desegin mugimendua"
 
@@ -2642,224 +2905,259 @@ msgstr "30 minutu"
 msgid "3_D Chess View"
 msgstr "3_D xake-ikuspegia"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
-#: ../glchess/data/preferences.ui.h:6
-msgid "Bishop"
-msgstr "Alfila"
-
-#. Preferences Dialog: Combo box entry for playing as black
-#: ../glchess/data/preferences.ui.h:8
-msgid "Black"
-msgstr "Beltza"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
-#: ../glchess/data/preferences.ui.h:10
-msgid "Black Side"
-msgstr "Beltzen aldea"
-
 #. Preferences Dialog: Label before board orientation combo box
-#: ../glchess/data/preferences.ui.h:12
+#: ../glchess/data/preferences.ui.h:6
 msgid "Board Orientation:"
 msgstr "Taularen orientazioa:"
 
 #. Preferences dialog: Label to notify user that the settings are applied for the next game
-#: ../glchess/data/preferences.ui.h:14
+#: ../glchess/data/preferences.ui.h:8
 msgid "Changes will take effect for the next game."
 msgstr "Aldaketak hurrengo jokoan eragingo dute."
 
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
-#: ../glchess/data/preferences.ui.h:16
-msgid "Current Player"
-msgstr "Uneko jokalaria"
-
 #. Preferences Dialog: Combo box entry for custom game timer
-#: ../glchess/data/preferences.ui.h:18
+#: ../glchess/data/preferences.ui.h:10
 msgid "Custom"
 msgstr "Pertsonalizatua"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:20
+#: ../glchess/data/preferences.ui.h:12
 msgid "Difficulty:"
 msgstr "Zailtasuna:"
 
-#. Preferences Dialog: Combo box entry for easy game difficulty
-#: ../glchess/data/preferences.ui.h:22 ../gnome-sudoku/src/lib/main.py:666
-#: ../gnome-sudoku/src/lib/printing.py:182
-#: ../gnome-sudoku/src/lib/game_selector.py:122
-msgid "Easy"
-msgstr "Erraza"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
-#: ../glchess/data/preferences.ui.h:24
-msgid "Face to Face"
-msgstr "Aurpegiz aurpegi"
-
 #. Preferences Dialog: Combo box entry for fancy theme
-#: ../glchess/data/preferences.ui.h:26
+#: ../glchess/data/preferences.ui.h:14
 msgid "Fancy"
 msgstr "Dotorea"
 
-#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
-#: ../glchess/data/preferences.ui.h:28
-msgid "Figurine"
-msgstr "Estatuatxoa"
-
 #. Preferences Dialog: Combo box entry for game timer of five minutes
-#: ../glchess/data/preferences.ui.h:30
+#: ../glchess/data/preferences.ui.h:16
 msgid "Five minutes"
 msgstr "Bost minutu"
 
 #. Preferences Dialog: Tab title for game preferences
-#: ../glchess/data/preferences.ui.h:32 ../gnect/src/prefs.c:302
+#: ../glchess/data/preferences.ui.h:18 ../gnect/src/prefs.c:302
 #: ../gnibbles/preferences.c:254 ../gnobots2/properties.c:496
-#: ../quadrapassel/tetris.cpp:590 ../iagno/properties.c:415
+#: ../quadrapassel/tetris.cpp:596 ../iagno/properties.c:415
 msgid "Game"
 msgstr "Jokoa"
 
 #. New Game Dialog: Label before game timer settings
-#: ../glchess/data/preferences.ui.h:34
+#: ../glchess/data/preferences.ui.h:20
 msgid "Game Duration:"
 msgstr "Jokoaren iraupena:"
 
-#. Preferences Dialog: Combo box entry for hard game difficulty
-#: ../glchess/data/preferences.ui.h:36 ../gnome-sudoku/src/lib/main.py:668
-#: ../gnome-sudoku/src/lib/printing.py:184
-#: ../gnome-sudoku/src/lib/game_selector.py:124
-msgid "Hard"
-msgstr "Zaila"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
-#: ../glchess/data/preferences.ui.h:38 ../gnect/src/prefs.c:250
-#: ../gtali/gyahtzee.c:998 ../gtali/yahtzee.c:69 ../iagno/properties.c:448
-#: ../iagno/properties.c:489
-msgid "Human"
-msgstr "Gizakia"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
-#: ../glchess/data/preferences.ui.h:40
-msgid "Human Side"
-msgstr "Gizakiaren aldea"
-
-#. Preferences Dialog: Combo box entry for setting the promition type to a knight
-#: ../glchess/data/preferences.ui.h:42
-msgid "Knight"
-msgstr "Zalduna"
-
-#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
-#: ../glchess/data/preferences.ui.h:44
-msgid "Long Algebraic"
-msgstr "Aljebraiko luzea"
-
 #. Preferences Dialog: Label before move format combo box
-#: ../glchess/data/preferences.ui.h:46
+#: ../glchess/data/preferences.ui.h:22
 msgid "Move Format:"
 msgstr "Mugimenduen formatua:"
 
 #. Preferences Dialog: Combo box entry for no game timer
-#: ../glchess/data/preferences.ui.h:48
+#: ../glchess/data/preferences.ui.h:24
 msgid "No limit"
 msgstr "Mugarik gabe"
 
-#. Preferences Dialog: Combo box entry for normal game difficulty
-#: ../glchess/data/preferences.ui.h:50 ../swell-foop/src/Score.js:145
-msgid "Normal"
-msgstr "Normala"
-
 #. Preferences Dialog: Combo box entry for game timer of one hour
-#: ../glchess/data/preferences.ui.h:52
+#: ../glchess/data/preferences.ui.h:26
 msgid "One hour"
 msgstr "Ordu bat"
 
 #. Preferences Dialog: Combo box entry for game timer of one minute
-#: ../glchess/data/preferences.ui.h:54
+#: ../glchess/data/preferences.ui.h:28
 msgid "One minute"
 msgstr "Minutu bat"
 
 #. Preferences Dialog: Label before opposing player combo box
-#: ../glchess/data/preferences.ui.h:56
+#: ../glchess/data/preferences.ui.h:30
 msgid "Opposing Player:"
 msgstr "Jokalari aurkaria:"
 
 #. Preferences Dialog: Label before piece style combo box
-#: ../glchess/data/preferences.ui.h:58
+#: ../glchess/data/preferences.ui.h:32
 msgid "Piece Style:"
 msgstr "Piezaren estiloa:"
 
 #. Preferences Dialog: Label before player side (white/black) combo box
-#: ../glchess/data/preferences.ui.h:60
+#: ../glchess/data/preferences.ui.h:34
 msgid "Play as:"
 msgstr "Jokatu honela:"
 
 #. Title for preferences dialog
-#: ../glchess/data/preferences.ui.h:62 ../glines/glines.c:197
+#: ../glchess/data/preferences.ui.h:36 ../glines/glines.c:197
 #: ../mahjongg/mahjongg.c:141
 msgid "Preferences"
 msgstr "Hobespenak"
 
 #. Preferences Dialog: Label before promotion type combo box
-#: ../glchess/data/preferences.ui.h:64
+#: ../glchess/data/preferences.ui.h:38
 msgid "Promotion Type:"
 msgstr "Promozio mota:"
 
-#. Preferences Dialog: Combo box entry for setting the promition type to a queen
-#: ../glchess/data/preferences.ui.h:66
-msgid "Queen"
-msgstr "Erregina"
-
-#. Preferences Dialog: Combo box entry for setting the promition type to a rook
-#: ../glchess/data/preferences.ui.h:68
-msgid "Rook"
-msgstr "Dorrea"
-
 #. Preferences Dialog: Check box for selecting if history browser is visible
-#: ../glchess/data/preferences.ui.h:70
+#: ../glchess/data/preferences.ui.h:40
 msgid "Show _History"
 msgstr "Erakutsi _historia"
 
 #. Preferences Dialog: Check box for selecting if toolbar is visible
-#: ../glchess/data/preferences.ui.h:72 ../gnome-sudoku/src/lib/main.py:275
+#: ../glchess/data/preferences.ui.h:42 ../gnome-sudoku/src/lib/main.py:275
 msgid "Show _Toolbar"
 msgstr "Erakutsi _tresna-barra"
 
 #. Preferences Dialog: Combo box entry for simple theme
-#: ../glchess/data/preferences.ui.h:74
+#: ../glchess/data/preferences.ui.h:44
 msgid "Simple"
 msgstr "Bakuna"
 
-#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
-#: ../glchess/data/preferences.ui.h:76
-msgid "Standard Algebraic"
-msgstr "Aljebraiko estandarra"
-
-#. Preferences Dialog: Combo box entry for playing as white
-#: ../glchess/data/preferences.ui.h:78
-msgid "White"
-msgstr "Zuria"
-
-#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
-#: ../glchess/data/preferences.ui.h:80
-msgid "White Side"
-msgstr "Zurien aldea"
-
 #. Preferences Dialog: Title of appearance options tab
-#: ../glchess/data/preferences.ui.h:82
+#: ../glchess/data/preferences.ui.h:46
 msgid "_Appearance"
 msgstr "_Itxura"
 
 #. Preferences Dialog: Check box for selecting if board numbering is visible
-#: ../glchess/data/preferences.ui.h:84
+#: ../glchess/data/preferences.ui.h:48
 msgid "_Board Numbering"
 msgstr "Taulari _zenbakiak jartzea"
 
 #. Preferences Dialog: Check box for selecting if move hints are visible
-#: ../glchess/data/preferences.ui.h:86
+#: ../glchess/data/preferences.ui.h:50
 msgid "_Move Hints"
 msgstr "Mugimenduen _iradokizunak"
 
 #. Preferences Dialog: Check box for selecting if the 3D view is smoothed (anti-aliased)
-#: ../glchess/data/preferences.ui.h:88
+#: ../glchess/data/preferences.ui.h:52
 msgid "_Smooth Display"
 msgstr "_Leundu pantaila"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long figurine notation (FAN)
+#: ../glchess/data/preferences.ui.h:54
+#| msgid "Figurine"
+msgctxt "chess-move-format"
+msgid "Figurine"
+msgstr "Estatuatxoa"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to human readable descriptions
+#: ../glchess/data/preferences.ui.h:56
+#| msgid "Human"
+msgctxt "chess-move-format"
+msgid "Human"
+msgstr "Gizakia"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to long algebraic (LAN)
+#: ../glchess/data/preferences.ui.h:58
+#| msgid "Long Algebraic"
+msgctxt "chess-move-format"
+msgid "Long Algebraic"
+msgstr "Aljebraiko luzea"
+
+#. Preferences Dialog: Combo box entry for setting the notation type to standard algebraic (SAN)
+#: ../glchess/data/preferences.ui.h:60
+#| msgid "Standard Algebraic"
+msgctxt "chess-move-format"
+msgid "Standard Algebraic"
+msgstr "Aljebraiko arrunta"
+
+#. Preferences Dialog: Combo box entry for human opponent
+#: ../glchess/data/preferences.ui.h:62
+#| msgid "Human"
+msgctxt "chess-opponent"
+msgid "Human"
+msgstr "Gizakia"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a bishop
+#: ../glchess/data/preferences.ui.h:64
+#| msgid "Bishop"
+msgctxt "chess-piece"
+msgid "Bishop"
+msgstr "Alfila"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a knight
+#: ../glchess/data/preferences.ui.h:66
+#| msgid "Knight"
+msgctxt "chess-piece"
+msgid "Knight"
+msgstr "Zalduna"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a queen
+#: ../glchess/data/preferences.ui.h:68
+#| msgid "Queen"
+msgctxt "chess-piece"
+msgid "Queen"
+msgstr "Erregina"
+
+#. Preferences Dialog: Combo box entry for setting the promition type to a rook
+#: ../glchess/data/preferences.ui.h:70
+#| msgid "Rook"
+msgctxt "chess-piece"
+msgid "Rook"
+msgstr "Dorrea"
+
+#. Preferences Dialog: Combo box entry for playing as black
+#: ../glchess/data/preferences.ui.h:72
+#| msgid "Black"
+msgctxt "chess-player"
+msgid "Black"
+msgstr "Beltza"
+
+#. Preferences Dialog: Combo box entry for playing as white
+#: ../glchess/data/preferences.ui.h:74
+#| msgid "White"
+msgctxt "chess-player"
+msgid "White"
+msgstr "Zuria"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the black side
+#: ../glchess/data/preferences.ui.h:76
+#| msgid "Black Side"
+msgctxt "chess-side"
+msgid "Black Side"
+msgstr "Beltzen aldea"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the current active player is on
+#: ../glchess/data/preferences.ui.h:78
+#| msgid "Current Player"
+msgctxt "chess-side"
+msgid "Current Player"
+msgstr "Uneko jokalaria"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation face to face mode where opponents are looking at the same screen from opposite sides (e.g. with a tablet)
+#: ../glchess/data/preferences.ui.h:80
+#| msgid "Face to Face"
+msgctxt "chess-side"
+msgid "Face to Face"
+msgstr "Aurpegiz aurpegi"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the side the human player is on
+#: ../glchess/data/preferences.ui.h:82
+#| msgid "Human Side"
+msgctxt "chess-side"
+msgid "Human Side"
+msgstr "Gizakiaren aldea"
+
+#. Preferences Dialog: Combo box entry for setting the board orientation to the white side
+#: ../glchess/data/preferences.ui.h:84
+#| msgid "White Side"
+msgctxt "chess-side"
+msgid "White Side"
+msgstr "Zurien aldea"
+
+#. Preferences Dialog: Combo box entry for easy game difficulty
+#: ../glchess/data/preferences.ui.h:86 ../gtali/setup.c:347
+msgctxt "difficulty"
+msgid "Easy"
+msgstr "Erraza"
+
+#. Preferences Dialog: Combo box entry for hard game difficulty
+#: ../glchess/data/preferences.ui.h:88 ../gtali/setup.c:349
+msgctxt "difficulty"
+msgid "Hard"
+msgstr "Zaila"
+
+#. Preferences Dialog: Combo box entry for normal game difficulty
+#: ../glchess/data/preferences.ui.h:90
+#| msgid "Normal"
+msgctxt "difficulty"
+msgid "Normal"
+msgstr "Normala"
 
 #. Title of the main window
 #: ../glchess/glchess.desktop.in.in.h:1 ../glchess/src/glchess.vala:218
@@ -3317,44 +3615,59 @@ msgid "Black king at %1$s takes the white queen at %2$s"
 msgstr "%1$s(e)ko errege beltzak %2$s(e)ko dama zuria harrapatzen du"
 
 #. Message display when the white player wins
-#: ../glchess/src/glchess.vala:704
+#: ../glchess/src/glchess.vala:706
 msgid "White wins"
 msgstr "Zuriek irabazi dute"
 
 #. Message display when the black player wins
-#: ../glchess/src/glchess.vala:709
+#: ../glchess/src/glchess.vala:711
 msgid "Black wins"
 msgstr "Beltzek irabazi dute"
 
 #. Message display when the game is drawn
-#: ../glchess/src/glchess.vala:714
+#: ../glchess/src/glchess.vala:716
 msgid "Game is drawn"
 msgstr "Jokoa berdindua dago"
 
-#: ../glchess/src/glchess.vala:815
+#: ../glchess/src/glchess.vala:817
 msgid "Save this game before starting a new one?"
 msgstr "Gorde joko hau berri batekin hasi aurretik?"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in seconds
-#: ../glchess/src/glchess.vala:1209
+#: ../glchess/src/glchess.vala:1211
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "segundo"
 msgstr[1] "segundo"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in minutes
-#: ../glchess/src/glchess.vala:1213
+#: ../glchess/src/glchess.vala:1215
 msgid "minute"
 msgid_plural "minutes"
 msgstr[0] "minutu"
 msgstr[1] "minutu"
 
 #. Preferences Dialog: Combo box entry for a custom game timer set in hours
-#: ../glchess/src/glchess.vala:1217
+#: ../glchess/src/glchess.vala:1219
 msgid "hour"
 msgid_plural "hours"
 msgstr[0] "ordu"
 msgstr[1] "ordu"
+
+#: ../glines/glines.c:90 ../gnomine/gnomine.c:101
+msgctxt "board size"
+msgid "Small"
+msgstr "Txikia"
+
+#: ../glines/glines.c:91 ../gnomine/gnomine.c:102
+msgctxt "board size"
+msgid "Medium"
+msgstr "Tartekoa"
+
+#: ../glines/glines.c:92 ../gnomine/gnomine.c:103
+msgctxt "board size"
+msgid "Large"
+msgstr "Handia"
 
 #: ../glines/glines.c:191
 msgid "Could not load theme"
@@ -3444,6 +3757,11 @@ msgstr "Atzeko pla_noaren kolorea:"
 msgid "Board Size"
 msgstr "Taularen tamaina"
 
+#: ../glines/glines.c:1469
+msgctxt "preferences"
+msgid "General"
+msgstr "Orokorra"
+
 #: ../glines/glines.c:1475
 msgid "_Use fast moves"
 msgstr "_Erabili mugimendu bizkorrak"
@@ -3462,8 +3780,7 @@ msgstr "Atzeko planoaren kolorea"
 
 #: ../glines/glines.schemas.in.h:2 ../gnobots2/gnobots2.schemas.in.h:2
 msgid "Background color. The hex specification of the background color."
-msgstr ""
-"Atzeko planoaren kolorea. Atzeko planoaren kolorearen balio hamaseitarra."
+msgstr "Atzeko planoaren kolorea. Atzeko planoaren kolorearen balio hamaseitarra."
 
 #: ../glines/glines.schemas.in.h:3
 msgid "Ball style"
@@ -3471,8 +3788,7 @@ msgstr "Puxtarrien estiloa"
 
 #: ../glines/glines.schemas.in.h:4
 msgid "Ball style. The filename of the images to use for the balls."
-msgstr ""
-"Puxtarrien estiloa. Puxtarrietan erabili beharreko irudien fitxategi-izena."
+msgstr "Puxtarrien estiloa. Puxtarrietan erabili beharreko irudien fitxategi-izena."
 
 #: ../glines/glines.schemas.in.h:5
 msgid "Game field"
@@ -3503,8 +3819,7 @@ msgid "Playing field size"
 msgstr "Joko-eremuaren tamaina"
 
 #: ../glines/glines.schemas.in.h:12
-msgid ""
-"Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
+msgid "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
 msgstr ""
 "Joko-eremuaren tamaina. 1=Txikia, 2=Ertaina, 3=Handia. Gainerako balioak ez "
 "dira baliozkoak."
@@ -3561,13 +3876,13 @@ msgstr "2. jokalariaren maila"
 
 #: ../gnect/data/gnect.schemas.in.h:9 ../gnect/src/prefs.c:371
 #: ../gnibbles/gnibbles.schemas.in.h:16 ../gnibbles/preferences.c:444
-#: ../quadrapassel/quadrapassel.schemas.in.h:13 ../quadrapassel/tetris.cpp:738
+#: ../quadrapassel/quadrapassel.schemas.in.h:13 ../quadrapassel/tetris.cpp:751
 msgid "Move left"
 msgstr "Mugitu ezkerrera"
 
 #: ../gnect/data/gnect.schemas.in.h:10 ../gnect/src/prefs.c:372
 #: ../gnibbles/gnibbles.schemas.in.h:17 ../gnibbles/preferences.c:445
-#: ../quadrapassel/quadrapassel.schemas.in.h:14 ../quadrapassel/tetris.cpp:739
+#: ../quadrapassel/quadrapassel.schemas.in.h:14 ../quadrapassel/tetris.cpp:752
 msgid "Move right"
 msgstr "Mugitu eskuinera"
 
@@ -3583,8 +3898,7 @@ msgstr "Animazioa erabiliko den ala ez adierazten du."
 msgid ""
 "Zero is human; one through three correspond to the level of the computer "
 "player."
-msgstr ""
-"Zero giza jokalaria da; batetik hirura ordenagailu-jokalariaren maila da."
+msgstr "Zero giza jokalaria da; batetik hirura ordenagailu-jokalariaren maila da."
 
 #: ../gnect/src/gfx.c:248
 #, c-format
@@ -3676,6 +3990,11 @@ msgstr ""
 "Bigarren jokalaria:\n"
 "%s"
 
+#: ../gnect/src/prefs.c:250 ../gtali/gyahtzee.c:998 ../gtali/yahtzee.c:69
+#: ../iagno/properties.c:448 ../iagno/properties.c:489
+msgid "Human"
+msgstr "Gizakia"
+
 #: ../gnect/src/prefs.c:252 ../iagno/properties.c:457
 #: ../iagno/properties.c:498
 msgid "Level one"
@@ -3710,7 +4029,7 @@ msgstr "_Gaitu soinuak"
 
 #. keyboard tab
 #: ../gnect/src/prefs.c:367 ../gnibbles/preferences.c:434
-#: ../gnobots2/properties.c:542 ../quadrapassel/tetris.cpp:730
+#: ../gnobots2/properties.c:542 ../quadrapassel/tetris.cpp:743
 msgid "Keyboard Controls"
 msgstr "Teklatuko kontrolak"
 
@@ -3840,7 +4159,7 @@ msgstr "Gidatu harra labirintoan zehar"
 
 #: ../gnibbles/gnibbles.desktop.in.in.h:2 ../gnibbles/main.c:196
 #: ../gnibbles/main.c:199 ../gnibbles/main.c:798 ../gnibbles/main.c:877
-#: ../gnibbles/main.c:1021
+#: ../gnibbles/main.c:1007
 msgid "Nibbles"
 msgstr "Nibbles"
 
@@ -3901,7 +4220,7 @@ msgid "Key to use for motion up."
 msgstr "Gora joateko tekla."
 
 #: ../gnibbles/gnibbles.schemas.in.h:15 ../gnibbles/preferences.c:447
-#: ../quadrapassel/quadrapassel.schemas.in.h:12 ../quadrapassel/tetris.cpp:740
+#: ../quadrapassel/quadrapassel.schemas.in.h:12 ../quadrapassel/tetris.cpp:753
 msgid "Move down"
 msgstr "Eraman beherantz"
 
@@ -3948,6 +4267,46 @@ msgstr "Erabili mugimendu erlatiboa"
 #: ../gnibbles/gnibbles.schemas.in.h:28
 msgid "Use relative movement (ie. left or right only)."
 msgstr "Erabili mugimendu erlatiboa (adib. ezkerrera edo eskuinera bakarrik)."
+
+#: ../gnibbles/main.c:73
+msgctxt "game speed"
+msgid "Beginner"
+msgstr "Hasiberria"
+
+#: ../gnibbles/main.c:74
+msgctxt "game speed"
+msgid "Slow"
+msgstr "Motela"
+
+#: ../gnibbles/main.c:75
+msgctxt "game speed"
+msgid "Medium"
+msgstr "Tartekoa"
+
+#: ../gnibbles/main.c:76
+msgctxt "game speed"
+msgid "Fast"
+msgstr "Bizkorra"
+
+#: ../gnibbles/main.c:77
+msgctxt "game speed"
+msgid "Beginner with Fakes"
+msgstr "Gezurrezko hasiberria"
+
+#: ../gnibbles/main.c:78
+msgctxt "game speed"
+msgid "Slow with Fakes"
+msgstr "Gezurrezko motela"
+
+#: ../gnibbles/main.c:79
+msgctxt "game speed"
+msgid "Medium with Fakes"
+msgstr "Gezurrezko tartekoa"
+
+#: ../gnibbles/main.c:80
+msgctxt "game speed"
+msgid "Fast with Fakes"
+msgstr "Gezurrezko bizkorra"
 
 #: ../gnibbles/main.c:205
 msgid ""
@@ -4012,7 +4371,7 @@ msgid "_Enable fake bonuses"
 msgstr "_Gaitu gainordain faltsuak"
 
 #. starting level
-#: ../gnibbles/preferences.c:351 ../quadrapassel/tetris.cpp:637
+#: ../gnibbles/preferences.c:351 ../quadrapassel/tetris.cpp:643
 msgid "_Starting level:"
 msgstr "_Hasierako maila:"
 
@@ -4063,13 +4422,12 @@ msgstr "Jokoa amaitu da!"
 
 #: ../gnobots2/game.c:152 ../gnomine/gnomine.c:200 ../gnotski/gnotski.c:772
 msgid "Great work, but unfortunately your score did not make the top ten."
-msgstr ""
-"Lan bikaina egin duzu, baina zure puntuazioa ez dago lehen hamarren artean."
+msgstr "Lan bikaina egin duzu, baina zure puntuazioa ez dago lehen hamarren artean."
 
 #. Translators: This "_New Game" is for the game-over dialogue
 #: ../gnobots2/game.c:154 ../gnome-sudoku/data/select_game.ui.h:1
 #: ../gnomine/gnomine.c:202 ../gnotski/gnotski.c:774
-#: ../libgames-support/games-stock.c:300
+#: ../libgames-support/games-stock.c:302
 msgid "_New Game"
 msgstr "_Joko berria"
 
@@ -4224,8 +4582,7 @@ msgstr "Gaitu jokoaren soinuak"
 
 #: ../gnobots2/gnobots2.schemas.in.h:4
 msgid "Enable game sounds. Play sounds for various events throughout the game."
-msgstr ""
-"Gaitu jokoaren soinuak. Erreproduzitu soinuak jokoko hainbat gertaeretan."
+msgstr "Gaitu jokoaren soinuak. Erreproduzitu soinuak jokoko hainbat gertaeretan."
 
 #: ../gnobots2/gnobots2.schemas.in.h:5
 msgid "Game type"
@@ -4300,15 +4657,13 @@ msgid "Show toolbar. A standard option for toolbars."
 msgstr "Erakutsi tresna-barra. Tresna-barren aukera estandarra."
 
 #: ../gnobots2/gnobots2.schemas.in.h:23
-msgid ""
-"The name of the key used to hold still. The name is a standard X key name."
+msgid "The name of the key used to hold still. The name is a standard X key name."
 msgstr ""
 "Geldirik egoteko erabilitako teklaren izena. X tekla estandarrari dagokion "
 "izena da."
 
 #: ../gnobots2/gnobots2.schemas.in.h:24
-msgid ""
-"The name of the key used to move east. The name is a standard X key name."
+msgid "The name of the key used to move east. The name is a standard X key name."
 msgstr ""
 "Ekialderantz mugitzeko erabilitako teklaren izena. X tekla estandarrari "
 "dagokion izena da."
@@ -4330,8 +4685,7 @@ msgstr ""
 "estandarrari dagokion izena da."
 
 #: ../gnobots2/gnobots2.schemas.in.h:27
-msgid ""
-"The name of the key used to move north. The name is a standard X key name."
+msgid "The name of the key used to move north. The name is a standard X key name."
 msgstr ""
 "Iparralderantz mugitzeko erabilitako teklaren izena. X tekla estandarrari "
 "dagokion izena da."
@@ -4353,15 +4707,13 @@ msgstr ""
 "estandarrari dagokion izena da."
 
 #: ../gnobots2/gnobots2.schemas.in.h:30
-msgid ""
-"The name of the key used to move south. The name is a standard X key name."
+msgid "The name of the key used to move south. The name is a standard X key name."
 msgstr ""
 "Hegoalderantz mugitzeko erabilitako teklaren izena. X tekla estandarrari "
 "dagokion izena da."
 
 #: ../gnobots2/gnobots2.schemas.in.h:31
-msgid ""
-"The name of the key used to move west. The name is a standard X key name."
+msgid "The name of the key used to move west. The name is a standard X key name."
 msgstr ""
 "Mendebalderantz mugitzeko erabilitako teklaren izena. X tekla estandarrari "
 "dagokion izena da."
@@ -4531,7 +4883,7 @@ msgstr "Erabili mugimendu seguru-seguruak"
 msgid "Prevents all moves that result in getting killed."
 msgstr "Heriotzara eramaten duten mugimendu guztiak saihesten ditu."
 
-#: ../gnobots2/properties.c:488 ../quadrapassel/tetris.cpp:663
+#: ../gnobots2/properties.c:488 ../quadrapassel/tetris.cpp:669
 msgid "_Enable sounds"
 msgstr "_Gaitu soinuak"
 
@@ -4577,12 +4929,12 @@ msgid "Fit falling blocks together"
 msgstr "Kokatu erortzen diren blokeak"
 
 #: ../quadrapassel/quadrapassel.desktop.in.in.h:2 ../quadrapassel/main.cpp:66
-#: ../quadrapassel/tetris.cpp:158 ../quadrapassel/tetris.cpp:1292
-#: ../quadrapassel/tetris.cpp:1295
+#: ../quadrapassel/tetris.cpp:158 ../quadrapassel/tetris.cpp:1305
+#: ../quadrapassel/tetris.cpp:1308
 msgid "Quadrapassel"
 msgstr "Quadrapassel"
 
-#: ../quadrapassel/quadrapassel.schemas.in.h:1 ../quadrapassel/tetris.cpp:741
+#: ../quadrapassel/quadrapassel.schemas.in.h:1 ../quadrapassel/tetris.cpp:754
 msgid "Drop"
 msgstr "Jaregin"
 
@@ -4618,11 +4970,11 @@ msgstr "Hasteko maila"
 msgid "Level to start with."
 msgstr "Hasteko maila."
 
-#: ../quadrapassel/quadrapassel.schemas.in.h:15 ../quadrapassel/tetris.cpp:743
+#: ../quadrapassel/quadrapassel.schemas.in.h:15 ../quadrapassel/tetris.cpp:756
 msgid "Pause"
 msgstr "Pausarazi"
 
-#: ../quadrapassel/quadrapassel.schemas.in.h:16 ../quadrapassel/tetris.cpp:742
+#: ../quadrapassel/quadrapassel.schemas.in.h:16 ../quadrapassel/tetris.cpp:755
 msgid "Rotate"
 msgstr "Biratu"
 
@@ -4632,8 +4984,7 @@ msgstr "Atzeko planoaren kolorea"
 
 #: ../quadrapassel/quadrapassel.schemas.in.h:18
 msgid "The background color, in a format gdk_color_parse understands."
-msgstr ""
-"Atzeko planoaren kolorea, gdk_color_parse-k ulertzen duen formatu batean."
+msgstr "Atzeko planoaren kolorea, gdk_color_parse-k ulertzen duen formatu batean."
 
 #: ../quadrapassel/quadrapassel.schemas.in.h:19
 msgid ""
@@ -4690,10 +5041,8 @@ msgid "Whether to preview the next block."
 msgstr "Hurrengo blokea aurreikusiko den ala ez adierazten du."
 
 #: ../quadrapassel/quadrapassel.schemas.in.h:30
-msgid ""
-"Whether to provide a graphical representation of where a block will land."
-msgstr ""
-"Blokea nora helduko den grafikoki irudikatuko den ala ez adierazten du."
+msgid "Whether to provide a graphical representation of where a block will land."
+msgstr "Blokea nora helduko den grafikoki irudikatuko den ala ez adierazten du."
 
 #: ../quadrapassel/quadrapassel.schemas.in.h:31
 msgid "Whether to provide a target"
@@ -4739,61 +5088,61 @@ msgstr "Garbitu"
 msgid "Lines:"
 msgstr "Lerroak:"
 
-#: ../quadrapassel/tetris.cpp:570
+#: ../quadrapassel/tetris.cpp:576
 msgid "Quadrapassel Preferences"
 msgstr "Quadrapassel-en hobespenak"
 
-#: ../quadrapassel/tetris.cpp:593 ../swell-foop/data/settings.ui.h:5
+#: ../quadrapassel/tetris.cpp:599 ../swell-foop/data/settings.ui.h:5
 msgid "Setup"
 msgstr "Konfigurazioa"
 
 #. pre-filled rows
-#: ../quadrapassel/tetris.cpp:599
+#: ../quadrapassel/tetris.cpp:605
 msgid "_Number of pre-filled rows:"
 msgstr "_Aurrez betetako errenkaden kopurua:"
 
 #. pre-filled rows density
-#: ../quadrapassel/tetris.cpp:618
+#: ../quadrapassel/tetris.cpp:624
 msgid "_Density of blocks in a pre-filled row:"
 msgstr "_Bloke-dentsitatea, aurrez betetako errenkada batean:"
 
-#: ../quadrapassel/tetris.cpp:658 ../swell-foop/data/settings.ui.h:4
+#: ../quadrapassel/tetris.cpp:664 ../swell-foop/data/settings.ui.h:4
 msgid "Operation"
 msgstr "Eragiketa"
 
-#: ../quadrapassel/tetris.cpp:672
+#: ../quadrapassel/tetris.cpp:678
 msgid "_Preview next block"
 msgstr "_Aurreikusi hurrengo blokea"
 
-#: ../quadrapassel/tetris.cpp:681
+#: ../quadrapassel/tetris.cpp:687
 msgid "_Use random block colors"
 msgstr "_Erabili ausazko bloke-koloreak"
 
-#: ../quadrapassel/tetris.cpp:692
+#: ../quadrapassel/tetris.cpp:698
 msgid "Choose difficult _blocks"
 msgstr "Aukeratu blokeen _zailtasuna"
 
-#: ../quadrapassel/tetris.cpp:701
+#: ../quadrapassel/tetris.cpp:714
 msgid "_Rotate blocks counterclockwise"
 msgstr "_Biratu blokeak erloju-orratzen aurkako noranzkoan"
 
-#: ../quadrapassel/tetris.cpp:710
+#: ../quadrapassel/tetris.cpp:723
 msgid "Show _where the block will land"
 msgstr "Erakutsi _blokea nora helduko den"
 
-#: ../quadrapassel/tetris.cpp:718 ../quadrapassel/tetris.cpp:751
+#: ../quadrapassel/tetris.cpp:731 ../quadrapassel/tetris.cpp:764
 msgid "Theme"
 msgstr "Gaia"
 
-#: ../quadrapassel/tetris.cpp:727
+#: ../quadrapassel/tetris.cpp:740
 msgid "Controls"
 msgstr "Kontrolak"
 
-#: ../quadrapassel/tetris.cpp:754
+#: ../quadrapassel/tetris.cpp:767
 msgid "Block Style"
 msgstr "Blokeen estiloa"
 
-#: ../quadrapassel/tetris.cpp:1297
+#: ../quadrapassel/tetris.cpp:1310
 msgid ""
 "A classic game of fitting falling blocks together.\n"
 "\n"
@@ -4977,7 +5326,7 @@ msgstr ""
 "edo (nahiago baduzu) bertsio berriago batean, jasotako baldintzak betez gero."
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:55
-#: ../libgames-support/games-stock.c:391
+#: ../libgames-support/games-stock.c:393
 #, c-format, python-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -4991,7 +5340,7 @@ msgstr ""
 "Lizentzia Publiko Orokorra."
 
 #: ../gnome-sudoku/src/lib/defaults.py.in:59
-#: ../libgames-support/games-stock.c:396
+#: ../libgames-support/games-stock.c:398
 #, c-format, python-format
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
@@ -5057,7 +5406,7 @@ msgid "New game"
 msgstr "Joko berria"
 
 #. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../gnome-sudoku/src/lib/main.py:233 ../libgames-support/games-stock.c:303
+#: ../gnome-sudoku/src/lib/main.py:233 ../libgames-support/games-stock.c:305
 msgid "_Reset"
 msgstr "_Berrezarri"
 
@@ -5093,7 +5442,7 @@ msgstr "Inprimatu _hainbat sudoku..."
 msgid "_Tools"
 msgstr "Tresn_ak"
 
-#: ../gnome-sudoku/src/lib/main.py:248 ../libgames-support/games-stock.c:296
+#: ../gnome-sudoku/src/lib/main.py:248 ../libgames-support/games-stock.c:298
 msgid "_Hint"
 msgstr "_Iradokizuna"
 
@@ -5179,8 +5528,7 @@ msgstr[1] "%d ordu"
 #: ../gnome-sudoku/src/lib/main.py:412
 #, python-format
 msgid "You completed the puzzle in %(hour)s, %(minute)s and %(second)s"
-msgstr ""
-"Puzzlea osatzeko erabilitako denbora: %(hour)s, %(minute)s eta %(second)s"
+msgstr "Puzzlea osatzeko erabilitako denbora: %(hour)s, %(minute)s eta %(second)s"
 
 #: ../gnome-sudoku/src/lib/main.py:414
 #, python-format
@@ -5224,10 +5572,20 @@ msgstr "Une honetan ez dago jokorik."
 msgid "Calculated difficulty: "
 msgstr "Kalkulatu zailtasuna: "
 
+#: ../gnome-sudoku/src/lib/main.py:666 ../gnome-sudoku/src/lib/printing.py:182
+#: ../gnome-sudoku/src/lib/game_selector.py:122
+msgid "Easy"
+msgstr "Erraza"
+
 #: ../gnome-sudoku/src/lib/main.py:667 ../gnome-sudoku/src/lib/printing.py:183
 #: ../gnome-sudoku/src/lib/game_selector.py:123
 msgid "Medium"
 msgstr "Tartekoa"
+
+#: ../gnome-sudoku/src/lib/main.py:668 ../gnome-sudoku/src/lib/printing.py:184
+#: ../gnome-sudoku/src/lib/game_selector.py:124
+msgid "Hard"
+msgstr "Zaila"
 
 #: ../gnome-sudoku/src/lib/main.py:669
 msgid "Very Hard"
@@ -5377,6 +5735,11 @@ msgstr "Ga_rbitu"
 #: ../gnomine/gnomine.c:54 ../gnomine/gnomine.desktop.in.in.h:2
 msgid "Mines"
 msgstr "Minak"
+
+#: ../gnomine/gnomine.c:104
+msgctxt "board size"
+msgid "Custom"
+msgstr "Pertsonalizatua"
 
 #: ../gnomine/gnomine.c:170
 #, c-format
@@ -5646,6 +6009,57 @@ msgstr "Taularen tamaina (2-6)"
 msgid "SIZE"
 msgstr "TAMAINA"
 
+#. Translators: in-game numbers, replaceable with single-character local ideograms
+#: ../gnotravex/gnotravex.c:460
+msgctxt "number"
+msgid "0"
+msgstr "0"
+
+#: ../gnotravex/gnotravex.c:461
+msgctxt "number"
+msgid "1"
+msgstr "1"
+
+#: ../gnotravex/gnotravex.c:462
+msgctxt "number"
+msgid "2"
+msgstr "2"
+
+#: ../gnotravex/gnotravex.c:463
+msgctxt "number"
+msgid "3"
+msgstr "3"
+
+#: ../gnotravex/gnotravex.c:464
+msgctxt "number"
+msgid "4"
+msgstr "4"
+
+#: ../gnotravex/gnotravex.c:465
+msgctxt "number"
+msgid "5"
+msgstr "5"
+
+#: ../gnotravex/gnotravex.c:466
+msgctxt "number"
+msgid "6"
+msgstr "6"
+
+#: ../gnotravex/gnotravex.c:467
+msgctxt "number"
+msgid "7"
+msgstr "7"
+
+#: ../gnotravex/gnotravex.c:468
+msgctxt "number"
+msgid "8"
+msgstr "8"
+
+#: ../gnotravex/gnotravex.c:469
+msgctxt "number"
+msgid "9"
+msgstr "9"
+
 #: ../gnotravex/gnotravex.c:913 ../mahjongg/mahjongg.c:935
 msgid "Game paused"
 msgstr "Jokoa pausarazita"
@@ -5725,8 +6139,7 @@ msgstr "Piezak behera eramaten ditu"
 
 #: ../gnotravex/gnotravex.desktop.in.in.h:1
 msgid "Complete the puzzle by matching numbered tiles"
-msgstr ""
-"Jokoa osatzeko, zenbaki berdineko fitxak elkarren ondoan jarri behar dira"
+msgstr "Jokoa osatzeko, zenbaki berdineko fitxak elkarren ondoan jarri behar dira"
 
 #: ../gnotravex/gnotravex.schemas.in.h:2
 msgid ""
@@ -6035,8 +6448,7 @@ msgid "Display the computer's thoughts"
 msgstr "Bistaratu ordenagailuaren pentsamenduak"
 
 #: ../gtali/gtali.schemas.in.h:4
-msgid ""
-"If set to true, a dump of the AI's working will be done to standard output."
+msgid "If set to true, a dump of the AI's working will be done to standard output."
 msgstr ""
 "Egia ezartzen bada, AAren funtzionamenduaren iraulketa egingo da irteera "
 "estandarrean."
@@ -6080,6 +6492,16 @@ msgstr "Soilik ordenagailuz jokatzeko jokoen kopurua"
 #: ../gtali/gyahtzee.c:115
 msgid "Number of trials for each roll for the computer"
 msgstr "Ordenagailuaren jaurtialdi bakoitzeko saio kopurua"
+
+#: ../gtali/gyahtzee.c:120 ../gtali/setup.c:364
+msgctxt "game type"
+msgid "Regular"
+msgstr "Arrunta"
+
+#: ../gtali/gyahtzee.c:121 ../gtali/setup.c:365
+msgctxt "game type"
+msgid "Colors"
+msgstr "Koloreak"
 
 #: ../gtali/gyahtzee.c:144
 msgid "Roll all!"
@@ -6180,6 +6602,11 @@ msgstr "_Aurkari kopurua:"
 #: ../gtali/setup.c:344
 msgid "_Difficulty:"
 msgstr "_Zailtasuna:"
+
+#: ../gtali/setup.c:348
+msgctxt "difficulty"
+msgid "Medium"
+msgstr "Tartekoa"
 
 #. --- PLAYER NAMES FRAME ----
 #: ../gtali/setup.c:373
@@ -6592,80 +7019,80 @@ msgstr "Jokoa konfiguratzen du"
 msgid "Quit this game"
 msgstr "Jokotik irteten da"
 
-#: ../libgames-support/games-stock.c:295
+#: ../libgames-support/games-stock.c:297
 msgid "_Fullscreen"
 msgstr "_Pantaila osoa"
 
 #. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../libgames-support/games-stock.c:298
+#: ../libgames-support/games-stock.c:300
 msgid "_New"
 msgstr "_Berria"
 
-#: ../libgames-support/games-stock.c:301
+#: ../libgames-support/games-stock.c:303
 msgid "_Redo Move"
 msgstr "B_erregin mugimendua"
 
 #. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../libgames-support/games-stock.c:305
+#: ../libgames-support/games-stock.c:307
 msgid "_Restart"
 msgstr "_Hasi berriro"
 
-#: ../libgames-support/games-stock.c:307
+#: ../libgames-support/games-stock.c:309
 msgid "_Deal"
 msgstr "_Banatu"
 
-#: ../libgames-support/games-stock.c:309
+#: ../libgames-support/games-stock.c:311
 msgid "_Leave Fullscreen"
 msgstr "_Kendu pantaila osoa"
 
-#: ../libgames-support/games-stock.c:310
+#: ../libgames-support/games-stock.c:312
 msgid "Network _Game"
 msgstr "Sareko _jokoa"
 
-#: ../libgames-support/games-stock.c:311
+#: ../libgames-support/games-stock.c:313
 msgid "L_eave Game"
 msgstr "_Bertan behera utzi jokoa"
 
-#: ../libgames-support/games-stock.c:312
+#: ../libgames-support/games-stock.c:314
 msgid "Player _List"
 msgstr "_Jokalari-zerrenda"
 
-#: ../libgames-support/games-stock.c:313
+#: ../libgames-support/games-stock.c:315
 msgid "_Pause"
 msgstr "_Pausarazi"
 
-#: ../libgames-support/games-stock.c:314
+#: ../libgames-support/games-stock.c:316
 msgid "Res_ume"
 msgstr "_Berrekin"
 
-#: ../libgames-support/games-stock.c:315
+#: ../libgames-support/games-stock.c:317
 msgid "_Scores"
 msgstr "_Puntuazioak"
 
-#: ../libgames-support/games-stock.c:316
+#: ../libgames-support/games-stock.c:318
 msgid "_End Game"
 msgstr "_Amaitu jokoa"
 
 #. Work around maemo brokenness wrt. stock item translations.
 #. * See https://bugs.maemo.org/show_bug.cgi?id=1449 .
-#: ../libgames-support/games-stock.c:322
+#: ../libgames-support/games-stock.c:324
 msgid "_About"
 msgstr "Honi _buruz"
 
-#: ../libgames-support/games-stock.c:323
+#: ../libgames-support/games-stock.c:325
 msgid "_Cancel"
 msgstr "_Utzi"
 
-#: ../libgames-support/games-stock.c:324
+#: ../libgames-support/games-stock.c:326
 msgid "_Close"
 msgstr "It_xi"
 
-#: ../libgames-support/games-stock.c:325
+#: ../libgames-support/games-stock.c:327
 msgid "_OK"
 msgstr "Ado_s"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../libgames-support/games-stock.c:386
+#: ../libgames-support/games-stock.c:388
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -6678,7 +7105,7 @@ msgstr ""
 "bertsioan, edo (nahiago baduzu) bertsio berriago batean, jasotako baldintzak "
 "betez gero."
 
-#: ../libgames-support/games-stock.c:400
+#: ../libgames-support/games-stock.c:402
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program.  If not, see <http://www.gnu.org/licenses/>."
@@ -6883,6 +7310,56 @@ msgstr "Kendu bat datozen fitxa-pareak."
 msgid "Disassemble a pile of tiles by removing matching pairs"
 msgstr "Desegin fitxa-piloa bat datozen bikoteak kenduz"
 
+#: ../mahjongg/maps.c:229
+msgctxt "mahjongg map name"
+msgid "Easy"
+msgstr "Erraza"
+
+#.
+#. * Translatable strings file generated by get_titles.pl.
+#. * Add this file to your project's POTFILES.in.
+#. * DO NOT compile it as part of your application.
+#.
+#: ../mahjongg/translatable_game_names.h:6
+msgctxt "mahjongg map name"
+msgid "The Ziggurat"
+msgstr "Ziggurat"
+
+#: ../mahjongg/translatable_game_names.h:7
+msgctxt "mahjongg map name"
+msgid "Four Bridges"
+msgstr "Lau zubiak"
+
+#: ../mahjongg/translatable_game_names.h:8
+msgctxt "mahjongg map name"
+msgid "Cloud"
+msgstr "Lainoa"
+
+#: ../mahjongg/translatable_game_names.h:9
+msgctxt "mahjongg map name"
+msgid "Tic-Tac-Toe"
+msgstr "Artzain-jokoa"
+
+#: ../mahjongg/translatable_game_names.h:10
+msgctxt "mahjongg map name"
+msgid "Red Dragon"
+msgstr "Dragoi gorria"
+
+#: ../mahjongg/translatable_game_names.h:11
+msgctxt "mahjongg map name"
+msgid "Pyramid's Walls"
+msgstr "Piramidearen hormak"
+
+#: ../mahjongg/translatable_game_names.h:12
+msgctxt "mahjongg map name"
+msgid "Confounding Cross"
+msgstr "Gurutze nahaspilatsua"
+
+#: ../mahjongg/translatable_game_names.h:13
+msgctxt "mahjongg map name"
+msgid "Difficult"
+msgstr "Zailtasuna"
+
 #: ../swell-foop/data/swell-foop.ui.h:1 ../swell-foop/data/settings.ui.h:6
 #: ../swell-foop/swell-foop.desktop.in.in.h:2 ../swell-foop/src/About.js:11
 #: ../swell-foop/src/About.js:15
@@ -6956,1109 +7433,11 @@ msgstr "Swell Foop-eko puntuazioa"
 msgid "Small"
 msgstr "Txikia"
 
+#: ../swell-foop/src/Score.js:145
+msgid "Normal"
+msgstr "Normala"
+
 #: ../swell-foop/src/Score.js:146
 msgid "Large"
 msgstr "Handia"
 
-#~| msgid "the foundation"
-#~ msgctxt "slot type"
-#~ msgid "foundation"
-#~ msgstr "oinarria"
-
-#~| msgid "seven"
-#~ msgctxt "slot type"
-#~ msgid "reserve"
-#~ msgstr "biltegia"
-
-#~| msgid "Clock"
-#~ msgctxt "slot type"
-#~ msgid "stock"
-#~ msgstr "sorta"
-
-#~| msgid "Table"
-#~ msgctxt "slot type"
-#~ msgid "tableau"
-#~ msgstr "mahaia"
-
-#~| msgid "Pause"
-#~ msgctxt "slot type"
-#~ msgid "waste"
-#~ msgstr "hondarra"
-
-#~| msgid "empty slot on foundation"
-#~ msgctxt "slot hint"
-#~ msgid "%s on foundation"
-#~ msgstr "%s oinarrian"
-
-#~| msgid "an empty reserve"
-#~ msgctxt "slot hint"
-#~ msgid "%s on reserve"
-#~ msgstr "%s biltegian"
-
-#~| msgid "Move waste to stock"
-#~ msgctxt "slot hint"
-#~ msgid "%s on stock"
-#~ msgstr "%s sortan"
-
-#~| msgid "an open tableau"
-#~ msgctxt "slot hint"
-#~ msgid "%s on tableau"
-#~ msgstr "%s mahaian"
-
-#~ msgctxt "slot hint"
-#~ msgid "%s on waste"
-#~ msgstr "%s hondarran"
-
-#~| msgid "%d"
-#~ msgctxt "score"
-#~ msgid "%6d"
-#~ msgstr "%6d"
-
-#~ msgctxt "card symbol"
-#~ msgid "JOKER"
-#~ msgstr "KOMODINA"
-
-#~ msgctxt "card symbol"
-#~ msgid "A"
-#~ msgstr "A"
-
-#~ msgctxt "card symbol"
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgctxt "card symbol"
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgctxt "card symbol"
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgctxt "card symbol"
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgctxt "card symbol"
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgctxt "card symbol"
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgctxt "card symbol"
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgctxt "card symbol"
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgctxt "card symbol"
-#~ msgid "J"
-#~ msgstr "J"
-
-#~ msgctxt "card symbol"
-#~ msgid "Q"
-#~ msgstr "Q"
-
-#~ msgctxt "card symbol"
-#~ msgid "K"
-#~ msgstr "K"
-
-#~ msgctxt "card symbol"
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgid "%s: option `%s' is ambiguous\n"
-#~ msgstr "%s: '%s' aukera anbiguoa da\n"
-
-#~ msgid "%s: option `--%s' doesn't allow an argument\n"
-#~ msgstr "%s: '--%s' aukerak ez du argumenturik onartzen\n"
-
-#~ msgid "%s: option `%c%s' doesn't allow an argument\n"
-#~ msgstr "%s: '%c%s' aukerak ez du argumenturik onartzen\n"
-
-#~ msgid "%s: option `%s' requires an argument\n"
-#~ msgstr "%s: '%s' aukerak argumentu bat behar du\n"
-
-#~ msgid "%s: unrecognized option `--%s'\n"
-#~ msgstr "%s: '--%s' aukera ezezaguna\n"
-
-#~ msgid "%s: unrecognized option `%c%s'\n"
-#~ msgstr "%s: '%c%s' aukera ezezaguna\n"
-
-#~ msgid "%s: illegal option -- %c\n"
-#~ msgstr "%s: -- %c aukera ilegala\n"
-
-#~ msgid "%s: invalid option -- %c\n"
-#~ msgstr "%s: -- %c aukera baliogabea\n"
-
-#~ msgid "%s: option requires an argument -- %c\n"
-#~ msgstr "%s: aukerak argumentu bat behar du --%c\n"
-
-#~ msgid "%s: option `-W %s' is ambiguous\n"
-#~ msgstr "%s: '-W %s' aukera anbiguoa da\n"
-
-#~ msgid "%s: option `-W %s' doesn't allow an argument\n"
-#~ msgstr "%s: '-W %s' aukerak ez du argumenturik onartzen\n"
-
-#~ msgid "A flag to allow remote players to watch new games"
-#~ msgstr "Urruneko jokalariei joko berriak ikusten uzteko bandera"
-
-#~ msgid "A flag to enable 3D mode"
-#~ msgstr "3Dko modua gaitzeko bandera"
-
-#~ msgid "A flag to enable board numbering"
-#~ msgstr "Taulei zenbakia jartzea gaitzeko bandera"
-
-#~ msgid "A flag to enable fullscreen mode"
-#~ msgstr "Pantaila osoko modua gaitzeko bandera"
-
-#~ msgid "A flag to enable maximised mode"
-#~ msgstr "Modu maximizatua gaitzeko bandera"
-
-#~ msgid "A flag to enable move hints"
-#~ msgstr "Mugitzeko iradokizunak gaitzeko bandera"
-
-#~ msgid "A flag to enable network game support"
-#~ msgstr "Sareko jokoa gaitzeko bandera"
-
-#~ msgid "A flag to enable the move history browser"
-#~ msgstr "Historia-arakatzailea mugitzea gaitzeko bandera"
-
-#~ msgid "A flag to enable the toolbar"
-#~ msgstr "Tresna-barra gaitzeko bandera"
-
-#~ msgid "A flag to show move comments"
-#~ msgstr "Mugimenduen iruzkinak erakusteko bandera"
-
-#~ msgid "A flag to smooth (anti-alias) the 3D display"
-#~ msgstr "3D pantaila leuntzeko (antialiasing-a) bandera"
-
-#~ msgid "The amount of time each player has to move in new games"
-#~ msgstr "Joko berrietan mugitzeko jokalari bakoitzak duen denbora"
-
-#~ msgid "The board side to display"
-#~ msgstr "Taularen zein alde bistaratu behar den"
-
-#~ msgid "The default player difficulty for black in new games"
-#~ msgstr "Beltzen jokalari-zailtasun lehenetsia joko berrietarako"
-
-#~ msgid "The default player difficulty for white in new games"
-#~ msgstr "Zurien jokalari-zailtasun lehenetsia joko berrietarako"
-
-#~ msgid "The default player type for black in new games"
-#~ msgstr "Beltzen jokalari mota lehenetsia joko berrietarako"
-
-#~ msgid "The default player type for white in new games"
-#~ msgstr "Zurien jokalari mota lehenetsia joko berrietarako"
-
-#~ msgid "The directory to open the load game dialog in"
-#~ msgstr "Jokoa kargatzeko elkarrizketa-koadroa irekitzeko direktorioa"
-
-#~ msgid "The directory to open the save game dialog in"
-#~ msgstr "Jokoa gordetzeko elkarrizketa-koadroa irekitzeko direktorioa"
-
-#~ msgid "The format to display moves in"
-#~ msgstr "Mugimenduak bistaratzeko formatua"
-
-#~ msgid ""
-#~ "The format to display moves in, can be either 'human' (human readable), "
-#~ "'lan' (long algebraic notation) or 'san' (standard algebraic notation)"
-#~ msgstr ""
-#~ "Hauek izan daitezke mugimenduak bistaratzeko formatuak: "
-#~ "'gizakiena' (gizakiek irakurtzeko modukoa), 'nol' (notazio aljebraiko "
-#~ "luzea) edo 'nae' (notazio aljebraiko estandarra)"
-
-#~ msgid "The height of the main window in pixels."
-#~ msgstr "Leiho nagusiaren altuera (pixeletan)"
-
-#~ msgid "The height of the window"
-#~ msgstr "Leihoaren altuera"
-
-#~ msgid "The piece to promote pawns to"
-#~ msgstr "Peoiak zein pieza bihurtu"
-
-#~ msgid ""
-#~ "The piece to promote to when a human player moves a pawn to the far rank. "
-#~ "Can be one of: 'queen', 'knight', 'rook', 'bishop'."
-#~ msgstr ""
-#~ "Giza jokalariek peoiak muturreko lauki batera eramatean peoia beste pieza "
-#~ "bat bihurtuko da. Hauetako bat izan daiteke: 'dama' (erregina), "
-#~ "'zalduna', 'gaztelua' (dorrea), 'alfila'."
-
-#~ msgid ""
-#~ "The side of the board that is in the foreground, either 'white', 'black', "
-#~ "'current' (the current player), 'human' (the side of the current human "
-#~ "player) or 'facetoface' (suitable for players on each side of screen, e."
-#~ "g. handhelds)"
-#~ msgstr ""
-#~ "Aurreko planoko taularen aldea; izan daiteke 'white' (zuria), "
-#~ "'black' (beltza), 'current' (unekoa) uneko jokalariarena, 'human "
-#~ "(gizakia) giza jokalariaren aldea edo 'facetoface' (aurpegiz aurpegi) "
-#~ "pantailaren alde bakoitzean jokalari bat badago, adib. eskuko "
-#~ "ordenagailuak."
-
-#~ msgid "The width of the main window in pixels."
-#~ msgstr "Leiho nagusiaren zabalera (pixeletan)"
-
-#~ msgid "The width of the window"
-#~ msgstr "Leihoaren zabalera"
-
-#~ msgid "Load a saved game"
-#~ msgstr "Kargatu gordetako joko bat"
-
-#~ msgid "Logs"
-#~ msgstr "Egunkaria"
-
-#~ msgid "Save the current game"
-#~ msgstr "Uneko jokoa gordetzen du"
-
-#~ msgid "Show _Logs"
-#~ msgstr "Erakutsi _egunkaria"
-
-#~ msgid "There are no active logs."
-#~ msgstr "Ezin dago egunkari aktiborik."
-
-#~ msgid "Load Chess Game"
-#~ msgstr "Kargatu xake-jokoa"
-
-#~ msgid "Communication:"
-#~ msgstr "Komunikazioa:"
-
-#~ msgid "Executable:"
-#~ msgstr "Exekutagarria:"
-
-#~ msgid "<b>Game</b>"
-#~ msgstr "<b>Jokoa</b>"
-
-#~ msgid "<b>Rooms</b>"
-#~ msgstr "<b>Gelak</b>"
-
-#~ msgid "<b>Server</b>"
-#~ msgstr "<b>Zerbitzaria</b>"
-
-#~ msgid "<b>Status/_Chat</b>"
-#~ msgstr "<b>Egoera/_Berriketa</b>"
-
-#~ msgid "_Join"
-#~ msgstr "_Elkartu"
-
-#~ msgid "_Leave"
-#~ msgstr "_Utzi"
-
-#~ msgid "_Profile:"
-#~ msgstr "_Profila:"
-
-#~ msgid "Add Account"
-#~ msgstr "Gehitu kontua"
-
-#~ msgid "User _Name:"
-#~ msgstr "Erabiltzaile-_izena:"
-
-#~ msgid "_Add Account"
-#~ msgstr "_Gehitu kontua"
-
-#~ msgid "_Host:"
-#~ msgstr "_Ostalaria:"
-
-#~ msgid "_Port:"
-#~ msgstr "_Ataka:"
-
-#~ msgid "_Server:"
-#~ msgstr "_Zerbitzaria:"
-
-#~ msgid "<b>Difficulty</b>"
-#~ msgstr "<b>Zailtasuna</b>"
-
-#~ msgid "<b>Game Properties</b>"
-#~ msgstr "<b>Jokoaren propietateak</b>"
-
-#~ msgid "<b>Players</b>"
-#~ msgstr "<b>Jokalariak:</b>"
-
-#~ msgid "B_lack:"
-#~ msgstr "Be_ltza:"
-
-#~ msgid "Enter the title for this game"
-#~ msgstr "Idatzi joko honen izenburua"
-
-#~ msgid "Move _Time:"
-#~ msgstr "Mugitzeko _denbora:"
-
-#~ msgid "Start the game. The game can be started once all fields are complete"
-#~ msgstr "Hasi jokoa. Jokoa has daiteke, eremu guztiak bete ondoren"
-
-#~ msgid "W_hite:"
-#~ msgstr "_Zuria:"
-
-#~ msgid "_Black:"
-#~ msgstr "_Beltza:"
-
-#~ msgid "_Game name:"
-#~ msgstr "_Joko-izena:"
-
-#~ msgid "_Start"
-#~ msgstr "_Hasi:"
-
-#~ msgid "_White:"
-#~ msgstr "_Zuria:"
-
-#~ msgid "Show or hide numbering on the chess board"
-#~ msgstr "Xake-taulako zenbakiak erakusten edo ezkutatzen ditu"
-
-#~ msgid "Show or hide the game history panel"
-#~ msgstr "Jokoaren historia-panela erakusten edo ezkutatzen du"
-
-#~ msgid "Shows hints during chess games"
-#~ msgstr "Xake jokoan iradokizunak erakusten ditu"
-
-#~ msgid "Smooth edges of the 3D elements (anti-alias)"
-#~ msgstr "Leundu 3D elementuen ertzak (anti-aliasa)"
-
-#~ msgid ""
-#~ "View the chess board by default in 2D mode, or optionally in 3D mode "
-#~ "using OpenGL."
-#~ msgstr ""
-#~ "Ikusi xake-taula 2Dko moduan, edo aukeran 3Dko moduan OpenGL erabiliz."
-
-#~ msgid "Save Chess Game"
-#~ msgstr "Gorde xake-jokoa"
-
-#~ msgid "Chess incorrectly installed"
-#~ msgstr "Xakea ez da ongi instalatu"
-
-#~ msgid ""
-#~ "Chess is not able to start because required application files are not "
-#~ "installed. If you are currently upgrading your system please wait until "
-#~ "the upgrade has completed."
-#~ msgstr ""
-#~ "Xakea ezin da abiarazi aplikazioak behar dituen fitxategiak ez daudelako "
-#~ "instalatuta. Sistema bertsio-berritzen ari bazara, itxaron ezazu bertsio-"
-#~ "berritzea amaitu arte."
-
-#~ msgid "Unlimited"
-#~ msgstr "Mugagabea"
-
-#~ msgid "Unable to find %s engine"
-#~ msgstr "Ezin izan da %s motorra aurkitu"
-
-#~ msgid "Configure loaded game (%i moves)"
-#~ msgstr "Konfiguratu kargatutako jokoa (%i mugimendu)"
-
-#~ msgid "Game settings changed"
-#~ msgstr "Jokoaren ezarpenak aldatu dira"
-
-#~ msgid "%(white)s versus %(black)s"
-#~ msgstr "%(white)s versus %(black)s"
-
-#~ msgid "PGN files"
-#~ msgstr "PGN fitxategiak"
-
-#~ msgid "All files"
-#~ msgstr "Fitxategi denak"
-
-#~ msgid "Please select a file to load"
-#~ msgstr "Hautatu fitxategia kargatzeko"
-
-#~ msgid "Unabled to load game"
-#~ msgstr "Ezin da jokoa kargatu"
-
-#~ msgid "Please enter a file name"
-#~ msgstr "Idatzi fitxategi-izen bat"
-
-#~ msgid "Chess - *%(game_name)s"
-#~ msgstr "Xakea - *%(game_name)s"
-
-#~ msgid "Chess - %(game_name)s"
-#~ msgstr "Xakea - %(game_name)s"
-
-#~ msgid "∞"
-#~ msgstr "∞"
-
-#~ msgid "If you don't save the changes to this game will be permanently lost"
-#~ msgstr "Joko hau ez baduzu gordetzen betirako galduko da"
-
-#~ msgid "Close _without saving"
-#~ msgstr "Itxi _gorde gabe"
-
-#~ msgid "Unable to enable 3D mode"
-#~ msgstr "Ezin da 3Dko modua gaitu"
-
-#~ msgid ""
-#~ "You are unable to play in 3D mode due to the following problems:\n"
-#~ "%(errors)s\n"
-#~ "\n"
-#~ "Please contact your system administrator to resolve these problems, until "
-#~ "then you will be able to play chess in 2D mode."
-#~ msgstr ""
-#~ "Ezin duzu 3Dko moduan jokatu honako arrazoiak direla eta:\n"
-#~ "%(errors)s\n"
-#~ "\n"
-#~ "Jar zaitez sistemako administratzailearekin harremanetan arazo hauek "
-#~ "konpontzeko, ordurarte xakea 2Dko moduan jokatzeko aukera izango duzu."
-
-#~ msgid "Unable to claim draw"
-#~ msgstr "Ezin da berdinketa eskatu"
-
-#~ msgid ""
-#~ "You may claim a draw when:\n"
-#~ "a) The board has been in the same state three times (Three fold "
-#~ "repetition)\n"
-#~ "b) Fifty moves have occurred where no pawn has moved and no piece has "
-#~ "been captured (50 move rule)"
-#~ msgstr ""
-#~ "Berdinketa honako egoeretan eska dezakezu:\n"
-#~ "a) Taulako egoera hori bera hiru bider gertatu da (errepikapen "
-#~ "hirukoitza)\n"
-#~ "b) Azken berrogeita hamar mugimenduetan ez da piezarik harrapatu edo ez "
-#~ "da peoirik mugitu (50 mugimenduko araua)"
-
-#~ msgid "No Python OpenGL support"
-#~ msgstr "Ez dago Python OpenGL euskarririk"
-
-#~ msgid "No Python GTKGLExt support"
-#~ msgstr "Ez dago Python GTKGLExt euskarririk"
-
-#~ msgid "OpenGL libraries do not support required display mode"
-#~ msgstr "OpenGL liburutegiak ez du eskatutako bistaratze modua onartzen"
-
-#~ msgid "No comment"
-#~ msgstr "Iruzkinik ez"
-
-#~ msgid "White castles long"
-#~ msgstr "Zuriak erroke luzea egin du"
-
-#~ msgid "Black castles long"
-#~ msgstr "Beltzak erroke luzea egin du"
-
-#~ msgid "White castles short"
-#~ msgstr "Zuriak erroke laburra egin du"
-
-#~ msgid "Black castles short"
-#~ msgstr "Beltzak erroke laburra egin du"
-
-#~ msgid "%(movenum)2iw. %(description)s (Check)"
-#~ msgstr "%(movenum)2iw. %(description)s (xakea)"
-
-#~ msgid "%(movenum)2iw. %(description)s (Checkmate)"
-#~ msgstr "%(movenum)2iw. %(description)s (xake-matea)"
-
-#~ msgid "%(movenum)2iw. %(description)s (Stalemate)"
-#~ msgstr "%(movenum)2iw. %(description)s (itota)"
-
-#~ msgid "%(movenum)2iw. %(description)s"
-#~ msgstr "%(movenum)2iw. %(description)s"
-
-#~ msgid "%(movenum)2ib. %(description)s (Check)"
-#~ msgstr "%(movenum)2ib. %(description)s (xakea)"
-
-#~ msgid "%(movenum)2ib. %(description)s (Checkmate)"
-#~ msgstr "%(movenum)2ib. %(description)s (xake-matea)"
-
-#~ msgid "%(movenum)2ib. %(description)s (Stalemate)"
-#~ msgstr "%(movenum)2ib. %(description)s (itota)"
-
-#~ msgid "%(movenum)2ib. %(description)s"
-#~ msgstr "%(movenum)2ib. %(description)s"
-
-#~ msgid "%s wins"
-#~ msgstr "%s irabazle"
-
-#~ msgid "Opponent is in check and cannot move (checkmate)"
-#~ msgstr "Aurkaria xakean dago, eta ezin du mugitu (xake-mate)"
-
-#~ msgid "Opponent cannot move (stalemate)"
-#~ msgstr "Aurkariak ezin du mugitu (itota)"
-
-#~ msgid "No piece has been taken or pawn moved in the last fifty moves"
-#~ msgstr ""
-#~ "Azken berrogeita hamar mugimenduetan ez da piezarik harrapatu edo ez da "
-#~ "peoirik mugitu"
-
-#~ msgid "Opponent has run out of time"
-#~ msgstr "Aurkariak denbora agortu du"
-
-#~ msgid ""
-#~ "The same board state has occurred three times (three fold repetition)"
-#~ msgstr ""
-#~ "Taulako egoera hori bera hiru bider gertatu da (errepikapen hirukoitza)"
-
-#~ msgid "Neither player can cause checkmate (insufficient material)"
-#~ msgstr ""
-#~ "Ez jokalari batek ez besteak ezin du xake-matea eragin (nahiko piezarik "
-#~ "ez)"
-
-#~ msgid "The black player has resigned"
-#~ msgstr "Jokalari beltzak amore eman du"
-
-#~ msgid "The white player has resigned"
-#~ msgstr "Jokalari zuriak amore eman du"
-
-#~ msgid "The game has been abandoned"
-#~ msgstr "Jokoa bertan behera utzi da"
-
-#~ msgid "One of the players has died"
-#~ msgstr "Jokalarietako bat hil egin da"
-
-#~ msgid "GGZ Gaming Zone"
-#~ msgstr "GGZ joko-eremua"
-
-#~ msgid "Disconnected"
-#~ msgstr "Deskonektatuta"
-
-#~ msgid "New profile..."
-#~ msgstr "Profil berria..."
-
-#~ msgid "Table"
-#~ msgstr "Taula"
-
-#~ msgid "Seats"
-#~ msgstr "Eserlekuak"
-
-#~ msgid "Description"
-#~ msgstr "Azalpena"
-
-#~ msgid "Seat"
-#~ msgstr "Eserlekua"
-
-#~ msgid "Player"
-#~ msgstr "Erreproduzigailua"
-
-#~ msgid "Spectator"
-#~ msgstr "Ikuslea"
-
-#~ msgid "Reserved for %s"
-#~ msgstr "'%s'(r)entzako gordea"
-
-#~ msgid "Seat empty"
-#~ msgstr "Eserleku hutsa"
-
-#~ msgid "AI (%s)"
-#~ msgstr "AA (%s)"
-
-#~ msgctxt "chess-file"
-#~ msgid "a"
-#~ msgstr "a"
-
-#~ msgctxt "chess-file"
-#~ msgid "b"
-#~ msgstr "b"
-
-#~ msgctxt "chess-file"
-#~ msgid "c"
-#~ msgstr "c"
-
-#~| msgid "%d"
-#~ msgctxt "chess-file"
-#~ msgid "d"
-#~ msgstr "d"
-
-#~ msgctxt "chess-file"
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgctxt "chess-file"
-#~ msgid "f"
-#~ msgstr "f"
-
-#~ msgctxt "chess-file"
-#~ msgid "g"
-#~ msgstr "g"
-
-#~ msgctxt "chess-file"
-#~ msgid "h"
-#~ msgstr "h"
-
-#~ msgctxt "chess-rank"
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgctxt "chess-rank"
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgctxt "chess-rank"
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgctxt "chess-rank"
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgctxt "chess-rank"
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgctxt "chess-rank"
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgctxt "chess-rank"
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgctxt "chess-rank"
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgctxt "chess-notation"
-#~ msgid "P"
-#~ msgstr "P"
-
-#~ msgctxt "chess-notation"
-#~ msgid "N"
-#~ msgstr "N"
-
-#~ msgctxt "chess-notation"
-#~ msgid "B"
-#~ msgstr "B"
-
-#~ msgctxt "chess-notation"
-#~ msgid "R"
-#~ msgstr "R"
-
-#~ msgctxt "chess-notation"
-#~ msgid "Q"
-#~ msgstr "Q"
-
-#~ msgctxt "chess-notation"
-#~ msgid "K"
-#~ msgstr "K"
-
-#~ msgid "'%(name)s' in '%(game)s'"
-#~ msgstr "'%(name)s' hemen: '%(game)s'"
-
-#~ msgid "Application Log"
-#~ msgstr "Aplikazioaren egunkaria"
-
-#~ msgid "Usage: %s [game]"
-#~ msgstr "Erabilera: %s [jokoa]"
-
-#~ msgid "Human versus %s"
-#~ msgstr "Gizakia %s(r)en aurka"
-
-#~ msgid ""
-#~ "glChess has crashed. Please report this bug to http://bugzilla.gnome.org\n"
-#~ "Debug output:"
-#~ msgstr ""
-#~ "glChess kraskatu egin da. Eman errore honen berri hemen: http://bugzilla."
-#~ "gnome.org\n"
-#~ "Arazte-irteera:"
-
-#~ msgid "glChess"
-#~ msgstr "glChess"
-
-#~ msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
-#~ msgstr "Copyright 2005-2008 Robert Ancell (eta laguntzaileak)"
-
-#~ msgid ""
-#~ "The 2D/3D chess game for GNOME. \n"
-#~ "\n"
-#~ "glChess is a part of GNOME Games."
-#~ msgstr ""
-#~ "GNOMEren 2Dko/3Dko xake-jokoa. \n"
-#~ "\n"
-#~ "GNOME Games-ekoa da glChess."
-
-#~ msgid "Incorrect password"
-#~ msgstr "Okerreko pasahitza"
-
-#~ msgid "Account in use"
-#~ msgstr "Erabilitako kontua"
-
-#~ msgid "Connection closed: %s"
-#~ msgstr "Konexioa itxita: %s"
-
-#~ msgid "A password is required"
-#~ msgstr "Pasahitza behar da"
-
-#~ msgid "Disconnected from server"
-#~ msgstr "Zerbitzaritik deskonektatu da."
-
-#~ msgid "No description"
-#~ msgstr "Azalpenik ez"
-
-#~| msgid "Small"
-#~ msgctxt "board size"
-#~ msgid "Small"
-#~ msgstr "Txikia"
-
-#~| msgid "Medium"
-#~ msgctxt "board size"
-#~ msgid "Medium"
-#~ msgstr "Tartekoa"
-
-#~| msgid "Large"
-#~ msgctxt "board size"
-#~ msgid "Large"
-#~ msgstr "Handia"
-
-#~ msgid "Themes"
-#~ msgstr "Gaiak"
-
-#~| msgid "_Generate"
-#~ msgctxt "preferences"
-#~ msgid "General"
-#~ msgstr "Orokorra"
-
-#~ msgctxt "game speed"
-#~ msgid "Beginner"
-#~ msgstr "Hasiberria"
-
-#~| msgid "Yellow"
-#~ msgctxt "game speed"
-#~ msgid "Slow"
-#~ msgstr "Motela"
-
-#~| msgid "Medium"
-#~ msgctxt "game speed"
-#~ msgid "Medium"
-#~ msgstr "Tartekoa"
-
-#~| msgid "Flags"
-#~ msgctxt "game speed"
-#~ msgid "Fast"
-#~ msgstr "Bizkorra"
-
-#~ msgctxt "game speed"
-#~ msgid "Beginner with Fakes"
-#~ msgstr "Gezurrezko hasiberria"
-
-#~ msgctxt "game speed"
-#~ msgid "Slow with Fakes"
-#~ msgstr "Gezurrezko motela"
-
-#~ msgctxt "game speed"
-#~ msgid "Medium with Fakes"
-#~ msgstr "Gezurrezko tartekoa"
-
-#~ msgctxt "game speed"
-#~ msgid "Fast with Fakes"
-#~ msgstr "Gezurrezko bizkorra"
-
-#~ msgid "_Bastard mode"
-#~ msgstr "_Sasikume modua"
-
-#~ msgid "Qua"
-#~ msgstr "Qua"
-
-#~ msgid "Generate new puzzles in the background"
-#~ msgstr "Sortu puzzle berriak atzeko planoan"
-
-#~ msgid "<b><i>Details</i></b>"
-#~ msgstr "<b><i>Xehetasunak</i></b>"
-
-#~ msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">Inprimatu jokoak</span>"
-
-#~ msgid "<i><u>Number of Puzzles</u></i>"
-#~ msgstr "<i><u>Joko kopurua</u></i>"
-
-#~ msgid "<i>Easy:</i>"
-#~ msgstr "<i>Erraza:</i>"
-
-#~ msgid "<i>Hard:</i>"
-#~ msgstr "<i>Zaila:</i>"
-
-#~ msgid "<i>Medium:</i>"
-#~ msgstr "<i>Tartekoa:</i>"
-
-#~ msgid "<i>Very Hard:</i>"
-#~ msgstr "<i>Oso zaila:</i>"
-
-#~ msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">Joko sortzailea</span>"
-
-#~ msgid "Criteria:"
-#~ msgstr "Irizpideak:"
-
-#~ msgid "Generate Policy"
-#~ msgstr "Sortu gidalerroa"
-
-#~ msgid "Generate new puzzles _until stopped"
-#~ msgstr "Sortu joko berriak _gelditu arte"
-
-#~ msgid "Generate until _reaching target"
-#~ msgstr "Sortu _helburua lortu arte"
-
-#~ msgid "Puzzle Generator"
-#~ msgstr "Joko sortzailea"
-
-#~ msgid "Target _number of sudokus:"
-#~ msgstr "Sudokuen _helburu kopurua:"
-
-#~ msgid "_Generate"
-#~ msgstr "_Sortu"
-
-#~ msgid "<b><span size=\"large\">_New Game</span></b>"
-#~ msgstr "<b><span size=\"large\">Joko _berria</span></b>"
-
-#~ msgid "<b><span size=\"large\">_Saved Games</span></b>"
-#~ msgstr "<b><span size=\"large\">_Gordetako jokoak</span></b>"
-
-#~ msgid "Clear _Others"
-#~ msgstr "Garbitu _besteak"
-
-#~ msgid "_Clear Tracker"
-#~ msgstr "_Garbitu aztarnaria"
-
-#~ msgid "_Trackers"
-#~ msgstr "_Aztarnariak"
-
-#~ msgid "Sudoku unable to save game."
-#~ msgstr "Sudoku-k ezin du jokoa gorde."
-
-#~ msgid "Print current game"
-#~ msgstr "Inprimatu uneko jokoa"
-
-#~ msgid "Print more than one sudoku at a time."
-#~ msgstr "Inprimatu sudoku bat baino gehiago aldiko."
-
-#~ msgid "Close Sudoku"
-#~ msgstr "Itxi Sudoku"
-
-#~ msgid "Show which numbers could go in the current square."
-#~ msgstr "Erakutsi zein zenbaki egon daitezkeen uneko laukian."
-
-#~ msgid "_Fill"
-#~ msgstr "Be_te"
-
-#~ msgid "Automatically fill in the current square if possible."
-#~ msgstr "Automatikoki bete uneko laukia, ahal bada."
-
-#~ msgid "Fill _all squares"
-#~ msgstr "Bete lauki _guztiak"
-
-#~ msgid ""
-#~ "Automatically fill in all squares for which there is only one valid value."
-#~ msgstr "Baliozko balio bakar bat duten laukiak automatikoki betetzen ditu."
-
-#~ msgid "_Generate new puzzles"
-#~ msgstr "_Sortu joko berriak"
-
-#~ msgid "Generate new puzzles."
-#~ msgstr "Joko berriak sortzen ditu."
-
-#~ msgid "Show statistics about current puzzle"
-#~ msgstr "Uneko jokoari buruzko estatistikak erakusten ditu"
-
-#~ msgid "_Always show hint"
-#~ msgstr "_Erakutsi beti iradokizuna"
-
-#~ msgid "Generate new puzzles _while you play"
-#~ msgstr "Sortu joko berriak _jokatzen ari zaren bitartean"
-
-#~ msgid ""
-#~ "Generate new puzzles in the background while you play. This will "
-#~ "automatically pause when the game goes into the background."
-#~ msgstr ""
-#~ "Joko berriak sortzen ditu atzeko planoan, jokatzen ari zaren bitartean. "
-#~ "Jokoa atzeko planoan jartzean, automatikoki pausaraziko da prozesu hori."
-
-#~ msgid "_Edit"
-#~ msgstr "_Editatu"
-
-#~ msgid "Clear entries you've filled in"
-#~ msgstr "Bete dituzun sarrerak garbitzen ditu"
-
-#~ msgid "Clear notes and hints"
-#~ msgstr "Oharrak eta iradokizunak garbitzen ditu"
-
-#~ msgid "You used the auto-fill %(n)s time"
-#~ msgid_plural "You used the auto-fill %(n)s times"
-#~ msgstr[0] "Betegarri automatikoa %(n)s aldiz erabili duzu"
-#~ msgstr[1] "Betegarri automatikoa %(n)s aldiz erabili duzu"
-
-#~ msgid "Playing %(difficulty)s puzzle."
-#~ msgstr "%(difficulty)s jokoa jokatzen."
-
-#~ msgid "No Tracker"
-#~ msgstr "Aztarnarik ez"
-
-#~ msgid "_Clear Others"
-#~ msgstr "_Garbitu besteak"
-
-#~ msgid "Clear all moves not tracked by selected tracker."
-#~ msgstr "Garbitu aztarnari hautatuaren jarraipen guztiak."
-
-#~ msgid "Last Played %(timeAgo)s"
-#~ msgstr "Jokatutako azkena: %(timeAgo)s"
-
-#~ msgid "%(level)s puzzle"
-#~ msgstr "%(level)s joko"
-
-#~ msgid "Stopped"
-#~ msgstr "Geldituta"
-
-#~ msgid "Generated %(n)s out of %(total)s puzzle"
-#~ msgid_plural "Generated %(n)s out of %(total)s puzzles"
-#~ msgstr[0] "%(n)s / %(total)s joko sortu da"
-#~ msgstr[1] "%(n)s / %(total)s joko sortu dira"
-
-#~ msgid "Generated %(n)s puzzle"
-#~ msgid_plural "Generated %(n)s puzzles"
-#~ msgstr[0] "joko %(n)s sortu da"
-#~ msgstr[1] "%(n)s joko sortu dira"
-
-#~ msgid "%(n)s year"
-#~ msgid_plural "%(n)s years"
-#~ msgstr[0] "urte %(n)s"
-#~ msgstr[1] "%(n)s urte"
-
-#~ msgid "%(n)s month"
-#~ msgid_plural "%(n)s months"
-#~ msgstr[0] "hilabete %(n)s"
-#~ msgstr[1] "%(n)s hilabete"
-
-#~ msgid "%(n)s week"
-#~ msgid_plural "%(n)s weeks"
-#~ msgstr[0] "aste %(n)s"
-#~ msgstr[1] "%(n)s aste"
-
-#~ msgid "%(n)s day"
-#~ msgid_plural "%(n)s days"
-#~ msgstr[0] "egun %(n)s"
-#~ msgstr[1] "%(n)s egun"
-
-#~ msgid " and "
-#~ msgstr " eta "
-
-#~ msgid ", "
-#~ msgstr ", "
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "at %I:%M %p"
-#~ msgstr "%I:%M %p"
-
-#~ msgid "%A %I:%M %p"
-#~ msgstr "%A %I:%M %p"
-
-#~ msgid "%B %e"
-#~ msgstr "%B %e"
-
-#~| msgid "Custom"
-#~ msgctxt "board size"
-#~ msgid "Custom"
-#~ msgstr "Pertsonalizatua"
-
-#~ msgctxt "number"
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgctxt "number"
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgctxt "number"
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgctxt "number"
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgctxt "number"
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgctxt "number"
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgctxt "number"
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgctxt "number"
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgctxt "number"
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgctxt "number"
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Tile _Colours"
-#~ msgstr "Fitxen _koloreak"
-
-#~ msgid "A flag to enable coloured tiles."
-#~ msgstr "Fitxa koloredunak gaitzeko bandera."
-
-#~ msgid "Control coloured tiles"
-#~ msgstr "Kontrolatu fitxa koloreztatuak"
-
-#~| msgid "Regular"
-#~ msgctxt "game type"
-#~ msgid "Regular"
-#~ msgstr "Arrunta"
-
-#~| msgid "Colors"
-#~ msgctxt "game type"
-#~ msgid "Colors"
-#~ msgstr "Koloreak"
-
-#~| msgid "Easy"
-#~ msgctxt "difficulty"
-#~ msgid "Easy"
-#~ msgstr "Erraza"
-
-#~| msgid "Medium"
-#~ msgctxt "difficulty"
-#~ msgid "Medium"
-#~ msgstr "Tartekoa"
-
-#~| msgid "Hard"
-#~ msgctxt "difficulty"
-#~ msgid "Hard"
-#~ msgstr "Zaila"
-
-#~ msgid "Look & Feel"
-#~ msgstr "Itxura eta izaera"
-
-#~| msgid "Easy"
-#~ msgctxt "mahjongg map name"
-#~ msgid "Easy"
-#~ msgstr "Erraza"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "The Ziggurat"
-#~ msgstr "Ziggurat"
-
-#~| msgid "Four Suits"
-#~ msgctxt "mahjongg map name"
-#~ msgid "Four Bridges"
-#~ msgstr "Lau zubiak"
-
-#~| msgid "Sound"
-#~ msgctxt "mahjongg map name"
-#~ msgid "Cloud"
-#~ msgstr "Lainoa"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Tic-Tac-Toe"
-#~ msgstr "Artzain-jokoa"
-
-#~| msgid "Red Donkey"
-#~ msgctxt "mahjongg map name"
-#~ msgid "Red Dragon"
-#~ msgstr "Dragoi gorria"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Pyramid's Walls"
-#~ msgstr "Piramidearen hormak"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Confounding Cross"
-#~ msgstr "Gurutze nahaspilatsua"
-
-#~| msgid "_Difficulty:"
-#~ msgctxt "mahjongg map name"
-#~ msgid "Difficult"
-#~ msgstr "Zailtasuna"
