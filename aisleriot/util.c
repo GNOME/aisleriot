@@ -24,9 +24,9 @@
 
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-help.h>
-#include <libgames-support/games-show.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-help.h"
+#include "ar-show.h"
+#include "ar-string-utils.h"
 
 #include "util.h"
 
@@ -76,17 +76,17 @@ aisleriot_show_help (GtkWidget *window,
     help_section = game_file_to_help_section (game_file);
   }
 
-  if (!games_help_display_full (GTK_WIDGET (window), DOC_MODULE, help_section, &error)) {
+  if (!ar_help_display_full (GTK_WIDGET (window), DOC_MODULE, help_section, &error)) {
     if (game_file != NULL) {
       char *help_section_display;
 
-      help_section_display = games_filename_to_display_name (game_file);
+      help_section_display = ar_filename_to_display_name (game_file);
 
-      games_show_error (window, error,
+      ar_show_error (window, error,
                         _("Could not show help for “%s”"),
                         help_section_display);
     } else {
-      games_show_error (window, error,
+      ar_show_error (window, error,
                         _("Could not show help for “%s”"),
                         g_get_application_name ());
     }
@@ -127,4 +127,30 @@ aisleriot_variation_to_game_file (const char *variation)
   g_free (game_file);
 
   return s;
+}
+
+/**
+ * ar_atk_util_add_atk_relation:
+ * @widget:
+ * @other:
+ * @type:
+ *
+ * Adds an AtkRelation of type @type to @other into @widget's
+ * AtkRelationSet.
+ */
+void
+ar_atk_util_add_atk_relation (GtkWidget *widget,
+                              GtkWidget *other,
+                              AtkRelationType type)
+{
+  AtkRelationSet *set;
+  AtkRelation *relation;
+  AtkObject *object;
+
+  object = gtk_widget_get_accessible (other);
+  set = atk_object_ref_relation_set (gtk_widget_get_accessible (widget));
+  relation = atk_relation_new (&object, 1, type);
+  atk_relation_set_add (set, relation);
+  g_object_unref (relation);
+  g_object_unref (set);
 }

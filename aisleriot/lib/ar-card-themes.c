@@ -33,9 +33,9 @@
 #include <gdk/gdkx.h>
 #endif
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-profile.h>
-#include <libgames-support/games-runtime.h>
+#include "ar-debug.h"
+#include "ar-profile.h"
+#include "ar-runtime.h"
 
 #include "ar-card-themes.h"
 #include "ar-card-theme-private.h"
@@ -134,7 +134,7 @@ theme_filename_and_type_from_name (const char *theme_name,
 
   g_return_val_if_fail (type != NULL, NULL);
 
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "theme_filename_and_type_from_name %s\n",
                       theme_name ? theme_name : "(null)");
 
@@ -199,9 +199,9 @@ ar_card_themes_foreach_theme_dir (GType type,
   if (!klass)
     return TRUE;
 
-  _games_profile_start ("foreach %s card themes", G_OBJECT_CLASS_NAME (klass));
+  ar_profilestart ("foreach %s card themes", G_OBJECT_CLASS_NAME (klass));
   retval = _ar_card_theme_class_foreach_theme_dir (klass, callback, data);
-  _games_profile_end ("foreach %s card themes", G_OBJECT_CLASS_NAME (klass));
+  ar_profileend ("foreach %s card themes", G_OBJECT_CLASS_NAME (klass));
 
   g_type_class_unref (klass);
   return retval;
@@ -252,12 +252,12 @@ ar_card_themes_get_theme_infos_in_dir (ArCardThemeClass *klass,
   GDir *iter;
   const char *filename;
 
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Looking for %s themes in %s\n",
                       G_OBJECT_CLASS_NAME (klass),
                       path);
 
-  _games_profile_start ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
+  ar_profilestart ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
 
   iter = g_dir_open (path, 0, NULL);
   if (!iter)
@@ -266,9 +266,9 @@ ar_card_themes_get_theme_infos_in_dir (ArCardThemeClass *klass,
   while ((filename = g_dir_read_name (iter)) != NULL) {
     ArCardThemeInfo *info;
 
-    _games_profile_start ("checking for %s card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
+    ar_profilestart ("checking for %s card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
     info = _ar_card_theme_class_get_theme_info (klass, path, filename);
-    _games_profile_end ("checking for %s card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
+    ar_profileend ("checking for %s card theme in file %s", G_OBJECT_CLASS_NAME (klass), filename);
 
     if (info != NULL) {
       /* Don't replace an already existing theme info! */
@@ -282,7 +282,7 @@ ar_card_themes_get_theme_infos_in_dir (ArCardThemeClass *klass,
   g_dir_close (iter);
 
 out:
-  _games_profile_end ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
+  ar_profileend ("looking for %s card themes in %s", G_OBJECT_CLASS_NAME (klass), path);
 
   return TRUE;
 }
@@ -297,7 +297,7 @@ ar_card_themes_try_theme_info_by_filename (ArCardThemeClass *klass,
                                               const char *path,
                                               LookupData *data)
 {
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Looking for theme %s/%s in %s\n",
                       G_OBJECT_CLASS_NAME (klass),
                       data->filename,
@@ -313,16 +313,16 @@ ar_card_themes_try_theme_info_by_filename (ArCardThemeClass *klass,
 static void
 ar_card_themes_load_theme_infos (ArCardThemes *theme_manager)
 {
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Scanning theme directories\n");
 
   /* FIXMEchpe: clear the hash table here? */
 
-  _games_profile_start ("looking for card themes");
+  ar_profilestart ("looking for card themes");
   ar_card_themes_foreach_theme_type_and_dir (theme_manager,
                                                 (ArCardThemeForeachFunc) ar_card_themes_get_theme_infos_in_dir,
                                                 theme_manager);
-  _games_profile_end ("looking for card themes");
+  ar_profileend ("looking for card themes");
 
   theme_manager->theme_infos_loaded = TRUE;
 
@@ -384,7 +384,7 @@ theme_install_reply_cb (GDBusConnection  *connection,
 
   variant = g_dbus_connection_call_finish (connection, result, &error);
   if (variant == NULL) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to call InstallPackages: %s\n",
                         error->message);
     g_error_free (error);
@@ -502,11 +502,11 @@ ar_card_themes_get_theme (ArCardThemes *theme_manager,
   if (info->type == G_TYPE_INVALID)
     return NULL;
 
-  _games_profile_start ("loading card theme %s/%s", g_type_name (info->type), info->display_name);
+  ar_profilestart ("loading card theme %s/%s", g_type_name (info->type), info->display_name);
 
   theme = g_object_new (info->type, "theme-info", info, NULL);
   if (!theme->klass->load (theme, &error)) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to load card theme %s/%s: %s\n",
                         g_type_name (info->type),
                         info->display_name,
@@ -516,13 +516,13 @@ ar_card_themes_get_theme (ArCardThemes *theme_manager,
     g_object_unref (theme);
     theme = NULL;
   } else {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Successfully loaded card theme %s/%s\n",
                         g_type_name (info->type),
                         info->display_name);
   }
 
-  _games_profile_end ("loading card theme %s/%s", g_type_name (info->type), info->display_name);
+  ar_profileend ("loading card theme %s/%s", g_type_name (info->type), info->display_name);
 
   return theme;
 }
@@ -549,7 +549,7 @@ ar_card_themes_get_theme_by_name (ArCardThemes *theme_manager,
   g_return_val_if_fail (AR_IS_CARD_THEMES (theme_manager), NULL);
 
   filename = theme_filename_and_type_from_name (theme_name, &type);
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Resolved card type=%s filename=%s\n",
                       g_type_name (type),
                       filename);
@@ -600,7 +600,7 @@ ar_card_themes_get_theme_any (ArCardThemes *theme_manager)
 
   g_return_val_if_fail (AR_IS_CARD_THEMES (theme_manager), NULL);
 
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Fallback: trying to load any theme\n");
 
   ar_card_themes_request_themes (theme_manager);
@@ -696,7 +696,7 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
 
   connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
   if (connection == NULL) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to get the session bus: %s\n",
                         error->message);
     g_error_free (error);
@@ -704,7 +704,7 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
   }
 
   key_file = g_key_file_new ();
-  path = games_runtime_get_file (GAMES_RUNTIME_COMMON_DATA_DIRECTORY, "theme-install.ini");
+  path = ar_runtime_get_file (AR_RUNTIME_COMMON_DATA_DIRECTORY, "theme-install.ini");
   if (!g_key_file_load_from_file (key_file, path, 0, NULL)) {
     g_free (path);
     g_key_file_free (key_file);
@@ -741,7 +741,7 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
     
     for (j = 0; j < n_packages; ++j) {
       g_variant_builder_add (&builder, "s", packages[j]);
-      _games_debug_print (GAMES_DEBUG_CARD_THEME, "Requesting pkg '%s'\n",
+      ar_debug_print (AR_DEBUG_CARD_THEME, "Requesting pkg '%s'\n",
                           packages[j]);
     }
 

@@ -25,9 +25,9 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-profile.h>
-#include <libgames-support/games-runtime.h>
+#include "ar-debug.h"
+#include "ar-profile.h"
+#include "ar-runtime.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -442,11 +442,11 @@ ar_card_theme_get_card_pixbuf (ArCardTheme *theme,
 
   g_return_val_if_fail ((card_id >= 0) && (card_id < AR_CARDS_TOTAL), NULL);
 
-  _games_profile_start ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
+  ar_profilestart ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
 
   pixbuf = theme->klass->get_card_pixbuf (theme, card_id);
 
-  _games_profile_end ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
+  ar_profileend ("loading card %d from theme %s", card_id, theme->theme_info->display_name);
 
   return pixbuf;
 }
@@ -467,11 +467,11 @@ ar_card_theme_paint_card (ArCardTheme *theme,
 {
   g_return_if_fail ((cardid >= 0) && (cardid < AR_CARDS_TOTAL));
 
-  _games_profile_start ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
+  ar_profilestart ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
 
   theme->klass->paint_card (theme, cr, cardid);
 
-  _games_profile_end ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
+  ar_profileend ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
 }
 #endif /* GTK 2.10 */
 
@@ -558,7 +558,7 @@ _ar_card_theme_info_new (GType type,
   info->data = data;
   info->destroy_notify = destroy_notify;
 
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Created ArCardThemeInfo for type=%s path=%s filename=%s display-name=%s\n",
                       g_type_name (type), path, filename, display_name);
 

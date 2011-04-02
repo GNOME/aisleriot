@@ -35,11 +35,11 @@
 #define GDK_KEY(symbol) GDK_##symbol
 #endif
 
-#include <libgames-support/games-glib-compat.h>
-#include <libgames-support/games-gtk-compat.h>
-#include <libgames-support/games-marshal.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-sound.h>
+#include "ar-glib-compat.h"
+#include "ar-gtk-compat.h"
+#include "ar-marshal.h"
+#include "ar-runtime.h"
+#include "ar-sound.h"
 
 #include "conf.h"
 #include "game.h"
@@ -1310,10 +1310,10 @@ drop_moving_cards (AisleriotBoard *board,
 
   if (moved) {
     aisleriot_game_end_move (priv->game);
-    games_sound_play ("click");
+    ar_sound_play ("click");
   } else {
     aisleriot_game_discard_move (priv->game);
-    games_sound_play ("slide");
+    ar_sound_play ("slide");
   }
 
   drag_end (board, moved);
@@ -1487,7 +1487,7 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
   if (moved) {
     aisleriot_game_end_move (priv->game);
 
-    games_sound_play ("click");
+    ar_sound_play ("click");
 
     if (selection_slot->needs_update)
       g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
@@ -2276,7 +2276,7 @@ aisleriot_board_activate (AisleriotBoard *board)
 
   if (aisleriot_game_button_clicked_lambda (priv->game, focus_slot->id)) {
     aisleriot_game_end_move (priv->game);
-    games_sound_play ("click");
+    ar_sound_play ("click");
     aisleriot_game_test_end_of_game (priv->game);
 
     return;
@@ -3102,7 +3102,7 @@ aisleriot_board_button_release (GtkWidget *widget,
       aisleriot_game_record_move (priv->game, -1, NULL, 0);
       if (aisleriot_game_button_clicked_lambda (priv->game, slot->id)) {
         aisleriot_game_end_move (priv->game);
-	games_sound_play_for_event ("click", (GdkEvent *) event);
+	ar_sound_play_for_event ("click", (GdkEvent *) event);
       } else {
         aisleriot_game_discard_move (priv->game);
       }
@@ -4150,7 +4150,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, move_cursor),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__ENUM_INT,
+                  ar_marshal_BOOLEAN__ENUM_INT,
                   G_TYPE_BOOLEAN,
                   2,
                   GTK_TYPE_MOVEMENT_STEP,

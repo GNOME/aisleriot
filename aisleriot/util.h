@@ -1,4 +1,5 @@
 /*
+ * Copyright © 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
  * Copyright © 2007 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,6 +28,10 @@ void aisleriot_show_help (GtkWidget *window,
                           const char *game_file);
 
 char *aisleriot_variation_to_game_file (const char *variation);
+
+void ar_atk_util_add_atk_relation (GtkWidget *widget,
+                                   GtkWidget *other,
+                                   AtkRelationType type);
 
 G_END_DECLS
 

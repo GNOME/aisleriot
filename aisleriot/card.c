@@ -23,7 +23,7 @@
 
 #include "card.h"
 
-#include <libgames-support/games-glib-compat.h>
+#include "ar-glib-compat.h"
 
 static void aisleriot_card_paint (ClutterActor *actor);
 

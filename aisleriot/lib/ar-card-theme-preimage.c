@@ -29,9 +29,9 @@
 #include <librsvg/librsvg-features.h>
 #endif
 
-#include <libgames-support/games-preimage.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-preimage.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -66,9 +66,9 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
 
   /* First the slot image */
   /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
-  slot_dir = games_runtime_get_directory (GAMES_RUNTIME_PIXMAP_DIRECTORY);
+  slot_dir = ar_runtime_get_directory (AR_RUNTIME_PIXMAP_DIRECTORY);
   path = g_build_filename (slot_dir, "slot.svg", NULL);
-  theme->slot_preimage = games_preimage_new_from_file (path, error);
+  theme->slot_preimage = ar_preimage_new_from_file (path, error);
   g_free (path);
   if (!theme->slot_preimage)
     return FALSE;
@@ -76,21 +76,21 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
 
   /* Now the main course */
   path = g_build_filename (theme_info->path, theme_info->filename, NULL);
-  theme->cards_preimage = games_preimage_new_from_file (path, error);
+  theme->cards_preimage = ar_preimage_new_from_file (path, error);
   g_free (path);
   if (!theme->cards_preimage)
     return FALSE;
 
   if (AR_CARD_THEME_PREIMAGE_GET_CLASS (theme)->needs_scalable_cards &&
-      !games_preimage_is_scalable (theme->cards_preimage)) {
+      !ar_preimage_is_scalable (theme->cards_preimage)) {
     g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_NOT_SCALABLE,
                  "Theme is not scalable");
     return FALSE;
   }
 
   if (theme->font_options) {
-    games_preimage_set_font_options (theme->slot_preimage, theme->font_options);
-    games_preimage_set_font_options (theme->cards_preimage, theme->font_options);
+    ar_preimage_set_font_options (theme->slot_preimage, theme->font_options);
+    ar_preimage_set_font_options (theme->cards_preimage, theme->font_options);
   }
 
   return TRUE;
@@ -212,9 +212,9 @@ ar_card_theme_preimage_get_card_aspect (ArCardTheme* card_theme)
   ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
   double aspect;
 aspect =
-      (((double) games_preimage_get_width (theme->cards_preimage))
+      (((double) ar_preimage_get_width (theme->cards_preimage))
        * N_ROWS) /
-      (((double) games_preimage_get_height (theme->cards_preimage))
+      (((double) ar_preimage_get_height (theme->cards_preimage))
        * N_COLS);
 
   return aspect;
@@ -236,7 +236,7 @@ ar_card_theme_preimage_class_get_theme_info (ArCardThemeClass *klass,
      )
     return NULL;
 
-  display_name = games_filename_to_display_name (filename);
+  display_name = ar_filename_to_display_name (filename);
   info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,
                                      filename,

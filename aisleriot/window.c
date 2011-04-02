@@ -38,20 +38,16 @@
 #endif
 #endif /* HAVE_HILDON */
 
-#include <libgames-support/games-clock.h>
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-glib-compat.h>
-#include <libgames-support/games-stock.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-sound.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-clock.h"
+#include "ar-debug.h"
+#include "ar-glib-compat.h"
+#include "ar-stock.h"
+#include "ar-runtime.h"
+#include "ar-sound.h"
+#include "ar-string-utils.h"
 
-#ifndef HAVE_HILDON
-#include <libgames-support/games-atk-utils.h>
-#endif
-
-#if GLIB_CHECK_VERSION (2, 25, 15)
-#include <libgames-support/games-settings.h>
+#if GLIB_CHECK_VERSION (2, 26, 0)
+#include "ar-gsettings.h"
 #endif
 
 #ifdef HAVE_CLUTTER
@@ -259,11 +255,11 @@ show_game_over_dialog (AisleriotWindow *window)
 
   if (game_won) {
     message = _("Congratulations, you have won!");
-    games_sound_play ("victory");
+    ar_sound_play ("victory");
 
   } else {
     message =  _("There are no more moves");
-    games_sound_play ("splat");
+    ar_sound_play ("splat");
   }
 
   dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
@@ -285,7 +281,7 @@ show_game_over_dialog (AisleriotWindow *window)
   if (game_won) {
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
                             GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                            GAMES_STOCK_START_NEW_GAME, RESPONSE_NEW_GAME,
+                            AR_STOCK_START_NEW_GAME, RESPONSE_NEW_GAME,
                             NULL);
     gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
                                              RESPONSE_NEW_GAME,
@@ -293,10 +289,10 @@ show_game_over_dialog (AisleriotWindow *window)
                                              -1);
   } else {
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-			    GAMES_STOCK_UNDO_MOVE, RESPONSE_UNDO,
+			    AR_STOCK_UNDO_MOVE, RESPONSE_UNDO,
                             GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                            GAMES_STOCK_RESTART_GAME, RESPONSE_RESTART,
-                            GAMES_STOCK_START_NEW_GAME, RESPONSE_NEW_GAME,
+                            AR_STOCK_RESTART_GAME, RESPONSE_RESTART,
+                            AR_STOCK_START_NEW_GAME, RESPONSE_NEW_GAME,
                             NULL);
     gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
                                              RESPONSE_NEW_GAME,
@@ -452,7 +448,7 @@ help_about_cb (GtkAction *action,
 
   char *licence;
 
-  licence = games_get_license (priv->freecell_mode ? _("FreeCell Solitaire") : ("AisleRiot"));
+  licence = ar_get_licence (priv->freecell_mode ? _("FreeCell Solitaire") : ("AisleRiot"));
 
   gtk_show_about_dialog (GTK_WINDOW (window),
 #if GTK_CHECK_VERSION (2, 11, 0)
@@ -660,7 +656,7 @@ debug_ensure_game_list (AisleriotWindow *window)
   if (data != NULL)
     return data;
 
-  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
+  games_dir = ar_runtime_get_directory (AR_RUNTIME_GAME_GAMES_DIRECTORY);
   dir = g_dir_open (games_dir, 0, NULL);
   if (dir != NULL) {
     const char *game_file;
@@ -927,7 +923,7 @@ toolbar_toggled_cb (GtkToggleAction *action,
 
   priv->toolbar_visible = state != FALSE;
 
-  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), state);
+  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), state);
 
   set_fullscreen_button_active (window);
 }
@@ -946,11 +942,11 @@ statusbar_toggled_cb (GtkToggleAction *action,
   g_object_set (priv->statusbar, "visible", state, NULL);
 
   /* Only update the clock continually if it's visible */
-  games_clock_set_update (GAMES_CLOCK (priv->clock), state);
+  ar_clock_set_update (AR_CLOCK (priv->clock), state);
 
   priv->statusbar_visible = state != FALSE;
 
-  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), state);
+  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), state);
 }
 
 #endif /* !HAVE_HILDON */
@@ -981,7 +977,7 @@ static void
 fullscreen_toggled_cb (GtkToggleAction *action,
                        GtkWindow *window)
 {
-  _games_debug_print (GAMES_DEBUG_WINDOW_STATE,
+  ar_debug_print (AR_DEBUG_WINDOW_STATE,
                       "[window %p] fullscreen_toggled_cb, %s fullscreen\n",
                       window,
                       gtk_toggle_action_get_active (action) ? "going" : "leaving");
@@ -1012,7 +1008,7 @@ clickmove_toggle_cb (GtkToggleAction *action,
   aisleriot_game_set_click_to_move (priv->game, click_to_move);
   ar_style_set_click_to_move (priv->board_style, click_to_move);
   
-  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
+  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
 }
 
 #ifdef ENABLE_SOUND
@@ -1025,9 +1021,9 @@ sound_toggle_cb (GtkToggleAction *action,
 
   sound_enabled = gtk_toggle_action_get_active (action);
 
-  games_sound_enable (sound_enabled);
+  ar_sound_enable (sound_enabled);
   
-  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
+  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
 }
 
 #endif /* ENABLE_SOUND */
@@ -1045,7 +1041,7 @@ animations_toggle_cb (GtkToggleAction *action,
 
   ar_style_set_enable_animations (priv->board_style, enabled);
   
-  games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
+  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
 }
 
 #endif /* HAVE_CLUTTER */
@@ -1295,7 +1291,7 @@ add_recently_played_game (AisleriotWindow *window,
   if (priv->freecell_mode)
     return;
 
-  recent_games = games_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
+  recent_games = ar_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
 
   if (recent_games == NULL) {
     new_recent = g_new (char *, 2);
@@ -1320,7 +1316,7 @@ add_recently_played_game (AisleriotWindow *window,
     g_strfreev (recent_games);
   }
 
-  games_conf_set_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES),
+  ar_conf_set_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES),
                               (const char * const *) new_recent, n_new_recent);
   g_strfreev (new_recent);
 }
@@ -1336,7 +1332,7 @@ recent_game_cb (GtkAction *action,
 
   aisleriot_window_set_game (window, game_file, 0);
   
-  games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_file);
+  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_file);
 }
 
 static void
@@ -1363,7 +1359,7 @@ install_recently_played_menu (AisleriotWindow *window)
 
   priv->recent_games_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-  recent_games = games_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
+  recent_games = ar_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
 
   for (i = 0; i < n_recent; ++i) {
     GtkAction *action;
@@ -1371,7 +1367,7 @@ install_recently_played_menu (AisleriotWindow *window)
     char *game_name, *tooltip;
 
     g_snprintf (actionname, sizeof (actionname), "Recent%"G_GSIZE_FORMAT, i);
-    game_name = games_filename_to_display_name (recent_games[i]);
+    game_name = ar_filename_to_display_name (recent_games[i]);
 #ifdef HAVE_HILDON
     tooltip = NULL;
 #else
@@ -1487,7 +1483,7 @@ card_theme_changed_cb (GtkToggleAction *action,
   aisleriot_window_take_card_theme (window, theme);
 
   theme_name = ar_card_theme_info_get_persistent_name (new_theme_info);
-  games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme_name);
+  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme_name);
 }
 
 static void
@@ -1671,9 +1667,9 @@ sync_game_state (AisleriotGame *game,
 
 #ifndef HAVE_HILDON
   if (state == GAME_RUNNING) {
-    games_clock_start (GAMES_CLOCK (priv->clock));
+    ar_clock_start (AR_CLOCK (priv->clock));
   } else {
-    games_clock_stop (GAMES_CLOCK (priv->clock));
+    ar_clock_stop (AR_CLOCK (priv->clock));
   }
 #endif
 
@@ -1769,7 +1765,7 @@ game_type_changed_cb (AisleriotGame *game,
 
 #ifdef HAVE_HILDON
 #else
-  games_clock_reset (GAMES_CLOCK (priv->clock));
+  ar_clock_reset (AR_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
   gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
@@ -1792,7 +1788,7 @@ game_new_cb (AisleriotGame *game,
   update_statistics_display (window);
 
 #ifndef HAVE_HILDON
-  games_clock_reset (GAMES_CLOCK (priv->clock));
+  ar_clock_reset (AR_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
   gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
@@ -1997,7 +1993,7 @@ screen_changed_cb (GtkWidget *widget,
   if (screen == NULL)
     return;
 
-  games_sound_init (screen);
+  ar_sound_init (screen);
 
   settings = gtk_widget_get_settings (widget);
   settings_changed_cb (settings, NULL, window);
@@ -2165,9 +2161,9 @@ aisleriot_window_state_event (GtkWidget *widget,
 
       aisleriot_game_set_paused (priv->game, is_iconified);
       if (is_iconified) {
-        games_clock_stop (GAMES_CLOCK (priv->clock));
+        ar_clock_stop (AR_CLOCK (priv->clock));
       } else {
-        games_clock_start (GAMES_CLOCK (priv->clock));
+        ar_clock_start (AR_CLOCK (priv->clock));
       }
     }
   }
@@ -2209,11 +2205,11 @@ aisleriot_window_init (AisleriotWindow *window)
     { "HelpMenu", NULL, N_("_Help") },
 
     /* Menu item actions */
-    { "NewGame", GAMES_STOCK_NEW_GAME, NULL,
+    { "NewGame", AR_STOCK_NEW_GAME, NULL,
       ACTION_ACCEL ("<ctrl>N", NULL),
       ACTION_TOOLTIP (N_("Start a new game")),
       G_CALLBACK (new_game_cb) },
-    { "RestartGame", GAMES_STOCK_RESTART_GAME, NULL, NULL,
+    { "RestartGame", AR_STOCK_RESTART_GAME, NULL, NULL,
        ACTION_TOOLTIP (N_("Restart the game")),
       G_CALLBACK (restart_game) },
     { "Select", GTK_STOCK_INDEX, N_("_Select Game..."),
@@ -2227,22 +2223,22 @@ aisleriot_window_init (AisleriotWindow *window)
     { "CloseWindow", GTK_STOCK_CLOSE, NULL, NULL,
       ACTION_TOOLTIP (N_("Close this window")),
       G_CALLBACK (close_window_cb) },
-    { "UndoMove", GAMES_STOCK_UNDO_MOVE, NULL, NULL,
+    { "UndoMove", AR_STOCK_UNDO_MOVE, NULL, NULL,
       ACTION_TOOLTIP (N_("Undo the last move")),
       G_CALLBACK (undo_cb) },
-    { "RedoMove", GAMES_STOCK_REDO_MOVE, NULL, NULL,
+    { "RedoMove", AR_STOCK_REDO_MOVE, NULL, NULL,
       ACTION_TOOLTIP (N_("Redo the undone move")),
       G_CALLBACK (redo_cb) },
-    { "Deal", GAMES_STOCK_DEAL_CARDS, NULL, NULL,
+    { "Deal", AR_STOCK_DEAL_CARDS, NULL, NULL,
       ACTION_TOOLTIP (N_("Deal next card or cards")),
       G_CALLBACK (deal_cb) },
-    { "Hint", GAMES_STOCK_HINT, NULL, NULL,
+    { "Hint", AR_STOCK_HINT, NULL, NULL,
       ACTION_TOOLTIP (N_("Get a hint for your next move")),
       G_CALLBACK (show_hint_cb) },
-    { "Contents", GAMES_STOCK_CONTENTS, NULL, NULL,
+    { "Contents", AR_STOCK_CONTENTS, NULL, NULL,
       ACTION_TOOLTIP (N_("View help for Aisleriot")),
       G_CALLBACK (help_general_cb) },
-    { "HelpGame", GAMES_STOCK_CONTENTS, NULL,
+    { "HelpGame", AR_STOCK_CONTENTS, NULL,
       ACTION_ACCEL ("<shift>F1", NULL),
       ACTION_TOOLTIP (N_("View help for this game")),
       G_CALLBACK (help_on_game_cb) },
@@ -2256,7 +2252,7 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif /* HAVE_HILDON */
 
     /* Toolbar-only actions */
-    { "LeaveFullscreen", GAMES_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL,
+    { "LeaveFullscreen", AR_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL,
       G_CALLBACK (leave_fullscreen_cb) },
 #ifndef HAVE_HILDON
     { "ThemeMenu", NULL, N_("_Card Style"), NULL, NULL, NULL },
@@ -2299,7 +2295,7 @@ aisleriot_window_init (AisleriotWindow *window)
   };
 
   const GtkToggleActionEntry toggle_actions[] = {
-    { "Fullscreen", GAMES_STOCK_FULLSCREEN, NULL, NULL, NULL,
+    { "Fullscreen", AR_STOCK_FULLSCREEN, NULL, NULL, NULL,
       G_CALLBACK (fullscreen_toggled_cb),
       FALSE },
     { "Toolbar", NULL, N_("_Toolbar"), NULL,
@@ -2539,7 +2535,7 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->board_style, priv->game));
 #endif /* HAVE_CLUTTER */
 
-  theme_name = games_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
+  theme_name = ar_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
   theme = ar_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
   g_free (theme_name);
   if (!theme) {
@@ -2584,7 +2580,7 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifndef HAVE_HILDON
   statusbar = priv->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "game-message");
-  games_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
+  ar_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
                                               GTK_WIDGET (priv->statusbar));
 
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
@@ -2643,19 +2639,19 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_box_pack_start (GTK_BOX (priv->score_box), priv->score_label, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (statusbar_hbox), priv->score_box, FALSE, FALSE, 0);
 
-  games_atk_util_add_atk_relation (label, priv->score_label, ATK_RELATION_LABEL_FOR);
-  games_atk_util_add_atk_relation (priv->score_label, label, ATK_RELATION_LABELLED_BY);
+  ar_atk_util_add_atk_relation (label, priv->score_label, ATK_RELATION_LABEL_FOR);
+  ar_atk_util_add_atk_relation (priv->score_label, label, ATK_RELATION_LABELLED_BY);
 
   time_box = gtk_hbox_new (12, FALSE);
   label = gtk_label_new (_("Time:"));
   gtk_box_pack_start (GTK_BOX (time_box), label, FALSE, FALSE, 0);
-  priv->clock = games_clock_new ();
+  priv->clock = ar_clock_new ();
   gtk_box_pack_start (GTK_BOX (time_box), priv->clock, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (statusbar_hbox), time_box, FALSE, FALSE, 0);
   gtk_widget_show_all (time_box);
 
-  games_atk_util_add_atk_relation (label, priv->clock, ATK_RELATION_LABEL_FOR);
-  games_atk_util_add_atk_relation (priv->clock, label, ATK_RELATION_LABELLED_BY);
+  ar_atk_util_add_atk_relation (label, priv->clock, ATK_RELATION_LABEL_FOR);
+  ar_atk_util_add_atk_relation (priv->clock, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 
   /* Load the UI after we've connected the statusbar,
@@ -2711,12 +2707,12 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
   action = gtk_action_group_get_action (priv->action_group, "Toolbar");
-  priv->toolbar_visible = games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), NULL) != FALSE;
+  priv->toolbar_visible = ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), NULL) != FALSE;
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->toolbar_visible);
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
+                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
 
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
@@ -2724,13 +2720,13 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef ENABLE_SOUND
   action = gtk_action_group_get_action (priv->action_group, "Sound");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), NULL));
-  gtk_action_set_visible (action, games_sound_is_available ());
+                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), NULL));
+  gtk_action_set_visible (action, ar_sound_is_available ());
 #endif /* ENABLE_SOUND */
 
 #ifndef HAVE_HILDON
   action = gtk_action_group_get_action (priv->action_group, "Statusbar");
-  priv->statusbar_visible = games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), NULL) != FALSE;
+  priv->statusbar_visible = ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), NULL) != FALSE;
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->statusbar_visible);
 #endif /* !HAVE_HILDON */
@@ -2745,7 +2741,7 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef HAVE_CLUTTER
   action = gtk_action_group_get_action (priv->action_group, "Animations");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                games_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), NULL));
+                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), NULL));
 
 #endif /* HAVE_CLUTTER */
 
@@ -2807,9 +2803,9 @@ aisleriot_window_init (AisleriotWindow *window)
 
   /* Restore window state */
 #if GLIB_CHECK_VERSION (2, 25, 15)
-  games_settings_bind_window_state (AR_SETTINGS_WINDOW_STATE_PATH, GTK_WINDOW (window));
+  ar_gsettings_bind_window_state (AR_SETTINGS_WINDOW_STATE_PATH, GTK_WINDOW (window));
 #else
-  games_conf_add_window (GTK_WINDOW (window), NULL);
+  ar_conf_add_window (GTK_WINDOW (window), NULL);
 #endif
 
   /* Initial focus is in the board */
@@ -2995,7 +2991,7 @@ load_idle_cb (LoadIdleData *data)
     GtkWidget *dialog;
     char *name;
 
-    name = games_filename_to_display_name (data->game_file);
+    name = ar_filename_to_display_name (data->game_file);
 
     dialog = gtk_message_dialog_new (GTK_WINDOW (data->window),
                                      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -3030,7 +3026,7 @@ load_idle_cb (LoadIdleData *data)
    * store it in conf, except when we're running in freecell mode.
    */
   if (!priv->freecell_mode) {
-    games_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), data->game_file);
+    ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), data->game_file);
   }
 
   aisleriot_game_new_game (priv->game, data->seed != 0 ? &data->seed : NULL);

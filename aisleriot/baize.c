@@ -21,7 +21,7 @@
 
 #include <cogl/cogl.h>
 
-#include <libgames-support/games-runtime.h>
+#include "ar-runtime.h"
 
 /* Special version of ClutterTexture that repeats the texture to fill
    the entire stage. This is used to paint the baize background */
@@ -44,7 +44,7 @@ aisleriot_baize_init (AisleriotBaize *baize)
   char *path;
   GError *error = NULL;
 
-  path = games_runtime_get_file (GAMES_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
+  path = ar_runtime_get_file (AR_RUNTIME_PIXMAP_DIRECTORY, "baize.png");
   if (!clutter_texture_set_from_file (CLUTTER_TEXTURE (baize), path, &error)) {
     g_warning ("Failed to load the baize from '%s': %s\n", path, error->message);
     g_error_free (error);

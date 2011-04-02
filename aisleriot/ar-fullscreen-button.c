@@ -19,9 +19,9 @@
 
 #include "ar-fullscreen-button.h"
 
-#include <libgames-support/games-stock.h>
-#include <libgames-support/games-glib-compat.h>
-#include <libgames-support/games-gtk-compat.h>
+#include "ar-stock.h"
+#include "ar-glib-compat.h"
+#include "ar-gtk-compat.h"
 
 struct _ArFullscreenButtonPrivate {
   GtkWindow *window;
@@ -384,7 +384,7 @@ ar_fullscreen_button_init (ArFullscreenButton *button)
   gtk_event_box_set_visible_window (GTK_EVENT_BOX (ebox), FALSE);
   gtk_container_add (GTK_CONTAINER (button), ebox);
 
-  image = gtk_image_new_from_stock (GAMES_STOCK_LEAVE_FULLSCREEN, GTK_ICON_SIZE_LARGE_TOOLBAR);
+  image = gtk_image_new_from_stock (AR_STOCK_LEAVE_FULLSCREEN, GTK_ICON_SIZE_LARGE_TOOLBAR);
   gtk_container_add (GTK_CONTAINER (ebox), image);
   gtk_widget_show_all (ebox);
 

@@ -35,10 +35,10 @@
 #include <clutter/clutter.h>
 #endif
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-glib-compat.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-debug.h"
+#include "ar-glib-compat.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "conf.h"
 #include "util.h"
@@ -614,10 +614,10 @@ cscmi_add_slot (SCM slot_data)
 #undef EQUALS_SYMBOL
 
 #ifdef GNOME_ENABLE_DEBUG
-  _GAMES_DEBUG_IF (GAMES_DEBUG_SCHEME) {
+  _AR_DEBUG_IF (AR_DEBUG_SCHEME) {
     static const char *types[] = { "unknown", "foundation", "reserve", "stock", "tableau", "waste" };
 
-    _games_debug_print (GAMES_DEBUG_SCHEME,
+    ar_debug_print (AR_DEBUG_SCHEME,
                         "Adding new slot %d type %s\n",
                         scm_to_int (SCM_CAR (slot_data)), types[type]);
   }
@@ -1153,7 +1153,7 @@ cscmi_eval_installed_file (const char *filename,
     return FALSE;
   }
 
-  path = games_runtime_get_file (GAMES_RUNTIME_GAME_GAMES_DIRECTORY, filename);
+  path = ar_runtime_get_file (AR_RUNTIME_GAME_GAMES_DIRECTORY, filename);
   if (g_file_test (path, G_FILE_TEST_EXISTS) &&
       g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
     scm_c_primitive_load (path);
@@ -1856,7 +1856,7 @@ aisleriot_game_get_game_file (AisleriotGame *game)
 char *
 aisleriot_game_get_name (AisleriotGame *game)
 {
-  return games_filename_to_display_name (game->game_file);
+  return ar_filename_to_display_name (game->game_file);
 }
 
 /**

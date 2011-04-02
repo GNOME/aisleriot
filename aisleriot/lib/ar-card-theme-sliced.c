@@ -25,10 +25,10 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-preimage.h>
-#include <libgames-support/games-profile.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-preimage.h"
+#include "ar-profile.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -78,11 +78,11 @@ ar_card_theme_sliced_load (ArCardTheme *card_theme,
     return FALSE;
 
   /* If we don't have a scalable format, build an unscaled pixbuf that we'll cut up later */
-  theme->scalable = games_preimage_is_scalable (preimage_card_theme->cards_preimage);
+  theme->scalable = ar_preimage_is_scalable (preimage_card_theme->cards_preimage);
   if (!theme->scalable) {
-    theme->source = games_preimage_render_unscaled_pixbuf (preimage_card_theme->cards_preimage);
+    theme->source = ar_preimage_render_unscaled_pixbuf (preimage_card_theme->cards_preimage);
 
-    /* This is true because in the non-scalable case GamesPreimage directly holds a GdkPixbuf */
+    /* This is true because in the non-scalable case ArPreimage directly holds a GdkPixbuf */
     g_assert (theme->source != NULL);
   
     theme->subsize.width = gdk_pixbuf_get_width (theme->source) / 13;
@@ -99,13 +99,13 @@ ar_card_theme_sliced_prerender_scalable (ArCardThemeSliced *theme)
 
   g_assert (theme->source == NULL);
 
-  _games_profile_start ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((ArCardTheme*)theme)->theme_info->display_name);
+  ar_profilestart ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((ArCardTheme*)theme)->theme_info->display_name);
 
-  theme->source = games_preimage_render (preimage_card_theme->cards_preimage,
+  theme->source = ar_preimage_render (preimage_card_theme->cards_preimage,
                                          preimage_card_theme->card_size.width * 13,
                                          preimage_card_theme->card_size.height * 5);
 
-  _games_profile_end ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((ArCardTheme*)theme)->theme_info->display_name);
+  ar_profileend ("prerendering source pixbuf for %s card theme %s", G_OBJECT_TYPE_NAME (theme), ((ArCardTheme*)theme)->theme_info->display_name);
 
   if (!theme->source)
     return FALSE;
@@ -126,7 +126,7 @@ ar_card_theme_sliced_get_card_pixbuf (ArCardTheme *card_theme,
   int suit, rank;
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
+    subpixbuf = ar_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
                                        preimage_card_theme->card_size.height);
 
@@ -196,7 +196,7 @@ ar_card_theme_sliced_class_get_theme_info (ArCardThemeClass *klass,
   if (!g_str_has_suffix (filename, ".png"))
     return NULL;
 
-  name = games_filename_to_display_name (filename);
+  name = ar_filename_to_display_name (filename);
   display_name = g_strdup_printf ("%s (Ugly)", name);
   pref_name = g_strdup_printf ("sliced:%s", filename);
   info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
@@ -223,7 +223,7 @@ ar_card_theme_sliced_class_foreach_theme_dir (ArCardThemeClass *klass,
     return FALSE;
 
   /* Themes in the pre-2.19 theme format: $(datadir)/pixmaps/gnome-games-common/cards */
-  dir = g_build_filename (games_runtime_get_directory (GAMES_RUNTIME_DATA_DIRECTORY),
+  dir = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_DATA_DIRECTORY),
                           "pixmaps", "gnome-games-common", "cards", NULL);
   retval = callback (klass, dir, data);
   g_free (dir);
@@ -234,7 +234,7 @@ ar_card_theme_sliced_class_foreach_theme_dir (ArCardThemeClass *klass,
   /* If we're installed in a non-system prefix, also load the card themes
    * from the system prefix.
    */
-  if (!games_runtime_is_system_prefix ())
+  if (!ar_runtime_is_system_prefix ())
     return callback (klass, "/usr/share/pixmaps/gnome-games-common/cards", data);
 
   return TRUE;

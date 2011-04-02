@@ -24,9 +24,9 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-debug.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -360,7 +360,7 @@ ar_card_theme_pysol_get_card_pixbuf (ArCardTheme *card_theme,
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   if (!pixbuf) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to load card ID %d: %s\n",
                         card_id, error->message);
     g_error_free (error);

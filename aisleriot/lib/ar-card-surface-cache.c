@@ -18,7 +18,7 @@
 
 #include <config.h>
 
-#include <libgames-support/games-debug.h>
+#include "ar-debug.h"
 #include <gdk/gdk.h>
 
 #include "ar-card-surface-cache.h"
@@ -74,7 +74,7 @@ ar_card_surface_cache_clear (ArCardSurfaceCache *cache)
   ArCardSurfaceCachePrivate *priv = cache->priv;
   int i;
 
-  _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+  ar_debug_print (AR_DEBUG_CARD_CACHE,
                       "ar_card_surface_cache_clear\n");
 
   for (i = 0; i < AR_CARDS_TOTAL; i++) {
@@ -134,8 +134,8 @@ ar_card_surface_cache_finalize (GObject *object)
   g_free (priv->cards);
 
 #ifdef GNOME_ENABLE_DEBUG
-  _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_CACHE) {
-    _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+  _AR_DEBUG_IF (AR_DEBUG_CARD_CACHE) {
+    ar_debug_print (AR_DEBUG_CARD_CACHE,
                         "ArCardSurfaceCache %p statistics: %u calls with %u hits and %u misses for a hit/total of %.3f\n",
                         cache, priv->n_calls, priv->cache_hits, priv->n_calls - priv->cache_hits,
                         priv->n_calls > 0 ? (double) priv->cache_hits / (double) priv->n_calls : 0.0);

@@ -26,8 +26,8 @@
 
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-themes.h"
@@ -69,7 +69,7 @@ main (int argc, char *argv[])
     { NULL }
   };
 
-  if (!games_runtime_init ("aisleriot"))
+  if (!ar_runtime_init ("aisleriot"))
     exit (1);
 
   if (!gtk_init_with_args
@@ -133,9 +133,9 @@ main (int argc, char *argv[])
 
   theme_filename = g_strdup_printf ("%s.svg", theme_name);
   theme_info = _ar_card_theme_info_new (AR_TYPE_CARD_THEME_SVG,
-                                        theme_dir ? theme_dir : games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY),
+                                        theme_dir ? theme_dir : ar_runtime_get_directory (AR_RUNTIME_SCALABLE_CARDS_DIRECTORY),
                                         theme_filename,
-                                        games_filename_to_display_name (theme_name),
+                                        ar_filename_to_display_name (theme_name),
                                         g_strdup_printf ("svg:%s", theme_filename) /* FIXMEchpe is this correct? */,
                                         TRUE /* scalable */,
                                         NULL, NULL);

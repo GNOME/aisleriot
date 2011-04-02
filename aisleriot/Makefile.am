@@ -1,5 +1,9 @@
 SUBDIRS = rules data lib icons
 
+if WITH_SMCLIENT
+SUBDIRS += smclient
+endif
+
 if BUILD_HELP
 SUBDIRS += help
 endif
@@ -24,6 +28,8 @@ sol_SOURCES = \
 	ar-cursor.h	\
 	ar-game-chooser.c \
 	ar-game-chooser.h \
+	ar-stock.c	\
+	ar-stock.h	\
 	ar-style.c	\
 	ar-style.h	\
 	ar-style-private.h \
@@ -43,6 +49,13 @@ sol_SOURCES = \
 	window.c	\
 	window.h	\
 	$(NULL)
+
+if !HAVE_HILDON
+sol_SOURCES += \
+	ar-clock.c \
+	ar-clock.h \
+	$(NULL)
+endif
 
 if HAVE_MAEMO_5
 sol_SOURCES += \
@@ -81,10 +94,14 @@ sol_LDFLAGS = \
 
 sol_LDADD = \
 	lib/libaisleriot.la \
-	$(top_builddir)/libgames-support/libgames-support.la \
 	$(GTK_LIBS) \
 	$(GUILE_LIBS) \
 	-lm
+
+if WITH_SMCLIENT
+sol_CPPFLAGS += -I$(srcdir)/smclient -Ismclient
+sol_LDADD += smclient/libsmclient.la
+endif
 
 if HAVE_HILDON
 sol_CFLAGS += $(HILDON_CFLAGS)
@@ -116,12 +133,16 @@ if ENABLE_AISLERIOT_CLUTTER
 noinst_PROGRAMS = sol-clutter
 
 sol_clutter_SOURCES = \
+	ar-clock.c	\
+	ar-clock.h	\
 	ar-clutter-embed.c \
 	ar-clutter-embed.h \
 	ar-cursor.c	\
 	ar-cursor.h	\
 	ar-game-chooser.c \
 	ar-game-chooser.h \
+	ar-stock.c	\
+	ar-stock.h	\
 	ar-style.c	\
 	ar-style.h	\
 	ar-style-private.h \

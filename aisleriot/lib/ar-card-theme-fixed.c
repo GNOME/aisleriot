@@ -25,9 +25,9 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-debug.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -71,7 +71,7 @@ ar_card_theme_fixed_load (ArCardTheme *card_theme,
 
   key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (key_file, path, 0, &error)) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to load prerendered card theme from %s: %s\n", path,
                         error->message);
     g_error_free (error);
@@ -82,14 +82,14 @@ ar_card_theme_fixed_load (ArCardTheme *card_theme,
     g_key_file_get_integer_list (key_file, "Card Theme", "Sizes", &n_sizes,
                                  &error);
   if (error) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to get card sizes: %s\n", error->message);
     g_error_free (error);
     goto loser;
   }
 
   if (n_sizes == 0) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Card theme contains no sizes\n");
     goto loser;
   }
@@ -106,7 +106,7 @@ ar_card_theme_fixed_load (ArCardTheme *card_theme,
 
     width = g_key_file_get_integer (key_file, group, "Width", &err);
     if (err) {
-      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+      ar_debug_print (AR_DEBUG_CARD_THEME,
                           "Error loading width for size %d: %s\n", sizes[i],
                           err->message);
       g_error_free (err);
@@ -114,7 +114,7 @@ ar_card_theme_fixed_load (ArCardTheme *card_theme,
     }
     height = g_key_file_get_integer (key_file, group, "Height", &err);
     if (err) {
-      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+      ar_debug_print (AR_DEBUG_CARD_THEME,
                           "Error loading height for size %d: %s\n", sizes[i],
                           err->message);
       g_error_free (err);
@@ -227,12 +227,12 @@ ar_card_theme_fixed_set_card_size (ArCardTheme *card_theme,
       theme->size_available = TRUE;
       theme->card_size = size;
 
-      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+      ar_debug_print (AR_DEBUG_CARD_THEME,
                           "Found prerendered card size %dx%d as nearest available size to %dx%d\n",
                           size.width, size.height, twidth, theight);
 
     } else {
-      _games_debug_print (GAMES_DEBUG_CARD_THEME,
+      ar_debug_print (AR_DEBUG_CARD_THEME,
                           "No prerendered size available for %d:%d\n",
                           width, height);
       theme->size_available = FALSE;
@@ -287,7 +287,7 @@ ar_card_theme_fixed_get_card_pixbuf (ArCardTheme *card_theme,
 
   pixbuf = gdk_pixbuf_new_from_file (path, &error);
   if (!pixbuf) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "Failed to load card image %s: %s\n",
                         filename, error->message);
     g_error_free (error);
@@ -309,7 +309,7 @@ ar_card_theme_fixed_class_get_theme_info (ArCardThemeClass *klass,
   if (!g_str_has_suffix (filename, ".card-theme"))
     return NULL;
 
-  display_name = games_filename_to_display_name (filename);
+  display_name = ar_filename_to_display_name (filename);
 
 #ifdef HAVE_HILDON
   /* On Hildon, fixed is the default. For pref backward compatibility,
@@ -340,13 +340,13 @@ ar_card_theme_fixed_class_foreach_theme_dir (ArCardThemeClass *klass,
   if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_FIXED", callback, data))
     return FALSE;
 
-  if (!callback (klass, games_runtime_get_directory (GAMES_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data))
+  if (!callback (klass, ar_runtime_get_directory (AR_RUNTIME_PRERENDERED_CARDS_DIRECTORY), data))
     return FALSE;
 
   /* If we're installed in a non-system prefix, also load the card themes
    * from the system prefix.
    */
-  if (!games_runtime_is_system_prefix ())
+  if (!ar_runtime_is_system_prefix ())
     return callback (klass, "/usr/share/gnome-games-common/card-themes", data);
 
   return TRUE;

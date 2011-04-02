@@ -19,7 +19,7 @@
 #define AISLERIOT_CONF_H
 
 #include <glib.h>
-#include <libgames-support/games-conf.h>
+#include "ar-conf.h"
 
 G_BEGIN_DECLS
 

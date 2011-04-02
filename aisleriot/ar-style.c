@@ -20,8 +20,8 @@
 #include "ar-style.h"
 #include "ar-style-private.h"
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-glib-compat.h>
+#include "ar-debug.h"
+#include "ar-glib-compat.h"
 
 enum
 {
@@ -103,7 +103,7 @@ ar_style_init (ArStyle *style)
 }
 #endif /* HAVE_HILDON */
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Using %s drawing\n",
                       style, priv->pixbuf_drawing ? "pixbuf" : "pixmap");
 

@@ -30,10 +30,10 @@
 
 #include <clutter/clutter.h>
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-glib-compat.h>
-#include <libgames-support/games-marshal.h>
-#include <libgames-support/games-sound.h>
+#include "ar-debug.h"
+#include "ar-glib-compat.h"
+#include "ar-marshal.h"
+#include "ar-sound.h"
 
 #include "conf.h"
 
@@ -1277,10 +1277,10 @@ drop_moving_cards (AisleriotBoard *board,
 
   if (moved) {
     aisleriot_game_end_move (priv->game);
-    games_sound_play ("click");
+    ar_sound_play ("click");
   } else {
     aisleriot_game_discard_move (priv->game);
-    games_sound_play ("slide");
+    ar_sound_play ("slide");
   }
 
   drag_end (board, moved);
@@ -1431,7 +1431,7 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
   if (moved) {
     aisleriot_game_end_move (priv->game);
 
-    games_sound_play ("click");
+    ar_sound_play ("click");
 
     if (selection_slot->needs_update)
       g_signal_emit_by_name (priv->game, "slot-changed", selection_slot); /* FIXMEchpe! */
@@ -2299,7 +2299,7 @@ aisleriot_board_activate (AisleriotBoard *board,
     return;
 #endif
 
-  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+  ar_debug_print (AR_DEBUG_GAME_KEYNAV,
                       "board ::activate keyval %x modifiers %x\n",
                       keyval, modifiers);
 
@@ -2334,7 +2334,7 @@ aisleriot_board_activate (AisleriotBoard *board,
 
   if (aisleriot_game_button_clicked_lambda (priv->game, focus_slot->id)) {
     aisleriot_game_end_move (priv->game);
-    games_sound_play ("click");
+    ar_sound_play ("click");
     aisleriot_game_test_end_of_game (priv->game);
 
     return;
@@ -2385,7 +2385,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
   step = action[0];
   count = (action[1] == MOVE_LEFT ? -1 : 1);
 
-  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+  ar_debug_print (AR_DEBUG_GAME_KEYNAV,
                       "board ::move-cursor keyval %x modifiers %x step '%c' count %d\n",
                       keyval, modifiers,
                       step, count);
@@ -2465,7 +2465,7 @@ aisleriot_board_select_all (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
   ArSlot *focus_slot = priv->focus_slot;
 
-  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+  ar_debug_print (AR_DEBUG_GAME_KEYNAV,
                       "board ::select-all keyval %x modifiers %x\n",
                       keyval, modifiers);
 
@@ -2483,7 +2483,7 @@ aisleriot_board_deselect_all (AisleriotBoard *board,
                               guint keyval,
                               ClutterModifierType modifiers)
 {
-  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+  ar_debug_print (AR_DEBUG_GAME_KEYNAV,
                       "board ::deselect-all keyval %x modifiers %x\n",
                       keyval, modifiers);
 
@@ -2500,7 +2500,7 @@ aisleriot_board_toggle_selection (AisleriotBoard *board,
   ArSlot *focus_slot;
   int focus_card_id;
 
-  _games_debug_print (GAMES_DEBUG_GAME_KEYNAV,
+  ar_debug_print (AR_DEBUG_GAME_KEYNAV,
                       "board ::toggle-selection keyval %x modifiers %x\n",
                       keyval, modifiers);
 
@@ -2585,7 +2585,7 @@ aisleriot_board_allocate (ClutterActor *actor,
 
   is_same = clutter_actor_box_equal (box, &priv->allocation);
 
-  _games_debug_print (GAMES_DEBUG_GAME_SIZING,
+  ar_debug_print (AR_DEBUG_GAME_SIZING,
                       "board ::allocate (%f / %f)-(%f / %f) => %f x %f is-same %s force-update %s\n",
                       box->x1, box->y1, box->x2, box->y2,
                       box->x2 - box->x1, box->y2 - box->y1,
@@ -2611,7 +2611,7 @@ aisleriot_board_get_preferred_width (ClutterActor *actor,
                                      float *min_width_p,
                                      float *natural_width_p)
 {
-  _games_debug_print (GAMES_DEBUG_GAME_SIZING,
+  ar_debug_print (AR_DEBUG_GAME_SIZING,
                       "board ::get-preferred-width\n");
 
   *min_width_p = BOARD_MIN_WIDTH;
@@ -2624,7 +2624,7 @@ aisleriot_board_get_preferred_height (ClutterActor *actor,
                                       float *min_height_p,
                                       float *natural_height_p)
 {
-  _games_debug_print (GAMES_DEBUG_GAME_SIZING,
+  ar_debug_print (AR_DEBUG_GAME_SIZING,
                       "board ::get-preferred-height\n");
 
   *min_height_p = BOARD_MIN_HEIGHT;
@@ -2657,7 +2657,7 @@ aisleriot_board_key_press (ClutterActor *actor,
 {
   ClutterBindingPool *pool;
 
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::key-press keyval %x modifiers %x\n",
                       event->keyval, event->modifier_state);
 
@@ -2731,7 +2731,7 @@ aisleriot_board_button_press (ClutterActor *actor,
   guint state;
   gboolean is_double_click, show_focus;
 
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::button-press @(%f / %f) button %d click-count %d modifiers %x\n",
                       event->x, event->y,
                       event->button, event->click_count,
@@ -2921,7 +2921,7 @@ aisleriot_board_button_release (ClutterActor *actor,
   AisleriotBoardPrivate *priv = board->priv;
   /* guint state; */
 
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::button-release @(%f / %f) button %d click-count %d modifiers %x\n",
                       event->x, event->y,
                       event->button, event->click_count,
@@ -2963,7 +2963,7 @@ aisleriot_board_button_release (ClutterActor *actor,
       aisleriot_game_record_move (priv->game, -1, NULL, 0);
       if (aisleriot_game_button_clicked_lambda (priv->game, slot->id)) {
         aisleriot_game_end_move (priv->game);
-	games_sound_play_for_event ("click", (GdkEvent *) event);
+	ar_sound_play_for_event ("click", (GdkEvent *) event);
       } else {
         aisleriot_game_discard_move (priv->game);
       }
@@ -2991,7 +2991,7 @@ aisleriot_board_motion (ClutterActor *actor,
   AisleriotBoard *board = AISLERIOT_BOARD (actor);
   AisleriotBoardPrivate *priv = board->priv;
 
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::motion @(%f / %f) modifiers %x\n",
                       event->x, event->y,
                       event->modifier_state);
@@ -3052,7 +3052,7 @@ static gboolean
 aisleriot_board_enter (ClutterActor *actor,
                        ClutterCrossingEvent *event)
 {
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::enter @(%f / %f)\n",
                       event->x, event->y);
 
@@ -3069,7 +3069,7 @@ aisleriot_board_leave (ClutterActor *actor,
 {
   AisleriotBoard *board = AISLERIOT_BOARD (actor);
 
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::leave @(%f / %f)\n",
                       event->x, event->y);
 
@@ -3085,14 +3085,14 @@ aisleriot_board_leave (ClutterActor *actor,
 static void
 aisleriot_board_key_focus_in (ClutterActor *actor)
 {
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::key-focus-in\n");
 }
 
 static void
 aisleriot_board_key_focus_out (ClutterActor *actor)
 {
-  _games_debug_print (GAMES_DEBUG_GAME_EVENTS,
+  ar_debug_print (AR_DEBUG_GAME_EVENTS,
                       "board ::key-focus-out\n");
 }
 
@@ -3323,7 +3323,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, activate),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  ar_marshal_BOOLEAN__STRING_UINT_ENUM,
                   G_TYPE_BOOLEAN,
                   3,
                   G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -3336,7 +3336,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, move_cursor),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  ar_marshal_BOOLEAN__STRING_UINT_ENUM,
                   G_TYPE_BOOLEAN,
                   3,
                   G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -3349,7 +3349,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, toggle_selection),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  ar_marshal_BOOLEAN__STRING_UINT_ENUM,
                   G_TYPE_BOOLEAN,
                   3,
                   G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -3362,7 +3362,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, select_all),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  ar_marshal_BOOLEAN__STRING_UINT_ENUM,
                   G_TYPE_BOOLEAN,
                   3,
                   G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -3375,7 +3375,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
                   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                   G_STRUCT_OFFSET (AisleriotBoardClass, deselect_all),
                   NULL, NULL,
-                  games_marshal_BOOLEAN__STRING_UINT_ENUM,
+                  ar_marshal_BOOLEAN__STRING_UINT_ENUM,
                   G_TYPE_BOOLEAN,
                   3,
                   G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE,

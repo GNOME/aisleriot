@@ -50,13 +50,13 @@
 #define SERVICE_NAME "org.gnome.Games.AisleRiot"
 #endif /* HAVE_HILDON */
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-stock.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-sound.h>
+#include "ar-debug.h"
+#include "ar-stock.h"
+#include "ar-runtime.h"
+#include "ar-sound.h"
 
 #ifdef WITH_SMCLIENT
-#include <libgames-support/eggsmclient.h>
+#include "eggsmclient.h"
 #endif /* WITH_SMCLIENT */
 
 #include "conf.h"
@@ -142,7 +142,7 @@ osso_hw_event_cb (osso_hw_state_t *state,
   if (data->program == NULL)
     return;
 
-  games_conf_save ();
+  ar_conf_save ();
 
   if (state->memory_low_ind) {
     /* Run garbage collection */
@@ -191,7 +191,7 @@ sync_is_topmost_cb (HildonProgram *program,
     hildon_program_set_can_hibernate (program, FALSE);
   } else {
     /* Ensure settings are saved to disk */
-    games_conf_save ();
+    ar_conf_save ();
 
     /* FIXMEchpe: save state here */
 
@@ -246,10 +246,10 @@ main_prog (void *closure, int argc, char *argv[])
 
 #ifdef HAVE_MAEMO
   /* Set OSSO callbacks */
-  if (osso_rpc_set_default_cb_f (games_runtime_get_osso_context (),
+  if (osso_rpc_set_default_cb_f (ar_runtime_get_osso_context (),
                                  osso_rpc_cb,
                                  &data) != OSSO_OK ||
-      osso_hw_set_event_cb (games_runtime_get_osso_context (),
+      osso_hw_set_event_cb (ar_runtime_get_osso_context (),
                             &hw_events,
                             osso_hw_event_cb,
                             &data) != OSSO_OK) {
@@ -265,7 +265,7 @@ main_prog (void *closure, int argc, char *argv[])
 
   add_main_options (option_context, &data);
 
-  games_sound_enable (FALSE);
+  ar_sound_enable (FALSE);
 
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
 #ifdef WITH_SMCLIENT
@@ -288,7 +288,7 @@ main_prog (void *closure, int argc, char *argv[])
      * g_option_context_parse()) rather than parsing the file directly afterward, in
      * order to get priority over the theme.
      */
-    rc_file = games_runtime_get_file (GAMES_RUNTIME_GAME_DATA_DIRECTORY, "gtkrc-maemo");
+    rc_file = ar_runtime_get_file (AR_RUNTIME_GAME_DATA_DIRECTORY, "gtkrc-maemo");
     gtk_rc_add_default_file (rc_file);
     g_free (rc_file);
   }
@@ -338,12 +338,12 @@ main_prog (void *closure, int argc, char *argv[])
   }
 
   if (!data.freecell && !data.variation) {
-    data.variation = games_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
+    data.variation = ar_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
   }
 
   g_assert (data.variation != NULL || data.freecell);
 
-  games_stock_init ();
+  ar_stock_init ();
 
   gtk_window_set_default_icon_name (data.freecell ? "gnome-freecell" : "gnome-aisleriot");
 
@@ -422,16 +422,16 @@ cleanup:
   g_settings_sync ();
 #endif
 
-  games_runtime_shutdown ();
+  ar_runtime_shutdown ();
 }
 
 int
 main (int argc, char *argv[])
 {
 #ifndef HAVE_HILDON
-  if (!games_runtime_init ("aisleriot"))
+  if (!ar_runtime_init ("aisleriot"))
 #else
-  if (!games_runtime_init_with_osso ("aisleriot", SERVICE_NAME))
+  if (!ar_runtime_init_with_osso ("aisleriot", SERVICE_NAME))
 #endif /* !HAVE_HILDON */
     return 1;
 

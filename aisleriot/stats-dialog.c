@@ -22,12 +22,10 @@
 
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-gtk-compat.h>
-#include <libgames-support/games-stock.h>
+#include "ar-gtk-compat.h"
+#include "util.h"
 
-#ifndef HAVE_HILDON
-#include <libgames-support/games-atk-utils.h>
-#endif
+#include "ar-stock.h"
 
 #include "conf.h"
 #include "util.h"
@@ -78,8 +76,8 @@ pack_in_frame (GtkWidget *box,
   gtk_widget_show_all (frame);
 
 #ifndef HAVE_HILDON
-  games_atk_util_add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
-  games_atk_util_add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
+  ar_atk_util_add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
+  ar_atk_util_add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 }
 
@@ -103,8 +101,8 @@ add_row (GtkTable *table,
                              1, 2, row, row + 1);
 
 #ifndef HAVE_HILDON
-  games_atk_util_add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
-  games_atk_util_add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
+  ar_atk_util_add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
+  ar_atk_util_add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
 #endif /* !HAVE_HILDON */
 
   return GTK_LABEL (data_label);
@@ -176,7 +174,7 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
   pack_in_frame (hbox, GTK_WIDGET (table), _("Time"));
 
   gtk_dialog_add_buttons (dialog,
-                          GAMES_STOCK_RESET, GTK_RESPONSE_REJECT,
+                          AR_STOCK_RESET, GTK_RESPONSE_REJECT,
                           GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
                           NULL);
   gtk_dialog_set_alternative_button_order (dialog,

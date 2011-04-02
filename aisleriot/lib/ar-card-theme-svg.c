@@ -25,10 +25,10 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include <libgames-support/games-preimage.h>
-#include <libgames-support/games-preimage-private.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-preimage.h"
+#include "ar-preimage-private.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -55,7 +55,7 @@ ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
                                       int card_id)
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
-  GamesPreimage *preimage = preimage_card_theme->cards_preimage;
+  ArPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
   int suit, rank;
   double card_width, card_height;
@@ -65,7 +65,7 @@ ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
   char node[32];
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
+    subpixbuf = ar_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
                                        preimage_card_theme->card_size.height);
 
@@ -75,8 +75,8 @@ ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
   suit = card_id / 13;
   rank = card_id % 13;
 
-  card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
-  card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
+  card_width = ((double) ar_preimage_get_width (preimage)) / N_COLS;
+  card_height = ((double) ar_preimage_get_height (preimage)) / N_ROWS;
 
   width = preimage_card_theme->card_size.width - 2 * DELTA;
   height = preimage_card_theme->card_size.height - 2 * DELTA;
@@ -89,7 +89,7 @@ ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
 
   ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
-  subpixbuf = games_preimage_render_sub (preimage,
+  subpixbuf = ar_preimage_render_sub (preimage,
                                          node,
                                          preimage_card_theme->card_size.width,
                                          preimage_card_theme->card_size.height,
@@ -106,7 +106,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
                               int card_id)
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
-  GamesPreimage *preimage = preimage_card_theme->cards_preimage;
+  ArPreimage *preimage = preimage_card_theme->cards_preimage;
   int suit, rank;
   double card_width, card_height;
   double width, height;
@@ -115,7 +115,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
   char node[32];
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    games_preimage_render_cairo (preimage_card_theme->slot_preimage,
+    ar_preimage_render_cairo (preimage_card_theme->slot_preimage,
                                  cr,
                                  preimage_card_theme->card_size.width,
                                  preimage_card_theme->card_size.height);
@@ -125,8 +125,8 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
   suit = card_id / 13;
   rank = card_id % 13;
 
-  card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
-  card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
+  card_width = ((double) ar_preimage_get_width (preimage)) / N_COLS;
+  card_height = ((double) ar_preimage_get_height (preimage)) / N_ROWS;
 
   width = preimage_card_theme->card_size.width - 2 * DELTA;
   height = preimage_card_theme->card_size.height - 2 * DELTA;
@@ -139,7 +139,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
 
   ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
-  games_preimage_render_cairo_sub (preimage,
+  ar_preimage_render_cairo_sub (preimage,
                                    cr,
                                    node,
                                    preimage_card_theme->card_size.width,
@@ -184,13 +184,13 @@ ar_card_theme_svg_class_foreach_theme_dir (ArCardThemeClass *klass,
   if (!_ar_card_theme_class_foreach_env (klass, "AR_CARD_THEME_PATH_SVG", callback, data))
     return FALSE;
 
-  if (!callback (klass, games_runtime_get_directory (GAMES_RUNTIME_SCALABLE_CARDS_DIRECTORY), data))
+  if (!callback (klass, ar_runtime_get_directory (AR_RUNTIME_SCALABLE_CARDS_DIRECTORY), data))
     return FALSE;
 
   /* If we're installed in a non-system prefix, also load the card themes
    * from the system prefix.
    */
-  if (!games_runtime_is_system_prefix ())
+  if (!ar_runtime_is_system_prefix ())
     return callback (klass, "/usr/share/gnome-games-common/cards", data);
 
   return TRUE;

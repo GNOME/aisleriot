@@ -26,7 +26,7 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include <libgames-support/games-debug.h>
+#include "ar-debug.h"
 
 #include "ar-card-images.h"
 
@@ -101,7 +101,7 @@ ar_card_images_clear_cache (ArCardImages * images)
 {
   guint i;
 
-  _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+  ar_debug_print (AR_DEBUG_CARD_CACHE,
                       "ar_card_images_clear_cache\n");
 
   for (i = 0; i < CACHE_SIZE; i++) {
@@ -236,8 +236,8 @@ ar_card_images_finalize (GObject * object)
   }
 
 #ifdef GNOME_ENABLE_DEBUG
-  _GAMES_DEBUG_IF (GAMES_DEBUG_CARD_CACHE) {
-    _games_debug_print (GAMES_DEBUG_CARD_CACHE,
+  _AR_DEBUG_IF (AR_DEBUG_CARD_CACHE) {
+    ar_debug_print (AR_DEBUG_CARD_CACHE,
                         "ArCardImages %p statistics: %u calls with %u hits and %u misses for a hit/total of %.3f\n",
                         images, images->n_calls, images->cache_hits, images->n_calls - images->cache_hits,
                         images->n_calls > 0 ? (double) images->cache_hits / (double) images->n_calls : 0.0);

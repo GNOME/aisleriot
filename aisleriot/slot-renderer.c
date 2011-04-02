@@ -26,7 +26,7 @@
 #include "slot-renderer.h"
 #include "card.h"
 
-#include <libgames-support/games-glib-compat.h>
+#include "ar-glib-compat.h"
 
 static void aisleriot_slot_renderer_dispose (GObject *object);
 static void aisleriot_slot_renderer_finalize (GObject *object);

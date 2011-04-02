@@ -26,12 +26,12 @@
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-profile.h>
-#include <libgames-support/games-preimage.h>
-#include <libgames-support/games-preimage-private.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
+#include "ar-debug.h"
+#include "ar-profile.h"
+#include "ar-preimage.h"
+#include "ar-preimage-private.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
 
 #include "ar-card-theme.h"
 #include "ar-card-theme-private.h"
@@ -189,7 +189,7 @@ ar_card_theme_kde_get_card_extents (ArCardThemeKDE *theme,
                                     int card_id,
                                     const char *node)
 {
-  GamesPreimage *preimage;
+  ArPreimage *preimage;
   cairo_rectangle_t *card_extents;
   cairo_rectangle_t rect;
   cairo_surface_t *surface;
@@ -204,15 +204,15 @@ ar_card_theme_kde_get_card_extents (ArCardThemeKDE *theme,
 
   surface = cairo_recording_surface_create (CAIRO_CONTENT_ALPHA, NULL);
   cr = cairo_create (surface);
-  _games_profile_start ("getting ink extents for node %s", node);
+  ar_profilestart ("getting ink extents for node %s", node);
   rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
-  _games_profile_end ("getting ink extents for node %s", node);
+  ar_profileend ("getting ink extents for node %s", node);
   cairo_destroy (cr);
 
   cairo_recording_surface_ink_extents (surface, &rect.x, &rect.y, &rect.width, &rect.height);
   cairo_surface_destroy (surface);
 
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "card %s %.3f x%.3f at (%.3f | %.3f)\n",
                       node,
                       card_extents->width, card_extents->height,
@@ -241,7 +241,7 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
     "#green_back"
   };
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  GamesPreimage *preimage;
+  ArPreimage *preimage;
   char node[32];
   guint i;
   gboolean has_red_joker, has_black_joker, has_joker;
@@ -318,7 +318,7 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  GamesPreimage *preimage = preimage_card_theme->cards_preimage;
+  ArPreimage *preimage = preimage_card_theme->cards_preimage;
   GdkPixbuf *subpixbuf;
   double card_width, card_height;
   double width, height;
@@ -327,7 +327,7 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
   cairo_rectangle_t *card_extents;
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    subpixbuf = games_preimage_render (preimage_card_theme->slot_preimage,
+    subpixbuf = ar_preimage_render (preimage_card_theme->slot_preimage,
                                        preimage_card_theme->card_size.width,
                                        preimage_card_theme->card_size.height);
 
@@ -340,8 +340,8 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
   if (!card_extents)
     return NULL;
 
-  card_width = ((double) games_preimage_get_width (preimage)) / N_COLS;
-  card_height = ((double) games_preimage_get_height (preimage)) / N_ROWS;
+  card_width = ((double) ar_preimage_get_width (preimage)) / N_COLS;
+  card_height = ((double) ar_preimage_get_height (preimage)) / N_ROWS;
 
   width = preimage_card_theme->card_size.width;
   height = preimage_card_theme->card_size.height;
@@ -352,14 +352,14 @@ ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
 //   zoomx = width / card_extents->width;
 //   zoomy = height / card_extents->height;
 
-  subpixbuf = games_preimage_render_sub (preimage,
+  subpixbuf = ar_preimage_render_sub (preimage,
                                          node,
                                          preimage_card_theme->card_size.width,
                                          preimage_card_theme->card_size.height,
                                          -card_extents->x, -card_extents->y,
                                          zoomx, zoomy);
 
-  _games_debug_print (GAMES_DEBUG_CARD_THEME,
+  ar_debug_print (AR_DEBUG_CARD_THEME,
                       "Returning %p\n", subpixbuf);
 
   return subpixbuf;
@@ -372,13 +372,13 @@ ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  GamesPreimage *preimage = preimage_card_theme->cards_preimage;
+  ArPreimage *preimage = preimage_card_theme->cards_preimage;
   char node[32];
   cairo_rectangle_t *card_extents;
   cairo_matrix_t matrix;
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    games_preimage_render_cairo (preimage_card_theme->slot_preimage,
+    ar_preimage_render_cairo (preimage_card_theme->slot_preimage,
                                  cr,
                                  preimage_card_theme->card_size.width,
                                  preimage_card_theme->card_size.height);
@@ -451,7 +451,7 @@ ar_card_theme_kde_class_get_theme_info (ArCardThemeClass *klass,
   char *svg_filename = NULL, *name = NULL, *display_name, *pref_name;
 
   if (get_is_blacklisted (filename)) {
-    _games_debug_print (GAMES_DEBUG_CARD_THEME,
+    ar_debug_print (AR_DEBUG_CARD_THEME,
                         "KDE card theme %s is blacklisted\n", filename);
     return NULL;
   }

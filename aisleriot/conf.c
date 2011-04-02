@@ -21,7 +21,7 @@
 #include <string.h>
 #include <errno.h>
 
-#include <libgames-support/games-string-utils.h>
+#include "ar-string-utils.h"
 
 #include "util.h"
 #include "conf.h"
@@ -174,15 +174,15 @@ save_statistics (void)
 void
 aisleriot_conf_init (void)
 {
-  if (!games_conf_initialise ("Aisleriot")) {
+  if (!ar_conf_initialise ("Aisleriot")) {
     /* Set defaults */
-    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), TRUE);
-    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), TRUE);
-    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), TRUE);
-    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), TRUE);
+    ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), TRUE);
+    ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), TRUE);
+    ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), TRUE);
+    ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), TRUE);
 
 #ifdef HAVE_HILDON
-    games_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);
+    ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);
 #endif
   }
 
@@ -211,7 +211,7 @@ aisleriot_conf_shutdown (void)
   stats = NULL;
 #endif /* HAVE_GNOME */
 
-  games_conf_shutdown ();
+  ar_conf_shutdown ();
 }
 
 const char *
@@ -249,7 +249,7 @@ aisleriot_conf_get_options (const char *game_file,
 #else
   GError *error = NULL;
 
-  *options = games_conf_get_integer (game_file, "Options", &error);
+  *options = ar_conf_get_integer (game_file, "Options", &error);
   if (error) {
     g_error_free (error);
     return FALSE;
@@ -300,7 +300,7 @@ aisleriot_conf_set_options (const char *game_file,
   gconf_client_set_int (gconf_client, gconf_key, value, NULL);
   g_free (gconf_key);
 #else
-  games_conf_set_integer (game_file, "Options", value);
+  ar_conf_set_integer (game_file, "Options", value);
 #endif /* HAVE_GNOME */
 }
 
@@ -318,7 +318,7 @@ aisleriot_conf_get_statistic (const char *game_file,
     /* Previous versions used the localised name as key, so try it as fall-back.
      * See bug #406267 and bug #525177.
      */
-    display_name = games_filename_to_display_name (game_file);
+    display_name = ar_filename_to_display_name (game_file);
     game_stat = g_hash_table_lookup (stats, display_name);
     g_free (display_name);
   }
@@ -337,7 +337,7 @@ aisleriot_conf_get_statistic (const char *game_file,
 
   memset (statistic, 0, sizeof (AisleriotStatistic));
 
-  values = games_conf_get_integer_list (game_file, "Statistic", &len, &error);
+  values = ar_conf_get_integer_list (game_file, "Statistic", &len, &error);
   if (error) {
     g_error_free (error);
     return;
@@ -379,7 +379,7 @@ aisleriot_conf_set_statistic (const char *game_file,
   if (!game_stat) {
     char *localised_name;
 
-    localised_name = games_filename_to_display_name (game_file);
+    localised_name = ar_filename_to_display_name (game_file);
     game_stat = g_hash_table_lookup (stats, localised_name);
     g_free (localised_name);
   }
@@ -402,6 +402,6 @@ aisleriot_conf_set_statistic (const char *game_file,
   values[2] = statistic->best;
   values[3] = statistic->worst;
 
-  games_conf_set_integer_list (game_file, "Statistic", values, G_N_ELEMENTS (values));
+  ar_conf_set_integer_list (game_file, "Statistic", values, G_N_ELEMENTS (values));
 #endif /* HAVE_GNOME */
 }

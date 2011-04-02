@@ -23,10 +23,10 @@
 
 #include <glib/gi18n.h>
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-runtime.h>
-#include <libgames-support/games-string-utils.h>
-#include <libgames-support/games-glib-compat.h>
+#include "ar-debug.h"
+#include "ar-runtime.h"
+#include "ar-string-utils.h"
+#include "ar-glib-compat.h"
 
 #ifdef HAVE_MAEMO_5
 #include <hildon/hildon-gtk.h>
@@ -200,7 +200,7 @@ ar_game_chooser_constructor (GType type,
 
   current_game_file = aisleriot_game_get_game_file (aisleriot_window_get_game (priv->window));
 
-  games_dir = games_runtime_get_directory (GAMES_RUNTIME_GAME_GAMES_DIRECTORY);
+  games_dir = ar_runtime_get_directory (AR_RUNTIME_GAME_GAMES_DIRECTORY);
 
   dir = g_dir_open (games_dir, 0, NULL);
   if (dir != NULL) {
@@ -214,7 +214,7 @@ ar_game_chooser_constructor (GType type,
           strcmp (game_file, "sol.scm") == 0)
         continue;
 
-      game_name = games_filename_to_display_name (game_file);
+      game_name = ar_filename_to_display_name (game_file);
 
       gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
                                          -1,

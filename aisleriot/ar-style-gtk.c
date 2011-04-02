@@ -22,8 +22,8 @@
 
 #include "ar-style-private.h"
 
-#include <libgames-support/games-debug.h>
-#include <libgames-support/games-glib-compat.h>
+#include "ar-debug.h"
+#include "ar-glib-compat.h"
 
 /**
  * SECTION: ar-style-gtk
@@ -51,7 +51,7 @@ sync_settings (GtkSettings *settings,
   else
     pspec_name = NULL;
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Syncing GtkSettings:%s\n",
                       style, pspec_name ? pspec_name : "*");
 
@@ -139,7 +139,7 @@ direction_changed_cb (GtkWidget *widget,
 
   direction = gtk_widget_get_direction (widget);
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Widget direction-changed direction %d previous-direction %d\n",
                       style, direction, previous_direction);
 
@@ -171,7 +171,7 @@ screen_changed_cb (GtkWidget *widget,
 
   screen = gtk_widget_get_screen (widget);
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Widget screen-changed screen %p previous-screen %p\n",
                       style, screen, previous_screen);
 
@@ -217,7 +217,7 @@ style_set_cb (GtkWidget *widget,
   gboolean interior_focus;
   double card_slot_ratio, card_overhang, card_step;
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Syncing widget style properties\n",
                       style);
 
@@ -387,7 +387,7 @@ _ar_style_gtk_attach (ArStyle *style,
   g_return_if_fail (AR_IS_STYLE (style));
   g_return_if_fail (GTK_IS_WIDGET (widget));
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Attaching to widget %p\n", style, widget);
 
   g_assert (g_object_get_data (G_OBJECT (widget), "Ar::Style") == NULL);
@@ -425,7 +425,7 @@ _ar_style_gtk_detach (ArStyle *style,
   g_return_if_fail (AR_IS_STYLE (style));
   g_return_if_fail (GTK_IS_WIDGET (widget));
 
-  _games_debug_print (GAMES_DEBUG_GAME_STYLE,
+  ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Detaching from widget %p\n", style, widget);
 
   g_assert (g_object_get_data (G_OBJECT (widget), "Ar::Style") == style);

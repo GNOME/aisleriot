@@ -25,7 +25,7 @@
 
 #include <glib.h>
 
-#include <libgames-support/games-glib-compat.h>
+#include "ar-glib-compat.h"
 
 G_BEGIN_DECLS
 
