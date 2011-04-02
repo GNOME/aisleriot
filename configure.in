@@ -430,10 +430,27 @@ fi
 # Clutter
 # *******
 
+# We're using need_guile as a quick way to check whether building aisleriot
+if test "$need_guile" = "yes"; then
+  AC_MSG_CHECKING([whether to enable aisleriot/clutter])
+  AC_ARG_ENABLE([aisleriot-clutter],
+    [AS_HELP_STRING([--enable-aisleriot-clutter],[Whether to enable the clutter version of aisleriot (default: disabled)])],
+    [],[enable_aisleriot_clutter=no])
+  AC_MSG_RESULT([$enable_aisleriot_clutter])
+
+  if test "$enable_aisleriot_clutter" = "yes"; then
+    # Distro packagers: DO NOT ENABLE AISLERIOT/CLUTTER IN YOUR DISTRO PACKAGES, OR ELSE!
+    AC_MSG_NOTICE([Aisleriot/Clutter is experimental; do not enable this for distribution packages!])
+    need_clutter=yes
+  fi
+fi
+
+AM_CONDITIONAL([ENABLE_AISLERIOT_CLUTTER],[test "$enable_aisleriot_clutter" = "yes"])
+
 case "$with_platform" in
   gnome|gtk-only) ;;
   hildon) if test "$need_clutter" = "yes"; then
-            AC_MSG_ERROR([Clutter is not supported on hildon; disable Gnometris, Lights Off])
+            AC_MSG_ERROR([Clutter is not supported on hildon; disable Gnometris, Lights Off and Aisleriot/Clutter])
           fi
           ;;
 esac

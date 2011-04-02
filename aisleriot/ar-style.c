@@ -39,6 +39,9 @@ enum
   PROP_FOCUS_LINE_WIDTH,
   PROP_FOCUS_PADDING,
   PROP_INTERIOR_FOCUS,
+#ifndef HAVE_CLUTTER
+  PROP_PIXBUF_DRAWING,
+#endif
   PROP_RTL,
   PROP_SELECTION_COLOR,
   PROP_SHOW_TOOLTIPS,
@@ -59,8 +62,13 @@ ar_style_init (ArStyle *style)
 
   priv = style->priv = G_TYPE_INSTANCE_GET_PRIVATE (style, AR_TYPE_STYLE, ArStylePrivate);
 
+#ifdef HAVE_CLUTTER
+  _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
+  _ar_clutter_color_from_gdk_color (&priv->baize_color, &default_baize_color);
+#else
   priv->selection_color = default_selection_color;
   priv->baize_color = default_baize_color;
+#endif
 
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
   priv->card_overhang = DEFAULT_CARD_OVERHANG;
@@ -80,6 +88,8 @@ ar_style_init (ArStyle *style)
   priv->enable_tooltips = DEFAULT_SHOW_TOOLTIPS;
   priv->enable_status_messages = DEFAULT_SHOW_STATUS_MESSAGES;
 
+#ifndef HAVE_CLUTTER
+
 #ifdef HAVE_HILDON
   priv->pixbuf_drawing = FALSE;
 #else
@@ -96,6 +106,8 @@ ar_style_init (ArStyle *style)
   _games_debug_print (GAMES_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Using %s drawing\n",
                       style, priv->pixbuf_drawing ? "pixbuf" : "pixmap");
+
+#endif /* !HAVE_CLUTTER */
 }
 
 static void
@@ -173,6 +185,12 @@ ar_style_get_property (GObject    *object,
       g_value_set_boolean (value, ar_style_get_interior_focus (style));
       break;
 
+#ifndef HAVE_CLUTTER
+    case PROP_PIXBUF_DRAWING:
+      g_value_set_boolean (value, ar_style_get_pixbuf_drawing (style));
+      break;
+#endif
+
     case PROP_RTL:
       g_value_set_boolean (value, ar_style_get_rtl (style));
       break;
@@ -209,6 +227,15 @@ ar_style_set_property (GObject      *object,
 
   switch (property_id) {
     case PROP_BAIZE_COLOR: {
+#ifdef HAVE_CLUTTER
+      ClutterColor *color;
+
+      if ((color = g_value_get_boxed (value)) != NULL) {
+        priv->baize_color = *color;
+      } else {
+        _ar_clutter_color_from_gdk_color (&priv->baize_color, &default_baize_color);
+      }
+#else
       GdkColor *color;
 
       if ((color = g_value_get_boxed (value)) != NULL) {
@@ -216,6 +243,7 @@ ar_style_set_property (GObject      *object,
       } else {
         priv->baize_color = default_baize_color;
       }
+#endif
       break;
     }
 
@@ -263,11 +291,25 @@ ar_style_set_property (GObject      *object,
       priv->interior_focus = g_value_get_boolean (value) != FALSE;
       break;
 
+#ifndef HAVE_CLUTTER
+    case PROP_PIXBUF_DRAWING:
+      priv->pixbuf_drawing = g_value_get_boolean (value) != FALSE;
+#endif
+
     case PROP_RTL:
       priv->rtl = g_value_get_boolean (value) != FALSE;
       break;
 
     case PROP_SELECTION_COLOR: {
+#ifdef HAVE_CLUTTER
+      ClutterColor *color;
+
+      if ((color = g_value_get_boxed (value)) != NULL) {
+        priv->selection_color = *color;
+      } else {
+        _ar_clutter_color_from_gdk_color (&priv->selection_color, &default_selection_color);
+      }
+#else
       GdkColor *color;
 
       if ((color = g_value_get_boxed (value)) != NULL) {
@@ -275,6 +317,7 @@ ar_style_set_property (GObject      *object,
       } else {
         priv->selection_color = default_selection_color;
       }
+#endif
       break;
     }
 
@@ -303,6 +346,9 @@ static void
 ar_style_class_init (ArStyleClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+#ifdef HAVE_CLUTTER
+  ClutterColor color;
+#endif
 
   g_type_class_add_private (klass, sizeof (ArStylePrivate));
 
@@ -315,6 +361,16 @@ ar_style_class_init (ArStyleClass *klass)
    *
    * The board baize color.
    */
+#ifdef HAVE_CLUTTER
+  _ar_clutter_color_from_gdk_color (&color, &default_baize_color);
+  g_object_class_install_property
+    (object_class,
+     PROP_BAIZE_COLOR,
+     clutter_param_spec_color (AR_STYLE_PROP_BAIZE_COLOR, NULL, NULL,
+                               &color,
+                               G_PARAM_READWRITE |
+                               G_PARAM_STATIC_STRINGS));
+#else
   g_object_class_install_property
     (object_class,
      PROP_BAIZE_COLOR,
@@ -322,6 +378,7 @@ ar_style_class_init (ArStyleClass *klass)
                          GDK_TYPE_COLOR,
                          G_PARAM_READWRITE |
                          G_PARAM_STATIC_STRINGS));
+#endif /* HAVE_CLUTTER */
 
   g_object_class_install_property
     (object_class,
@@ -431,6 +488,16 @@ ar_style_class_init (ArStyleClass *klass)
                            G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
 
+#ifndef HAVE_CLUTTER
+  g_object_class_install_property
+    (object_class,
+     PROP_PIXBUF_DRAWING,
+     g_param_spec_boolean (AR_STYLE_PROP_PIXBUF_DRAWING, NULL, NULL,
+                           DEFAULT_PIXBUF_DRAWING,
+                           G_PARAM_READWRITE |
+                           G_PARAM_STATIC_STRINGS));
+#endif /* !HAVE_CLUTTER */
+
   g_object_class_install_property
     (object_class,
      PROP_RTL,
@@ -439,6 +506,16 @@ ar_style_class_init (ArStyleClass *klass)
                            G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
 
+#ifdef HAVE_CLUTTER
+  _ar_clutter_color_from_gdk_color (&color, &default_selection_color);
+  g_object_class_install_property
+    (object_class,
+     PROP_SELECTION_COLOR,
+     clutter_param_spec_color (AR_STYLE_PROP_SELECTION_COLOR, NULL, NULL,
+                               &color,
+                               G_PARAM_READWRITE |
+                               G_PARAM_STATIC_STRINGS));
+#else
   g_object_class_install_property
     (object_class,
      PROP_SELECTION_COLOR,
@@ -446,6 +523,7 @@ ar_style_class_init (ArStyleClass *klass)
                          GDK_TYPE_COLOR,
                          G_PARAM_READWRITE |
                          G_PARAM_STATIC_STRINGS));
+#endif /* HAVE_CLUTTER */
 
   /**
    * ArStyle:show-tooltips:
@@ -483,6 +561,20 @@ ar_style_class_init (ArStyleClass *klass)
 }
 
 /* private API */
+
+#ifdef HAVE_CLUTTER
+
+void
+_ar_clutter_color_from_gdk_color (ClutterColor *clutter_color,
+                                  const GdkColor *gdk_color)
+{
+  clutter_color->red   = gdk_color->red   >> 8;
+  clutter_color->green = gdk_color->green >> 8;
+  clutter_color->blue  = gdk_color->blue  >> 8;
+  clutter_color->alpha = 0xff;
+}
+
+#endif /* HAVE_CLUTTER */
 
 /* public API */
 
@@ -805,7 +897,11 @@ ar_style_get_card_step (ArStyle *style)
  */
 void
 ar_style_get_selection_color (ArStyle *style,
+#ifdef HAVE_CLUTTER
+                              ClutterColor * const color)
+#else
                               GdkColor * const color)
+#endif
 {
   ArStylePrivate *priv = style->priv;
 
@@ -820,7 +916,11 @@ ar_style_get_selection_color (ArStyle *style,
  */
 void
 ar_style_get_baize_color (ArStyle *style,
+#ifdef HAVE_CLUTTER
+                               ClutterColor * const color)
+#else
                                GdkColor * const color)
+#endif
 {
   ArStylePrivate *priv = style->priv;
 
@@ -856,6 +956,7 @@ ar_style_check_dnd_drag_threshold (ArStyle *style,
           ABS (y2 - y1) > priv->dnd_drag_threshold);
 }
 
+#ifndef HAVE_CLUTTER
 /**
  * ar_style_get_pixbuf_drawing:
  * @style:
@@ -869,3 +970,5 @@ ar_style_get_pixbuf_drawing (ArStyle *style)
 
   return priv->pixbuf_drawing;
 }
+
+#endif /* !HAVE_CLUTTER */

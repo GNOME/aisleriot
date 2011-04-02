@@ -269,6 +269,24 @@ style_set_cb (GtkWidget *widget,
     g_object_notify (style_object, AR_STYLE_PROP_CARD_STEP);
   }
 
+#ifdef HAVE_CLUTTER
+{
+  ClutterColor selection_color;
+
+  if (color != NULL) {
+    _ar_clutter_color_from_gdk_color (&selection_color, color);
+    gdk_color_free (color);
+  } else {
+    _ar_clutter_color_from_gdk_color (&selection_color, &default_selection_color);
+  }
+
+  if (!clutter_color_equal (&style_priv->selection_color, &selection_color)) {
+    style_priv->selection_color = selection_color;
+
+    g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
+  }
+}
+#else
 {
   GdkColor selection_color;
 
@@ -285,6 +303,7 @@ style_set_cb (GtkWidget *widget,
     g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
   }
 }
+#endif /* HAVE_CLUTTER */
 
   g_object_thaw_notify (style_object);
 }
