@@ -125,7 +125,6 @@ allow_smclient=no
 disallow_hildon=no
 require_gtk_2_16=no
 require_cairo_1_10=no
-libgames_support_full=no
 
 for game in $gamelist; do
   case $game in
@@ -188,13 +187,7 @@ for game in $gamelist; do
     aisleriot) ;;
     *) require_gtk_2_16=yes ;;
   esac
-  case $game in
-    aisleriot) ;;
-    *) libgames_support_full=yes ;;
-  esac
 done
-
-AM_CONDITIONAL([LIBGAMES_SUPPORT_FULL],[test "$libgames_support_full" = "yes"])
 
 # Set a conditional for each game to build
 

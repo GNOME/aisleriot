@@ -57,7 +57,6 @@ libgames_support_la_SOURCES += \
 	$(NULL)
 endif
 
-if LIBGAMES_SUPPORT_FULL
 libgames_support_la_SOURCES +=		\
 	games-files.c			\
 	games-files.h			\
@@ -87,8 +86,6 @@ libgames_support_la_SOURCES +=		\
 	games-setgid-io.h		\
 	$(NULL)
 endif # ENABLE_SETGID
-
-endif # LIBGAMES_SUPPORT_FULL
 
 libgames_support_la_CPPFLAGS = \
 	-DPKGDATADIR="\"$(pkgdatadir)\""			\

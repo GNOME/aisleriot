@@ -2,11 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 NULL =
 
-SUBDIRS= \
-	po \
-	icons \
-	libgames-support \
-	$(gamelist)
+SUBDIRS = libgames-support $(gamelist) po icons
 
 if ENABLE_SOUND
 SUBDIRS += sounds
