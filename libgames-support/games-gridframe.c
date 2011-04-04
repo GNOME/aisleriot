@@ -220,48 +220,32 @@ games_grid_frame_class_init (GamesGridFrameClass * class)
   g_type_class_add_private (object_class, sizeof (GamesGridFramePrivate));  
 
   g_object_class_install_property (object_class, PROP_X_PADDING,
-				   g_param_spec_int ("x_padding",
-						     _("X Padding"),
-						     _
-						     ("Extra space to add to the width allocation."),
+				   g_param_spec_int ("x_padding", NULL, NULL,
 						     0, G_MAXINT, 0,
 						     G_PARAM_READABLE |
 						     G_PARAM_WRITABLE));
   g_object_class_install_property (object_class, PROP_Y_PADDING,
-				   g_param_spec_int ("y_padding",
-						     _("X Padding"),
-						     _
-						     ("Extra space to add to the height allocation."),
+                                   g_param_spec_int ("y_padding", NULL, NULL,
 						     0, G_MAXINT, 0,
 						     G_PARAM_READABLE |
 						     G_PARAM_WRITABLE));
   g_object_class_install_property (object_class, PROP_WIDTH,
-				   g_param_spec_int ("width_multiple",
-						     _("Width Multiple"),
-						     _
-						     ("What multiple to constrain the width to."),
+                                   g_param_spec_int ("width_multiple",  NULL, NULL,
 						     1, G_MAXINT, 1,
 						     G_PARAM_READABLE |
 						     G_PARAM_WRITABLE));
   g_object_class_install_property (object_class, PROP_HEIGHT,
-				   g_param_spec_int ("height_multiple",
-						     _("Height Multiple"),
-						     _
-						     ("What multiple to constrain the height to."),
+                                   g_param_spec_int ("height_multiple", NULL, NULL,
 						     1, G_MAXINT, 1,
 						     G_PARAM_READABLE |
 						     G_PARAM_WRITABLE));
   g_object_class_install_property (object_class, PROP_X_ALIGN,
-				   g_param_spec_float ("xalign", _("X align"),
-						       _
-						       ("The horizontal alignment, from 0 (left) to 1 (right)"),
+                                   g_param_spec_float ("xalign",  NULL, NULL,
 						       0.0, 1.0, 0.5,
 						       G_PARAM_READABLE |
 						       G_PARAM_WRITABLE));
   g_object_class_install_property (object_class, PROP_Y_ALIGN,
-				   g_param_spec_float ("yalign", _("Y align"),
-						       _
-						       ("The vertical alignment, from 0 (top) to 1 (bottom)"),
+                                   g_param_spec_float ("yalign",  NULL, NULL,
 						       0.0, 1.0, 0.5,
 						       G_PARAM_READWRITE |
 						       G_PARAM_WRITABLE));
