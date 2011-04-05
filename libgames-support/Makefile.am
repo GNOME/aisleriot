@@ -219,6 +219,9 @@ GnomeGamesSupport-1.0.gir: $(INTROSPECTION_SCANNER) libgames-support-gi.la $(lib
 	-I$(top_builddir) \
 	$(filter games%,$^)
 
+girdir = $(pkglibdir)
+gir_DATA = $(BUILT_GIRSOURCES)
+
 typelibsdir = $(pkglibdir)
 typelibs_DATA = $(BUILT_GIRSOURCES:.gir=.typelib)
 
