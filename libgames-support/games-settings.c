@@ -22,14 +22,6 @@
 
 #include <gtk/gtk.h>
 
-#if GTK_CHECK_VERSION (2, 90, 7)
-#define GDK_KEY(symbol) GDK_KEY_##symbol
-#else
-#include <gdk/gdkkeysyms.h>
-#define GDK_KEY(symbol) GDK_##symbol
-#endif
-
-#include "games-gtk-compat.h"
 #include "games-debug.h"
 
 #define I_(string) g_intern_static_string (string)
@@ -211,7 +203,7 @@ variant_to_keyval (GVariant *value,
                    KeyEntry *entry)
 {
   if (value == NULL) {
-    entry->keyval = GDK_KEY (VoidSymbol);
+    entry->keyval = GDK_KEY_VoidSymbol;
     entry->modifiers = 0;
     return TRUE;
   }

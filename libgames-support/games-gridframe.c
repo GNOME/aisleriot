@@ -28,7 +28,6 @@
 #include <glib/gi18n.h>
 
 #include "games-gridframe.h"
-#include "games-gtk-compat.h"
 
 enum {
   PROP_0,

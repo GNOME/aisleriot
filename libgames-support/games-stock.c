@@ -27,13 +27,6 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 
-#if GTK_CHECK_VERSION (2, 90, 7)
-#define GDK_KEY(symbol) GDK_KEY_##symbol
-#else
-#include <gdk/gdkkeysyms.h>
-#define GDK_KEY(symbol) GDK_##symbol
-#endif
-
 #include "games-runtime.h"
 
 #include "games-stock.h"
@@ -95,13 +88,7 @@ menu_item_select_cb (GtkWidget * widget, GtkStatusbar * statusbar)
 
   context_id = gtk_statusbar_get_context_id (statusbar, "games-tooltip");
 
-#if GTK_CHECK_VERSION (2, 16, 0)
   action = gtk_activatable_get_related_action (GTK_ACTIVATABLE (widget));
-#elif GTK_CHECK_VERSION (2, 10, 0)
-  action = gtk_widget_get_action (widget);
-#else
-  action = g_object_get_data (G_OBJECT (widget), "gtk-action");
-#endif
   g_return_if_fail (action != NULL);
 
   g_object_get (action, "tooltip", &tooltip, NULL);
@@ -245,12 +232,10 @@ games_stock_init (void)
     { GAMES_STOCK_START_NEW_GAME,   GTK_STOCK_NEW },
     { GAMES_STOCK_RESET,            GTK_STOCK_CLEAR },
     { GAMES_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
-#if GTK_CHECK_VERSION (2, 8, 0)
     /* This is used on hildon too, but only exists since 2.8 */
     { GAMES_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
     /* This is used on maemo 5 */
     { GAMES_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
-#endif /* GTK+ >= 2.8.0 */
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
     { GAMES_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { GAMES_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
@@ -293,27 +278,27 @@ games_stock_init (void)
 #endif
 
   static const GtkStockItem games_stock_items[] = {
-    { GAMES_STOCK_CONTENTS,         N_("_Contents"),          0, STOCK_ACCEL (GDK_KEY (F1), 0), NULL },
-    { GAMES_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, STOCK_ACCEL (GDK_KEY (F11), GDK_KEY (F6)), NULL },
-    { GAMES_STOCK_HINT,             N_("_Hint"),              STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('h', GDK_KEY (Return)), NULL },
+    { GAMES_STOCK_CONTENTS,         N_("_Contents"),          0, STOCK_ACCEL (GDK_KEY_F1, 0), NULL },
+    { GAMES_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, STOCK_ACCEL (GDK_KEY_F11, GDK_KEY_F6), NULL },
+    { GAMES_STOCK_HINT,             N_("_Hint"),              STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('h', GDK_KEY_Return), NULL },
     /* Translators: This "_New" is for the menu item 'Game->New', implies "New Game" */
     { GAMES_STOCK_NEW_GAME,         N_("_New"),               STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('n', 0), NULL },
     /* Translators: This "_New Game" is for the game-over dialogue */
     { GAMES_STOCK_START_NEW_GAME,   N_("_New Game"),          0, 0, NULL },
-    { GAMES_STOCK_REDO_MOVE,        N_("_Redo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK | GDK_SHIFT_MASK, 0), STOCK_ACCEL ('z', GDK_KEY (F7)), NULL },
+    { GAMES_STOCK_REDO_MOVE,        N_("_Redo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK | GDK_SHIFT_MASK, 0), STOCK_ACCEL ('z', GDK_KEY_F7), NULL },
     /* Translators: this is the "Reset" scores button in a scores dialogue */
     { GAMES_STOCK_RESET,            N_("_Reset"),             0, 0, NULL },
     /* Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
     { GAMES_STOCK_RESTART_GAME,     N_("_Restart"),           0, 0, NULL },
-    { GAMES_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_KEY (F8)), NULL },
+    { GAMES_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_KEY_F8), NULL },
     { GAMES_STOCK_DEAL_CARDS,       N_("_Deal"),              GDK_CONTROL_MASK, 'd', NULL },
 #ifndef HAVE_HILDON
-    { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_KEY (F11), NULL },
+    { GAMES_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_KEY_F11, NULL },
     { GAMES_STOCK_NETWORK_GAME,     N_("Network _Game"),      GDK_CONTROL_MASK, 'g', NULL },
     { GAMES_STOCK_NETWORK_LEAVE,    N_("L_eave Game"),        GDK_CONTROL_MASK, 'e', NULL },
     { GAMES_STOCK_PLAYER_LIST,      N_("Player _List"),       GDK_CONTROL_MASK, 'l', NULL },
-    { GAMES_STOCK_PAUSE_GAME,       N_("_Pause"),             0, GDK_KEY (Pause), NULL },
-    { GAMES_STOCK_RESUME_GAME,      N_("Res_ume"),            0, GDK_KEY (Pause), NULL },
+    { GAMES_STOCK_PAUSE_GAME,       N_("_Pause"),             0, GDK_KEY_Pause, NULL },
+    { GAMES_STOCK_RESUME_GAME,      N_("Res_ume"),            0, GDK_KEY_Pause, NULL },
     { GAMES_STOCK_SCORES,           N_("_Scores"),            0, 0, NULL },
     { GAMES_STOCK_END_GAME,         N_("_End Game"),          0, 0, NULL },
 #endif
@@ -406,28 +391,6 @@ games_get_license_version (const gchar * game_name,
     license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license3), NULL);
   else
     license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license2), NULL);
-
-#if !GTK_CHECK_VERSION (2, 8, 0)
-  /* We have to manually wrap the text, since the about dialogue cannot
-   * do it itself before gtk 2.8.
-   */
-  {
-    char *p;
-    gsize line_length;
-
-    line_length = 0;
-    for (p = license_trans; *p; ++p) {
-      if (*p == ' ' && line_length > 42) {
-        *p = '\n';
-        line_length = 0;
-      } else if (*p == '\n') {
-        line_length = 0;
-      } else {
-        ++line_length;
-      }
-    }
-  }
-#endif /* ! GTK+ 2.8.0 */
 
   license_str =
     g_strdup_printf (license_trans, game_name, version, game_name, game_name);

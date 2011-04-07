@@ -11,7 +11,6 @@
 #include <config.h>
 
 #include "games-clock.h"
-#include "games-glib-compat.h"
 
 G_DEFINE_TYPE (GamesClock, games_clock, GTK_TYPE_LABEL)
 
