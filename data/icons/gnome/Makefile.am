@@ -17,7 +17,7 @@ dist_noinst_DATA = \
 	$(NULL)
 
 EXTRA_DIST = \
-	hicolor_apps_256x256_gnome-aisleriot.svg \
+	gnome-aisleriot.svg \
 	$(NULL)
 
 install-public-icons:
