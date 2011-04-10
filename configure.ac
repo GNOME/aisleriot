@@ -802,14 +802,14 @@ AC_SUBST([AM_LDFLAGS])
 AC_CONFIG_FILES([
 Makefile
 data/Makefile
+data/icons/Makefile
+data/icons/gnome/Makefile
+data/icons/hildon/Makefile
 games/Makefile
 help/Makefile
 po/Makefile.in
 sounds/Makefile
 src/Makefile
-src/icons/Makefile
-src/icons/gnome/Makefile
-src/icons/hildon/Makefile
 src/lib/Makefile
 src/smclient/Makefile
 src/sol.desktop.in

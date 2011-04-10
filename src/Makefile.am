@@ -1,4 +1,4 @@
-SUBDIRS = lib icons
+SUBDIRS = lib
 
 if WITH_SMCLIENT
 SUBDIRS += smclient

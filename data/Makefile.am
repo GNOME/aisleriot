@@ -1,3 +1,5 @@
+SUBDIRS = icons
+
 if ENABLE_CARD_THEME_FORMAT_SVG
 carddir = $(pkgdatadir)/cards
 dist_card_DATA = \
