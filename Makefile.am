@@ -4,6 +4,10 @@ NULL =
 
 SUBDIRS = src po
 
+if BUILD_HELP
+SUBDIRS += help
+endif
+
 if ENABLE_SOUND
 SUBDIRS += sounds
 endif

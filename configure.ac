@@ -803,9 +803,8 @@ AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
 sounds/Makefile
+help/Makefile
 src/Makefile
-src/sol.desktop.in
-src/freecell.desktop.in
 src/data/Makefile
 src/icons/Makefile
 src/icons/gnome/Makefile
@@ -813,7 +812,8 @@ src/icons/hildon/Makefile
 src/lib/Makefile
 src/smclient/Makefile
 src/rules/Makefile
-src/help/Makefile
+src/sol.desktop.in
+src/freecell.desktop.in
 ])
 AC_OUTPUT
 

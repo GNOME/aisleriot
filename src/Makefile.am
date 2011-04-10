@@ -4,10 +4,6 @@ if WITH_SMCLIENT
 SUBDIRS += smclient
 endif
 
-if BUILD_HELP
-SUBDIRS += help
-endif
-
 NULL =
 
 # Same as in help/Makefile.am
