@@ -8,10 +8,6 @@ if BUILD_HELP
 SUBDIRS += help
 endif
 
-if ENABLE_SOUND
-SUBDIRS += sounds
-endif
-
 DISTCHECK_CONFIGURE_FLAGS = \
 	--with-platform=gnome \
 	--disable-schemas-install \

@@ -805,12 +805,12 @@ data/Makefile
 data/icons/Makefile
 data/icons/gnome/Makefile
 data/icons/hildon/Makefile
+data/sounds/Makefile
 data/sol.desktop.in
 data/freecell.desktop.in
 games/Makefile
 help/Makefile
 po/Makefile.in
-sounds/Makefile
 src/Makefile
 src/lib/Makefile
 src/smclient/Makefile

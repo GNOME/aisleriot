@@ -1,5 +1,9 @@
 SUBDIRS = icons
 
+if ENABLE_SOUND
+SUBDIRS += sounds
+endif
+
 if ENABLE_CARD_THEME_FORMAT_SVG
 carddir = $(pkgdatadir)/cards
 dist_card_DATA = \
