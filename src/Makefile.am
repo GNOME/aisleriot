@@ -192,22 +192,6 @@ sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_GTK_LIBS) $(CLUTTER_LIBS)
 endif # ENABLE_AISLERIOT_CLUTTER
 endif # HAVE_CLUTTER
 
-desktop_in_files = \
-	sol.desktop.in.in
-
-if !HAVE_HILDON
-desktop_in_files += \
-	freecell.desktop.in.in
-endif
-
-if HAVE_MAEMO
-desktopdir = $(shell $(PKG_CONFIG) osso-af-settings --variable=desktopentrydir)
-else
-desktopdir = $(datadir)/applications
-endif
-
-desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
-
 schema_in_files = aisleriot.schemas.in
 if HAVE_GNOME
 schemadir = $(GCONF_SCHEMA_FILE_DIR)
@@ -270,16 +254,13 @@ EXTRA_DIST = \
 	game-names.h
 
 CLEANFILES = \
-	$(desktop_DATA)	\
 	$(schema_DATA)	\
 	$(service_DATA)
 
 DISTCLEANFILES = \
-	$(desktop_DATA)	\
 	$(schema_DATA)	\
 	$(service_DATA)
 
-@INTLTOOL_DESKTOP_RULE@
 @INTLTOOL_SCHEMAS_RULE@
 
 -include $(top_srcdir)/git.mk
