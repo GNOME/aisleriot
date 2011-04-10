@@ -4,6 +4,10 @@ NULL =
 
 SUBDIRS = src games data po
 
+if ENABLE_CARD_THEME_FORMAT_SVG
+SUBDIRS += cards
+endif
+
 if BUILD_HELP
 SUBDIRS += help
 endif

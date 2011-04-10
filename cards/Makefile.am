@@ -1,8 +1,12 @@
 NULL =
 
-carddir = $(datadir)/gnome-games-common/cards
+carddir = $(pkgdatadir)/cards
 
-card_DATA = \
+dist_card_DATA = \
+	bonded.svg \
+	$(NULL)
+
+nodist_noinst_DATA = \
 	anglo.svg \
 	anglo_bitmap.svg \
 	bellot.svg \
@@ -15,11 +19,10 @@ card_DATA = \
 	$(NULL)
 
 EXTRA_DIST = \
-	$(card_DATA)		\
-	README.bellot		\
-	README.dondorf		\
-	README.ornamental	\
-	README.paris		\
+	README.bellot \
+	README.dondorf \
+	README.ornamental \
+	README.paris \
 	$(NULL)
 
 -include $(top_srcdir)/git.mk

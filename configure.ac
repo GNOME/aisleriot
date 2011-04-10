@@ -801,6 +801,7 @@ AC_SUBST([AM_LDFLAGS])
 
 AC_CONFIG_FILES([
 Makefile
+cards/Makefile
 data/Makefile
 data/icons/Makefile
 data/icons/gnome/Makefile
