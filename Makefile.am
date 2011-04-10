@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 NULL =
 
-SUBDIRS = src games po
+SUBDIRS = src games data po
 
 if BUILD_HELP
 SUBDIRS += help

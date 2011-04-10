@@ -801,12 +801,12 @@ AC_SUBST([AM_LDFLAGS])
 
 AC_CONFIG_FILES([
 Makefile
-po/Makefile.in
-sounds/Makefile
+data/Makefile
 games/Makefile
 help/Makefile
+po/Makefile.in
+sounds/Makefile
 src/Makefile
-src/data/Makefile
 src/icons/Makefile
 src/icons/gnome/Makefile
 src/icons/hildon/Makefile
