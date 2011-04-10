@@ -2,12 +2,12 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.53])
-AC_INIT([GNOME Games], [3.1.0],
-  [http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-games],
-  [gnome-games])
+AC_INIT([GNOME Patience], [3.0.0],
+  [http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot],
+  [aisleriot])
 
 AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_SRCDIR([gnomine/gnomine.c])
+AC_CONFIG_SRCDIR([src/sol.c])
 AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2 foreign])
@@ -19,201 +19,21 @@ if test -z "$enable_maintainer_mode"; then
 fi
 AM_MAINTAINER_MODE([enable])
 
-# First parse the list of enabled games, so we know which options
-# we support and which features to check for
-
-# This is the canonical list of all game subdirectories.
-allgames="aisleriot glchess glines gnect gnibbles gnobots2 gnomine gnotravex gnotski gtali iagno lightsoff mahjongg quadrapassel swell-foop"
-AC_SUBST([allgames])
-staginggames="gnome-sudoku"
-AC_SUBST([staginggames])
-
-gamelist=""
-
-AC_MSG_CHECKING([which games to build])
-
-AC_ARG_WITH([games],
-  [--with-games=game1,game2,...],
-  [],[with_games=all])
-
-AC_ARG_ENABLE([games],
-  [AS_HELP_STRING([--enable-games=list],[Enable the games in the comma separated list ("all" and "none" are valid)])],
-  [with_games="$enableval"],[])
-
-if test -n "$with_games"; then
-  gamelist=""
-  IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
-  for item in $with_games; do
-    case $item in
-      all) gamelist="$allgames" ;;
-      none) gamelist="" ;;
-      *) if test -z "$gamelist"; then
-           gamelist="$item"
-         else
-           gamelist="$gamelist $item"
-         fi
-         ;;
-    esac
-  done
-  IFS="$gg_saved_ifs"
-else
-  gamelist="$allgames"   
-fi
-
-## This has a particularly silly name because autoconf doesn't allow 
-## --disable-foo to have arguments so we have to use an --enable-fubar form.
-AC_ARG_ENABLE(omitgames,
-  AC_HELP_STRING([--enable-omitgames=list],
-    [Don't compile games in the comma separated list. ("all" and "none" are valid)]))
-if test -n "$enable_omitgames"; then
-   enable_omitgames=`echo ,"${enable_omitgames}", | sed -e 's/[[	,]][[	,]]*/ /g' -e 's/,$//'`
-   omittedgames=""
-   gamelist=""
-   for item in ${enable_omitgames}; do
-     for game in ${allgames}; do
-       case ${item} in
-	  all) omittedgames=${allgames};;
-	  none) omittedgames="";;
-          ${game}) omittedgames="${game} ${omittedgames}";;
-	  *) ;; 
-        esac
-     done
-   done
-   for game in ${allgames}; do
-     case ${omittedgames} in
-       *${game}*) ;;
-       *) gamelist="${gamelist} ${game}";;
-     esac
-   done
-elif test -z "$gamelist"; then
-   # Everything on by default
-   gamelist=${allgames}
-fi
-
-## This is the staging area
-## These games aren't quite ready for prime-time
-
-AC_MSG_CHECKING([whether to enable staging games])
-AC_ARG_ENABLE([staging],
-  [AS_HELP_STRING([--enable-staging],[whether to enable beta game support (default: disabled)])],[],[])
-AC_MSG_RESULT([$enable_staging])
-
-if test "$enable_staging" = "yes"; then
-	gamelist="${gamelist} ${staginggames}"
-fi
-
-AC_MSG_RESULT([$gamelist])
-
-AC_SUBST([gamelist])
-
 # Feature matrix
 
 need_cxx=no
 need_vala=no
-need_rsvg=no
-need_sqlite=no
-need_guile=no
-need_opengl=no
-need_glx=no
-need_python=no
+need_rsvg=yes
+need_guile=yes
 need_clutter=no
 need_gio_2_26=no
-want_sound=no
+want_sound=yes
 allow_gtk2=yes
 allow_gnuchess=no
-allow_smclient=no
+allow_smclient=yes
 disallow_hildon=no
 require_gtk_2_16=no
 require_cairo_1_10=no
-
-for game in $gamelist; do
-  case $game in
-    aisleriot) allow_gtk2=yes ;;
-    *) ;;
-  esac
-  case $game in
-    quadrapassel) need_cxx=yes ;;
-    *) ;;
-  esac
-  case $game in
-    glchess) need_vala=yes ;;
-    *) ;;
-  esac
-  case $game in
-    aisleriot) need_guile=yes ;;
-    *) ;;
-  esac
-  case $game in
-    glchess) need_opengl=yes ;;
-    *) ;;
-  esac
-  case $game in
-    glchess) need_glx=yes ;;
-    *) ;;
-  esac
-  case $game in
-    glchess) allow_gnuchess=yes ;;
-    *) ;;
-  esac
-  case $game in
-    gnome-sudoku) need_python=yes ;;
-    *) ;;
-  esac
-  case $game in
-    aisleriot|gnect|gnibbles|gnobots2|quadrapassel|iagno) want_sound=yes ;;
-    *) ;;
-  esac
-  case $game in
-    aisleriot) ;;
-    *) disallow_hildon=yes ;;
-  esac
-  case $game in
-    aisleriot|glchess) ;;
-    *) need_rsvg=yes ;;
-  esac
-  case $game in
-    glchess) ;;
-    *) need_sqlite=yes ;;
-  esac
-  case $game in
-    aisleriot|glines|gnobots2|gnomine|gnotravex|gnotski|iagno) allow_smclient=yes ;;
-    *) ;;
-  esac
-  case $game in
-    quadrapassel|lightsoff|swell-foop|gnibbles) need_clutter=yes ;;
-    *) ;;
-  esac
-  case $game in
-    aisleriot) ;;
-    *) require_gtk_2_16=yes ;;
-  esac
-done
-
-# Set a conditional for each game to build
-
-for game in $allgames $staginggames; do
-  eval AS_TR_SH([build_$game])=no
-done
-for game in $gamelist; do
-  eval AS_TR_SH([build_$game])=yes
-done
-
-AM_CONDITIONAL([BUILD_AISLERIOT],[test "$build_aisleriot" = "yes"])
-AM_CONDITIONAL([BUILD_GLCHESS],[test "$build_glchess" = "yes"])
-AM_CONDITIONAL([BUILD_GLINES],[test "$build_glines" = "yes"])
-AM_CONDITIONAL([BUILD_GNECT],[test "$build_gnect" = "yes"])
-AM_CONDITIONAL([BUILD_GNIBBLES],[test "$build_gnibbles" = "yes"])
-AM_CONDITIONAL([BUILD_GNOBOTS2],[test "$build_gnobots2" = "yes"])
-AM_CONDITIONAL([BUILD_GNOME_SUDOKU],[test "$build_gnome_sudoku" = "yes"])
-AM_CONDITIONAL([BUILD_QUADRAPASSEL],[test "$build_quadrapassel" = "yes"])
-AM_CONDITIONAL([BUILD_GNOMINE],[test "$build_gnomine" = "yes"])
-AM_CONDITIONAL([BUILD_GNOTRAVEX],[test "$build_gnotravex" = "yes"])
-AM_CONDITIONAL([BUILD_GNOTSKI],[test "$build_gnotski" = "yes"])
-AM_CONDITIONAL([BUILD_GTALI],[test "$build_gtali" = "yes"])
-AM_CONDITIONAL([BUILD_IAGNO],[test "$build_iagno" = "yes"])
-AM_CONDITIONAL([BUILD_LIGHTSOFF],[test "$build_lightsoff" = "yes"])
-AM_CONDITIONAL([BUILD_MAHJONGG],[test "$build_mahjongg" = "yes"])
-AM_CONDITIONAL([BUILD_SWELL_FOOP],[test "$build_swell_foop" = "yes"])
 
 # Locate various programs
 
@@ -223,21 +43,6 @@ AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_LN_S
 AC_PROG_SED
-
-if test "$need_vala" = "yes"; then
-  AM_PROG_VALAC([0.11.6])
-fi
-
-if test "$need_cxx" = "yes"; then
-  AC_PROG_CXX
-
-  # Check whether a C++ was found (AC_PROG_CXX sets $CXX to "g++" even when it
-  # doesn't exist)
-  AC_LANG_PUSH([C++])
-  AC_COMPILE_IFELSE([AC_LANG_PROGRAM([],[])],[],[AC_MSG_ERROR([No C++ compiler found])])
-  AC_LANG_POP([C++])
-fi
-
 AM_PROG_CC_C_O
 
 AC_PROG_LIBTOOL
@@ -268,12 +73,6 @@ AC_MSG_RESULT([$LSB_DISTRIBUTION])
 
 AC_DEFINE_UNQUOTED([LSB_DISTRIBUTOR],["$LSB_DISTRIBUTOR"],[The distributor ID])
 AC_DEFINE_UNQUOTED([LSB_DISTRIBUTION],["$LSB_DISTRIBUTION"],[The full distribution description])
-
-dnl ****************************************************************************
-dnl * Python 2.4
-dnl ****************************************************************************
-
-AM_PATH_PYTHON([2.4],[have_python=yes],[have_python=no])
 
 # ************
 # Dependencies
@@ -425,7 +224,7 @@ fi
 
 # We're using need_guile as a quick way to check whether building aisleriot
 if test "$need_guile" = "yes"; then
-  AC_MSG_CHECKING([whether to enable aisleriot/clutter])
+  AC_MSG_CHECKING([whether to enable src/clutter])
   AC_ARG_ENABLE([aisleriot-clutter],
     [AS_HELP_STRING([--enable-aisleriot-clutter],[Whether to enable the clutter version of aisleriot (default: disabled)])],
     [],[enable_aisleriot_clutter=no])
@@ -591,8 +390,6 @@ AM_CONDITIONAL([ENABLE_DEBUG_UI],[test "$enable_debug_ui" = "yes"])
 # Checks for libraries
 # ********************
 
-PYGTK_REQUIRED=2.14.0
-
 case "$with_gtk" in
   2.0) if test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"; then
          GTK_REQUIRED=2.6.0
@@ -710,61 +507,8 @@ if test "$need_rsvg" = "yes"; then
     fi
   fi
 fi
-  
+
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
-
-# Check for SQLite
-
-have_sqlite=no
-if test "$need_sqlite" = "yes"; then
-  have_sqlite=yes
-
-  # Errors out if sqlite is not found
-  PKG_CHECK_MODULES([SQLITE],[sqlite3])
-
-  AC_SUBST([SQLITE_CFLAGS])
-  AC_SUBST([SQLITE_LIBS])
-
-  AC_DEFINE([HAVE_SQLITE],[1],[Refine if sqlite is available])
-fi
-
-AM_CONDITIONAL([HAVE_SQLITE],[test "$have_sqlite" = "yes"])
-
-# Check for OpenGL
-
-have_opengl=no
-if test "$need_opengl" = "yes"; then
-  have_opengl=yes
-
-  # Errors out if OpenGL is not found
-  PKG_CHECK_MODULES([OPENGL],[
-    gl glu])
-
-  AC_SUBST([OPENGL_CFLAGS])
-  AC_SUBST([OPENGL_LIBS])
-
-  AC_DEFINE([HAVE_OPENGL],[1],[Define if OpenGL is available])
-fi
-
-AM_CONDITIONAL([HAVE_OPENGL],[test "$have_opengl" = "yes"])
-
-# Check for GLX
-
-have_glx=no
-if test "$need_glx" = "yes"; then
-  have_glx=yes
-
-  # Errors out if GLX is not found
-  PKG_CHECK_MODULES([GLX],[
-    gl x11])
-
-  AC_SUBST([GLX_CFLAGS])
-  AC_SUBST([GLX_LIBS])
-
-  AC_DEFINE([HAVE_GLX],[1],[Define if GLX is available])
-fi
-
-AM_CONDITIONAL([HAVE_GLX],[test "$have_glx" = "yes"])
 
 # Check for Clutter
 
@@ -790,28 +534,6 @@ if test "$need_clutter" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_CLUTTER],[test "$need_clutter" = "yes"])
-
-# Check for PyGTK
-
-if test "$have_python" = "yes"; then
-  PKG_CHECK_MODULES([PYGTK],[
-    pygtk-2.0 >= $PYGTK_REQUIRED],
-    [have_pygtk=yes],[have_pygtk=no])
-fi
-
-enable_python=no
-if test "$have_python" = "yes" -a "$have_pygtk" = "yes"; then
-  AC_SUBST([PYGTK_CFLAGS])
-  AC_SUBST([PYGTK_LIBS])
-  
-  enable_python=yes
-fi
-
-if test "$enable_python" = "no" -a "$need_python" = "yes"; then
-  AC_MSG_ERROR([Some games need python, but python or pygtk packages were not found.])
-fi
-
-AM_CONDITIONAL([HAVE_PYTHON],[test "$enable_python" = "yes"])
 
 # GThread
 
@@ -943,7 +665,7 @@ AM_CXXFLAGS="$AM_CXXFLAGS $WARN_CXXFLAGS"
 # i18n
 # ****
 
-GETTEXT_PACKAGE=gnome-games
+GETTEXT_PACKAGE=aisleriot
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [The gettext package name])
 AM_GLIB_GNU_GETTEXT
@@ -1009,91 +731,6 @@ fi
 AM_CONDITIONAL([HAVE_GUILE],[test "$have_guile" = "yes"])
 AM_CONDITIONAL([HAVE_GUILE_1_8],[test "$have_guile_1_8" = "yes"])
 
-# Possibly disable the included gnuchess
-
-if test "$allow_gnuchess" = "yes"; then
-  AC_ARG_ENABLE([gnuchess],
-  [AS_HELP_STRING([--disable-gnuchess],[Disable included gnuchess for glChess])],
-  [],[enable_gnuchess=yes])
-
-  if test "$enable_gnuchess" = "yes"; then
-    AC_DEFINE([ENABLE_GNUCHESS],[1],[Enable compilation of included GNU Chess as AI chess engine for glChess])
-    AC_CHECK_HEADER(pthread.h, [],
-                  AC_MSG_ERROR([*** Cannot find pthread.h header]))
-    AC_CHECK_LIB(pthread, pthread_create,
-                 [PTHREAD_LDFLAGS="$PTHREAD_LDFLAGS -lpthread"
-                  PTHREAD_CFLAGS="$PTHREAD_CFLAGS -D_REENTRANT"],
-                 [AC_CHECK_LIB(c_r, pthread_create,
-                               [PTHREAD_LDFLAGS="$PTHREAD_LDFLAGS -pthread"
-                                PTHREAD_CFLAGS="$PTHREAD_CFLAGS -D_THREAD_SAFE"],
-                 AC_MSG_ERROR([*** Cannot find pthread library]))])
-    AC_SUBST(PTHREAD_CFLAGS)
-    AC_SUBST(PTHREAD_LDFLAGS)
-  fi
-fi
-
-AM_CONDITIONAL([WITH_INCLUDED_GNUCHESS],[test "$enable_gnuchess" = "yes"])
-
-# Check for library functions
-# ===========================
-
-AC_CHECK_FUNCS([dup2 strcasecmp strchr strerror \
-                malloc vprintf], [],
-               [AC_MSG_ERROR([cannot find required function])])
-AC_CHECK_FUNCS([fork select]) 
-AC_CHECK_FUNCS([alarm getpwuid getenv setenv close hstrerror kill socketpair])
-
-AC_FUNC_SELECT_ARGTYPES
-
-AC_HEADER_STDC
-
-AC_TYPE_SIGNAL
-AC_FUNC_FORK
-AC_FUNC_STRCOLL
-AC_FUNC_VPRINTF
-
-# Check for PF_LOCAL/PF_UNIX
-# ==========================
-# There should be an autoconf macro to check this???
-#
-# Not having this is not necessarily a fatal error.  It should mean that
-# the WinAPI interface is used instead.
-AC_MSG_CHECKING([for PF_LOCAL])
-AC_EGREP_CPP(PF_LOCAL,
-             [#include <sys/types.h>
-              #include <sys/socket.h>
-              PF_LOCAL ],
-             [AC_MSG_RESULT(no)
-              AC_MSG_CHECKING([for PF_UNIX])
-              AC_EGREP_CPP(PF_UNIX, [ #include <sys/types.h>
-                                      #include <sys/socket.h>
-				      PF_UNIX ],
-                           [AC_MSG_RESULT(no)],
-                           [AC_MSG_RESULT(yes)
-                            AC_DEFINE([PF_LOCAL], PF_UNIX,
-				      [PF_UNIX is available])
-			    AC_DEFINE([AF_LOCAL], AF_UNIX,
-				      [AF_UNIX is available])])], 
-             AC_MSG_RESULT(yes))
-
-# Check for header files
-# ======================
-AC_CHECK_HEADERS([fcntl.h limits.h sys/time.h time.h \
-                  unistd.h], [],
-                 [AC_MSG_ERROR([cannot find required header file])])
-AC_CHECK_HEADERS([netdb.h sys/socket.h winsock2.h])
-AC_HEADER_SYS_WAIT
-
-
-# Checks for typedefs, structures, and compiler characteristics
-AC_C_CONST
-AC_C_VOLATILE
-AC_FUNC_REALLOC
-AC_HEADER_STDBOOL
-AC_C_INLINE
-AC_TYPE_SIZE_T
-AC_HEADER_TIME
-
 # *************
 # Documentation
 # *************
@@ -1152,56 +789,6 @@ GNOME_DOC_INIT([0.10.0],
 
 AM_CONDITIONAL([BUILD_HELP],[test "$with_help_method" = "ghelp"])
 
-# *************
-# setgid checks
-# *************
-
-AC_ARG_ENABLE([setgid],
-  [AS_HELP_STRING([--disable-setgid],
-    [Disable the use of setgid binaries])],
-  [case "${enableval}" in
-    yes) setgid=true ;;
-    no)  setgid=false ;;
-    *) AC_MSG_ERROR([bad value ${enableval} for --disable-setgid]) ;;
-   esac],
-  [if test "$platform_win32" = "yes"; then
-     enable_setgid=no
-     setgid=false
-   else
-     enable_setgid=yes
-     setgid=true
-   fi])
-
-scoredir='${localstatedir}/games'
-scores_group=games
-scores_user=games
-
-if test "$enable_setgid" = "yes"; then
-  AC_DEFINE([ENABLE_SETGID],[1],[Define if use of setgid binaries is enabled])
-
-  AC_ARG_WITH(scores-group,
-    AC_HELP_STRING([--with-scores-group=group],
-      [Group for the high score tables and binaries]),
-    scores_group="$withval",scores_group="games")
-  AC_ARG_WITH(scores-user,
-    AC_HELP_STRING([--with-scores-user=user],
-      [User for the high score tables]),
-    scores_user="$withval",scores_user="games")
-fi
-
-AM_CONDITIONAL([ENABLE_SETGID],[test "$enable_setgid" = "yes"])
-
-AC_SUBST(setgid)
-AC_SUBST(scores_group)
-AC_SUBST(scores_user)
-AC_SUBST(scoredir)
-
-# *********************
-# GObject Introspection
-# *********************
-
-GOBJECT_INTROSPECTION_CHECK([0.6.3])
-
 ##############################################
 
 AC_SUBST([AM_CPPFLAGS])
@@ -1215,96 +802,18 @@ AC_SUBST([AM_LDFLAGS])
 AC_CONFIG_FILES([
 Makefile
 po/Makefile.in
-icons/Makefile
 sounds/Makefile
-libgames-support/Makefile
-gnect/Makefile
-gnect/src/Makefile
-gnect/data/Makefile
-gnect/pixmaps/Makefile
-gnect/help/Makefile
-gnomine/Makefile
-gnomine/icons/Makefile
-gnomine/help/Makefile
-swell-foop/Makefile
-swell-foop/help/Makefile
-mahjongg/Makefile
-mahjongg/help/Makefile
-gtali/Makefile
-gtali/pix/Makefile
-gtali/help/Makefile
-iagno/Makefile
-iagno/help/Makefile
-gnotravex/Makefile
-gnotravex/gnotravex.desktop.in
-gnotravex/help/Makefile
-gnotravex/pixmaps/Makefile
-gnotski/Makefile
-gnotski/help/Makefile
-glines/Makefile
-glines/glines.desktop.in
-glines/help/Makefile
-quadrapassel/Makefile
-quadrapassel/pix/Makefile
-quadrapassel/help/Makefile
-gnobots2/Makefile
-gnobots2/help/Makefile
-gnibbles/Makefile
-gnibbles/help/Makefile
-gnibbles/pix/Makefile
-aisleriot/Makefile
-aisleriot/sol.desktop.in
-aisleriot/freecell.desktop.in
-aisleriot/data/Makefile
-aisleriot/icons/Makefile
-aisleriot/icons/gnome/Makefile
-aisleriot/icons/hildon/Makefile
-aisleriot/lib/Makefile
-aisleriot/smclient/Makefile
-aisleriot/rules/Makefile
-aisleriot/help/Makefile
-glchess/Makefile
-glchess/data/Makefile
-glchess/data/pieces/Makefile
-glchess/data/pieces/3d/Makefile
-glchess/data/pieces/fancy/Makefile
-glchess/data/pieces/simple/Makefile
-glchess/data/textures/Makefile
-glchess/gnuchess/Makefile
-glchess/help/Makefile
-glchess/src/Makefile
-gnome-sudoku/Makefile
-gnome-sudoku/src/gnome-sudoku.in
-gnome-sudoku/src/Makefile
-gnome-sudoku/src/lib/Makefile
-gnome-sudoku/src/lib/defaults.py
-gnome-sudoku/src/lib/gtk_goodies/Makefile
-gnome-sudoku/data/Makefile
-gnome-sudoku/images/Makefile
-gnome-sudoku/help/Makefile
-swell-foop/data/themes/Makefile
-swell-foop/data/themes/tango/Makefile
-swell-foop/data/themes/test/Makefile
-swell-foop/swell-foop.desktop.in
-swell-foop/src/Makefile
-quadrapassel/quadrapassel.desktop.in
-gnobots2/gnobots2.desktop.in
-gnibbles/gnibbles.desktop.in
-gnotski/gnotski.desktop.in
-glchess/glchess.desktop.in
-mahjongg/mahjongg.desktop.in
-gtali/gtali.desktop.in
-gnome-sudoku/gnome-sudoku.desktop.in
-iagno/iagno.desktop.in
-gnect/data/gnect.desktop.in
-gnomine/gnomine.desktop.in
-lightsoff/Makefile
-lightsoff/help/Makefile
-lightsoff/lightsoff.desktop.in
-lightsoff/data/themes/Makefile
-lightsoff/data/themes/tango/Makefile
-lightsoff/data/themes/up/Makefile
-lightsoff/src/Makefile
+src/Makefile
+src/sol.desktop.in
+src/freecell.desktop.in
+src/data/Makefile
+src/icons/Makefile
+src/icons/gnome/Makefile
+src/icons/hildon/Makefile
+src/lib/Makefile
+src/smclient/Makefile
+src/rules/Makefile
+src/help/Makefile
 ])
 AC_OUTPUT
 
@@ -1322,31 +831,14 @@ if test -n "$with_platform_variant"; then
 fi
 
 echo "
-    Games to be compiled:  ${gamelist}
 
     GTK+ API version:      ${GTK_API_VERSION}
     Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
-    Using SQLite:          ${have_sqlite}
     Card theme formats:    ${with_card_theme_formats}
     Default theme format:  ${with_default_card_theme_format}
     Default theme:         ${with_default_card_theme}
     Sound support:         ${with_sound}
-    Use setgid binaries:   ${enable_setgid}
-    Scores user:           ${scores_user}
-    Scores & setgid group: ${scores_group}
     Binreloc:              ${enable_binreloc}
-    Introspection data:    ${enable_introspection}
 "
-
-if grep "$scores_group:" /etc/group > /dev/null; then
-:;
-else
-echo
-echo "Warning: The $scores_group group does not exist. Installation will"
-echo "         succeed, but high score logging will not work. To specify a"
-echo "         different group use the --with-scores-group option."
-echo
-fi
-

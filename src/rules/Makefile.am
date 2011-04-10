@@ -1,6 +1,6 @@
 NULL = 
 
-rulesdir  = $(pkgdatadir)/aisleriot/games
+rulesdir  = $(pkgdatadir)/games
 
 rules_DATA  = 			\
 	accordion.scm		\

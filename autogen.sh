@@ -4,11 +4,9 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-PKG_NAME="Gnome Games"
+PKG_NAME="Aisleriot"
 
-(test -f $srcdir/configure.in \
-  && test -d $srcdir/gnomine \
-  && test -d $srcdir/swell-foop) || {
+test -f $srcdir/src/sol.c || {
     echo -n "**Error**: Directory \"\`$srcdir\'\" does not look like the"
     echo " top-level $PKG_NAME directory"
     exit 1

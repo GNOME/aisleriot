@@ -704,7 +704,7 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
   }
 
   key_file = g_key_file_new ();
-  path = ar_runtime_get_file (AR_RUNTIME_COMMON_DATA_DIRECTORY, "theme-install.ini");
+  path = ar_runtime_get_file (AR_RUNTIME_DATA_DIRECTORY, "theme-install.ini");
   if (!g_key_file_load_from_file (key_file, path, 0, NULL)) {
     g_free (path);
     g_key_file_free (key_file);

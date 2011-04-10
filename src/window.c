@@ -656,7 +656,7 @@ debug_ensure_game_list (AisleriotWindow *window)
   if (data != NULL)
     return data;
 
-  games_dir = ar_runtime_get_directory (AR_RUNTIME_GAME_GAMES_DIRECTORY);
+  games_dir = ar_runtime_get_directory (AR_RUNTIME_GAMES_DIRECTORY);
   dir = g_dir_open (games_dir, 0, NULL);
   if (dir != NULL) {
     const char *game_file;

@@ -231,22 +231,16 @@ static const DerivedDirectory derived_directories[] = {
   /* Keep this in the same order as in the ArRuntimeDirectory enum! */
 #ifdef ENABLE_BINRELOC
   { AR_RUNTIME_PREFIX,             "share"              }, /* AR_RUNTIME_DATA_DIRECTORY              */
-  { AR_RUNTIME_DATA_DIRECTORY,     "gnome-games-common" }, /* AR_RUNTIME_COMMON_DATA_DIRECTORY       */
-  { AR_RUNTIME_DATA_DIRECTORY,     "gnome-games"        }, /* AR_RUNTIME_PKG_DATA_DIRECTORY          */
-  { AR_RUNTIME_DATA_DIRECTORY,     "scores"             }, /* AR_RUNTIME_SCORES_DIRECTORY            */
+  { AR_RUNTIME_DATA_DIRECTORY,     PACKAGE              }, /* AR_RUNTIME_PKG_DATA_DIRECTORY          */
 #endif /* ENABLE_BINRELOC */
   { AR_RUNTIME_DATA_DIRECTORY,         "locale"         }, /* AR_RUNTIME_LOCALE_DIRECTORY            */
-  { AR_RUNTIME_COMMON_DATA_DIRECTORY,  "pixmaps"        }, /* AR_RUNTIME_COMMON_PIXMAP_DIRECTORY     */
-  { AR_RUNTIME_COMMON_DATA_DIRECTORY,  "card-themes"    }, /* AR_RUNTIME_PRERENDERED_CARDS_DIRECTORY */
-  { AR_RUNTIME_COMMON_DATA_DIRECTORY,  "cards"          }, /* AR_RUNTIME_SCALABLE_CARDS_DIRECTORY    */
+  { AR_RUNTIME_PKG_DATA_DIRECTORY,     "pixmaps"        }, /* AR_RUNTIME_PIXMAP_DIRECTORY     */
+  { AR_RUNTIME_PKG_DATA_DIRECTORY,     "card-themes"    }, /* AR_RUNTIME_PRERENDERED_CARDS_DIRECTORY */
+  { AR_RUNTIME_PKG_DATA_DIRECTORY,     "cards"          }, /* AR_RUNTIME_SCALABLE_CARDS_DIRECTORY    */
   { AR_RUNTIME_PKG_DATA_DIRECTORY,     "icons"          }, /* AR_RUNTIME_ICON_THEME_DIRECTORY        */
-  { AR_RUNTIME_PKG_DATA_DIRECTORY,     "pixmaps"        }, /* AR_RUNTIME_PIXMAP_DIRECTORY            */
   { AR_RUNTIME_PKG_DATA_DIRECTORY,     "sounds"         }, /* AR_RUNTIME_SOUNDS_DIRECTORY            */
-  { AR_RUNTIME_PKG_DATA_DIRECTORY,     NULL             }, /* AR_RUNTIME_GAME_DATA_DIRECTORY         */
-  { AR_RUNTIME_GAME_DATA_DIRECTORY,    "games"          }, /* AR_RUNTIME_GAME_GAMES_DIRECTORY        */
-  { AR_RUNTIME_GAME_DATA_DIRECTORY,    "pixmaps"        }, /* AR_RUNTIME_GAME_PIXMAP_DIRECTORY       */
-  { AR_RUNTIME_GAME_DATA_DIRECTORY,    "themes"         }, /* AR_RUNTIME_GAME_THEME_DIRECTORY        */
-  { AR_RUNTIME_GAME_DATA_DIRECTORY,    "help"           }, /* AR_RUNTIME_GAME_HELP_DIRECTORY         */
+  { AR_RUNTIME_PKG_DATA_DIRECTORY,     "games"          }, /* AR_RUNTIME_GAMES_DIRECTORY             */
+  { AR_RUNTIME_PKG_DATA_DIRECTORY,     "help"           }, /* AR_RUNTIME_HELP_DIRECTORY              */
 };
 
 typedef int _assertion[G_N_ELEMENTS (derived_directories) + AR_RUNTIME_FIRST_DERIVED_DIRECTORY == AR_RUNTIME_LAST_DIRECTORY ? 1 : -1];
@@ -533,17 +527,10 @@ ar_runtime_get_directory (ArRuntimeDirectory directory)
       path = g_strdup (DATADIR);
       break;
 
-    case AR_RUNTIME_COMMON_DATA_DIRECTORY:
-      path = g_build_filename (DATADIR, "gnome-games-common", NULL);
-      break;
-
     case AR_RUNTIME_PKG_DATA_DIRECTORY:
       path = g_strdup (PKGDATADIR);
       break;
 
-    case AR_RUNTIME_SCORES_DIRECTORY:
-      path = g_strdup (SCORESDIR);
-      break;
 #endif /* ENABLE_BINRELOC */
 
     default: {

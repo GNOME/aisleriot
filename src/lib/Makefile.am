@@ -204,6 +204,7 @@ stamp_files = \
 	$(NULL)
 
 EXTRA_DIST = \
+	ar-marshal.list \
 	$(gsettingsschema_in_files) \
         $(NULL)
 

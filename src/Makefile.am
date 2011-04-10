@@ -17,7 +17,7 @@ cardimagedir = $(pkgdatadir)/pixmaps
 cardimage_DATA = \
 	baize.png
 
-scmdir  = $(pkgdatadir)/aisleriot/games
+scmdir  = $(pkgdatadir)/games
 scm_DATA = \
 	sol.scm
 
@@ -79,7 +79,7 @@ endif
 
 sol_CPPFLAGS = \
 	-I$(top_srcdir) \
-	-I$(top_srcdir)/aisleriot/lib \
+	-I$(top_srcdir)/src/lib \
 	-Ilib \
 	-DDOC_MODULE=\"$(DOC_MODULE)\" \
 	$(AM_CPPFLAGS)

@@ -2,13 +2,11 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 NULL =
 
-SUBDIRS = libgames-support $(gamelist) po icons
+SUBDIRS = src po
 
 if ENABLE_SOUND
 SUBDIRS += sounds
 endif
-
-DIST_SUBDIRS = po icons sounds libgames-support $(allgames) $(staginggames)
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--with-platform=gnome \
@@ -17,6 +15,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-silent-rules
 
 EXTRA_DIST = \
+	aisleriot.doap \
 	autogen.sh \
 	COPYING-DOCS \
 	COPYING.GPL3 \
