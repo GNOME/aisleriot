@@ -1,4 +1,4 @@
-SUBDIRS = rules data lib icons
+SUBDIRS = data lib icons
 
 if WITH_SMCLIENT
 SUBDIRS += smclient

@@ -2,7 +2,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 NULL =
 
-SUBDIRS = src po
+SUBDIRS = src games po
 
 if BUILD_HELP
 SUBDIRS += help
@@ -72,3 +72,4 @@ dist: ChangeLog
 .PHONY: ChangeLog
 
 -include $(top_srcdir)/git.mk
+	
