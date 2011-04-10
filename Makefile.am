@@ -23,8 +23,7 @@ EXTRA_DIST = \
 	autogen.sh \
 	COPYING-DOCS \
 	COPYING.GPL3 \
-	MAINTAINERS	\
-	HACKING		 \
+	HACKING \
 	gnome-doc-utils.make \
 	ChangeLog \
 	$(NULL)
