@@ -19,23 +19,7 @@ if test -z "$enable_maintainer_mode"; then
 fi
 AM_MAINTAINER_MODE([enable])
 
-# Feature matrix
-
-need_cxx=no
-need_vala=no
-need_rsvg=yes
-need_guile=yes
-need_clutter=no
-need_gio_2_26=no
-want_sound=yes
-allow_gtk2=yes
-allow_gnuchess=no
-allow_smclient=yes
-disallow_hildon=no
-require_gtk_2_16=no
-require_cairo_1_10=no
-
-# Locate various programs
+# *****************************************************************************
 
 PKG_PROG_PKG_CONFIG([0.15])
 
@@ -104,10 +88,6 @@ if test "$with_platform" = "hildon"; then
   AC_MSG_RESULT([$with_platform_variant])
 fi
 
-if test "$with_platform" = "hildon" -a "$disallow_hildon" = "yes"; then
-  AC_MSG_ERROR([Trying to build with Hildon platform, but some of the following games don't support this: $gamelist])
-fi
-
 AM_CONDITIONAL([HAVE_GNOME],[test "$with_platform" = "gnome"])
 AM_CONDITIONAL([HAVE_HILDON],[test "$with_platform" = "hildon"])
 AM_CONDITIONAL([HAVE_MAEMO],[test "$with_platform" = "hildon" -a "$with_platform_variant" != "mid"])
@@ -147,10 +127,6 @@ AC_ARG_WITH([gtk],
   [with_gtk=3.0])
 AC_MSG_RESULT([$with_gtk])
 
-if test "$with_gtk" = "2.0" -a "$allow_gtk2" = "no"; then
-  AC_MSG_ERROR([gtk+-2.0 build requested but not all selected games still support this])
-fi
-
 case "$with_gtk" in
   2.0) GTK_API_VERSION=2.0
        GTK_API_MAJOR_VERSION=2
@@ -166,7 +142,9 @@ AC_SUBST([GTK_API_MAJOR_VERSION])
 AM_CONDITIONAL([HAVE_GTK_2],[test "$GTK_API_VERSION" = "2.0"])
 AM_CONDITIONAL([HAVE_GTK_3],[test "$GTK_API_VERSION" = "3.0"])
 
+# **************
 # Win32 platform
+# **************
 
 AC_CANONICAL_HOST
 
@@ -202,46 +180,36 @@ AM_CONDITIONAL([PLATFORM_WIN32_NATIVE],[test "$os_win32" = "yes"])
 # Sound
 # *****
 
-if test "$want_sound" = "yes"; then
-  AC_MSG_CHECKING([whether to enable sound support])
-  AC_ARG_ENABLE([sound],
-    [AS_HELP_STRING([--enable-sound],[Enable sound using libcanberra])],
-    [],[case "$with_platform" in
-          gnome|gtk-only) enable_sound=yes ;;
-          hildon) case "$with_platform_variant" in
-                    maemo5) enable_sound=yes ;;
-                    *) enable_sound=no ;;
-                  esac
-        esac])
-  AC_MSG_RESULT([$enable_sound])
-else
-  enable_sound=no
-fi
+AC_MSG_CHECKING([whether to enable sound support])
+AC_ARG_ENABLE([sound],
+  [AS_HELP_STRING([--enable-sound],[Enable sound using libcanberra])],
+  [],[case "$with_platform" in
+        gnome|gtk-only) enable_sound=yes ;;
+        hildon) case "$with_platform_variant" in
+                  maemo5) enable_sound=yes ;;
+                  *) enable_sound=no ;;
+                esac
+      esac])
+AC_MSG_RESULT([$enable_sound])
 
 # *******
 # Clutter
 # *******
 
-# We're using need_guile as a quick way to check whether building aisleriot
-if test "$need_guile" = "yes"; then
-  AC_MSG_CHECKING([whether to enable src/clutter])
-  AC_ARG_ENABLE([aisleriot-clutter],
-    [AS_HELP_STRING([--enable-aisleriot-clutter],[Whether to enable the clutter version of aisleriot (default: disabled)])],
-    [],[enable_aisleriot_clutter=no])
-  AC_MSG_RESULT([$enable_aisleriot_clutter])
+AC_MSG_CHECKING([whether to enable clutter])
+AC_ARG_WITH([clutter],
+  [AS_HELP_STRING([--with-clutter],[Enable the clutter version of aisleriot (default: disabled)])],
+  [],[with_clutter=no])
+AC_MSG_RESULT([$with_clutter])
 
-  if test "$enable_aisleriot_clutter" = "yes"; then
-    # Distro packagers: DO NOT ENABLE AISLERIOT/CLUTTER IN YOUR DISTRO PACKAGES, OR ELSE!
-    AC_MSG_NOTICE([Aisleriot/Clutter is experimental; do not enable this for distribution packages!])
-    need_clutter=yes
-  fi
+if test "$with_clutter" = "yes"; then
+  # Distro packagers: DO NOT ENABLE AISLERIOT/CLUTTER IN YOUR DISTRO PACKAGES, OR ELSE!
+  AC_MSG_NOTICE([Aisleriot/Clutter is experimental; do not enable this for distribution packages!])
 fi
-
-AM_CONDITIONAL([ENABLE_AISLERIOT_CLUTTER],[test "$enable_aisleriot_clutter" = "yes"])
 
 case "$with_platform" in
   gnome|gtk-only) ;;
-  hildon) if test "$need_clutter" = "yes"; then
+  hildon) if test "$with_clutter" = "yes"; then
             AC_MSG_ERROR([Clutter is not supported on hildon; disable Gnometris, Lights Off and Aisleriot/Clutter])
           fi
           ;;
@@ -270,6 +238,8 @@ enable_card_theme_format_kde=no
 enable_card_theme_format_fixed=no
 enable_card_theme_format_sliced=no
 enable_card_theme_format_pysol=no
+need_rsvg=no
+require_cairo_1_10=no
 
 IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
 for format in $with_card_theme_formats; do
@@ -512,7 +482,7 @@ AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 
 # Check for Clutter
 
-if test "$need_clutter" = "yes"; then
+if test "$with_clutter" = "yes"; then
   CLUTTER_REQUIRED=1.0.0
 
   PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= $CLUTTER_REQUIRED])
@@ -533,7 +503,7 @@ if test "$need_clutter" = "yes"; then
   AC_SUBST([CLUTTER_GTK_LIBS])
 fi
 
-AM_CONDITIONAL([HAVE_CLUTTER],[test "$need_clutter" = "yes"])
+AM_CONDITIONAL([HAVE_CLUTTER],[test "$with_clutter" = "yes"])
 
 # GThread
 
@@ -553,48 +523,44 @@ AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 # SMClient
 
 SMCLIENT_PKGS=
-if test "$allow_smclient" = "yes"; then
-  AC_MSG_CHECKING([for GDK target])
-  case "$with_gtk" in
-    2.0) GDK_TARGET="$($PKG_CONFIG --variable target gdk-$GTK_API_VERSION)" ;;
-    3.0) for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
-           GDK_TARGET="$target"
-           break
-         done
-         ;;
-  esac
-  AC_MSG_RESULT([$GDK_TARGET])
 
-  case "$GDK_TARGET" in
-    x11|win32|quartz) ;;
-    *) AC_MSG_ERROR([unknown GDK target])
-  esac
+AC_MSG_CHECKING([for GDK target])
+case "$with_gtk" in
+  2.0) GDK_TARGET="$($PKG_CONFIG --variable target gdk-$GTK_API_VERSION)" ;;
+  3.0) for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
+          GDK_TARGET="$target"
+          break
+        done
+        ;;
+esac
+AC_MSG_RESULT([$GDK_TARGET])
 
-  AC_MSG_CHECKING([which smclient backend to use])
-  AC_ARG_WITH([smclient],
-    [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp|win32|quartz|no)])],
-    [],
-    [case "$with_platform" in
-       gnome|gtk-only) case "$GDK_TARGET" in
-                         x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
-                         win32|quartz) with_smclient=$GDK_TARGET ;;
-                         *) with_smclient=no ;;
-                       esac
-                       ;;
-       hildon) with_smclient=no ;;
-     esac])
-  AC_MSG_RESULT([$with_smclient])
+case "$GDK_TARGET" in
+  x11|win32|quartz) ;;
+  *) AC_MSG_ERROR([unknown GDK target])
+esac
 
-  if test "$with_smclient" != "no"; then
-    if test -n "$SMCLIENT_PKGS"; then
-      PKG_CHECK_MODULES([SMCLIENT],[$SMCLIENT_PKGS])
-    fi
+AC_MSG_CHECKING([which smclient backend to use])
+AC_ARG_WITH([smclient],
+  [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp|win32|quartz|no)])],
+  [],
+  [case "$with_platform" in
+     gnome|gtk-only) case "$GDK_TARGET" in
+                       x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
+                       win32|quartz) with_smclient=$GDK_TARGET ;;
+                       *) with_smclient=no ;;
+                     esac
+                     ;;
+     hildon) with_smclient=no ;;
+   esac])
+AC_MSG_RESULT([$with_smclient])
 
-    AC_DEFINE([WITH_SMCLIENT],[1],[Define if smclient is enabled])
+if test "$with_smclient" != "no"; then
+  if test -n "$SMCLIENT_PKGS"; then
+    PKG_CHECK_MODULES([SMCLIENT],[$SMCLIENT_PKGS])
   fi
 
-else
-  with_smclient=no
+  AC_DEFINE([WITH_SMCLIENT],[1],[Define if smclient is enabled])
 fi
 
 AM_CONDITIONAL([WITH_SMCLIENT],[test "$with_smclient" != "no"])
@@ -676,59 +642,54 @@ IT_PROG_INTLTOOL([0.35.0])
 # Game specific checks
 # ********************
 
-have_guile=no
-have_guile_1_8=no
-if test "$need_guile" = "yes"; then
-  AC_ARG_VAR([GUILE],[path to guile])
-  if test "$ac_cv_env_GUILE_set" != "set"; then
-    AC_PATH_TOOL([GUILE],[guile])
-  fi
-
-  if test -z "$GUILE" ; then
-    AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
-  fi
-
-  AC_ARG_VAR([GUILE_CONFIG],[path to guile-config])
-  if test "$ac_cv_env_GUILE_CONFIG_set" != "set"; then
-    AC_PATH_TOOL([GUILE_CONFIG],[guile-config])
-  fi
-  if test -z "$GUILE_CONFIG"; then
-    AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
-  fi
-
-  GUILE_CFLAGS=`$GUILE_CONFIG compile`
-  GUILE_LIBS=`$GUILE_CONFIG link`
-  AC_SUBST([GUILE_CFLAGS])
-  AC_SUBST([GUILE_LIBS])
-
-  # Checking for the header file is basically the only way to find
-  # out if the _development_ files are present. guile-config returns
-  # a value regardless of what is actually installed. The problem
-  # with this is if the header ever gets moved to a non-default location.
-  gg_save_CFLAGS="$CFLAGS"
-  CFLAGS="$GUILE_CFLAGS $CFLAGS"
-  AC_CHECK_HEADER([libguile.h],[have_guile=yes],
-    [AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])])
-  CFLAGS="$gg_save_CFLAGS"
-
-  # On 64-bit machines guile < 1.6.5 causes a crash in aisleriot
-  if uname -m | grep -q 64 > /dev/null; then
-    GUILE_TARGET="1.6.5"
-  else
-    GUILE_TARGET="1.6.0"
-  fi
-  if test `$GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' $GUILE_TARGET` != yes ; then
-    AC_MSG_ERROR([Your version of guile is too old, please install a recent guile package (>= $GUILE_TARGET)])
-  fi
-
-  have_guile_1_8=$($GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' 1.8.0)
-
-  if test "$have_guile_1_8" = "yes"; then
-    AC_DEFINE([HAVE_GUILE_1_8],[1],[Define if guile version is 1.8.0 or above])
-  fi
+AC_ARG_VAR([GUILE],[path to guile])
+if test "$ac_cv_env_GUILE_set" != "set"; then
+  AC_PATH_TOOL([GUILE],[guile])
 fi
 
-AM_CONDITIONAL([HAVE_GUILE],[test "$have_guile" = "yes"])
+if test -z "$GUILE" ; then
+  AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
+fi
+
+AC_ARG_VAR([GUILE_CONFIG],[path to guile-config])
+if test "$ac_cv_env_GUILE_CONFIG_set" != "set"; then
+  AC_PATH_TOOL([GUILE_CONFIG],[guile-config])
+fi
+if test -z "$GUILE_CONFIG"; then
+  AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
+fi
+
+GUILE_CFLAGS=`$GUILE_CONFIG compile`
+GUILE_LIBS=`$GUILE_CONFIG link`
+AC_SUBST([GUILE_CFLAGS])
+AC_SUBST([GUILE_LIBS])
+
+# Checking for the header file is basically the only way to find
+# out if the _development_ files are present. guile-config returns
+# a value regardless of what is actually installed. The problem
+# with this is if the header ever gets moved to a non-default location.
+gg_save_CFLAGS="$CFLAGS"
+CFLAGS="$GUILE_CFLAGS $CFLAGS"
+AC_CHECK_HEADER([libguile.h],[have_guile=yes],
+  [AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])])
+CFLAGS="$gg_save_CFLAGS"
+
+# On 64-bit machines guile < 1.6.5 causes a crash in aisleriot
+if uname -m | grep -q 64 > /dev/null; then
+  GUILE_TARGET="1.6.5"
+else
+  GUILE_TARGET="1.6.0"
+fi
+if test `$GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' $GUILE_TARGET` != yes ; then
+  AC_MSG_ERROR([Your version of guile is too old, please install a recent guile package (>= $GUILE_TARGET)])
+fi
+
+have_guile_1_8=$($GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' 1.8.0)
+
+if test "$have_guile_1_8" = "yes"; then
+  AC_DEFINE([HAVE_GUILE_1_8],[1],[Define if guile version is 1.8.0 or above])
+fi
+
 AM_CONDITIONAL([HAVE_GUILE_1_8],[test "$have_guile_1_8" = "yes"])
 
 # *************

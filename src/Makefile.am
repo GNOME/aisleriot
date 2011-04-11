@@ -124,7 +124,6 @@ sol_LDFLAGS += -mwindows
 endif
 
 if HAVE_CLUTTER
-if ENABLE_AISLERIOT_CLUTTER
 
 noinst_PROGRAMS = sol-clutter
 
@@ -188,8 +187,6 @@ sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_GTK_CFLAGS) $(CLUTTER_CFLAGS)
 sol_clutter_LDFLAGS = $(sol_LDFLAGS)
 sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_GTK_LIBS) $(CLUTTER_LIBS)
 
-
-endif # ENABLE_AISLERIOT_CLUTTER
 endif # HAVE_CLUTTER
 
 schema_in_files = aisleriot.schemas.in
