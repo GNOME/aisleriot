@@ -298,11 +298,7 @@ ar_preimage_render_sub (ArPreimage * preimage,
   if (!preimage->scalable)
     return NULL;
 
-#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE (1, 6, 0)
   rowstride = cairo_format_stride_for_width (CAIRO_FORMAT_ARGB32, width);
-#else
-  rowstride = width * 4;
-#endif
 
   data = g_try_malloc0 (rowstride * height);
   if (!data)

@@ -191,11 +191,7 @@ ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
 
   ar_card_theme_get_size (card_theme, &card_size);
 
-#if CAIRO_VERSION >= CAIRO_VERSION_ENCODE (1, 6, 0)
   rowstride = cairo_format_stride_for_width (CAIRO_FORMAT_ARGB32, card_size.width);
-#else
-  rowstride = card_size.width * 4;
-#endif
 
   data = g_try_malloc0 (rowstride * card_size.height);
   if (!data)
