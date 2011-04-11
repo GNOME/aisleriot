@@ -36,12 +36,6 @@
 
 #ifdef ENABLE_SOUND
 
-#ifdef CA_CHECK_VERSION
-#if CA_CHECK_VERSION (0, 13)
-#define HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
-#endif
-#endif
-
 static gboolean sound_enabled = FALSE;
 
 typedef enum {
@@ -85,11 +79,7 @@ ar_sound_canberra_play (const char *sound_name,
 #endif /* GNOME_ENABLE_DEBUG */
 
       rv =  ca_context_play (
-#ifdef HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
                              ca_gtk_context_get_for_screen (data),
-#else
-                             ca_gtk_context_get (),
-#endif /* HAVE_CANBERRA_GTK_MULTIHEAD_SAFE */
                              0,
                              CA_PROP_MEDIA_NAME, sound_name,
                              CA_PROP_MEDIA_FILENAME, path,
@@ -148,12 +138,7 @@ ar_sound_init (GdkScreen *screen)
                       gdk_display_get_name (gdk_screen_get_display (screen)),
                       gdk_screen_get_number (screen));
 
-#ifdef HAVE_CANBERRA_GTK_MULTIHEAD_SAFE
   context = ca_gtk_context_get_for_screen (screen);
-#else
-  context = ca_gtk_context_get ();
-#endif /* HAVE_CANBERRA_GTK_MULTIHEAD_SAFE */
-
   if (!context)
     return;
 
