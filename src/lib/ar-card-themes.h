@@ -57,8 +57,6 @@ ArCardTheme *ar_card_themes_get_theme_by_name (ArCardThemes *theme_manager,
 
 ArCardTheme *ar_card_themes_get_theme_any (ArCardThemes *theme_manager);
 
-gboolean ar_card_themes_can_install_themes (ArCardThemes *theme_manager);
-
 void ar_card_themes_install_themes (ArCardThemes *theme_manager,
                                        GtkWindow *parent_window,
                                        guint user_time);

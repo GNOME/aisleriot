@@ -59,16 +59,11 @@ ar_help_display_full (GtkWidget *window,
 
 #if defined(WITH_HELP_METHOD_GHELP)
   if (section != NULL) {
-#if GLIB_CHECK_VERSION (2, 16, 0)
     char *escaped_section;
 
     escaped_section = g_uri_escape_string  (section, NULL, TRUE);
     help_uri = g_strdup_printf ("ghelp:%s?%s", doc_module, escaped_section);
     g_free (escaped_section);
-#else
-    /* Not ideal, but the best we can do */
-    help_uri = g_strdup_printf ("ghelp:%s?%s", doc_module, section);
-#endif /* GLIB >= 2.16.0 */
   } else {
     help_uri = g_strdup_printf ("ghelp:%s", doc_module);
   }

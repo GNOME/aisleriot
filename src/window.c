@@ -2733,7 +2733,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
 #ifndef HAVE_HILDON
   action = gtk_action_group_get_action (priv->action_group, "InstallThemes");
-  gtk_action_set_visible (action, ar_card_themes_can_install_themes (priv->theme_manager));
 #endif /* HAVE_HILDON */
 
   set_fullscreen_actions (window, FALSE);

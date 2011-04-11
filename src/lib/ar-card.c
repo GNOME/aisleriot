@@ -176,7 +176,6 @@ ar_card_get_name_by_id (gint card_id)
 const char *
 ar_card_get_localised_rank_symbol (int rank)
 {
-#if GLIB_CHECK_VERSION (2, 18, 0)
   static const char *rank_texts[] = {
     /* Translators: this is the symbol that's on a Joker card */
     NC_("card symbol", "JOKER"),
@@ -213,14 +212,6 @@ ar_card_get_localised_rank_symbol (int rank)
   g_return_val_if_fail (rank >= AR_CARD_JOKER && rank <= AR_CARD_ACE_HIGH, NULL);
 
   return g_dpgettext2 (GETTEXT_PACKAGE, "card symbol", rank_texts[rank]);
-
-#else
-  static const char rank_texts[][6] = { "JOKER", "A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "J", "Q", "K", "A" };
-
-  g_return_val_if_fail (rank >= AR_CARD_JOKER && rank <= AR_CARD_ACE_HIGH, NULL);
-
-  return rank_texts[rank];
-#endif /* GLIB >= 2.18.0 */
 }
 
 guint

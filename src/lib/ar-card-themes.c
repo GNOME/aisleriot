@@ -24,10 +24,7 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
-
-#if GLIB_CHECK_VERSION (2, 25, 7)
 #include <gio/gio.h>
-#endif
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -372,8 +369,6 @@ themes_foreach_any (gpointer key,
   data->theme = ar_card_themes_get_theme (data->theme_manager, theme_info);
 }
 
-#if GLIB_CHECK_VERSION (2, 25, 7)
-
 static void
 theme_install_reply_cb (GDBusConnection  *connection,
                         GAsyncResult     *result,
@@ -398,8 +393,6 @@ theme_install_reply_cb (GDBusConnection  *connection,
   g_variant_unref (variant);
   g_object_unref (theme_manager);
 }
-
-#endif /* GLIB >= 2.25.7 */
 
 /* Class implementation */
 
@@ -644,23 +637,6 @@ ar_card_themes_get_themes (ArCardThemes *theme_manager)
   return g_list_sort (list, (GCompareFunc) _ar_card_theme_info_collate);
 }
 
-
-/**
- * ar_card_themes_can_install_themes:
- * @theme_manager:
- *
- * Returns: whether the new theme installer is supported
- */
-gboolean
-ar_card_themes_can_install_themes (ArCardThemes *theme_manager)
-{
-#if GLIB_CHECK_VERSION (2, 25, 7)
-  return TRUE;
-#else
-  return FALSE;
-#endif
-}
-
 /**
  * ar_card_themes_install_themes:
  * @theme_manager:
@@ -674,7 +650,6 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
                                   GtkWindow *parent_window,
                                   guint user_time)
 {
-#if GLIB_CHECK_VERSION (2, 25, 7)
   static const char *formats[] = {
 #ifdef ENABLE_CARD_THEME_FORMAT_SVG
     "ThemesSVG",
@@ -767,5 +742,4 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
                           NULL,
                           (GAsyncReadyCallback) theme_install_reply_cb,
                           g_object_ref (theme_manager));
-#endif /* GLIB >= 2.25.7 */
 }

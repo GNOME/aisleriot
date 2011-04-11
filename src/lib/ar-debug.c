@@ -49,12 +49,6 @@ ar_debug_init (void)
 
   env = g_getenv ("AR_DEBUG");
 
-#if !GLIB_CHECK_VERSION (2, 16, 0)
-  /* g_parse_debug_string is only NULL-safe since 2.16 */
-  if (env == NULL)
-    return;
-#endif
-
   ar_debug_flags = g_parse_debug_string (env, keys, G_N_ELEMENTS (keys));
 #endif /* GNOME_ENABLE_DEBUG */
 }
