@@ -234,7 +234,6 @@ enable_card_theme_format_fixed=no
 enable_card_theme_format_sliced=no
 enable_card_theme_format_pysol=no
 need_rsvg=no
-require_cairo_1_10=no
 
 IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
 for format in $with_card_theme_formats; do
@@ -257,7 +256,6 @@ if test "$enable_card_theme_format_svg" = "yes"; then
 fi
 if test "$enable_card_theme_format_kde" = "yes"; then
   AC_DEFINE([ENABLE_CARD_THEME_FORMAT_KDE],[1],[Define to enable KDE card theme format support])
-  require_cairo_1_10=yes
   need_rsvg=yes
 fi
 if test "$enable_card_theme_format_fixed" = "yes"; then
@@ -432,11 +430,7 @@ have_rsvg=no
 if test "$need_rsvg" = "yes"; then
   have_rsvg=yes
 
-  if test "$require_cairo_1_10" = "yes"; then
-    CAIRO_REQUIRED=1.10.0
-  else
-    CAIRO_REQUIRED=1.0
-  fi
+  CAIRO_REQUIRED=1.10.0
 
   # Errors out if rsvg is not found
   PKG_CHECK_MODULES([RSVG],[
