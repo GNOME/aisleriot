@@ -73,10 +73,8 @@ typedef struct _ArCardTheme      ArCardTheme;
 
 GType ar_card_theme_get_type (void);
 
-#if GTK_CHECK_VERSION (2, 10, 0)
 void ar_card_theme_set_font_options (ArCardTheme *theme,
                                         const cairo_font_options_t *font_options);
-#endif
 
 gboolean ar_card_theme_set_theme (ArCardTheme *theme,
                                      ArCardThemeInfo *info);
@@ -96,11 +94,9 @@ double ar_card_theme_get_aspect (ArCardTheme * theme);
 GdkPixbuf *ar_card_theme_get_card_pixbuf (ArCardTheme * theme,
                                           int cardid);
 
-#if GTK_CHECK_VERSION (2, 10,0)
 void ar_card_theme_paint_card (ArCardTheme *theme,
                                 cairo_t *cr,
                                 int cardid);
-#endif
 
 G_END_DECLS
 

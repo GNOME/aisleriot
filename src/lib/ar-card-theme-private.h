@@ -84,13 +84,11 @@ struct _ArCardThemeClass {
   GdkPixbuf*  (* get_card_pixbuf)   (ArCardTheme *theme,
                                      int card_id);
 
-#if GTK_CHECK_VERSION (2, 10, 0)
   void        (* paint_card)        (ArCardTheme *theme,
                                      cairo_t *cr,
                                      int card_id);
   void        (* set_font_options)  (ArCardTheme *theme,
                                      const cairo_font_options_t *font_options);
-#endif
 };
 
 struct _ArCardTheme {

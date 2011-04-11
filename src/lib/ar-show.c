@@ -75,39 +75,7 @@ ar_show_uri (GdkScreen *screen,
   return TRUE;
 #else /* !G_OS_WIN32 */
 
-#if GTK_CHECK_VERSION (2, 14, 0)
   return gtk_show_uri (screen, uri, timestamp, error);
-#else /* GTK+ < 2.14 */
-  char *argv[3] = { (char *) "xdg-open", (char *) uri, NULL };
- 
-  if (gdk_spawn_on_screen (screen,
-                           NULL /* working directory */,
-                           argv,
-                           NULL /* environment */,
-                           G_SPAWN_SEARCH_PATH,
-                           NULL, NULL,
-                           NULL,
-                           error))
-    return TRUE;
-
-  g_clear_error (error);
-
-  /* Try falling back to gnome-open */
-  argv[0] = (char *) "gnome-open";
-  if (gdk_spawn_on_screen (screen,
-                           NULL /* working directory */,
-                           argv,
-                           NULL /* environment */,
-                           G_SPAWN_SEARCH_PATH,
-                           NULL, NULL,
-                           NULL,
-                           error))
-    return TRUE;
-
-  g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_FAILED,
-               "%s", "Failed to show help");
-  return FALSE;
-#endif /* GTK+ >= 2.14 */
 #endif /* G_OS_WIN32 */
 #endif /* HAVE_MAEMO */
 }

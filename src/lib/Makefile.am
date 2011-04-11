@@ -20,6 +20,8 @@ libaisleriot_la_SOURCES = \
 	ar-conf.h \
 	ar-debug.c \
 	ar-debug.h \
+	ar-gsettings.c \
+	ar-gsettings.h \
 	ar-glib-compat.h \
 	ar-gtk-compat.h \
 	ar-help.c \
@@ -44,20 +46,6 @@ libaisleriot_la_SOURCES += \
 	ar-preimage.c \
 	ar-preimage.h \
 	ar-preimage-private.h \
-	$(NULL)
-endif
-
-if HAVE_GIO_2_26
-libaisleriot_la_SOURCES += \
-	ar-gsettings.c \
-	ar-gsettings.h \
-	$(NULL)
-endif
-
-if HAVE_GTK_2
-libaisleriot_la_SOURCES += \
-	ar-card-images.c \
-	ar-card-images.h \
 	$(NULL)
 endif
 
@@ -114,15 +102,12 @@ libaisleriot_la_CPPFLAGS = \
 
 libaisleriot_la_CFLAGS = \
 	$(GTK_CFLAGS) \
+	$(GIO_CFLAGS) \
 	$(AM_CFLAGS)
 
 libaisleriot_la_LIBADD = \
-	$(GTK_LIBS)
-
-if HAVE_GIO_2_26
-libaisleriot_la_CFLAGS += $(GIO_CFLAGS)
-libaisleriot_la_LIBADD += $(GIO_LIBS)
-endif # HAVE_GIO_2_26
+	$(GTK_LIBS) \
+	$(GIO_LIBS)
 
 if HAVE_RSVG
 libaisleriot_la_CFLAGS += $(RSVG_CFLAGS)

@@ -23,13 +23,6 @@
 
 #include <gtk/gtk.h>
 
-#if GTK_CHECK_VERSION (2, 90, 7)
-#define GDK_KEY(symbol) GDK_KEY_##symbol
-#else
-#include <gdk/gdkkeysyms.h>
-#define GDK_KEY(symbol) GDK_##symbol
-#endif
-
 #ifdef HAVE_GNOME
 #include <gconf/gconf-client.h>
 #else
@@ -37,8 +30,6 @@
 #endif
 
 #include "ar-debug.h"
-#include "ar-glib-compat.h"
-#include "ar-gtk-compat.h"
 #include "ar-marshal.h"
 
 #include "ar-conf.h"
@@ -1106,14 +1097,10 @@ ar_conf_get_double (const char *group, const char *key,
   g_free (key_name);
 
   return value;
-#elif GLIB_CHECK_VERSION (2, 12, 0)
+#else
   ArConfPrivate *priv = instance->priv;
 
   return g_key_file_get_double (priv->key_file, group ? group : priv->main_group, key, error);
-#else
-#warning ar_conf_get_double not implemented on glib < 2.12!
-  /* Not supported */
-  return 0.0;
 #endif /* HAVE_GNOME */
 }
 
@@ -1135,13 +1122,11 @@ ar_conf_set_double (const char *group, const char *key, double value)
   key_name = get_gconf_key_name (group, key);
   gconf_client_set_float (priv->gconf_client, key_name, value, NULL);
   g_free (key_name);
-#elif GLIB_CHECK_VERSION (2, 12, 0)
+#else
   ArConfPrivate *priv = instance->priv;
 
   g_key_file_set_double (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#else
-#warning ar_conf_set_double not implemented on glib < 2.12!
 #endif /* HAVE_GNOME */
 }
 
@@ -1165,7 +1150,7 @@ ar_conf_get_keyval (const char *group, const char *key,
 #ifdef HAVE_GNOME
   GConfValueType type;
   char *key_name, *value;
-  guint keyval = GDK_KEY (VoidSymbol);
+  guint keyval = GDK_KEY_VoidSymbol;
 
   key_name = get_gconf_key_name (group, key);
   type = get_gconf_value_type_from_schema (key_name);
@@ -1174,7 +1159,7 @@ ar_conf_get_keyval (const char *group, const char *key,
   if (type == GCONF_VALUE_STRING) {
     value = gconf_client_get_string (priv->gconf_client, key_name, error);
     if (!value) {
-      keyval = GDK_KEY (VoidSymbol);
+      keyval = GDK_KEY_VoidSymbol;
     } else {
       keyval = gdk_keyval_from_name (value);
       g_free (value);
@@ -1182,7 +1167,7 @@ ar_conf_get_keyval (const char *group, const char *key,
   } else if (type == GCONF_VALUE_INT) {
     keyval = gconf_client_get_int (priv->gconf_client, key_name, error);
     if (*error || keyval == 0)
-      keyval = GDK_KEY (VoidSymbol);
+      keyval = GDK_KEY_VoidSymbol;
   } else {
     g_warning ("Unknown value type for key %s\n", key_name);
   }
@@ -1192,7 +1177,7 @@ ar_conf_get_keyval (const char *group, const char *key,
   return keyval;
 #else
   char *value;
-  guint keyval = GDK_KEY (VoidSymbol);
+  guint keyval = GDK_KEY_VoidSymbol;
 
   value = g_key_file_get_string (priv->key_file, group, key, error);
   if (value) {
@@ -1227,7 +1212,7 @@ ar_conf_get_keyval_with_default (const char *group, const char *key,
     g_error_free (error);
     value = default_keyval;
   }
-  if (value == GDK_KEY (VoidSymbol)) {
+  if (value == GDK_KEY_VoidSymbol) {
     value = default_keyval;
   }
 
@@ -1251,7 +1236,7 @@ ar_conf_set_keyval (const char *group, const char *key, guint value)
   GConfValueType type;
   char *key_name, *name;
 
-  if (value == GDK_KEY (VoidSymbol))
+  if (value == GDK_KEY_VoidSymbol)
     return;
 
   key_name = get_gconf_key_name (group, key);
@@ -1271,7 +1256,7 @@ ar_conf_set_keyval (const char *group, const char *key, guint value)
 #else
   char *name;
 
-  if (value == GDK_KEY (VoidSymbol))
+  if (value == GDK_KEY_VoidSymbol)
     return;
   
   name = gdk_keyval_name (value);

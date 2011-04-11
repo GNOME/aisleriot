@@ -112,8 +112,6 @@ ar_card_theme_class_get_theme_info (ArCardThemeClass *klass,
   return NULL;
 }
 
-#if GTK_CHECK_VERSION (2, 10,0)
-
 /* This routine is copied from librsvg:
    Copyright © 2005 Dom Lachowicz <cinamod@hotmail.com>
    Copyright © 2005 Caleb Moore <c.moore@student.unsw.edu.au>
@@ -223,8 +221,6 @@ ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
                                    (GdkPixbufDestroyNotify) g_free, data);
 }
 
-#endif /* GTK 2.10 */
-
 static void
 ar_card_theme_class_init (ArCardThemeClass * klass)
 {
@@ -235,11 +231,8 @@ ar_card_theme_class_init (ArCardThemeClass * klass)
   gobject_class->finalize = ar_card_theme_finalize;
 
   klass->get_theme_info = ar_card_theme_class_get_theme_info;
-
-#if GTK_CHECK_VERSION (2, 10,0)
   klass->paint_card = ar_card_theme_class_real_paint_card;
   klass->get_card_pixbuf = ar_card_theme_class_real_get_card_pixbuf;
-#endif
 
   g_object_class_install_property
     (gobject_class,
@@ -332,8 +325,6 @@ _ar_card_theme_class_foreach_env (ArCardThemeClass *klass,
 
 /* public API */
 
-#if GTK_CHECK_VERSION (2, 10, 0)
-
 /**
  * ar_card_theme_set_font_options:
  * @theme:
@@ -352,9 +343,6 @@ ar_card_theme_set_font_options (ArCardTheme *theme,
 
   theme->klass->set_font_options (theme, font_options);
 }
-
-#endif /* GTK 2.10.0 */
-
 
 /**
  * ar_card_theme_get_theme_info:
@@ -451,7 +439,6 @@ ar_card_theme_get_card_pixbuf (ArCardTheme *theme,
   return pixbuf;
 }
 
-#if GTK_CHECK_VERSION (2, 10,0)
 /**
  * ar_card_theme_paint_card:
  * @theme:
@@ -473,7 +460,6 @@ ar_card_theme_paint_card (ArCardTheme *theme,
 
   ar_profileend ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
 }
-#endif /* GTK 2.10 */
 
 /* ArCardThemeInfo impl */
 
@@ -542,12 +528,7 @@ _ar_card_theme_info_new (GType type,
 {
   ArCardThemeInfo *info;
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
   info = g_slice_new (ArCardThemeInfo);
-#else
-  info = g_new (ArCardThemeInfo, 1);
-#endif
-
   info->ref_count = 1;
   info->type = type;
   info->path = g_strdup (path);
@@ -597,25 +578,9 @@ _ar_card_theme_info_collate (const ArCardThemeInfo *a,
 
 /* public API */
 
-#if defined(G_DEFINE_BOXED_TYPE)
 G_DEFINE_BOXED_TYPE (ArCardThemeInfo, ar_card_theme_info,
                      ar_card_theme_info_ref,
                      ar_card_theme_info_unref);
-#else
-GType
-ar_card_theme_info_get_type (void)
-{
-  static GType type = 0;
-
-  if (G_UNLIKELY (type == 0)) {
-    type = g_boxed_type_register_static ("ArCardThemeInfo",
-                                         (GBoxedCopyFunc) ar_card_theme_info_ref,
-                                         (GBoxedFreeFunc) ar_card_theme_info_unref);
-  }
-
-  return type;
-}
-#endif /* defined(G_DEFINE_BOXED_TYPE) */
 
 /**
  * ar_card_theme_info_ref:
@@ -656,11 +621,7 @@ ar_card_theme_info_unref (ArCardThemeInfo *info)
   if (info->data && info->destroy_notify)
     info->destroy_notify (info->data);
 
-#if GLIB_CHECK_VERSION (2, 10, 0)
   g_slice_free (ArCardThemeInfo, info);
-#else
-  g_free (info);
-#endif
 }
 
 /**

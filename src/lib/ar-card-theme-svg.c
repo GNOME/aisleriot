@@ -99,7 +99,6 @@ ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
   return subpixbuf;
 }
 
-#if GTK_CHECK_VERSION (2, 10,0)
 static void
 ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
                               cairo_t *cr,
@@ -147,7 +146,6 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
                                    offsetx, offsety,
                                    zoomx, zoomy);
 }
-#endif /* GTK 2.10 */
 
 static void
 ar_card_theme_svg_init (ArCardThemeSVG * cardtheme)
@@ -206,9 +204,7 @@ ar_card_theme_svg_class_init (ArCardThemeSVGClass * klass)
   theme_class->foreach_theme_dir = ar_card_theme_svg_class_foreach_theme_dir;
 
   theme_class->get_card_pixbuf = ar_card_theme_svg_get_card_pixbuf;
-#if GTK_CHECK_VERSION (2, 10, 0)
   theme_class->paint_card = ar_card_theme_svg_paint_card;
-#endif
 
   preimage_theme_class->needs_scalable_cards = TRUE;
 }

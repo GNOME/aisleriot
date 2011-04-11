@@ -22,7 +22,6 @@
 
 #include <gtk/gtk.h>
 
-#include "ar-gtk-compat.h"
 #include "ar-debug.h"
 
 #define I_(string) g_intern_static_string (string)
