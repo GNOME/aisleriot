@@ -2348,15 +2348,6 @@ aisleriot_window_init (AisleriotWindow *window)
   g_signal_connect (action, "activate",
                     G_CALLBACK (view_menu_activate_cb), window);
 
-  /* FIXMEchpe: this isn't right. We do want to hide the menu if there's no
-   * entry in it after the list is updated...
-   */
-#if 0
-  /* So the menu doesn't change size when the theme submenu is installed */
-  action = gtk_action_group_get_action (priv->action_group, "ThemeMenu");
-  g_object_set (action, "hide-if-empty", GINT_TO_POINTER (FALSE), NULL);
-#endif
-
   /* It's possible that the themes list has already been loaded (e.g.
    * if the theme loading above involved the fallback); in that case
    * we need to update the menu right now.
