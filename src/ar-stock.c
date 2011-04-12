@@ -174,11 +174,7 @@ ar_stock_init (void)
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
     { AR_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { AR_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
-    { AR_STOCK_RESUME_GAME,      GTK_STOCK_MEDIA_PLAY },
 #endif
-    { AR_STOCK_NETWORK_GAME,     GTK_STOCK_NETWORK },
-    { AR_STOCK_NETWORK_LEAVE,    GTK_STOCK_STOP },
-    { AR_STOCK_PLAYER_LIST,      GTK_STOCK_INFO },
 
     { AR_STOCK_PAUSE_GAME,       GTK_STOCK_MEDIA_PAUSE },
   };
@@ -187,15 +183,11 @@ ar_stock_init (void)
   const char *stock_icon_aliases_bidi[][3] = {
     { AR_STOCK_REDO_MOVE, GTK_STOCK_REDO "-ltr", GTK_STOCK_REDO "-rtl" },
     { AR_STOCK_UNDO_MOVE, GTK_STOCK_UNDO "-ltr", GTK_STOCK_UNDO "-rtl" },
-    { AR_STOCK_RESUME_GAME, GTK_STOCK_MEDIA_PLAY "-ltr", GTK_STOCK_MEDIA_PLAY "-rtl" },
   };
 #endif
 
   /* Private icon names */
   const char *private_icon_names[][2] = {
-    { AR_STOCK_TELEPORT, "teleport" },
-    { AR_STOCK_RTELEPORT, "teleport-random" },
-    { AR_STOCK_SCORES, "scores" },
     { AR_STOCK_DEAL_CARDS, "cards-deal" }
   };
 
@@ -215,13 +207,7 @@ ar_stock_init (void)
     { AR_STOCK_UNDO_MOVE,        N_("_Undo Move"),         GDK_CONTROL_MASK, 'z', NULL },
     { AR_STOCK_DEAL_CARDS,       N_("_Deal"),              GDK_CONTROL_MASK, 'd', NULL },
     { AR_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_KEY_F11, NULL },
-    { AR_STOCK_NETWORK_GAME,     N_("Network _Game"),      GDK_CONTROL_MASK, 'g', NULL },
-    { AR_STOCK_NETWORK_LEAVE,    N_("L_eave Game"),        GDK_CONTROL_MASK, 'e', NULL },
-    { AR_STOCK_PLAYER_LIST,      N_("Player _List"),       GDK_CONTROL_MASK, 'l', NULL },
     { AR_STOCK_PAUSE_GAME,       N_("_Pause"),             0, GDK_KEY_Pause, NULL },
-    { AR_STOCK_RESUME_GAME,      N_("Res_ume"),            0, GDK_KEY_Pause, NULL },
-    { AR_STOCK_SCORES,           N_("_Scores"),            0, 0, NULL },
-    { AR_STOCK_END_GAME,         N_("_End Game"),          0, 0, NULL },
   };
 
   guint i;

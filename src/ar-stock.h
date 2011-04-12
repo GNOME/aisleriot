@@ -28,28 +28,20 @@
 G_BEGIN_DECLS
 
 /* These use stock gtk icons */
-#define AR_STOCK_SCORES           "games-scores"
 #define AR_STOCK_PAUSE_GAME       "games-pause-game"
-#define AR_STOCK_RESUME_GAME      "games-resume-game"
 
 #define AR_STOCK_FULLSCREEN       "games-fullscreen"
 #define AR_STOCK_LEAVE_FULLSCREEN "games-leave-fullscreen"
 #define AR_STOCK_NEW_GAME         "games-new-game"
 #define AR_STOCK_START_NEW_GAME   "games-start-new-game"
-#define AR_STOCK_NETWORK_GAME     "games-network-game"
-#define AR_STOCK_NETWORK_LEAVE    "games-network-leave"
-#define AR_STOCK_PLAYER_LIST      "games-player-list"
 #define AR_STOCK_RESTART_GAME     "games-restart-game"
 #define AR_STOCK_UNDO_MOVE        "games-undo-move"
 #define AR_STOCK_REDO_MOVE        "games-redo-move"
 #define AR_STOCK_HINT             "games-hint"
-#define AR_STOCK_END_GAME         "games-end-game"
 #define AR_STOCK_CONTENTS         "games-contents"
 #define AR_STOCK_RESET            "games-reset"
 
 /* These belong to us */
-#define AR_STOCK_TELEPORT         "games-teleport"
-#define AR_STOCK_RTELEPORT        "games-teleport-random"
 #define AR_STOCK_DEAL_CARDS       "games-cards-deal"
 
 void   ar_stock_init (void);
