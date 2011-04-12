@@ -31,52 +31,6 @@
 
 #include "ar-stock.h"
 
-typedef struct {
-  const char *stock_id;
-  const char *tooltip;
-} GamesStockItemTooltip;
-
-static const char *
-ar_stock_get_tooltip_from_stockid (const char* stockid)
-{
-  static const GamesStockItemTooltip stock_item_tooltip[] = {
-    { AR_STOCK_CONTENTS,         N_("View help for this game") },
-    { AR_STOCK_END_GAME,         N_("End the current game") },
-    { AR_STOCK_FULLSCREEN,       N_("Toggle fullscreen mode") },
-    { AR_STOCK_HINT,             N_("Get a hint for your next move") },
-    { AR_STOCK_LEAVE_FULLSCREEN, N_("Leave fullscreen mode") },
-    { AR_STOCK_NETWORK_GAME,     N_("Start a new multiplayer network game") },
-    { AR_STOCK_NETWORK_LEAVE,    N_("End the current network game and return to network server") },
-    { AR_STOCK_NEW_GAME,         N_("Start a new game") },
-    { AR_STOCK_PAUSE_GAME,       N_("Pause the game") },
-    { AR_STOCK_PLAYER_LIST,      N_("Show a list of players in the network game") },
-    { AR_STOCK_REDO_MOVE,        N_("Redo the undone move") },
-    { AR_STOCK_RESTART_GAME,     N_("Restart the game") },
-    { AR_STOCK_RESUME_GAME,      N_("Resume the paused game") },
-    { AR_STOCK_SCORES,           N_("View the scores") },
-    { AR_STOCK_UNDO_MOVE,        N_("Undo the last move") },
-    { GTK_STOCK_ABOUT,              N_("About this game") },
-    { GTK_STOCK_CLOSE,              N_("Close this window") },
-    { GTK_STOCK_PREFERENCES,        N_("Configure the game") },
-    { GTK_STOCK_QUIT,               N_("Quit this game") },
-  };
-
-  guint i;
-  const char *tooltip = NULL;
-
-  if (!stockid)
-    return NULL;
-
-  for (i = 0; i < G_N_ELEMENTS (stock_item_tooltip); i++) {
-    if (strcmp (stock_item_tooltip[i].stock_id, stockid) == 0) {
-      tooltip = stock_item_tooltip[i].tooltip;
-      break;
-    }
-  }
-
-  return tooltip ? _(tooltip) : NULL;
-}
-
 static void
 menu_item_select_cb (GtkWidget * widget, GtkStatusbar * statusbar)
 {
@@ -94,19 +48,6 @@ menu_item_select_cb (GtkWidget * widget, GtkStatusbar * statusbar)
   if (tooltip) {
     gtk_statusbar_push (statusbar, context_id, tooltip);
     g_free (tooltip);
-  } else {
-    const gchar *stock_tip = NULL;
-    gchar *stockid;
-
-    g_object_get (action, "stock-id", &stockid, NULL);
-    if (stockid != NULL) {
-      stock_tip = ar_stock_get_tooltip_from_stockid (stockid);
-      g_free (stockid);
-    }
-
-    if (stock_tip != NULL) {
-      gtk_statusbar_push (statusbar, context_id, stock_tip);
-    }
   }
 }
 
