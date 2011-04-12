@@ -24,10 +24,6 @@
 
 #include <libguile.h>
 
-#ifndef HAVE_GUILE_1_8
-#include "guile16-compat.h"
-#endif
-
 #include <glib.h>
 #include <glib/gi18n.h>
 
@@ -573,11 +569,7 @@ cscmi_add_slot (SCM slot_data)
                                 SCM_EOL));
   }
 
-#ifdef HAVE_GUILE_1_8
 #define EQUALS_SYMBOL(string,object) (scm_is_true (scm_equal_p (scm_from_locale_symbol (string), object)))
-#else
-#define EQUALS_SYMBOL(string,object) (!strcmp (string, SCM_CHARS (object)))
-#endif
 
   slot_placement = SCM_CADDR (slot_data);
   if (EQUALS_SYMBOL ("expanded", SCM_CAR (slot_placement))) {

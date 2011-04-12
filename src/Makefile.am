@@ -48,10 +48,6 @@ sol_SOURCES = \
 	window.h	\
 	$(NULL)
 
-if !HAVE_GUILE_1_8
-sol_SOURCES += guile16-compat.h
-endif
-
 if ENABLE_DEBUG_UI
 sol_SOURCES += \
 	prop-editor.c	\
@@ -145,10 +141,6 @@ sol_clutter_SOURCES = \
 	window.h	\
 	$(NULL)
 
-if !HAVE_GUILE_1_8
-sol_clutter_SOURCES += guile16-compat.h
-endif
-		
 if ENABLE_DEBUG_UI
 sol_clutter_SOURCES += \
 	prop-editor.c	\

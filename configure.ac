@@ -508,59 +508,13 @@ AM_GLIB_GNU_GETTEXT
 
 IT_PROG_INTLTOOL([0.35.0])
 
-# ********************
-# Game specific checks
-# ********************
+# *****
+# Guile
+# *****
 
-AC_ARG_VAR([GUILE],[path to guile])
-if test "$ac_cv_env_GUILE_set" != "set"; then
-  AC_PATH_TOOL([GUILE],[guile])
-fi
+GUILE_1_8_REQUIRED=1.8.0
 
-if test -z "$GUILE" ; then
-  AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
-fi
-
-AC_ARG_VAR([GUILE_CONFIG],[path to guile-config])
-if test "$ac_cv_env_GUILE_CONFIG_set" != "set"; then
-  AC_PATH_TOOL([GUILE_CONFIG],[guile-config])
-fi
-if test -z "$GUILE_CONFIG"; then
-  AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])
-fi
-
-GUILE_CFLAGS=`$GUILE_CONFIG compile`
-GUILE_LIBS=`$GUILE_CONFIG link`
-AC_SUBST([GUILE_CFLAGS])
-AC_SUBST([GUILE_LIBS])
-
-# Checking for the header file is basically the only way to find
-# out if the _development_ files are present. guile-config returns
-# a value regardless of what is actually installed. The problem
-# with this is if the header ever gets moved to a non-default location.
-gg_save_CFLAGS="$CFLAGS"
-CFLAGS="$GUILE_CFLAGS $CFLAGS"
-AC_CHECK_HEADER([libguile.h],[have_guile=yes],
-  [AC_MSG_ERROR([guile not found; install guile development headers or use --enable-omitgames=aisleriot])])
-CFLAGS="$gg_save_CFLAGS"
-
-# On 64-bit machines guile < 1.6.5 causes a crash in aisleriot
-if uname -m | grep -q 64 > /dev/null; then
-  GUILE_TARGET="1.6.5"
-else
-  GUILE_TARGET="1.6.0"
-fi
-if test `$GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' $GUILE_TARGET` != yes ; then
-  AC_MSG_ERROR([Your version of guile is too old, please install a recent guile package (>= $GUILE_TARGET)])
-fi
-
-have_guile_1_8=$($GUILE -c '(if (string<? (version) (cadr (command-line))) (display "no") (display "yes")) (newline)' 1.8.0)
-
-if test "$have_guile_1_8" = "yes"; then
-  AC_DEFINE([HAVE_GUILE_1_8],[1],[Define if guile version is 1.8.0 or above])
-fi
-
-AM_CONDITIONAL([HAVE_GUILE_1_8],[test "$have_guile_1_8" = "yes"])
+PKG_CHECK_MODULES([GUILE],[guile-1.8 >= $GUILE_1_8_REQUIRED])
 
 # *************
 # Documentation
