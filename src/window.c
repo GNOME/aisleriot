@@ -45,10 +45,7 @@
 #include "ar-runtime.h"
 #include "ar-sound.h"
 #include "ar-string-utils.h"
-
-#if GLIB_CHECK_VERSION (2, 26, 0)
 #include "ar-gsettings.h"
-#endif
 
 #ifdef HAVE_CLUTTER
 #include "ar-clutter-embed.h"
@@ -91,10 +88,6 @@
 
 /* The maximum number of recent games saved */
 #define MAX_RECENT 5
-
-#if !GLIB_CHECK_VERSION (2, 16, 0)
-#define C_(context, string) (_(string))
-#endif
 
 /* On maemo5, there's no hardware key to exit the fullscreen mode. So we show
  * an overlay button to restore normal mode, if the toolbar is hidden too.
@@ -451,11 +444,7 @@ help_about_cb (GtkAction *action,
   licence = ar_get_licence (priv->freecell_mode ? _("FreeCell Solitaire") : ("AisleRiot"));
 
   gtk_show_about_dialog (GTK_WINDOW (window),
-#if GTK_CHECK_VERSION (2, 11, 0)
                          "program-name",
-#else
-                         "name",
-#endif /* GTK 2.11.0 */
                             priv->freecell_mode ? _("FreeCell Solitaire")
                                                 : _("AisleRiot"),
                          "version", VERSION,
@@ -482,9 +471,7 @@ help_about_cb (GtkAction *action,
                                                                : "gnome-aisleriot",
                          "website", "http://www.gnome.org/projects/gnome-games/",
                          "website-label", _("GNOME Games web site"),
-#if GTK_CHECK_VERSION (2, 8, 0)
                          "wrap-license", TRUE,
-#endif
                         NULL);
   g_free (licence);
 }
@@ -834,11 +821,7 @@ debug_choose_seed_cb (GtkAction *action,
   g_snprintf (str, sizeof (str), "%u", aisleriot_game_get_seed (priv->game));
   entry = gtk_entry_new ();
   gtk_entry_set_text (GTK_ENTRY (entry), str);
-#if GTK_CHECK_VERSION (2, 90, 5)
   gtk_box_pack_end (GTK_BOX (gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog))), entry, FALSE, FALSE, 0);
-#else
-  gtk_box_pack_end (GTK_BOX (GTK_MESSAGE_DIALOG (dialog)->label->parent), entry, FALSE, FALSE, 0);
-#endif
   gtk_widget_show (entry);
   g_object_set_data (G_OBJECT (dialog), "entry", entry);
   gtk_entry_set_activates_default (GTK_ENTRY (entry), TRUE);
@@ -1402,9 +1385,7 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
                                   ArCardTheme *theme /* adopting */)
 {
   AisleriotWindowPrivate *priv = window->priv;
-#if GTK_CHECK_VERSION (2, 10, 0)
   GtkWidget *widget = GTK_WIDGET (window);
-#endif
 
   if (theme == priv->theme)
     return;
@@ -1414,17 +1395,15 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
   }
   priv->theme = theme;
 
-#if GTK_CHECK_VERSION (2, 10, 0)
   if (gtk_widget_has_screen (widget)) {
     const cairo_font_options_t *font_options;
 
     font_options = gdk_screen_get_font_options (gtk_widget_get_screen (widget));
     ar_card_theme_set_font_options (theme, font_options);
   }
-#endif /* GTK+ 2.10.0 */
 
   ar_style_set_card_theme (priv->board_style, theme);
-}    
+}
 
 static void
 card_theme_changed_cb (GtkToggleAction *action,
@@ -1452,9 +1431,7 @@ card_theme_changed_cb (GtkToggleAction *action,
   if (!theme) {
     GSList *group, *l;
 
-#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
     gtk_widget_error_bell (GTK_WIDGET (window));
-#endif
 
     /* Set this action insensitive so we don't try again */
     gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
@@ -1851,23 +1828,13 @@ game_exception_response_cb (GtkWidget *dialog,
       "--appname", "aisleriot",
       "--pid", pidstr,
       "--include", (const char *) error_file,
-#if GLIB_CHECK_VERSION (2, 20, 0)
-      /* This option was added to bug-buddy 2.25.x (bug 540150). We use the
-       * 2.26 glib version as a proxy to detect this, since there's no good
-       * other way.
-       */
       "--unlink-tempfile",
-#endif
       NULL
     };
 
     g_snprintf (pidstr, sizeof (pidstr), "%d", getpid ());
 
-#if GTK_CHECK_VERSION (2, 91, 8)
     if (!g_spawn_async (
-#else
-    if (!gdk_spawn_on_screen (gtk_widget_get_screen (GTK_WIDGET (window)),
-#endif
                               NULL /* working dir */,
                               (char **) argv,
                               NULL /* envp */,
@@ -1936,7 +1903,7 @@ game_exception_cb (AisleriotGame *game,
   gtk_widget_show (dialog);
 }
 
-#if defined(HAVE_CLUTTER) || (defined(ENABLE_SOUND) && GTK_CHECK_VERSION (2, 14, 0))
+#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
 
 static void
 settings_changed_cb (GtkSettings *settings,
@@ -1962,14 +1929,14 @@ settings_changed_cb (GtkSettings *settings,
   }
 #endif /* HAVE_CLUTTER */
 
-#if defined(ENABLE_SOUND) && GTK_CHECK_VERSION (2, 14, 0)
+#if defined(ENABLE_SOUND)
   if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0) {
     g_object_get (settings, "gtk-enable-event-sounds", &enabled, NULL);
 
     action = gtk_action_group_get_action (priv->action_group, "Sound");
     gtk_action_set_visible (action, enabled);
   }
-#endif /* ENABLE_SOUND && GTK >= 2.14 */
+#endif /* ENABLE_SOUND */
 }
 
 static void
@@ -2001,13 +1968,13 @@ screen_changed_cb (GtkWidget *widget,
   g_signal_connect (settings, "notify::gtk-enable-animations",
                     G_CALLBACK (settings_changed_cb), window);
 #endif
-#if defined (ENABLE_SOUND) && GTK_CHECK_VERSION (2, 14, 0)
+#if defined (ENABLE_SOUND)
   g_signal_connect (settings, "notify::gtk-enable-event-sounds",
                     G_CALLBACK (settings_changed_cb), window);
 #endif
 }
 
-#endif /* HAVE_CLUTTER || ENABLE_SOUND && GTK+ >= 2.14.0 */
+#endif /* HAVE_CLUTTER || ENABLE_SOUND */
 
 /*
  * aisleriot_window_set_freecell_mode:
@@ -2071,9 +2038,7 @@ static void
 board_error_bell_cb (AisleriotBoard *board,
                      ArClutterEmbed *embed)
 {
-#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
   gtk_widget_error_bell (GTK_WIDGET (embed));
-#endif
 }
 
 static void
@@ -2095,8 +2060,6 @@ G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, HILDON_TYPE_WINDOW);
 #else
 G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_WINDOW);
 #endif
-
-#if GTK_CHECK_VERSION (2, 10, 0)
 
 static void
 aisleriot_window_style_set (GtkWidget *widget,
@@ -2120,8 +2083,6 @@ aisleriot_window_style_set (GtkWidget *widget,
   /* FIXMEchpe: clear the cached cards in the slots?? */
 }
 
-#endif /* GTK >= 2.10.0 */
-
 static gboolean
 aisleriot_window_state_event (GtkWidget *widget,
                               GdkEventWindowState *event)
@@ -2140,16 +2101,6 @@ aisleriot_window_state_event (GtkWidget *widget,
     set_fullscreen_actions (window, is_fullscreen);
 
     set_fullscreen_button_active (window);
-
-#ifndef HAVE_HILDON
-#if !GTK_CHECK_VERSION (2, 91, 0)
-#if GTK_CHECK_VERSION (2, 11, 0)
-    gtk_statusbar_set_has_resize_grip (priv->statusbar, !is_maximised && !is_fullscreen);
-#else
-    gtk_statusbar_set_has_resize_grip (priv->statusbar, FALSE);
-#endif
-#endif /* GTK < 3.0 */
-#endif /* !HAVE_HILDON */
   }
 
 #ifndef HAVE_HILDON
@@ -2593,41 +2544,10 @@ aisleriot_window_init (AisleriotWindow *window)
                     G_CALLBACK (board_status_message_cb), window);
 #endif
 
-#if GTK_CHECK_VERSION (2, 91, 0)
   gtk_window_set_has_resize_grip (GTK_WINDOW (window), TRUE);
-#else
-#if GTK_CHECK_VERSION (2, 11, 0)
-  gtk_statusbar_set_has_resize_grip (priv->statusbar, TRUE);
-#else
-  gtk_statusbar_set_has_resize_grip (priv->statusbar, FALSE);
-#endif
-#endif /* GTK 3.0 */
 
-#if GTK_CHECK_VERSION (2, 19, 1)
   statusbar_hbox = gtk_statusbar_get_message_area (statusbar);
   gtk_box_set_spacing (GTK_BOX (statusbar_hbox), 24);
-#else
-{
-  GtkWidget *statusbar_label;
-  GtkContainer *statusbar_frame;
-  GList *list;
-
-  /* Widget surgery: move the statusbar's label into a hbox
-   * which we put in the statusbar's frame instead.
-   */
-  statusbar_hbox = gtk_hbox_new (FALSE, 24);
-  list = gtk_container_get_children (GTK_CONTAINER (statusbar));
-  statusbar_frame = GTK_CONTAINER (list->data);
-  g_list_free (list);
-  statusbar_label = gtk_bin_get_child (GTK_BIN (statusbar_frame));
-  g_object_ref (statusbar_label);
-  gtk_container_remove (statusbar_frame, statusbar_label);
-  gtk_box_pack_start (GTK_BOX (statusbar_hbox), statusbar_label, TRUE, TRUE, 0);
-  g_object_unref (statusbar_label);
-  gtk_container_add (statusbar_frame, statusbar_hbox);
-  gtk_widget_show (statusbar_hbox);
-}
-#endif /* GTK+ >= 2.19.1 */
 
   /* Score */
   priv->score_box = gtk_hbox_new (12, FALSE);
@@ -2744,12 +2664,12 @@ aisleriot_window_init (AisleriotWindow *window)
 
 #endif /* HAVE_CLUTTER */
 
-#if defined(HAVE_CLUTTER) || (defined(ENABLE_SOUND) && GTK_CHECK_VERSION (2, 14, 0))
+#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
   /* Set the action visibility and listen for animation and sound mode changes */
   screen_changed_cb (GTK_WIDGET (window), NULL, window);
   g_signal_connect (window, "screen-changed",
                     G_CALLBACK (screen_changed_cb), window);
-#endif /* HAVE_CLUTTER || ENABLE_SOUND && GTK+ >= 2.14.0 */
+#endif /* HAVE_CLUTTER || ENABLE_SOUND */
 
   /* Now set up the widgets */
   main_vbox = gtk_vbox_new (FALSE, 0);
@@ -2801,11 +2721,7 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_window_set_default_size (GTK_WINDOW (window), MIN_WIDTH, MIN_HEIGHT);
 
   /* Restore window state */
-#if GLIB_CHECK_VERSION (2, 25, 15)
   ar_gsettings_bind_window_state (AR_SETTINGS_WINDOW_STATE_PATH, GTK_WINDOW (window));
-#else
-  ar_conf_add_window (GTK_WINDOW (window), NULL);
-#endif
 
   /* Initial focus is in the board */
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
@@ -2927,9 +2843,7 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
   gobject_class->set_property = aisleriot_window_set_property;
 
   widget_class->window_state_event = aisleriot_window_state_event;
-#if GTK_CHECK_VERSION (2, 10, 0)
   widget_class->style_set = aisleriot_window_style_set;
-#endif
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotWindowPrivate));
 

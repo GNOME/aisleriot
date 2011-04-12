@@ -248,9 +248,6 @@ ar_game_chooser_constructor (GType type,
   content_area = gtk_dialog_get_content_area (dialog);
   gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
-#if !GTK_CHECK_VERSION (2, 90, 7)
-  gtk_dialog_set_has_separator (dialog, FALSE);
-#endif
   gtk_dialog_add_buttons (dialog,
                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                           _("_Select"), GTK_RESPONSE_OK,
@@ -350,9 +347,6 @@ ar_game_chooser_set_property (GObject      *object,
   switch (property_id) {
     case PROP_WINDOW:
       priv->window = g_value_get_object (value);
-#if !GTK_CHECK_VERSION (2, 10, 0)
-      gtk_window_set_transient_for (GTK_WINDOW (chooser), GTK_WINDOW (priv->window));
-#endif
       break;
 
     default:
@@ -398,9 +392,7 @@ ar_game_chooser_new (AisleriotWindow *window)
 {
   return g_object_new (AR_TYPE_GAME_CHOOSER,
                        "type", GTK_WINDOW_TOPLEVEL,
-#if GTK_CHECK_VERSION (2, 10, 0)
                        "transient-for", window,
-#endif
                        "destroy-with-parent", TRUE,
                        "window", window,
                        NULL);

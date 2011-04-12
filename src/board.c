@@ -1767,7 +1767,6 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
 #ifdef FIXMEchpe
 {
     GtkDirectionType direction;
-#if GTK_CHECK_VERSION (2, 12, 0)
 
     if (count > 0) {
       direction = GTK_DIR_RIGHT;
@@ -1778,7 +1777,6 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
     if (!gtk_widget_keynav_failed (widget, direction)) {
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
-#endif /* GTK 2.12. 0 */
 }
 #endif // FIXMEchpe
 
@@ -1849,7 +1847,6 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
 
   if (new_focus_slot_index < 0 || new_focus_slot_index == n_slots) {
 #ifdef FIXMEchpe
-#if GTK_CHECK_VERSION (2, 12, 0)
     GtkWidget *widget = GTK_WIDGET (board);
     GtkDirectionType direction;
 
@@ -1862,7 +1859,6 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
     if (!gtk_widget_keynav_failed (widget, direction)) {
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
-#endif /* GTK 2.12. 0 */
 #endif // FIXMEchpe
 
     /* Wrap around */

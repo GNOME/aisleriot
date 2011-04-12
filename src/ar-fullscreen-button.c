@@ -77,17 +77,10 @@ autohide_reschedule (ArFullscreenButton *button)
   if (!priv->active)
     return;
 
-#if GTK_CHECK_VERSION (2, 14, 0)
   priv->autohide_timeout_id =
     gdk_threads_add_timeout_seconds (AUTOHIDE_TIMEOUT,
                                      (GSourceFunc) autohide_cb,
                                      button);
-#else
-  priv->autohide_timeout_id =
-    g_timeout_add (AUTOHIDE_TIMEOUT * 1000,
-                   (GSourceFunc) autohide_cb,
-                   button);
-#endif
 }
 
 static void
@@ -540,9 +533,7 @@ ar_fullscreen_button_new (GtkWindow *parent,
 {
   return g_object_new (AR_TYPE_FULLSCREEN_BUTTON,
                        "type", GTK_WINDOW_POPUP,
-#if GTK_CHECK_VERSION (2, 10, 0)
                        "transient-for", parent,
-#endif
                        "window", parent,
                        "corner", corner,
                        NULL);

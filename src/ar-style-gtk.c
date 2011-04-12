@@ -94,7 +94,6 @@ sync_settings (GtkSettings *settings,
     }
   }
 
-#if GTK_CHECK_VERSION (2, 14, 0)
   if (pspec_name == NULL || pspec_name == I_("gtk-enable-event-sounds")) {
     gboolean enable;
 
@@ -107,9 +106,7 @@ sync_settings (GtkSettings *settings,
       g_object_notify (style_object, AR_STYLE_PROP_ENABLE_SOUND);
     }
   }
-#endif /* GTK+ >= 2.14.0 */
 
-#if GTK_CHECK_VERSION (2, 10, 0)
   if (pspec_name == NULL || pspec_name == I_("gtk-touchscreen-mode")) {
     gboolean enable;
 
@@ -122,7 +119,6 @@ sync_settings (GtkSettings *settings,
       g_object_notify (style_object, AR_STYLE_PROP_TOUCHSCREEN_MODE);
     }
   }
-#endif /* GTK+ >= 2.10.0 */
 
   g_object_thaw_notify (style_object);
 }
@@ -195,14 +191,10 @@ screen_changed_cb (GtkWidget *widget,
                     G_CALLBACK (sync_settings), style);
   g_signal_connect (settings, "notify::gtk-enable-animations",
                     G_CALLBACK (sync_settings), style);
-#if GTK_CHECK_VERSION (2, 14, 0)
   g_signal_connect (settings, "notify::gtk-enable-event-sounds",
                     G_CALLBACK (sync_settings), style);
-#endif /* GTK+ >= 2.14.0 */
-#if GTK_CHECK_VERSION (2, 10, 0)
   g_signal_connect (settings, "notify::gtk-touchscreen-mode",
                     G_CALLBACK (sync_settings), style);
-#endif /* GTK+ >= 2.10.0 */
 }
 
 static void

@@ -28,13 +28,6 @@
 
 #include <gtk/gtk.h>
 
-#if GTK_CHECK_VERSION (2, 90, 7)
-#define GDK_KEY(symbol) GDK_KEY_##symbol
-#else
-#include <gdk/gdkkeysyms.h>
-#define GDK_KEY(symbol) GDK_##symbol
-#endif
-
 #include "ar-glib-compat.h"
 #include "ar-gtk-compat.h"
 #include "ar-marshal.h"
@@ -832,9 +825,7 @@ slot_update_card_images (AisleriotBoard *board,
 static void
 aisleriot_board_error_bell (AisleriotBoard *board)
 {
-#if GTK_CHECK_VERSION (2, 12, 0) || (defined (HAVE_HILDON) && !defined(HAVE_MAEMO_3))
   gtk_widget_error_bell (GTK_WIDGET (board));
-#endif
 }
 
 /* Work out new sizes and spacings for the cards. */
@@ -947,15 +938,9 @@ drag_begin (AisleriotBoard *board)
   GdkWindow *window;
 #ifdef CAIRO_DRAWING
   cairo_t *cr;
-#if GTK_CHECK_VERSION (2, 90, 8)
   cairo_surface_t *surface;
   cairo_region_t *shape;
   cairo_pattern_t *pattern;
-#else
-  cairo_t *cr2;
-  GdkPixmap *moving_pixmap;
-  GdkPixmap *moving_mask;
-#endif /* GTK 2.90 */
 #else /* !CAIRO_DRAWING */
   const GdkColor masked = { 0, 0, 0, 0 };
   const GdkColor unmasked = { 1, 0xffff, 0xffff, 0xffff };
@@ -1022,50 +1007,21 @@ drag_begin (AisleriotBoard *board)
   attributes.y = y;
   attributes.width = width;
   attributes.height = height;
-#if GTK_CHECK_VERSION (2, 90, 8)
   attributes.visual = gdk_window_get_visual (window);
-#else
-  attributes.colormap = gdk_drawable_get_colormap (GDK_DRAWABLE (window));
-  attributes.visual = gdk_drawable_get_visual (GDK_DRAWABLE (window));
-#endif
 
   priv->moving_cards_window = gdk_window_new (window, &attributes,
-#if !GTK_CHECK_VERSION (2, 90, 8)
-                                              GDK_WA_COLORMAP |
-#endif
                                               GDK_WA_VISUAL | GDK_WA_X | GDK_WA_Y);
 
-#if !GTK_CHECK_VERSION (2, 90, 8)
-  moving_pixmap = gdk_pixmap_new (priv->moving_cards_window,
-                                  width, height,
-                                  gdk_visual_get_depth (gdk_drawable_get_visual (priv->moving_cards_window)));
-  moving_mask = gdk_pixmap_new (priv->moving_cards_window,
-                                width, height,
-                                1);
-#endif
 
 #ifdef CAIRO_DRAWING
-#if GTK_CHECK_VERSION (2, 90, 8)
   surface = gdk_window_create_similar_surface (priv->moving_cards_window, CAIRO_CONTENT_COLOR_ALPHA,
                                                width, height);
   cr = cairo_create (surface);
-#else
-  cr = gdk_cairo_create (moving_pixmap);
-#endif
 
   cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
   cairo_paint (cr);
 
   cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-
-#if !GTK_CHECK_VERSION (2, 90, 8)
-  cr2 = gdk_cairo_create (moving_mask);
-  cairo_set_operator (cr2, CAIRO_OPERATOR_CLEAR);
-  cairo_paint (cr2);
-
-  cairo_set_operator (cr2, CAIRO_OPERATOR_OVER);
-  cairo_set_source_rgb (cr2, 0., 0., 0.);
-#endif
 #endif /* CAIRO_DRAWING */
 
 #ifndef CAIRO_DRAWING
@@ -1112,11 +1068,6 @@ drag_begin (AisleriotBoard *board)
     cairo_set_source (cr, card_pattern);
     cairo_paint (cr);
 
-#if !GTK_CHECK_VERSION (2, 90, 8)
-    cairo_set_source (cr2, card_pattern);
-    cairo_paint (cr2);
-#endif
-
     cairo_pattern_destroy (card_pattern);
 
 #else /* !CAIRO_DRAWING */
@@ -1159,7 +1110,6 @@ drag_begin (AisleriotBoard *board)
 #ifdef CAIRO_DRAWING
   cairo_destroy (cr);
 
-#if GTK_CHECK_VERSION (2, 90, 8)
   pattern = cairo_pattern_create_for_surface (surface);
   gdk_window_set_background_pattern (priv->moving_cards_window, pattern);
   cairo_pattern_destroy (pattern);
@@ -1169,23 +1119,10 @@ drag_begin (AisleriotBoard *board)
   cairo_region_destroy (shape);
 
   cairo_surface_destroy (surface);
-#else /* !GTK 2.90 */
-  cairo_destroy (cr2);
-#endif /* GTK 2.90 */
 #else /* !CAIRO_DRAWING */
   g_object_unref (gc1);
   g_object_unref (gc2);
 #endif /* CAIRO_DRAWING */
-
-#if !GTK_CHECK_VERSION (2, 90, 8)
-  gdk_window_set_back_pixmap (priv->moving_cards_window,
-			      moving_pixmap, 0);
-  gdk_window_shape_combine_mask (priv->moving_cards_window,
-				 moving_mask, 0, 0);
-
-  g_object_unref (moving_pixmap);
-  g_object_unref (moving_mask);
-#endif /* !GTK 2.90*/
 
   gdk_window_show (priv->moving_cards_window);
 
@@ -1504,7 +1441,7 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
 
 /* Tooltips */
 
-#if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
+#if !defined(HAVE_HILDON)
 
 static gboolean
 aisleriot_board_query_tooltip_cb (GtkWidget *widget,
@@ -1534,7 +1471,7 @@ aisleriot_board_query_tooltip_cb (GtkWidget *widget,
   return TRUE;
 }
 
-#endif /* GTK >= 2.12.0 && !HAVE_HILDON */
+#endif /* !HAVE_HILDON */
 
 /* Keynav */
 
@@ -1823,9 +1760,7 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
   int focus_slot_index, new_focus_slot_index;
   int new_focus_slot_topmost_card_id, new_focus_card_id;
   gboolean is_rtl;
-#if GTK_CHECK_VERSION (2, 12, 0)
   GtkDirectionType direction;
-#endif
 
   slots = aisleriot_game_get_slots (priv->game);
   if (!slots || slots->len == 0)
@@ -1852,7 +1787,6 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
     if (!wrap)
       return FALSE;
 
-#if GTK_CHECK_VERSION (2, 12, 0)
     if (count > 0) {
       direction = GTK_DIR_RIGHT;
     } else {
@@ -1862,7 +1796,6 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
     if (!gtk_widget_keynav_failed (widget, direction)) {
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
-#endif /* GTK 2.12. 0 */
 
     if (new_focus_slot_index < 0) {
       new_focus_slot_index = ((int) n_slots) - 1;
@@ -1930,7 +1863,6 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
            !test_slot_projection_intersects_x (slots->pdata[new_focus_slot_index], x_start, x_end));
 
   if (new_focus_slot_index < 0 || new_focus_slot_index == n_slots) {
-#if GTK_CHECK_VERSION (2, 12, 0)
     GtkWidget *widget = GTK_WIDGET (board);
     GtkDirectionType direction;
 
@@ -1943,7 +1875,6 @@ aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
     if (!gtk_widget_keynav_failed (widget, direction)) {
        return gtk_widget_child_focus (gtk_widget_get_toplevel (widget), direction);
     }
-#endif /* GTK 2.12. 0 */
 
     /* Wrap around */
     if (count > 0) {
@@ -2697,7 +2628,7 @@ aisleriot_board_sync_style (ArStyle *style,
   }
 #endif /* !CAIRO_DRAWING */
 
-#if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
+#if !defined(HAVE_HILDON)
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_TOOLTIPS)) {
     gtk_widget_set_has_tooltip (widget, ar_style_get_show_tooltips (priv->style));
   }
@@ -2764,8 +2695,6 @@ aisleriot_board_size_allocate (GtkWidget *widget,
   }
 }
 
-#if GTK_CHECK_VERSION (2, 91, 0)
-
 static void
 aisleriot_board_get_preferred_width (GtkWidget *widget,
                                      gint      *minimum,
@@ -2781,18 +2710,6 @@ aisleriot_board_get_preferred_height (GtkWidget *widget,
 {
   *minimum = *natural = BOARD_MIN_HEIGHT;
 }
-
-#else
-
-static void
-aisleriot_board_size_request (GtkWidget *widget,
-                              GtkRequisition *requisition)
-{
-  requisition->width = BOARD_MIN_WIDTH;
-  requisition->height = BOARD_MIN_HEIGHT;
-}
-
-#endif /* GTK 3.0 */
 
 #ifdef ENABLE_KEYNAV
 
@@ -3163,10 +3080,6 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     highlight_drop_target (board, slot);
 
     gdk_window_move (priv->moving_cards_window, x, y);
-#if !GTK_CHECK_VERSION (2, 90, 8)
-    /* FIXMEchpe: why? */
-    gdk_window_clear (priv->moving_cards_window);
-#endif
 
     set_cursor (board, AR_CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
@@ -3241,7 +3154,7 @@ aisleriot_board_tap_and_hold_cb (GtkWidget *widget,
 
 #ifdef CAIRO_DRAWING
 
-#if defined (OPTIMISED_EXPOSE) && GTK_CHECK_VERSION (2, 90, 8)
+#if defined (OPTIMISED_EXPOSE)
 
 static cairo_region_t *
 ar_cairo_get_clip_region (cairo_t *cr)
@@ -3283,17 +3196,11 @@ ar_cairo_get_clip_region (cairo_t *cr)
   return region;
 }
 
-#endif /* OPTIMISED_EXPOSE && GTK 2.90 */
+#endif /* OPTIMISED_EXPOSE */
 
-#if GTK_CHECK_VERSION (2, 90, 8)
 static gboolean
 aisleriot_board_draw (GtkWidget *widget,
                       cairo_t *cr)
-#else
-static gboolean
-aisleriot_board_expose_event (GtkWidget *widget,
-                              GdkEventExpose *event)
-#endif
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
@@ -3307,30 +3214,16 @@ aisleriot_board_expose_event (GtkWidget *widget,
   cairo_surface_t *surface;
   cairo_pattern_t *pattern;
   cairo_matrix_t matrix;
-#if GTK_CHECK_VERSION (2, 90, 8)
 #ifdef OPTIMISED_EXPOSE
   cairo_region_t *region;
 #else
   cairo_rectangle_int_t clip_rect;
 #endif /* OPTIMISED_EXPOSE */
-#else
-  GdkWindow *window;
-  GdkRegion *region = event->region;
-  cairo_t *cr;
-#endif
 
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
    */
 
-#if !GTK_CHECK_VERSION (2, 90, 8)
-  window = gtk_widget_get_window (widget);
-
-  if (event->window != window)
-    return FALSE;
-#endif
-
-#if GTK_CHECK_VERSION (2, 90, 8)
 #ifdef OPTIMISED_EXPOSE
   region = ar_cairo_get_clip_region (cr);
   if (region == NULL)
@@ -3344,12 +3237,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
   if (!gdk_cairo_get_clip_rectangle (cr, &clip_rect))
     return FALSE;
 #endif /* OPTIMISED_EXPOSE */
-#else /* GTK < 2.90 */
-  if (gdk_region_empty (region))
-    return FALSE;
-#endif /* GTK 2.90 */
 
-#if 0 && GTK_CHECK_VERSION (2, 90, 8) && defined(OPTIMISED_EXPOSE) 
+#if 0 && defined(OPTIMISED_EXPOSE)
   {
     int n_rects;
 
@@ -3367,19 +3256,12 @@ aisleriot_board_expose_event (GtkWidget *widget,
   }
 #endif
 
-#if !GTK_CHECK_VERSION (2, 90, 8)
-  cr = gdk_cairo_create (window);
-
-  gdk_cairo_region (cr, region);
-  cairo_clip (cr);
-#endif
-
   /* First paint the background */
 
   ar_style_get_baize_color (priv->style, &color);
   gdk_cairo_set_source_color (cr, &color);
 
-#if !GTK_CHECK_VERSION (2, 90, 8) || defined (OPTIMISED_EXPOSE)
+#ifdef OPTIMISED_EXPOSE
   gdk_cairo_region (cr, region);
 #else
   gdk_cairo_rectangle (cr, &clip_rect);
@@ -3389,12 +3271,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
   /* Only draw the the cards when the geometry is set, and we're in a resize */
   if (!priv->geometry_set) {
-#if GTK_CHECK_VERSION (2, 90, 8)
 #ifdef OPTIMISED_EXPOSE
     cairo_region_destroy (region);
-#endif
-#else
-    cairo_destroy (cr);
 #endif
     return TRUE;
   }
@@ -3414,13 +3292,8 @@ aisleriot_board_expose_event (GtkWidget *widget,
 
     /* Check whether this slot needs to be drawn */
 #ifdef OPTIMISED_EXPOSE
-#if GTK_CHECK_VERSION (2, 90, 5)
     if (cairo_region_contains_rectangle (region, &slot->rect) == CAIRO_REGION_OVERLAP_OUT)
       continue;
-#else
-    if (gdk_region_rect_in (region, &slot->rect) == GDK_OVERLAP_RECTANGLE_OUT)
-      continue;
-#endif
 #endif /* OPTIMISED_EXPOSE */
 
     exposed_slots[n_exposed_slots++] = slot;
@@ -3509,13 +3382,8 @@ draw_cards:
        * to be obscured by later drawn cards anyway.
        */
 #ifdef OPTIMISED_EXPOSE
-#if GTK_CHECK_VERSION (2, 90, 5)
       if (cairo_region_contains_rectangle (region, &card_rect) == CAIRO_REGION_OVERLAP_OUT)
         goto next;
-#else
-      if (gdk_region_rect_in (region, &card_rect) == GDK_OVERLAP_RECTANGLE_OUT)
-        goto next;
-#endif
 #endif /* OPTIMISED_EXPOSE */
 
       surface = card_images[j];
@@ -3551,13 +3419,8 @@ draw_cards:
 
   /* Draw the revealed card */
 #ifdef OPTIMISED_EXPOSE
-#if GTK_CHECK_VERSION (2, 90, 5)
   if (priv->show_card_slot != NULL &&
       cairo_region_contains_rectangle (region, &priv->show_card_slot->rect) != CAIRO_REGION_OVERLAP_OUT)
-#else
-  if (priv->show_card_slot != NULL &&
-      gdk_region_rect_in (region, &priv->show_card_slot->rect) != GDK_OVERLAP_RECTANGLE_OUT)
-#endif
 #else
   if (priv->show_card_slot != NULL)
 #endif /* OPTIMISED_EXPOSE */
@@ -3595,13 +3458,8 @@ draw_focus:
 
     /* Check whether this needs to be drawn */
 #ifdef OPTIMISED_EXPOSE
-#if GTK_CHECK_VERSION (2, 90, 5)
     if (cairo_region_contains_rectangle (region, &priv->focus_rect) == CAIRO_REGION_OVERLAP_OUT)
       goto expose_done;
-#else
-    if (gdk_region_rect_in (region, &priv->focus_rect) == GDK_OVERLAP_RECTANGLE_OUT)
-      goto expose_done;
-#endif
 #endif /* OPTIMISED_EXPOSE */
 
     if (ar_style_get_interior_focus (priv->style)) {
@@ -3657,12 +3515,8 @@ expose_done:
   }
   #endif
 
-#if GTK_CHECK_VERSION (2, 90, 8)
 #ifdef OPTIMISED_EXPOSE
   cairo_region_destroy (region);
-#endif
-#else
-  cairo_destroy (cr);
 #endif
 
   /* Parent class has no expose handler, no need to chain up */
@@ -3993,7 +3847,7 @@ aisleriot_board_init (AisleriotBoard *board)
                     G_CALLBACK (aisleriot_board_tap_and_hold_cb), board);
 #endif /* HAVE_MAEMO */
 
-#if GTK_CHECK_VERSION (2, 12, 0) && !defined(HAVE_HILDON)
+#if !defined(HAVE_HILDON)
   g_signal_connect (widget, "query-tooltip",
                     G_CALLBACK (aisleriot_board_query_tooltip_cb), board);
 #endif
@@ -4094,12 +3948,8 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->realize = aisleriot_board_realize;
   widget_class->unrealize = aisleriot_board_unrealize;
   widget_class->size_allocate = aisleriot_board_size_allocate;
-#if GTK_CHECK_VERSION (2, 91, 0)
   widget_class->get_preferred_width = aisleriot_board_get_preferred_width;
   widget_class->get_preferred_height = aisleriot_board_get_preferred_height;
-#else
-  widget_class->size_request = aisleriot_board_size_request;
-#endif
 #ifdef ENABLE_KEYNAV
   widget_class->focus = aisleriot_board_focus;
 #endif /* ENABLE_KEYNAV */
@@ -4109,11 +3959,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   widget_class->button_release_event = aisleriot_board_button_release;
   widget_class->motion_notify_event = aisleriot_board_motion_notify;
   widget_class->key_press_event = aisleriot_board_key_press;
-#if GTK_CHECK_VERSION (2, 90, 8)
   widget_class->draw = aisleriot_board_draw;
-#else
-  widget_class->expose_event = aisleriot_board_expose_event;
-#endif
 
   signals[STATUS_MESSAGE] =
     g_signal_new (I_("status-message"),
@@ -4213,60 +4059,60 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
   binding_set = gtk_binding_set_by_class (klass);
 
   /* Cursor movement */
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Left), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_Left, 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Left), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_KP_Left, 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, -1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Right), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_Right, 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Right), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_KP_Right, 0,
                                                GTK_MOVEMENT_VISUAL_POSITIONS, 1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Up), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_Up, 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Up), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_KP_Up, 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, -1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Down), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_Down, 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Down), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_KP_Down, 0,
                                                GTK_MOVEMENT_DISPLAY_LINES, 1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (Home), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_Home, 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, -1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_Home), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_KP_Home, 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, -1);
 
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (End), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_End, 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, 1);
-  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY (KP_End), 0,
+  aisleriot_board_add_move_and_select_binding (binding_set, GDK_KEY_KP_End, 0,
                                                GTK_MOVEMENT_BUFFER_ENDS, 1);
 
-  aisleriot_board_add_move_binding (binding_set, GDK_KEY (Page_Up), 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY_Page_Up, 0,
                                     GTK_MOVEMENT_PAGES, -1);
-  aisleriot_board_add_move_binding (binding_set, GDK_KEY (KP_Page_Up), 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY_KP_Page_Up, 0,
                                     GTK_MOVEMENT_PAGES, -1);
 
-  aisleriot_board_add_move_binding (binding_set, GDK_KEY (Page_Down), 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY_Page_Down, 0,
                                     GTK_MOVEMENT_PAGES, 1);
-  aisleriot_board_add_move_binding (binding_set, GDK_KEY (KP_Page_Down), 0,
+  aisleriot_board_add_move_binding (binding_set, GDK_KEY_KP_Page_Down, 0,
                                     GTK_MOVEMENT_PAGES, 1);
 
   /* Selection */
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY (space), 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_space, 0,
                                 "toggle-selection", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY (KP_Space), 0,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Space, 0,
                                 "toggle-selection", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY (a), GDK_CONTROL_MASK,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_a, GDK_CONTROL_MASK,
                                 "select-all", 0);
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY (a), GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_a, GDK_CONTROL_MASK | GDK_SHIFT_MASK,
                                 "deselect-all", 0);
 
   /* Activate */
-  aisleriot_board_add_activate_binding (binding_set, GDK_KEY (Return), 0);
-  aisleriot_board_add_activate_binding (binding_set, GDK_KEY (ISO_Enter), 0);
-  aisleriot_board_add_activate_binding (binding_set, GDK_KEY (KP_Enter), 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KEY_Return, 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KEY_ISO_Enter, 0);
+  aisleriot_board_add_activate_binding (binding_set, GDK_KEY_KP_Enter, 0);
 #endif /* ENABLE_KEYNAV */
 }
 

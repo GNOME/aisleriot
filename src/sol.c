@@ -32,10 +32,6 @@
 #include <cogl/cogl.h>
 #include <clutter/clutter.h>
 #include <clutter-gtk/clutter-gtk.h>
-
-#ifndef CLUTTER_GTK_CHECK_VERSION
-#define CLUTTER_GTK_CHECK_VERSION(a,b,c) (0)
-#endif
 #endif
 
 #ifdef HAVE_HILDON
@@ -259,9 +255,7 @@ main_prog (void *closure, int argc, char *argv[])
 #endif /* HAVE_MAEMO */
 
   option_context = g_option_context_new (NULL);
-#if GLIB_CHECK_VERSION (2, 12, 0)
   g_option_context_set_translation_domain (option_context, GETTEXT_PACKAGE);
-#endif /* GLIB 2.12.0 */
 
   add_main_options (option_context, &data);
 
@@ -275,9 +269,7 @@ main_prog (void *closure, int argc, char *argv[])
 #ifdef HAVE_CLUTTER
   g_option_context_add_group (option_context, cogl_get_option_group ());
   g_option_context_add_group (option_context, clutter_get_option_group_without_init ());
-#if CLUTTER_GTK_CHECK_VERSION (0, 90, 0)
   g_option_context_add_group (option_context, gtk_clutter_get_option_group ());
-#endif
 #endif /* HAVE_CLUTTER */
 
 #if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
@@ -302,16 +294,6 @@ main_prog (void *closure, int argc, char *argv[])
     g_error_free (error);
     goto cleanup;
   }
-
-#ifdef HAVE_CLUTTER
-#if !CLUTTER_GTK_CHECK_VERSION (0, 90, 0)
-  if (gtk_clutter_init_with_args (NULL, NULL, NULL, NULL, NULL, &error) != CLUTTER_INIT_SUCCESS) {
-    g_printerr ("Failed to initialise clutter: %s\n", error->message);
-    g_error_free (error);
-    goto cleanup;
-  }
-#endif
-#endif /* HAVE_CLUTTER */
 
 #ifdef HAVE_MAEMO
   data.program = HILDON_PROGRAM (hildon_program_get_instance ());
@@ -378,7 +360,6 @@ main_prog (void *closure, int argc, char *argv[])
                 "gtk-toolbar-style", GTK_TOOLBAR_ICONS,
                 "gtk-menu-images", FALSE,
                 "gtk-button-images", FALSE,
-#if GTK_CHECK_VERSION (2, 10, 0)
                 "gtk-enable-mnemonics", FALSE,
 
                 /* We want the default of FALSE for this property, but to work
@@ -386,9 +367,6 @@ main_prog (void *closure, int argc, char *argv[])
                  * to set this to TRUE.
                  */
                 "gtk-enable-accels", TRUE,
-#else
-                "hildon-keyboard-shortcuts", FALSE,
-#endif /* GTK 2.10.0 */
                 NULL);
 #endif /* HAVE_HILDON */
 
@@ -418,9 +396,7 @@ cleanup:
   }
 #endif /* HAVE_MAEMO */
 
-#if GLIB_CHECK_VERSION (2, 25, 15)
   g_settings_sync ();
-#endif
 
   ar_runtime_shutdown ();
 }
