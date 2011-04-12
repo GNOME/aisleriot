@@ -2,24 +2,20 @@
  * Copyright (C) 2000  Red Hat, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public
+ * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
- * version 3 of the License, or (at your option) any later version.
+ * version 2 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
+ * Library General Public License for more details.
  *
- * You should have received a copy of the GNU General Public
+ * You should have received a copy of the GNU Library General Public
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  */
-
-#include <config.h>
-
-#undef GSEAL_ENABLE
 
 #include <string.h>
 
@@ -27,15 +23,6 @@
 
 #include "prop-editor.h"
 
-#ifdef HAVE_CLUTTER
-#include <clutter/clutter.h>
-#endif
-
-#ifdef HAVE_MAEMO_5
-#include <hildon/hildon-gtk.h>
-#include <hildon/hildon-pannable-area.h>
-#include <hildon/hildon-stackable-window.h>
-#endif
 
 typedef struct
 {
@@ -421,6 +408,7 @@ enum_modified (GtkComboBox *cb, gpointer data)
 
   i = gtk_combo_box_get_active (cb);
 
+
   if (is_child_property (p->spec))
     {
       GtkWidget *widget = GTK_WIDGET (p->obj);
@@ -699,7 +687,7 @@ color_changed (GObject *object, GParamSpec *pspec, gpointer data)
   GValue val = { 0, };
   GdkColor *color;
   GdkColor cb_color;
-  
+
   g_value_init (&val, GDK_TYPE_COLOR);
   get_property_value (object, pspec, &val);
 
@@ -716,81 +704,6 @@ color_changed (GObject *object, GParamSpec *pspec, gpointer data)
   g_value_unset (&val);
 }
 
-#ifdef HAVE_CLUTTER
-
-static void
-_clutter_color_from_gdk_color (ClutterColor *clutter_color,
-                               const GdkColor *gdk_color)
-{
-  clutter_color->red   = gdk_color->red   >> 8;
-  clutter_color->green = gdk_color->green >> 8;
-  clutter_color->blue  = gdk_color->blue  >> 8;
-  clutter_color->alpha = 0xff;
-}
-
-static void
-_clutter_color_to_gdk_color (GdkColor *gdk_color,
-                             const ClutterColor *clutter_color)
-{
-  gdk_color->red   = clutter_color->red   << 8;
-  gdk_color->green = clutter_color->green << 8;
-  gdk_color->blue  = clutter_color->blue  << 8;
-  gdk_color->pixel = 0;
-}
-
-static void
-cluttercolor_modified (GtkColorButton *cb, gpointer data)
-{
-  ObjectProperty *p = data;
-  GdkColor color;
-  ClutterColor ccolor;
-
-  gtk_color_button_get_color (cb, &color);
-  _clutter_color_from_gdk_color (&ccolor, &color);
-
-  if (is_child_property (p->spec))
-    {
-      GtkWidget *widget = GTK_WIDGET (p->obj);
-      GtkWidget *parent = gtk_widget_get_parent (widget);
-
-      gtk_container_child_set (GTK_CONTAINER (parent),
-			       widget, p->spec->name, &ccolor, NULL);
-    }
-  else
-    g_object_set (p->obj, p->spec->name, &ccolor, NULL);
-}
-
-static void
-cluttercolor_changed (GObject *object, GParamSpec *pspec, gpointer data)
-{
-  GtkColorButton *cb = GTK_COLOR_BUTTON (data);
-  GValue val = { 0, };
-  GdkColor cb_color;
-  ClutterColor *color;
-  ClutterColor cb_ccolor;
-
-  g_assert (G_PARAM_SPEC_VALUE_TYPE (pspec) == CLUTTER_TYPE_COLOR);
-
-  g_value_init (&val, CLUTTER_TYPE_COLOR);
-  get_property_value (object, pspec, &val);
-  color = g_value_get_boxed (&val);
-
-  gtk_color_button_get_color (cb, &cb_color);
-  _clutter_color_from_gdk_color (&cb_ccolor, &cb_color);
-
-  if (color != NULL && !clutter_color_equal (color, &cb_ccolor))
-    {
-      block_controller (G_OBJECT (cb));
-      _clutter_color_to_gdk_color (&cb_color, color);
-      gtk_color_button_set_color (cb, &cb_color);
-      unblock_controller (G_OBJECT (cb));
-    }
-
-  g_value_unset (&val);
-}
-
-#endif /* HAVE_CLUTTER */
-
 static GtkWidget *
 property_widget (GObject    *object, 
 		 GParamSpec *spec, 
@@ -803,14 +716,13 @@ property_widget (GObject    *object,
 
   if (type == G_TYPE_PARAM_INT)
     {
-      adj = GTK_ADJUSTMENT (gtk_adjustment_new (G_PARAM_SPEC_INT (spec)->default_value,
-						G_PARAM_SPEC_INT (spec)->minimum,
-						G_PARAM_SPEC_INT (spec)->maximum,
-						1,
-						MAX ((G_PARAM_SPEC_INT (spec)->maximum -
-						      G_PARAM_SPEC_INT (spec)->minimum) / 10, 1),
-						0.0));
-      
+      adj = gtk_adjustment_new (G_PARAM_SPEC_INT (spec)->default_value,
+                                G_PARAM_SPEC_INT (spec)->minimum,
+                                G_PARAM_SPEC_INT (spec)->maximum,
+                                1,
+                                MAX ((G_PARAM_SPEC_INT (spec)->maximum - G_PARAM_SPEC_INT (spec)->minimum) / 10, 1),
+                                0.0);
+
       prop_edit = gtk_spin_button_new (adj, 1.0, 0);
       
       g_object_connect_property (object, spec, 
@@ -823,15 +735,13 @@ property_widget (GObject    *object,
     }
   else if (type == G_TYPE_PARAM_UINT)
     {
-      adj = GTK_ADJUSTMENT (
-			    gtk_adjustment_new (G_PARAM_SPEC_UINT (spec)->default_value,
-						G_PARAM_SPEC_UINT (spec)->minimum,
-						G_PARAM_SPEC_UINT (spec)->maximum,
-						1,
-						MAX ((G_PARAM_SPEC_UINT (spec)->maximum -
-						      G_PARAM_SPEC_UINT (spec)->minimum) / 10, 1),
-						0.0));
-      
+      adj = gtk_adjustment_new (G_PARAM_SPEC_UINT (spec)->default_value,
+                                G_PARAM_SPEC_UINT (spec)->minimum,
+                                G_PARAM_SPEC_UINT (spec)->maximum,
+                                1,
+                                MAX ((G_PARAM_SPEC_UINT (spec)->maximum - G_PARAM_SPEC_UINT (spec)->minimum) / 10, 1),
+                                0.0);
+
       prop_edit = gtk_spin_button_new (adj, 1.0, 0);
       
       g_object_connect_property (object, spec, 
@@ -844,15 +754,13 @@ property_widget (GObject    *object,
     }
   else if (type == G_TYPE_PARAM_FLOAT)
     {
+      adj = gtk_adjustment_new (G_PARAM_SPEC_FLOAT (spec)->default_value,
+                                G_PARAM_SPEC_FLOAT (spec)->minimum,
+                                G_PARAM_SPEC_FLOAT (spec)->maximum,
+                                0.1,
+                                MAX ((G_PARAM_SPEC_FLOAT (spec)->maximum - G_PARAM_SPEC_FLOAT (spec)->minimum) / 10, 0.1),
+                                0.0);
 
-      adj = GTK_ADJUSTMENT (gtk_adjustment_new (G_PARAM_SPEC_FLOAT (spec)->default_value,
-						G_PARAM_SPEC_FLOAT (spec)->minimum,
-						G_PARAM_SPEC_FLOAT (spec)->maximum,
-						0.1,
-						MAX ((G_PARAM_SPEC_FLOAT (spec)->maximum -
-						      G_PARAM_SPEC_FLOAT (spec)->minimum) / 10, 0.1),
-						0.0));
-      
       prop_edit = gtk_spin_button_new (adj, 0.1, 2);
       
       g_object_connect_property (object, spec, 
@@ -865,14 +773,13 @@ property_widget (GObject    *object,
     }
   else if (type == G_TYPE_PARAM_DOUBLE)
     {
-      adj = GTK_ADJUSTMENT (gtk_adjustment_new (G_PARAM_SPEC_DOUBLE (spec)->default_value,
-						G_PARAM_SPEC_DOUBLE (spec)->minimum,
-						G_PARAM_SPEC_DOUBLE (spec)->maximum,
-						0.1,
-						MAX ((G_PARAM_SPEC_DOUBLE (spec)->maximum -
-						      G_PARAM_SPEC_DOUBLE (spec)->minimum) / 10, 0.1),
-						0.0));
-      
+      adj = gtk_adjustment_new (G_PARAM_SPEC_DOUBLE (spec)->default_value,
+                                G_PARAM_SPEC_DOUBLE (spec)->minimum,
+                                G_PARAM_SPEC_DOUBLE (spec)->maximum,
+                                0.1,
+                                MAX ((G_PARAM_SPEC_DOUBLE (spec)->maximum - G_PARAM_SPEC_DOUBLE (spec)->minimum) / 10, 0.1),
+                                0.0);
+
       prop_edit = gtk_spin_button_new (adj, 0.1, 2);
       
       g_object_connect_property (object, spec, 
@@ -912,7 +819,7 @@ property_widget (GObject    *object,
       {
 	GEnumClass *eclass;
 	gint j;
-
+	
 	prop_edit = gtk_combo_box_text_new ();
 	
 	eclass = G_ENUM_CLASS (g_type_class_ref (spec->value_type));
@@ -942,7 +849,7 @@ property_widget (GObject    *object,
 	GFlagsClass *fclass;
 	gint j;
 	
-	prop_edit = gtk_vbox_new (FALSE, 0);
+	prop_edit = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	
 	fclass = G_FLAGS_CLASS (g_type_class_ref (spec->value_type));
 	
@@ -991,7 +898,7 @@ property_widget (GObject    *object,
     {
       GtkWidget *label, *button;
 
-      prop_edit = gtk_hbox_new (FALSE, 5);
+      prop_edit = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
 
       label = gtk_label_new ("");
       button = gtk_button_new_with_label ("Properties");
@@ -1002,40 +909,27 @@ property_widget (GObject    *object,
 
       gtk_container_add (GTK_CONTAINER (prop_edit), label);
       gtk_container_add (GTK_CONTAINER (prop_edit), button);
-      
+
       g_object_connect_property (object, spec,
 				 G_CALLBACK (object_changed),
 				 prop_edit, G_OBJECT (label));
+
+      /* The Properties button is not really modifying, anyway */
+      can_modify = TRUE;
     }
   else if (type == G_TYPE_PARAM_BOXED &&
            G_PARAM_SPEC_VALUE_TYPE (spec) == GDK_TYPE_COLOR)
     {
       prop_edit = gtk_color_button_new ();
-      
-      g_object_connect_property (object, spec, 
+
+      g_object_connect_property (object, spec,
 				 G_CALLBACK (color_changed),
 				 prop_edit, G_OBJECT (prop_edit));
-      
+
       if (can_modify)
 	connect_controller (G_OBJECT (prop_edit), "color-set",
 			    object, spec, G_CALLBACK (color_modified));
     }
-#ifdef HAVE_CLUTTER
-  else if ((type == G_TYPE_PARAM_BOXED &&
-            G_PARAM_SPEC_VALUE_TYPE (spec) == CLUTTER_TYPE_COLOR) ||
-           type == CLUTTER_TYPE_PARAM_COLOR)
-    {
-      prop_edit = gtk_color_button_new ();
-      
-      g_object_connect_property (object, spec, 
-				 G_CALLBACK (cluttercolor_changed),
-				 prop_edit, G_OBJECT (prop_edit));
-      
-      if (can_modify)
-	connect_controller (G_OBJECT (prop_edit), "color-set",
-			    object, spec, G_CALLBACK (cluttercolor_modified));
-    }
-#endif /* HAVE_CLUTTER */
   else
     {  
       msg = g_strdup_printf ("uneditable property type: %s",
@@ -1045,6 +939,12 @@ property_widget (GObject    *object,
       gtk_misc_set_alignment (GTK_MISC (prop_edit), 0.0, 0.5);
     }
   
+  if (!can_modify)
+    gtk_widget_set_sensitive (prop_edit, FALSE);
+
+  if (g_param_spec_get_blurb (spec))
+    gtk_widget_set_tooltip_text (prop_edit, g_param_spec_get_blurb (spec));
+
   return prop_edit;
 }
 
@@ -1113,23 +1013,14 @@ properties_from_type (GObject *object,
       prop_edit = property_widget (object, spec, can_modify);
       gtk_table_attach_defaults (GTK_TABLE (table), prop_edit, 1, 2, i, i + 1);
 
-      if (prop_edit)
-        {
-          if (!can_modify)
-            gtk_widget_set_sensitive (prop_edit, FALSE);
+      /* set initial value */
+      g_object_notify (object, spec->name);
 
-	  if (g_param_spec_get_blurb (spec))
-	    gtk_widget_set_tooltip_text (prop_edit, g_param_spec_get_blurb (spec));
-
-          /* set initial value */
-          g_object_notify (object, spec->name);
-        }
-      
       ++i;
     }
 
 
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1196,22 +1087,13 @@ child_properties_from_object (GObject *object)
       prop_edit = property_widget (object, spec, can_modify);
       gtk_table_attach_defaults (GTK_TABLE (table), prop_edit, 1, 2, i, i + 1);
 
-      if (prop_edit)
-        {
-          if (!can_modify)
-            gtk_widget_set_sensitive (prop_edit, FALSE);
+      /* set initial value */
+      gtk_widget_child_notify (GTK_WIDGET (object), spec->name);
 
-	  if (g_param_spec_get_blurb (spec))
-	    gtk_widget_set_tooltip_text (prop_edit, g_param_spec_get_blurb (spec));
-
-          /* set initial value */
-          gtk_widget_child_notify (GTK_WIDGET (object), spec->name);
-        }
-      
       ++i;
     }
 
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1257,7 +1139,7 @@ children_from_object (GObject *object)
       gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
       gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, i, i + 1);
 
-      prop_edit = gtk_hbox_new (FALSE, 5);
+      prop_edit = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
 
       str = object_label (object, NULL);
       label = gtk_label_new (str);
@@ -1273,7 +1155,7 @@ children_from_object (GObject *object)
       gtk_table_attach_defaults (GTK_TABLE (table), prop_edit, 1, 2, i, i + 1);
     }
 
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1312,7 +1194,7 @@ cells_from_object (GObject *object)
       gtk_misc_set_alignment (GTK_MISC (label), 0.0, 0.5);
       gtk_table_attach_defaults (GTK_TABLE (table), label, 0, 1, i, i + 1);
 
-      prop_edit = gtk_hbox_new (FALSE, 5);
+      prop_edit = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
 
       str = object_label (object, NULL);
       label = gtk_label_new (str);
@@ -1328,7 +1210,7 @@ cells_from_object (GObject *object)
       gtk_table_attach_defaults (GTK_TABLE (table), prop_edit, 1, 2, i, i + 1);
     }
 
-  vbox = gtk_vbox_new (FALSE, 0);
+  vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
   gtk_box_pack_start (GTK_BOX (vbox), table, FALSE, FALSE, 0);
 
   sw = gtk_scrolled_window_new (NULL, NULL);
@@ -1361,12 +1243,7 @@ create_prop_editor (GObject   *object,
       return win;
     }
 
-#ifdef HAVE_MAEMO_5
-  win = hildon_stackable_window_new ();
-#else
   win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-#endif
-
   if (GTK_IS_WIDGET (object))
     gtk_window_set_screen (GTK_WINDOW (win),
 			   gtk_widget_get_screen (GTK_WIDGET (object)));
