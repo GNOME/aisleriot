@@ -317,8 +317,8 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
   free (string);
 
   g_string_append (message, "\n\nBacktrace:\n");
-  stack = scm_fluid_ref (SCM_VARIABLE_REF (scm_the_last_stack_fluid_var));
-  if (!SCM_FALSEP (stack)) {
+  stack = scm_make_stack (SCM_BOOL_T, SCM_EOL);
+  if (!scm_is_false (stack)) {
     scm_display_backtrace (stack, port, SCM_UNDEFINED, SCM_UNDEFINED);
     string = scm_to_locale_string (scm_get_output_string (port));
     g_string_append (message, string);
