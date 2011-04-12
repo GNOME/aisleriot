@@ -63,9 +63,6 @@
 
 #define DOUBLE_TO_INT_CEIL(d) ((int) (d + 0.5))
 
-/* FIXMEchpe */
-#define HIGHLIGHT_ALPHA (0.5)
-
 #define I_(string) g_intern_static_string (string)
 
 typedef enum {
@@ -2910,7 +2907,7 @@ aisleriot_board_draw (GtkWidget *widget,
   ArSlot **exposed_slots;
   ArSlot *highlight_slot;
   guint n_exposed_slots;
-  GdkColor color;
+  GdkRGBA color;
   cairo_surface_t *surface;
   cairo_pattern_t *pattern;
   cairo_matrix_t matrix;
@@ -2959,7 +2956,7 @@ aisleriot_board_draw (GtkWidget *widget,
   /* First paint the background */
 
   ar_style_get_baize_color (priv->style, &color);
-  gdk_cairo_set_source_color (cr, &color);
+  gdk_cairo_set_source_rgba (cr, &color);
 
 #ifdef OPTIMISED_EXPOSE
   gdk_cairo_region (cr, region);
@@ -3029,11 +3026,7 @@ aisleriot_board_draw (GtkWidget *widget,
     if (G_UNLIKELY (hslot == highlight_slot)) {
       cairo_save (cr);
       ar_style_get_selection_color (priv->style, &color);
-      cairo_set_source_rgba (cr,
-                             color.red / 65535.,
-                             color.green / 65535.,
-                             color.blue / 65535.,
-                             HIGHLIGHT_ALPHA);
+      gdk_cairo_set_source_rgba (cr, &color);
       cairo_mask (cr, pattern);
       cairo_restore (cr);
     }
@@ -3101,11 +3094,7 @@ draw_cards:
       if (G_UNLIKELY (j >= highlight_start_card_id)) {
         cairo_save (cr);
         ar_style_get_selection_color (priv->style, &color);
-        cairo_set_source_rgba (cr,
-                               color.red / 65535.,
-                               color.green / 65535.,
-                               color.blue / 65535.,
-                               HIGHLIGHT_ALPHA);
+        gdk_cairo_set_source_rgba (cr, &color);
         cairo_mask (cr, pattern);
         cairo_restore (cr);
       }

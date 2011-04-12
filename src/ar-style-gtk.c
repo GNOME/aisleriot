@@ -198,13 +198,13 @@ screen_changed_cb (GtkWidget *widget,
 }
 
 static void
-style_set_cb (GtkWidget *widget,
-              GtkStyle *previous_style,
-              ArStyle *style)
+style_updated_cb (GtkWidget *widget,
+                  ArStyle *style)
 {
   ArStylePrivate *style_priv = style->priv;
   GObject *style_object = G_OBJECT (style);
-  GdkColor *color = NULL;
+  GdkRGBA selection_color;
+  GdkRGBA *color = NULL;
   int focus_line_width, focus_padding;
   gboolean interior_focus;
   double card_slot_ratio, card_overhang, card_step;
@@ -261,41 +261,18 @@ style_set_cb (GtkWidget *widget,
     g_object_notify (style_object, AR_STYLE_PROP_CARD_STEP);
   }
 
-#ifdef HAVE_CLUTTER
-{
-  ClutterColor selection_color;
-
-  if (color != NULL) {
-    _ar_clutter_color_from_gdk_color (&selection_color, color);
-    gdk_color_free (color);
-  } else {
-    _ar_clutter_color_from_gdk_color (&selection_color, &default_selection_color);
-  }
-
-  if (!clutter_color_equal (&style_priv->selection_color, &selection_color)) {
-    style_priv->selection_color = selection_color;
-
-    g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
-  }
-}
-#else
-{
-  GdkColor selection_color;
-
   if (color != NULL) {
     selection_color = *color;
-    gdk_color_free (color);
+    gdk_rgba_free (color);
   } else {
     selection_color = default_selection_color;
   }
 
-  if (!gdk_color_equal (&style_priv->selection_color, &selection_color)) {
+  if (!gdk_rgba_equal (&style_priv->selection_color, &selection_color)) {
     style_priv->selection_color = selection_color;
 
     g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
   }
-}
-#endif /* HAVE_CLUTTER */
 
   g_object_thaw_notify (style_object);
 }
@@ -319,7 +296,7 @@ _ar_style_gtk_class_install_style_properties (GtkWidgetClass *widget_class)
   gtk_widget_class_install_style_property
     (widget_class,
      g_param_spec_boxed ("selection-color", NULL, NULL,
-                         GDK_TYPE_COLOR,
+                         GDK_TYPE_RGBA,
                          G_PARAM_READWRITE |
                          G_PARAM_STATIC_STRINGS));
 
@@ -385,18 +362,12 @@ _ar_style_gtk_attach (ArStyle *style,
   g_assert (g_object_get_data (G_OBJECT (widget), "Ar::Style") == NULL);
   g_object_set_data (G_OBJECT (widget), "Ar::Style", style);
 
-#if 0
-  if (gtk_widget_get_style (widget))
-    style_set_cb (widget, NULL, style);
-  if (gtk_widget_has_screen (widget))
-    screen_changed_cb (widget, NULL, style);
-#endif
-
   /* This is necessary since we don't get an initial change notification! */
   direction_changed_cb (widget, GTK_TEXT_DIR_LTR, style);
+  style_updated_cb (widget, style);
 
-  g_signal_connect (widget, "style-set",
-                    G_CALLBACK (style_set_cb), style);
+  g_signal_connect (widget, "style-updated",
+                    G_CALLBACK (style_updated_cb), style);
   g_signal_connect (widget, "screen-changed",
                     G_CALLBACK (screen_changed_cb), style);
   g_signal_connect (widget, "direction-changed",
@@ -423,7 +394,7 @@ _ar_style_gtk_detach (ArStyle *style,
   g_assert (g_object_get_data (G_OBJECT (widget), "Ar::Style") == style);
   g_object_set_data (G_OBJECT (widget), "Ar::Style", NULL);
 
-  g_signal_handlers_disconnect_by_func (widget, G_CALLBACK (style_set_cb), style);
+  g_signal_handlers_disconnect_by_func (widget, G_CALLBACK (style_updated_cb), style);
   g_signal_handlers_disconnect_by_func (widget, G_CALLBACK (screen_changed_cb), style);
   g_signal_handlers_disconnect_by_func (widget, G_CALLBACK (direction_changed_cb), style);
 

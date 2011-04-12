@@ -20,8 +20,8 @@
 
 G_BEGIN_DECLS
 
-static const GdkColor default_selection_color = { 0, 0 /* red */, 0 /* green */, 0xaa00 /* blue */ };
-static const GdkColor default_baize_color = { 0, 0 /* red */, 0x5000 /* green */, 0x1000 /* blue */ };
+static const GdkRGBA default_selection_color = { 0. /* red */, 0. /* green */, 0.6666 /* blue */, 0.5 /* alpha */ };
+static const GdkRGBA default_baize_color = { 0. /* red */, 0.3125 /* green */, 0.0625 /* blue */, 1.0 /* alpha */ };
 
 /* The proportion of a slot dedicated to the card (horiz or vert). */
 #define DEFAULT_CARD_OVERHANG (0.0)
@@ -39,13 +39,8 @@ struct _ArStylePrivate
 {
   ArCardTheme* card_theme;
 
-#ifdef HAVE_CLUTTER
-  ClutterColor selection_color;
-  ClutterColor baize_color;
-#else
-  GdkColor selection_color;
-  GdkColor baize_color;
-#endif
+  GdkRGBA selection_color;
+  GdkRGBA baize_color;
 
   double card_slot_ratio;
   double card_overhang;
@@ -74,11 +69,6 @@ struct _ArStylePrivate
   guint show_highlight          : 1;
   guint show_seleccion          : 1;
 };
-
-#ifdef HAVE_CLUTTER
-void _ar_clutter_color_from_gdk_color (ClutterColor *clutter_color,
-                                       const GdkColor *gdk_color);
-#endif
 
 G_END_DECLS
 

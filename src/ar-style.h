@@ -19,12 +19,7 @@
 #define __AR_STYLE_H__
 
 #include <glib-object.h>
-
-#ifdef HAVE_CLUTTER
-#include <clutter/clutter.h>
-#else
 #include <gdk/gdk.h>
-#endif
 
 #include "ar-card-theme.h"
 
@@ -108,17 +103,10 @@ double ar_style_get_card_slot_ratio (ArStyle *style);
 double ar_style_get_card_overhang   (ArStyle *style);
 double ar_style_get_card_step       (ArStyle *style);
 
-#ifdef HAVE_CLUTTER
 void ar_style_get_selection_color  (ArStyle *style,
-                                    ClutterColor * const color);
+                                    GdkRGBA * const color);
 void ar_style_get_baize_color (ArStyle *style,
-                                    ClutterColor * const color);
-#else
-void ar_style_get_selection_color  (ArStyle *style,
-                                    GdkColor * const color);
-void ar_style_get_baize_color (ArStyle *style,
-                                    GdkColor * const color);
-#endif
+                               GdkRGBA * const color);
 
 gboolean ar_style_check_dnd_drag_threshold (ArStyle *style,
                                             float x1,

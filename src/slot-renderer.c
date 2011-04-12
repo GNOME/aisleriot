@@ -100,18 +100,31 @@ enum
 };
 
 static void
+clutter_color_from_gdk_rgba (ClutterColor *clutter_color,
+                             const GdkRGBA *rgba)
+{
+  clutter_color->red   = rgba->red   * 255.;
+  clutter_color->green = rgba->green * 255.;
+  clutter_color->blue  = rgba->blue  * 255.;
+  clutter_color->alpha = rgba->alpha * 255.;
+}
+
+static void
 sync_style_selection_color (ArStyle *style,
                             GParamSpec *pspec,
                             AisleriotSlotRenderer *srend)
 {
   AisleriotSlotRendererPrivate *priv = srend->priv;
-  ClutterColor color;
+  GdkRGBA color;
+  ClutterColor clutter_color;
 
   ar_style_get_selection_color (style, &color);
-  if (clutter_color_equal (&color, &priv->highlight_color))
+  clutter_color_from_gdk_rgba (&clutter_color, &color);
+
+  if (clutter_color_equal (&clutter_color, &priv->highlight_color))
     return;
 
-  priv->highlight_color = color;
+  priv->highlight_color = clutter_color;
 
   if (priv->show_highlight)
     clutter_actor_queue_redraw (CLUTTER_ACTOR (srend));
