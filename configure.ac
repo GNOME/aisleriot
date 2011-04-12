@@ -640,7 +640,6 @@ Makefile
 cards/Makefile
 data/Makefile
 data/icons/Makefile
-data/icons/gnome/Makefile
 data/sounds/Makefile
 data/sol.desktop.in
 data/freecell.desktop.in
