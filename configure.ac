@@ -452,14 +452,6 @@ AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 
 AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal])
 
-# glib-genmarshal --internal only exists since 2.14
-if $PKG_CONFIG --exists "glib-2.0 >= 2.14.0" ; then
-  GLIB_GENMARSHAL_INTERNAL="--internal"
-else
-  GLIB_GENMARSHAL_INTERNAL=
-fi
-AC_SUBST([GLIB_GENMARSHAL_INTERNAL])
-
 if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
   AC_CHECK_TOOL([WINDRES],[windres],[no])
   if test "$WINDRES" = "no"; then

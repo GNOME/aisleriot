@@ -122,13 +122,13 @@ gsettings_SCHEMAS = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
 ar-marshal.c: stamp-ar-marshal.c
 	@true
 stamp-ar-marshal.c: ar-marshal.list Makefile
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=ar_marshal $< --header --body $(GLIB_GENMARSHAL_INTERNAL) > ar-marshal.c \
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=ar_marshal $< --header --body --internal > ar-marshal.c \
 	&& echo timestamp > $(@F)
 
 ar-marshal.h: stamp-ar-marshal.h
 	@true
 stamp-ar-marshal.h: ar-marshal.list Makefile
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=ar_marshal $< --header $(GLIB_GENMARSHAL_INTERNAL) > ar-marshal.h \
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=ar_marshal $< --header --internal > ar-marshal.h \
 	&& echo timestamp > $(@F)
 
 # Auxiliary programme to prerender card images
