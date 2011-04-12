@@ -26,8 +26,6 @@ libaisleriot_la_SOURCES = \
 	ar-gtk-compat.h \
 	ar-help.c \
 	ar-help.h \
-	ar-pixbuf-utils.c \
-	ar-pixbuf-utils.h \
 	ar-profile.c \
 	ar-profile.h \
 	ar-runtime.c \

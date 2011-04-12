@@ -39,9 +39,6 @@ enum
   PROP_FOCUS_LINE_WIDTH,
   PROP_FOCUS_PADDING,
   PROP_INTERIOR_FOCUS,
-#ifndef HAVE_CLUTTER
-  PROP_PIXBUF_DRAWING,
-#endif
   PROP_RTL,
   PROP_SELECTION_COLOR,
   PROP_SHOW_TOOLTIPS,
@@ -87,27 +84,6 @@ ar_style_init (ArStyle *style)
   priv->click_to_move = FALSE;
   priv->enable_tooltips = DEFAULT_SHOW_TOOLTIPS;
   priv->enable_status_messages = DEFAULT_SHOW_STATUS_MESSAGES;
-
-#ifndef HAVE_CLUTTER
-
-#ifdef HAVE_HILDON
-  priv->pixbuf_drawing = FALSE;
-#else
-{
-  const char *env;
-
-  env = g_getenv ("AISLERIOT_PIXBUF_DRAWING");
-
-  /* Default to pixbuf drawing */
-  priv->pixbuf_drawing = env == NULL || g_ascii_strtoull (env, NULL, 10) != 0;
-}
-#endif /* HAVE_HILDON */
-
-  ar_debug_print (AR_DEBUG_GAME_STYLE,
-                      "[ArStyle %p] Using %s drawing\n",
-                      style, priv->pixbuf_drawing ? "pixbuf" : "pixmap");
-
-#endif /* !HAVE_CLUTTER */
 }
 
 static void
@@ -184,12 +160,6 @@ ar_style_get_property (GObject    *object,
     case PROP_INTERIOR_FOCUS:
       g_value_set_boolean (value, ar_style_get_interior_focus (style));
       break;
-
-#ifndef HAVE_CLUTTER
-    case PROP_PIXBUF_DRAWING:
-      g_value_set_boolean (value, ar_style_get_pixbuf_drawing (style));
-      break;
-#endif
 
     case PROP_RTL:
       g_value_set_boolean (value, ar_style_get_rtl (style));
@@ -290,11 +260,6 @@ ar_style_set_property (GObject      *object,
     case PROP_INTERIOR_FOCUS:
       priv->interior_focus = g_value_get_boolean (value) != FALSE;
       break;
-
-#ifndef HAVE_CLUTTER
-    case PROP_PIXBUF_DRAWING:
-      priv->pixbuf_drawing = g_value_get_boolean (value) != FALSE;
-#endif
 
     case PROP_RTL:
       priv->rtl = g_value_get_boolean (value) != FALSE;
@@ -487,16 +452,6 @@ ar_style_class_init (ArStyleClass *klass)
                            FALSE,
                            G_PARAM_READWRITE |
                            G_PARAM_STATIC_STRINGS));
-
-#ifndef HAVE_CLUTTER
-  g_object_class_install_property
-    (object_class,
-     PROP_PIXBUF_DRAWING,
-     g_param_spec_boolean (AR_STYLE_PROP_PIXBUF_DRAWING, NULL, NULL,
-                           DEFAULT_PIXBUF_DRAWING,
-                           G_PARAM_READWRITE |
-                           G_PARAM_STATIC_STRINGS));
-#endif /* !HAVE_CLUTTER */
 
   g_object_class_install_property
     (object_class,
@@ -955,20 +910,3 @@ ar_style_check_dnd_drag_threshold (ArStyle *style,
   return (ABS (x2 - x1) > priv->dnd_drag_threshold ||
           ABS (y2 - y1) > priv->dnd_drag_threshold);
 }
-
-#ifndef HAVE_CLUTTER
-/**
- * ar_style_get_pixbuf_drawing:
- * @style:
- *
- * Returns: wether to use pixbuf drawing
- */
-gboolean
-ar_style_get_pixbuf_drawing (ArStyle *style)
-{
-  ArStylePrivate *priv = style->priv;
-
-  return priv->pixbuf_drawing;
-}
-
-#endif /* !HAVE_CLUTTER */

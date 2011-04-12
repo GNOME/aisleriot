@@ -182,7 +182,6 @@ struct _AisleriotBoardPrivate
   /* Bit field */
   guint droppable_supported : 1;
   guint touchscreen_mode : 1;
-  guint use_pixbuf_drawing : 1;
   guint show_focus : 1; /* whether the focus is drawn */
   guint interior_focus : 1;
 

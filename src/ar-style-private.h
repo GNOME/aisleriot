@@ -36,12 +36,6 @@ static const GdkColor default_baize_color = { 0, 0 /* red */, 0x5000 /* green */
 #define MAX_CARD_STEP (1.0) /* FIXMEchpe: allow values > 1.0 here? */
 #define DEFAULT_CARD_STEP (0.2)
 
-#ifdef HAVE_HILDON
-#define DEFAULT_PIXBUF_DRAWING (FALSE)
-#else
-#define DEFAULT_PIXBUF_DRAWING (TRUE)
-#endif
-
 #define DEFAULT_SHOW_TOOLTIPS (FALSE)
 #define DEFAULT_SHOW_STATUS_MESSAGES (FALSE)
 
@@ -83,10 +77,6 @@ struct _ArStylePrivate
   guint show_focus              : 1;
   guint show_highlight          : 1;
   guint show_seleccion          : 1;
-
-#ifndef HAVE_CLUTTER
-  guint pixbuf_drawing          : 1;
-#endif
 };
 
 #ifdef HAVE_CLUTTER

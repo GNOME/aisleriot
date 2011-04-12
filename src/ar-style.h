@@ -126,14 +126,6 @@ gboolean ar_style_check_dnd_drag_threshold (ArStyle *style,
                                             float x2,
                                             float y2);
 
-#ifndef HAVE_CLUTTER
-
-#define AR_STYLE_PROP_PIXBUF_DRAWING "pixbuf-drawing"
-
-gboolean ar_style_get_pixbuf_drawing (ArStyle *style);
-
-#endif /* !HAVE_CLUTTER */
-
 G_END_DECLS
 
 #endif /* __AR_STYLE_H__ */
