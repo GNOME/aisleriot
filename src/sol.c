@@ -237,6 +237,11 @@ main (int argc, char *argv[])
   if (!ar_runtime_init ("aisleriot"))
     return 1;
 
+#if GNOME_ENABLE_DEBUG
+  _AR_DEBUG_IF (AR_DEBUG_SCHEME)
+    g_setenv ("GUILE_WARN_DEPRECATED", "detailed", TRUE);
+#endif
+
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 
   return 0;
