@@ -1992,7 +1992,7 @@ aisleriot_window_init (AisleriotWindow *window)
     { "RestartGame", AR_STOCK_RESTART_GAME, NULL, NULL,
        N_("Restart the game"),
       G_CALLBACK (restart_game) },
-    { "Select", GTK_STOCK_INDEX, N_("_Select Game..."),
+    { "Select", GTK_STOCK_INDEX, N_("_Select Game…"),
       "<ctrl>O",
       N_("Play a different game"),
       G_CALLBACK (select_game_cb) },
