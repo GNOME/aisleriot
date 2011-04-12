@@ -23,7 +23,6 @@
 #include "ar-style-private.h"
 
 #include "ar-debug.h"
-#include "ar-glib-compat.h"
 
 /**
  * SECTION: ar-style-gtk

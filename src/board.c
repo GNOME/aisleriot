@@ -31,7 +31,6 @@
 #include <clutter/clutter.h>
 
 #include "ar-debug.h"
-#include "ar-glib-compat.h"
 #include "ar-marshal.h"
 #include "ar-sound.h"
 

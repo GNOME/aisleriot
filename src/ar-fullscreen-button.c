@@ -20,8 +20,6 @@
 #include "ar-fullscreen-button.h"
 
 #include "ar-stock.h"
-#include "ar-glib-compat.h"
-#include "ar-gtk-compat.h"
 
 struct _ArFullscreenButtonPrivate {
   GtkWindow *window;

@@ -23,8 +23,6 @@
 
 #include "card.h"
 
-#include "ar-glib-compat.h"
-
 static void aisleriot_card_paint (ClutterActor *actor);
 
 static void aisleriot_card_get_preferred_width (ClutterActor *self,

@@ -11,7 +11,6 @@
 #include <config.h>
 
 #include "ar-clock.h"
-#include "ar-glib-compat.h"
 
 G_DEFINE_TYPE (ArClock, ar_clock, GTK_TYPE_LABEL)
 

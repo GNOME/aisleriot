@@ -32,7 +32,6 @@
 
 #include "ar-clock.h"
 #include "ar-debug.h"
-#include "ar-glib-compat.h"
 #include "ar-stock.h"
 #include "ar-runtime.h"
 #include "ar-sound.h"

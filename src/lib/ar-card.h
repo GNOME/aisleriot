@@ -25,8 +25,6 @@
 
 #include <glib.h>
 
-#include "ar-glib-compat.h"
-
 G_BEGIN_DECLS
 
 /* __attribute__((__packed__)) is needed on some archs to make

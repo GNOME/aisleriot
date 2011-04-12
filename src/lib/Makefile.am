@@ -24,8 +24,6 @@ libaisleriot_la_SOURCES = \
 	ar-debug.h \
 	ar-gsettings.c \
 	ar-gsettings.h \
-	ar-glib-compat.h \
-	ar-gtk-compat.h \
 	ar-help.c \
 	ar-help.h \
 	ar-preimage.c \

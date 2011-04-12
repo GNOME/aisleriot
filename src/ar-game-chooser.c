@@ -26,7 +26,6 @@
 #include "ar-debug.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
-#include "ar-glib-compat.h"
 
 struct _ArGameChooser
 {

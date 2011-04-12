@@ -22,7 +22,6 @@
 
 #include <gtk/gtk.h>
 
-#include "ar-gtk-compat.h"
 #include "util.h"
 
 #include "ar-stock.h"

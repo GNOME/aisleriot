@@ -28,8 +28,6 @@
 
 #include <gtk/gtk.h>
 
-#include "ar-glib-compat.h"
-#include "ar-gtk-compat.h"
 #include "ar-marshal.h"
 #include "ar-runtime.h"
 #include "ar-sound.h"

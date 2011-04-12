@@ -36,7 +36,6 @@
 #endif
 
 #include "ar-debug.h"
-#include "ar-glib-compat.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
 
