@@ -1,12 +1,6 @@
 NULL =
 
-SUBDIRS =
-
-if HAVE_HILDON
-SUBDIRS += hildon
-else
-SUBDIRS += gnome
-endif
+SUBDIRS = gnome
 
 private_icons = \
 	hicolor_actions_16x16_cards-deal.png \

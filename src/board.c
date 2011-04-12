@@ -45,10 +45,10 @@
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
-/* Enable keynav on non-hildon by default */
-#if !defined(HAVE_HILDON) && !defined(DISABLE_KEYNAV)
+/* Enable keynav by default */
+#ifndef DISABLE_KEYNAV
 #define ENABLE_KEYNAV
-#endif /* !HAVE_HILDON */
+#endif
 
 /* The limits for how much overlap there is between cards and
  * how much is allowed to slip off the bottom or right.
@@ -263,7 +263,6 @@ set_cursor_by_location (AisleriotBoard *board,
                         int x,
                         int y)
 {
-#ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
   ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
@@ -302,7 +301,6 @@ set_cursor_by_location (AisleriotBoard *board,
   }
 
   set_cursor (board, cursor);
-#endif /* !HAVE_HILDON */
 }
 
 /* status message */
@@ -2244,7 +2242,6 @@ aisleriot_board_sync_style (ArStyle *style,
     }
   }
 
-#ifndef HAVE_HILDON
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_STATUS_MESSAGES)) {
     gboolean show_status_messages;
 
@@ -2259,7 +2256,6 @@ aisleriot_board_sync_style (ArStyle *style,
       }
     }
   }
-#endif /* !HAVE_HILDON */
 
   /* FIXMEchpe: queue a relayout instead? */
   if (update_geometry) {
@@ -2997,7 +2993,6 @@ aisleriot_board_motion (ClutterActor *actor,
    * parent classes have no class closure for this event.
    */
 
-#ifndef HAVE_HILDON
   if (priv->show_status_messages) {
     ArSlot *slot = NULL;
     int cardid = -1;
@@ -3013,7 +3008,6 @@ aisleriot_board_motion (ClutterActor *actor,
       set_status_message (board, NULL);
     }
   }
-#endif /* !HAVE_HILDON */
 
   if (priv->click_status == STATUS_IS_DRAG) {
     ArSlot *slot;

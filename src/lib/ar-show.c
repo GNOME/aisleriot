@@ -22,14 +22,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_MAEMO
-#ifdef HAVE_MAEMO_3
-#include <osso-browser-interface.h>
-#else
-#include <tablet-browser-interface.h>
-#endif /* HAVE_MAEMO_3 */
-#endif /* HAVE_MAEMO */
-
 #ifdef G_OS_WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -60,16 +52,6 @@ ar_show_uri (GdkScreen *screen,
                 guint32 timestamp,
                 GError **error)
 {
-#ifdef HAVE_MAEMO
-  osso_rpc_run_with_defaults (ar_runtime_get_osso_context (),
-                              "osso_browser",
-                              OSSO_BROWSER_OPEN_NEW_WINDOW_REQ,
-                              NULL,
-                              DBUS_TYPE_STRING, uri,
-                              DBUS_TYPE_INVALID);
-  return TRUE;
-#else
-
 #ifdef G_OS_WIN32
   ShellExecute (NULL, "open", uri, NULL, NULL, SW_SHOWNORMAL);
   return TRUE;
@@ -77,7 +59,6 @@ ar_show_uri (GdkScreen *screen,
 
   return gtk_show_uri (screen, uri, timestamp, error);
 #endif /* G_OS_WIN32 */
-#endif /* HAVE_MAEMO */
 }
 
 /**
@@ -113,13 +94,7 @@ ar_show_error (GtkWidget *window,
 
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
                                             "%s", error->message);
-
-#ifdef HAVE_HILDON
-  /* Empty title shows up as "<unnamed>" on maemo */
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
-#else
   gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif /* HAVE_HILDON */
 
   g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
 

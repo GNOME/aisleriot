@@ -30,14 +30,6 @@
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_HILDON
-#ifdef HAVE_MAEMO_3
-#include <hildon-widgets/hildon-banner.h>
-#else
-#include <hildon/hildon-banner.h>
-#endif
-#endif /* HAVE_HILDON */
-
 #include "ar-clock.h"
 #include "ar-debug.h"
 #include "ar-glib-compat.h"
@@ -79,22 +71,11 @@
 #define MAIN_MENU_UI_PATH       "/MainMenu"
 #define RECENT_GAMES_MENU_PATH  MAIN_MENU_UI_PATH "/GameMenu/RecentMenu"
 #define OPTIONS_MENU_PATH       MAIN_MENU_UI_PATH "/OptionsMenu"
-#ifdef HAVE_HILDON
-#define CARD_THEMES_MENU_PATH   MAIN_MENU_UI_PATH "/ViewMenu/ThemeMenu"
-#else
 #define CARD_THEMES_MENU_PATH   MAIN_MENU_UI_PATH "/ViewMenu/ThemeMenu/ThemesPH"
-#endif
 #define TOOLBAR_UI_PATH         "/Toolbar"
 
 /* The maximum number of recent games saved */
 #define MAX_RECENT 5
-
-/* On maemo5, there's no hardware key to exit the fullscreen mode. So we show
- * an overlay button to restore normal mode, if the toolbar is hidden too.
- */
-#if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
-#define LEAVE_FULLSCREEN_BUTTON
-#endif
 
 #define AR_SETTINGS_PATH_PREFIX "/org/gnome/solitaire/"
 #define AR_SETTINGS_WINDOW_STATE_PATH AR_SETTINGS_PATH_PREFIX "window-state/"
@@ -110,9 +91,6 @@ enum
   ACTION_DEAL,
   ACTION_HINT,
   ACTION_LEAVE_FULLSCREEN,
-#ifdef HAVE_HILDON
-  ACTION_ACCEL_UNDO_MOVE,
-#endif
   LAST_ACTION
 };
   
@@ -131,16 +109,12 @@ struct _AisleriotWindowPrivate
   ArCardThemes *theme_manager;
   ArCardTheme *theme;
 
-#ifdef HAVE_HILDON
-  guint game_message_hash;
-#else
   GtkStatusbar *statusbar;
   guint game_message_id;
   guint board_message_id;
   GtkWidget *score_box;
   GtkWidget *score_label;
   GtkWidget *clock;
-#endif /* HAVE_HILDON */
 
   GtkUIManager *ui_manager;
   GtkActionGroup *action_group;
@@ -161,9 +135,7 @@ struct _AisleriotWindowPrivate
   GtkWidget *game_choice_dialog;
   AisleriotStatsDialog *stats_dialog;
 
-#ifndef HAVE_HILDON
   GtkWidget *hint_dialog;
-#endif
 
 #ifdef LEAVE_FULLSCREEN_BUTTON
   GtkWidget *fullscreen_button;
@@ -262,13 +234,7 @@ show_game_over_dialog (AisleriotWindow *window)
                                                "<b>%s</b>",
                                                message);
 
-#ifdef HAVE_HILDON
-  /* Empty title shows up as "<unnamed>" on maemo */
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Game Over"));
-#else
   gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif /* HAVE_HILDON */
-
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
   if (game_won) {
@@ -450,15 +416,12 @@ help_about_cb (GtkAction *action,
                          "version", VERSION,
                          "title", priv->freecell_mode ? _("About FreeCell Solitaire")
                                                       : _("About AisleRiot"),
-#ifndef HAVE_HILDON
-                         /* The long text makes the dialogue too large under maemo */
                          "comments",
                          priv->freecell_mode ?
                            NULL :
                            _("AisleRiot provides a rule-based solitaire "
                              "card engine that allows many different "
                              "games to be played."),
-#endif
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
                                       "Copyright © 2007, 2008, 2009, 2010, 2011 Christian Persch",
                          "license", licence,
@@ -549,8 +512,6 @@ statistics_cb (GtkAction *action,
   gtk_window_present (GTK_WINDOW (priv->stats_dialog));
 }
 
-#ifndef HAVE_HILDON
-
 static void
 install_themes_cb (GtkAction *action,
                    AisleriotWindow *window)
@@ -562,11 +523,7 @@ install_themes_cb (GtkAction *action,
                                     gtk_get_current_event_time ());
 }
 
-#endif /* !HAVE_HILDON */
-
 #ifdef ENABLE_DEBUG_UI
-
-#ifndef HAVE_HILDON
 
 static void
 move_to_next_screen_cb (GtkAction *action,
@@ -770,8 +727,6 @@ debug_game_prev (GtkAction *action,
   aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
 }
 
-#endif /* !HAVE_HILDON */
-
 static void
 debug_choose_seed_response_cb (GtkWidget *dialog,
                                int response,
@@ -910,8 +865,6 @@ toolbar_toggled_cb (GtkToggleAction *action,
   set_fullscreen_button_active (window);
 }
 
-#ifndef HAVE_HILDON
-
 static void
 statusbar_toggled_cb (GtkToggleAction *action,
                       AisleriotWindow *window)
@@ -931,8 +884,6 @@ statusbar_toggled_cb (GtkToggleAction *action,
   ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), state);
 }
 
-#endif /* !HAVE_HILDON */
-
 static void
 set_fullscreen_actions (AisleriotWindow *window,
                         gboolean is_fullscreen)
@@ -941,9 +892,7 @@ set_fullscreen_actions (AisleriotWindow *window,
 
   priv->fullscreen = is_fullscreen;
 
-#ifndef HAVE_MAEMO
   g_object_set (priv->main_menu, "visible", !is_fullscreen, NULL);
-#endif /* HAVE_MAEMO */
 
   gtk_action_set_visible (priv->action[ACTION_LEAVE_FULLSCREEN], is_fullscreen);
   g_object_set (gtk_ui_manager_get_widget (priv->ui_manager, "/Toolbar/LeaveFullscreenSep"),
@@ -1034,19 +983,15 @@ show_hint_cb (GtkAction *action,
 {
   AisleriotWindowPrivate *priv = window->priv;
   char *message;
-#ifndef HAVE_HILDON
   GtkWidget *dialog;
-#endif
 
   /* If the game hasn't started yet, getting a hint starts it */
   aisleriot_game_start (priv->game);
 
-#ifndef HAVE_HILDON
   if (priv->hint_dialog) {
     gtk_widget_destroy (priv->hint_dialog);
     priv->hint_dialog = NULL;
   }
-#endif
 
   /* Only can show hints for running games */
   if (aisleriot_game_get_state (priv->game) != GAME_RUNNING)
@@ -1055,12 +1000,6 @@ show_hint_cb (GtkAction *action,
   message = aisleriot_game_get_hint (priv->game);
   if (!message)
     return;
-
-#ifdef HAVE_HILDON
-  hildon_banner_show_information (GTK_WIDGET (window),
-                                  NULL,
-                                  message);
-#else
 
   dialog = gtk_message_dialog_new_with_markup (GTK_WINDOW (window),
                                                GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -1077,7 +1016,6 @@ show_hint_cb (GtkAction *action,
                     G_CALLBACK (gtk_widget_destroy), NULL);
   g_signal_connect (dialog, "destroy",
                     G_CALLBACK (gtk_widget_destroyed), &priv->hint_dialog);
-#endif /* HAVE_HILDON */
 
   g_free (message);
 }
@@ -1350,11 +1288,7 @@ install_recently_played_menu (AisleriotWindow *window)
 
     g_snprintf (actionname, sizeof (actionname), "Recent%"G_GSIZE_FORMAT, i);
     game_name = ar_filename_to_display_name (recent_games[i]);
-#ifdef HAVE_HILDON
-    tooltip = NULL;
-#else
     tooltip = g_strdup_printf (_("Play “%s”"), game_name);
-#endif /* HAVE_HILDON */
     action = gtk_action_new (actionname, game_name, tooltip, NULL);
     g_free (game_name);
     g_free (tooltip);
@@ -1515,11 +1449,7 @@ install_card_theme_menu (ArCardThemes *theme_manager,
     display_name = g_strdup (ar_card_theme_info_get_display_name (info));
 
     g_snprintf (actionname, sizeof (actionname), "Theme%d", i);
-#ifdef HAVE_HILDON
-    tooltip = NULL;
-#else
     tooltip = g_strdup_printf (_("Display cards with “%s” card theme"), display_name);
-#endif
     action = gtk_radio_action_new (actionname, display_name, tooltip, NULL, i);
     g_free (display_name);
     g_free (tooltip);
@@ -1555,15 +1485,9 @@ install_card_theme_menu (ArCardThemes *theme_manager,
   g_list_free (list);
 }
 
-#ifdef HAVE_HILDON
-static void
-main_menu_show_cb (GtkMenu *menu,
-                   AisleriotWindow *window)
-#else
 static void
 view_menu_activate_cb (GtkAction *action,
                        AisleriotWindow *window)
-#endif    
 {
   AisleriotWindowPrivate *priv = window->priv;
 
@@ -1575,28 +1499,7 @@ view_menu_activate_cb (GtkAction *action,
 
 /* Callbacks */
 
-#ifdef HAVE_HILDON
-
-static void
-sync_window_topmost_cb (AisleriotWindow *window,
-                        GParamSpec *pspec,
-                        gpointer user_data)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  gboolean is_topmost;
-
-  if (aisleriot_game_get_state (priv->game) == GAME_RUNNING) {
-    is_topmost = hildon_window_get_is_topmost (HILDON_WINDOW (window));
-
-    aisleriot_game_set_paused (priv->game, !is_topmost);
-  }
-}
-
-#endif /* HAVE_HILDON */
-
 /* Game state synchronisation */
-
-#ifndef HAVE_HILDON
 
 static void
 sync_game_score (AisleriotGame *game,
@@ -1616,8 +1519,6 @@ sync_game_score (AisleriotGame *game,
   g_snprintf (str, sizeof (str), C_("score", "%6d"), score);
   gtk_label_set_text (GTK_LABEL (priv->score_label), str);
 }
-
-#endif /* !HAVE_HILDON */
 
 static void
 sync_game_state (AisleriotGame *game,
@@ -1641,13 +1542,11 @@ sync_game_state (AisleriotGame *game,
   gtk_action_set_sensitive (priv->action[ACTION_HINT],
                             state == GAME_BEGIN || state == GAME_RUNNING);
 
-#ifndef HAVE_HILDON
   if (state == GAME_RUNNING) {
     ar_clock_start (AR_CLOCK (priv->clock));
   } else {
     ar_clock_stop (AR_CLOCK (priv->clock));
   }
-#endif
 
   if (state >= GAME_OVER) {
     update_statistics_display (window);
@@ -1666,9 +1565,6 @@ sync_game_undoable (AisleriotGame *game,
   g_object_get (game, "can-undo", &enabled, NULL);
 
   gtk_action_set_sensitive (priv->action[ACTION_UNDO_MOVE], enabled);
-#ifdef HAVE_HILDON
-  gtk_action_set_sensitive (priv->action[ACTION_ACCEL_UNDO_MOVE], enabled);
-#endif
 
   /* The restart game validity condition is the same as for undo. */
   gtk_action_set_sensitive (priv->action[ACTION_RESTART_GAME], enabled);
@@ -1708,9 +1604,7 @@ game_type_changed_cb (AisleriotGame *game,
   char *game_name;
   guint features;
   gboolean dealable;
-#ifndef HAVE_HILDON
   gboolean show_scores;
-#endif /* !HAVE_HILDON */
 
   priv->changing_game_type = TRUE;
 
@@ -1739,8 +1633,6 @@ game_type_changed_cb (AisleriotGame *game,
   dealable = (features & FEATURE_DEALABLE) != 0;
   gtk_action_set_visible (priv->action[ACTION_DEAL], dealable);
 
-#ifdef HAVE_HILDON
-#else
   ar_clock_reset (AR_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
@@ -1748,7 +1640,6 @@ game_type_changed_cb (AisleriotGame *game,
 
   show_scores = (features & FEATURE_SCORE_HIDDEN) == 0;
   g_object_set (priv->score_box, "visible", show_scores, NULL);
-#endif /* HAVE_HILDON */
 
   priv->changing_game_type = FALSE;
 }
@@ -1757,18 +1648,14 @@ static void
 game_new_cb (AisleriotGame *game,
              AisleriotWindow *window)
 {
-#ifndef HAVE_HILDON
   AisleriotWindowPrivate *priv = window->priv;
-#endif
 
   update_statistics_display (window);
 
-#ifndef HAVE_HILDON
   ar_clock_reset (AR_CLOCK (priv->clock));
 
   gtk_statusbar_pop (priv->statusbar, priv->game_message_id);
   gtk_statusbar_pop (priv->statusbar, priv->board_message_id);
-#endif /* !HAVE_HILDON */
 }
 
 static void
@@ -1777,33 +1664,12 @@ game_statusbar_message_cb (AisleriotGame *game,
                            AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-#ifdef HAVE_HILDON
-
-  /* The banners are annoying, but until I get a better idea, use them */
-  {
-    guint hash;
-
-    if (message != NULL && message[0] != '\0') {
-      /* Check that the message is different from the last one;
-      * otherwise this becomes too annoying.
-      */
-      hash = g_str_hash (message);
-      if (hash != priv->game_message_hash) {
-        priv->game_message_hash = hash;
-        hildon_banner_show_information (GTK_WIDGET (window),
-                                        NULL,
-                                        message);
-      }
-    }
-  }
-#else
   guint id = priv->game_message_id;
 
   gtk_statusbar_pop (priv->statusbar, id);
   if (message != NULL) {
     gtk_statusbar_push (priv->statusbar, id, message);
   }
-#endif /* HAVE_HILDON */
 }
 
 static void
@@ -1875,13 +1741,7 @@ game_exception_cb (AisleriotGame *game,
     (GTK_MESSAGE_DIALOG (dialog),
      "%s", _("Please report this bug to the developers."));
 
-#ifdef HAVE_HILDON
-  /* Empty title shows up as "<unnamed>" on maemo */
-  gtk_window_set_title (GTK_WINDOW (dialog), _("Error"));
-#else
   gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif /* HAVE_HILDON */
-
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
@@ -2005,8 +1865,6 @@ aisleriot_window_set_freecell_mode (AisleriotWindow *window,
   }
 }
 
-#ifndef HAVE_HILDON
-
 static void
 board_status_message_cb (AisleriotBoard *board,
                          const char *status_message,
@@ -2020,8 +1878,6 @@ board_status_message_cb (AisleriotBoard *board,
     gtk_statusbar_push (priv->statusbar, priv->board_message_id, status_message);
   }
 }
-
-#endif /* !HAVE_HILDON */
 
 #ifdef HAVE_CLUTTER
 
@@ -2054,11 +1910,7 @@ embed_size_allocate_cb (ArClutterEmbed *embed,
 
 /* Class implementation */
 
-#ifdef HAVE_HILDON
-G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, HILDON_TYPE_WINDOW);
-#else
-G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_WINDOW);
-#endif
+G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_WINDOW)
 
 static void
 aisleriot_window_style_set (GtkWidget *widget,
@@ -2087,9 +1939,7 @@ aisleriot_window_state_event (GtkWidget *widget,
                               GdkEventWindowState *event)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (widget);
-#ifndef HAVE_HILDON
   AisleriotWindowPrivate *priv = window->priv;
-#endif
 
   if (event->changed_mask & (GDK_WINDOW_STATE_FULLSCREEN | GDK_WINDOW_STATE_MAXIMIZED)) {
     gboolean is_fullscreen, is_maximised;
@@ -2102,7 +1952,6 @@ aisleriot_window_state_event (GtkWidget *widget,
     set_fullscreen_button_active (window);
   }
 
-#ifndef HAVE_HILDON
   if (event->changed_mask & GDK_WINDOW_STATE_ICONIFIED) {
     if (aisleriot_game_get_state (priv->game) == GAME_RUNNING) {
       gboolean is_iconified;
@@ -2117,7 +1966,6 @@ aisleriot_window_state_event (GtkWidget *widget,
       }
     }
   }
-#endif /* !HAVE_HILDON */
 
   if (GTK_WIDGET_CLASS (aisleriot_window_parent_class)->window_state_event) {
     return GTK_WIDGET_CLASS (aisleriot_window_parent_class)->window_state_event (widget, event);
@@ -2125,23 +1973,6 @@ aisleriot_window_state_event (GtkWidget *widget,
 
   return FALSE;
 }
-
-#ifdef HAVE_HILDON
-/* We never show tooltips, no need to put them into the binary */
-#define ACTION_TOOLTIP(string)  (NULL)
-#else
-#define ACTION_TOOLTIP(string)  (string)
-#endif
-
-/* The maemo5 device (N900) doesn't have these extra hardware keys,
- * so we only re-define the accels for maemo[34]. The N900 does have
- * a slide-out keyboard, so using the regular accels should work fine.
- */
-#if defined(HAVE_HILDON) && (defined(HAVE_MAEMO_3) || defined(HAVE_MAEMO_4))
-#define ACTION_ACCEL(string1,string2) (string2)
-#else
-#define ACTION_ACCEL(string1,string2) (string1)
-#endif
 
 static void
 aisleriot_window_init (AisleriotWindow *window)
@@ -2156,64 +1987,59 @@ aisleriot_window_init (AisleriotWindow *window)
 
     /* Menu item actions */
     { "NewGame", AR_STOCK_NEW_GAME, NULL,
-      ACTION_ACCEL ("<ctrl>N", NULL),
-      ACTION_TOOLTIP (N_("Start a new game")),
+      "<ctrl>N",
+      N_("Start a new game"),
       G_CALLBACK (new_game_cb) },
     { "RestartGame", AR_STOCK_RESTART_GAME, NULL, NULL,
-       ACTION_TOOLTIP (N_("Restart the game")),
+       N_("Restart the game"),
       G_CALLBACK (restart_game) },
     { "Select", GTK_STOCK_INDEX, N_("_Select Game..."),
-      ACTION_ACCEL ("<ctrl>O", NULL),
-      ACTION_TOOLTIP (N_("Play a different game")),
+      "<ctrl>O",
+      N_("Play a different game"),
       G_CALLBACK (select_game_cb) },
     { "RecentMenu", NULL, N_("_Recently Played") },
     { "Statistics", NULL, N_("S_tatistics"), NULL,
-      ACTION_TOOLTIP (N_("Show gameplay statistics")),
+      N_("Show gameplay statistics"),
       G_CALLBACK (statistics_cb) },
     { "CloseWindow", GTK_STOCK_CLOSE, NULL, NULL,
-      ACTION_TOOLTIP (N_("Close this window")),
+      N_("Close this window"),
       G_CALLBACK (close_window_cb) },
     { "UndoMove", AR_STOCK_UNDO_MOVE, NULL, NULL,
-      ACTION_TOOLTIP (N_("Undo the last move")),
+      N_("Undo the last move"),
       G_CALLBACK (undo_cb) },
     { "RedoMove", AR_STOCK_REDO_MOVE, NULL, NULL,
-      ACTION_TOOLTIP (N_("Redo the undone move")),
+      N_("Redo the undone move"),
       G_CALLBACK (redo_cb) },
     { "Deal", AR_STOCK_DEAL_CARDS, NULL, NULL,
-      ACTION_TOOLTIP (N_("Deal next card or cards")),
+      N_("Deal next card or cards"),
       G_CALLBACK (deal_cb) },
     { "Hint", AR_STOCK_HINT, NULL, NULL,
-      ACTION_TOOLTIP (N_("Get a hint for your next move")),
+      N_("Get a hint for your next move"),
       G_CALLBACK (show_hint_cb) },
     { "Contents", AR_STOCK_CONTENTS, NULL, NULL,
-      ACTION_TOOLTIP (N_("View help for Aisleriot")),
+      N_("View help for Aisleriot"),
       G_CALLBACK (help_general_cb) },
     { "HelpGame", AR_STOCK_CONTENTS, NULL,
-      ACTION_ACCEL ("<shift>F1", NULL),
-      ACTION_TOOLTIP (N_("View help for this game")),
+      "<shift>F1",
+      N_("View help for this game"),
       G_CALLBACK (help_on_game_cb) },
     { "About", GTK_STOCK_ABOUT, NULL, NULL,
-      ACTION_TOOLTIP (N_("About this game")),
+      N_("About this game"),
       G_CALLBACK (help_about_cb) },
-#ifndef HAVE_HILDON
     { "InstallThemes", NULL, N_("Install card themes…"), NULL,
-      ACTION_TOOLTIP (N_("Install new card themes from the distribution packages repositories")),
+      N_("Install new card themes from the distribution packages repositories"),
       G_CALLBACK (install_themes_cb) },
-#endif /* HAVE_HILDON */
 
     /* Toolbar-only actions */
     { "LeaveFullscreen", AR_STOCK_LEAVE_FULLSCREEN, NULL, NULL, NULL,
       G_CALLBACK (leave_fullscreen_cb) },
-#ifndef HAVE_HILDON
     { "ThemeMenu", NULL, N_("_Card Style"), NULL, NULL, NULL },
-#endif /* !HAVE_HILDON */
 
 #ifdef ENABLE_DEBUG_UI
     /* Debug UI actions */
     { "DebugMenu", NULL, "_Debug" },
     { "DebugChooseSeed", NULL, "_Choose seed", NULL, NULL,
       G_CALLBACK (debug_choose_seed_cb) },
-#ifndef HAVE_HILDON
     { "DebugMoveNextScreen", NULL, "_Move to next screen", NULL, NULL,
        G_CALLBACK (move_to_next_screen_cb) },
     { "DebugDelayedMoveNextScreen", NULL, "_Delayed move to next screen", NULL, NULL,
@@ -2230,18 +2056,11 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (debug_game_next) },
     { "DebugGamePrev", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
       G_CALLBACK (debug_game_prev) },
-#endif /* !HAVE_HILDON */
     { "DebugTweakStyle", NULL, "_Tweak Style", NULL, NULL,
       G_CALLBACK (debug_tweak_style_cb) },
     { "DebugTweakSettings", NULL, "_Tweak GtkSettings", NULL, NULL,
       G_CALLBACK (debug_tweak_settings_cb) },
 #endif /* ENABLE_DEBUG_UI */
-
-    /* Accel actions */
-#ifdef HAVE_HILDON
-    { "AccelUndoMove", NULL, "AccelUndoMove", "Escape", NULL,
-      G_CALLBACK (undo_cb) },
-#endif
   };
 
   const GtkToggleActionEntry toggle_actions[] = {
@@ -2249,30 +2068,28 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (fullscreen_toggled_cb),
       FALSE },
     { "Toolbar", NULL, N_("_Toolbar"), NULL,
-      ACTION_TOOLTIP (N_("Show or hide the toolbar")),
+      N_("Show or hide the toolbar"),
       G_CALLBACK (toolbar_toggled_cb),
       TRUE /* active by default since the UI manager creates the toolbar visible */
     },
-#ifndef HAVE_HILDON
     { "Statusbar", NULL, N_("_Statusbar"), NULL,
-      ACTION_TOOLTIP (N_("Show or hide statusbar")),
+      N_("Show or hide statusbar"),
       G_CALLBACK (statusbar_toggled_cb),
       FALSE
     },
-#endif /* !HAVE_HILDON */
     { "ClickToMove", NULL, N_("_Click to Move"), NULL,
-      ACTION_TOOLTIP (N_("Pick up and drop cards by clicking")),
+      N_("Pick up and drop cards by clicking"),
       G_CALLBACK (clickmove_toggle_cb),
       FALSE /* not active by default */ },
 #ifdef ENABLE_SOUND
    { "Sound", NULL, N_("_Sound"), NULL,
-      ACTION_TOOLTIP (N_("Whether or not to play event sounds")),
+      N_("Whether or not to play event sounds"),
       G_CALLBACK (sound_toggle_cb),
       FALSE /* not active by default */ },
 #endif /* ENABLE_SOUND */
 #ifdef HAVE_CLUTTER
    { "Animations", NULL, N_("_Animations"), NULL,
-      ACTION_TOOLTIP (N_("Whether or not to animate card moves")),
+      N_("Whether or not to animate card moves"),
       G_CALLBACK (animations_toggle_cb),
       FALSE /* not active by default */ },
 #endif /* HAVE_CLUTTER */
@@ -2288,58 +2105,10 @@ aisleriot_window_init (AisleriotWindow *window)
     "Deal",
     "Hint",
     "LeaveFullscreen",
-#ifdef HAVE_HILDON
-    "AccelUndoMove",
-#endif /* HAVE_HILDON */
   };
 
   static const char ui_description[] =
     "<ui>"
-#ifdef HAVE_HILDON
-      "<popup name='MainMenu'>"
-        "<menu action='GameMenu'>"
-          "<menuitem action='NewGame'/>"
-          "<menuitem action='RestartGame'/>"
-          "<menuitem action='Statistics'/>"
-          "<menuitem action='Select'/>"
-          "<separator />"
-          "<placeholder name='RecentMenu'/>"
-          "<separator/>"
-        "</menu>"
-        "<menu action='ViewMenu'>"
-          "<menuitem action='Fullscreen'/>"
-          "<menuitem action='Toolbar'/>"
-          "<separator/>"
-          "<placeholder name='ThemeMenu'/>"
-        "</menu>"
-        "<menu action='ControlMenu'>"
-          "<menuitem action='UndoMove'/>"
-          "<menuitem action='RedoMove'/>"
-          "<menuitem action='Deal'/>"
-          "<menuitem action='Hint'/>"
-          "<separator/>"
-          "<menuitem action='ClickToMove'/>"
-#ifdef ENABLE_SOUND
-          "<menuitem action='Sound'/>"
-#endif
-        "</menu>"
-        "<menu action='OptionsMenu'/>"
-        "<menu action='HelpMenu'>"
-          "<menuitem action='Contents'/>"
-          "<menuitem action='HelpGame'/>"
-          "<separator/>"
-          "<menuitem action='About'/>"
-        "</menu>"
-#ifdef ENABLE_DEBUG_UI
-        "<menu action='DebugMenu'>"
-          "<menuitem action='DebugChooseSeed'/>"
-          "<menuitem action='DebugTweakStyle'/>"
-          "<menuitem action='DebugTweakSettings'/>"
-          "</menu>"
-#endif /* ENABLE_DEBUG_UI */
-        "<menuitem action='CloseWindow'/>"
-      "</popup>"
-#else /* !HAVE_HILDON */
       "<menubar name='MainMenu'>"
         "<menu action='GameMenu'>"
           "<menuitem action='NewGame'/>"
@@ -2357,10 +2126,8 @@ aisleriot_window_init (AisleriotWindow *window)
           "<separator/>"
           "<menu action='ThemeMenu'>"
             "<placeholder name='ThemesPH'/>"
-#ifndef HAVE_HILDON
             "<separator/>"
             "<menuitem action='InstallThemes'/>"
-#endif
           "</menu>"
         "</menu>"
         "<menu action='ControlMenu'>"
@@ -2402,7 +2169,6 @@ aisleriot_window_init (AisleriotWindow *window)
         "</menu>"
 #endif /* ENABLE_DEBUG_UI */
       "</menubar>"
-#endif /* HAVE_HILDON */
       "<toolbar name='Toolbar'>"
         "<toolitem action='NewGame'/>"
         "<toolitem action='RestartGame'/>"
@@ -2420,13 +2186,7 @@ aisleriot_window_init (AisleriotWindow *window)
         "<toolitem action='DebugGameNext'/>"
         "<toolitem action='DebugGameLast'/>"
 #endif
-#ifdef HAVE_MAEMO
-        "<separator/>"
-#endif
       "</toolbar>"
-#ifdef HAVE_HILDON
-      "<accelerator action='AccelUndoMove'/>"
-#endif
     "</ui>";
 
   AisleriotWindowPrivate *priv;
@@ -2436,10 +2196,8 @@ aisleriot_window_init (AisleriotWindow *window)
   char *theme_name;
   ArCardTheme *theme;
   guint i;
-#ifndef HAVE_HILDON
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *label, *time_box;
-#endif
 #ifdef HAVE_CLUTTER
   ClutterContainer *stage;
 #endif
@@ -2527,7 +2285,6 @@ aisleriot_window_init (AisleriotWindow *window)
   action = gtk_action_group_get_action (priv->action_group, "Select");
   g_object_set (action, "short-label", _("Select Game"), NULL);
 
-#ifndef HAVE_HILDON
   statusbar = priv->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "game-message");
   ar_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
@@ -2571,7 +2328,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
   ar_atk_util_add_atk_relation (label, priv->clock, ATK_RELATION_LABEL_FOR);
   ar_atk_util_add_atk_relation (priv->clock, label, ATK_RELATION_LABELLED_BY);
-#endif /* !HAVE_HILDON */
 
   /* Load the UI after we've connected the statusbar,
    * otherwise not all actions will have statusbar help.
@@ -2588,11 +2344,6 @@ aisleriot_window_init (AisleriotWindow *window)
 #endif
 
   /* Defer building the card themes menu until its parent's menu is opened */
-#ifdef HAVE_HILDON
-  /* FIXMEchpe check this works! */
-  g_signal_connect (priv->main_menu, "show",
-                    G_CALLBACK (main_menu_show_cb), window);
-#else
   action = gtk_action_group_get_action (priv->action_group, "ViewMenu");
   g_signal_connect (action, "activate",
                     G_CALLBACK (view_menu_activate_cb), window);
@@ -2604,7 +2355,6 @@ aisleriot_window_init (AisleriotWindow *window)
   /* So the menu doesn't change size when the theme submenu is installed */
   action = gtk_action_group_get_action (priv->action_group, "ThemeMenu");
   g_object_set (action, "hide-if-empty", GINT_TO_POINTER (FALSE), NULL);
-#endif
 #endif
 
   /* It's possible that the themes list has already been loaded (e.g.
@@ -2643,16 +2393,10 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_action_set_visible (action, ar_sound_is_available ());
 #endif /* ENABLE_SOUND */
 
-#ifndef HAVE_HILDON
   action = gtk_action_group_get_action (priv->action_group, "Statusbar");
   priv->statusbar_visible = ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), NULL) != FALSE;
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->statusbar_visible);
-#endif /* !HAVE_HILDON */
-
-#ifndef HAVE_HILDON
-  action = gtk_action_group_get_action (priv->action_group, "InstallThemes");
-#endif /* HAVE_HILDON */
 
   set_fullscreen_actions (window, FALSE);
 
@@ -2675,24 +2419,17 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_container_add (GTK_CONTAINER (window), main_vbox);
   gtk_widget_show (main_vbox);
 
-#ifdef HAVE_HILDON
-  hildon_window_set_menu (HILDON_WINDOW (window), GTK_MENU (priv->main_menu));
-  hildon_window_add_toolbar (HILDON_WINDOW (window), GTK_TOOLBAR (priv->toolbar));
-#else
   gtk_box_pack_start (GTK_BOX (main_vbox), priv->main_menu, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (main_vbox), priv->toolbar, FALSE, FALSE, 0);
   gtk_box_pack_end (GTK_BOX (main_vbox), GTK_WIDGET (priv->statusbar), FALSE, FALSE, 0);
-#endif /* HAVE_HILDON */
 
   gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (priv->board), TRUE, TRUE, 0);
   gtk_widget_show (GTK_WIDGET (priv->board));
 
   /* Synchronise */
-#ifndef HAVE_HILDON
   sync_game_score (priv->game, NULL, window);
   g_signal_connect (priv->game, "notify::score",
                     G_CALLBACK (sync_game_score), window);
-#endif /* !HAVE_HILDON */
 
   sync_game_state (priv->game, NULL, window);
   g_signal_connect (priv->game, "notify::state",
@@ -2724,24 +2461,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
   /* Initial focus is in the board */
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
-
-  /* FIXMEchpe: make this #ifdef HAVE_MAEMO_3 after testing that it is indeed fixed */
-#ifdef HAVE_HILDON
-  /* Bug alert! maemo#615 and maemo#875
-   * Thank you, maemo developers! This bug just cost me 2 hours of my life.
-   */
-  /* FIXMEchpe: find out if this is fixed on maemo4 or maemo5 */
-  gtk_widget_set_no_show_all (main_vbox, TRUE);
-  gtk_widget_show_all (GTK_WIDGET (window));
-  if (!priv->toolbar_visible) {
-    gtk_widget_hide (GTK_WIDGET (priv->toolbar));
-  }
-#endif
-
-#ifdef HAVE_HILDON
-  g_signal_connect (window, "notify::is-topmost",
-                    G_CALLBACK (sync_window_topmost_cb), NULL);
-#endif
 }
 
 static void
@@ -2756,12 +2475,10 @@ aisleriot_window_dispose (GObject *object)
                                         window);
 #endif /* HAVE_CLUTTER */
 
-#ifndef HAVE_HILDON
   if (priv->hint_dialog) {
     gtk_widget_destroy (priv->hint_dialog);
     g_assert (priv->hint_dialog == NULL);
   }
-#endif
   if (priv->game_over_dialog) {
     gtk_widget_destroy (priv->game_over_dialog);
     g_assert (priv->game_over_dialog == NULL);

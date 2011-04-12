@@ -47,10 +47,10 @@
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
-/* Enable keynav on non-hildon by default */
-#if !defined(HAVE_HILDON) && !defined(DISABLE_KEYNAV)
+/* Enable keynav by default */
+#ifndef DISABLE_KEYNAV
 #define ENABLE_KEYNAV
-#endif /* !HAVE_HILDON */
+#endif
 
 /* The minimum size for the playing area. Almost completely arbitrary. */
 #define BOARD_MIN_WIDTH 300
@@ -141,12 +141,6 @@ struct _AisleriotBoardPrivate
   /* Highlight */
   ArSlot *highlight_slot;
 
-#ifdef HAVE_MAEMO
-  /* Tap-and-Hold */
-  ArSlot *tap_and_hold_slot;
-  int tap_and_hold_card_id;
-#endif
-
   /* Status message */
   const char *status_message; /* interned */
 
@@ -209,12 +203,10 @@ static void
 set_cursor (AisleriotBoard *board,
             ArCursorType cursor)
 {
-#ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
 
   gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (board)),
                          priv->cursor[cursor]);
-#endif /* !HAVE_HILDON */
 }
 
 /* If we are over a slot, set the cursor to the given cursor,
@@ -224,7 +216,6 @@ set_cursor_by_location (AisleriotBoard *board,
                         int x,
                         int y)
 {
-#ifndef HAVE_HILDON 
   AisleriotBoardPrivate *priv = board->priv;
   ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
@@ -263,7 +254,6 @@ set_cursor_by_location (AisleriotBoard *board,
   }
 
   set_cursor (board, cursor);
-#endif /* !HAVE_HILDON */
 }
 
 /* status message */
@@ -1289,8 +1279,6 @@ aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
 
 /* Tooltips */
 
-#if !defined(HAVE_HILDON)
-
 static gboolean
 aisleriot_board_query_tooltip_cb (GtkWidget *widget,
                                   int x,
@@ -1318,8 +1306,6 @@ aisleriot_board_query_tooltip_cb (GtkWidget *widget,
 
   return TRUE;
 }
-
-#endif /* !HAVE_HILDON */
 
 /* Keynav */
 
@@ -2251,16 +2237,13 @@ aisleriot_board_realize (GtkWidget *widget)
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
   GdkWindow *window;
+  GdkDisplay *display;
 
   GTK_WIDGET_CLASS (aisleriot_board_parent_class)->realize (widget);
 
   window = gtk_widget_get_window (widget);
 
   ar_card_surface_cache_set_drawable (priv->card_cache, window);
-
-#ifndef HAVE_HILDON
-{
-  GdkDisplay *display;
 
   display = gtk_widget_get_display (widget);
 
@@ -2269,8 +2252,6 @@ aisleriot_board_realize (GtkWidget *widget)
   priv->cursor[AR_CURSOR_OPEN] = ar_cursor_new (window, AR_CURSOR_OPEN);
   priv->cursor[AR_CURSOR_CLOSED] = ar_cursor_new (window, AR_CURSOR_CLOSED);
   priv->cursor[AR_CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
-}
-#endif /* !HAVE_HILDON */
 
   aisleriot_board_setup_geometry (board);
 }
@@ -2280,21 +2261,17 @@ aisleriot_board_unrealize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
-#ifndef HAVE_HILDON 
   guint i;
-#endif
 
   priv->geometry_set = FALSE;
 
   ar_card_surface_cache_set_drawable (priv->card_cache, NULL);
   priv->slot_surface = NULL;
 
-#ifndef HAVE_HILDON 
   for (i = 0; i < AR_LAST_CURSOR; ++i) {
     gdk_cursor_unref (priv->cursor[i]);
     priv->cursor[i] = NULL;
   }
-#endif /* !HAVE_HILDON*/
 
   clear_state (board);
 
@@ -2408,13 +2385,10 @@ aisleriot_board_sync_style (ArStyle *style,
     queue_redraw = TRUE;
   }
 
-#if !defined(HAVE_HILDON)
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_TOOLTIPS)) {
     gtk_widget_set_has_tooltip (widget, ar_style_get_show_tooltips (priv->style));
   }
-#endif
 
-#ifndef HAVE_HILDON
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_STATUS_MESSAGES)) {
     gboolean show_status_messages;
 
@@ -2429,7 +2403,6 @@ aisleriot_board_sync_style (ArStyle *style,
       }
     }
   }
-#endif /* !HAVE_HILDON */
 
   if (update_geometry && realized) {
     aisleriot_board_setup_geometry (board);
@@ -2831,7 +2804,6 @@ aisleriot_board_motion_notify (GtkWidget *widget,
    * parent class has no class closure for this event.
    */
 
-#ifndef HAVE_HILDON
   if (priv->show_status_messages) {
     ArSlot *slot = NULL;
     int cardid = -1;
@@ -2847,7 +2819,6 @@ aisleriot_board_motion_notify (GtkWidget *widget,
       set_status_message (board, NULL);
     }
   }
-#endif /* !HAVE_HILDON */
 
   if (priv->click_status == STATUS_IS_DRAG) {
     ArSlot *slot;
@@ -2882,55 +2853,6 @@ aisleriot_board_key_press (GtkWidget *widget,
 {
   return GTK_WIDGET_CLASS (aisleriot_board_parent_class)->key_press_event (widget, event);
 }
-
-#ifdef HAVE_MAEMO
-
-static gboolean
-aisleriot_board_tap_and_hold_query_cb (GtkWidget *widget,
-                                       GdkEvent *_event,
-                                       AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-  /* BadDocs! should mention that this is a GdkEventButton! */
-  GdkEventButton *event = (GdkEventButton *) _event;
-  ArSlot *slot;
-  int card_id;
-
-  /* NOTE: Returning TRUE from this function means that tap-and-hold
-   * is disallowed here; FALSE means to allow tap-and-hold.
-   */
-
-  /* In click-to-move mode, we always reveal with just the left click */
-  if (priv->click_to_move)
-    return TRUE;
-
-  get_slot_and_card_from_point (board, event->x, event->y, &slot, &card_id);
-  if (!slot ||
-      card_id < 0 ||
-      card_id == slot->cards->len - 1 ||
-      CARD_GET_FACE_DOWN (CARD (slot->cards->data[card_id])))
-    return TRUE;
-
-  priv->tap_and_hold_slot = slot;
-  priv->tap_and_hold_card_id = card_id;
-
-  return FALSE; /* chain up to the default handler */
-}
-
-static void
-aisleriot_board_tap_and_hold_cb (GtkWidget *widget,
-                                 AisleriotBoard *board)
-{
-  AisleriotBoardPrivate *priv = board->priv;
-
-  if (priv->tap_and_hold_slot == NULL ||
-      priv->tap_and_hold_card_id < 0)
-    return;
-
-  reveal_card (board, priv->tap_and_hold_slot, priv->tap_and_hold_card_id);
-}
-
-#endif /* HAVE_MAEMO */
 
 #ifdef OPTIMISED_EXPOSE
 
@@ -3336,20 +3258,9 @@ aisleriot_board_init (AisleriotBoard *board)
                          GDK_BUTTON_PRESS_MASK |
                          GDK_POINTER_MOTION_MASK |
                          GDK_BUTTON_RELEASE_MASK);
-  /* FIMXEchpe: no need for motion events on maemo, unless we explicitly activate drag mode */
 
-#ifdef HAVE_MAEMO
-  gtk_widget_tap_and_hold_setup (widget, NULL, NULL, GTK_TAP_AND_HOLD_PASS_PRESS);
-  g_signal_connect (widget, "tap-and-hold-query",
-                    G_CALLBACK (aisleriot_board_tap_and_hold_query_cb), board);
-  g_signal_connect (widget, "tap-and-hold",
-                    G_CALLBACK (aisleriot_board_tap_and_hold_cb), board);
-#endif /* HAVE_MAEMO */
-
-#if !defined(HAVE_HILDON)
   g_signal_connect (widget, "query-tooltip",
                     G_CALLBACK (aisleriot_board_query_tooltip_cb), board);
-#endif
 }
 
 static void

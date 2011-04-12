@@ -11,6 +11,8 @@ libaisleriot_la_SOURCES = \
 	ar-card.c \
 	ar-card.h \
 	ar-card-private.h \
+	ar-card-surface-cache.c \
+	ar-card-surface-cache.h \
 	ar-card-theme.c \
 	ar-card-theme.h \
 	ar-card-theme-private.h \
@@ -26,6 +28,9 @@ libaisleriot_la_SOURCES = \
 	ar-gtk-compat.h \
 	ar-help.c \
 	ar-help.h \
+	ar-preimage.c \
+	ar-preimage.h \
+	ar-preimage-private.h \
 	ar-profile.c \
 	ar-profile.h \
 	ar-runtime.c \
@@ -37,20 +42,6 @@ libaisleriot_la_SOURCES = \
 	ar-string-utils.c \
 	ar-string-utils.h \
 	$(BUILT_SOURCES) \
-	$(NULL)
-
-if !HAVE_HILDON
-libaisleriot_la_SOURCES += \
-	ar-preimage.c \
-	ar-preimage.h \
-	ar-preimage-private.h \
-	$(NULL)
-endif
-
-# FIXME conditional
-libaisleriot_la_SOURCES += \
-	ar-card-surface-cache.c \
-	ar-card-surface-cache.h \
 	$(NULL)
 
 if HAVE_CLUTTER
@@ -116,11 +107,6 @@ if HAVE_CLUTTER
 libaisleriot_la_CFLAGS += $(CLUTTER_CFLAGS)
 libaisleriot_la_LIBADD += $(CLUTTER_LIBS)
 endif # HAVE_CLUTTER
-
-if HAVE_HILDON
-libaisleriot_la_CFLAGS += $(HILDON_CFLAGS)
-libaisleriot_la_LIBADD += $(HILDON_LIBS)
-endif
 
 if HAVE_GNOME
 libaisleriot_la_CFLAGS += $(GNOME_CFLAGS)

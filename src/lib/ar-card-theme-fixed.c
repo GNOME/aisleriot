@@ -310,16 +310,7 @@ ar_card_theme_fixed_class_get_theme_info (ArCardThemeClass *klass,
     return NULL;
 
   display_name = ar_filename_to_display_name (filename);
-
-#ifdef HAVE_HILDON
-  /* On Hildon, fixed is the default. For pref backward compatibility,
-   * we don't add the fixed: prefix there.
-   */
-  pref_name = g_strdup (filename);
-  *(strrchr (pref_name, '.')) = '\0'; /* strip extension */
-#else
   pref_name = g_strdup_printf ("fixed:%s", filename);
-#endif
 
   info = _ar_card_theme_info_new (G_OBJECT_CLASS_TYPE (klass),
                                      path,

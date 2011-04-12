@@ -54,15 +54,14 @@ ar_clutter_embed_realize (GtkWidget *widget)
 {
   ArClutterEmbed *embed = AR_CLUTTER_EMBED (widget);
   ArClutterEmbedPrivate *priv = embed->priv;
-#ifndef HAVE_HILDON
+#ifndef NO_MOUSE
   GdkDisplay *display;
   GdkWindow *window;
 #endif
 
   GTK_WIDGET_CLASS (ar_clutter_embed_parent_class)->realize (widget);
 
-  /* FIXMEchpe: this isn't really HILDON, but don't-support-mouse */
-#ifndef HAVE_HILDON
+#ifndef NO_MOUSE
   /* Create cursors */
   display = gtk_widget_get_display (widget);
   window = gtk_widget_get_window (widget);
@@ -71,7 +70,7 @@ ar_clutter_embed_realize (GtkWidget *widget)
   priv->cursor[AR_CURSOR_OPEN] = ar_cursor_new (window, AR_CURSOR_OPEN);
   priv->cursor[AR_CURSOR_CLOSED] = ar_cursor_new (window, AR_CURSOR_CLOSED);
   priv->cursor[AR_CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
-#endif /* !HAVE_HILDON */
+#endif /* !NO_MOUSE */
 
   ar_clutter_embed_set_cursor (embed, AR_CURSOR_DEFAULT);
 }
@@ -80,7 +79,7 @@ static void
 ar_clutter_embed_unrealize (GtkWidget *widget)
 {
   /* FIXMEchpe */
-#ifndef HAVE_HILDON
+#ifndef NO_MOUSE
   ArClutterEmbed *embed = AR_CLUTTER_EMBED (widget);
   ArClutterEmbedPrivate *priv = embed->priv;
   guint i;
@@ -89,7 +88,7 @@ ar_clutter_embed_unrealize (GtkWidget *widget)
     gdk_cursor_unref (priv->cursor[i]);
     priv->cursor[i] = NULL;
   }
-#endif /* !HAVE_HILDON*/
+#endif /* !NO_MOUSE*/
 
   GTK_WIDGET_CLASS (ar_clutter_embed_parent_class)->unrealize (widget);
 }
@@ -262,10 +261,10 @@ ar_clutter_embed_set_cursor (ArClutterEmbed *embed,
                              ArCursorType cursor)
 {
   /* FIXMEchpe */
-#ifndef HAVE_HILDON
+#ifndef NO_MOUSE
   ArClutterEmbedPrivate *priv = embed->priv;
 
   gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (embed)),
                          priv->cursor[cursor]);
-#endif /* !HAVE_HILDON */
+#endif /* !NO_MOUSE */
 }

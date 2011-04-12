@@ -34,18 +34,6 @@
 #include <clutter-gtk/clutter-gtk.h>
 #endif
 
-#ifdef HAVE_HILDON
-#include <libosso.h>
-
-#ifdef HAVE_MAEMO_3
-#include <hildon-widgets/hildon-program.h>
-#else
-#include <hildon/hildon-program.h>
-#endif /* HAVE_MAEMO_3 */
-
-#define SERVICE_NAME "org.gnome.Games.AisleRiot"
-#endif /* HAVE_HILDON */
-
 #include "ar-debug.h"
 #include "ar-stock.h"
 #include "ar-runtime.h"
@@ -72,9 +60,6 @@ typedef struct {
   char *variation;
   guint seed;
   gboolean freecell;
-#ifdef HAVE_HILDON
-  HildonProgram *program;
-#endif /* HAVE_HILDON */
 } AppData;
 
 #ifdef WITH_SMCLIENT
@@ -124,79 +109,6 @@ quit_cb (EggSMClient *client,
 
 #endif /* WITH_SMCLIENT */
 
-#ifdef HAVE_MAEMO
-
-static void
-osso_hw_event_cb (osso_hw_state_t *state,
-                  gpointer user_data)
-{
-  AppData *data = (AppData *) user_data;
-
-  /* This callback can be called immediately upon registration.
-   * So check if we're started up yet.
-   */
-  if (data->program == NULL)
-    return;
-
-  ar_conf_save ();
-
-  if (state->memory_low_ind) {
-    /* Run garbage collection */
-    scm_gc ();
-  }
-
-#if GNOME_ENABLE_DEBUG
-  if (state->shutdown_ind) {
-    g_print ("Going to shut down\n");
-  } else if (state->save_unsaved_data_ind) {
-  } else if (state->memory_low_ind) {
-    g_print ("Should try to free some memory\n");
-  } else if (state->system_inactivity_ind) {
-    g_print ("System inactive\n");
-  }
-#endif /* GNOME_ENABLE_DEBUG */
-}
-
-static int
-osso_rpc_cb (const char *interface,
-             const char *method,
-             GArray *args,
-             gpointer user_data,
-             osso_rpc_t *ret)
-{
-  AppData *data = (AppData *) user_data;
-
-#if GNOME_ENABLE_DEBUG
-  g_print ("OSSO RPC iface %s method %s\n", interface, method);
-#endif /* GNOME_ENABLE_DEBUG */
-
-  if (strcmp (method, "top_application") == 0) {
-    gtk_window_present (GTK_WINDOW (data->window));
-  }
-
-  ret->type = DBUS_TYPE_INVALID;
-  return OSSO_OK;
-}
-
-static void
-sync_is_topmost_cb (HildonProgram *program,
-                    GParamSpec *pspec,
-                    AppData *data)
-{
-  if (hildon_program_get_is_topmost (program)) {
-    hildon_program_set_can_hibernate (program, FALSE);
-  } else {
-    /* Ensure settings are saved to disk */
-    ar_conf_save ();
-
-    /* FIXMEchpe: save state here */
-
-    hildon_program_set_can_hibernate (program, TRUE);
-  }
-}
-
-#endif /* HAVE_MAEMO */
-
 static void
 add_main_options (GOptionContext *option_context,
                   AppData *data)
@@ -225,34 +137,8 @@ main_prog (void *closure, int argc, char *argv[])
 #ifdef WITH_SMCLIENT
   EggSMClient *sm_client;
 #endif /* WITH_SMCLIENT */
-#ifdef HAVE_MAEMO
-  osso_hw_state_t hw_events = {
-    TRUE /* shutdown */,
-    TRUE /* save unsaved data */,
-    TRUE /* low memory */,
-    FALSE /* system inactivity */,
-    OSSO_DEVMODE_NORMAL /* device mode */
-    /* FIXMEchpe: or is OSSO_DEVMODE_INVALID the value to use
-     * when not interested in this signal? The docs don't tell.
-     */
-  };
-#endif /* HAVE_MAEMO */
 
   memset (&data, 0, sizeof (AppData));
-
-#ifdef HAVE_MAEMO
-  /* Set OSSO callbacks */
-  if (osso_rpc_set_default_cb_f (ar_runtime_get_osso_context (),
-                                 osso_rpc_cb,
-                                 &data) != OSSO_OK ||
-      osso_hw_set_event_cb (ar_runtime_get_osso_context (),
-                            &hw_events,
-                            osso_hw_event_cb,
-                            &data) != OSSO_OK) {
-    g_print ("Failed to connect OSSO handlers\n");
-    goto cleanup;
-  }
-#endif /* HAVE_MAEMO */
 
   option_context = g_option_context_new (NULL);
   g_option_context_set_translation_domain (option_context, GETTEXT_PACKAGE);
@@ -272,20 +158,6 @@ main_prog (void *closure, int argc, char *argv[])
   g_option_context_add_group (option_context, gtk_clutter_get_option_group ());
 #endif /* HAVE_CLUTTER */
 
-#if defined(HAVE_HILDON) && defined(HAVE_MAEMO_5)
-  {
-    char *rc_file;
-
-    /* Note: we have to use gtk_rc_add_default_file() before calling gtk_init() (via
-     * g_option_context_parse()) rather than parsing the file directly afterward, in
-     * order to get priority over the theme.
-     */
-    rc_file = ar_runtime_get_file (AR_RUNTIME_GAME_DATA_DIRECTORY, "gtkrc-maemo");
-    gtk_rc_add_default_file (rc_file);
-    g_free (rc_file);
-  }
-#endif /* HAVE_HILDON && HAVE_MAEMO_5 */
-
   retval = g_option_context_parse (option_context, &argc, &argv, &error);
   g_option_context_free (option_context);
 
@@ -294,13 +166,6 @@ main_prog (void *closure, int argc, char *argv[])
     g_error_free (error);
     goto cleanup;
   }
-
-#ifdef HAVE_MAEMO
-  data.program = HILDON_PROGRAM (hildon_program_get_instance ());
-
-  g_signal_connect (data.program, "notify::is-topmost",
-                    G_CALLBACK(sync_is_topmost_cb), &data);
-#endif /* HAVE_MAEMO */
 
   g_set_application_name (data.freecell ? _("FreeCell Solitaire") : _("AisleRiot"));
 
@@ -341,35 +206,6 @@ main_prog (void *closure, int argc, char *argv[])
                     G_CALLBACK (quit_cb), &data);
 #endif /* WITH_SMCLIENT */
 
-#ifdef HAVE_HILDON
-  hildon_program_add_window (data.program, HILDON_WINDOW (data.window));
-
-  /* This is necessary since the setting is only installed
-   * during class initialisation. See bug #585024.
-   */
-  /* For "gtk-menu-images" */
-  g_type_class_unref (g_type_class_ref (GTK_TYPE_IMAGE_MENU_ITEM));
-  /* For "gtk-button-images" */
-  g_type_class_unref (g_type_class_ref (GTK_TYPE_BUTTON));
-  /* For "gtk-toolbar-style" */
-  g_type_class_unref (g_type_class_ref (GTK_TYPE_TOOLBAR));
-
-  /* FIXMEchpe sort of strange that maemo doesn't all of this out-of-the-box... */
-  g_object_set (gtk_widget_get_settings (GTK_WIDGET (data.window)),
-                "gtk-alternative-button-order", TRUE,
-                "gtk-toolbar-style", GTK_TOOLBAR_ICONS,
-                "gtk-menu-images", FALSE,
-                "gtk-button-images", FALSE,
-                "gtk-enable-mnemonics", FALSE,
-
-                /* We want the default of FALSE for this property, but to work
-                 * around https://bugs.maemo.org/show_bug.cgi?id=2278 we have
-                 * to set this to TRUE.
-                 */
-                "gtk-enable-accels", TRUE,
-                NULL);
-#endif /* HAVE_HILDON */
-
   if (data.freecell) {
     aisleriot_window_set_game (data.window, FREECELL_VARIATION, data.seed);
   } else {
@@ -390,12 +226,6 @@ main_prog (void *closure, int argc, char *argv[])
 cleanup:
   g_free (data.variation);
 
-#ifdef HAVE_MAEMO
-  if (data.program != NULL) {
-    g_object_unref (data.program);
-  }
-#endif /* HAVE_MAEMO */
-
   g_settings_sync ();
 
   ar_runtime_shutdown ();
@@ -404,11 +234,7 @@ cleanup:
 int
 main (int argc, char *argv[])
 {
-#ifndef HAVE_HILDON
   if (!ar_runtime_init ("aisleriot"))
-#else
-  if (!ar_runtime_init_with_osso ("aisleriot", SERVICE_NAME))
-#endif /* !HAVE_HILDON */
     return 1;
 
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */

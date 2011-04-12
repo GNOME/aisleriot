@@ -20,6 +20,8 @@ scm_DATA = \
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
+	ar-clock.c \
+	ar-clock.h \
 	ar-cursor.c	\
 	ar-cursor.h	\
 	ar-game-chooser.c \
@@ -46,20 +48,6 @@ sol_SOURCES = \
 	window.h	\
 	$(NULL)
 
-if !HAVE_HILDON
-sol_SOURCES += \
-	ar-clock.c \
-	ar-clock.h \
-	$(NULL)
-endif
-
-if HAVE_MAEMO_5
-sol_SOURCES += \
-	ar-fullscreen-button.c \
-	ar-fullscreen-button.h \
-	$(NULL)
-endif
-
 if !HAVE_GUILE_1_8
 sol_SOURCES += guile16-compat.h
 endif
@@ -70,8 +58,6 @@ sol_SOURCES += \
 	prop-editor.h	\
 	$(NULL)
 endif
-
-# FIXMEchpe: fix localedir for maemo? $PKG_CONFIG osso-af-settings --variable=localedir
 
 sol_CPPFLAGS = \
 	-I$(top_srcdir) \
@@ -97,11 +83,6 @@ sol_LDADD = \
 if WITH_SMCLIENT
 sol_CPPFLAGS += -I$(srcdir)/smclient -Ismclient
 sol_LDADD += smclient/libsmclient.la
-endif
-
-if HAVE_HILDON
-sol_CFLAGS += $(HILDON_CFLAGS)
-sol_LDADD += $(HILDON_LIBS)
 endif
 
 if HAVE_GNOME
@@ -164,13 +145,6 @@ sol_clutter_SOURCES = \
 	window.h	\
 	$(NULL)
 
-if HAVE_MAEMO_5
-sol_clutter_SOURCES += \
-	ar-fullscreen-button.c \
-	ar-fullscreen-button.h \
-	$(NULL)
-endif
-
 if !HAVE_GUILE_1_8
 sol_clutter_SOURCES += guile16-compat.h
 endif
@@ -196,28 +170,6 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 endif
 
 man_MANS = sol.6
-
-ossobackup_in_files = aisleriot-backup.conf
-ossoscript_in_files = aisleriot-clean.sh
-ossoservice_in_files = org.gnome.Games.AisleRiot.service.in
-
-if HAVE_MAEMO
-
-ossobackupdir = $(sysconfdir)/osso-backup/applications
-ossobackup_DATA = $(ossobackup_in_files)
-
-ossocuddir = $(sysconfdir)/osso-cud-scripts
-ossocud_SCRIPTS = $(ossoscript_in_files)
-
-servicedir = $(shell $(PKG_CONFIG) osso-af-settings --variable=dbusservicedir)
-service_DATA = $(ossoservice_in_files:.service.in=.service)
-
-if HAVE_MAEMO_5
-rcdir = $(pkgdatadir)/aisleriot
-dist_rc_DATA = gtkrc-maemo
-endif # HAVE_MAEMO_5
-
-endif # HAVE_MAEMO
 
 %.service: %.service.in Makefile
 	$(AM_V_GEN) $(SED) -e "s|%bindir%|$(bindir)|" $< > $@

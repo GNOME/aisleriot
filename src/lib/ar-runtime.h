@@ -21,10 +21,6 @@
 
 #include <glib.h>
 
-#ifdef HAVE_HILDON
-#include <libosso.h>
-#endif
-
 G_BEGIN_DECLS
 
 typedef enum {
@@ -41,8 +37,7 @@ typedef enum {
   AR_RUNTIME_ICON_THEME_DIRECTORY,
   AR_RUNTIME_SOUND_DIRECTORY,
   AR_RUNTIME_GAMES_DIRECTORY,
-  /* FIXME On hildon and win32 help is created as html with gnome-doc-tool, and put manually in this directory */
-  AR_RUNTIME_HELP_DIRECTORY,
+  AR_RUNTIME_HELP_DIRECTORY, /* On win32 help is created as html with gnome-doc-tool, and put manually in this directory */
 
   AR_RUNTIME_LAST_DIRECTORY,
 #ifdef ENABLE_BINRELOC
@@ -53,11 +48,6 @@ typedef enum {
 } ArRuntimeDirectory;
 
 gboolean        ar_runtime_init             (const char *name);
-#ifdef HAVE_HILDON
-gboolean        ar_runtime_init_with_osso   (const char *name,
-                                                const char *service_name);
-osso_context_t* ar_runtime_get_osso_context (void);
-#endif /* HAVE_HILDON */
 void            ar_runtime_shutdown         (void);
 const char     *ar_runtime_get_directory    (ArRuntimeDirectory directory);
 char           *ar_runtime_get_file         (ArRuntimeDirectory directory,

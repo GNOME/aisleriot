@@ -1,3 +1,5 @@
+NULL =
+
 SUBDIRS = icons
 
 if ENABLE_SOUND
@@ -13,19 +15,11 @@ themeinstalldir = $(pkgdatadir)
 dist_themeinstall_DATA = theme-install.ini
 
 desktop_in_files = \
-	sol.desktop.in.in
+	sol.desktop.in.in \
+	freecell.desktop.in.in \
+	$(NULL)
 
-if !HAVE_HILDON
-desktop_in_files += \
-	freecell.desktop.in.in
-endif
-
-if HAVE_MAEMO
-desktopdir = $(shell $(PKG_CONFIG) osso-af-settings --variable=desktopentrydir)
-else
 desktopdir = $(datadir)/applications
-endif
-
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 CLEANFILES = \

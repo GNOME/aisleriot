@@ -20,14 +20,6 @@
 
 #include <gtk/gtk.h>
 
-#ifdef HAVE_HILDON
-#ifdef HAVE_MAEMO_3
-#include <hildon-widgets/hildon-window.h>
-#else
-#include <hildon/hildon-window.h>
-#endif
-#endif /* HAVE_HILDON */
-
 #include "game.h"
 
 G_BEGIN_DECLS
@@ -43,21 +35,13 @@ typedef struct _AisleriotWindow	        AisleriotWindow;
 typedef struct _AisleriotWindowPrivate  AisleriotWindowPrivate;
 
 struct _AisleriotWindow {
-#ifdef HAVE_HILDON
-  HildonWindow parent_instance;
-#else
   GtkWindow parent_instance;
-#endif /* HAVE_HILDON */
 
   /*< private >*/
   AisleriotWindowPrivate *priv;
 };
 
-#ifdef HAVE_HILDON
-typedef HildonWindowClass AisleriotWindowClass;
-#else
 typedef GtkWindowClass AisleriotWindowClass;
-#endif /* HAVE_HILDON */
 
 GType aisleriot_window_get_type (void);
 

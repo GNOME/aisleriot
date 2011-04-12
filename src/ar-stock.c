@@ -31,8 +31,6 @@
 
 #include "ar-stock.h"
 
-#ifndef HAVE_HILDON
-
 typedef struct {
   const char *stock_id;
   const char *tooltip;
@@ -164,8 +162,6 @@ ar_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
                     G_CALLBACK (disconnect_proxy_cb), statusbar);
 }
 
-#endif /* !HAVE_HILDON */
-
 /* This will become GTK_CHECK_VERSION (2, 15, x) once the patch from gtk+ bug 511332 is committed */
 #undef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
 
@@ -232,24 +228,18 @@ ar_stock_init (void)
     { AR_STOCK_START_NEW_GAME,   GTK_STOCK_NEW },
     { AR_STOCK_RESET,            GTK_STOCK_CLEAR },
     { AR_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
-    /* This is used on hildon too, but only exists since 2.8 */
     { AR_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
-    /* This is used on maemo 5 */
     { AR_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
 #ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
     { AR_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
     { AR_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
-#ifndef HAVE_HILDON
     { AR_STOCK_RESUME_GAME,      GTK_STOCK_MEDIA_PLAY },
-#endif /* HAVE_HILDON */
 #endif
-#ifndef HAVE_HILDON
     { AR_STOCK_NETWORK_GAME,     GTK_STOCK_NETWORK },
     { AR_STOCK_NETWORK_LEAVE,    GTK_STOCK_STOP },
     { AR_STOCK_PLAYER_LIST,      GTK_STOCK_INFO },
 
     { AR_STOCK_PAUSE_GAME,       GTK_STOCK_MEDIA_PAUSE },
-#endif /* !HAVE_HILDON */
   };
 
 #ifndef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
@@ -262,37 +252,27 @@ ar_stock_init (void)
 
   /* Private icon names */
   const char *private_icon_names[][2] = {
-#ifndef HAVE_HILDON
     { AR_STOCK_TELEPORT, "teleport" },
     { AR_STOCK_RTELEPORT, "teleport-random" },
     { AR_STOCK_SCORES, "scores" },
-#endif /* !HAVE_HILDON */
     { AR_STOCK_DEAL_CARDS, "cards-deal" }
   };
 
-/* Use different accels on GTK/GNOME and Maemo */
-#ifdef HAVE_HILDON
-#define STOCK_ACCEL(normal,hildon) (hildon)
-#else
-#define STOCK_ACCEL(normal,hildon) (normal)
-#endif
-
   static const GtkStockItem ar_stock_items[] = {
-    { AR_STOCK_CONTENTS,         N_("_Contents"),          0, STOCK_ACCEL (GDK_KEY_F1, 0), NULL },
-    { AR_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, STOCK_ACCEL (GDK_KEY_F11, GDK_KEY_F6), NULL },
-    { AR_STOCK_HINT,             N_("_Hint"),              STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('h', GDK_KEY_Return), NULL },
+    { AR_STOCK_CONTENTS,         N_("_Contents"),          0, GDK_KEY_F1, NULL },
+    { AR_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, GDK_KEY_F11, NULL },
+    { AR_STOCK_HINT,             N_("_Hint"),              GDK_CONTROL_MASK, 'h', NULL },
     /* Translators: This "_New" is for the menu item 'Game->New', implies "New Game" */
-    { AR_STOCK_NEW_GAME,         N_("_New"),               STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('n', 0), NULL },
+    { AR_STOCK_NEW_GAME,         N_("_New"),               GDK_CONTROL_MASK, 'n', NULL },
     /* Translators: This "_New Game" is for the game-over dialogue */
     { AR_STOCK_START_NEW_GAME,   N_("_New Game"),          0, 0, NULL },
-    { AR_STOCK_REDO_MOVE,        N_("_Redo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK | GDK_SHIFT_MASK, 0), STOCK_ACCEL ('z', GDK_KEY_F7), NULL },
+    { AR_STOCK_REDO_MOVE,        N_("_Redo Move"),         GDK_CONTROL_MASK | GDK_SHIFT_MASK, 'z', NULL },
     /* Translators: this is the "Reset" scores button in a scores dialogue */
     { AR_STOCK_RESET,            N_("_Reset"),             0, 0, NULL },
     /* Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game" */
     { AR_STOCK_RESTART_GAME,     N_("_Restart"),           0, 0, NULL },
-    { AR_STOCK_UNDO_MOVE,        N_("_Undo Move"),         STOCK_ACCEL (GDK_CONTROL_MASK, 0), STOCK_ACCEL ('z', GDK_KEY_F8), NULL },
+    { AR_STOCK_UNDO_MOVE,        N_("_Undo Move"),         GDK_CONTROL_MASK, 'z', NULL },
     { AR_STOCK_DEAL_CARDS,       N_("_Deal"),              GDK_CONTROL_MASK, 'd', NULL },
-#ifndef HAVE_HILDON
     { AR_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_KEY_F11, NULL },
     { AR_STOCK_NETWORK_GAME,     N_("Network _Game"),      GDK_CONTROL_MASK, 'g', NULL },
     { AR_STOCK_NETWORK_LEAVE,    N_("L_eave Game"),        GDK_CONTROL_MASK, 'e', NULL },
@@ -301,19 +281,7 @@ ar_stock_init (void)
     { AR_STOCK_RESUME_GAME,      N_("Res_ume"),            0, GDK_KEY_Pause, NULL },
     { AR_STOCK_SCORES,           N_("_Scores"),            0, 0, NULL },
     { AR_STOCK_END_GAME,         N_("_End Game"),          0, 0, NULL },
-#endif
-
-#ifdef HAVE_MAEMO_3
-    /* Work around maemo brokenness wrt. stock item translations.
-     * See https://bugs.maemo.org/show_bug.cgi?id=1449 . */
-    { GTK_STOCK_ABOUT,              N_("_About"),             0, 0, NULL },
-    { GTK_STOCK_CANCEL,             N_("_Cancel"),            0, 0, NULL },
-    { GTK_STOCK_CLOSE,              N_("_Close"),             0, 0, NULL },
-    { GTK_STOCK_OK,                 N_("_OK"),                0, 0, NULL },
-#endif /* HAVE_MAEMO_3 */
   };
-
-#undef STOCK_ACCEL
 
   guint i;
   GtkIconFactory *icon_factory;

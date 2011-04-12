@@ -28,19 +28,9 @@
 #include "ar-string-utils.h"
 #include "ar-glib-compat.h"
 
-#ifdef HAVE_MAEMO_5
-#include <hildon/hildon-gtk.h>
-#include <hildon/hildon-pannable-area.h>
-#include <hildon/hildon-stackable-window.h>
-#endif
-
 struct _ArGameChooser
 {
-#ifdef HAVE_MAEMO_5
-  HildonStackableWindow parent;
-#else
   GtkDialog parent;
-#endif
 
   /*< private >*/
   ArGameChooserPrivate *priv;
@@ -48,11 +38,7 @@ struct _ArGameChooser
 
 struct _ArGameChooserClass
 {
-#ifdef HAVE_MAEMO_5
-  HildonStackableWindowClass parent_class;
-#else
   GtkDialogClass parent_class;
-#endif
 };
 
 struct _ArGameChooserPrivate {
@@ -76,44 +62,16 @@ enum {
 #define SELECTED_PATH_DATA_KEY "selected-path"
 
 /* private functions */
-    
+
 static void
 row_activated_cb (GtkWidget *widget,
                   GtkTreePath *path,
                   GtkTreeViewColumn *column,
                   ArGameChooser *chooser)
 {
-#ifdef HAVE_MAEMO_5
-  ArGameChooserPrivate *priv = chooser->priv;
-  GtkTreeIter iter;
-
-  /* On maemo5 with a treeview in a pannable area, the selection
-   * handling is special. There _never_ is any row selected!
-   * Instead, we get a row-activated signal (which normally is only
-   * emitted when double-clicking a row) when the user selects a row.
-   */
-  if (gtk_tree_model_get_iter (GTK_TREE_MODEL (priv->store), &iter, path)) {
-    char *game_file = NULL;
-
-    gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
-                        COL_GAME_FILE, &game_file,
-                        -1);
-    g_assert (game_file != NULL);
-
-    aisleriot_window_set_game (priv->window, game_file, 0);
-
-    g_free (game_file);
-
-    /* And close the subview */
-    gtk_widget_destroy (GTK_WIDGET (chooser));
-  }
-#else
   /* Handle a double click by faking a click on the OK button. */
   gtk_dialog_response (GTK_DIALOG (chooser), GTK_RESPONSE_OK);
-#endif /* HAVE_MAEMO_5 */
 }
-
-#ifndef HAVE_MAEMO_5
 
 static void
 response_cb (GtkWidget *dialog,
@@ -141,15 +99,9 @@ response_cb (GtkWidget *dialog,
   gtk_widget_destroy (dialog);
 }
 
-#endif /* HAVE_MAEMO_5 */
-
 /* GType impl */
 
-#ifdef HAVE_MAEMO_5
-G_DEFINE_TYPE (ArGameChooser, ar_game_chooser, HILDON_TYPE_STACKABLE_WINDOW)
-#else
 G_DEFINE_TYPE (ArGameChooser, ar_game_chooser, GTK_TYPE_DIALOG)
-#endif
 
 /* GObjectClass impl */
 
@@ -181,10 +133,8 @@ ar_game_chooser_constructor (GType type,
   const char *current_game_file;
   const char *games_dir;
   GDir *dir;
-#ifndef HAVE_MAEMO_5
   GtkWidget *content_area;
   GtkDialog *dialog;
-#endif
 
   object = G_OBJECT_CLASS (ar_game_chooser_parent_class)->constructor
             (type, n_construct_properties, construct_params);
@@ -238,7 +188,6 @@ ar_game_chooser_constructor (GType type,
   gtk_window_set_title (window, _("Select Game"));
   gtk_window_set_modal (window, TRUE);
 
-#ifndef HAVE_MAEMO_5
   dialog = GTK_DIALOG (object);
 
   g_signal_connect (dialog, "response",
@@ -257,13 +206,8 @@ ar_game_chooser_constructor (GType type,
                                            GTK_RESPONSE_CANCEL,
                                            -1);
   gtk_dialog_set_default_response (dialog, GTK_RESPONSE_OK);
-#endif /* HAVE_MAEMO_5 */
 
-#ifdef HAVE_MAEMO_5
-  list_view = hildon_gtk_tree_view_new_with_model (HILDON_UI_MODE_NORMAL, GTK_TREE_MODEL (list));
-#else
   list_view = gtk_tree_view_new_with_model (GTK_TREE_MODEL (list));
-#endif
   g_object_unref (list);
 
   g_signal_connect (list_view, "row-activated",
@@ -273,12 +217,8 @@ ar_game_chooser_constructor (GType type,
                                         0, GTK_SORT_ASCENDING);
 
   hbox = gtk_hbox_new (FALSE, 12);
-#ifdef HAVE_MAEMO_5
-  gtk_container_add (GTK_CONTAINER (window), hbox);
-#else
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
   gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
-#endif
 
   gtk_tree_view_set_headers_visible (GTK_TREE_VIEW (list_view), FALSE);
 
@@ -292,15 +232,11 @@ ar_game_chooser_constructor (GType type,
   priv->selection = selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
-#ifdef HAVE_MAEMO_5
-  scrolled_window = hildon_pannable_area_new ();
-#else
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (scrolled_window),
                                        GTK_SHADOW_IN);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolled_window),
                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-#endif /* HAVE_MAEMO_5 */
 
   gtk_container_add (GTK_CONTAINER (scrolled_window), list_view);
 

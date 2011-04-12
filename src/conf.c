@@ -180,10 +180,6 @@ aisleriot_conf_init (void)
     ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), TRUE);
     ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), TRUE);
     ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), TRUE);
-
-#ifdef HAVE_HILDON
-    ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), TRUE);
-#endif
   }
 
 #ifdef HAVE_GNOME

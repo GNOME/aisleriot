@@ -75,10 +75,8 @@ pack_in_frame (GtkWidget *box,
   gtk_box_pack_start (GTK_BOX (box), frame, FALSE, FALSE, 0);
   gtk_widget_show_all (frame);
 
-#ifndef HAVE_HILDON
   ar_atk_util_add_atk_relation (label, frame, ATK_RELATION_LABEL_FOR);
   ar_atk_util_add_atk_relation (frame, label, ATK_RELATION_LABELLED_BY);
-#endif /* !HAVE_HILDON */
 }
 
 static GtkLabel *
@@ -100,10 +98,8 @@ add_row (GtkTable *table,
   gtk_table_attach_defaults (table, data_label,
                              1, 2, row, row + 1);
 
-#ifndef HAVE_HILDON
   ar_atk_util_add_atk_relation (label, data_label, ATK_RELATION_LABEL_FOR);
   ar_atk_util_add_atk_relation (data_label, label, ATK_RELATION_LABELLED_BY);
-#endif /* !HAVE_HILDON */
 
   return GTK_LABEL (data_label);
 }
@@ -183,10 +179,8 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
                                            -1);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_CLOSE);
 
-#ifndef HAVE_MAEMO
-  /* Empty title shows up as "<unnamed>" on maemo */
   gtk_window_set_title (GTK_WINDOW (dialog), "");
-#endif
+  gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 }
 
 static void

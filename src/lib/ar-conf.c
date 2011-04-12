@@ -197,8 +197,6 @@ window_state_event_cb (GtkWidget *widget,
   return FALSE;
 }
 
-#ifndef HAVE_HILDON
-
 static char *
 ar_conf_get_accel_map_path (ArConf *conf,
                                gboolean ensure_dir_exists)
@@ -277,8 +275,6 @@ ar_conf_save_accel_map (ArConf *conf)
   gtk_accel_map_save (conf_file);
   g_free (conf_file);
 }
-
-#endif /* !HAVE_HILDON */
 
 #ifdef HAVE_GNOME
 
@@ -438,9 +434,7 @@ ar_conf_constructor (GType type,
 
 #endif /* HAVE_GNOME */
 
-#ifndef HAVE_HILDON
   ar_conf_load_accel_map (conf);
-#endif /* !HAVE_HILDON */
 
   g_free (game_name);
 
@@ -453,10 +447,8 @@ ar_conf_finalize (GObject *object)
   ArConf *conf = AR_CONF (object);
   ArConfPrivate *priv = conf->priv;
 
-#ifndef HAVE_HILDON
   /* Save the accel map */
   ar_conf_save_accel_map (conf);
-#endif /* !HAVE_HILDON */
 
 #ifdef HAVE_GNOME
   gconf_client_remove_dir (priv->gconf_client, priv->base_path, NULL);

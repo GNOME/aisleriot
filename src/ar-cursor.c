@@ -22,8 +22,6 @@
 
 #include <gtk/gtk.h>
 
-#ifndef HAVE_HILDON
-
 /* These cursors borrowed from EOG */
 /* FIXMEchpe use themeable cursors here! */
 
@@ -216,12 +214,9 @@ ar_cursor_new_from_data (GdkWindow *window,
   return cursor;
 }
 
-#endif /* !HAVE_HILDON */
-
 GdkCursor *ar_cursor_new (GdkWindow *window,
                           ArCursorType cursor_type)
 {
-#ifndef HAVE_HILDON
   switch (cursor_type) {
     case AR_CURSOR_OPEN:
       return ar_cursor_new_from_data (window, hand_open_data, sizeof (hand_open_data));
@@ -232,7 +227,4 @@ GdkCursor *ar_cursor_new (GdkWindow *window,
     default:
       g_assert_not_reached ();
   }
-#else
-  return NULL;
-#endif /* !HAVE_HILDON */
 }

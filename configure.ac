@@ -66,53 +66,18 @@ AC_DEFINE_UNQUOTED([LSB_DISTRIBUTION],["$LSB_DISTRIBUTION"],[The full distributi
 
 AC_MSG_CHECKING([for which platform to build])
 AC_ARG_WITH([platform],
-  [AS_HELP_STRING([--with-platform=gnome|hildon|gtk-only (default: gnome)])],
+  [AS_HELP_STRING([--with-platform=gnome|gtk-only (default: gnome)])],
   [case "$withval" in
-    gnome|hildon|gtk-only) ;;
-    maemo) with_platform=hildon with_platform_variant=maemo3 ;; # compat
+    gnome|gtk-only) ;;
     *) AC_MSG_ERROR([invalid argument "$withval" for --with-platform]) ;;
    esac],
   [with_platform=gnome])
 AC_MSG_RESULT([$with_platform])
 
-if test "$with_platform" = "hildon"; then
-  # "maemo" is Maemo 4.x
-  AC_MSG_CHECKING([for which platform variant to build])
-  AC_ARG_WITH([platform-variant],
-    [AS_HELP_STRING([--with-platform-variant=maemo3|maemo4|maemo5|mid (default: maemo4)])],
-    [case "$withval" in
-       maemo5|maemo4|maemo3|mid) ;;
-       *) with_platform_variant=maemo4 ;;
-     esac],
-    [with_platform_variant=maemo3])
-  AC_MSG_RESULT([$with_platform_variant])
-fi
-
 AM_CONDITIONAL([HAVE_GNOME],[test "$with_platform" = "gnome"])
-AM_CONDITIONAL([HAVE_HILDON],[test "$with_platform" = "hildon"])
-AM_CONDITIONAL([HAVE_MAEMO],[test "$with_platform" = "hildon" -a "$with_platform_variant" != "mid"])
-AM_CONDITIONAL([HAVE_MAEMO_3],[test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo3"])
-AM_CONDITIONAL([HAVE_MAEMO_4],[test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo4"])
-AM_CONDITIONAL([HAVE_MAEMO_5],[test "$with_platform" = "hildon" -a "$with_platform_variant" = "maemo5"])
 
 if test "$with_platform" = "gnome"; then
   AC_DEFINE([HAVE_GNOME],[1],[Define if GNOME support is enabled])
-fi
-if test "$with_platform" = "hildon"; then
-  AC_DEFINE([HAVE_HILDON],[1],[Define if Hildon support is enabled])
-
-  if test "$with_platform_variant" != "mid"; then
-    AC_DEFINE([HAVE_MAEMO],[1],[Define if Maemo support is enabled])
-  fi
-  if test "$with_platform_variant" = "maemo3"; then
-    AC_DEFINE([HAVE_MAEMO_3],[1],[Define if Maemo 3.x support is enabled])
-  fi
-  if test "$with_platform_variant" = "maemo4"; then
-    AC_DEFINE([HAVE_MAEMO_4],[1],[Define if Maemo 4.x support is enabled])
-  fi
-  if test "$with_platform_variant" = "maemo5"; then
-    AC_DEFINE([HAVE_MAEMO_5],[1],[Define if Maemo 5.x support is enabled])
-  fi
 fi
 
 # Check which gtk+ major version to use
@@ -178,13 +143,7 @@ AM_CONDITIONAL([PLATFORM_WIN32_NATIVE],[test "$os_win32" = "yes"])
 AC_MSG_CHECKING([whether to enable sound support])
 AC_ARG_ENABLE([sound],
   [AS_HELP_STRING([--enable-sound],[Enable sound using libcanberra])],
-  [],[case "$with_platform" in
-        gnome|gtk-only) enable_sound=yes ;;
-        hildon) case "$with_platform_variant" in
-                  maemo5) enable_sound=yes ;;
-                  *) enable_sound=no ;;
-                esac
-      esac])
+  [],[enable_sound=yes])
 AC_MSG_RESULT([$enable_sound])
 
 # *******
@@ -202,14 +161,6 @@ if test "$with_clutter" = "yes"; then
   AC_MSG_NOTICE([Aisleriot/Clutter is experimental; do not enable this for distribution packages!])
 fi
 
-case "$with_platform" in
-  gnome|gtk-only) ;;
-  hildon) if test "$with_clutter" = "yes"; then
-            AC_MSG_ERROR([Clutter is not supported on hildon; disable Gnometris, Lights Off and Aisleriot/Clutter])
-          fi
-          ;;
-esac
-
 # ******************
 # Card theme formats
 # ******************
@@ -220,11 +171,7 @@ AC_ARG_WITH([card-theme-formats],
   [],[with_card_theme_formats=default])
 
 case "$with_card_theme_formats" in
-  default) case "$with_platform" in
-             gnome|gtk-only) with_card_theme_formats="svg" ;;
-             hildon) with_card_theme_formats="fixed" ;;
-           esac
-           ;;
+  default) with_card_theme_formats="svg" ;;
   all) with_card_theme_formats="svg,kde,fixed,sliced,pysol" ;;
 esac
 
@@ -308,11 +255,8 @@ fi
 
 AC_MSG_CHECKING([which card theme to use by default])
 AC_ARG_WITH([default-card-theme],
-  [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: bonded)])],
-  [],[case "$with_platform" in
-        gnome|gtk-only) with_default_card_theme=bonded.svg ;;
-        hildon) with_default_card_theme=paris.card-theme ;;
-      esac])
+  [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: bonded.svg)])],
+  [],[with_default_card_theme="bonded.svg"])
 AC_MSG_RESULT([$with_default_card_theme])
 
 AC_DEFINE_UNQUOTED([AR_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The default card theme])
@@ -320,10 +264,7 @@ AC_DEFINE_UNQUOTED([AR_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The def
 AC_MSG_CHECKING([which card theme format to use by default])
 AC_ARG_WITH([default-card-theme-format],
   [AS_HELP_STRING([--with-default-card-theme-format=NAME],[Which card theme format to use by default (default: platform dependent)])],
-  [],[case "$with_platform" in
-        gnome|gtk-only) with_default_card_theme_format=svg ;;
-        hildon) with_default_card_theme_format=fixed ;;
-      esac])
+  [],[with_default_card_theme_format=svg])
 AC_MSG_RESULT([$with_default_card_theme_format])
 
 case "$with_default_card_theme_format" in
@@ -365,8 +306,6 @@ GCONF_REQUIRED=2.0
 GLIB_REQUIRED=2.26.0
 GIO_REQUIRED=2.26.0
 GSTREAMER_REQUIRED=0.10.11
-HILDON_LIBS_REQUIRED=0.14
-HILDON_1_REQUIRED=1.00
 
 # Check for common modules
 
@@ -404,24 +343,6 @@ if test "$with_platform" = "gnome"; then
   AC_SUBST([GNOME_LIBS])
 
   need_gthread=yes
-fi
-
-# Check for Hildon modules
-
-if test "$with_platform" = "hildon"; then
-  if test "$with_platform_variant" = "maemo3"; then
-    PKG_CHECK_MODULES([HILDON],[
-      libosso
-      hildon-libs >= $HILDON_LIBS_REQUIRED])
-  else
-    PKG_CHECK_MODULES([HILDON],[
-      libosso
-      dbus-1
-      hildon-1 >= $HILDON_1_REQUIRED])
-  fi
-
-  AC_SUBST([HILDON_CFLAGS])
-  AC_SUBST([HILDON_LIBS])
 fi
 
 # Check for librsvg
@@ -505,14 +426,10 @@ AC_MSG_CHECKING([which smclient backend to use])
 AC_ARG_WITH([smclient],
   [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp|win32|quartz|no)])],
   [],
-  [case "$with_platform" in
-     gnome|gtk-only) case "$GDK_TARGET" in
-                       x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
-                       win32|quartz) with_smclient=$GDK_TARGET ;;
-                       *) with_smclient=no ;;
-                     esac
-                     ;;
-     hildon) with_smclient=no ;;
+  [case "$GDK_TARGET" in
+     x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
+     win32|quartz) with_smclient=$GDK_TARGET ;;
+     *) with_smclient=no ;;
    esac])
 AC_MSG_RESULT([$with_smclient])
 
@@ -671,14 +588,11 @@ AC_MSG_CHECKING([which help method to use])
 AC_ARG_WITH([help-method],
   [AS_HELP_STRING([--with-help-method],[which help method to use (ghelp|file|library; default: ghelp)])],
   [],
-  [case "$with_platform" in
-     hildon) with_help_method=file ;;
-     *) if test "$platform_win32" = "yes"; then
-           with_help_method=file
-         else
-           with_help_method=ghelp
-         fi ;;
-   esac])
+  [if test "$platform_win32" = "yes"; then
+     with_help_method=file
+   else
+     with_help_method=ghelp
+   fi])
 AC_MSG_RESULT([$with_help_method])
 
 case "$with_help_method" in
@@ -727,7 +641,6 @@ cards/Makefile
 data/Makefile
 data/icons/Makefile
 data/icons/gnome/Makefile
-data/icons/hildon/Makefile
 data/sounds/Makefile
 data/sol.desktop.in
 data/freecell.desktop.in
