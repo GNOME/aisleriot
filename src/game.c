@@ -624,8 +624,8 @@ cscmi_add_slot (SCM slot_data)
 
   slot->cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
   slot->exposed = 0;
-  slot->x = scm_num2dbl (SCM_CAR (SCM_CADR (SCM_CADDR (slot_data))), NULL);
-  slot->y = scm_num2dbl (SCM_CADR (SCM_CADR (SCM_CADDR (slot_data))), NULL);
+  slot->x = scm_to_double (SCM_CAR (SCM_CADR (SCM_CADDR (slot_data))));
+  slot->y = scm_to_double (SCM_CADR (SCM_CADR (SCM_CADDR (slot_data))));
 
   slot->expansion_depth = expansion_depth;
 
@@ -770,14 +770,14 @@ scm_set_slot_x_expansion (SCM scm_slot_id,
   AisleriotGame *game = app_game;
   ArSlot *slot;
 
-  slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
+  slot = get_slot (game, scm_to_int (scm_slot_id));
 
   /* We should only set the x expansion for right-expanded slots! */
   g_return_val_if_fail (slot->expanded_right, SCM_EOL);
   /* Cannot set x and y expansion at the same time */
   g_return_val_if_fail (!slot->dy_set, SCM_EOL);
 
-  slot->expansion.dx = scm_num2dbl (new_exp_val, NULL);
+  slot->expansion.dx = scm_to_double (new_exp_val);
   slot->dx_set = TRUE;
 
   /* We don't need to emit the slot-changed signal here,
@@ -794,14 +794,14 @@ scm_set_slot_y_expansion (SCM scm_slot_id,
   AisleriotGame *game = app_game;
   ArSlot *slot;
 
-  slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
+  slot = get_slot (game, scm_to_int (scm_slot_id));
 
   /* We should only set the y expansion for down-expanded slots! */
   g_return_val_if_fail (slot->expanded_down, SCM_EOL);
   /* Cannot set x and y expansion at the same time */
   g_return_val_if_fail (!slot->dx_set, SCM_EOL);
 
-  slot->expansion.dy = scm_num2dbl (new_exp_val, NULL);
+  slot->expansion.dy = scm_to_double (new_exp_val);
   slot->dy_set = TRUE;
 
   /* We don't need to emit the slot-changed signal here,
@@ -817,7 +817,7 @@ scm_get_slot (SCM scm_slot_id)
   AisleriotGame *game = app_game;
   ArSlot *slot;
 
-  slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
+  slot = get_slot (game, scm_to_int (scm_slot_id));
 
   if (!slot)
     return SCM_EOL;
@@ -834,7 +834,7 @@ scm_set_cards (SCM scm_slot_id,
   AisleriotGame *game = app_game;
   ArSlot *slot;
 
-  slot = get_slot (game, scm_num2int (scm_slot_id, SCM_ARG1, NULL));
+  slot = get_slot (game, scm_to_int (scm_slot_id));
 
   cscmi_slot_set_cards (slot, new_cards);
 
@@ -915,12 +915,12 @@ scm_get_score (void)
 }
 
 static SCM
-scm_set_score (SCM new)
+scm_set_score (SCM new_score)
 {
   AisleriotGame *game = app_game;
 
-  set_game_score (game, scm_num2int (new, SCM_ARG1, NULL));
-  return new;
+  set_game_score (game, scm_to_int (new_score));
+  return new_score;
 }
 
 static SCM
@@ -929,7 +929,7 @@ scm_add_to_score (SCM delta)
   AisleriotGame *game = app_game;
   int new_score;
 
-  new_score = game->score + scm_num2int (delta, SCM_ARG1, NULL);
+  new_score = game->score + scm_to_int (delta);
   set_game_score (game, new_score);
   return scm_from_int (new_score);
 }
@@ -941,7 +941,7 @@ scm_set_timeout (SCM new)
 
   g_warning ("(set-timeout) unimplemented\n");
 
-  game->timeout = scm_num2int (new, SCM_ARG1, NULL);
+  game->timeout = scm_to_int (new);
 
   return new;
 }
@@ -1081,8 +1081,8 @@ cscmi_start_game_lambda (double *width,
   if (data.exception)
     return FALSE;
 
-  *width = scm_num2double (SCM_CAR (data.retval), 0, NULL);
-  *height = scm_num2double (SCM_CADR (data.retval), 0, NULL);
+  *width = scm_to_double (SCM_CAR (data.retval));
+  *height = scm_to_double (SCM_CADR (data.retval));
   return TRUE;
 }
 
@@ -2062,7 +2062,7 @@ aisleriot_game_get_hint (AisleriotGame *game)
   if (!SCM_NFALSEP (hint)) {
     message = g_strdup (_("This game does not have hint support yet."));
   } else {
-    switch (scm_num2int (SCM_CAR (hint), SCM_ARG1, NULL)) {
+    switch (scm_to_int (SCM_CAR (hint))) {
 
     case 0:
       string1 = SCM_CADR (hint);
