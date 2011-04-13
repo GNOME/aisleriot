@@ -276,15 +276,11 @@ get_slot (AisleriotGame *game,
 
 typedef struct {
   SCM lambda;
-  guint n_args;
-  SCM arg1;
-  SCM arg2;
-  SCM arg3;
+  SCM *args;
+  gsize n_args;
   SCM retval;
   gboolean exception;
 } CallData;
-
-#define CALL_DATA_INIT  { 0, 0, 0, 0, 0, 0, 0 }
 
 static char *
 cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
@@ -297,32 +293,39 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
   GString *message;
   char *string;
 
+  scm_dynwind_begin (0);
+
   message = g_string_sized_new (1024);
 
   g_string_append_printf (message, "Variation: %s\n", aisleriot_game_get_game_file (game));
   g_string_append_printf (message, "Seed: %u\n", game->seed);
 
-  port = scm_open_output_string ();
-
   g_string_append (message, "Scheme error:\n\t");
+
+  port = scm_open_output_string ();
   scm_display (throw_args, port);
   string = scm_to_locale_string (scm_get_output_string (port));
+  scm_dynwind_free (string);
+  scm_close_output_port (port);
   g_string_append (message, string);
-  free (string);
 
+  port = scm_open_output_string ();
   g_string_append (message, "\nScheme tag:\n\t");
   scm_display (tag, port);
   string = scm_to_locale_string (scm_get_output_string (port));
+  scm_dynwind_free (string);
+  scm_close_output_port (port);
   g_string_append (message, string);
-  free (string);
 
   g_string_append (message, "\n\nBacktrace:\n");
   stack = scm_make_stack (SCM_BOOL_T, SCM_EOL);
   if (!scm_is_false (stack)) {
+    port = scm_open_output_string ();
     scm_display_backtrace (stack, port, SCM_UNDEFINED, SCM_UNDEFINED);
     string = scm_to_locale_string (scm_get_output_string (port));
+    scm_dynwind_free (string);
+    scm_close_output_port (port);
     g_string_append (message, string);
-    free (string);
   } else {
     g_string_append (message, "\tNo backtrace available.\n");
   }
@@ -380,6 +383,8 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
     g_string_append (message, "\tNo cards in deck\n");
   }
 
+  scm_dynwind_end ();
+
   return g_string_free (message, FALSE);
 }
 
@@ -387,9 +392,9 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
  * exception information:
  */
 static SCM
-cscmi_catch_handler (gpointer user_data,
-                     SCM tag,
-                     SCM throw_args)
+game_scm_pre_unwind_handler (void *user_data,
+                             SCM tag,
+                             SCM throw_args)
 {
   CallData *data = (CallData *) user_data;
   AisleriotGame *game = app_game;
@@ -401,6 +406,8 @@ cscmi_catch_handler (gpointer user_data,
   if (data)
     data->exception = TRUE;
 
+  g_print ("preunwind handler\n");
+
   if (game->had_exception)
     goto out;
 
@@ -409,6 +416,9 @@ cscmi_catch_handler (gpointer user_data,
     g_warning ("A scheme exception occurred, but there was no exception info\n");
     goto out;
   }
+
+  g_print ("scheme exception: \n\n%s\n\n", message);
+    goto out;
 
   error_fd = g_file_open_tmp ("arcrashXXXXXX", &error_file, &error);
   if (error_fd >= 0) {
@@ -434,45 +444,74 @@ out:
 }
 
 static SCM
-cscmi_call_lambda (void *user_data)
+game_scm_catch_handler (void *user_data,
+                        SCM tag,
+                        SCM throw_args)
 {
-  CallData *data = (CallData *) user_data;
-
-  /* FIXMEchpe: crash when data->lambda isn't the right type, e.g. "sol --variation sol.scm" */
-
-  switch (data->n_args) {
-    case 0:
-      data->retval = scm_call_0 (data->lambda);
-      break;
-    case 1:
-      data->retval = scm_call_1 (data->lambda, data->arg1);
-      break;
-    case 2:
-      data->retval = scm_call_2 (data->lambda, data->arg1, data->arg2);
-      break;
-    case 3:
-      data->retval = scm_call_3 (data->lambda, data->arg1, data->arg2, data->arg3);
-      break;
-    default:
-      g_assert_not_reached ();
-  }
-
-  return SCM_EOL;
+  return SCM_UNDEFINED;
 }
 
 static SCM
-cscmi_eval_string (const char *string)
+game_scm_call_lambda (void *user_data)
 {
-  CallData data = CALL_DATA_INIT;
-  SCM retval;
+  CallData *data = (CallData *) user_data;
 
-  retval = scm_internal_stack_catch (SCM_BOOL_T,
-                                     (scm_t_catch_body) scm_c_eval_string, (void *) string,
-                                     cscmi_catch_handler, &data);
+#if SCM_MAJOR_VERSION >= 2
+  return scm_call_n (data->lambda, data->args, data->n_args);
+#else
+  /* Guile 1.8 lacks the scm_call_n function */
+  switch (data->n_args) {
+    case 0:
+      return scm_call_0 (data->lambda);
+    case 1:
+      return scm_call_1 (data->lambda, data->args[0]);
+    case 2:
+      return scm_call_2 (data->lambda, data->args[0], data->args[1]);
+    case 3:
+      return scm_call_3 (data->lambda, data->args[0], data->args[1], data->args[2]);
+    default:
+      g_assert_not_reached ();
+  }
+#endif
+}
+
+static gboolean
+game_scm_call (SCM lambda,
+               SCM *args,
+               gsize n_args,
+               SCM *retval)
+{
+  CallData data = { lambda, args, n_args, FALSE };
+  SCM rv;
+
+  rv = scm_c_catch (SCM_BOOL_T,
+                    game_scm_call_lambda, &data,
+                    game_scm_catch_handler, &data,
+                    game_scm_pre_unwind_handler, &data);
   if (data.exception)
-    return SCM_EOL;
+    return FALSE;
 
-  return retval;
+  if (retval)
+    *retval = rv;
+
+  return TRUE;
+}
+
+static gboolean
+game_scm_call_by_name (const char *name,
+                       SCM *args,
+                       gsize n_args,
+                       SCM *retval)
+{
+  SCM lambda;
+
+  lambda = scm_c_eval_string (name);
+
+  if (!game_scm_call (lambda, args, n_args, retval))
+    return FALSE;
+
+  scm_remember_upto_here_1 (lambda);
+  return TRUE;
 }
 
 static SCM
@@ -494,7 +533,7 @@ scm2c_card (SCM card_data,
 
   rank = scm_to_int (SCM_CAR (card_data));
   suit = scm_to_int (SCM_CADR (card_data));
-  face_down = !(SCM_NFALSEP (SCM_CADDR (card_data)));
+  face_down = !(scm_is_true (SCM_CADDR (card_data)));
 
   card->attr.rank = rank;
   card->attr.suit = suit;
@@ -505,9 +544,10 @@ static SCM
 c2scm_deck (guint8 *cards,
             guint n_cards)
 {
-  SCM scm_cards = SCM_EOL;
+  SCM scm_cards;
   guint i;
 
+  scm_cards = SCM_EOL;
   for (i = 0; i < n_cards; ++i) {
     scm_cards = scm_cons (c2scm_card (CARD (cards[i])), scm_cards);
   }
@@ -524,7 +564,7 @@ cscmi_slot_set_cards (ArSlot *slot,
   guint8 *data = NULL;
   guint i, n_cards = 0;
 
-  if (SCM_NFALSEP (cards)) {
+  if (scm_is_true (cards)) {
     for (list_el = cards; list_el != SCM_EOL; list_el = SCM_CDR (list_el)) {
       ++n_cards;
     }
@@ -550,7 +590,7 @@ cscmi_slot_set_cards (ArSlot *slot,
   g_byte_array_set_size (slot->cards, 0);
 
   aisleriot_game_slot_add_cards (game, slot, data, n_cards);
-}    
+}
 
 static SCM
 cscmi_add_slot (SCM slot_data)
@@ -657,9 +697,12 @@ scm_gettext (SCM message)
   if (!scm_is_string (message))
     return message;
 
+  scm_dynwind_begin (0);
+
   input = scm_to_locale_string (message);
+  scm_dynwind_free (input);
   if (!input)
-    return message;
+    goto out;
 
   output = _(input);
 
@@ -669,7 +712,8 @@ scm_gettext (SCM message)
     translated = message;
   }
 
-  free (input);
+out:
+  scm_dynwind_end ();
 
   return translated;
 }
@@ -680,7 +724,7 @@ scm_undo_set_sensitive (SCM in_state)
   AisleriotGame *game = app_game;
   gboolean state;
 
-  state = SCM_NFALSEP (in_state) ? TRUE : FALSE;
+  state = scm_is_true (in_state) ? TRUE : FALSE;
   set_game_undoable (game, state);
 
   return SCM_EOL;
@@ -692,7 +736,7 @@ scm_redo_set_sensitive (SCM in_state)
   AisleriotGame *game = app_game;
   gboolean state;
 
-  state = SCM_NFALSEP (in_state) ? TRUE : FALSE;
+  state = scm_is_true (in_state) ? TRUE : FALSE;
   set_game_redoable (game, state);
 
   return SCM_EOL;
@@ -704,7 +748,7 @@ scm_dealable_set_sensitive (SCM in_state)
   AisleriotGame *game = app_game;
   gboolean state;
 
-  state = SCM_NFALSEP (in_state) ? TRUE : FALSE;
+  state = scm_is_true (in_state) ? TRUE : FALSE;
   set_game_dealable (game, state);
 
   return SCM_EOL;
@@ -741,15 +785,21 @@ scm_set_statusbar_message (SCM message)
   if (!scm_is_string (message))
     return SCM_EOL;
 
-  str = scm_to_locale_string (message);
-  if (!str)
-    return SCM_EOL;
+  scm_dynwind_begin (0);
 
-  translated = g_strstrip (g_strdup (gettext (str)));
+  str = scm_to_locale_string (message);
+  scm_dynwind_free (str);
+  if (!str)
+    goto out;
+
+  /* FIXMEchpe: this looks bogus; the string is already translated on the scheme side */
+  translated = g_strstrip (g_strdup (_(str)));
   g_signal_emit (game, signals[GAME_MESSAGE], 0, translated);
 
-  free (str);
   g_free (translated);
+
+out:
+  scm_dynwind_end ();
 
   return SCM_EOL;
 }
@@ -966,24 +1016,18 @@ scm_delayed_call_destroy_data (SCM callback)
   game->delayed_call_timeout_id = 0;
 }
 
+/* @callback is GC protected during this call! */
 static gboolean
 scm_execute_delayed_function (SCM callback)
 {
   AisleriotGame *game = app_game;
-  CallData data = CALL_DATA_INIT;
 
   /* We set game->delayed_call_timeout_id to 0 _before_ calling |callback|,
    * since it might install a new delayed call.
    */
   game->delayed_call_timeout_id = 0;
 
-  data.lambda = callback;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-
-  if (data.exception)
+  if (!game_scm_call (callback, NULL, 0, NULL))
     return FALSE;
 
   aisleriot_game_test_end_of_game (game);
@@ -1050,20 +1094,15 @@ cscm_init (void)
 static void
 update_game_dealable (AisleriotGame *game)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
 
   if ((game->features & FEATURE_DEALABLE) == 0)
     return;
 
-  data.lambda = game->dealable_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->dealable_lambda, NULL, 0, &retval))
     return;
 
-  set_game_dealable (game, SCM_NFALSEP (data.retval));
+  set_game_dealable (game, scm_is_true (retval));
 }
 
 static gboolean
@@ -1071,18 +1110,13 @@ cscmi_start_game_lambda (double *width,
                          double *height)
 {
   AisleriotGame *game = app_game;
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
 
-  data.lambda = game->start_game_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->start_game_lambda, NULL, 0, &retval))
     return FALSE;
 
-  *width = scm_to_double (SCM_CAR (data.retval));
-  *height = scm_to_double (SCM_CADR (data.retval));
+  *width = scm_to_double (SCM_CAR (retval));
+  *height = scm_to_double (SCM_CADR (retval));
   return TRUE;
 }
 
@@ -1090,34 +1124,24 @@ static gboolean
 cscmi_game_over_lambda (void)
 {
   AisleriotGame *game = app_game;
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
 
-  data.lambda = game->game_over_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->game_over_lambda, NULL, 0, &retval))
     return TRUE;
 
-  return SCM_NFALSEP (data.retval);
+  return scm_is_true (retval);
 }
 
 static gboolean
 cscmi_winning_game_lambda (void)
 {
   AisleriotGame *game = app_game;
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
 
-  data.lambda = game->winning_game_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->winning_game_lambda, NULL, 0, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  return scm_is_true (retval);
 }
 
 static gboolean
@@ -1613,7 +1637,8 @@ aisleriot_game_undo_move (AisleriotGame *game)
     set_game_state (game, GAME_RUNNING);
   }
 
-  cscmi_eval_string ("(undo)");
+  if (!game_scm_call_by_name ("undo", NULL, 0, NULL))
+    return;
 
   update_game_dealable (game);
 }
@@ -1627,7 +1652,8 @@ aisleriot_game_undo_move (AisleriotGame *game)
 void
 aisleriot_game_redo_move (AisleriotGame *game)
 {
-  cscmi_eval_string ("(redo)");
+  if (!game_scm_call_by_name ("redo", NULL, 0, NULL))
+    return;
 
   /* We need this now that you can undo a losing move. */
   aisleriot_game_test_end_of_game (game);
@@ -1789,7 +1815,7 @@ aisleriot_game_new_game (AisleriotGame *game,
     g_random_set_seed (game->seed);
 
     cscmi_start_game_lambda (&game->width, &game->height); /* FIXME this may fail */
-    scm_c_eval_string ("(start-game)");
+    game_scm_call_by_name ("start-game", NULL, 0, NULL);
   } while (!cscmi_game_over_lambda ());
 
   update_game_dealable (game);
@@ -1887,22 +1913,18 @@ aisleriot_game_drag_valid (AisleriotGame *game,
                            guint8 *cards,
                            guint n_cards)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
+  SCM args[2];
 
-  data.lambda = game->button_pressed_lambda;
-  data.n_args = 2;
-  data.arg1 = scm_from_int (slot_id);
-  data.arg2 = c2scm_deck (cards, n_cards);
-  scm_gc_protect_object (data.arg2);
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  scm_gc_unprotect_object (data.arg2);
+  args[0] = scm_from_int (slot_id);
+  args[1] = c2scm_deck (cards, n_cards);
 
-  if (data.exception)
+  if (!game_scm_call (game->button_pressed_lambda, args, 2, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  scm_remember_upto_here_2 (args[0], args[1]);
+
+  return scm_is_true (retval);
 }
 
 /**
@@ -1922,26 +1944,21 @@ aisleriot_game_drop_valid (AisleriotGame *game,
                            guint8 *cards,
                            guint n_cards)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
+  SCM args[3];
 
   if ((game->features & FEATURE_DROPPABLE) == 0)
     return FALSE;
 
-  data.lambda = game->droppable_lambda;
-  data.n_args = 3;
-  data.arg1 = scm_from_int (start_slot);
-  data.arg2 = c2scm_deck (cards, n_cards);
-  scm_gc_protect_object (data.arg2);
-  data.arg3 = scm_from_int (end_slot);
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  scm_gc_unprotect_object (data.arg2);
-
-  if (data.exception)
+  args[0] = scm_from_int (start_slot);
+  args[1] = c2scm_deck (cards, n_cards);
+  args[2] = scm_from_int (end_slot);
+  if (!game_scm_call (game->droppable_lambda, args, 3, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  scm_remember_upto_here (args[0], args[1], args[2]);
+
+  return scm_is_true (retval);
 }
 
 /**
@@ -1960,23 +1977,18 @@ aisleriot_game_drop_cards (AisleriotGame *game,
                            guint8 *cards,
                            guint n_cards)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
+  SCM args[3];
 
-  data.lambda = game->button_released_lambda;
-  data.n_args = 3;
-  data.arg1 = scm_from_int (start_slot);
-  data.arg2 = c2scm_deck (cards, n_cards);
-  scm_gc_protect_object (data.arg2);
-  data.arg3 = scm_from_int (end_slot);
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  scm_gc_unprotect_object (data.arg2);
-
-  if (data.exception)
+  args[0] = scm_from_int (start_slot);
+  args[1] = c2scm_deck (cards, n_cards);
+  args[2] = scm_from_int (end_slot);
+  if (!game_scm_call (game->button_released_lambda, args, 3, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  scm_remember_upto_here (args[0], args[1], args[2]);
+
+  return scm_is_true (retval);
 }
 
 /**
@@ -1992,18 +2004,16 @@ gboolean
 aisleriot_game_button_clicked_lambda (AisleriotGame *game,
                                       int slot_id)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
+  SCM args[1];
 
-  data.lambda = game->button_clicked_lambda;
-  data.n_args = 1;
-  data.arg1 = scm_from_int (slot_id);
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  args[0] = scm_from_int (slot_id);
+  if (!game_scm_call (game->button_clicked_lambda, args, 1, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  scm_remember_upto_here_1 (args[0]);
+
+  return scm_is_true (retval);
 }
 
 /**
@@ -2019,18 +2029,16 @@ gboolean
 aisleriot_game_button_double_clicked_lambda (AisleriotGame *game,
                                              int slot_id)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
+  SCM args[1];
 
-  data.lambda = game->button_double_clicked_lambda;
-  data.n_args = 1;
-  data.arg1 = scm_from_int (slot_id);
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  args[0] = scm_from_int (slot_id);
+  if (!game_scm_call (game->button_double_clicked_lambda, args, 1, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  scm_remember_upto_here_1 (args[0]);
+
+  return scm_is_true (retval);
 }
 
 /**
@@ -2044,22 +2052,17 @@ aisleriot_game_button_double_clicked_lambda (AisleriotGame *game,
 char *
 aisleriot_game_get_hint (AisleriotGame *game)
 {
-  CallData data = CALL_DATA_INIT;
-  SCM hint, string1, string2;
+  SCM hint;
+  SCM string1, string2;
   char *message = NULL;
   char *str1, *str2;
 
-  data.lambda = game->hint_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->hint_lambda, NULL, 0, &hint))
     return NULL;
 
-  hint = data.retval;
+  scm_dynwind_begin (0);
 
-  if (!SCM_NFALSEP (hint)) {
+  if (scm_is_false (hint)) {
     message = g_strdup (_("This game does not have hint support yet."));
   } else {
     switch (scm_to_int (SCM_CAR (hint))) {
@@ -2070,11 +2073,11 @@ aisleriot_game_get_hint (AisleriotGame *game)
         break;
 
       str1 = scm_to_locale_string (string1);
+      scm_dynwind_free (str1);
       if (!str1)
         break;
 
       message = g_strdup (str1);
-      free (str1);
       break;
 
     case 1:
@@ -2085,18 +2088,17 @@ aisleriot_game_get_hint (AisleriotGame *game)
         break;
 
       str1 = scm_to_locale_string (string1);
+      scm_dynwind_free (str1);
       if (!str1)
         break;
+
       str2 = scm_to_locale_string (string2);
-      if (!str2) {
-        free (str1);
+      scm_dynwind_free (str2);
+      if (!str2)
         break;
-      }
 
       /* Both %s are card names */
       message = g_strdup_printf (_("Move %s onto %s."), str1, str2);
-      free (str1);
-      free (str2);
       break;
 
     case 2:
@@ -2111,20 +2113,18 @@ aisleriot_game_get_hint (AisleriotGame *game)
         break;
 
       str1 = scm_to_locale_string (string1);
+      scm_dynwind_free (str1);
       if (!str1)
         break;
       str2 = scm_to_locale_string (string2);
-      if (!str2) {
-        free (str1);
+      scm_dynwind_free (str2);
+      if (!str2)
         break;
-      }
 
       /* The first %s is a card name, the 2nd %s a sentence fragment.
         * Yes, we know this is bad for i18n.
         */
       message = g_strdup_printf (_("Move %s onto %s."), str1, str2);
-      free (str1);
-      free (str2);
       break;
 
     case 3: /* This is deprecated (due to i18n issues) do not use. */
@@ -2141,11 +2141,11 @@ aisleriot_game_get_hint (AisleriotGame *game)
         break;
 
       str1 = scm_to_locale_string (string1);
+      scm_dynwind_free (str1);
       if (!str1)
         break;
 
       message = g_strdup_printf (_("You are searching for a %s."), str1);
-      free (str1);
       break;
 
     default:
@@ -2153,6 +2153,8 @@ aisleriot_game_get_hint (AisleriotGame *game)
       break;
     }
   }
+
+  scm_dynwind_end ();
 
   return message;
 }
@@ -2182,24 +2184,19 @@ aisleriot_game_option_free (AisleriotGameOption *option)
 GList *
 aisleriot_game_get_options (AisleriotGame *game)
 {
-  CallData data = CALL_DATA_INIT;
   SCM options_list;
   int l, i;
   guint32 bit = 1;
   AisleriotGameOptionType type = AISLERIOT_GAME_OPTION_CHECK;
   GList *options = NULL;
 
-  data.lambda = game->get_options_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->get_options_lambda, NULL, 0, &options_list))
     return NULL;
 
-  options_list = data.retval;
   if (scm_is_false (scm_list_p (options_list)))
     return NULL;
+
+  scm_dynwind_begin (0);
 
   l = scm_to_int (scm_length (options_list));
   bit = 1;
@@ -2221,10 +2218,11 @@ aisleriot_game_get_options (AisleriotGame *game)
         continue; /* Shouldn't happen */
 
       entrynamestr = scm_to_locale_string (entryname);
+      scm_dynwind_free (entrynamestr);
       if (!entrynamestr)
         continue;
 
-      entrystate = SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1)));
+      entrystate = scm_is_true (scm_list_ref (entry, scm_from_uint (1)));
 
       option = g_slice_new (AisleriotGameOption);
       option->display_name = g_strdup (entrynamestr);
@@ -2233,8 +2231,6 @@ aisleriot_game_get_options (AisleriotGame *game)
       option->set = entrystate != FALSE;
 
       options = g_list_prepend (options, option);
-
-      free (entrynamestr);
 
       bit <<= 1;
     } else {
@@ -2247,6 +2243,8 @@ aisleriot_game_get_options (AisleriotGame *game)
       }
     }
   }
+
+  scm_dynwind_end ();
 
   return g_list_reverse (options);
 }
@@ -2266,21 +2264,13 @@ aisleriot_game_change_options (AisleriotGame *game,
                                guint32 changed_mask,
                                guint32 changed_value)
 {
-  CallData data = CALL_DATA_INIT;
-  CallData data2 = CALL_DATA_INIT;
   SCM options_list;
   guint32 bit, value;
   int l, i;
 
-  data.lambda = game->get_options_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (!game_scm_call (game->get_options_lambda, NULL, 0, &options_list))
     return 0;
 
-  options_list = data.retval;
   if (scm_is_false (scm_list_p (options_list)))
     return 0;
 
@@ -2297,19 +2287,15 @@ aisleriot_game_change_options (AisleriotGame *game,
     if (changed_mask & bit)
       scm_list_set_x (entry, scm_from_uint (1), (changed_value & bit) ? SCM_BOOL_T : SCM_BOOL_F);
   
-    if (SCM_NFALSEP (scm_list_ref (entry, scm_from_uint (1))))
+    if (scm_is_true (scm_list_ref (entry, scm_from_uint (1))))
       value |= bit;
 
     bit <<= 1;
   }
 
-  data2.lambda = game->apply_options_lambda;
-  data2.n_args = 1;
-  data2.arg1 = options_list;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data2,
-                            cscmi_catch_handler, &data);
+  game_scm_call (game->apply_options_lambda, &options_list, 1, NULL);
 
+  scm_remember_upto_here_1 (options_list);
   return value;
 }
 
@@ -2324,17 +2310,12 @@ aisleriot_game_change_options (AisleriotGame *game,
 gboolean
 aisleriot_game_timeout_lambda (AisleriotGame *game)
 {
-  CallData data = CALL_DATA_INIT;
+  SCM retval;
 
-  data.lambda = game->timeout_lambda;
-  data.n_args = 0;
-  scm_internal_stack_catch (SCM_BOOL_T,
-                            cscmi_call_lambda, &data,
-                            cscmi_catch_handler, &data);
-  if (data.exception)
+  if (game_scm_call (game->timeout_lambda, NULL, 0, &retval))
     return FALSE;
 
-  return SCM_NFALSEP (data.retval);
+  return scm_is_true (retval);
 }
 
 /**
@@ -2352,15 +2333,15 @@ aisleriot_game_record_move (AisleriotGame *game,
                             guint8 *cards,
                             guint n_cards)
 {
-  SCM cardlist;
+  SCM args[2];
 
-  cardlist = c2scm_deck (cards, n_cards);
-  scm_gc_protect_object (cardlist);
+  args[0] = scm_from_int (slot_id);
+  args[1] = c2scm_deck (cards, n_cards);
 
-  scm_call_2 (scm_c_eval_string ("record-move"),
-              scm_from_int (slot_id), cardlist);
+  if (!game_scm_call_by_name ("record-move", args, 2, NULL))
+    return;
 
-  scm_gc_unprotect_object (cardlist);
+  scm_remember_upto_here_2 (args[0], args[1]);
 }
 
 /**
@@ -2373,7 +2354,8 @@ aisleriot_game_record_move (AisleriotGame *game,
 void
 aisleriot_game_end_move (AisleriotGame *game)
 {
-  scm_call_0 (scm_c_eval_string ("end-move"));
+  if (!game_scm_call_by_name ("end-move", NULL, 0, NULL))
+    return;
 }
 
 /**
@@ -2385,7 +2367,8 @@ aisleriot_game_end_move (AisleriotGame *game)
 void
 aisleriot_game_discard_move (AisleriotGame *game)
 {
-  scm_call_0 (scm_c_eval_string ("discard-move"));
+  if (!game_scm_call_by_name ("discard-move", NULL, 0, NULL))
+    return;
 }
 
 /**
@@ -2442,7 +2425,12 @@ aisleriot_game_set_click_to_move (AisleriotGame *game,
 void
 aisleriot_game_generate_exception (AisleriotGame *game)
 {
-  cscmi_eval_string ("(/ 1 0)");
+  CallData data = { SCM_EOL, NULL, 0, FALSE };
+
+  scm_c_catch (SCM_BOOL_T,
+               (scm_t_catch_body) scm_c_eval_string, (void *) "(/ 1 0)",
+               game_scm_catch_handler, &data,
+               game_scm_pre_unwind_handler, &data);
 }
 
 /**
@@ -2461,8 +2449,9 @@ aisleriot_game_deal_cards (AisleriotGame *game)
 
   aisleriot_game_record_move (game, -1, NULL, 0);
 
-  cscmi_eval_string ("(do-deal-next-cards)");
-    
+  if (!game_scm_call_by_name ("do-deal-next-cards", NULL, 0, NULL))
+    return;
+
   aisleriot_game_end_move (game);
   aisleriot_game_test_end_of_game (game);
 }
