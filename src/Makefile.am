@@ -13,10 +13,6 @@ cardimagedir = $(pkgdatadir)/pixmaps
 cardimage_DATA = \
 	baize.png
 
-scmdir  = $(pkgdatadir)/games
-scm_DATA = \
-	sol.scm
-
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
@@ -182,7 +178,6 @@ EXTRA_DIST = \
 	README			\
 	Rules.HOWTO		\
 	TODO			\
-	$(scm_DATA)		\
 	$(cardimage_DATA)	\
 	$(icon_DATA)		\
 	$(allicons)		\

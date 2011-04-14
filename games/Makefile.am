@@ -3,6 +3,8 @@ NULL =
 rulesdir  = $(pkgdatadir)/games
 
 rules_DATA  = 			\
+	sol.scm			\
+				\
 	accordion.scm		\
 	agnes.scm		\
 	athena.scm		\
