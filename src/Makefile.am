@@ -186,7 +186,6 @@ EXTRA_DIST = \
 	$(ossoservice_in_files)	\
 	$(schema_in_files)	\
 	$(man_MANS)		\
-	aisleriot.supp		\
 	game-names.h
 
 CLEANFILES = \

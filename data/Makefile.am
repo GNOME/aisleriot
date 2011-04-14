@@ -22,6 +22,10 @@ desktop_in_files = \
 desktopdir = $(datadir)/applications
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
+EXTRA_DIST = \
+	aisleriot.supp \
+	$(NULL)
+
 CLEANFILES = \
 	$(desktop_DATA) \
 	$(NULL)
