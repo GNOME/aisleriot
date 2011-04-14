@@ -462,6 +462,8 @@ game_scm_call (SCM lambda,
                     game_scm_catch_handler, NULL,
                     game_scm_pre_unwind_handler, &error);
   if (error) {
+    app_game->had_exception = TRUE;
+
     g_signal_emit (app_game, signals[EXCEPTION], 0, error);
     g_error_free (error);
 
@@ -1688,6 +1690,44 @@ aisleriot_game_load_game (AisleriotGame *game,
   return TRUE;
 }
 
+static SCM
+game_scm_new_game (void *user_data)
+{
+  AisleriotGame *game = user_data;
+  gboolean game_over;
+
+  /* It is possible for some games to not have any moves right from the
+   * start. If this happens we redeal.
+   */
+  /* FIXMEchpe we should have a maximum number of tries, and then bail out! */
+  do {
+    SCM size, lambda, over;
+
+    size = scm_call_0 (game->start_game_lambda);
+    game->width = scm_to_double (SCM_CAR (size));
+    game->height = scm_to_double (SCM_CADR (size));
+    scm_remember_upto_here_1 (size);
+
+    lambda = scm_c_eval_string ("start-game");
+    scm_call_0 (lambda);
+    scm_remember_upto_here_1 (lambda);
+
+    over = scm_call_0 (game->game_over_lambda);
+    game_over = scm_is_true (over);
+    scm_remember_upto_here_1 (over);
+  } while (!game_over);
+
+  if (game->features & FEATURE_DEALABLE) {
+    SCM dealable;
+
+    dealable = scm_call_0 (game->dealable_lambda);
+    set_game_dealable (game, scm_is_true (dealable));
+    scm_remember_upto_here_1 (dealable);
+  }
+
+  return SCM_BOOL_T;
+}
+
 /**
  * aisleriot_game_new_game:
  * @game:
@@ -1702,6 +1742,7 @@ aisleriot_game_new_game (AisleriotGame *game,
                          guint *seed)
 {
   GObject *object = G_OBJECT (game);
+  GError *err = NULL;
 
   g_return_if_fail (game->state > GAME_UNINITIALISED);
 
@@ -1724,6 +1765,12 @@ aisleriot_game_new_game (AisleriotGame *game,
     update_statistics (game);
   }
 
+  if (seed) {
+    game->seed = *seed;
+  } else {
+    game->seed = 0;
+  }
+
   clear_delayed_call (game);
   /* The game isn't actually in progress until the user makes a move */
   set_game_state (game, GAME_BEGIN);
@@ -1731,41 +1778,21 @@ aisleriot_game_new_game (AisleriotGame *game,
   set_game_undoable (game, FALSE);
   set_game_redoable (game, FALSE);
 
-  /* It is possible for some games to not have any moves right from the
-   * start. If this happens we redeal.
-   */
-  /* FIXMEchpe we should have a maximum number of tries, and then bail out! */
-  do {
-    SCM retval;
+  scm_c_catch (SCM_BOOL_T,
+               (scm_t_catch_body) game_scm_new_game, (void *) game,
+               game_scm_catch_handler, NULL,
+               game_scm_pre_unwind_handler, &err);
 
-    if (seed) {
-      game->seed = *seed;
-    } else {
-      game->seed = g_random_int ();
-    }
-    seed = NULL;
+  if (err) {
+    game->had_exception = TRUE;
 
-    /* FIXMEchpe: We should NOT re-seed here, but just get another random number! */
-    g_random_set_seed (game->seed);
+    g_signal_emit (game, signals[EXCEPTION], 0, err);
+    g_error_free (err);
+    g_object_thaw_notify (object);
+    return;
+  }
 
-    if (!game_scm_call (game->start_game_lambda, NULL, 0, &retval))
-      goto out;
-
-    game->width = scm_to_double (SCM_CAR (retval));
-    game->height = scm_to_double (SCM_CADR (retval));
-
-    scm_remember_upto_here (retval);
-
-    if (!game_scm_call_by_name ("start-game", NULL, 0, NULL))
-      goto out;
-
-  } while (!cscmi_game_over_lambda ());
-
-  update_game_dealable (game);
-
-out:
   g_object_thaw_notify (object);
-
   g_signal_emit (game, signals[GAME_NEW], 0);
 }
 
