@@ -176,7 +176,6 @@ install-data-local: install-schemas-local
 EXTRA_DIST = \
 	AUTHORS			\
 	README			\
-	Rules.HOWTO		\
 	TODO			\
 	$(cardimage_DATA)	\
 	$(icon_DATA)		\

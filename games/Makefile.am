@@ -98,7 +98,9 @@ rules_DATA  = 			\
 # about whether it's GPL 2 or GPL 2+ (see bug #325039 comment 5).
 
 EXTRA_DIST = \
-	$(rules_DATA)	\
-	template.scm
+	$(rules_DATA) \
+	template.scm \
+	Rules.HOWTO \
+	$(NULL)
 
 -include $(top_srcdir)/git.mk
