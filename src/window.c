@@ -2640,14 +2640,19 @@ load_idle_cb (LoadIdleData *data)
     g_free (name);
 
     if (priv->freecell_mode ||
-        error->domain != AISLERIOT_GAME_ERROR ||
-        error->code != GAME_ERROR_FALLBACK) {
+        strcmp (data->game_file, DEFAULT_VARIATION) == 0) {
       /* Loading freecell/the fallback game failed; all we can do is exit */
       g_signal_connect_swapped (dialog, "response",
                                 G_CALLBACK (gtk_widget_destroy), data->window);
     } else {
-      gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog),
-                                                "%s", error->message);
+      gtk_message_dialog_format_secondary_text
+        (GTK_MESSAGE_DIALOG (dialog),
+         "%s\n\n%s",
+         _("Aisleriot cannot find the last game you played."),
+         _("This usually occurs when you run an older version of Aisleriot "
+           "which does not have the game you last played. "
+           "The default game, Klondike, is being started instead."));
+        /* FIXME: add @error->message to a textview in a Detailed… expander */
 
       g_signal_connect (dialog, "response",
                         G_CALLBACK (load_error_response_cb), data->window);
@@ -2710,7 +2715,7 @@ aisleriot_window_set_game (AisleriotWindow *window,
   data->window = window;
   data->game_file = g_strdup (game_file);
   data->seed = seed;
-  
+
   priv->load_idle_id = g_idle_add_full (G_PRIORITY_LOW,
                                         (GSourceFunc) load_idle_cb,
                                         data,

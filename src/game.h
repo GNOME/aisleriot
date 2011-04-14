@@ -115,8 +115,7 @@ typedef struct _AisleriotGameClass AisleriotGameClass;
 
 enum {
   GAME_ERROR_EXCEPTION = 0,
-  GAME_ERROR_GENERIC   = 1,
-  GAME_ERROR_FALLBACK  = 2
+  GAME_ERROR_GENERIC   = 1
 };
 
 typedef enum {

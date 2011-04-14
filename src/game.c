@@ -1105,44 +1105,6 @@ cscmi_winning_game_lambda (void)
   return scm_is_true (retval);
 }
 
-static gboolean
-cscmi_eval_installed_file (const char *filename,
-                           GError **error)
-{
-  char *path;
-  GError *err = NULL;
-
-  g_return_val_if_fail (filename != NULL, FALSE);
-
-  if (!g_str_has_suffix (filename, ".scm")) {
-    g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
-                 "%s is not a scheme file", filename);
-    return FALSE;
-  }
-
-  path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, filename);
-  if (!g_file_test (path, G_FILE_TEST_EXISTS) ||
-      !g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
-    g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
-                 _("Aisleriot cannot load the file “%s”. "
-                   "Please check your Aisleriot installation."),
-                 path);
-    return FALSE;
-  }
-
-  scm_c_catch (SCM_BOOL_T,
-               (scm_t_catch_body) scm_c_primitive_load, (void *) path,
-               game_scm_catch_handler, NULL,
-               game_scm_pre_unwind_handler, &err);
-  g_free (path);
-  if (err) {
-    g_propagate_error (error, err);
-    return FALSE;
-  }
-
-  return TRUE;
-}
-
 /* Class implementation */
 
 static void
@@ -1626,6 +1588,30 @@ aisleriot_game_redo_move (AisleriotGame *game)
   aisleriot_game_test_end_of_game (game);
 }
 
+static SCM
+game_scm_load_game (void *user_data)
+{
+  const char *game_file = user_data;
+  char *path;
+
+  scm_dynwind_begin (0);
+
+  /* Although this line slows down game switching by a noticeable amount, we
+    * add it here in order to make sure all the original functions are
+    * "clean". */
+  path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, "sol.scm");
+  scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);
+  scm_c_primitive_load (path);
+
+  path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, game_file);
+  scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);
+  scm_c_primitive_load (path);
+
+  scm_dynwind_end ();
+
+  return SCM_BOOL_T;
+}
+
 /**
  * aisleriot_game_load_game:
  * @game:
@@ -1644,12 +1630,11 @@ aisleriot_game_load_game (AisleriotGame *game,
 {
   GObject *object = G_OBJECT (game);
   GError *err = NULL;
-  gboolean retval = FALSE;
 
   g_return_val_if_fail (game_file != NULL && game_file[0] != '\0', FALSE);
 
-  if (game->game_file != NULL &&
-      strcmp (game_file, game->game_file) == 0)
+  /* FIXMEchpe: allow re-loading */
+  if (g_strcmp0 (game_file, game->game_file) == 0)
     return TRUE;
 
   /* We use @game_file as a filename, but since it'll be used in configuration
@@ -1679,28 +1664,15 @@ aisleriot_game_load_game (AisleriotGame *game,
   game->features = 0;
   game->had_exception = FALSE;
 
-  /* Although this line slows down game switching by a noticeable amount, we
-    * add it here in order to make sure all the original functions are
-    * "clean". */
-  if (!cscmi_eval_installed_file ("sol.scm", error))
-    goto out;
+  scm_c_catch (SCM_BOOL_T,
+               (scm_t_catch_body) game_scm_load_game, (void *) game_file,
+               game_scm_catch_handler, NULL,
+               game_scm_pre_unwind_handler, &err);
 
-  /* Now try to load the game rules */
-  if (!cscmi_eval_installed_file (game_file, &err)) {
-    if (strcmp (game_file, DEFAULT_VARIATION) == 0) {
-      g_propagate_error (error, err);
-    } else {
-      g_error_free (err);
-
-      g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_FALLBACK,
-                   "%s %s",
-                   _("Aisleriot cannot find the last game you played."),
-                   _("This usually occurs when you run an older version of Aisleriot "
-                     "which does not have the game you last played. "
-                     "The default game, Klondike, is being started instead."));
-    }
-
-    goto out;
+  if (err) {
+    g_propagate_error (error, err);
+    g_object_thaw_notify (object);
+    return FALSE;
   }
 
   g_free (game->game_file);
@@ -1710,17 +1682,10 @@ aisleriot_game_load_game (AisleriotGame *game,
 
   g_object_notify (object, "game-file");
 
-  retval = TRUE;
-
-out:
-
   g_object_thaw_notify (object);
-    
-  if (retval) {
-    g_signal_emit (game, signals[GAME_TYPE], 0);
-  }
+  g_signal_emit (game, signals[GAME_TYPE], 0);
 
-  return retval;
+  return TRUE;
 }
 
 /**
