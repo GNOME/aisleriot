@@ -1110,10 +1110,9 @@ cscmi_eval_installed_file (const char *filename,
                            GError **error)
 {
   char *path;
+  GError *err = NULL;
 
   g_return_val_if_fail (filename != NULL, FALSE);
-
-  /* FIXMEchpe: install exception handlers and set error if an exception occurs while loading the file? */
 
   if (!g_str_has_suffix (filename, ".scm")) {
     g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
@@ -1122,20 +1121,26 @@ cscmi_eval_installed_file (const char *filename,
   }
 
   path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, filename);
-  if (g_file_test (path, G_FILE_TEST_EXISTS) &&
-      g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
-    scm_c_primitive_load (path);
-    g_free (path);
-    return TRUE;
+  if (!g_file_test (path, G_FILE_TEST_EXISTS) ||
+      !g_file_test (path, G_FILE_TEST_IS_REGULAR)) {
+    g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
+                 _("Aisleriot cannot load the file “%s”. "
+                   "Please check your Aisleriot installation."),
+                 path);
+    return FALSE;
   }
 
-  g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
-               _("Aisleriot cannot load the file “%s”. "
-                 "Please check your Aisleriot installation."),
-               path);
+  scm_c_catch (SCM_BOOL_T,
+               (scm_t_catch_body) scm_c_primitive_load, (void *) path,
+               game_scm_catch_handler, NULL,
+               game_scm_pre_unwind_handler, &err);
   g_free (path);
+  if (err) {
+    g_propagate_error (error, err);
+    return FALSE;
+  }
 
-  return FALSE;
+  return TRUE;
 }
 
 /* Class implementation */
