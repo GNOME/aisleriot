@@ -1106,21 +1106,6 @@ update_game_dealable (AisleriotGame *game)
 }
 
 static gboolean
-cscmi_start_game_lambda (double *width,
-                         double *height)
-{
-  AisleriotGame *game = app_game;
-  SCM retval;
-
-  if (!game_scm_call (game->start_game_lambda, NULL, 0, &retval))
-    return FALSE;
-
-  *width = scm_to_double (SCM_CAR (retval));
-  *height = scm_to_double (SCM_CADR (retval));
-  return TRUE;
-}
-
-static gboolean
 cscmi_game_over_lambda (void)
 {
   AisleriotGame *game = app_game;
@@ -1804,6 +1789,8 @@ aisleriot_game_new_game (AisleriotGame *game,
    */
   /* FIXMEchpe we should have a maximum number of tries, and then bail out! */
   do {
+    SCM retval;
+
     if (seed) {
       game->seed = *seed;
     } else {
@@ -1814,12 +1801,22 @@ aisleriot_game_new_game (AisleriotGame *game,
     /* FIXMEchpe: We should NOT re-seed here, but just get another random number! */
     g_random_set_seed (game->seed);
 
-    cscmi_start_game_lambda (&game->width, &game->height); /* FIXME this may fail */
-    game_scm_call_by_name ("start-game", NULL, 0, NULL);
+    if (!game_scm_call (game->start_game_lambda, NULL, 0, &retval))
+      goto out;
+
+    game->width = scm_to_double (SCM_CAR (retval));
+    game->height = scm_to_double (SCM_CADR (retval));
+
+    scm_remember_upto_here (retval);
+
+    if (!game_scm_call_by_name ("start-game", NULL, 0, NULL))
+      goto out;
+
   } while (!cscmi_game_over_lambda ());
 
   update_game_dealable (game);
 
+out:
   g_object_thaw_notify (object);
 
   g_signal_emit (game, signals[GAME_NEW], 0);
