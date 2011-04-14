@@ -157,8 +157,6 @@ schemadir = $(GCONF_SCHEMA_FILE_DIR)
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 endif
 
-man_MANS = sol.6
-
 %.service: %.service.in Makefile
 	$(AM_V_GEN) $(SED) -e "s|%bindir%|$(bindir)|" $< > $@
 
@@ -184,7 +182,6 @@ EXTRA_DIST = \
 	$(ossoscript_in_files)	\
 	$(ossoservice_in_files)	\
 	$(schema_in_files)	\
-	$(man_MANS)		\
 	game-names.h
 
 CLEANFILES = \

@@ -104,4 +104,6 @@ DOC_FIGURES = \
 
 dist-hook: doc-dist-hook
 
+dist_man_MANS = sol.6
+
 -include $(top_srcdir)/git.mk
