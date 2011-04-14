@@ -564,7 +564,7 @@ cscmi_slot_set_cards (ArSlot *slot,
   guint8 *data = NULL;
   guint i, n_cards = 0;
 
-  if (scm_is_true (cards)) {
+  if (scm_is_true (scm_list_p (cards))) {
     for (list_el = cards; list_el != SCM_EOL; list_el = SCM_CDR (list_el)) {
       ++n_cards;
     }
