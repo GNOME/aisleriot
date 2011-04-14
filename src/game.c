@@ -780,7 +780,7 @@ static SCM
 scm_set_statusbar_message (SCM message)
 {
   AisleriotGame *game = app_game;
-  char *str, *translated;
+  char *str;
 
   if (!scm_is_string (message))
     return SCM_EOL;
@@ -792,11 +792,7 @@ scm_set_statusbar_message (SCM message)
   if (!str)
     goto out;
 
-  /* FIXMEchpe: this looks bogus; the string is already translated on the scheme side */
-  translated = g_strstrip (g_strdup (_(str)));
-  g_signal_emit (game, signals[GAME_MESSAGE], 0, translated);
-
-  g_free (translated);
+  g_signal_emit (game, signals[GAME_MESSAGE], 0, str);
 
 out:
   scm_dynwind_end ();
