@@ -518,13 +518,25 @@ GUILE_2_2_REQUIRED=2.0.0
 
 GUILE_PKGS=
 
-AC_MSG_CHECKING([for guile version])
-PKG_CHECK_EXISTS([guile-2.2 >= $GUILE_2_2_REQUIRED],
-  [GUILE_API_VERSION="2.2" GUILE_PKGS="guile-2.2 >= $GUILE_2_2_REQUIRED"],
-  [PKG_CHECK_EXISTS([guile-2.0 >= $GUILE_2_0_REQUIRED],
-    [GUILE_API_VERSION="2.0" GUILE_PKGS="guile-2.0 >= $GUILE_2_0_REQUIRED"],
-    [GUILE_API_VERSION="1.8" GUILE_PKGS="guile-1.8 >= $GUILE_1_8_REQUIRED"])])
-AC_MSG_RESULT([$GUILE_API_VERSION])
+AC_MSG_CHECKING([which guile version to use])
+AC_ARG_WITH([guile],
+  [AS_HELP_STRING([--with-guile=1.8|2.0|2.2],[Which guile version to use (default: 1.8)])],
+  [case "$with_guile" in
+     1.8|2.0|2.2) ;;
+     *) AC_MSG_ERROR([unknown or unsupported guile version $with_guile specified]) ;;
+    esac],
+   [with_guile=1.8])
+AC_MSG_RESULT([$with_guile])
+
+case "$with_guile" in
+  1.8) GUILE_PKGS="guile-1.8 >= $GUILE_1_8_REQUIRED" ;;
+  2.0) GUILE_PKGS="guile-2.0 >= $GUILE_2_0_REQUIRED" ;;
+  2.2) GUILE_PKGS="guile-2.2 >= $GUILE_2_2_REQUIRED" ;;
+esac
+
+PKG_CHECK_EXISTS([$GUILE_PKGS],
+  [],
+  [AC_MSG_ERROR([guile version $with_guile not found. Install it, or use --with-guile to select a different version.])])
 
 PKG_CHECK_MODULES([GUILE],[$GUILE_PKGS])
 
