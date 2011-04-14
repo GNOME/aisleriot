@@ -1,6 +1,6 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
- * Copyright © 2007 Christian Persch
+ * Copyright © 2007, 2011 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,6 +43,11 @@
 #define DELAYED_CALLBACK_DELAY (50)
 
 #define I_(string) g_intern_static_string (string)
+
+struct _AisleriotGameClass
+{
+  GObjectClass parent_class;
+};
 
 struct _AisleriotGame
 {
@@ -278,8 +283,6 @@ typedef struct {
   SCM lambda;
   SCM *args;
   gsize n_args;
-  SCM retval;
-  gboolean exception;
 } CallData;
 
 static char *
@@ -396,50 +399,19 @@ game_scm_pre_unwind_handler (void *user_data,
                              SCM tag,
                              SCM throw_args)
 {
-  CallData *data = (CallData *) user_data;
-  AisleriotGame *game = app_game;
-  char *message = NULL;
-  int error_fd;
-  char *error_file = NULL;
-  GError *error = NULL;
+  GError **error = user_data;
+  char *message;
 
-  if (data)
-    data->exception = TRUE;
-
-  g_print ("preunwind handler\n");
-
-  if (game->had_exception)
-    goto out;
+  /* Not interested in errors, or already had an exception */
+  if (error == NULL || *error != NULL)
+    return SCM_UNDEFINED;
 
   message = cscmi_exception_get_backtrace (tag, throw_args);
-  if (!message) {
-    g_warning ("A scheme exception occurred, but there was no exception info\n");
-    goto out;
-  }
-
-  g_print ("scheme exception: \n\n%s\n\n", message);
-    goto out;
-
-  error_fd = g_file_open_tmp ("arcrashXXXXXX", &error_file, &error);
-  if (error_fd >= 0) {
-    close (error_fd);
-    g_file_set_contents (error_file, message, strlen (message), NULL);
-
-    /* Tell the frontend about the problem */
-    g_signal_emit (game, signals[EXCEPTION], 0, error_file);
-    g_free (error_file);
-  } else {
-    g_warning ("A scheme exception occurred, and aisleriot could not create a temporary file to report it: %s",
-               error->message);
-    g_error_free (error);
-  }
-
-out:
-  /* This game is over, but don't count it in the statistics */
-  set_game_state (game, GAME_LOADED);
-
-  g_free (message);
-
+  g_set_error (error,
+               AISLERIOT_GAME_ERROR,
+               GAME_ERROR_EXCEPTION,
+               message ? message
+                       : "A scheme exception occurred, but there was no exception info");
   return SCM_UNDEFINED;
 }
 
@@ -481,15 +453,23 @@ game_scm_call (SCM lambda,
                gsize n_args,
                SCM *retval)
 {
-  CallData data = { lambda, args, n_args, FALSE };
+  CallData data = { lambda, args, n_args };
+  GError *error = NULL;
   SCM rv;
 
   rv = scm_c_catch (SCM_BOOL_T,
                     game_scm_call_lambda, &data,
-                    game_scm_catch_handler, &data,
-                    game_scm_pre_unwind_handler, &data);
-  if (data.exception)
+                    game_scm_catch_handler, NULL,
+                    game_scm_pre_unwind_handler, &error);
+  if (error) {
+    g_signal_emit (app_game, signals[EXCEPTION], 0, error);
+    g_error_free (error);
+
+    /* This game is over, but don't count it in the statistics */
+    set_game_state (app_game, GAME_LOADED);
+
     return FALSE;
+  }
 
   if (retval)
     *retval = rv;
@@ -1248,6 +1228,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   GType param_types[] = { G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE };
+  GType error_types[] = { G_TYPE_ERROR | G_SIGNAL_TYPE_STATIC_SCOPE };
   GType ptr_types[] = { G_TYPE_POINTER };
 
   gobject_class->constructor = aisleriot_game_constructor;
@@ -1310,9 +1291,9 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                    (GSignalFlags) (G_SIGNAL_RUN_LAST),
                    NULL,
                    NULL, NULL,
-                   g_cclosure_marshal_VOID__STRING,
+                   g_cclosure_marshal_VOID__BOXED,
                    G_TYPE_NONE,
-                   1, param_types);
+                   1, error_types);
 
   g_object_class_install_property
     (gobject_class,
@@ -2418,12 +2399,17 @@ aisleriot_game_set_click_to_move (AisleriotGame *game,
 void
 aisleriot_game_generate_exception (AisleriotGame *game)
 {
-  CallData data = { SCM_EOL, NULL, 0, FALSE };
+  GError *error = NULL;
 
   scm_c_catch (SCM_BOOL_T,
                (scm_t_catch_body) scm_c_eval_string, (void *) "(/ 1 0)",
-               game_scm_catch_handler, &data,
-               game_scm_pre_unwind_handler, &data);
+               game_scm_catch_handler, NULL,
+               game_scm_pre_unwind_handler, &error);
+
+  if (error) {
+    g_signal_emit (app_game, signals[EXCEPTION], 0, error);
+    g_error_free (error);
+  }
 }
 
 /**

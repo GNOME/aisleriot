@@ -92,7 +92,7 @@ enum
   ACTION_LEAVE_FULLSCREEN,
   LAST_ACTION
 };
-  
+
 struct _AisleriotWindowPrivate
 {
   AisleriotGame *game;
@@ -1677,14 +1677,18 @@ game_exception_response_cb (GtkWidget *dialog,
                             AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  const char *error_file;
+  GError *error;
+  gboolean did_report;
 
-  error_file = g_object_get_data (G_OBJECT (dialog), "error-file");
-  g_assert (error_file != NULL);
+  error = g_object_get_data (G_OBJECT (dialog), "error");
+  g_assert (error != NULL);
 
+  did_report = FALSE;
   if (response == GTK_RESPONSE_ACCEPT) {
     GError *err = NULL;
     char pidstr[64];
+    int fd;
+    char *error_file;
     const char * const argv[] = {
       "bug-buddy",
       "--package", "gnome-games",
@@ -1698,20 +1702,34 @@ game_exception_response_cb (GtkWidget *dialog,
 
     g_snprintf (pidstr, sizeof (pidstr), "%d", getpid ());
 
-    if (!g_spawn_async (
-                              NULL /* working dir */,
-                              (char **) argv,
-                              NULL /* envp */,
-                              G_SPAWN_SEARCH_PATH,
-                              NULL, NULL,
-                              NULL,
-                              &err)) {
-      g_warning ("Failed to launch bug buddy: %s\n", err->message);
+    fd = g_file_open_tmp ("arcrashXXXXXX", &error_file, &err);
+    if (fd >= 0) {
+      close (fd);
+
+      g_file_set_contents (error_file, error->message, strlen (error->message), NULL);
+
+      if (g_spawn_async (NULL /* working dir */,
+                         (char **) argv,
+                         NULL /* envp */,
+                         G_SPAWN_SEARCH_PATH,
+                         NULL, NULL,
+                         NULL,
+                         &err)) {
+        did_report = TRUE;
+      } else {
+        g_warning ("Failed to launch bug buddy: %s\n", err->message);
+        g_error_free (err);
+      }
+
+      g_free (error_file);
+    } else {
+      g_warning ("Failed to create temp file: %s\n", err->message);
       g_error_free (err);
     }
+  }
 
-    /* FIXMEchpe: can't unlink now since bug buddy still needs it... what to do? */
-    /* unlink (error_file); */
+  if (!did_report) {
+    g_printerr ("Aisleriot " VERSION " scheme exception occurred\n-- 8< --\n%s\n-- >8 --\n", error->message);
   }
 
   gtk_widget_destroy (dialog);
@@ -1724,12 +1742,12 @@ game_exception_response_cb (GtkWidget *dialog,
 
 static void
 game_exception_cb (AisleriotGame *game,
-                   const char *error_file,
+                   const GError *error,
                    AisleriotWindow *window)
 {
   GtkWidget *dialog;
 
-  g_return_if_fail (error_file != NULL);
+  g_return_if_fail (error != NULL);
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (window),
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -1755,8 +1773,9 @@ game_exception_cb (AisleriotGame *game,
 
   g_signal_connect (dialog, "response",
                     G_CALLBACK (game_exception_response_cb), window);
-  g_object_set_data_full (G_OBJECT (dialog), "error-file",
-                          g_strdup (error_file), g_free);
+  g_object_set_data_full (G_OBJECT (dialog), "error",
+                          g_error_copy (error),
+                          (GDestroyNotify) g_error_free);
 
   gtk_widget_show (dialog);
 }

@@ -111,11 +111,12 @@ char *ar_slot_get_hint_string (ArSlot *slot,
 #define AISLERIOT_GAME_OPTIONS_MAX (0x7FFFFFFF) /* 31 bits, since we're using int not guint */
 
 typedef struct _AisleriotGame AisleriotGame;
-typedef GObjectClass AisleriotGameClass;
+typedef struct _AisleriotGameClass AisleriotGameClass;
 
 enum {
-  GAME_ERROR_GENERIC = 0,
-  GAME_ERROR_FALLBACK = 1
+  GAME_ERROR_EXCEPTION = 0,
+  GAME_ERROR_GENERIC   = 1,
+  GAME_ERROR_FALLBACK  = 2
 };
 
 typedef enum {
