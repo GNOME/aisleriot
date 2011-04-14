@@ -540,6 +540,11 @@ PKG_CHECK_EXISTS([$GUILE_PKGS],
 
 PKG_CHECK_MODULES([GUILE],[$GUILE_PKGS])
 
+AC_PATH_PROG([GUILE_TOOLS],[guile-tools],[false])
+if test "$GUILE_TOOLS" = "false"; then
+  AC_MSG_ERROR([guile-tools not found])
+fi
+
 # *************
 # Documentation
 # *************
