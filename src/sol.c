@@ -242,6 +242,10 @@ main (int argc, char *argv[])
     g_setenv ("GUILE_WARN_DEPRECATED", "detailed", TRUE);
 #endif
 
+#if SCM_MAJOR_VERSION >= 2
+  g_setenv ("GUILE_AUTO_COMPILE", "0", TRUE);
+#endif
+
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 
   return 0;
