@@ -163,26 +163,21 @@ ar_stock_init (void)
 {
   /* These stocks have a gtk stock icon */
   const char *stock_icon_aliases[][2] = {
-    { AR_STOCK_CONTENTS,         GTK_STOCK_HELP },
-    { AR_STOCK_HINT,             GTK_STOCK_DIALOG_INFO },
-    { AR_STOCK_NEW_GAME,         GTK_STOCK_NEW },
-    { AR_STOCK_START_NEW_GAME,   GTK_STOCK_NEW },
-    { AR_STOCK_RESET,            GTK_STOCK_CLEAR },
-    { AR_STOCK_RESTART_GAME,     GTK_STOCK_REFRESH },
-    { AR_STOCK_FULLSCREEN,       GTK_STOCK_FULLSCREEN },
-    { AR_STOCK_LEAVE_FULLSCREEN, GTK_STOCK_LEAVE_FULLSCREEN },
-#ifdef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
-    { AR_STOCK_REDO_MOVE,        GTK_STOCK_REDO },
-    { AR_STOCK_UNDO_MOVE,        GTK_STOCK_UNDO },
-#endif
-
-    { AR_STOCK_PAUSE_GAME,       GTK_STOCK_MEDIA_PAUSE },
+    { AR_STOCK_CONTENTS,         "help-contents" },
+    { AR_STOCK_HINT,             "dialog-information" },
+    { AR_STOCK_NEW_GAME,         "document-new" },
+    { AR_STOCK_START_NEW_GAME,   "document-new" },
+    { AR_STOCK_RESET,            "edit-clear" },
+    { AR_STOCK_RESTART_GAME,     "view-refresh" },
+    { AR_STOCK_FULLSCREEN,       "view-fullscreen" },
+    { AR_STOCK_LEAVE_FULLSCREEN, "view-restore" },
+    { AR_STOCK_PAUSE_GAME,       "media-playback-pause" },
   };
 
 #ifndef HAVE_GTK_ICON_FACTORY_ADD_ALIAS
   const char *stock_icon_aliases_bidi[][3] = {
-    { AR_STOCK_REDO_MOVE, GTK_STOCK_REDO "-ltr", GTK_STOCK_REDO "-rtl" },
-    { AR_STOCK_UNDO_MOVE, GTK_STOCK_UNDO "-ltr", GTK_STOCK_UNDO "-rtl" },
+    { AR_STOCK_REDO_MOVE, "edit-redo", "edit-undo" },
+    { AR_STOCK_UNDO_MOVE, "edit-undo", "edit-redo" },
   };
 #endif
 
