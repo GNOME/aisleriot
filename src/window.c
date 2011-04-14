@@ -1689,21 +1689,21 @@ game_exception_response_cb (GtkWidget *dialog,
     char pidstr[64];
     int fd;
     char *error_file;
-    const char * const argv[] = {
-      "bug-buddy",
-      "--package", "gnome-games",
-      "--package-ver", VERSION,
-      "--appname", "aisleriot",
-      "--pid", pidstr,
-      "--include", (const char *) error_file,
-      "--unlink-tempfile",
-      NULL
-    };
 
     g_snprintf (pidstr, sizeof (pidstr), "%d", getpid ());
 
     fd = g_file_open_tmp ("arcrashXXXXXX", &error_file, &err);
     if (fd >= 0) {
+      const char * const argv[] = {
+        "bug-buddy",
+        "--package", "gnome-games",
+        "--appname", "aisleriot",
+        "--pid", pidstr,
+        "--include", (const char *) error_file,
+        "--unlink-tempfile",
+        NULL
+      };
+
       close (fd);
 
       g_file_set_contents (error_file, error->message, strlen (error->message), NULL);
