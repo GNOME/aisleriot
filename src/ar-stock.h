@@ -28,21 +28,20 @@
 G_BEGIN_DECLS
 
 /* These use stock gtk icons */
-#define AR_STOCK_PAUSE_GAME       "games-pause-game"
-
-#define AR_STOCK_FULLSCREEN       "games-fullscreen"
-#define AR_STOCK_LEAVE_FULLSCREEN "games-leave-fullscreen"
-#define AR_STOCK_NEW_GAME         "games-new-game"
-#define AR_STOCK_START_NEW_GAME   "games-start-new-game"
-#define AR_STOCK_RESTART_GAME     "games-restart-game"
-#define AR_STOCK_UNDO_MOVE        "games-undo-move"
-#define AR_STOCK_REDO_MOVE        "games-redo-move"
-#define AR_STOCK_HINT             "games-hint"
-#define AR_STOCK_CONTENTS         "games-contents"
-#define AR_STOCK_RESET            "games-reset"
+#define AR_STOCK_FULLSCREEN       "aisleriot-fullscreen"
+#define AR_STOCK_LEAVE_FULLSCREEN "aisleriot-leave-fullscreen"
+#define AR_STOCK_NEW_GAME         "aisleriot-game-new"
+#define AR_STOCK_START_NEW_GAME   "aisleriot-game-new"
+#define AR_STOCK_PAUSE_GAME       "aisleriot-game-pause"
+#define AR_STOCK_RESET            "aisleriot-game-reset"
+#define AR_STOCK_RESTART_GAME     "aisleriot-game-restart"
+#define AR_STOCK_HINT             "aisleriot-game-hint"
+#define AR_STOCK_UNDO_MOVE        "aisleriot-move-undo"
+#define AR_STOCK_REDO_MOVE        "aisleriot-move-redo"
+#define AR_STOCK_CONTENTS         "aisleriot-help-contents"
 
 /* These belong to us */
-#define AR_STOCK_DEAL_CARDS       "games-cards-deal"
+#define AR_STOCK_DEAL_CARDS       "aisleriot-game-deal"
 
 void   ar_stock_init (void);
 void   ar_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
