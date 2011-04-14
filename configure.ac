@@ -628,16 +628,9 @@ Configuration:
     Source code location:  ${srcdir}
     Compiler:              ${CC}
 
-    Platform:              ${with_platform}"
-
-if test -n "$with_platform_variant"; then
-  echo "
-    Platform variant:      ${with_platform_variant}"
-fi
-
-echo "
-
+    Guile version:         ${with_guile}
     GTK+ API version:      ${GTK_API_VERSION}
+    Platform:              ${with_platform}
     Help method:           ${with_help_method} ${with_help_file_format}
     Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
