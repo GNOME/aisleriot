@@ -49,6 +49,23 @@ struct _AisleriotGameClass
   GObjectClass parent_class;
 };
 
+enum {
+  START_GAME_LAMBDA,
+  BUTTON_PRESSED_LAMBDA,
+  BUTTON_RELEASED_LAMBDA,
+  BUTTON_CLICKED_LAMBDA,
+  BUTTON_DOUBLE_CLICKED_LAMBDA,
+  GAME_OVER_LAMBDA,
+  WINNING_GAME_LAMBDA,
+  HINT_LAMBDA,
+  GET_OPTIONS_LAMBDA,
+  APPLY_OPTIONS_LAMBDA,
+  TIMEOUT_LAMBDA,
+  DROPPABLE_LAMBDA,
+  DEALABLE_LAMBDA,
+  N_LAMBDAS
+};
+
 struct _AisleriotGame
 {
   GObject parent_instance;
@@ -68,19 +85,7 @@ struct _AisleriotGame
   double height;
 
   /* Game callbacks */
-  SCM start_game_lambda;
-  SCM button_pressed_lambda;
-  SCM button_released_lambda;
-  SCM button_clicked_lambda;
-  SCM button_double_clicked_lambda;
-  SCM game_over_lambda;
-  SCM winning_game_lambda;
-  SCM hint_lambda;
-  SCM get_options_lambda;
-  SCM apply_options_lambda;
-  SCM timeout_lambda;
-  SCM droppable_lambda;
-  SCM dealable_lambda;
+  SCM lambdas[N_LAMBDAS];
 
   guint click_to_move : 1;
   guint can_undo : 1;
@@ -882,36 +887,36 @@ scm_set_lambda (SCM start_game_lambda,
 {
   AisleriotGame *game = app_game;
 
-  game->start_game_lambda = start_game_lambda;
-  game->button_pressed_lambda = pressed_lambda;
-  game->button_released_lambda = released_lambda;
-  game->button_clicked_lambda = clicked_lambda;
-  game->button_double_clicked_lambda = dbl_clicked_lambda;
-  game->game_over_lambda = game_over_lambda;
-  game->winning_game_lambda = winning_game_lambda;
-  game->hint_lambda = hint_lambda;
+  game->lambdas[START_GAME_LAMBDA] = start_game_lambda;
+  game->lambdas[BUTTON_PRESSED_LAMBDA] = pressed_lambda;
+  game->lambdas[BUTTON_RELEASED_LAMBDA] = released_lambda;
+  game->lambdas[BUTTON_CLICKED_LAMBDA] = clicked_lambda;
+  game->lambdas[BUTTON_DOUBLE_CLICKED_LAMBDA] = dbl_clicked_lambda;
+  game->lambdas[GAME_OVER_LAMBDA] = game_over_lambda;
+  game->lambdas[WINNING_GAME_LAMBDA] = winning_game_lambda;
+  game->lambdas[HINT_LAMBDA] = hint_lambda;
 
-  game->get_options_lambda = SCM_CAR (rest);
+  game->lambdas[GET_OPTIONS_LAMBDA] = SCM_CAR (rest);
   rest = SCM_CDR (rest);
 
-  game->apply_options_lambda = SCM_CAR (rest);
+  game->lambdas[APPLY_OPTIONS_LAMBDA] = SCM_CAR (rest);
   rest = SCM_CDR (rest);
 
-  game->timeout_lambda = SCM_CAR (rest);
+  game->lambdas[TIMEOUT_LAMBDA] = SCM_CAR (rest);
   rest = SCM_CDR (rest);
 
   if (game->features & FEATURE_DROPPABLE) {
-    game->droppable_lambda = SCM_CAR (rest);
+    game->lambdas[DROPPABLE_LAMBDA] = SCM_CAR (rest);
     rest = SCM_CDR (rest);
   } else {
-    game->droppable_lambda = SCM_UNDEFINED;
+    game->lambdas[DROPPABLE_LAMBDA] = SCM_UNDEFINED;
   }
 
   if (game->features & FEATURE_DEALABLE) {
-    game->dealable_lambda = SCM_CAR (rest);
+    game->lambdas[DEALABLE_LAMBDA] = SCM_CAR (rest);
     rest = SCM_CDR (rest);
   } else {
-    game->dealable_lambda = SCM_UNDEFINED;
+    game->lambdas[DEALABLE_LAMBDA] = SCM_UNDEFINED;
   }
 
   return SCM_EOL;
@@ -1077,7 +1082,7 @@ update_game_dealable (AisleriotGame *game)
   if ((game->features & FEATURE_DEALABLE) == 0)
     return;
 
-  if (!game_scm_call (game->dealable_lambda, NULL, 0, &retval))
+  if (!game_scm_call (game->lambdas[DEALABLE_LAMBDA], NULL, 0, &retval))
     return;
 
   set_game_dealable (game, scm_is_true (retval));
@@ -1089,7 +1094,7 @@ cscmi_game_over_lambda (void)
   AisleriotGame *game = app_game;
   SCM retval;
 
-  if (!game_scm_call (game->game_over_lambda, NULL, 0, &retval))
+  if (!game_scm_call (game->lambdas[GAME_OVER_LAMBDA], NULL, 0, &retval))
     return TRUE;
 
   return scm_is_true (retval);
@@ -1101,7 +1106,7 @@ cscmi_winning_game_lambda (void)
   AisleriotGame *game = app_game;
   SCM retval;
 
-  if (!game_scm_call (game->winning_game_lambda, NULL, 0, &retval))
+  if (!game_scm_call (game->lambdas[WINNING_GAME_LAMBDA], NULL, 0, &retval))
     return FALSE;
 
   return scm_is_true (retval);
@@ -1703,7 +1708,7 @@ game_scm_new_game (void *user_data)
   do {
     SCM size, lambda, over;
 
-    size = scm_call_0 (game->start_game_lambda);
+    size = scm_call_0 (game->lambdas[START_GAME_LAMBDA]);
     game->width = scm_to_double (SCM_CAR (size));
     game->height = scm_to_double (SCM_CADR (size));
     scm_remember_upto_here_1 (size);
@@ -1712,7 +1717,7 @@ game_scm_new_game (void *user_data)
     scm_call_0 (lambda);
     scm_remember_upto_here_1 (lambda);
 
-    over = scm_call_0 (game->game_over_lambda);
+    over = scm_call_0 (game->lambdas[GAME_OVER_LAMBDA]);
     game_over = scm_is_true (over);
     scm_remember_upto_here_1 (over);
   } while (!game_over);
@@ -1720,7 +1725,7 @@ game_scm_new_game (void *user_data)
   if (game->features & FEATURE_DEALABLE) {
     SCM dealable;
 
-    dealable = scm_call_0 (game->dealable_lambda);
+    dealable = scm_call_0 (game->lambdas[DEALABLE_LAMBDA]);
     set_game_dealable (game, scm_is_true (dealable));
     scm_remember_upto_here_1 (dealable);
   }
@@ -1890,7 +1895,7 @@ aisleriot_game_drag_valid (AisleriotGame *game,
   args[0] = scm_from_int (slot_id);
   args[1] = c2scm_deck (cards, n_cards);
 
-  if (!game_scm_call (game->button_pressed_lambda, args, 2, &retval))
+  if (!game_scm_call (game->lambdas[BUTTON_PRESSED_LAMBDA], args, 2, &retval))
     return FALSE;
 
   scm_remember_upto_here_2 (args[0], args[1]);
@@ -1924,7 +1929,7 @@ aisleriot_game_drop_valid (AisleriotGame *game,
   args[0] = scm_from_int (start_slot);
   args[1] = c2scm_deck (cards, n_cards);
   args[2] = scm_from_int (end_slot);
-  if (!game_scm_call (game->droppable_lambda, args, 3, &retval))
+  if (!game_scm_call (game->lambdas[DROPPABLE_LAMBDA], args, 3, &retval))
     return FALSE;
 
   scm_remember_upto_here (args[0], args[1], args[2]);
@@ -1954,7 +1959,7 @@ aisleriot_game_drop_cards (AisleriotGame *game,
   args[0] = scm_from_int (start_slot);
   args[1] = c2scm_deck (cards, n_cards);
   args[2] = scm_from_int (end_slot);
-  if (!game_scm_call (game->button_released_lambda, args, 3, &retval))
+  if (!game_scm_call (game->lambdas[BUTTON_RELEASED_LAMBDA], args, 3, &retval))
     return FALSE;
 
   scm_remember_upto_here (args[0], args[1], args[2]);
@@ -1979,7 +1984,7 @@ aisleriot_game_button_clicked_lambda (AisleriotGame *game,
   SCM args[1];
 
   args[0] = scm_from_int (slot_id);
-  if (!game_scm_call (game->button_clicked_lambda, args, 1, &retval))
+  if (!game_scm_call (game->lambdas[BUTTON_CLICKED_LAMBDA], args, 1, &retval))
     return FALSE;
 
   scm_remember_upto_here_1 (args[0]);
@@ -2004,7 +2009,7 @@ aisleriot_game_button_double_clicked_lambda (AisleriotGame *game,
   SCM args[1];
 
   args[0] = scm_from_int (slot_id);
-  if (!game_scm_call (game->button_double_clicked_lambda, args, 1, &retval))
+  if (!game_scm_call (game->lambdas[BUTTON_DOUBLE_CLICKED_LAMBDA], args, 1, &retval))
     return FALSE;
 
   scm_remember_upto_here_1 (args[0]);
@@ -2028,7 +2033,7 @@ aisleriot_game_get_hint (AisleriotGame *game)
   char *message = NULL;
   char *str1, *str2;
 
-  if (!game_scm_call (game->hint_lambda, NULL, 0, &hint))
+  if (!game_scm_call (game->lambdas[HINT_LAMBDA], NULL, 0, &hint))
     return NULL;
 
   scm_dynwind_begin (0);
@@ -2161,7 +2166,7 @@ aisleriot_game_get_options (AisleriotGame *game)
   AisleriotGameOptionType type = AISLERIOT_GAME_OPTION_CHECK;
   GList *options = NULL;
 
-  if (!game_scm_call (game->get_options_lambda, NULL, 0, &options_list))
+  if (!game_scm_call (game->lambdas[GET_OPTIONS_LAMBDA], NULL, 0, &options_list))
     return NULL;
 
   if (scm_is_false (scm_list_p (options_list)))
@@ -2239,7 +2244,7 @@ aisleriot_game_change_options (AisleriotGame *game,
   guint32 bit, value;
   int l, i;
 
-  if (!game_scm_call (game->get_options_lambda, NULL, 0, &options_list))
+  if (!game_scm_call (game->lambdas[GET_OPTIONS_LAMBDA], NULL, 0, &options_list))
     return 0;
 
   if (scm_is_false (scm_list_p (options_list)))
@@ -2264,7 +2269,7 @@ aisleriot_game_change_options (AisleriotGame *game,
     bit <<= 1;
   }
 
-  game_scm_call (game->apply_options_lambda, &options_list, 1, NULL);
+  game_scm_call (game->lambdas[APPLY_OPTIONS_LAMBDA], &options_list, 1, NULL);
 
   scm_remember_upto_here_1 (options_list);
   return value;
@@ -2283,7 +2288,7 @@ aisleriot_game_timeout_lambda (AisleriotGame *game)
 {
   SCM retval;
 
-  if (game_scm_call (game->timeout_lambda, NULL, 0, &retval))
+  if (game_scm_call (game->lambdas[TIMEOUT_LAMBDA], NULL, 0, &retval))
     return FALSE;
 
   return scm_is_true (retval);
