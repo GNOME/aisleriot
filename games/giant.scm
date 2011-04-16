@@ -70,7 +70,8 @@
 )
 
 (define (get-stock-no-string)
-  (format (_"Deals left: ~a")
+  (format #f
+          (_"Deals left: ~a")
           (number->string (/ (length (get-cards stock-slot)) 8 ))
   )
 )

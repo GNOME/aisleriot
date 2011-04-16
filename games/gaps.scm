@@ -287,10 +287,12 @@
 (define (add-to-sequence? row)
   (if (empty-slot? (car (vector-ref rows row)))
       (if (= 0 (modulo (car (vector-ref rows row)) 13))
-          (list 0 (format (_"Place a two in the leftmost slot of row ~a.")
+          (list 0 (format #f
+                          (_"Place a two in the leftmost slot of row ~a.")
 			  (number->string (+ row 1))))
           (if (not (= 12 (modulo (car (vector-ref rows row)) 13)))
-	      (list 0 (format (_"Add to the sequence in row ~a.")
+	      (list 0 (format #f
+                              (_"Add to the sequence in row ~a.")
 			      (number->string (+ row 1))))
 	      (if (< row 3)
 		  (add-to-sequence? (+ row 1))
@@ -308,6 +310,7 @@
 	       )
 	  (let ((target-card (get-top-card (- (car slotlist) 1))))
 	    (list 0 (format
+                     #f
                      (_"Place the ~a next to ~a.")
 		     (get-name (add-to-value target-card 1))
 		     (get-name target-card))))

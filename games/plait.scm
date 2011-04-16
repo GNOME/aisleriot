@@ -91,7 +91,7 @@
 	   (if (not (empty-slot? (car home-list)))
 	       (list 1 (get-name (get-top-card slot))
 		     (get-name (get-top-card (car home-list))))
-	       (list 0 (format (_"Move ~a to an empty field") (get-name (get-top-card slot)))))
+	       (list 0 (format #f (_"Move ~a to an empty field") (get-name (get-top-card slot)))))
 	   (get-valid-move slot (cdr home-list)))))
 
 (define (get-valid-moves slot-list home-list)
@@ -354,7 +354,7 @@
 		       '(3 4 11 12 17 18 21 22))
       (deal-possible?)
       (if (find-valid-move stock '(0 2 5 6 7 8 13 14 15 16 19 20))
-	  (list 0 (format (_"Move ~a from the stock to an empty edge or tableau slot") 
+	  (list 0 (format #f (_"Move ~a from the stock to an empty edge or tableau slot") 
 		  (get-name (get-top-card stock))))
 	  #f)))
 

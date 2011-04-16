@@ -63,13 +63,13 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (format (_"Stock left: ~a") (number->string (length (get-cards 8))))
+  (format #f (_"Stock left: ~a") (number->string (length (get-cards 8))))
 )
 
 (define (get-redeals-string)
   (if deal-three
     ""
-    (format (_"Redeals left: ~a") (number->string (- 2 FLIP-COUNTER)))
+    (format #f (_"Redeals left: ~a") (number->string (- 2 FLIP-COUNTER)))
   )
 )
 

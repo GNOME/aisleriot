@@ -62,7 +62,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (format (_"Stock left: ~a") (number->string (length (get-cards stock)))))
+  (format #f (_"Stock left: ~a") (number->string (length (get-cards stock)))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))

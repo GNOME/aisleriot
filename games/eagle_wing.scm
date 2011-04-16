@@ -264,7 +264,7 @@
   (if (and (not (empty-slot? slot))
 	   (is-visible? (get-top-card slot)))
       (cond ((= (get-value (get-top-card slot)) BASE-VAL)
-	     (list 0 (format (_"Move ~a to an empty foundation") (get-name (get-top-card slot)))))
+	     (list 0 (format #f (_"Move ~a to an empty foundation") (get-name (get-top-card slot)))))
 	    ((check-a-foundation slot 2)
 	     (list 1 
 		   (get-name (get-top-card slot)) 
