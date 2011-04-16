@@ -1,33 +1,14 @@
 How to compile AisleRiot on different platforms
 ===============================================
 
-The AilseRiot code supports different platforms: GNOME, GTK only and Maemo.
-To compile it for some platform, configure GNOME Games with
+The AilseRiot code supports different platforms: GNOME (using GConf), and
+GTK only.
+
+To compile it for some platform, configure with
 
     ./configure --with-platform=gnome
   or
-    ./configure --with-platform=gtk-only --with-games=aisleriot
-  or
-    ./configure --with-platform=hildon --with-platform-variant=maemo --with-games=aisleriot
-  or
-    ./configure --with-platform=hildon --with-platform-variant=maemo3 --with-games=aisleriot
-  or
-    ./configure --with-platform=hildon --with-platform-variant=mid --with-games=aisleriot
-
-For GNOME and GTK-only, you can just install and run AisleRiot as normal.
-Please refer to the scratchbox documentation about how to run AilseRiot in
-scratchbox for the Maemo platform.
-
-
-Notes about Maemo environment
-=============================
-
-On hildon the programme is started using DBUS service files;
-org.gnome.Games.AisleRiot.service.in is our service file.
-aisleriot-backup.conf is used to backup the programme's setting
-using the device's backup manager, and aisleriot-clean.sh is used
-to clean the setting on uninstall.
-
+    ./configure --with-platform=gtk-only
 
 Environment variables
 =====================
@@ -35,61 +16,31 @@ Environment variables
 You can set the following environment variables to influence the
 behaviour of AisleRiot:
 
-GAMES_CARD_THEME_PATH_{SVG,KDE,SLICED,FIXED,PYSOL}:
+AR_DEBUG:
+  Values: all | help | ...
+
+  Use AR_DEBUG=help to get a list of supported debuggin options.
+
+AR_CARD_THEME_PATH_{SVG,KDE,SLICED,FIXED,PYSOL}:
   Values: a colon-separated list of paths
   Default: empty
 
     Set these variables to add extra paths to check for card themes.
 
-AISLERIOT_PIXBUF_DRAWING:
-  Values: 0 or 1
-  Default: 1 (hildon: 0)
-  
-    Set to 0 to disable pixbuf drawing and use pixmap drawing instead. Pixbuf
-  drawing has the benefit of using full alphachannels, eliminating ugly
-  rendering artifacts caused by the 1-bit alphachannels of the pixmaps.
-  Might be a bit slower though.
-
 Debugging & Valgrinding AisleRiot
 =================================
 
-If you configure gnome-games with --enable-debug, there is extra debugging
+If you configure with --enable-debug, there is extra debugging
 output available by setting the GAMES_DEBUG env variable. Use
 GAMES_DEBUG=help to see the list of available debug flags.
 
-When using valgrind, use the included aisleriot.supp suppressions file to
+When using valgrind, use the included ../data/aisleriot.supp suppressions file to
 suppress common valgrind errors relating to guile's garbage collection.
+
+There are also some debugging options available in the UI if you
+configure with --enable-debug-ui .
 
 How to write a new game for Aisleriot
 =====================================
 
-For an introduction on how to write the scheme code for a new game see the
-Rules.HOWTO file.
-
-
-How to add a new game to Aisleriot
-==================================
-
- * Move foo.scm file into rules/ and git add it
- * Add foo.scm to rules_DATA in rules/Makefile.am, keeping the list
-   sorted alphabetically
- * Add foo.scm to ../po/POTFILES.in
- * Move the documentation foo.xml file into help/C/ and git add it
- * Add foo.xml to DOC_ENTITIES in help/Makefile.am, keeping the list
-   sorted alphabetically
- * Edit help/C/aisleriot.xml to add an ENTITY declaration at the top:
-
-     <!ENTITY foo SYSTEM "foo.xml">
-
-   and add this entity to the list of the game entities used:
-
-     &foo;
-
-   Make sure to keep the lists in the file sorted alphabetically.
- * Run the ./get_titles.pl script
- * In help/, run "make check" to make sure the documentation validates
- * Add foo to the list of games in the man page sol.6
- * git commit help/C/foo.xml help/C/aisleriot.xml help/Makefile.am rules/foo.scm
-     rules/Makefile.am translatable_game_names.h ../po/POTFILES.in sol.6
-
- Done!
+See ../games/README.
