@@ -128,8 +128,6 @@ static guint signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE (AisleriotGame, aisleriot_game, G_TYPE_OBJECT);
 
-SCM_SYMBOL (ar_game_error_key, "aisleriot");
-
 /* helper functions */
 
 static void
@@ -594,7 +592,7 @@ cscmi_add_slot (SCM slot_data)
   SCM slot_placement, slot_type;
 
   if (game->state > GAME_BEGIN) {
-    return scm_throw (ar_game_error_key,
+    return scm_throw (scm_from_locale_symbol ("aisleriot-invalid-call"),
                       scm_list_1 (scm_from_locale_string ("Cannot add a new slot after the game has started.")));
   }
 
@@ -1027,7 +1025,7 @@ scm_delayed_call (SCM callback)
 
   /* We can only have one pending delayed call! */
   if (game->delayed_call_timeout_id != 0) {
-    return scm_throw (ar_game_error_key,
+    return scm_throw (scm_from_locale_symbol ("aisleriot-invalid-call"),
                       scm_list_1 (scm_from_locale_string ("Already have a delayed callback pending.")));
   }
 
