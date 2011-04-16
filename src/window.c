@@ -1696,8 +1696,8 @@ game_exception_response_cb (GtkWidget *dialog,
     if (fd >= 0) {
       const char * const argv[] = {
         "bug-buddy",
-        "--package", "gnome-games",
-        "--appname", "aisleriot",
+        "--package", "aisleriot",
+        "--appname", "sol",
         "--pid", pidstr,
         "--include", (const char *) error_file,
         "--unlink-tempfile",
