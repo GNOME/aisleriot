@@ -45,9 +45,9 @@
 
 #define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
-/* Enable keynav by default */
-#ifndef DISABLE_KEYNAV
-#define ENABLE_KEYNAV
+/* Disable keynav by default */
+#ifndef ENABLE_KEYNAV
+#undef ENABLE_KEYNAV
 #endif
 
 /* The minimum size for the playing area. Almost completely arbitrary. */
