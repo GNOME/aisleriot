@@ -63,7 +63,8 @@ enum {
   TIMEOUT_LAMBDA,
   DROPPABLE_LAMBDA,
   DEALABLE_LAMBDA,
-  N_LAMBDAS
+  N_LAMBDAS,
+  LAST_MANDATORY_LAMBDA = TIMEOUT_LAMBDA
 };
 
 struct _AisleriotGame
@@ -126,6 +127,8 @@ enum
 static guint signals[LAST_SIGNAL];
 
 G_DEFINE_TYPE (AisleriotGame, aisleriot_game, G_TYPE_OBJECT);
+
+SCM_SYMBOL (ar_game_error_key, "aisleriot");
 
 /* helper functions */
 
@@ -591,9 +594,8 @@ cscmi_add_slot (SCM slot_data)
   SCM slot_placement, slot_type;
 
   if (game->state > GAME_BEGIN) {
-    return scm_throw (scm_from_locale_symbol ("game-started"),
-                      scm_cons (scm_from_locale_string ("Cannot add a new slot after the game has started."),
-                                SCM_EOL));
+    return scm_throw (ar_game_error_key,
+                      scm_list_1 (scm_from_locale_string ("Cannot add a new slot after the game has started.")));
   }
 
 #define EQUALS_SYMBOL(string,object) (scm_is_true (scm_equal_p (scm_from_locale_symbol (string), object)))
@@ -1025,8 +1027,8 @@ scm_delayed_call (SCM callback)
 
   /* We can only have one pending delayed call! */
   if (game->delayed_call_timeout_id != 0) {
-    return scm_throw (scm_from_locale_symbol ("invalid-call"),
-                      scm_cons (scm_from_locale_string ("Already have a delayed callback pending."), SCM_EOL));
+    return scm_throw (ar_game_error_key,
+                      scm_list_1 (scm_from_locale_string ("Already have a delayed callback pending.")));
   }
 
   /* We need to protect the callback data from being GC'd until the
@@ -1598,8 +1600,10 @@ aisleriot_game_redo_move (AisleriotGame *game)
 static SCM
 game_scm_load_game (void *user_data)
 {
+  AisleriotGame *game = app_game;
   const char *game_file = user_data;
   char *path;
+  int i;
 
   scm_dynwind_begin (0);
 
@@ -1613,6 +1617,27 @@ game_scm_load_game (void *user_data)
   path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, game_file);
   scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);
   scm_c_primitive_load (path);
+
+  for (i = 0; i <= LAST_MANDATORY_LAMBDA; ++i) {
+    if (scm_is_false (scm_procedure_p (game->lambdas[i]))) {
+      scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
+                 scm_list_3 (scm_from_locale_string ("Not a procedure"),
+                             scm_from_int (i),
+                             game->lambdas[i]));
+    }
+  }
+  if ((game->features & FEATURE_DROPPABLE) &&
+      scm_is_false (scm_procedure_p (game->lambdas[DROPPABLE_LAMBDA])))
+    scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
+               scm_list_3 (scm_from_locale_string ("Not a procedure"),
+                           scm_from_int (DROPPABLE_LAMBDA),
+                           game->lambdas[i]));
+  if ((game->features & FEATURE_DEALABLE) &&
+      scm_is_false (game->lambdas[DEALABLE_LAMBDA]))
+    scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
+               scm_list_3 (scm_from_locale_string ("Not a procedure"),
+                           scm_from_int (DEALABLE_LAMBDA),
+                           game->lambdas[i]));
 
   scm_dynwind_end ();
 
@@ -1637,6 +1662,7 @@ aisleriot_game_load_game (AisleriotGame *game,
 {
   GObject *object = G_OBJECT (game);
   GError *err = NULL;
+  int i;
 
   g_return_val_if_fail (game_file != NULL && game_file[0] != '\0', FALSE);
 
@@ -1670,6 +1696,8 @@ aisleriot_game_load_game (AisleriotGame *game,
   set_game_dealable (game, FALSE);
   game->features = 0;
   game->had_exception = FALSE;
+  for (i = 0; i < N_LAMBDAS; ++i)
+    game->lambdas[i] = SCM_UNDEFINED;
 
   scm_c_catch (SCM_BOOL_T,
                (scm_t_catch_body) game_scm_load_game, (void *) game_file,
