@@ -2652,7 +2652,9 @@ load_idle_cb (LoadIdleData *data)
          _("This usually occurs when you run an older version of Aisleriot "
            "which does not have the game you last played. "
            "The default game, Klondike, is being started instead."));
-        /* FIXME: add @error->message to a textview in a Detailed… expander */
+
+      /* FIXME: add @error->message to a textview in a Detailed… expander */
+      g_printerr ("Scheme exception:\n-- 8< --\n%s\n-- >8 --\n", error->message);
 
       g_signal_connect (dialog, "response",
                         G_CALLBACK (load_error_response_cb), data->window);
