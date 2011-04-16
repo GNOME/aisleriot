@@ -102,8 +102,8 @@
 	  (cadddr ORDERED-LIST))
        (or (= (car ORDERED-LIST)
 	      (cadr ORDERED-LIST))
-	   (= (caddddr ORDERED-LIST))
-	   (cadr ORDERED-LIST))
+	   (= (caddddr ORDERED-LIST)
+	      (cadr ORDERED-LIST)))
        (add-to-score! 16)))
 
 (define (checking-straight-list num-list)
