@@ -21,17 +21,9 @@
 (define scores-disabled 2)
 (define dealable-feature 4)
 
-(define (reset-features) (set-feature-word! 0))
-
 (define (set-features . feature-list)
   (set-feature-word! (+ (get-feature-word)
 		       (apply + feature-list))))
-
-;; Sol.scm gets evaluated whenever game types are switched,
-;; this makes sure that the old settings are gone.
-(reset-features)
-
-;; Constants:
 
 (define jack 11)
 (define queen 12)
