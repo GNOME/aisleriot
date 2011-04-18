@@ -648,7 +648,7 @@
   (lambda (names)
     (if (equal? '() names)
         '()
-        (cons (eval (list 'copy-tree (car names)))
+        (cons (eval (list 'copy-tree (car names)) (current-module))
               (save-variables (cdr names))))))
 
 ; Restore all the state variables for a game
@@ -656,8 +656,6 @@
   (lambda (names values)
     (or (equal? '() names)
         (begin
-          (eval (list 'set! (car names) (list 'quote (car values))))
+          (eval (list 'set! (car names) (list 'quote (car values))) (current-module))
           (restore-variables (cdr names) (cdr values))
           ))))
-
-
