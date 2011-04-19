@@ -2944,9 +2944,9 @@ aisleriot_board_draw (GtkWidget *widget,
       cairo_rectangle_int_t rect;
 
       cairo_region_get_rectangle (region, i, &rect);
-      g_printerr ("[Rect %d:%d@(%d,%d)] ", rect.width, rect.height, rect.x, rect.y);
+      g_printerr ("[%d:%d @ (%d,%d)] ", rect.width, rect.height, rect.x, rect.y);
     }
-    g_print ("\n");
+    g_printerr ("\n");
   }
 #endif
 
