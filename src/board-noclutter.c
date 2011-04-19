@@ -2934,18 +2934,17 @@ aisleriot_board_draw (GtkWidget *widget,
 #endif /* OPTIMISED_EXPOSE */
 
 #if 0 && defined(OPTIMISED_EXPOSE)
-  {
+  if (region) {
     int n_rects;
 
     n_rects = cairo_region_num_rectangles (region);
 
-    g_print ("Exposing area %d:%d@(%d,%d) ", event->area.width, event->area.height,
-             event->area.x, event->area.y);
+    g_printerr ("Exposing region ");
     for (i = 0; i < n_rects; ++i) {
       cairo_rectangle_int_t rect;
 
       cairo_region_get_rectangle (region, i, &rect);
-      g_print ("[Rect %d:%d@(%d,%d)] ", rect.width, rect.height, rect.x, rect.y);
+      g_printerr ("[Rect %d:%d@(%d,%d)] ", rect.width, rect.height, rect.x, rect.y);
     }
     g_print ("\n");
   }
