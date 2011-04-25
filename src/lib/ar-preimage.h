@@ -31,9 +31,9 @@ G_BEGIN_DECLS
 #define AR_TYPE_PREIMAGE             (ar_preimage_get_type ())
 #define AR_PREIMAGE(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), AR_TYPE_PREIMAGE, ArPreimage))
 #define AR_PREIMAGE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_PREIMAGE, ArPreimageClass))
-#define GAMES_IS_PREIMAGE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_PREIMAGE))
-#define GAMES_IS_PREIMAGE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_PREIMAGE))
-#define GAMES_GET_PREIMAGE_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_PREIMAGE, ArPreimageClass))
+#define AR_IS_PREIMAGE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_PREIMAGE))
+#define AR_IS_PREIMAGE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_PREIMAGE))
+#define AR_GET_PREIMAGE_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_PREIMAGE, ArPreimageClass))
 
 typedef struct _ArPreimage ArPreimage;
 
@@ -77,13 +77,9 @@ void ar_preimage_render_cairo_sub (ArPreimage * preimage,
                                       double xzoom,
                                       double yzoom);
 
-gboolean ar_preimage_is_scalable (ArPreimage * preimage);
-
 gint ar_preimage_get_width (ArPreimage * preimage);
 
 gint ar_preimage_get_height (ArPreimage * preimage);
-
-GdkPixbuf *ar_preimage_render_unscaled_pixbuf (ArPreimage * preimage);
 
 G_END_DECLS
 

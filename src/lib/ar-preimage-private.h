@@ -18,9 +18,7 @@
 
 /* Authors:   Richard Hoelscher <rah@rahga.com> */
 
-#ifdef HAVE_RSVG
 #include <librsvg/rsvg.h>
-#endif
 
 struct _ArPreimage {
   GObject parent;
@@ -28,13 +26,6 @@ struct _ArPreimage {
   gint width;
   gint height;
 
-#ifdef HAVE_RSVG
   RsvgHandle *rsvg_handle;
   cairo_font_options_t *font_options;
-#endif
-
-  /* raster pixbuf data */
-  GdkPixbuf *pixbuf;
-
-  guint scalable : 1;
 };

@@ -26,9 +26,6 @@ libaisleriot_la_SOURCES = \
 	ar-gsettings.h \
 	ar-help.c \
 	ar-help.h \
-	ar-preimage.c \
-	ar-preimage.h \
-	ar-preimage-private.h \
 	ar-profile.c \
 	ar-profile.h \
 	ar-runtime.c \
@@ -50,7 +47,12 @@ libaisleriot_la_SOURCES += \
 endif # HAVE_CLUTTER
 
 if HAVE_RSVG
-libaisleriot_la_SOURCES += ar-card-theme-preimage.c
+libaisleriot_la_SOURCES += \
+	ar-preimage.c \
+	ar-preimage.h \
+	ar-preimage-private.h \
+	ar-card-theme-preimage.c \
+	$(NULL)
 
 if ENABLE_CARD_THEME_FORMAT_SVG
 libaisleriot_la_SOURCES += ar-card-theme-svg.c

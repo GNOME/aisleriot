@@ -198,15 +198,12 @@ static void
 ar_card_theme_svg_class_init (ArCardThemeSVGClass * klass)
 {
   ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
-  ArCardThemePreimageClass *preimage_theme_class = AR_CARD_THEME_PREIMAGE_CLASS (klass);
 
   theme_class->get_theme_info = ar_card_theme_svg_class_get_theme_info;
   theme_class->foreach_theme_dir = ar_card_theme_svg_class_foreach_theme_dir;
 
   theme_class->get_card_pixbuf = ar_card_theme_svg_get_card_pixbuf;
   theme_class->paint_card = ar_card_theme_svg_paint_card;
-
-  preimage_theme_class->needs_scalable_cards = TRUE;
 }
 
 /* private API */

@@ -132,8 +132,6 @@ typedef struct _ArCardThemePreimage      ArCardThemePreimage;
 struct _ArCardThemePreimageClass {
   ArCardThemeClass parent_class;
 
-  gboolean needs_scalable_cards;
-
   void (* clear_sized_theme_data) (ArCardThemePreimage *card_theme);
 };
 

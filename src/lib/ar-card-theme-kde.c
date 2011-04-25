@@ -560,7 +560,6 @@ ar_card_theme_kde_class_init (ArCardThemeKDEClass * klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
   ArCardThemeClass *theme_class = AR_CARD_THEME_CLASS (klass);
-  ArCardThemePreimageClass *preimage_theme_class = AR_CARD_THEME_PREIMAGE_CLASS (klass);
 
   gobject_class->finalize = ar_card_theme_kde_finalize;
   gobject_class->get_property = ar_card_theme_kde_get_property;
@@ -573,9 +572,6 @@ ar_card_theme_kde_class_init (ArCardThemeKDEClass * klass)
   theme_class->get_card_aspect = ar_card_theme_kde_get_card_aspect;
   theme_class->get_card_pixbuf = ar_card_theme_kde_get_card_pixbuf;
   theme_class->paint_card = ar_card_theme_kde_paint_card;
-
-  preimage_theme_class->needs_scalable_cards = TRUE;
-
 
   g_object_class_install_property
     (gobject_class,

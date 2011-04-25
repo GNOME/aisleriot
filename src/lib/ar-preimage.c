@@ -30,10 +30,8 @@
 /* For gdkcairo */
 #include <gdk/gdk.h>
 
-#ifdef HAVE_RSVG
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
-#endif /* HAVE_RSVG */
 
 #include "ar-profile.h"
 
@@ -45,7 +43,6 @@ G_DEFINE_TYPE (ArPreimage, ar_preimage, G_TYPE_OBJECT);
 static void
 ar_preimage_init (ArPreimage * preimage)
 {
-  preimage->scalable = FALSE;
   preimage->width = 0;
   preimage->height = 0;
 }
@@ -55,17 +52,11 @@ ar_preimage_finalize (GObject * object)
 {
   ArPreimage *preimage = AR_PREIMAGE (object);
 
-#ifdef HAVE_RSVG
   if (preimage->rsvg_handle != NULL) {
     g_object_unref (preimage->rsvg_handle);
   }
   if (preimage->font_options) {
     cairo_font_options_destroy (preimage->font_options);
-  }
-#endif
-
-  if (preimage->pixbuf != NULL) {
-    g_object_unref (preimage->pixbuf);
   }
 
   G_OBJECT_CLASS (ar_preimage_parent_class)->finalize (object);
@@ -78,9 +69,7 @@ ar_preimage_class_init (ArPreimageClass * klass)
 
   oclass->finalize = ar_preimage_finalize;
 
-#ifdef HAVE_RSVG
   rsvg_init ();
-#endif
 }
 
 /**
@@ -102,8 +91,6 @@ ar_preimage_render (ArPreimage * preimage, gint width, gint height)
   g_return_val_if_fail (width > 0 && height > 0, NULL);
   g_return_val_if_fail (preimage != NULL, NULL);
 
-#ifdef HAVE_RSVG
-  if (preimage->scalable) {     /* Render vector image */
     pixbuf = ar_preimage_render_sub (preimage,
                                         NULL,
                                         width,
@@ -113,13 +100,6 @@ ar_preimage_render (ArPreimage * preimage, gint width, gint height)
                                         ((double) preimage->width),
                                         ((double) height) /
                                         ((double) preimage->height));
-  } else
-#endif /* HAVE_RSVG */
-  {
-    /* Render raster image */
-    pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
-                                      width, height, GDK_INTERP_BILINEAR);
-  }
 
   return pixbuf;
 }
@@ -143,8 +123,6 @@ ar_preimage_render_cairo (ArPreimage * preimage,
   g_return_if_fail (width > 0 && height > 0);
   g_return_if_fail (preimage != NULL);
 
-#ifdef HAVE_RSVG
-  if (preimage->scalable) {     /* Render vector image */
     ar_preimage_render_cairo_sub (preimage,
                                      cr,
                                      NULL,
@@ -155,26 +133,7 @@ ar_preimage_render_cairo (ArPreimage * preimage,
                                      ((double) preimage->width),
                                      ((double) height) /
                                      ((double) preimage->height));
-  } else
-#endif /* HAVE_RSVG */
-  {
-    GdkPixbuf *pixbuf;
-
-    /* FIXMEchpe: we don't really need this fallback anymore */
-    /* Render raster image */
-    pixbuf = gdk_pixbuf_scale_simple (preimage->pixbuf,
-                                      width, height, GDK_INTERP_BILINEAR);
-
-    cairo_save (cr);
-    gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
-    cairo_paint (cr);
-    cairo_restore (cr);
-
-    g_object_unref (pixbuf);
-  }
 }
-
-#ifdef HAVE_RSVG
 
 /* This routine is copied from librsvg:
    Copyright © 2005 Dom Lachowicz <cinamod@hotmail.com>
@@ -244,8 +203,7 @@ ar_preimage_render_cairo_sub (ArPreimage * preimage,
 {
   cairo_matrix_t matrix;
 
-  if (!preimage->scalable)
-    return;
+  g_return_if_fail (AR_IS_PREIMAGE (preimage));
 
   if (preimage->font_options) {
     cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->font_options));
@@ -295,9 +253,6 @@ ar_preimage_render_sub (ArPreimage * preimage,
   cairo_surface_t *surface;
   cairo_t *cr;
 
-  if (!preimage->scalable)
-    return NULL;
-
   rowstride = cairo_format_stride_for_width (CAIRO_FORMAT_ARGB32, width);
 
   data = g_try_malloc0 (rowstride * height);
@@ -323,8 +278,6 @@ ar_preimage_render_sub (ArPreimage * preimage,
                                    (GdkPixbufDestroyNotify) g_free, data);
 }
 
-#endif /* HAVE_RSVG */
-
 /**
  * ar_preimage_new_from_file:
  * @filename:
@@ -338,7 +291,6 @@ ArPreimage *
 ar_preimage_new_from_file (const gchar * filename, GError ** error)
 {
   ArPreimage *preimage;
-  GdkPixbuf *pixbuf;
 
   g_return_val_if_fail (filename != NULL, NULL);
 
@@ -346,12 +298,9 @@ ar_preimage_new_from_file (const gchar * filename, GError ** error)
 
   preimage = g_object_new (AR_TYPE_PREIMAGE, NULL);
 
-#ifdef HAVE_RSVG
-  preimage->rsvg_handle = rsvg_handle_new_from_file (filename, NULL);
+  preimage->rsvg_handle = rsvg_handle_new_from_file (filename, error);
   if (preimage->rsvg_handle) {
     RsvgDimensionData data;
-
-    preimage->scalable = TRUE;
 
     rsvg_handle_get_dimensions (preimage->rsvg_handle, &data);
 
@@ -370,24 +319,10 @@ ar_preimage_new_from_file (const gchar * filename, GError ** error)
 
     return preimage;
   }
-#endif /* HAVE_RSVG */
 
-  /* Not an SVG */
-  preimage->scalable = FALSE;
-
-  pixbuf = gdk_pixbuf_new_from_file (filename, error);
   ar_profileend ("creating ArPreimage from %s", filename);
 
-  if (!pixbuf) {
-    g_object_unref (preimage);
-    return NULL;
-  }
-
-  preimage->pixbuf = pixbuf;
-  preimage->width = gdk_pixbuf_get_width (pixbuf);
-  preimage->height = gdk_pixbuf_get_height (pixbuf);
-
-  return preimage;
+  return NULL;
 }
 
 /**
@@ -401,8 +336,7 @@ void
 ar_preimage_set_font_options (ArPreimage * preimage,
                                  const cairo_font_options_t * font_options)
 {
-#ifdef HAVE_RSVG
-  g_return_if_fail (GAMES_IS_PREIMAGE (preimage));
+  g_return_if_fail (AR_IS_PREIMAGE (preimage));
 
   if (preimage->font_options) {
     cairo_font_options_destroy (preimage->font_options);
@@ -413,21 +347,6 @@ ar_preimage_set_font_options (ArPreimage * preimage,
   } else {
     preimage->font_options = NULL;
   }
-#endif /* HAVE_RSVG */
-}
-
-/**
- * ar_preimage_is_scalable:
- * @preimage:
- *
- * Returns: %TRUE iff @preimage contains an SVG image
- */
-gboolean
-ar_preimage_is_scalable (ArPreimage * preimage)
-{
-  g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), FALSE);
-
-  return preimage->scalable;
 }
 
 /**
@@ -439,7 +358,7 @@ ar_preimage_is_scalable (ArPreimage * preimage)
 gint
 ar_preimage_get_width (ArPreimage * preimage)
 {
-  g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), 0);
+  g_return_val_if_fail (AR_IS_PREIMAGE (preimage), 0);
 
   return preimage->width;
 }
@@ -453,34 +372,7 @@ ar_preimage_get_width (ArPreimage * preimage)
 gint
 ar_preimage_get_height (ArPreimage * preimage)
 {
-  g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), 0);
+  g_return_val_if_fail (AR_IS_PREIMAGE (preimage), 0);
 
   return preimage->height;
-}
-
-/**
- * ar_preimage_render_unscaled_pixbuf:
- * @preimage:
- *
- * Renders @preimage onto a new #GdkPixbuf at its natural size
- *
- * Returns: (transfer full) (allow-none): a reference to a #GdkPixbuf possibly owned by @images which
- * you must not modify; or %NULL if there was an error
- */
-GdkPixbuf *
-ar_preimage_render_unscaled_pixbuf (ArPreimage * preimage)
-{
-  GdkPixbuf *unscaled_pixbuf;
-
-  g_return_val_if_fail (GAMES_IS_PREIMAGE (preimage), NULL);
-
-  if ((unscaled_pixbuf = preimage->pixbuf)) {
-    g_object_ref (unscaled_pixbuf);
-  } else {
-    unscaled_pixbuf = ar_preimage_render (preimage,
-                                             preimage->width,
-                                             preimage->height);
-  }
-
-  return unscaled_pixbuf;
 }

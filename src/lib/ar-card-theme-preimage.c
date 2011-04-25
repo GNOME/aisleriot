@@ -81,13 +81,6 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
   if (!theme->cards_preimage)
     return FALSE;
 
-  if (AR_CARD_THEME_PREIMAGE_GET_CLASS (theme)->needs_scalable_cards &&
-      !ar_preimage_is_scalable (theme->cards_preimage)) {
-    g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_NOT_SCALABLE,
-                 "Theme is not scalable");
-    return FALSE;
-  }
-
   if (theme->font_options) {
     ar_preimage_set_font_options (theme->slot_preimage, theme->font_options);
     ar_preimage_set_font_options (theme->cards_preimage, theme->font_options);
