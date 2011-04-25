@@ -19,7 +19,7 @@
 #include "ar-card.h"
 
 #ifdef HAVE_RSVG
-#include "ar-preimage.h"
+#include "ar-svg.h"
 #endif
 
 #define FLOAT_TO_INT_CEIL(f) ((int) (f + 0.5f))
@@ -141,8 +141,8 @@ struct _ArCardThemePreimage {
   char *theme_dir;
   char *theme_name;
 
-  ArPreimage *cards_preimage;
-  ArPreimage *slot_preimage;
+  ArSvg *cards_svg;
+  ArSvg *slot_preimage;
   GdkPixbuf *source;
   CardSize subsize;
 

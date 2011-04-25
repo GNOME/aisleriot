@@ -20,7 +20,7 @@
 
 #include <librsvg/rsvg.h>
 
-struct _ArPreimage {
+struct _ArSvg {
   GObject parent;
 
   gint width;

@@ -25,8 +25,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
-#include "ar-preimage.h"
-#include "ar-preimage-private.h"
+#include "ar-svg.h"
+#include "ar-svg-private.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
 
@@ -56,7 +56,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
                               int card_id)
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
-  ArPreimage *preimage = preimage_card_theme->cards_preimage;
+  ArSvg *svg = preimage_card_theme->cards_svg;
   int suit, rank;
   double card_width, card_height;
   double width, height;
@@ -65,7 +65,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
   char node[32];
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    ar_preimage_render_cairo (preimage_card_theme->slot_preimage,
+    ar_svg_render_cairo (preimage_card_theme->slot_preimage,
                                  cr,
                                  preimage_card_theme->card_size.width,
                                  preimage_card_theme->card_size.height);
@@ -75,8 +75,8 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
   suit = card_id / 13;
   rank = card_id % 13;
 
-  card_width = ((double) ar_preimage_get_width (preimage)) / N_COLS;
-  card_height = ((double) ar_preimage_get_height (preimage)) / N_ROWS;
+  card_width = ((double) ar_svg_get_width (svg)) / N_COLS;
+  card_height = ((double) ar_svg_get_height (svg)) / N_ROWS;
 
   width = preimage_card_theme->card_size.width - 2 * DELTA;
   height = preimage_card_theme->card_size.height - 2 * DELTA;
@@ -89,7 +89,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
 
   ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
-  ar_preimage_render_cairo_sub (preimage,
+  ar_svg_render_cairo_sub (svg,
                                    cr,
                                    node,
                                    preimage_card_theme->card_size.width,

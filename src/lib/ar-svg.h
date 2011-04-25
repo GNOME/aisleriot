@@ -19,8 +19,8 @@
 
 /* Cache raster and vector images and render them to a specific size. */
 
-#ifndef AR_PREIMAGE_H
-#define AR_PREIMAGE_H
+#ifndef AR_SVG_H
+#define AR_SVG_H
 
 #include <glib.h>
 #include <cairo.h>
@@ -28,35 +28,35 @@
 
 G_BEGIN_DECLS
 
-#define AR_TYPE_PREIMAGE             (ar_preimage_get_type ())
-#define AR_PREIMAGE(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), AR_TYPE_PREIMAGE, ArPreimage))
-#define AR_PREIMAGE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_PREIMAGE, ArPreimageClass))
-#define AR_IS_PREIMAGE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_PREIMAGE))
-#define AR_IS_PREIMAGE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_PREIMAGE))
-#define AR_GET_PREIMAGE_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_PREIMAGE, ArPreimageClass))
+#define AR_TYPE_SVG             (ar_svg_get_type ())
+#define AR_SVG(obj)             (G_TYPE_CHECK_INSTANCE_CAST((obj), AR_TYPE_SVG, ArSvg))
+#define AR_SVG_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_SVG, ArSvgClass))
+#define AR_IS_SVG(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_SVG))
+#define AR_IS_SVG_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_SVG))
+#define AR_GET_SVG_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_SVG, ArSvgClass))
 
-typedef struct _ArPreimage ArPreimage;
+typedef struct _ArSvg ArSvg;
 
 typedef struct {
   GObjectClass parent_class;
-} ArPreimageClass;
+} ArSvgClass;
 
-GType ar_preimage_get_type (void);
+GType ar_svg_get_type (void);
 
-ArPreimage *ar_preimage_new (void);
+ArSvg *ar_svg_new (void);
 
-ArPreimage *ar_preimage_new_from_file (const gchar * filename,
+ArSvg *ar_svg_new_from_file (const gchar * filename,
                                              GError ** error);
 
-void ar_preimage_set_font_options (ArPreimage * preimage,
+void ar_svg_set_font_options (ArSvg * preimage,
                                       const cairo_font_options_t *font_options);
 
-void ar_preimage_render_cairo (ArPreimage * preimage,
+void ar_svg_render_cairo (ArSvg * preimage,
                                   cairo_t *cr,
                                   gint width,
                                   gint height);
 
-void ar_preimage_render_cairo_sub (ArPreimage * preimage,
+void ar_svg_render_cairo_sub (ArSvg * preimage,
                                       cairo_t *cr,
                                       const char *node,
                                       int width,
@@ -66,10 +66,10 @@ void ar_preimage_render_cairo_sub (ArPreimage * preimage,
                                       double xzoom,
                                       double yzoom);
 
-gint ar_preimage_get_width (ArPreimage * preimage);
+gint ar_svg_get_width (ArSvg * preimage);
 
-gint ar_preimage_get_height (ArPreimage * preimage);
+gint ar_svg_get_height (ArSvg * preimage);
 
 G_END_DECLS
 
-#endif /* AR_PREIMAGE_H */
+#endif /* AR_SVG_H */

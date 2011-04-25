@@ -28,8 +28,8 @@
 
 #include "ar-debug.h"
 #include "ar-profile.h"
-#include "ar-preimage.h"
-#include "ar-preimage-private.h"
+#include "ar-svg.h"
+#include "ar-svg-private.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
 
@@ -189,7 +189,7 @@ ar_card_theme_kde_get_card_extents (ArCardThemeKDE *theme,
                                     int card_id,
                                     const char *node)
 {
-  ArPreimage *preimage;
+  ArSvg *svg;
   cairo_rectangle_t *card_extents;
   cairo_rectangle_t rect;
   cairo_surface_t *surface;
@@ -200,12 +200,12 @@ ar_card_theme_kde_get_card_extents (ArCardThemeKDE *theme,
   if (card_extents->width != 0. && card_extents->height != 0.)
     return card_extents;
 
-  preimage = ((ArCardThemePreimage *) theme)->cards_preimage;
+  svg = ((ArCardThemePreimage *) theme)->cards_svg;
 
   surface = cairo_recording_surface_create (CAIRO_CONTENT_ALPHA, NULL);
   cr = cairo_create (surface);
   ar_profilestart ("getting ink extents for node %s", node);
-  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
+  rsvg_handle_render_cairo_sub (svg->rsvg_handle, cr, node);
   ar_profileend ("getting ink extents for node %s", node);
   cairo_destroy (cr);
 
@@ -241,7 +241,7 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
     "#green_back"
   };
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  ArPreimage *preimage;
+  ArSvg *svg;
   char node[32];
   guint i;
   gboolean has_red_joker, has_black_joker, has_joker;
@@ -249,25 +249,25 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
   if (!AR_CARD_THEME_CLASS (ar_card_theme_kde_parent_class)->load (card_theme, error))
     return FALSE;
 
-  preimage = ((ArCardThemePreimage *) theme)->cards_preimage;
+  svg = ((ArCardThemePreimage *) theme)->cards_svg;
 
   /* Check available backs */
   g_assert (theme->n_backs == 0);
 
   ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_BACK);
-  if (rsvg_handle_has_sub (preimage->rsvg_handle, node)) {
+  if (rsvg_handle_has_sub (svg->rsvg_handle, node)) {
     theme->backs[theme->n_backs++] = g_strdup (node);
   }
 
   for (i = 0; i < G_N_ELEMENTS (extra_backs); ++i) {
-    if (rsvg_handle_has_sub (preimage->rsvg_handle, extra_backs[i])) {
+    if (rsvg_handle_has_sub (svg->rsvg_handle, extra_backs[i])) {
       theme->backs[theme->n_backs++] = g_strdup (extra_backs[i]);
     }
   }
 
   for (i = 1; i < 10; ++i) {
     g_snprintf (node, sizeof (node), "#back_c%d", i);
-    if (rsvg_handle_has_sub (preimage->rsvg_handle, node)) {
+    if (rsvg_handle_has_sub (svg->rsvg_handle, node)) {
       theme->backs[theme->n_backs++] = g_strdup (node);
     }
   }
@@ -281,11 +281,11 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
 
   /* Look for the jokers */
   ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_BLACK_JOKER);
-  has_black_joker = rsvg_handle_has_sub (preimage->rsvg_handle, node);
+  has_black_joker = rsvg_handle_has_sub (svg->rsvg_handle, node);
   ar_card_get_node_by_id_snprintf (node, sizeof (node), AR_CARD_RED_JOKER);
-  has_red_joker = rsvg_handle_has_sub (preimage->rsvg_handle, node);
+  has_red_joker = rsvg_handle_has_sub (svg->rsvg_handle, node);
 
-  has_joker = rsvg_handle_has_sub (preimage->rsvg_handle, "#joker");
+  has_joker = rsvg_handle_has_sub (svg->rsvg_handle, "#joker");
 
   theme->has_2_jokers = has_red_joker && has_black_joker;
   theme->has_joker = has_joker;
@@ -319,13 +319,13 @@ ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
   ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  ArPreimage *preimage = preimage_card_theme->cards_preimage;
+  ArSvg *svg = preimage_card_theme->cards_svg;
   char node[32];
   cairo_rectangle_t *card_extents;
   cairo_matrix_t matrix;
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    ar_preimage_render_cairo (preimage_card_theme->slot_preimage,
+    ar_svg_render_cairo (preimage_card_theme->slot_preimage,
                                  cr,
                                  preimage_card_theme->card_size.width,
                                  preimage_card_theme->card_size.height);
@@ -340,10 +340,10 @@ ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
 
   cairo_save (cr);
 
-  if (preimage->font_options) {
-    cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->font_options));
+  if (svg->font_options) {
+    cairo_set_antialias (cr, cairo_font_options_get_antialias (svg->font_options));
 
-    cairo_set_font_options (cr, preimage->font_options);
+    cairo_set_font_options (cr, svg->font_options);
   }
 
   cairo_matrix_init_identity (&matrix);
@@ -354,7 +354,7 @@ ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
 
   cairo_set_matrix (cr, &matrix);
 
-  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
+  rsvg_handle_render_cairo_sub (svg->rsvg_handle, cr, node);
 
   cairo_restore (cr);
 }

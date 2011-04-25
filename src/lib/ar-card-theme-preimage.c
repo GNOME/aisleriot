@@ -29,7 +29,7 @@
 #include <librsvg/librsvg-features.h>
 #endif
 
-#include "ar-preimage.h"
+#include "ar-svg.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
 
@@ -68,7 +68,7 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
   /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
   slot_dir = ar_runtime_get_directory (AR_RUNTIME_PIXMAP_DIRECTORY);
   path = g_build_filename (slot_dir, "slot.svg", NULL);
-  theme->slot_preimage = ar_preimage_new_from_file (path, error);
+  theme->slot_preimage = ar_svg_new_from_file (path, error);
   g_free (path);
   if (!theme->slot_preimage)
     return FALSE;
@@ -76,14 +76,14 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
 
   /* Now the main course */
   path = g_build_filename (theme_info->path, theme_info->filename, NULL);
-  theme->cards_preimage = ar_preimage_new_from_file (path, error);
+  theme->cards_svg = ar_svg_new_from_file (path, error);
   g_free (path);
-  if (!theme->cards_preimage)
+  if (!theme->cards_svg)
     return FALSE;
 
   if (theme->font_options) {
-    ar_preimage_set_font_options (theme->slot_preimage, theme->font_options);
-    ar_preimage_set_font_options (theme->cards_preimage, theme->font_options);
+    ar_svg_set_font_options (theme->slot_preimage, theme->font_options);
+    ar_svg_set_font_options (theme->cards_svg, theme->font_options);
   }
 
   return TRUE;
@@ -92,7 +92,7 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
 static void
 ar_card_theme_preimage_init (ArCardThemePreimage *theme)
 {
-  theme->cards_preimage = NULL;
+  theme->cards_svg = NULL;
   theme->slot_preimage = NULL;
 
   theme->subsize.width = -1;
@@ -109,8 +109,8 @@ ar_card_theme_preimage_finalize (GObject * object)
 
   _ar_card_theme_preimage_clear_sized_theme_data (theme);
 
-  if (theme->cards_preimage != NULL) {
-    g_object_unref (theme->cards_preimage);
+  if (theme->cards_svg != NULL) {
+    g_object_unref (theme->cards_svg);
   }
   if (theme->slot_preimage != NULL) {
     g_object_unref (theme->slot_preimage);
@@ -205,9 +205,9 @@ ar_card_theme_preimage_get_card_aspect (ArCardTheme* card_theme)
   ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
   double aspect;
 aspect =
-      (((double) ar_preimage_get_width (theme->cards_preimage))
+      (((double) ar_svg_get_width (theme->cards_svg))
        * N_ROWS) /
-      (((double) ar_preimage_get_height (theme->cards_preimage))
+      (((double) ar_svg_get_height (theme->cards_svg))
        * N_COLS);
 
   return aspect;

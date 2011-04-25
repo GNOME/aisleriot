@@ -35,45 +35,45 @@
 
 #include "ar-profile.h"
 
-#include "ar-preimage.h"
-#include "ar-preimage-private.h"
+#include "ar-svg.h"
+#include "ar-svg-private.h"
 
-G_DEFINE_TYPE (ArPreimage, ar_preimage, G_TYPE_OBJECT);
+G_DEFINE_TYPE (ArSvg, ar_svg, G_TYPE_OBJECT);
 
 static void
-ar_preimage_init (ArPreimage * preimage)
+ar_svg_init (ArSvg *svg)
 {
-  preimage->width = 0;
-  preimage->height = 0;
+  svg->width = 0;
+  svg->height = 0;
 }
 
 static void
-ar_preimage_finalize (GObject * object)
+ar_svg_finalize (GObject * object)
 {
-  ArPreimage *preimage = AR_PREIMAGE (object);
+  ArSvg *svg = AR_SVG (object);
 
-  if (preimage->rsvg_handle != NULL) {
-    g_object_unref (preimage->rsvg_handle);
+  if (svg->rsvg_handle != NULL) {
+    g_object_unref (svg->rsvg_handle);
   }
-  if (preimage->font_options) {
-    cairo_font_options_destroy (preimage->font_options);
+  if (svg->font_options) {
+    cairo_font_options_destroy (svg->font_options);
   }
 
-  G_OBJECT_CLASS (ar_preimage_parent_class)->finalize (object);
+  G_OBJECT_CLASS (ar_svg_parent_class)->finalize (object);
 }
 
 static void
-ar_preimage_class_init (ArPreimageClass * klass)
+ar_svg_class_init (ArSvgClass * klass)
 {
   GObjectClass *oclass = G_OBJECT_CLASS (klass);
 
-  oclass->finalize = ar_preimage_finalize;
+  oclass->finalize = ar_svg_finalize;
 
   rsvg_init ();
 }
 
 /**
- * ar_preimage_render_cairo:
+ * ar_svg_render_cairo:
  * @preimage:
  * @cr:
  * @width: the desired width
@@ -83,28 +83,27 @@ ar_preimage_class_init (ArPreimageClass * klass)
  * @width and @height to @cr.
  **/
 void
-ar_preimage_render_cairo (ArPreimage * preimage,
+ar_svg_render_cairo (ArSvg *svg,
                              cairo_t *cr,
                              gint width,
                              gint height)
 {
   g_return_if_fail (width > 0 && height > 0);
-  g_return_if_fail (preimage != NULL);
 
-    ar_preimage_render_cairo_sub (preimage,
+    ar_svg_render_cairo_sub (svg,
                                      cr,
                                      NULL,
                                      width,
                                      height,
                                      0.0, 0.0,
                                      ((double) width) /
-                                     ((double) preimage->width),
+                                     ((double) svg->width),
                                      ((double) height) /
-                                     ((double) preimage->height));
+                                     ((double) svg->height));
 }
 
 /**
- * ar_preimage_render_cairo_sub:
+ * ar_svg_render_cairo_sub:
  * @preimage:
  * @cr:
  * @node: a SVG node ID (starting with "#"), or %NULL
@@ -125,7 +124,7 @@ ar_preimage_render_cairo (ArPreimage * preimage,
  * isn't a scalable SVG image
  **/
 void
-ar_preimage_render_cairo_sub (ArPreimage * preimage,
+ar_svg_render_cairo_sub (ArSvg *svg,
                                  cairo_t *cr,
                                  const char *node,
                                  int width,
@@ -137,12 +136,12 @@ ar_preimage_render_cairo_sub (ArPreimage * preimage,
 {
   cairo_matrix_t matrix;
 
-  g_return_if_fail (AR_IS_PREIMAGE (preimage));
+  g_return_if_fail (AR_IS_SVG (svg));
 
-  if (preimage->font_options) {
-    cairo_set_antialias (cr, cairo_font_options_get_antialias (preimage->font_options));
+  if (svg->font_options) {
+    cairo_set_antialias (cr, cairo_font_options_get_antialias (svg->font_options));
 
-    cairo_set_font_options (cr, preimage->font_options);
+    cairo_set_font_options (cr, svg->font_options);
   }
 
   cairo_matrix_init_identity (&matrix);
@@ -151,104 +150,104 @@ ar_preimage_render_cairo_sub (ArPreimage * preimage,
 
   cairo_set_matrix (cr, &matrix);
 
-  rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
+  rsvg_handle_render_cairo_sub (svg->rsvg_handle, cr, node);
 }
 
 /**
- * ar_preimage_new_from_file:
+ * ar_svg_new_from_file:
  * @filename:
  * @error: a location for a #GError
  *
- * Creates a new #ArPreimage from the image in @filename.
+ * Creates a new #ArSvg from the image in @filename.
  *
- * Returns: (allow-none): a new #ArPreimage, or %NULL if there was an error
+ * Returns: (allow-none): a new #ArSvg, or %NULL if there was an error
  */
-ArPreimage *
-ar_preimage_new_from_file (const gchar * filename, GError ** error)
+ArSvg *
+ar_svg_new_from_file (const gchar * filename, GError ** error)
 {
-  ArPreimage *preimage;
+  ArSvg *svg;
 
   g_return_val_if_fail (filename != NULL, NULL);
 
-  ar_profilestart ("creating ArPreimage from %s", filename);
+  ar_profilestart ("creating ArSvg from %s", filename);
 
-  preimage = g_object_new (AR_TYPE_PREIMAGE, NULL);
+  svg = g_object_new (AR_TYPE_SVG, NULL);
 
-  preimage->rsvg_handle = rsvg_handle_new_from_file (filename, error);
-  if (preimage->rsvg_handle) {
+  svg->rsvg_handle = rsvg_handle_new_from_file (filename, error);
+  if (svg->rsvg_handle) {
     RsvgDimensionData data;
 
-    rsvg_handle_get_dimensions (preimage->rsvg_handle, &data);
+    rsvg_handle_get_dimensions (svg->rsvg_handle, &data);
 
-    ar_profileend ("creating ArPreimage from %s", filename);
+    ar_profileend ("creating ArSvg from %s", filename);
 
     if (data.width == 0 || data.height == 0) {
       g_set_error (error,
                    GDK_PIXBUF_ERROR,
                    GDK_PIXBUF_ERROR_FAILED, "Image has zero extent");
-      g_object_unref (preimage);
+      g_object_unref (svg);
       return NULL;
     }
 
-    preimage->width = data.width;
-    preimage->height = data.height;
+    svg->width = data.width;
+    svg->height = data.height;
 
-    return preimage;
+    return svg;
   }
 
-  ar_profileend ("creating ArPreimage from %s", filename);
+  ar_profileend ("creating ArSvg from %s", filename);
 
   return NULL;
 }
 
 /**
- * ar_preimage_set_font_options:
- * @preimage: a #ArPreimage
+ * ar_svg_set_font_options:
+ * @preimage: a #ArSvg
  * @font_options: the font options
  *
  * Turns on antialising of @preimage, if it contains an SVG image.
  */
 void
-ar_preimage_set_font_options (ArPreimage * preimage,
-                                 const cairo_font_options_t * font_options)
+ar_svg_set_font_options (ArSvg *svg,
+                         const cairo_font_options_t * font_options)
 {
-  g_return_if_fail (AR_IS_PREIMAGE (preimage));
+  g_return_if_fail (AR_IS_SVG (svg));
 
-  if (preimage->font_options) {
-    cairo_font_options_destroy (preimage->font_options);
+  if (svg->font_options) {
+    cairo_font_options_destroy (svg->font_options);
   }
 
   if (font_options) {
-    preimage->font_options = cairo_font_options_copy (font_options);
+    svg->font_options = cairo_font_options_copy (font_options);
   } else {
-    preimage->font_options = NULL;
+    svg->font_options = NULL;
   }
 }
 
 /**
- * ar_preimage_get_width:
+ * ar_svg_get_width:
  * @preimage:
  *
  * Returns: the natural width of the image in @preimage
  */
 gint
-ar_preimage_get_width (ArPreimage * preimage)
+ar_svg_get_width (ArSvg *svg)
 {
-  g_return_val_if_fail (AR_IS_PREIMAGE (preimage), 0);
+  g_return_val_if_fail (AR_IS_SVG (svg), 0);
 
-  return preimage->width;
+  return svg->width;
 }
 
 /**
- * ar_preimage_get_height:
+ * ar_svg_get_height:
  * @preimage:
  *
  * Returns: the natural height of the image in @preimage
  */
 gint
-ar_preimage_get_height (ArPreimage * preimage)
+ar_svg_get_height (ArSvg *svg)
 {
-  g_return_val_if_fail (AR_IS_PREIMAGE (preimage), 0);
+  g_return_val_if_fail (AR_IS_SVG (svg), 0);
 
-  return preimage->height;
+  return svg->height;
 }

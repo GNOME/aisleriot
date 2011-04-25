@@ -48,9 +48,9 @@ endif # HAVE_CLUTTER
 
 if HAVE_RSVG
 libaisleriot_la_SOURCES += \
-	ar-preimage.c \
-	ar-preimage.h \
-	ar-preimage-private.h \
+	ar-svg.c \
+	ar-svg.h \
+	ar-svg-private.h \
 	ar-card-theme-preimage.c \
 	$(NULL)
 
