@@ -25,6 +25,7 @@
 #include <string.h>
 
 #include <glib.h>
+#include <gio/gio.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 /* For gdkcairo */
@@ -38,13 +39,55 @@
 #include "ar-svg.h"
 #include "ar-svg-private.h"
 
-G_DEFINE_TYPE (ArSvg, ar_svg, G_TYPE_OBJECT);
+enum {
+  PROP_0,
+  PROP_FILENAME
+};
+
+static void ar_svg_initable_iface_init (GInitableIface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (ArSvg, ar_svg, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, ar_svg_initable_iface_init))
 
 static void
 ar_svg_init (ArSvg *svg)
 {
   svg->width = 0;
   svg->height = 0;
+}
+
+static gboolean
+ar_svg_initable_init (GInitable *initable,
+                      GCancellable *cancellable,
+                      GError **error)
+{
+  ArSvg *svg = AR_SVG (initable);
+  RsvgDimensionData data;
+  gboolean retval = FALSE;
+
+  ar_profilestart ("creating ArSvg from %s", svg->filename);
+
+  svg->rsvg_handle = rsvg_handle_new_from_file (svg->filename, error);
+  if (svg->rsvg_handle == NULL)
+    goto out;
+
+  rsvg_handle_get_dimensions (svg->rsvg_handle, &data);
+
+  if (data.width == 0 || data.height == 0) {
+    g_set_error (error,
+                  GDK_PIXBUF_ERROR,
+                  GDK_PIXBUF_ERROR_FAILED, "Image has zero extent");
+    goto out;
+  }
+
+  svg->width = data.width;
+  svg->height = data.height;
+
+  retval = TRUE;
+
+out:
+  ar_profileend ("creating ArSvg from %s", svg->filename);
+  return retval;
 }
 
 static void
@@ -63,13 +106,47 @@ ar_svg_finalize (GObject * object)
 }
 
 static void
+ar_svg_set_property (GObject      *object,
+                     guint         property_id,
+                     const GValue *value,
+                     GParamSpec   *pspec)
+{
+  ArSvg *svg = AR_SVG (object);
+
+  switch (property_id) {
+    case PROP_FILENAME:
+      svg->filename = g_value_dup_string (value);
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  }
+}
+
+static void
 ar_svg_class_init (ArSvgClass * klass)
 {
-  GObjectClass *oclass = G_OBJECT_CLASS (klass);
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  oclass->finalize = ar_svg_finalize;
+  object_class->set_property = ar_svg_set_property;
+  object_class->finalize = ar_svg_finalize;
+
+  g_object_class_install_property
+    (object_class,
+     PROP_FILENAME,
+     g_param_spec_string ("filename", NULL, NULL,
+                          NULL,
+                          G_PARAM_WRITABLE |
+                          G_PARAM_CONSTRUCT_ONLY |
+                          G_PARAM_STATIC_STRINGS));
 
   rsvg_init ();
+}
+
+static void
+ar_svg_initable_iface_init (GInitableIface *iface)
+{
+  iface->init = ar_svg_initable_init;
 }
 
 /**
@@ -165,39 +242,14 @@ ar_svg_render_cairo_sub (ArSvg *svg,
 ArSvg *
 ar_svg_new_from_file (const gchar * filename, GError ** error)
 {
-  ArSvg *svg;
-
   g_return_val_if_fail (filename != NULL, NULL);
+  g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
-  ar_profilestart ("creating ArSvg from %s", filename);
-
-  svg = g_object_new (AR_TYPE_SVG, NULL);
-
-  svg->rsvg_handle = rsvg_handle_new_from_file (filename, error);
-  if (svg->rsvg_handle) {
-    RsvgDimensionData data;
-
-    rsvg_handle_get_dimensions (svg->rsvg_handle, &data);
-
-    ar_profileend ("creating ArSvg from %s", filename);
-
-    if (data.width == 0 || data.height == 0) {
-      g_set_error (error,
-                   GDK_PIXBUF_ERROR,
-                   GDK_PIXBUF_ERROR_FAILED, "Image has zero extent");
-      g_object_unref (svg);
-      return NULL;
-    }
-
-    svg->width = data.width;
-    svg->height = data.height;
-
-    return svg;
-  }
-
-  ar_profileend ("creating ArSvg from %s", filename);
-
-  return NULL;
+  return g_initable_new (AR_TYPE_SVG,
+                         NULL,
+                         error,
+                         "filename", filename,
+                         NULL);
 }
 
 /**

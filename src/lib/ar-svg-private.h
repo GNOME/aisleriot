@@ -23,9 +23,10 @@
 struct _ArSvg {
   GObject parent;
 
-  gint width;
-  gint height;
-
   RsvgHandle *rsvg_handle;
   cairo_font_options_t *font_options;
+  char *filename;
+
+  gint width;
+  gint height;
 };
