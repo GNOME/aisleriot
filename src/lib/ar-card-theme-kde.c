@@ -312,59 +312,6 @@ ar_card_theme_kde_get_card_aspect (ArCardTheme* card_theme)
   return card_extents->width / card_extents->height;
 }
 
-static GdkPixbuf *
-ar_card_theme_kde_get_card_pixbuf (ArCardTheme *card_theme,
-                                   int card_id)
-{
-  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
-  ArCardThemeKDE *theme = (ArCardThemeKDE *) card_theme;
-  ArPreimage *preimage = preimage_card_theme->cards_preimage;
-  GdkPixbuf *subpixbuf;
-  double card_width, card_height;
-  double width, height;
-  double zoomx, zoomy;
-  char node[32];
-  cairo_rectangle_t *card_extents;
-
-  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    subpixbuf = ar_preimage_render (preimage_card_theme->slot_preimage,
-                                       preimage_card_theme->card_size.width,
-                                       preimage_card_theme->card_size.height);
-
-    return subpixbuf;
-  }
-
-  ar_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
-
-  card_extents = ar_card_theme_kde_get_card_extents (theme, card_id, node);
-  if (!card_extents)
-    return NULL;
-
-  card_width = ((double) ar_preimage_get_width (preimage)) / N_COLS;
-  card_height = ((double) ar_preimage_get_height (preimage)) / N_ROWS;
-
-  width = preimage_card_theme->card_size.width;
-  height = preimage_card_theme->card_size.height;
-
-  zoomx = width / card_width;
-  zoomy = height / card_height;
-
-//   zoomx = width / card_extents->width;
-//   zoomy = height / card_extents->height;
-
-  subpixbuf = ar_preimage_render_sub (preimage,
-                                         node,
-                                         preimage_card_theme->card_size.width,
-                                         preimage_card_theme->card_size.height,
-                                         -card_extents->x, -card_extents->y,
-                                         zoomx, zoomy);
-
-  ar_debug_print (AR_DEBUG_CARD_THEME,
-                      "Returning %p\n", subpixbuf);
-
-  return subpixbuf;
-}
-
 static void
 ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
                               cairo_t *cr,
@@ -570,7 +517,6 @@ ar_card_theme_kde_class_init (ArCardThemeKDEClass * klass)
 
   theme_class->load = ar_card_theme_kde_load;
   theme_class->get_card_aspect = ar_card_theme_kde_get_card_aspect;
-  theme_class->get_card_pixbuf = ar_card_theme_kde_get_card_pixbuf;
   theme_class->paint_card = ar_card_theme_kde_paint_card;
 
   g_object_class_install_property

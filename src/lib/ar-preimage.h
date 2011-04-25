@@ -51,21 +51,10 @@ ArPreimage *ar_preimage_new_from_file (const gchar * filename,
 void ar_preimage_set_font_options (ArPreimage * preimage,
                                       const cairo_font_options_t *font_options);
 
-GdkPixbuf *ar_preimage_render (ArPreimage * preimage,
-                                  gint width,
-                                  gint height);
 void ar_preimage_render_cairo (ArPreimage * preimage,
                                   cairo_t *cr,
                                   gint width,
                                   gint height);
-
-GdkPixbuf *ar_preimage_render_sub (ArPreimage * preimage,
-                                      const char *node,
-                                      int width,
-                                      int height,
-                                      double xoffset,
-                                      double yoffset,
-                                      double xzoom, double yzoom);
 
 void ar_preimage_render_cairo_sub (ArPreimage * preimage,
                                       cairo_t *cr,

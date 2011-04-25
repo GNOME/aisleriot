@@ -73,38 +73,6 @@ ar_preimage_class_init (ArPreimageClass * klass)
 }
 
 /**
- * ar_preimage_render:
- * @preimage: the image to render
- * @width: the desired width
- * @height: the desired height
- *
- * Creates a #GdkPixbuf from @preimage's image at the specified
- * @width and @height.
- *
- * Returns: (transfer full): the new #GdkPixbuf
- **/
-GdkPixbuf *
-ar_preimage_render (ArPreimage * preimage, gint width, gint height)
-{
-  GdkPixbuf *pixbuf;
-
-  g_return_val_if_fail (width > 0 && height > 0, NULL);
-  g_return_val_if_fail (preimage != NULL, NULL);
-
-    pixbuf = ar_preimage_render_sub (preimage,
-                                        NULL,
-                                        width,
-                                        height,
-                                        0.0, 0.0,
-                                        ((double) width) /
-                                        ((double) preimage->width),
-                                        ((double) height) /
-                                        ((double) preimage->height));
-
-  return pixbuf;
-}
-
-/**
  * ar_preimage_render_cairo:
  * @preimage:
  * @cr:
@@ -133,40 +101,6 @@ ar_preimage_render_cairo (ArPreimage * preimage,
                                      ((double) preimage->width),
                                      ((double) height) /
                                      ((double) preimage->height));
-}
-
-/* This routine is copied from librsvg:
-   Copyright © 2005 Dom Lachowicz <cinamod@hotmail.com>
-   Copyright © 2005 Caleb Moore <c.moore@student.unsw.edu.au>
-   Copyright © 2005 Red Hat, Inc.
- */
-static void
-cairo_pixels_to_pixbuf (guint8 * pixels, int rowstride, int height)
-{
-  int row;
-
-  /* un-premultiply data */
-  for (row = 0; row < height; row++) {
-    guint8 *row_data = (pixels + (row * rowstride));
-    int i;
-
-    for (i = 0; i < rowstride; i += 4) {
-      guint8 *b = &row_data[i];
-      guint32 pixel;
-      guint8 alpha;
-
-      memcpy (&pixel, b, sizeof (guint32));
-      alpha = (pixel & 0xff000000) >> 24;
-      if (alpha == 0) {
-        b[0] = b[1] = b[2] = b[3] = 0;
-      } else {
-        b[0] = (((pixel & 0xff0000) >> 16) * 255 + alpha / 2) / alpha;
-        b[1] = (((pixel & 0x00ff00) >> 8) * 255 + alpha / 2) / alpha;
-        b[2] = (((pixel & 0x0000ff) >> 0) * 255 + alpha / 2) / alpha;
-        b[3] = alpha;
-      }
-    }
-  }
 }
 
 /**
@@ -218,64 +152,6 @@ ar_preimage_render_cairo_sub (ArPreimage * preimage,
   cairo_set_matrix (cr, &matrix);
 
   rsvg_handle_render_cairo_sub (preimage->rsvg_handle, cr, node);
-}
-
-/**
- * ar_preimage_render_sub:
- * @preimage:
- * @node: a SVG node ID (starting with "#"), or %NULL
- * @width: the width of the clip region
- * @height: the height of the clip region
- * @xoffset: the x offset of the clip region
- * @yoffset: the y offset of the clip region
- * @xzoom: the x zoom factor
- * @yzoom: the y zoom factor
- *
- * Creates a #GdkPixbuf with the dimensions @width by @height,
- * and renders the subimage of @preimage specified by @node to it,
- * transformed by @xzoom, @yzoom and offset by @xoffset and @yoffset,
- * clipped to @width and @height.
- * If @node is NULL, the whole image is rendered into tha clip region.
- *
- * Returns: (transfer full) (allow-none): a new #GdkPixbuf, or %NULL if there was an error or @preimage
- * isn't a scalable SVG image
- */
-GdkPixbuf *
-ar_preimage_render_sub (ArPreimage * preimage,
-                           const char *node,
-                           int width,
-                           int height,
-                           double xoffset,
-                           double yoffset, double xzoom, double yzoom)
-{
-  int rowstride;
-  guint8 *data;
-  cairo_surface_t *surface;
-  cairo_t *cr;
-
-  rowstride = cairo_format_stride_for_width (CAIRO_FORMAT_ARGB32, width);
-
-  data = g_try_malloc0 (rowstride * height);
-  if (!data)
-    return NULL;
-
-  surface = cairo_image_surface_create_for_data (data,
-                                                 CAIRO_FORMAT_ARGB32,
-                                                 width, height, rowstride);
-  cr = cairo_create (surface);
-  ar_preimage_render_cairo_sub (preimage, cr, node, width, height,
-                                   xoffset, yoffset, xzoom, yzoom);
-  cairo_destroy (cr);
-  cairo_surface_destroy (surface);
-  cairo_pixels_to_pixbuf (data, rowstride, height);
-
-  return gdk_pixbuf_new_from_data (data,
-                                   GDK_COLORSPACE_RGB,
-                                   TRUE,
-                                   8,
-                                   width, height,
-                                   rowstride,
-                                   (GdkPixbufDestroyNotify) g_free, data);
 }
 
 /**

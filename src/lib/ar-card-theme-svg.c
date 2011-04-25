@@ -50,55 +50,6 @@ struct _ArCardThemeSVG {
 
 G_DEFINE_TYPE (ArCardThemeSVG, ar_card_theme_svg, AR_TYPE_CARD_THEME_PREIMAGE);
 
-static GdkPixbuf *
-ar_card_theme_svg_get_card_pixbuf (ArCardTheme *card_theme,
-                                      int card_id)
-{
-  ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
-  ArPreimage *preimage = preimage_card_theme->cards_preimage;
-  GdkPixbuf *subpixbuf;
-  int suit, rank;
-  double card_width, card_height;
-  double width, height;
-  double offsetx, offsety;
-  double zoomx, zoomy;
-  char node[32];
-
-  if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
-    subpixbuf = ar_preimage_render (preimage_card_theme->slot_preimage,
-                                       preimage_card_theme->card_size.width,
-                                       preimage_card_theme->card_size.height);
-
-    return subpixbuf;
-  }
-
-  suit = card_id / 13;
-  rank = card_id % 13;
-
-  card_width = ((double) ar_preimage_get_width (preimage)) / N_COLS;
-  card_height = ((double) ar_preimage_get_height (preimage)) / N_ROWS;
-
-  width = preimage_card_theme->card_size.width - 2 * DELTA;
-  height = preimage_card_theme->card_size.height - 2 * DELTA;
-
-  offsetx = -((double) rank) * card_width + DELTA;
-  offsety = -((double) suit) * card_height + DELTA;
-
-  zoomx = width / card_width;
-  zoomy = height / card_height;
-
-  ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
-
-  subpixbuf = ar_preimage_render_sub (preimage,
-                                         node,
-                                         preimage_card_theme->card_size.width,
-                                         preimage_card_theme->card_size.height,
-                                         offsetx, offsety,
-                                         zoomx, zoomy);
-
-  return subpixbuf;
-}
-
 static void
 ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
                               cairo_t *cr,
@@ -202,7 +153,6 @@ ar_card_theme_svg_class_init (ArCardThemeSVGClass * klass)
   theme_class->get_theme_info = ar_card_theme_svg_class_get_theme_info;
   theme_class->foreach_theme_dir = ar_card_theme_svg_class_foreach_theme_dir;
 
-  theme_class->get_card_pixbuf = ar_card_theme_svg_get_card_pixbuf;
   theme_class->paint_card = ar_card_theme_svg_paint_card;
 }
 
