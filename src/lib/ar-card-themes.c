@@ -82,9 +82,6 @@ theme_type_from_string (const char *type_str,
     { "kde", AR_TYPE_CARD_THEME_KDE },
 #endif
 #endif /* HAVE_RSVG */
-#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
-    { "sliced", AR_TYPE_CARD_THEME_SLICED },
-#endif
 #ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
     { "pysol", AR_TYPE_CARD_THEME_PYSOL },
 #endif
@@ -219,9 +216,6 @@ ar_card_themes_foreach_theme_type_and_dir (ArCardThemes *theme_manager,
   AR_TYPE_CARD_THEME_KDE,
 #endif
 #endif /* HAVE_RSVG */
-#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
-  AR_TYPE_CARD_THEME_SLICED,
-#endif
 #ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
   AR_TYPE_CARD_THEME_PYSOL,
 #endif

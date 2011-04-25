@@ -473,9 +473,6 @@ theme_type_compare (GType a,
   AR_TYPE_CARD_THEME_KDE,
 #endif
 #endif /* HAVE_RSVG */
-#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
-  AR_TYPE_CARD_THEME_SLICED,
-#endif
 #ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
   AR_TYPE_CARD_THEME_PYSOL,
 #endif

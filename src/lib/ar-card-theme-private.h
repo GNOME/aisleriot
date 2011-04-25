@@ -204,26 +204,6 @@ ArCardTheme* ar_card_theme_kde_new (void);
 
 #endif /* HAVE_RSVG */
 
-/* ArCardThemeSliced */
-
-#ifdef ENABLE_CARD_THEME_FORMAT_SLICED
-
-#define AR_TYPE_CARD_THEME_SLICED            (ar_card_theme_sliced_get_type ())
-#define AR_CARD_THEME_SLICED(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), AR_TYPE_CARD_THEME_SLICED, ArCardThemeSliced))
-#define AR_CARD_THEME_SLICED_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_CARD_THEME_SLICED, ArCardThemeSlicedClass))
-#define AR_IS_CARD_THEME_SLICED(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_CARD_THEME_SLICED))
-#define AR_IS_CARD_THEME_SLICED_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_CARD_THEME_SLICED))
-#define AR_CARD_THEME_SLICED_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_CARD_THEME_SLICED, ArCardThemeSlicedClass))
-
-typedef struct _ArCardThemeSlicedClass ArCardThemeSlicedClass;
-typedef struct _ArCardThemeSliced      ArCardThemeSliced;
-
-GType ar_card_theme_sliced_get_type (void);
-
-ArCardTheme* ar_card_theme_sliced_new (void);
-
-#endif /* ENABLE_CARD_THEME_FORMAT_SLICED */
-
 /* ArCardThemeFixed */
 
 #ifdef ENABLE_CARD_THEME_FORMAT_FIXED
