@@ -1,6 +1,6 @@
 /*
    Copyright © 2004 Richard Hoelscher
-   Copyright © 2007 Christian Persch
+   Copyright © 2007, 2011 Christian Persch
    
    This library is free software; you can redistribute it and'or modify
    it under the terms of the GNU Library General Public License as published 
@@ -37,16 +37,29 @@
 #include "ar-profile.h"
 
 #include "ar-svg.h"
-#include "ar-svg-private.h"
+
+struct _ArSvgClass {
+  RsvgHandleClass parent_class;
+};
+
+struct _ArSvg {
+  RsvgHandle parent_instance;
+
+  cairo_font_options_t *font_options;
+  GFile *file;
+
+  gint width;
+  gint height;
+};
 
 enum {
   PROP_0,
-  PROP_FILENAME
+  PROP_FILE
 };
 
 static void ar_svg_initable_iface_init (GInitableIface *iface);
 
-G_DEFINE_TYPE_WITH_CODE (ArSvg, ar_svg, G_TYPE_OBJECT,
+G_DEFINE_TYPE_WITH_CODE (ArSvg, ar_svg, RSVG_TYPE_HANDLE,
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, ar_svg_initable_iface_init))
 
 static void
@@ -62,21 +75,56 @@ ar_svg_initable_init (GInitable *initable,
                       GError **error)
 {
   ArSvg *svg = AR_SVG (initable);
+  RsvgHandle *handle = RSVG_HANDLE (initable);
+  GFileInfo *info;
+  const char *type;
+  char *gz_type;
+  GInputStream *stream;
   RsvgDimensionData data;
+  gboolean is_gzip;
   gboolean retval = FALSE;
 
-  ar_profilestart ("creating ArSvg from %s", svg->filename);
+//   ar_profilestart ("creating ArSvg from %s", svg->filename);
 
-  svg->rsvg_handle = rsvg_handle_new_from_file (svg->filename, error);
-  if (svg->rsvg_handle == NULL)
+  if (!(info = g_file_query_info (svg->file,
+                                  G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE,
+                                  G_FILE_QUERY_INFO_NONE,
+                                  cancellable,
+                                  error)))
     goto out;
 
-  rsvg_handle_get_dimensions (svg->rsvg_handle, &data);
+  type = g_file_info_get_attribute_string (info, G_FILE_ATTRIBUTE_STANDARD_FAST_CONTENT_TYPE);
+  gz_type = g_content_type_from_mime_type ("application/x-gzip");
+  is_gzip = (type != NULL && g_content_type_is_a (type, gz_type));
+  g_free (gz_type);
+  g_object_unref (info);
 
+  if (!(stream = G_INPUT_STREAM (g_file_read (svg->file, cancellable, error))))
+    goto out;
+
+  if (is_gzip) {
+    GZlibDecompressor *decompressor;
+    GInputStream *converter_stream;
+
+    decompressor = g_zlib_decompressor_new (G_ZLIB_COMPRESSOR_FORMAT_GZIP);
+    converter_stream = g_converter_input_stream_new (stream,
+                                                     G_CONVERTER (decompressor));
+    g_object_unref (stream);
+    stream = converter_stream;
+  }
+
+  if (!rsvg_handle_read_stream_sync (handle, stream, cancellable, error)) {
+    g_object_unref (stream);
+    goto out;
+  }
+  g_object_unref (stream);
+
+  rsvg_handle_get_dimensions (handle, &data);
   if (data.width == 0 || data.height == 0) {
-    g_set_error (error,
-                  GDK_PIXBUF_ERROR,
-                  GDK_PIXBUF_ERROR_FAILED, "Image has zero extent");
+    g_set_error_literal (error,
+                         GDK_PIXBUF_ERROR,
+                         GDK_PIXBUF_ERROR_FAILED,
+                         "Image has zero extent");
     goto out;
   }
 
@@ -86,7 +134,8 @@ ar_svg_initable_init (GInitable *initable,
   retval = TRUE;
 
 out:
-  ar_profileend ("creating ArSvg from %s", svg->filename);
+
+//   ar_profileend ("creating ArSvg from %s", svg->filename);
   return retval;
 }
 
@@ -95,9 +144,8 @@ ar_svg_finalize (GObject * object)
 {
   ArSvg *svg = AR_SVG (object);
 
-  if (svg->rsvg_handle != NULL) {
-    g_object_unref (svg->rsvg_handle);
-  }
+  if (svg->file)
+    g_object_unref (svg->file);
   if (svg->font_options) {
     cairo_font_options_destroy (svg->font_options);
   }
@@ -114,8 +162,10 @@ ar_svg_set_property (GObject      *object,
   ArSvg *svg = AR_SVG (object);
 
   switch (property_id) {
-    case PROP_FILENAME:
-      svg->filename = g_value_dup_string (value);
+    case PROP_FILE:
+      svg->file = g_value_dup_object (value);
+      if (svg->file)
+        rsvg_handle_set_base_gfile (RSVG_HANDLE (svg), svg->file);
       break;
 
     default:
@@ -133,9 +183,9 @@ ar_svg_class_init (ArSvgClass * klass)
 
   g_object_class_install_property
     (object_class,
-     PROP_FILENAME,
-     g_param_spec_string ("filename", NULL, NULL,
-                          NULL,
+     PROP_FILE,
+     g_param_spec_object ("file", NULL, NULL,
+                          G_TYPE_FILE,
                           G_PARAM_WRITABLE |
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS));
@@ -151,13 +201,12 @@ ar_svg_initable_iface_init (GInitableIface *iface)
 
 /**
  * ar_svg_render_cairo:
- * @preimage:
- * @cr:
+ * @svg: a #ArSvg
+ * @cr: a #cairo_t
  * @width: the desired width
  * @height: the desired height
  *
- * Renders from @preimage's image at the specified
- * @width and @height to @cr.
+ * Paints the SVG at the specified @width and @height to @cr.
  **/
 void
 ar_svg_render_cairo (ArSvg *svg,
@@ -181,9 +230,9 @@ ar_svg_render_cairo (ArSvg *svg,
 
 /**
  * ar_svg_render_cairo_sub:
- * @preimage:
- * @cr:
- * @node: a SVG node ID (starting with "#"), or %NULL
+ * @svg: a #ArSvg
+ * @cr: a #cairo_t
+ * @node: (allow-none): a SVG node ID (starting with "#"), or %NULL
  * @width: the width of the clip region
  * @height: the height of the clip region
  * @xoffset: the x offset of the clip region
@@ -191,14 +240,10 @@ ar_svg_render_cairo (ArSvg *svg,
  * @xzoom: the x zoom factor
  * @yzoom: the y zoom factor
  *
- * Creates a #GdkPixbuf with the dimensions @width by @height,
- * and renders the subimage of @preimage specified by @node to it,
- * transformed by @xzoom, @yzoom and offset by @xoffset and @yoffset,
- * clipped to @width and @height.
- * If @node is NULL, the whole image is rendered into tha clip region.
+ * Paints the SVG element @node to @cr, transformed by @xzoom, @yzoom
+ * and offset by @xoffset and @yoffset, clipped to @width and @height.
  *
- * Returns: %TRUE, of %FALSE if there was an error or @preimage
- * isn't a scalable SVG image
+ * If @node is NULL, the whole image is rendered into tha clip region.
  **/
 void
 ar_svg_render_cairo_sub (ArSvg *svg,
@@ -227,37 +272,88 @@ ar_svg_render_cairo_sub (ArSvg *svg,
 
   cairo_set_matrix (cr, &matrix);
 
-  rsvg_handle_render_cairo_sub (svg->rsvg_handle, cr, node);
+  rsvg_handle_render_cairo_sub (RSVG_HANDLE (svg), cr, node);
 }
 
 /**
- * ar_svg_new_from_file:
- * @filename:
- * @error: a location for a #GError
+ * ar_svg_new_from_gfile_sync:
+ * @file: a #GFile
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @error: (allow-none): a location to store a #GError, or %NULL
  *
- * Creates a new #ArSvg from the image in @filename.
+ * Creates a new #ArSvg and synchronously loads its contents from @file.
  *
- * Returns: (allow-none): a new #ArSvg, or %NULL if there was an error
+ * Returns: (allow-none): a new #ArSvg, or %NULL on error with @error
+ *   filled in
  */
 ArSvg *
-ar_svg_new_from_file (const gchar * filename, GError ** error)
+ar_svg_new_from_gfile_sync (GFile *file,
+                            GCancellable *cancellable,
+                            GError ** error)
 {
-  g_return_val_if_fail (filename != NULL, NULL);
+  g_return_val_if_fail (G_IS_FILE (file), NULL);
+  g_return_val_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable), NULL);
   g_return_val_if_fail (error == NULL || *error == NULL, NULL);
 
   return g_initable_new (AR_TYPE_SVG,
-                         NULL,
+                         cancellable,
                          error,
-                         "filename", filename,
+                         "file", file,
                          NULL);
 }
 
 /**
- * ar_svg_set_font_options:
- * @preimage: a #ArSvg
- * @font_options: the font options
+ * ar_svg_new_from_filename:
+ * @filename: the path to the SVG file
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @error: (allow-none): a location to store a #GError, or %NULL
  *
- * Turns on antialising of @preimage, if it contains an SVG image.
+ * Creates a new #ArSvg and synchronously loads its contents from @filename.
+ *
+ * Returns: (allow-none): a new #ArSvg, or %NULL on error with @error
+ *   filled in
+ */
+ArSvg *
+ar_svg_new_from_filename_sync (const char *filename,
+                               GCancellable *cancellable,
+                               GError ** error)
+{
+  GFile *file;
+  ArSvg *svg;
+
+  g_return_val_if_fail (filename != NULL, NULL);
+
+  file = g_file_new_for_path (filename);
+  svg = ar_svg_new_from_gfile_sync (file, cancellable, error);
+  g_object_unref (file);
+
+  return svg;
+}
+
+/**
+ * ar_svg_get_font_options:
+ * @svg: a #ArSvg
+ *
+ * Returns the font options set in @svg.
+ * 
+ * Retursn: (transfer none): a #cairo_font_options_t, or %NULL
+ */
+cairo_font_options_t *
+ar_svg_get_font_options (ArSvg *svg)
+{
+  g_return_val_if_fail (AR_IS_SVG (svg), NULL);
+
+  return svg->font_options;
+}
+
+/**
+ * ar_svg_set_font_options:
+ * @svg: a #ArSvg
+ * @font_options: (allow-none): a #cairo_font_options_t, or %NULL
+ *
+ * Sets font options to use when painting to cairo using
+ * ar_svg_render_cairo_sub(). Use %NULL to unset previously set
+ * font options.
  */
 void
 ar_svg_set_font_options (ArSvg *svg,
@@ -278,9 +374,9 @@ ar_svg_set_font_options (ArSvg *svg,
 
 /**
  * ar_svg_get_width:
- * @preimage:
+ * @svg: a #ArSvg
  *
- * Returns: the natural width of the image in @preimage
+ * Returns: the natural width of the image in @svg
  */
 gint
 ar_svg_get_width (ArSvg *svg)
@@ -292,9 +388,9 @@ ar_svg_get_width (ArSvg *svg)
 
 /**
  * ar_svg_get_height:
- * @preimage:
+ * @svg: a #ArSvg
  *
- * Returns: the natural height of the image in @preimage
+ * Returns: the natural height of the image in @svg
  */
 gint
 ar_svg_get_height (ArSvg *svg)

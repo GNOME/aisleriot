@@ -26,7 +26,6 @@
 #include <gtk/gtk.h>
 
 #include "ar-svg.h"
-#include "ar-svg-private.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
 

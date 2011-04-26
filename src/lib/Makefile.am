@@ -50,7 +50,6 @@ if HAVE_RSVG
 libaisleriot_la_SOURCES += \
 	ar-svg.c \
 	ar-svg.h \
-	ar-svg-private.h \
 	ar-card-theme-preimage.c \
 	$(NULL)
 
