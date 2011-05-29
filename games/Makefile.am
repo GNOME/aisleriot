@@ -29,6 +29,7 @@ rules_DATA  = 			\
 	easthaven.scm		\
 	eight_off.scm		\
 	elevator.scm		\
+	eliminator.scm		\
 	escalator.scm		\
 	first_law.scm		\
 	fortress.scm		\

@@ -32,6 +32,7 @@ DOC_ENTITIES = \
 	easthaven.xml \
 	eight_off.xml \
 	elevator.xml \
+	eliminator.xml \
 	escalator.xml \
 	first_law.xml \
 	fortress.xml \
