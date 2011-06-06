@@ -1699,7 +1699,7 @@ game_scm_load_game (void *user_data)
                            scm_from_int (DROPPABLE_LAMBDA),
                            game->lambdas[i]));
   if ((game->features & FEATURE_DEALABLE) &&
-      scm_is_false (game->lambdas[DEALABLE_LAMBDA]))
+      scm_is_false (scm_procedure_p (game->lambdas[DEALABLE_LAMBDA])))
     scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
                scm_list_3 (scm_from_locale_string ("Not a procedure"),
                            scm_from_int (DEALABLE_LAMBDA),
