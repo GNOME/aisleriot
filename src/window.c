@@ -53,7 +53,6 @@
 #include "game.h"
 #include "stats-dialog.h"
 #include "util.h"
-#include "ar-fullscreen-button.h"
 #include "ar-game-chooser.h"
 
 #include "window.h"
