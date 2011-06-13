@@ -63,13 +63,6 @@ endif
 
 endif # HAVE_RSVG
 
-if ENABLE_CARD_THEME_FORMAT_SLICED
-if !HAVE_RSVG
-libaisleriot_la_SOURCES += ar-card-theme-preimage.c
-endif
-libaisleriot_la_SOURCES += ar-card-theme-sliced.c
-endif # ENABLE_CARD_THEME_FORMAT_SLICED
-
 if ENABLE_CARD_THEME_FORMAT_PYSOL
 libaisleriot_la_SOURCES += ar-card-theme-pysol.c
 endif
