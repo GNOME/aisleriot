@@ -24,10 +24,12 @@
 open OUTFILE, "> game-names.h";
 
 opendir(DIR, "../games/");
+@dir = sort(readdir(DIR));
+closedir(DIR);
 
 print OUTFILE "/* This is a generated file; DO NOT EDIT */\n";
 
-while ($_ = readdir(DIR)) {
+foreach $_ (@dir) {
   if (s/^(.)(.*).scm/\u$1$2/) { # Match scm filenames. Upcase first letter.
     s/_(.)/ \u$1/g;             # Replace underscores and following letter
 				# with space and upcase letter.
