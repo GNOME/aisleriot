@@ -23,7 +23,7 @@
 
 open OUTFILE, "> game-names.h";
 
-opendir(DIR, "rules/");
+opendir(DIR, "../games/");
 
 print OUTFILE "/* This is a generated file; DO NOT EDIT */\n";
 
