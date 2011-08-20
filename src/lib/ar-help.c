@@ -72,7 +72,7 @@ ar_help_display_full (GtkWidget *window,
   guint i;
 
   langs = g_get_language_names ();
-  help_dir = ar_runtime_get_directory (AR_RUNTIME_GAME_HELP_DIRECTORY);
+  help_dir = ar_runtime_get_directory (AR_RUNTIME_HELP_DIRECTORY);
 
   help_uri = NULL;
   for (i = 0; langs[i] != NULL; ++i) {
