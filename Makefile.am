@@ -23,6 +23,7 @@ EXTRA_DIST = \
 	autogen.sh \
 	COPYING-DOCS \
 	COPYING.GPL3 \
+	COPYING.LGPL3 \
 	gnome-doc-utils.make \
 	ChangeLog \
 	$(NULL)
