@@ -21,7 +21,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 EXTRA_DIST = \
 	aisleriot.doap \
 	autogen.sh \
-	COPYING-DOCS \
+	COPYING.GFDL \
 	COPYING.GPL3 \
 	COPYING.LGPL3 \
 	ChangeLog \
