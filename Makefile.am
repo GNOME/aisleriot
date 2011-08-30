@@ -24,7 +24,6 @@ EXTRA_DIST = \
 	COPYING-DOCS \
 	COPYING.GPL3 \
 	COPYING.LGPL3 \
-	gnome-doc-utils.make \
 	ChangeLog \
 	$(NULL)
 
@@ -32,7 +31,6 @@ DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
 	intltool-update \
-	gnome-doc-utils.make \
 	$(NULL)
 
 MAINTAINERCLEANFILES = \
@@ -52,7 +50,6 @@ MAINTAINERCLEANFILES = \
 	$(srcdir)/ltmain.sh \
 	$(srcdir)/missing \
 	$(srcdir)/mkinstalldirs \
-	$(srcdir)/gtk-doc.make \
 	$(srcdir)/po/Makefile.in.in \
 	`find "$(srcdir)" -type f -name Makefile.in -print` \
 	$(NULL)

@@ -1,12 +1,10 @@
-include $(top_srcdir)/gnome-doc-utils.make
+@YELP_HELP_RULES@
 
-NULL =
+HELP_LINGUAS = ca de el en_GB es eu fr oc ru sl sr sr@latin sv zh_CN
 
-DOC_LINGUAS = ca de el en_GB es eu fr oc ru sl sr sr@latin sv zh_CN
+HELP_ID = aisleriot
 
-DOC_MODULE = aisleriot
-
-DOC_ENTITIES = \
+HELP_FILES = \
 	accordion.xml \
 	agnes.xml \
 	athena.xml \
@@ -99,12 +97,10 @@ DOC_ENTITIES = \
 	zebra.xml \
 	$(NULL)
 
-DOC_FIGURES = \
+HELP_MEDIA = \
 	figures/camelot-goal.png \
   	figures/clock-rules.png \
 	$(NULL)
-
-dist-hook: doc-dist-hook
 
 dist_man_MANS = sol.6
 
