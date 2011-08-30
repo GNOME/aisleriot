@@ -381,6 +381,7 @@ help_about_cb (GtkAction *action,
     "Alan Horkan <horkana@maths.tcd.ie>",
     "Richard Hoelscher <rah@rahga.com>",
     "Vincent Povirk",
+    "Sapphire Becker",
     NULL
   };
   const char *artists[] = {
