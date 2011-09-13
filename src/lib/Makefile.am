@@ -39,13 +39,6 @@ libaisleriot_la_SOURCES = \
 	$(BUILT_SOURCES) \
 	$(NULL)
 
-if HAVE_CLUTTER
-libaisleriot_la_SOURCES += \
-	ar-card-textures-cache.c \
-	ar-card-textures-cache.h \
-	$(NULL)
-endif # HAVE_CLUTTER
-
 if HAVE_RSVG
 libaisleriot_la_SOURCES += \
 	ar-svg.c \
@@ -89,11 +82,6 @@ libaisleriot_la_CFLAGS = \
 
 libaisleriot_la_LIBADD = \
 	$(AISLERIOT_LIBS)
-
-if HAVE_CLUTTER
-libaisleriot_la_CFLAGS += $(CLUTTER_CFLAGS)
-libaisleriot_la_LIBADD += $(CLUTTER_LIBS)
-endif # HAVE_CLUTTER
 
 gsettingsschema_in_files = org.gnome.Patience.WindowState.gschema.xml.in
 gsettings_SCHEMAS = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
