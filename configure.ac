@@ -146,21 +146,6 @@ AC_ARG_ENABLE([sound],
   [],[enable_sound=yes])
 AC_MSG_RESULT([$enable_sound])
 
-# *******
-# Clutter
-# *******
-
-AC_MSG_CHECKING([whether to enable clutter])
-AC_ARG_WITH([clutter],
-  [AS_HELP_STRING([--with-clutter],[Enable the clutter version of aisleriot (default: disabled)])],
-  [],[with_clutter=no])
-AC_MSG_RESULT([$with_clutter])
-
-if test "$with_clutter" = "yes"; then
-  # Distro packagers: DO NOT ENABLE AISLERIOT/CLUTTER IN YOUR DISTRO PACKAGES, OR ELSE!
-  AC_MSG_NOTICE([Aisleriot/Clutter is experimental; do not enable this for distribution packages!])
-fi
-
 # ******************
 # Card theme formats
 # ******************
@@ -365,28 +350,6 @@ if test "$need_rsvg" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
-
-# Check for Clutter
-
-if test "$with_clutter" = "yes"; then
-  CLUTTER_REQUIRED=1.0.0
-
-  PKG_CHECK_MODULES([CLUTTER],[clutter-1.0 >= $CLUTTER_REQUIRED])
-  AC_SUBST([CLUTTER_CFLAGS])
-  AC_SUBST([CLUTTER_LIBS])
-
-  case "$with_gtk" in
-    3.0) CLUTTER_GTK_API_VERSION=1.0
-         CLUTTER_GTK_REQUIRED=0.91.6
-         ;;
-  esac
-
-  PKG_CHECK_MODULES([CLUTTER_GTK],[clutter-gtk-$CLUTTER_GTK_API_VERSION >= $CLUTTER_GTK_REQUIRED])
-  AC_SUBST([CLUTTER_GTK_CFLAGS])
-  AC_SUBST([CLUTTER_GTK_LIBS])
-fi
-
-AM_CONDITIONAL([HAVE_CLUTTER],[test "$with_clutter" = "yes"])
 
 # GThread
 

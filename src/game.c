@@ -27,10 +27,6 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#ifdef HAVE_CLUTTER
-#include <clutter/clutter.h>
-#endif
-
 #include "ar-debug.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
@@ -243,16 +239,7 @@ clear_slots (AisleriotGame *game,
   for (i = 0; i < n_slots; ++i) {
     ArSlot *slot = game->slots->pdata[i];
 
-#ifdef HAVE_CLUTTER
-    if (slot->slot_renderer) {
-      clutter_actor_destroy (slot->slot_renderer);
-      g_object_unref (slot->slot_renderer);
-    }
-
-    g_byte_array_free (slot->old_cards, TRUE);
-#else
     g_ptr_array_free (slot->card_images, TRUE);
-#endif /* HAVE_CLUTTER */
     g_byte_array_free (slot->cards, TRUE);
 
     g_slice_free (ArSlot, slot);
@@ -660,11 +647,7 @@ cscmi_add_slot (SCM slot_data)
   slot->expanded_down = expanded_down != FALSE;
   slot->expanded_right = expanded_right != FALSE;
 
-#ifdef HAVE_CLUTTER
-  slot->old_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
-#else
   slot->card_images = g_ptr_array_sized_new (SLOT_CARDS_N_PREALLOC);
-#endif
 
   slot->needs_update = TRUE;
 
@@ -2462,41 +2445,3 @@ aisleriot_game_deal_cards (AisleriotGame *game)
   aisleriot_game_end_move (game);
   aisleriot_game_test_end_of_game (game);
 }
-
-#ifdef HAVE_CLUTTER
-
-void
-aisleriot_game_get_card_offset (ArSlot *slot,
-                                guint card_num,
-                                gboolean old_cards,
-                                gint *xoff, gint *yoff)
-{
-  gint n_cards, exposed;
-
-  if (old_cards) {
-    n_cards = (gint) slot->old_cards->len;
-    exposed = (gint) slot->old_exposed;
-  } else {
-    n_cards = (gint) slot->cards->len;
-    exposed = (gint) slot->exposed;
-  }
-
-  if (card_num >= n_cards - exposed) {
-    gint idx = card_num + exposed - n_cards;
-    *xoff = slot->pixeldx * idx;
-    *yoff = slot->pixeldy * idx;
-  } else {
-    *xoff = 0;
-    *yoff = 0;
-  }
-}
-
-void
-aisleriot_game_reset_old_cards (ArSlot *slot)
-{
-  g_byte_array_set_size (slot->old_cards, 0);
-  g_byte_array_append (slot->old_cards, slot->cards->data, slot->cards->len);
-  slot->old_exposed = slot->exposed;
-}
-
-#endif /* HAVE_CLUTTER */

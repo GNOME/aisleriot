@@ -96,61 +96,6 @@ if PLATFORM_WIN32_NATIVE
 sol_LDFLAGS += -mwindows
 endif
 
-if HAVE_CLUTTER
-
-noinst_PROGRAMS = sol-clutter
-
-sol_clutter_SOURCES = \
-	ar-clock.c	\
-	ar-clock.h	\
-	ar-clutter-embed.c \
-	ar-clutter-embed.h \
-	ar-cursor.c	\
-	ar-cursor.h	\
-	ar-game-chooser.c \
-	ar-game-chooser.h \
-	ar-stock.c	\
-	ar-stock.h	\
-	ar-style.c	\
-	ar-style.h	\
-	ar-style-private.h \
-	ar-style-gtk.c	\
-	ar-style-gtk.h	\
-	baize.c		\
-	baize.h		\
-	board.c		\
-	board.h		\
-	card.c          \
-	card.h          \
-	conf.c		\
-	conf.h		\
-	game.c		\
-	game.h		\
-	sol.c		\
-	slot-renderer.c	\
-	slot-renderer.h \
-	stats-dialog.c	\
-	stats-dialog.h	\
-	util.c		\
-	util.h		\
-	window.c	\
-	window.h	\
-	$(NULL)
-
-if ENABLE_DEBUG_UI
-sol_clutter_SOURCES += \
-	prop-editor.c	\
-	prop-editor.h	\
-	$(NULL)
-endif
-
-sol_clutter_CPPFLAGS = $(sol_CPPFLAGS) -DHAVE_CLUTTER
-sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_GTK_CFLAGS) $(CLUTTER_CFLAGS)
-sol_clutter_LDFLAGS = $(sol_LDFLAGS)
-sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_GTK_LIBS) $(CLUTTER_LIBS)
-
-endif # HAVE_CLUTTER
-
 schema_in_files = aisleriot.schemas.in
 if HAVE_GNOME
 schemadir = $(GCONF_SCHEMA_FILE_DIR)

@@ -28,12 +28,6 @@
 
 #include <gtk/gtk.h>
 
-#ifdef HAVE_CLUTTER
-#include <cogl/cogl.h>
-#include <clutter/clutter.h>
-#include <clutter-gtk/clutter-gtk.h>
-#endif
-
 #include "ar-debug.h"
 #include "ar-stock.h"
 #include "ar-runtime.h"
@@ -151,12 +145,6 @@ main_prog (void *closure, int argc, char *argv[])
 #ifdef WITH_SMCLIENT
   g_option_context_add_group (option_context, egg_sm_client_get_option_group ());
 #endif /* WITH_SMCLIENT */
-
-#ifdef HAVE_CLUTTER
-  g_option_context_add_group (option_context, cogl_get_option_group ());
-  g_option_context_add_group (option_context, clutter_get_option_group_without_init ());
-  g_option_context_add_group (option_context, gtk_clutter_get_option_group ());
-#endif /* HAVE_CLUTTER */
 
   retval = g_option_context_parse (option_context, &argc, &argv, &error);
   g_option_context_free (option_context);
