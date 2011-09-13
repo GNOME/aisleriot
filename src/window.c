@@ -39,14 +39,7 @@
 #include "ar-string-utils.h"
 #include "ar-gsettings.h"
 
-#ifdef HAVE_CLUTTER
-#include "ar-clutter-embed.h"
-#include "ar-style.h"
-#include "baize.h"
-#include "board.h"
-#else
 #include "board-noclutter.h"
-#endif
 
 #include "ar-card-theme.h"
 #include "ar-card-themes.h"
@@ -93,13 +86,7 @@ struct _AisleriotWindowPrivate
 {
   AisleriotGame *game;
   ArStyle *board_style;
-#ifdef HAVE_CLUTTER
-  ArClutterEmbed *board;
-  ClutterActor *baize_actor;
-  ClutterActor *board_actor;
-#else
   AisleriotBoard *board;
-#endif
 
   ArCardThemes *theme_manager;
   ArCardTheme *theme;
@@ -901,22 +888,6 @@ sound_toggle_cb (GtkToggleAction *action,
 }
 
 static void
-animations_toggle_cb (GtkToggleAction *action,
-                      AisleriotWindow *window)
-{
-#ifdef HAVE_CLUTTER
-  AisleriotWindowPrivate *priv = window->priv;
-  gboolean enabled;
-
-  enabled = gtk_toggle_action_get_active (action);
-
-  ar_style_set_enable_animations (priv->board_style, enabled);
-  
-  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
-#endif /* HAVE_CLUTTER */
-}
-
-static void
 show_hint_cb (GtkAction *action,
               AisleriotWindow *window)
 {
@@ -1705,12 +1676,13 @@ game_exception_cb (AisleriotGame *game,
   gtk_widget_show (dialog);
 }
 
+#if defined(ENABLE_SOUND)
+
 static void
 settings_changed_cb (GtkSettings *settings,
                      GParamSpec *pspec,
                      AisleriotWindow *window)
 {
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
   AisleriotWindowPrivate *priv = window->priv;
   GtkAction *action;
   gboolean enabled;
@@ -1721,26 +1693,12 @@ settings_changed_cb (GtkSettings *settings,
   else
     name = NULL;
 
-#ifdef HAVE_CLUTTER
-  if (name == NULL || strcmp (name, "gtk-enable-animations") == 0)
-    g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
-  else
-#endif /* HAVE_CLUTTER */
-    enabled = FALSE;
-
-  action = gtk_action_group_get_action (priv->action_group, "Animations");
-  gtk_action_set_visible (action, enabled);
-
-#ifdef ENABLE_SOUND
-  if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0)
+  if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0) {
     g_object_get (settings, "gtk-enable-event-sounds", &enabled, NULL);
-  else
-#endif /* ENABLE_SOUND */
-    enabled = FALSE;
 
-  action = gtk_action_group_get_action (priv->action_group, "Sound");
-  gtk_action_set_visible (action, enabled);
-#endif /* HAVE_CLUTTER || ENABLE_SOUND */
+    action = gtk_action_group_get_action (priv->action_group, "Sound");
+    gtk_action_set_visible (action, enabled);
+  }
 }
 
 static void
@@ -1748,7 +1706,6 @@ screen_changed_cb (GtkWidget *widget,
                    GdkScreen *previous_screen,
                    AisleriotWindow *window)
 {
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
   GdkScreen *screen;
   GtkSettings *settings;
 
@@ -1765,22 +1722,15 @@ screen_changed_cb (GtkWidget *widget,
   if (screen == NULL)
     return;
 
-#ifdef ENABLE_SOUND
   ar_sound_init (screen);
-#endif
 
   settings = gtk_widget_get_settings (widget);
   settings_changed_cb (settings, NULL, window);
-#ifdef HAVE_CLUTTER
-  g_signal_connect (settings, "notify::gtk-enable-animations",
-                    G_CALLBACK (settings_changed_cb), window);
-#endif
-#ifdef ENABLE_SOUND
   g_signal_connect (settings, "notify::gtk-enable-event-sounds",
                     G_CALLBACK (settings_changed_cb), window);
-#endif
-#endif /* HAVE_CLUTTER || ENABLE_SOUND */
 }
+
+#endif /* ENABLE_SOUND */
 
 static void
 board_status_message_cb (AisleriotBoard *board,
@@ -1795,35 +1745,6 @@ board_status_message_cb (AisleriotBoard *board,
     gtk_statusbar_push (priv->statusbar, priv->board_message_id, status_message);
   }
 }
-
-#ifdef HAVE_CLUTTER
-
-static void
-board_cursor_cb (AisleriotBoard *board,
-                 int cursor_type,
-                 ArClutterEmbed *embed)
-{
-  ar_clutter_embed_set_cursor (embed, (ArCursorType) cursor_type);
-}
-
-static void
-board_error_bell_cb (AisleriotBoard *board,
-                     ArClutterEmbed *embed)
-{
-  gtk_widget_error_bell (GTK_WIDGET (embed));
-}
-
-static void
-embed_size_allocate_cb (ArClutterEmbed *embed,
-                        GtkAllocation *allocation,
-                        AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-
-  clutter_actor_set_size (priv->board_actor, allocation->width, allocation->height);
-}
-
-#endif /* HAVE_CLUTTER */
 
 /* Class implementation */
 
@@ -1993,10 +1914,6 @@ aisleriot_window_init (AisleriotWindow *window)
       N_("Whether or not to play event sounds"),
       G_CALLBACK (sound_toggle_cb),
       FALSE /* not active by default */ },
-   { "Animations", NULL, N_("_Animations"), NULL,
-      N_("Whether or not to animate card moves"),
-      G_CALLBACK (animations_toggle_cb),
-      FALSE /* not active by default */ },
   };
 
   static const char names[][16] = {
@@ -2021,9 +1938,6 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *label, *time_box;
   GError *error = NULL;
-#ifdef HAVE_CLUTTER
-  ClutterContainer *stage;
-#endif
 
   g_assert (G_N_ELEMENTS (names) == LAST_ACTION);
 
@@ -2037,34 +1951,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->board_style = ar_style_new ();
 
-#ifdef HAVE_CLUTTER
-  priv->board = ar_clutter_embed_new (priv->board_style);
-
-  priv->baize_actor = aisleriot_baize_new ();
-
-  stage = CLUTTER_CONTAINER (gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->board)));
-  clutter_container_add (stage, priv->baize_actor, NULL);
-  /* FIXMEchpe: how to ensure this is ALWAYS the lowest actor? */
-  clutter_actor_lower_bottom (priv->baize_actor);
-
-  priv->board_actor = aisleriot_board_new (priv->board_style, priv->game);
-  clutter_container_add (stage, priv->board_actor, NULL);
-
-  /* FIXMEchpe */
-  clutter_stage_set_key_focus (CLUTTER_STAGE (stage), priv->board_actor);
-
-  g_signal_connect_after (priv->board, "size-allocate",
-                          G_CALLBACK (embed_size_allocate_cb), window);
-
-  g_signal_connect (priv->board_actor, "request-cursor",
-                    G_CALLBACK (board_cursor_cb), priv->board);
-  g_signal_connect (priv->board_actor, "error-bell",
-                    G_CALLBACK (board_error_bell_cb), priv->board);
-
-  /* FIXMEchpe: unref baize & board_actor here? */
-#else
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->board_style, priv->game));
-#endif /* HAVE_CLUTTER */
 
   theme_name = ar_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
   theme = ar_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
@@ -2115,13 +2002,8 @@ aisleriot_window_init (AisleriotWindow *window)
 
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
 
-#ifdef HAVE_CLUTTER
-  g_signal_connect (priv->board_actor, "status-message",
-                    G_CALLBACK (board_status_message_cb), window);
-#else
   g_signal_connect (priv->board, "status-message",
                     G_CALLBACK (board_status_message_cb), window);
-#endif
 
   gtk_window_set_has_resize_grip (GTK_WINDOW (window), TRUE);
 
@@ -2218,19 +2100,12 @@ aisleriot_window_init (AisleriotWindow *window)
 
   set_fullscreen_actions (window, FALSE);
 
-#ifdef HAVE_CLUTTER
-  action = gtk_action_group_get_action (priv->action_group, "Animations");
-  gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), NULL));
-
-#endif /* HAVE_CLUTTER */
-
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
+#if defined(ENABLE_SOUND)
   /* Set the action visibility and listen for animation and sound mode changes */
   screen_changed_cb (GTK_WIDGET (window), NULL, window);
   g_signal_connect (window, "screen-changed",
                     G_CALLBACK (screen_changed_cb), window);
-#endif /* HAVE_CLUTTER || ENABLE_SOUND */
+#endif /* ENABLE_SOUND */
 
   /* Now set up the widgets */
   main_vbox = gtk_vbox_new (FALSE, 0);
@@ -2286,12 +2161,12 @@ aisleriot_window_dispose (GObject *object)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (object);
   AisleriotWindowPrivate *priv = window->priv;
-  
-#ifdef HAVE_CLUTTER
+
+#ifdef ENABLE_SOUND
   g_signal_handlers_disconnect_by_func (gtk_widget_get_settings (GTK_WIDGET (window)),
                                         G_CALLBACK (settings_changed_cb),
                                         window);
-#endif /* HAVE_CLUTTER */
+#endif /* ENABLE_SOUND */
 
   if (priv->hint_dialog) {
     gtk_widget_destroy (priv->hint_dialog);
@@ -2330,10 +2205,6 @@ aisleriot_window_finalize (GObject *object)
 {
   AisleriotWindow *window = AISLERIOT_WINDOW (object);
   AisleriotWindowPrivate *priv = window->priv;
-
-#ifdef HAVE_CLUTTER
-  g_object_unref (priv->board_style);
-#endif /* HAVE_CLUTTER */
 
   if (priv->theme) {
     g_object_unref (priv->theme);

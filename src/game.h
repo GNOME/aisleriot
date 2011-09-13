@@ -22,10 +22,6 @@
 
 #include "ar-card.h"
 
-#ifdef HAVE_CLUTTER
-#include <clutter/clutter.h>
-#endif
-
 G_BEGIN_DECLS
 
 /* A slot */
@@ -45,11 +41,6 @@ typedef struct {
   ArSlotType type;
 
   GByteArray *cards;
-#ifdef HAVE_CLUTTER
-  /* The old state of the cards so we can check for differences */
-  guint old_exposed;
-  GByteArray *old_cards;
-#endif /* HAVE_CLUTTER */
 
   /* the topmost |exposed| cards are shown on the pile */
   guint exposed;
@@ -71,13 +62,8 @@ typedef struct {
   /* The location in pixel units. Filled in by the scaling code. */
   GdkRectangle rect;
 
-#ifdef HAVE_CLUTTER
-  /* Actor for the slot */
-  ClutterActor *slot_renderer;
-#else
   /* GdkPixbuf* or GdkPixmap*, no reference owned */
   GPtrArray *card_images;
-#endif /* HAVE_CLUTTER */
 
   guint expanded_right : 1;
   guint expanded_down : 1;
