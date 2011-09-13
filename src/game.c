@@ -662,7 +662,7 @@ static SCM
 scm_gettext (SCM message)
 {
   char *input, *output;
-  SCM translated;
+  SCM translated = SCM_UNDEFINED;
 
   if (!scm_is_string (message))
     return message;
