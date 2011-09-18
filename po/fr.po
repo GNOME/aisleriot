@@ -16,7 +16,7 @@
 # Pierre Slamich <pierre.slamich@gmail.com>, 2006.
 # Marc Lorber <linux-lorber@club-internet.fr>, 2006
 # Pierre Slamich <pierre.slamich@gmail.com>, 2006.
-# Claude Paroz <claude@2xlibre.net>, 2007-2010.
+# Claude Paroz <claude@2xlibre.net>, 2007-2011.
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007-2008.
 # Didier Vidal <didier-devel@melix.net>, 2007.
 # Pierre Lemaire <pierre.lemaire@kamick.org>, 2008.
@@ -27,8 +27,8 @@ msgstr ""
 "Project-Id-Version: aisleriot HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-05-29 20:50+0000\n"
-"PO-Revision-Date: 2011-06-18 16:49+0200\n"
+"POT-Creation-Date: 2011-09-18 19:56+0000\n"
+"PO-Revision-Date: 2011-09-18 22:00+0200\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,8 +37,8 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:170 ../src/window.c:409
-#: ../src/window.c:413
+#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:158 ../src/window.c:388
+#: ../src/window.c:392
 msgid "FreeCell Solitaire"
 msgstr "Solitaire FreeCell"
 
@@ -131,7 +131,7 @@ msgid "Whether or not to show the toolbar"
 msgstr "Indique s'il faut afficher ou non la barre d'outils"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:187 ../src/window.c:2304
+#: ../src/ar-game-chooser.c:187 ../src/window.c:2180
 msgid "Select Game"
 msgstr "Sélectionnez un jeu"
 
@@ -140,71 +140,71 @@ msgid "_Select"
 msgstr "_Sélectionner"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1359
+#: ../src/game.c:1342
 msgctxt "slot type"
 msgid "foundation"
 msgstr "fondation"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1363
+#: ../src/game.c:1346
 msgctxt "slot type"
 msgid "reserve"
 msgstr "réserve"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1367
+#: ../src/game.c:1350
 msgctxt "slot type"
 msgid "stock"
 msgstr "pioche"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1371
+#: ../src/game.c:1354
 msgctxt "slot type"
 msgid "tableau"
 msgstr "tableau"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1375
+#: ../src/game.c:1358
 msgctxt "slot type"
 msgid "waste"
 msgstr "défausse"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1407
+#: ../src/game.c:1390
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s sur la fondation"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1411
+#: ../src/game.c:1394
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s sur la réserve"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1415
+#: ../src/game.c:1398
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s sur la pioche"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1419
+#: ../src/game.c:1402
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s sur le tableau"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1423
+#: ../src/game.c:1406
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s sur la défausse"
 
-#: ../src/game.c:2068
+#: ../src/game.c:2051
 msgid "This game does not have hint support yet."
 msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 
@@ -212,17 +212,17 @@ msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2103 ../src/game.c:2129
+#: ../src/game.c:2086 ../src/game.c:2112
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Déplacer %s sur %s."
 
-#: ../src/game.c:2150
+#: ../src/game.c:2133
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Vous recherchez un %s."
 
-#: ../src/game.c:2154
+#: ../src/game.c:2137
 msgid "This game is unable to provide a hint."
 msgstr "Ce jeu ne peut fournir de suggestion."
 
@@ -233,79 +233,6 @@ msgstr "Ce jeu ne peut fournir de suggestion."
 #. freely, literally, or not at all, at your option.
 #.
 #: ../src/game-names.h:7
-msgid "Peek"
-msgstr "Coup d'œil"
-
-# « Ce vieux ... », mais je ne sais pas trop comment traduire
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:14
-msgid "Auld Lang Syne"
-msgstr "Auld Lang Syne"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:21
-msgid "Fortunes"
-msgstr "Fortunes"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:28
-msgid "Seahaven"
-msgstr "L'asile maritime"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:35
-msgid "King Albert"
-msgstr "Le Roi Albert"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:42
-msgid "First Law"
-msgstr "Première loi"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:49
-msgid "Straight Up"
-msgstr "Droit debout"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:56
-msgid "Jumbo"
-msgstr "Jumbo"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:63
 msgid "Accordion"
 msgstr "Accordéon"
 
@@ -314,162 +241,7 @@ msgstr "Accordéon"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:70
-msgid "Ten Across"
-msgstr "À travers dix"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:77
-msgid "Plait"
-msgstr "Tresse"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:84
-msgid "Lady Jane"
-msgstr "Mademoiselle Jeanne"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:91
-msgid "Gypsy"
-msgstr "Bohémien"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:98
-msgid "Neighbor"
-msgstr "Le voisin"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:105
-msgid "Jamestown"
-msgstr "Jamestown"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:112
-msgid "Osmosis"
-msgstr "Osmose"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:119
-msgid "Kings Audience"
-msgstr "L'audience des rois"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:126
-msgid "Glenwood"
-msgstr "La Forêt de Glen"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:133
-msgid "Gay Gordons"
-msgstr "Les joyeux gordons"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:140
-msgid "Monte Carlo"
-msgstr "Monte-Carlo"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:147
-msgid "Kansas"
-msgstr "Kansas"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:154
-msgid "Camelot"
-msgstr "Camelot"
-
-# Attention, il y a "Fourteen" et "Quatorze", éviter de traduire les
-# deux jeux de la même manière
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:161
-msgid "Fourteen"
-msgstr "Fourteen (14)"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:168
-msgid "Scorpion"
-msgstr "Scorpion"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:175
-msgid "Isabel"
-msgstr "Isabelle"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:182
-msgid "Escalator"
-msgstr "L'escalier roulant"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:189
+#: ../src/game-names.h:14
 msgid "Agnes"
 msgstr "Agnès"
 
@@ -478,215 +250,26 @@ msgstr "Agnès"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:196
-msgid "Bristol"
-msgstr "Carte de visite"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:203
-msgid "Quatorze"
-msgstr "Quatorze"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:210
-msgid "Bear River"
-msgstr "La rivière des ours"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:217
-msgid "Gold Mine"
-msgstr "La mine d'or"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:224
+#: ../src/game-names.h:21
 msgid "Athena"
 msgstr "Athéna"
 
+# « Ce vieux ... », mais je ne sais pas trop comment traduire
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:231
-msgid "Spiderette"
-msgstr "La petite araignée"
+#: ../src/game-names.h:28
+msgid "Auld Lang Syne"
+msgstr "Auld Lang Syne"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:238
-msgid "Chessboard"
-msgstr "Plateau d'échecs"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:245
-msgid "Backbone"
-msgstr "Colonne vertébrale"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:252
-msgid "Yukon"
-msgstr "Yukon"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:259
-msgid "Union Square"
-msgstr "Union Square"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:266
-msgid "Eight Off"
-msgstr "Huit en dehors"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:273
-msgid "Napoleons Tomb"
-msgstr "Le tombeau de Napoléon"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:280
-msgid "Forty Thieves"
-msgstr "Les quarante voleurs"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:287
-msgid "Streets And Alleys"
-msgstr "Rue et ruelles"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:294
-msgid "Maze"
-msgstr "Le labyrinthe"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:301
-msgid "Clock"
-msgstr "Horloge"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:308
-msgid "Pileon"
-msgstr "Pileon"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:315
-msgid "Canfield"
-msgstr "Champ de boîtes"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:322
-msgid "Thirteen"
-msgstr "Thirteen (13)"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:329
-msgid "Bakers Game"
-msgstr "Le jeu des boulangers"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:336
-msgid "Triple Peaks"
-msgstr "Jeu de tuiles"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:343
-msgid "Easthaven"
-msgstr "L'asile de l'est"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../src/game-names.h:350 ../games/terrace.scm.h:20
-msgid "Terrace"
-msgstr "Terrasse"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:357
+#: ../src/game-names.h:35
 msgid "Aunt Mary"
 msgstr "Tante Marie"
 
@@ -695,187 +278,16 @@ msgstr "Tante Marie"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:364
-msgid "Carpet"
-msgstr "Tapis"
+#: ../src/game-names.h:42
+msgid "Backbone"
+msgstr "Colonne vertébrale"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:371
-msgid "Sir Tommy"
-msgstr "Sir Tommy"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:378
-msgid "Diamond Mine"
-msgstr "La mine de diamants"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:385
-msgid "Yield"
-msgstr "Rendement"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:392
-msgid "Labyrinth"
-msgstr "Labyrinthe"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:399
-msgid "Thieves"
-msgstr "Les Voleurs"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:406
-msgid "Saratoga"
-msgstr "Saratoga"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:413
-msgid "Cruel"
-msgstr "Cruel"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:420
-msgid "Block Ten"
-msgstr "Bloc 10"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:427
-msgid "Will O The Wisp"
-msgstr "La volonté de wisp"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:434
-msgid "Odessa"
-msgstr "Odessa"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:441
-msgid "Eagle Wing"
-msgstr "L'aile de l'aigle"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:448
-msgid "Treize"
-msgstr "Treize"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:455
-msgid "Zebra"
-msgstr "Zèbre"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:462
-msgid "Cover"
-msgstr "Couvercle"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:469
-msgid "Elevator"
-msgstr "L'ascenseur"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:476
-msgid "Fortress"
-msgstr "Forteresse"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:483
-msgid "Giant"
-msgstr "Le géant"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:490
-msgid "Spider"
-msgstr "L'araignée"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:497
-msgid "Gaps"
-msgstr "Gaps"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:504
+#: ../src/game-names.h:49
 msgid "Bakers Dozen"
 msgstr "Les boulangers"
 
@@ -884,142 +296,25 @@ msgstr "Les boulangers"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:511
-msgid "Whitehead"
-msgstr "Tête blanche"
+#: ../src/game-names.h:56
+msgid "Bakers Game"
+msgstr "Le jeu des boulangers"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:518
-msgid "Freecell"
-msgstr "Freecell"
+#: ../src/game-names.h:63
+msgid "Bear River"
+msgstr "La rivière des ours"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:525
-msgid "Helsinki"
-msgstr "Helsinki"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:532
-msgid "Spider Three Decks"
-msgstr "L'araignée à trois paquets"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:539
-msgid "Scuffle"
-msgstr "Scuffle"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:546
-msgid "Poker"
-msgstr "Poker"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:553
-msgid "Klondike Three Decks"
-msgstr "Klondike à trois paquets"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:560
-msgid "Valentine"
-msgstr "Valentine"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:567
-msgid "Royal East"
-msgstr "Est Royal"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:574
-msgid "Thumb And Pouch"
-msgstr "Pouce et poche"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:581
-msgid "Klondike"
-msgstr "Klondike"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:588
-msgid "Doublets"
-msgstr "Doublets"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:595
-msgid "Template"
-msgstr "Modèle"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:602
-msgid "Golf"
-msgstr "Golf"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:609
-msgid "Westhaven"
-msgstr "L'asile de l'ouest"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:616
+#: ../src/game-names.h:70
 msgid "Beleaguered Castle"
 msgstr "Le château assiégé"
 
@@ -1028,40 +323,763 @@ msgstr "Le château assiégé"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:623
+#: ../src/game-names.h:77
+msgid "Block Ten"
+msgstr "Bloc 10"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:84
+msgid "Bristol"
+msgstr "Carte de visite"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:91
+msgid "Camelot"
+msgstr "Camelot"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:98
+msgid "Canfield"
+msgstr "Champ de boîtes"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:105
+msgid "Carpet"
+msgstr "Tapis"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:112
+msgid "Chessboard"
+msgstr "Plateau d'échecs"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:119
+msgid "Clock"
+msgstr "Horloge"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:126
+msgid "Cover"
+msgstr "Couvercle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:133
+msgid "Cruel"
+msgstr "Cruel"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:140
+msgid "Diamond Mine"
+msgstr "La mine de diamants"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:147
+msgid "Doublets"
+msgstr "Doublets"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:154
+msgid "Eagle Wing"
+msgstr "L'aile de l'aigle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:161
+msgid "Easthaven"
+msgstr "L'asile de l'est"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:168
+msgid "Eight Off"
+msgstr "Huit en dehors"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:175
+msgid "Elevator"
+msgstr "L'ascenseur"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:182
+msgid "Eliminator"
+msgstr "Éliminateur"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:189
+msgid "Escalator"
+msgstr "L'escalier roulant"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:196
+msgid "First Law"
+msgstr "Première loi"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:203
+msgid "Fortress"
+msgstr "Forteresse"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:210
+msgid "Fortunes"
+msgstr "Fortunes"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:217
+msgid "Forty Thieves"
+msgstr "Les quarante voleurs"
+
+# Attention, il y a "Fourteen" et "Quatorze", éviter de traduire les
+# deux jeux de la même manière
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:224
+msgid "Fourteen"
+msgstr "Fourteen (14)"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:231
+msgid "Freecell"
+msgstr "Freecell"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:238
+msgid "Gaps"
+msgstr "Gaps"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:245
+msgid "Gay Gordons"
+msgstr "Les joyeux gordons"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:252
+msgid "Giant"
+msgstr "Le géant"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:259
+msgid "Glenwood"
+msgstr "La Forêt de Glen"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:266
+msgid "Gold Mine"
+msgstr "La mine d'or"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:273
+msgid "Golf"
+msgstr "Golf"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:280
+msgid "Gypsy"
+msgstr "Bohémien"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:287
+msgid "Helsinki"
+msgstr "Helsinki"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:294
 msgid "Hopscotch"
 msgstr "Hopscotch"
 
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:301
+msgid "Isabel"
+msgstr "Isabelle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:308
+msgid "Jamestown"
+msgstr "Jamestown"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:315
+msgid "Jumbo"
+msgstr "Jumbo"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:322
+msgid "Kansas"
+msgstr "Kansas"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:329
+msgid "King Albert"
+msgstr "Le Roi Albert"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:336
+msgid "Kings Audience"
+msgstr "L'audience des rois"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:343
+msgid "Klondike"
+msgstr "Klondike"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:350
+msgid "Klondike Three Decks"
+msgstr "Klondike à trois paquets"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:357
+msgid "Labyrinth"
+msgstr "Labyrinthe"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:364
+msgid "Lady Jane"
+msgstr "Mademoiselle Jeanne"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:371
+msgid "Maze"
+msgstr "Le labyrinthe"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:378
+msgid "Monte Carlo"
+msgstr "Monte-Carlo"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:385
+msgid "Napoleons Tomb"
+msgstr "Le tombeau de Napoléon"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:392
+msgid "Neighbor"
+msgstr "Le voisin"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:399
+msgid "Odessa"
+msgstr "Odessa"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:406
+msgid "Osmosis"
+msgstr "Osmose"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:413
+msgid "Peek"
+msgstr "Coup d'œil"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:420
+msgid "Pileon"
+msgstr "Pileon"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:427
+msgid "Plait"
+msgstr "Tresse"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:434
+msgid "Poker"
+msgstr "Poker"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:441
+msgid "Quatorze"
+msgstr "Quatorze"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:448
+msgid "Royal East"
+msgstr "Est Royal"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:455
+msgid "Saratoga"
+msgstr "Saratoga"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:462
+msgid "Scorpion"
+msgstr "Scorpion"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:469
+msgid "Scuffle"
+msgstr "Scuffle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:476
+msgid "Seahaven"
+msgstr "L'asile maritime"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:483
+msgid "Sir Tommy"
+msgstr "Sir Tommy"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:490
+msgid "Sol"
+msgstr "Sol"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:497
+msgid "Spider"
+msgstr "L'araignée"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:504
+msgid "Spider Three Decks"
+msgstr "L'araignée à trois paquets"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:511
+msgid "Spiderette"
+msgstr "La petite araignée"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:518
+msgid "Straight Up"
+msgstr "Droit debout"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:525
+msgid "Streets And Alleys"
+msgstr "Rue et ruelles"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:532
+msgid "Template"
+msgstr "Modèle"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:539
+msgid "Ten Across"
+msgstr "À travers dix"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../src/game-names.h:546 ../games/terrace.scm.h:20
+msgid "Terrace"
+msgstr "Terrasse"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:553
+msgid "Thieves"
+msgstr "Les Voleurs"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:560
+msgid "Thirteen"
+msgstr "Thirteen (13)"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:567
+msgid "Thumb And Pouch"
+msgstr "Pouce et poche"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:574
+msgid "Treize"
+msgstr "Treize"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:581
+msgid "Triple Peaks"
+msgstr "Jeu de tuiles"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:588
+msgid "Union Square"
+msgstr "Union Square"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:595
+msgid "Valentine"
+msgstr "Valentine"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:602
+msgid "Westhaven"
+msgstr "L'asile de l'ouest"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:609
+msgid "Whitehead"
+msgstr "Tête blanche"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:616
+msgid "Will O The Wisp"
+msgstr "La volonté de wisp"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:623
+msgid "Yield"
+msgstr "Rendement"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:630
+msgid "Yukon"
+msgstr "Yukon"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:637
+msgid "Zebra"
+msgstr "Zèbre"
+
 #. String reserve
-#: ../src/sol.c:53
+#: ../src/sol.c:47
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:54
+#: ../src/sol.c:48
 msgid "GNOME Solitaire"
 msgstr "Solitaire GNOME"
 
-#: ../src/sol.c:55
+#: ../src/sol.c:49
 msgid "About Solitaire"
 msgstr "À propos de Solitaire"
 
-#: ../src/sol.c:118
+#: ../src/sol.c:112
 msgid "Select the game type to play"
 msgstr "Sélectionnez le type de jeu à jouer"
 
-#: ../src/sol.c:118
+#: ../src/sol.c:112
 msgid "NAME"
 msgstr "NOM"
 
-#: ../src/sol.c:120
+#: ../src/sol.c:114
 msgid "Select the game number"
 msgstr "Sélectionnez le numéro du jeu"
 
-#: ../src/sol.c:120
+#: ../src/sol.c:114
 msgid "NUMBER"
 msgstr "NOMBRE"
 
-#: ../src/sol.c:170 ../src/window.c:414 ../src/window.c:1882
+#: ../src/sol.c:158 ../src/window.c:393 ../src/window.c:1826
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1141,40 +1159,40 @@ msgstr "N/D"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/util.c:86 ../src/util.c:90 ../src/lib/ar-help.c:147
+#: ../src/util.c:86 ../src/util.c:90 ../src/lib/ar-help.c:146
 #, c-format
 msgid "Could not show help for “%s”"
 msgstr "Impossible d'afficher l'aide de « %s »"
 
-#: ../src/window.c:221
+#: ../src/window.c:207
 msgid "Congratulations, you have won!"
 msgstr "Félicitations, vous avez gagné !"
 
-#: ../src/window.c:225
+#: ../src/window.c:211
 msgid "There are no more moves"
 msgstr "Il n'y a plus de déplacement possible"
 
-#: ../src/window.c:366
+#: ../src/window.c:344
 msgid "Main game:"
 msgstr "Jeu principal :"
 
-#: ../src/window.c:374
+#: ../src/window.c:352
 msgid "Card games:"
 msgstr "Jeux de cartes :"
 
-#: ../src/window.c:388
+#: ../src/window.c:367
 msgid "Card themes:"
 msgstr "Thèmes de cartes :"
 
-#: ../src/window.c:416
+#: ../src/window.c:395
 msgid "About FreeCell Solitaire"
 msgstr "À propos du solitaire FreeCell"
 
-#: ../src/window.c:417
+#: ../src/window.c:396
 msgid "About AisleRiot"
 msgstr "À propos de AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:400
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1182,7 +1200,7 @@ msgstr ""
 "AisleRiot fournit un système basé sur les règles du solitaire et permet de "
 "jouer à de nombreuses parties différentes."
 
-#: ../src/window.c:430
+#: ../src/window.c:409
 msgid "translator-credits"
 msgstr ""
 "Christophe Merlet <redfox@redfoxcenter.org>\n"
@@ -1197,16 +1215,16 @@ msgstr ""
 "Didier Vidal <didier-devel@melix.net>\n"
 "Pierre Lemaire <pierre.lemaire@kamick.org>"
 
-#: ../src/window.c:434
+#: ../src/window.c:413
 msgid "GNOME Games web site"
 msgstr "Site Web des jeux GNOME"
 
-#: ../src/window.c:1290
+#: ../src/window.c:1251
 #, c-format
 msgid "Play “%s”"
 msgstr "Jouer à « %s »"
 
-#: ../src/window.c:1451
+#: ../src/window.c:1412
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Afficher les cartes avec le thème « %s »"
@@ -1215,181 +1233,173 @@ msgstr "Afficher les cartes avec le thème « %s »"
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../src/window.c:1518
+#: ../src/window.c:1479
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../src/window.c:1756
+#: ../src/window.c:1717
 msgid "A scheme exception occurred"
 msgstr "Une exception Scheme s'est produite"
 
-#: ../src/window.c:1759
+#: ../src/window.c:1720
 msgid "Please report this bug to the developers."
 msgstr "Veuillez signaler cette anomalie aux développeurs."
 
-#: ../src/window.c:1765
+#: ../src/window.c:1726
 msgid "_Don't report"
 msgstr "Ne _pas signaler"
 
-#: ../src/window.c:1766
+#: ../src/window.c:1727
 msgid "_Report"
 msgstr "_Signaler"
 
-#: ../src/window.c:1880
+#: ../src/window.c:1824
 msgid "Freecell Solitaire"
 msgstr "Solitaire Freecell"
 
 #. Menu actions
-#: ../src/window.c:2000
+#: ../src/window.c:1915
 msgid "_Game"
 msgstr "_Jeu"
 
-#: ../src/window.c:2001
+#: ../src/window.c:1916
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1917
 msgid "_Control"
 msgstr "_Mouvement"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1919
 msgid "_Help"
 msgstr "Aid_e"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1924
 msgid "Start a new game"
 msgstr "Commence une nouvelle partie"
 
-#: ../src/window.c:2012
+#: ../src/window.c:1927
 msgid "Restart the game"
 msgstr "Recommence la partie"
 
-#: ../src/window.c:2014
+#: ../src/window.c:1929
 msgid "_Select Game…"
 msgstr "_Sélectionner un jeu…"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1931
 msgid "Play a different game"
 msgstr "Joue à un autre jeu"
 
-#: ../src/window.c:2018
+#: ../src/window.c:1933
 msgid "_Recently Played"
 msgstr "_Parties récemment jouées"
 
-#: ../src/window.c:2019
+#: ../src/window.c:1934
 msgid "S_tatistics"
 msgstr "_Statistiques"
 
-#: ../src/window.c:2020
+#: ../src/window.c:1935
 msgid "Show gameplay statistics"
 msgstr "Affiche les statistiques du jeu"
 
-#: ../src/window.c:2023
+#: ../src/window.c:1938
 msgid "Close this window"
 msgstr "Ferme cette fenêtre"
 
-#: ../src/window.c:2026
+#: ../src/window.c:1941
 msgid "Undo the last move"
 msgstr "Annule le dernier mouvement"
 
-#: ../src/window.c:2029
+#: ../src/window.c:1944
 msgid "Redo the undone move"
 msgstr "Rétablit le mouvement annulé"
 
-#: ../src/window.c:2032
+#: ../src/window.c:1947
 msgid "Deal next card or cards"
 msgstr "Distribue la ou les cartes suivantes"
 
-#: ../src/window.c:2035
+#: ../src/window.c:1950
 msgid "Get a hint for your next move"
 msgstr "Affiche une astuce pour votre prochain coup"
 
-#: ../src/window.c:2038
+#: ../src/window.c:1953
 msgid "View help for Aisleriot"
 msgstr "Affiche l'aide de Aisleriot"
 
-#: ../src/window.c:2042
+#: ../src/window.c:1957
 msgid "View help for this game"
 msgstr "Affiche l'aide pour ce jeu"
 
-#: ../src/window.c:2045
+#: ../src/window.c:1960
 msgid "About this game"
 msgstr "À propos de ce jeu"
 
-#: ../src/window.c:2047
+#: ../src/window.c:1962
 msgid "Install card themes…"
 msgstr "Installer des thèmes de cartes..."
 
-#: ../src/window.c:2048
+#: ../src/window.c:1963
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Installe de nouveaux thèmes de cartes à partir des dépôts de paquets de la "
 "distribution"
 
-#: ../src/window.c:2054
+#: ../src/window.c:1969
 msgid "_Card Style"
 msgstr "Style des _cartes"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2003
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2004
 msgid "Show or hide the toolbar"
 msgstr "Affiche ou masque la barre d'outils"
 
-#: ../src/window.c:2093
+#: ../src/window.c:2008
 msgid "_Statusbar"
 msgstr "_Barre d'état"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2009
 msgid "Show or hide statusbar"
 msgstr "Affiche ou masque la barre d'état"
 
-#: ../src/window.c:2098
+#: ../src/window.c:2013
 msgid "_Click to Move"
 msgstr "_Cliquer pour déplacer"
 
-#: ../src/window.c:2099
+#: ../src/window.c:2014
 msgid "Pick up and drop cards by clicking"
 msgstr "Permet de choisir et de placer des cartes en cliquant"
 
-#: ../src/window.c:2103
+#: ../src/window.c:2018
 msgid "_Sound"
 msgstr "_Son"
 
-#: ../src/window.c:2104
+#: ../src/window.c:2019
 msgid "Whether or not to play event sounds"
 msgstr "Indique s'il faut jouer ou non les sons d'événements"
 
-#: ../src/window.c:2109
-msgid "_Animations"
-msgstr "_Animations"
-
-#: ../src/window.c:2110
-msgid "Whether or not to animate card moves"
-msgstr "Indique s'il faut animer ou non les mouvements de cartes"
-
-#: ../src/window.c:2328
+#: ../src/window.c:2199
 msgid "Score:"
 msgstr "Score :"
 
-#: ../src/window.c:2340
+#: ../src/window.c:2211
 msgid "Time:"
 msgstr "Durée :"
 
-#: ../src/window.c:2638
+#: ../src/window.c:2498
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Impossible de lancer le jeu « %s »"
 
-#: ../src/window.c:2651
+#: ../src/window.c:2511
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot ne peut pas trouver la dernière partie que vous avez jouée."
 
-#: ../src/window.c:2652
+#: ../src/window.c:2512
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1499,7 +1509,7 @@ msgstr ""
 "licenses/>."
 
 #. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../src/lib/ar-help.c:109
+#: ../src/lib/ar-help.c:108
 #, c-format
 msgid "Help file “%s.%s” not found"
 msgstr "Le fichier d'aide « %s.%s » est introuvable"
