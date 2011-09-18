@@ -186,7 +186,7 @@ game_over_dialog_response_cb (GtkWidget *dialog,
       aisleriot_game_restart_game (priv->game);
       break;
     case RESPONSE_NEW_GAME:
-      aisleriot_game_new_game (priv->game, NULL);
+      aisleriot_game_new_game (priv->game);
       break;
     case GTK_RESPONSE_CLOSE:
       gtk_widget_destroy (GTK_WIDGET (window)); /* this will quit */
@@ -199,7 +199,7 @@ game_over_dialog_response_cb (GtkWidget *dialog,
        * thing to do.
        */
       if (game_won) {
-        aisleriot_game_new_game (priv->game, NULL);
+        aisleriot_game_new_game (priv->game);
       } else {
         aisleriot_game_undo_move (priv->game);
       }
@@ -320,7 +320,7 @@ new_game_cb (GtkAction *action,
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-  aisleriot_game_new_game (priv->game, NULL);
+  aisleriot_game_new_game (priv->game);
 
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
 }
@@ -648,7 +648,7 @@ debug_cycle_timeout_cb (AisleriotWindow *window)
     return FALSE;
 
   game_file = data->current_game->data;  
-  aisleriot_window_set_game (data->window, game_file, 0);
+  aisleriot_window_set_game (data->window, game_file, NULL);
 
   return TRUE;
 }
@@ -671,7 +671,7 @@ debug_game_first (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -685,7 +685,7 @@ debug_game_last (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -704,7 +704,7 @@ debug_game_next (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -723,7 +723,7 @@ debug_game_prev (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, 0);
+  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -737,6 +737,7 @@ debug_choose_seed_response_cb (GtkWidget *dialog,
     const char *text;
     char *endptr;
     guint seed;
+    GRand *rand;
 
     entry = g_object_get_data (G_OBJECT (dialog), "entry");
     text = gtk_entry_get_text (entry);
@@ -744,7 +745,9 @@ debug_choose_seed_response_cb (GtkWidget *dialog,
     errno = 0;
     seed = g_ascii_strtoull (text, &endptr, 10);
     if (errno == 0 && endptr != text) {
-      aisleriot_game_new_game (priv->game, &seed);
+      rand = g_rand_new_with_seed (seed);
+
+      aisleriot_game_new_game_with_rand (priv->game, rand /* adopts */);
 
       gtk_widget_grab_focus (GTK_WIDGET (priv->board));
     }
@@ -757,9 +760,7 @@ static void
 debug_choose_seed_cb (GtkAction *action,
                       AisleriotWindow *window)
 {
-  AisleriotWindowPrivate *priv = window->priv;
   GtkWidget *dialog, *entry;
-  char str[32];
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (window),
                                    GTK_DIALOG_DESTROY_WITH_PARENT |
@@ -771,9 +772,16 @@ debug_choose_seed_cb (GtkAction *action,
                     G_CALLBACK (debug_choose_seed_response_cb), window);
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
-  g_snprintf (str, sizeof (str), "%u", aisleriot_game_get_seed (priv->game));
   entry = gtk_entry_new ();
+
+  #if 0
+{
+  char str[32];
+  g_snprintf (str, sizeof (str), "%u", aisleriot_game_get_seed (priv->game));
   gtk_entry_set_text (GTK_ENTRY (entry), str);
+}
+#endif
+
   gtk_box_pack_end (GTK_BOX (gtk_message_dialog_get_message_area (GTK_MESSAGE_DIALOG (dialog))), entry, FALSE, FALSE, 0);
   gtk_widget_show (entry);
   g_object_set_data (G_OBJECT (dialog), "entry", entry);
@@ -1096,7 +1104,7 @@ option_cb (GtkToggleAction *action,
   aisleriot_conf_set_options (aisleriot_game_get_game_file (priv->game), (int) value);
 
   /* Now re-deal, so the option is applied */
-  aisleriot_game_new_game (priv->game, NULL);
+  aisleriot_game_new_game (priv->game);
 }
 
 static void
@@ -1249,7 +1257,7 @@ recent_game_cb (GtkAction *action,
   game_file = g_object_get_data (G_OBJECT (action), "game");
   g_return_if_fail (game_file != NULL);
 
-  aisleriot_window_set_game (window, game_file, 0);
+  aisleriot_window_set_game (window, game_file, NULL);
   
   ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_file);
 }
@@ -1735,7 +1743,7 @@ game_exception_response_cb (GtkWidget *dialog,
   gtk_widget_destroy (dialog);
 
   /* Start a new game */
-  aisleriot_game_new_game (priv->game, NULL);
+  aisleriot_game_new_game (priv->game);
 
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
 }
@@ -2605,7 +2613,7 @@ aisleriot_window_new (gboolean freecell_mode)
 typedef struct {
   AisleriotWindow *window;
   char *game_file;
-  guint seed;
+  GRand *rand;
 } LoadIdleData;
 
 static void
@@ -2614,7 +2622,7 @@ load_error_response_cb (GtkWidget *dialog,
                         AisleriotWindow *window)
 {
   /* Load the default game */
-  aisleriot_window_set_game (window, DEFAULT_VARIATION, 0);
+  aisleriot_window_set_game (window, DEFAULT_VARIATION, NULL);
 
   gtk_widget_destroy (dialog);
 }
@@ -2624,6 +2632,7 @@ load_idle_cb (LoadIdleData *data)
 {
   AisleriotWindowPrivate *priv = data->window->priv;
   GError *error = NULL;
+  GRand *rand;
 
   if (!aisleriot_game_load_game (priv->game, data->game_file, &error)) {
     GtkWidget *dialog;
@@ -2674,7 +2683,10 @@ load_idle_cb (LoadIdleData *data)
     ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), data->game_file);
   }
 
-  aisleriot_game_new_game (priv->game, data->seed != 0 ? &data->seed : NULL);
+  rand = data->rand;
+  data->rand = NULL;
+
+  aisleriot_game_new_game_with_rand (priv->game, rand /* adopted */);
 
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
 
@@ -2686,6 +2698,9 @@ free_load_idle_data (LoadIdleData *data)
 {
   data->window->priv->load_idle_id = 0;
 
+  if (data->rand)
+    g_rand_free (data->rand);
+
   g_free (data->game_file);
   g_slice_free (LoadIdleData, data);
 }
@@ -2694,7 +2709,7 @@ free_load_idle_data (LoadIdleData *data)
  * aisleriot_window_set_game:
  * @window:
  * @game_file: a UTF-8 string
- * @seed:
+ * @rand: (allow-none) (transfer full): a #GRand, or %NULL
  *
  * Loads the game variation defined in the @game_file file.
  * Note that even though @game_file is used as a filename,
@@ -2703,7 +2718,7 @@ free_load_idle_data (LoadIdleData *data)
 void
 aisleriot_window_set_game (AisleriotWindow *window,
                            const char *game_file,
-                           guint seed)
+                           GRand *rand)
 {
   AisleriotWindowPrivate *priv = window->priv;
   LoadIdleData *data;
@@ -2716,7 +2731,7 @@ aisleriot_window_set_game (AisleriotWindow *window,
   data = g_slice_new (LoadIdleData);
   data->window = window;
   data->game_file = g_strdup (game_file);
-  data->seed = seed;
+  data->rand = rand; /* adopted */
 
   priv->load_idle_id = g_idle_add_full (G_PRIORITY_LOW,
                                         (GSourceFunc) load_idle_cb,

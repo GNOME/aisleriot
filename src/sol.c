@@ -58,7 +58,7 @@ N_("About Solitaire")
 typedef struct {
   AisleriotWindow *window;
   char *variation;
-  guint seed;
+  gint seed; /* unused */
   gboolean freecell;
 } AppData;
 
@@ -72,13 +72,11 @@ save_state_cb (EggSMClient *client,
   AisleriotGame *game;
   char *argv[5];
   const char *game_name;
-  char *seed;
   int argc = 0;
 
   game = aisleriot_window_get_game (data->window);
 
   game_name = aisleriot_game_get_game_file (game);
-  seed = g_strdup_printf ("%u", aisleriot_game_get_seed (game));
 
   argv[argc++] = g_get_prgname ();
 
@@ -89,14 +87,9 @@ save_state_cb (EggSMClient *client,
     argv[argc++] = (char *) game_name;
   }
 
-  argv[argc++] = (char *) "--seed";
-  argv[argc++] = seed;
-
   /* FIXMEchpe: save game state too? */
 
   egg_sm_client_set_restart_command (client, argc, (const char **) argv);
-
-  g_free (seed);
 }
 
 static void
@@ -116,10 +109,13 @@ add_main_options (GOptionContext *option_context,
   const GOptionEntry aisleriot_options[] = {
     { "variation", 'v', 0, G_OPTION_ARG_STRING, &data->variation,
       N_("Select the game type to play"), N_("NAME") },
-    { "seed", 's', 0, G_OPTION_ARG_STRING, &data->seed,
-      N_("Select the game number"), N_("NUMBER") },
     { "freecell", 0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &data->freecell,
       NULL, NULL },
+
+    /* Ignored option, for backward compat with saved session */
+    { "seed", 's', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &data->seed,
+      NULL, NULL },
+
     { NULL }
   };
 
@@ -207,9 +203,9 @@ main_prog (void *closure, int argc, char *argv[])
 #endif /* WITH_SMCLIENT */
 
   if (data.freecell) {
-    aisleriot_window_set_game (data.window, FREECELL_VARIATION, data.seed);
+    aisleriot_window_set_game (data.window, FREECELL_VARIATION, NULL);
   } else {
-    aisleriot_window_set_game (data.window, data.variation, data.seed);
+    aisleriot_window_set_game (data.window, data.variation, NULL);
   }
 
   gtk_window_present (GTK_WINDOW (data.window));

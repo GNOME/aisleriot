@@ -74,7 +74,10 @@ struct _AisleriotGame
   GPtrArray *slots;
 
   char *game_file;
-  guint32 seed;
+
+  GRand *rand;
+  GRand *saved_rand;
+
   guint delayed_call_timeout_id;
 
   GTimer *timer;
@@ -307,7 +310,9 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
   message = g_string_sized_new (1024);
 
   g_string_append_printf (message, "Variation: %s\n", aisleriot_game_get_game_file (game));
+#if 0
   g_string_append_printf (message, "Seed: %u\n", game->seed);
+#endif
 
   g_string_append (message, "Scheme error:\n\t");
 
@@ -925,7 +930,9 @@ scm_set_lambda (SCM start_game_lambda,
 static SCM
 scm_myrandom (SCM range)
 {
-  return scm_from_uint32 (g_random_int_range (0, scm_to_int (range)));
+  AisleriotGame *game = app_game;
+
+  return scm_from_uint32 (g_rand_int_range (game->rand, 0, scm_to_int (range)));
 }
 
 static SCM
@@ -1117,6 +1124,8 @@ cscmi_winning_game_lambda (void)
 static void
 aisleriot_game_init (AisleriotGame *game)
 {
+  game->rand = game->saved_rand = NULL;
+
   game->state = GAME_UNINITIALISED;
 
   game->slots = g_ptr_array_sized_new (SLOT_CARDS_N_PREALLOC);
@@ -1161,6 +1170,11 @@ aisleriot_game_finalize (GObject *object)
   g_free (game->game_file);
 
   g_timer_destroy (game->timer);
+
+  if (game->rand)
+    g_rand_free (game->rand);
+  if (game->saved_rand)
+    g_rand_free (game->saved_rand);
 
   app_game = NULL;
 
@@ -1727,12 +1741,19 @@ game_scm_new_game (void *user_data)
   AisleriotGame *game = user_data;
   gboolean game_over;
 
+  g_assert (game->rand != NULL);
+
   /* It is possible for some games to not have any moves right from the
    * start. If this happens we redeal.
    */
   /* FIXMEchpe we should have a maximum number of tries, and then bail out! */
   do {
     SCM size, lambda, over;
+
+    /* Copy RNG state */
+    if (game->saved_rand)
+      g_rand_free (game->saved_rand);
+    game->saved_rand = g_rand_copy (game->rand);
 
     size = scm_call_0 (game->lambdas[START_GAME_LAMBDA]);
     game->width = scm_to_double (SCM_CAR (size));
@@ -1759,18 +1780,20 @@ game_scm_new_game (void *user_data)
   return SCM_BOOL_T;
 }
 
-/**
- * aisleriot_game_new_game:
+/*
+ * aisleriot_game_new_game_internal:
  * @game:
- * @seed: a pointer to a #guint, or %NULL
+ * @rand: (allow-none) (transfer full): a #GRand, or %NULL
+ * @update_statistics: whether to update statistic
  *
  * Starts a new game of the currently loaded game type.
- * If @seed is non-%NULL, the value it points to is used
- * as the game number; otherwise a random number is used.
+ *
+ * @game will take ownership of @rand.
  */
-void
-aisleriot_game_new_game (AisleriotGame *game,
-                         guint *seed)
+static void
+aisleriot_game_new_game_internal (AisleriotGame *game,
+                                  GRand *rand,
+                                  gboolean count_loss)
 {
   GObject *object = G_OBJECT (game);
   GError *err = NULL;
@@ -1791,16 +1814,23 @@ aisleriot_game_new_game (AisleriotGame *game,
   /* FIXMEchpe: this allows cheating the statistics by doing
    * Restart, then New Game.
    */
-  if (game->state >= GAME_RUNNING &&
-      (!seed || *seed != game->seed)) {
+  if (count_loss &&
+      game->state >= GAME_RUNNING) {
     update_statistics (game);
   }
 
-  if (seed) {
-    game->seed = *seed;
-  } else {
-    game->seed = 0;
+  if (rand != NULL) {
+    if (game->rand)
+      g_rand_free (game->rand);
+
+    game->rand = rand; /* adopted */
+  } else if (game->rand == NULL) {
+    game->rand = g_rand_new ();
   }
+
+  if (game->saved_rand)
+    g_rand_free (game->saved_rand);
+  game->saved_rand = NULL;
 
   clear_delayed_call (game);
   /* The game isn't actually in progress until the user makes a move */
@@ -1828,6 +1858,36 @@ aisleriot_game_new_game (AisleriotGame *game,
 }
 
 /**
+ * aisleriot_game_new_game:
+ * @game:
+ *
+ * Starts a new game of the currently loaded game type.
+ *
+ * @game will take ownership of @rand.
+ */
+void
+aisleriot_game_new_game (AisleriotGame *game)
+{
+  aisleriot_game_new_game_internal (game, NULL, TRUE);
+}
+
+/**
+ * aisleriot_game_new_game_with_rand:
+ * @game:
+ * @rand: (allow-none) (transfer full): a #GRand, or %NULL
+ *
+ * Starts a new game of the currently loaded game type.
+ *
+ * @game will take ownership of @rand.
+ */
+void
+aisleriot_game_new_game_with_rand (AisleriotGame *game,
+                                   GRand *rand)
+{
+  aisleriot_game_new_game_internal (game, rand, TRUE);
+}
+
+/**
  * aisleriot_game_restart_game:
  * @game:
  *
@@ -1836,9 +1896,12 @@ aisleriot_game_new_game (AisleriotGame *game,
 void
 aisleriot_game_restart_game (AisleriotGame *game)
 {
-  guint seed = game->seed;
+  GRand *rand;
 
-  aisleriot_game_new_game (game, &seed);
+  rand = game->saved_rand;
+  game->saved_rand = NULL;
+
+  aisleriot_game_new_game_internal (game, rand, FALSE);
 }
 
 /**
@@ -1885,20 +1948,6 @@ aisleriot_game_get_geometry (AisleriotGame *game,
 {
   *width = game->width;
   *height = game->height;
-}
-
-/**
- * aisleriot_game_get_seed:
- * @game:
- *
- * Returns the seed of the current game.
- *
- * Returns: a number
- */
-guint
-aisleriot_game_get_seed (AisleriotGame *game)
-{
-  return game->seed;
 }
 
 /**

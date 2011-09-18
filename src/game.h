@@ -179,15 +179,16 @@ void aisleriot_game_redo_move (AisleriotGame * game);
 gboolean aisleriot_game_load_game (AisleriotGame * game,
                                    const char *filename, GError ** error);
 
-void aisleriot_game_new_game (AisleriotGame * game, guint * seed);
+void aisleriot_game_new_game (AisleriotGame *game);
+
+void aisleriot_game_new_game_with_rand (AisleriotGame *game,
+                                        GRand *rand);
 
 void aisleriot_game_restart_game (AisleriotGame * game);
 
 const char *aisleriot_game_get_game_file (AisleriotGame * game);
 
 char *aisleriot_game_get_name (AisleriotGame * game);
-
-guint aisleriot_game_get_seed (AisleriotGame * game);
 
 gboolean aisleriot_game_drag_valid (AisleriotGame * game,
                                     int slot_id,
