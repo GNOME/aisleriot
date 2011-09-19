@@ -1,10 +1,13 @@
 @YELP_HELP_RULES@
 
+NULL =
+
 HELP_LINGUAS = ca de el en_GB es eu fr gl oc ru sl sr sr@latin sv zh_CN
 
 HELP_ID = aisleriot
 
 HELP_FILES = \
+	index.docbook \
 	accordion.xml \
 	agnes.xml \
 	athena.xml \
