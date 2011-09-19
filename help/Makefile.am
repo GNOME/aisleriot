@@ -1,6 +1,6 @@
 @YELP_HELP_RULES@
 
-HELP_LINGUAS = ca de el en_GB es eu fr oc ru sl sr sr@latin sv zh_CN
+HELP_LINGUAS = ca de el en_GB es eu fr gl oc ru sl sr sr@latin sv zh_CN
 
 HELP_ID = aisleriot
 
