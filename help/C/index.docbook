@@ -1,99 +1,10 @@
-<?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-<!ENTITY accordion SYSTEM "accordion.xml">
-<!ENTITY agnes SYSTEM "agnes.xml">
-<!ENTITY athena SYSTEM "athena.xml">
-<!ENTITY auld-lang-syne SYSTEM "auld_lang_syne.xml">
-<!ENTITY aunt-mary SYSTEM "aunt_mary.xml">
-<!ENTITY backbone SYSTEM "backbone.xml">
-<!ENTITY bakers-dozen SYSTEM "bakers_dozen.xml">
-<!ENTITY bakers-game SYSTEM "bakers_game.xml">
-<!ENTITY bear-river SYSTEM "bear_river.xml">
-<!ENTITY beleaguered-castle SYSTEM "beleaguered_castle.xml">
-<!ENTITY block-ten SYSTEM "block_ten.xml">
-<!ENTITY bristol SYSTEM "bristol.xml">
-<!ENTITY camelot SYSTEM "camelot.xml">
-<!ENTITY canfield SYSTEM "canfield.xml">
-<!ENTITY carpet SYSTEM "carpet.xml">
-<!ENTITY chessboard SYSTEM "chessboard.xml">
-<!ENTITY clock SYSTEM "clock.xml">
-<!ENTITY cover SYSTEM "cover.xml">
-<!ENTITY cruel SYSTEM "cruel.xml">
-<!ENTITY diamond-mine SYSTEM "diamond_mine.xml">
-<!ENTITY doublets SYSTEM "doublets.xml">
-<!ENTITY eagle-wing SYSTEM "eagle-wing.xml">
-<!ENTITY easthaven SYSTEM "easthaven.xml">
-<!ENTITY eight-off SYSTEM "eight_off.xml">
-<!ENTITY elevator SYSTEM "elevator.xml">
-<!ENTITY eliminator SYSTEM "eliminator.xml">
-<!ENTITY escalator SYSTEM "escalator.xml">
-<!ENTITY first-law SYSTEM "first_law.xml">
-<!ENTITY fortress SYSTEM "fortress.xml">
-<!ENTITY fortunes SYSTEM "fortunes.xml">
-<!ENTITY forty-thieves SYSTEM "forty_thieves.xml">
-<!ENTITY fourteen SYSTEM "fourteen.xml">
-<!ENTITY freecell SYSTEM "freecell.xml">
-<!ENTITY gaps SYSTEM "gaps.xml">
-<!ENTITY gay-gordons SYSTEM "gay_gordons.xml">
-<!ENTITY giant SYSTEM "giant.xml">
-<!ENTITY glenwood SYSTEM "glenwood.xml">
-<!ENTITY gold-mine SYSTEM "gold_mine.xml">
-<!ENTITY golf SYSTEM "golf.xml">
-<!ENTITY gypsy SYSTEM "gypsy.xml">
-<!ENTITY helsinki SYSTEM "helsinki.xml">
-<!ENTITY hopscotch SYSTEM "hopscotch.xml">
-<!ENTITY isabel SYSTEM "isabel.xml">
-<!ENTITY jumbo SYSTEM "jumbo.xml">
-<!ENTITY jamestown SYSTEM "jamestown.xml">
-<!ENTITY kansas SYSTEM "kansas.xml">
-<!ENTITY king-albert SYSTEM "king_albert.xml">
-<!ENTITY kings-audience SYSTEM "kings_audience.xml">
-<!ENTITY klondike SYSTEM "klondike.xml">
-<!ENTITY labyrinth SYSTEM "labyrinth.xml">
-<!ENTITY lady-jane SYSTEM "lady_jane.xml">
-<!ENTITY maze SYSTEM "maze.xml">
-<!ENTITY monte-carlo SYSTEM "monte_carlo.xml">
-<!ENTITY napoleons-tomb SYSTEM "napoleons_tomb.xml">
-<!ENTITY neighbor SYSTEM "neighbor.xml">
-<!ENTITY odessa SYSTEM "odessa.xml">
-<!ENTITY osmosis SYSTEM "osmosis.xml">
-<!ENTITY peek SYSTEM "peek.xml">
-<!ENTITY pileon SYSTEM "pileon.xml">
-<!ENTITY plait SYSTEM "plait.xml">
-<!ENTITY poker SYSTEM "poker.xml">
-<!ENTITY quatorze SYSTEM "quatorze.xml">
-<!ENTITY royal-east SYSTEM "royal_east.xml">
-<!ENTITY saratoga SYSTEM "saratoga.xml">
-<!ENTITY scorpion SYSTEM "scorpion.xml">
-<!ENTITY scuffle SYSTEM "scuffle.xml">
-<!ENTITY seahaven SYSTEM "seahaven.xml">
-<!ENTITY sir-tommy SYSTEM "sir_tommy.xml">
-<!ENTITY spider SYSTEM "spider.xml">
-<!ENTITY spider-three-decks SYSTEM "spider_three_decks.xml">
-<!ENTITY spiderette SYSTEM "spiderette.xml">
-<!ENTITY straight-up SYSTEM "straight_up.xml">
-<!ENTITY streets-and-alleys SYSTEM "streets_and_alleys.xml">
-<!ENTITY ten-across SYSTEM "ten_across.xml">
-<!ENTITY terrace SYSTEM "terrace.xml">
-<!ENTITY thieves SYSTEM "thieves.xml">
-<!ENTITY thirteen SYSTEM "thirteen.xml">
-<!ENTITY thumb-and-pouch SYSTEM "thumb_and_pouch.xml">
-<!ENTITY treize SYSTEM "treize.xml">
-<!ENTITY triple-peaks SYSTEM "triple_peaks.xml">
-<!ENTITY union-square SYSTEM "union_square.xml">
-<!ENTITY valentine SYSTEM "valentine.xml">
-<!ENTITY westhaven SYSTEM "westhaven.xml">
-<!ENTITY whitehead SYSTEM "whitehead.xml">
-<!ENTITY will-o-the-wisp SYSTEM "will_o_the_wisp.xml">
-<!ENTITY yield SYSTEM "yield.xml">
-<!ENTITY yukon SYSTEM "yukon.xml">
-<!ENTITY zebra SYSTEM "zebra.xml">
-<!ENTITY definitions SYSTEM "definitions.xml">
-<!ENTITY legal SYSTEM "legal.xml">
-<!ENTITY appversion "2.12">
-<!ENTITY manrevision "2.12">
-<!ENTITY date "July 2005">
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+<!ENTITY appversion "3.2">
+<!ENTITY manrevision "3.2">
+<!ENTITY date "September 2011">
 <!ENTITY app "<application>AisleRiot</application>">
 <!ENTITY appname "AisleRiot">
 ]>
@@ -107,7 +18,8 @@
 -->
 
 <!-- =============Document Header ============================= -->
-<book id="index" lang="en">
+<book id="index" lang="en"
+      xmlns:xi="http://www.w3.org/2003/XInclude">
 <!-- please do not change the id; for translations, change lang to -->
 <!-- appropriate code -->
   <bookinfo>
@@ -139,7 +51,8 @@
       <publishername> GNOME Documentation Project </publishername>
     </publisher>
 
-   &legal;
+    <xi:include href="legal.xml" />
+
    <!-- This file  contains link to license for the documentation (GNU FDL), and
         other legal stuff such as "NO WARRANTY" statement. Please do not change
 	any of this. -->
@@ -291,99 +204,99 @@ been coded for your pleasure in the GNOME scripting language (Scheme).
 </chapter>
 
 <chapter id="games">
-    <title>The Games</title>
+  <title>The Games</title>
 
-  &accordion;
-  &agnes;
-  &athena;
-  &auld-lang-syne;
-  &aunt-mary;
-  &backbone;
-  &bakers-dozen;
-  &bakers-game;
-  &bear-river;
-  &beleaguered-castle;
-  &block-ten;
-  &bristol;
-  &camelot;
-  &canfield;
-  &carpet;
-  &chessboard;
-  &clock;
-  &cover;
-  &cruel;
-  &diamond-mine;
-  &doublets;
-  &eagle-wing;
-  &easthaven;
-  &eight-off;
-  &elevator;
-  &eliminator;
-  &escalator;
-  &first-law;
-  &fortress;
-  &fortunes;
-  &forty-thieves;
-  &fourteen;
-  &freecell;
-  &gaps;
-  &gay-gordons;
-  &giant;
-  &glenwood;
-  &gold-mine;
-  &golf;
-  &gypsy;
-  &helsinki;
-  &hopscotch;
-  &isabel;
-  &jamestown;
-  &jumbo;
-  &kansas;
-  &king-albert;
-  &kings-audience;
-  &klondike;
-  &labyrinth;
-  &lady-jane;
-  &maze;
-  &monte-carlo;
-  &napoleons-tomb;
-  &neighbor;
-  &odessa;
-  &osmosis;
-  &peek;
-  &pileon;
-  &plait;
-  &poker;
-  &quatorze;
-  &royal-east;
-  &saratoga;
-  &scorpion;
-  &scuffle;
-  &seahaven;
-  &sir-tommy;
-  &spider;
-  &spider-three-decks;
-  &spiderette;
-  &straight-up;
-  &streets-and-alleys;
-  &ten-across;
-  &terrace;
-  &thieves;
-  &thirteen;
-  &thumb-and-pouch;
-  &treize;
-  &triple-peaks;
-  &union-square;
-  &valentine;
-  &westhaven;
-  &whitehead;
-  &will-o-the-wisp;
-  &yield;
-  &yukon;
-  &zebra;
+  <xi:include href="accordion.xml" />
+  <xi:include href="agnes.xml" />
+  <xi:include href="athena.xml" />
+  <xi:include href="auld_lang_syne.xml" />
+  <xi:include href="aunt_mary.xml" />
+  <xi:include href="backbone.xml" />
+  <xi:include href="bakers_dozen.xml" />
+  <xi:include href="bakers_game.xml" />
+  <xi:include href="bear_river.xml" />
+  <xi:include href="beleaguered_castle.xml" />
+  <xi:include href="block_ten.xml" />
+  <xi:include href="bristol.xml" />
+  <xi:include href="camelot.xml" />
+  <xi:include href="canfield.xml" />
+  <xi:include href="carpet.xml" />
+  <xi:include href="chessboard.xml" />
+  <xi:include href="clock.xml" />
+  <xi:include href="cover.xml" />
+  <xi:include href="cruel.xml" />
+  <xi:include href="diamond_mine.xml" />
+  <xi:include href="doublets.xml" />
+  <xi:include href="eagle-wing.xml" />
+  <xi:include href="easthaven.xml" />
+  <xi:include href="eight_off.xml" />
+  <xi:include href="elevator.xml" />
+  <xi:include href="eliminator.xml" />
+  <xi:include href="escalator.xml" />
+  <xi:include href="first_law.xml" />
+  <xi:include href="fortress.xml" />
+  <xi:include href="fortunes.xml" />
+  <xi:include href="forty_thieves.xml" />
+  <xi:include href="fourteen.xml" />
+  <xi:include href="freecell.xml" />
+  <xi:include href="gaps.xml" />
+  <xi:include href="gay_gordons.xml" />
+  <xi:include href="giant.xml" />
+  <xi:include href="glenwood.xml" />
+  <xi:include href="gold_mine.xml" />
+  <xi:include href="golf.xml" />
+  <xi:include href="gypsy.xml" />
+  <xi:include href="helsinki.xml" />
+  <xi:include href="hopscotch.xml" />
+  <xi:include href="isabel.xml" />
+  <xi:include href="jamestown.xml" />
+  <xi:include href="jumbo.xml" />
+  <xi:include href="kansas.xml" />
+  <xi:include href="king_albert.xml" />
+  <xi:include href="kings_audience.xml" />
+  <xi:include href="klondike.xml" />
+  <xi:include href="labyrinth.xml" />
+  <xi:include href="lady_jane.xml" />
+  <xi:include href="legal.xml" />
+  <xi:include href="maze.xml" />
+  <xi:include href="monte_carlo.xml" />
+  <xi:include href="napoleons_tomb.xml" />
+  <xi:include href="neighbor.xml" />
+  <xi:include href="odessa.xml" />
+  <xi:include href="osmosis.xml" />
+  <xi:include href="peek.xml" />
+  <xi:include href="pileon.xml" />
+  <xi:include href="plait.xml" />
+  <xi:include href="poker.xml" />
+  <xi:include href="quatorze.xml" />
+  <xi:include href="royal_east.xml" />
+  <xi:include href="saratoga.xml" />
+  <xi:include href="scorpion.xml" />
+  <xi:include href="scuffle.xml" />
+  <xi:include href="seahaven.xml" />
+  <xi:include href="sir_tommy.xml" />
+  <xi:include href="spiderette.xml" />
+  <xi:include href="spider_three_decks.xml" />
+  <xi:include href="spider.xml" />
+  <xi:include href="straight_up.xml" />
+  <xi:include href="streets_and_alleys.xml" />
+  <xi:include href="ten_across.xml" />
+  <xi:include href="terrace.xml" />
+  <xi:include href="thieves.xml" />
+  <xi:include href="thirteen.xml" />
+  <xi:include href="thumb_and_pouch.xml" />
+  <xi:include href="treize.xml" />
+  <xi:include href="triple_peaks.xml" />
+  <xi:include href="union_square.xml" />
+  <xi:include href="valentine.xml" />
+  <xi:include href="westhaven.xml" />
+  <xi:include href="whitehead.xml" />
+  <xi:include href="will_o_the_wisp.xml" />
+  <xi:include href="yield.xml" />
+  <xi:include href="yukon.xml" />
+  <xi:include href="zebra.xml" />
 </chapter>
 
-&definitions;
+<xi:include href="definitions.xml" />
 
 </book>
-
