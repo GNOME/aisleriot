@@ -15,15 +15,12 @@ How to add a new game to Aisleriot
  * Move the documentation foo.xml file into help/C/ and git add it
  * Add foo.xml to DOC_ENTITIES in help/Makefile.am, keeping the list
    sorted alphabetically
- * Edit help/C/aisleriot.xml to add an ENTITY declaration at the top:
+ * Edit help/C/aisleriot.xml to include the new game's documentation
+   by adding
 
-     <!ENTITY foo SYSTEM "foo.xml">
+     <xi:include href="foo.xml" />
 
-   and add this entity to the list of the game entities used:
-
-     &foo;
-
-   Make sure to keep the lists in the file sorted alphabetically.
+   in the list of games. Make sure to keep the list sorted alphabetically!
  * Run the src/get_titles.pl script
  * In help/, run "make check" to make sure the documentation validates
  * Add foo to the list of games in the man page in help/sol.6
