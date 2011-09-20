@@ -11,11 +11,11 @@ How to add a new game to Aisleriot
  * Move foo.scm file into games/ and git add it
  * Add foo.scm to rules_DATA in games/Makefile.am, keeping the list
    sorted alphabetically
- * Add foo.scm to po/POTFILES.in
+ * Add games/foo.scm to po/POTFILES.in
  * Move the documentation foo.xml file into help/C/ and git add it
  * Add foo.xml to DOC_ENTITIES in help/Makefile.am, keeping the list
    sorted alphabetically
- * Edit help/C/aisleriot.xml to include the new game's documentation
+ * Edit help/C/index.docbook to include the new game's documentation
    by adding
 
      <xi:include href="foo.xml" />
@@ -24,7 +24,7 @@ How to add a new game to Aisleriot
  * Run the src/get_titles.pl script
  * In help/, run "make check" to make sure the documentation validates
  * Add foo to the list of games in the man page in help/sol.6
- * git commit help/C/foo.xml help/C/aisleriot.xml help/Makefile.am games/foo.scm \
+ * git commit help/C/foo.xml help/C/index.docbook help/Makefile.am games/foo.scm \
               games/Makefile.am src/game-names.h po/POTFILES.in help/sol.6
 
  Done!
