@@ -520,23 +520,36 @@ GUILE_PKGS=
 
 AC_MSG_CHECKING([which guile version to use])
 AC_ARG_WITH([guile],
-  [AS_HELP_STRING([--with-guile=1.8|2.0|2.2],[Which guile version to use (default: 1.8)])],
+  [AS_HELP_STRING([--with-guile=1.8|2.0|2.2|auto],[Which guile version to use (default: 1.8)])],
   [case "$with_guile" in
-     1.8|2.0|2.2) ;;
+     1.8|2.0|2.2|auto) ;;
      *) AC_MSG_ERROR([unknown or unsupported guile version $with_guile specified]) ;;
     esac],
    [with_guile=1.8])
-AC_MSG_RESULT([$with_guile])
 
-case "$with_guile" in
-  1.8) GUILE_PKGS="guile-1.8 >= $GUILE_1_8_REQUIRED" ;;
-  2.0) GUILE_PKGS="guile-2.0 >= $GUILE_2_0_REQUIRED" ;;
-  2.2) GUILE_PKGS="guile-2.2 >= $GUILE_2_2_REQUIRED" ;;
-esac
+if test "$with_guile" = "auto"; then
+  with_guile=
+  for version in 2.2 2.0 1.8; do
+    GUILE_REQUIRED=AS_TR_SH([GUILE_${version}_REQUIRED])
+    GUILE_PKGS="guile-$version >= ${!GUILE_REQUIRED}"
+    if $PKG_CONFIG --exists $GUILE_PKGS; then
+      with_guile=$version
+      break
+    fi
+  done
 
-PKG_CHECK_EXISTS([$GUILE_PKGS],
-  [],
-  [AC_MSG_ERROR([guile version $with_guile not found. Install it, or use --with-guile to select a different version.])])
+  if test -z "$with_guile"; then
+    AC_MSG_ERROR([no supported guile version found])
+  fi
+
+  with_guile_result="$with_guile (auto)"
+else
+  GUILE_REQUIRED=AS_TR_SH([GUILE_${with_guile}_REQUIRED])
+  GUILE_PKGS="guile-$with_guile >= ${!GUILE_REQUIRED}"
+  with_guile_result="$with_guile"
+fi
+
+AC_MSG_RESULT([$with_guile_result])
 
 PKG_CHECK_MODULES([GUILE],[$GUILE_PKGS])
 
@@ -635,7 +648,7 @@ Configuration:
     Source code location:  ${srcdir}
     Compiler:              ${CC}
 
-    Guile version:         ${with_guile}
+    Guile version:         ${with_guile_result}
     GTK+ API version:      ${GTK_API_VERSION}
     Platform:              ${with_platform}
     Help method:           ${with_help_method} ${with_help_file_format}
