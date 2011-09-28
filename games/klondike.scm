@@ -174,6 +174,7 @@
 
 ; Global variables used in searching (keeping it simple):
 
+(define build '())
 (define card #f)
 (define color 0)
 (define suit 0)
@@ -184,28 +185,29 @@
   (and (not (empty-slot? slot-id2))
        (= suit (get-suit (get-top-card slot-id2)))
        (= value (get-value (get-top-card slot-id2)))
-       (list 1 (get-name (get-top-card slot-id2)) (get-name card))))
+       (hint-move slot-id2 1 slot-id1)))
 
 (define (ploppable? slot-id)
   (and (not (empty-slot? slot-id))
        (set! card (get-top-card slot-id))
        (set! suit (get-suit card))
        (set! value (+ (get-value card) 1))
+       (set! slot-id1 slot-id)
        (or-map match? (cons waste tableau))))
 
 (define (is-ace? slot-id)
   (and (not (empty-slot? slot-id))
        (= ace (get-value (get-top-card slot-id)))
-       (list 2 (get-name (get-top-card slot-id)) (_"an empty slot" ))))
+       (hint-move slot-id 1 (find-empty-slot foundation))))
 
 (define (shiftable? slot-id2)
   (and (not (= slot-id2 slot-id1))
        (if (empty-slot? slot-id2)
 	   (and (= value king)
-		(list 2 (get-name card) (_"an empty slot")))
+		(hint-move slot-id1 (length build) slot-id2))
 	   (and (= (get-value (get-top-card slot-id2)) (+ 1 value))
 		(not (= (get-color (get-top-card slot-id2)) color))
-		(list 1 (get-name card) (get-name (get-top-card slot-id2)))))))
+		(hint-move slot-id1 (length build) slot-id2)))))
 
 (define (get-top-build card-list acc)
   (if (or (null? card-list)
@@ -221,7 +223,8 @@
 (define (shiftable-iter slot-id)
   (and (not (empty-slot? slot-id))
        (begin
-	 (set! card (car (get-top-build (get-cards slot-id) '())))
+         (set! build (get-top-build (get-cards slot-id) '()))
+	 (set! card (car build))
 	 (set! color (get-color card))	
 	 (set! value (get-value card))
 	 (set! slot-id1 slot-id)
@@ -232,10 +235,10 @@
 (define (addable? slot-id)
   (if (empty-slot? slot-id)
       (and (= (get-value card) king)
-	   (list 2 (get-name card) (_"an empty slot" )))
+	   (hint-move waste 1 slot-id))
       (and (= (get-value (get-top-card slot-id)) (+ 1 (get-value card)))
 	   (not (= (get-color (get-top-card slot-id)) (get-color card)))
-	   (list 1 (get-name card) (get-name (get-top-card slot-id))))))
+	   (hint-move waste 1 slot-id))))
 
 (define (any-slot-nonempty? slots)
   (if (eq? slots '())
@@ -258,7 +261,7 @@
 			(< FLIP-COUNTER max-redeal))
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
-	   (list 0 (_"Deal a new card from the deck")))
+	   (hint-click stock (_"Deal a new card from the deck")))
 ; FIXME: need to give proper hints for this case too ...
       (and (not (and-map empty-slot? foundation))
            (list 0 (_"Try moving cards down from the foundation")))
