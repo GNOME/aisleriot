@@ -367,6 +367,29 @@
   (map display objs) (newline))
 
 ; hint procedures
+(define (get-value-name value)
+  (cond ((eq? value ace) (_"ace"))
+        ((eq? value 2) (_"two"))
+        ((eq? value 3) (_"three"))
+        ((eq? value 4) (_"four"))
+        ((eq? value 5) (_"five"))
+        ((eq? value 6) (_"six"))
+        ((eq? value 7) (_"seven"))
+        ((eq? value 8) (_"eight"))
+        ((eq? value 9) (_"nine"))
+        ((eq? value 10) (_"ten"))
+        ((eq? value jack) (_"jack"))
+        ((eq? value queen) (_"queen"))
+        ((eq? value king) (_"king"))
+        (#t (_"Unknown value"))))
+
+(define (get-suit-name suit)
+  (cond ((eq? suit club) (_"clubs"))
+        ((eq? suit spade) (_"spades"))
+        ((eq? suit heart) (_"hearts"))
+        ((eq? suit diamond) (_"diamonds"))
+        (#t (_"Unknown suit"))))
+
 (define (get-joker-name card) 
   (if (is-black? card) (_"black joker") (_"red joker")))
 

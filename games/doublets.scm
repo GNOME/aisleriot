@@ -151,26 +151,10 @@
 (define (game-won)
   (= 48 (length (get-cards 8))))
 
-(define (get-value-hint value)
-  (cond ((eq? value ace) (_"You are searching for an ace."))
-        ((eq? value 2) (_"You are searching for a two."))
-        ((eq? value 3) (_"You are searching for a three."))
-        ((eq? value 4) (_"You are searching for a four."))
-        ((eq? value 5) (_"You are searching for a five."))
-        ((eq? value 6) (_"You are searching for a six."))
-        ((eq? value 7) (_"You are searching for a seven."))
-        ((eq? value 8) (_"You are searching for an eight."))
-        ((eq? value 9) (_"You are searching for a nine."))
-        ((eq? value 10) (_"You are searching for a ten."))
-        ((eq? value jack) (_"You are searching for a jack."))
-        ((eq? value queen) (_"You are searching for a queen."))
-        ((eq? value king) (_"You are searching for a king."))
-        (#t (_"Unknown value"))))
-
 (define (get-hint)
   (let ((wanted (modulo (* 2 (get-value (get-top-card 8))) 
 			13)))
-    (list 0 (get-value-hint wanted))))
+    (list 4 (get-value-name wanted))))
 
 (define (get-options) #f)
 
