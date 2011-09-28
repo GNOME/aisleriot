@@ -201,7 +201,7 @@ I'll deal with (new-game) later.
 
 (game-continuable) Asks if the game is not stuck (and therefore not lost).
 
-(get-hint) is called when the user requests a hint. The return from hint is in the form of a list.  It seems to be used in two ways. (get-name a-card) is a very useful library function.
+(get-hint) is called when the user requests a hint. It should be created like (list 0 (_"Hint string.")), or (hint-move from-slot card-count to-slot).
 
 Method 0:
 (list 0 "A single sentence.") Perhaps something like _"Deal the next row".
@@ -359,7 +359,7 @@ Quite a few are self explanatory:
 (check-alternating-color-list card-list)
 (check-straight-descending-list card-list) 
 (length card-list)
-(get-name card)           ; card description as a string
+(hint-move from-slot card-count to-slot) ; creates a hint for moving cards
 (set-cards! slot-id card-list) ; puts card-list into the slot "slot-id"
 (make-card value suit)   ; turn a value and a suit into a card
 
