@@ -2187,17 +2187,12 @@ aisleriot_game_get_hint (AisleriotGame *game)
                  aisleriot_game_get_game_file (game));
       break;
 
-    case 4:
-      string1 = SCM_CADR (hint);
-      if (!scm_is_string (string1))
-        break;
-
-      str1 = scm_to_locale_string (string1);
-      scm_dynwind_free (str1);
-      if (!str1)
-        break;
-
-      message = g_strdup_printf (_("You are searching for a %s."), str1);
+    case 4: /* This is deprecated (due to i18n issues) do not use. */
+      g_warning ("This game uses a deprecated hint method (case 4).\n"
+                 "Please file a bug at http://bugzilla.gnome.org "
+                 "including this message and the name of the game "
+                 "you were playing, which is %s.\n",
+                 aisleriot_game_get_game_file (game));
       break;
 
     default:
