@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: aisleriot HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-18 19:56+0000\n"
+"POT-Creation-Date: 2011-09-28 09:22+0000\n"
 "PO-Revision-Date: 2011-09-18 22:00+0200\n"
 "Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -37,8 +37,8 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:158 ../src/window.c:388
-#: ../src/window.c:392
+#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:166 ../src/window.c:409
+#: ../src/window.c:413
 msgid "FreeCell Solitaire"
 msgstr "Solitaire FreeCell"
 
@@ -131,7 +131,7 @@ msgid "Whether or not to show the toolbar"
 msgstr "Indique s'il faut afficher ou non la barre d'outils"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:187 ../src/window.c:2180
+#: ../src/ar-game-chooser.c:187 ../src/window.c:2312
 msgid "Select Game"
 msgstr "Sélectionnez un jeu"
 
@@ -140,71 +140,71 @@ msgid "_Select"
 msgstr "_Sélectionner"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1342
+#: ../src/game.c:1373
 msgctxt "slot type"
 msgid "foundation"
 msgstr "fondation"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1346
+#: ../src/game.c:1377
 msgctxt "slot type"
 msgid "reserve"
 msgstr "réserve"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1350
+#: ../src/game.c:1381
 msgctxt "slot type"
 msgid "stock"
 msgstr "pioche"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1354
+#: ../src/game.c:1385
 msgctxt "slot type"
 msgid "tableau"
 msgstr "tableau"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1358
+#: ../src/game.c:1389
 msgctxt "slot type"
 msgid "waste"
 msgstr "défausse"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1390
+#: ../src/game.c:1421
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s sur la fondation"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1394
+#: ../src/game.c:1425
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s sur la réserve"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1398
+#: ../src/game.c:1429
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s sur la pioche"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1402
+#: ../src/game.c:1433
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s sur le tableau"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1406
+#: ../src/game.c:1437
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s sur la défausse"
 
-#: ../src/game.c:2051
+#: ../src/game.c:2117
 msgid "This game does not have hint support yet."
 msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 
@@ -212,17 +212,17 @@ msgstr "Les suggestions ne sont pas encore implémentées dans ce jeu."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2086 ../src/game.c:2112
+#: ../src/game.c:2152 ../src/game.c:2178
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Déplacer %s sur %s."
 
-#: ../src/game.c:2133
+#: ../src/game.c:2199
 #, c-format
 msgid "You are searching for a %s."
 msgstr "Vous recherchez un %s."
 
-#: ../src/game.c:2137
+#: ../src/game.c:2203
 msgid "This game is unable to provide a hint."
 msgstr "Ce jeu ne peut fournir de suggestion."
 
@@ -1051,35 +1051,27 @@ msgid "Zebra"
 msgstr "Zèbre"
 
 #. String reserve
-#: ../src/sol.c:47
+#: ../src/sol.c:53
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:48
+#: ../src/sol.c:54
 msgid "GNOME Solitaire"
 msgstr "Solitaire GNOME"
 
-#: ../src/sol.c:49
+#: ../src/sol.c:55
 msgid "About Solitaire"
 msgstr "À propos de Solitaire"
 
-#: ../src/sol.c:112
+#: ../src/sol.c:111
 msgid "Select the game type to play"
 msgstr "Sélectionnez le type de jeu à jouer"
 
-#: ../src/sol.c:112
+#: ../src/sol.c:111
 msgid "NAME"
 msgstr "NOM"
 
-#: ../src/sol.c:114
-msgid "Select the game number"
-msgstr "Sélectionnez le numéro du jeu"
-
-#: ../src/sol.c:114
-msgid "NUMBER"
-msgstr "NOMBRE"
-
-#: ../src/sol.c:158 ../src/window.c:393 ../src/window.c:1826
+#: ../src/sol.c:166 ../src/window.c:414 ../src/window.c:1890
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1164,35 +1156,35 @@ msgstr "%d:%02d"
 msgid "Could not show help for “%s”"
 msgstr "Impossible d'afficher l'aide de « %s »"
 
-#: ../src/window.c:207
+#: ../src/window.c:220
 msgid "Congratulations, you have won!"
 msgstr "Félicitations, vous avez gagné !"
 
-#: ../src/window.c:211
+#: ../src/window.c:224
 msgid "There are no more moves"
 msgstr "Il n'y a plus de déplacement possible"
 
-#: ../src/window.c:344
+#: ../src/window.c:365
 msgid "Main game:"
 msgstr "Jeu principal :"
 
-#: ../src/window.c:352
+#: ../src/window.c:373
 msgid "Card games:"
 msgstr "Jeux de cartes :"
 
-#: ../src/window.c:367
+#: ../src/window.c:388
 msgid "Card themes:"
 msgstr "Thèmes de cartes :"
 
-#: ../src/window.c:395
+#: ../src/window.c:416
 msgid "About FreeCell Solitaire"
 msgstr "À propos du solitaire FreeCell"
 
-#: ../src/window.c:396
+#: ../src/window.c:417
 msgid "About AisleRiot"
 msgstr "À propos de AisleRiot"
 
-#: ../src/window.c:400
+#: ../src/window.c:421
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1200,7 +1192,7 @@ msgstr ""
 "AisleRiot fournit un système basé sur les règles du solitaire et permet de "
 "jouer à de nombreuses parties différentes."
 
-#: ../src/window.c:409
+#: ../src/window.c:430
 msgid "translator-credits"
 msgstr ""
 "Christophe Merlet <redfox@redfoxcenter.org>\n"
@@ -1215,16 +1207,16 @@ msgstr ""
 "Didier Vidal <didier-devel@melix.net>\n"
 "Pierre Lemaire <pierre.lemaire@kamick.org>"
 
-#: ../src/window.c:413
+#: ../src/window.c:434
 msgid "GNOME Games web site"
 msgstr "Site Web des jeux GNOME"
 
-#: ../src/window.c:1251
+#: ../src/window.c:1298
 #, c-format
 msgid "Play “%s”"
 msgstr "Jouer à « %s »"
 
-#: ../src/window.c:1412
+#: ../src/window.c:1459
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Afficher les cartes avec le thème « %s »"
@@ -1233,173 +1225,181 @@ msgstr "Afficher les cartes avec le thème « %s »"
 #. * then translate this string to "%I6d", else to "%6d".
 #. * Do not translate it to anything else!
 #.
-#: ../src/window.c:1479
+#: ../src/window.c:1526
 #, c-format
 msgctxt "score"
 msgid "%6d"
 msgstr "%6d"
 
-#: ../src/window.c:1717
+#: ../src/window.c:1764
 msgid "A scheme exception occurred"
 msgstr "Une exception Scheme s'est produite"
 
-#: ../src/window.c:1720
+#: ../src/window.c:1767
 msgid "Please report this bug to the developers."
 msgstr "Veuillez signaler cette anomalie aux développeurs."
 
-#: ../src/window.c:1726
+#: ../src/window.c:1773
 msgid "_Don't report"
 msgstr "Ne _pas signaler"
 
-#: ../src/window.c:1727
+#: ../src/window.c:1774
 msgid "_Report"
 msgstr "_Signaler"
 
-#: ../src/window.c:1824
+#: ../src/window.c:1888
 msgid "Freecell Solitaire"
 msgstr "Solitaire Freecell"
 
 #. Menu actions
-#: ../src/window.c:1915
+#: ../src/window.c:2008
 msgid "_Game"
 msgstr "_Jeu"
 
-#: ../src/window.c:1916
+#: ../src/window.c:2009
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/window.c:1917
+#: ../src/window.c:2010
 msgid "_Control"
 msgstr "_Mouvement"
 
-#: ../src/window.c:1919
+#: ../src/window.c:2012
 msgid "_Help"
 msgstr "Aid_e"
 
-#: ../src/window.c:1924
+#: ../src/window.c:2017
 msgid "Start a new game"
 msgstr "Commence une nouvelle partie"
 
-#: ../src/window.c:1927
+#: ../src/window.c:2020
 msgid "Restart the game"
 msgstr "Recommence la partie"
 
-#: ../src/window.c:1929
+#: ../src/window.c:2022
 msgid "_Select Game…"
 msgstr "_Sélectionner un jeu…"
 
-#: ../src/window.c:1931
+#: ../src/window.c:2024
 msgid "Play a different game"
 msgstr "Joue à un autre jeu"
 
-#: ../src/window.c:1933
+#: ../src/window.c:2026
 msgid "_Recently Played"
 msgstr "_Parties récemment jouées"
 
-#: ../src/window.c:1934
+#: ../src/window.c:2027
 msgid "S_tatistics"
 msgstr "_Statistiques"
 
-#: ../src/window.c:1935
+#: ../src/window.c:2028
 msgid "Show gameplay statistics"
 msgstr "Affiche les statistiques du jeu"
 
-#: ../src/window.c:1938
+#: ../src/window.c:2031
 msgid "Close this window"
 msgstr "Ferme cette fenêtre"
 
-#: ../src/window.c:1941
+#: ../src/window.c:2034
 msgid "Undo the last move"
 msgstr "Annule le dernier mouvement"
 
-#: ../src/window.c:1944
+#: ../src/window.c:2037
 msgid "Redo the undone move"
 msgstr "Rétablit le mouvement annulé"
 
-#: ../src/window.c:1947
+#: ../src/window.c:2040
 msgid "Deal next card or cards"
 msgstr "Distribue la ou les cartes suivantes"
 
-#: ../src/window.c:1950
+#: ../src/window.c:2043
 msgid "Get a hint for your next move"
 msgstr "Affiche une astuce pour votre prochain coup"
 
-#: ../src/window.c:1953
+#: ../src/window.c:2046
 msgid "View help for Aisleriot"
 msgstr "Affiche l'aide de Aisleriot"
 
-#: ../src/window.c:1957
+#: ../src/window.c:2050
 msgid "View help for this game"
 msgstr "Affiche l'aide pour ce jeu"
 
-#: ../src/window.c:1960
+#: ../src/window.c:2053
 msgid "About this game"
 msgstr "À propos de ce jeu"
 
-#: ../src/window.c:1962
+#: ../src/window.c:2055
 msgid "Install card themes…"
 msgstr "Installer des thèmes de cartes..."
 
-#: ../src/window.c:1963
+#: ../src/window.c:2056
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Installe de nouveaux thèmes de cartes à partir des dépôts de paquets de la "
 "distribution"
 
-#: ../src/window.c:1969
+#: ../src/window.c:2062
 msgid "_Card Style"
 msgstr "Style des _cartes"
 
-#: ../src/window.c:2003
+#: ../src/window.c:2096
 msgid "_Toolbar"
 msgstr "Barre d'_outils"
 
-#: ../src/window.c:2004
+#: ../src/window.c:2097
 msgid "Show or hide the toolbar"
 msgstr "Affiche ou masque la barre d'outils"
 
-#: ../src/window.c:2008
+#: ../src/window.c:2101
 msgid "_Statusbar"
 msgstr "_Barre d'état"
 
-#: ../src/window.c:2009
+#: ../src/window.c:2102
 msgid "Show or hide statusbar"
 msgstr "Affiche ou masque la barre d'état"
 
-#: ../src/window.c:2013
+#: ../src/window.c:2106
 msgid "_Click to Move"
 msgstr "_Cliquer pour déplacer"
 
-#: ../src/window.c:2014
+#: ../src/window.c:2107
 msgid "Pick up and drop cards by clicking"
 msgstr "Permet de choisir et de placer des cartes en cliquant"
 
-#: ../src/window.c:2018
+#: ../src/window.c:2111
 msgid "_Sound"
 msgstr "_Son"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2112
 msgid "Whether or not to play event sounds"
 msgstr "Indique s'il faut jouer ou non les sons d'événements"
 
-#: ../src/window.c:2199
+#: ../src/window.c:2117
+msgid "_Animations"
+msgstr "_Animations"
+
+#: ../src/window.c:2118
+msgid "Whether or not to animate card moves"
+msgstr "Indique s'il faut animer ou non les mouvements de cartes"
+
+#: ../src/window.c:2336
 msgid "Score:"
 msgstr "Score :"
 
-#: ../src/window.c:2211
+#: ../src/window.c:2348
 msgid "Time:"
 msgstr "Durée :"
 
-#: ../src/window.c:2498
+#: ../src/window.c:2647
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Impossible de lancer le jeu « %s »"
 
-#: ../src/window.c:2511
+#: ../src/window.c:2660
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot ne peut pas trouver la dernière partie que vous avez jouée."
 
-#: ../src/window.c:2512
+#: ../src/window.c:2661
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -2911,3 +2911,9 @@ msgstr "Déplacez un ensemble de cartes vers l'emplacement de tableau vide"
 #: ../games/zebra.scm.h:5
 msgid "the appropriate Foundation pile"
 msgstr "la pile de fondation appropriée"
+
+#~ msgid "Select the game number"
+#~ msgstr "Sélectionnez le numéro du jeu"
+
+#~ msgid "NUMBER"
+#~ msgstr "NOMBRE"
