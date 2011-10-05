@@ -251,12 +251,16 @@ ar_stock_init (void)
   gtk_stock_add_static (ar_stock_items, G_N_ELEMENTS (ar_stock_items));
 }
 
-/* Returns a GPL N+ license string for a specific game. */
-static gchar *
-ar_get_licence_version (const gchar * game_name,
-                           int version)
+/**
+ * ar_get_licence:
+ *
+ * Returns: (transfer full): a newly allocated string with a GPL licence notice
+ */
+char *
+ar_get_licence (const gchar *game_name)
 {
-  gchar *license_trans, *license_str;
+  const int version = 3;
+  char *license_trans, *license_str;
 
   static const char license0[] =
     /* %s is replaced with the name of the game in gnome-games. */
@@ -269,35 +273,14 @@ ar_get_licence_version (const gchar * game_name,
        "but WITHOUT ANY WARRANTY; without even the implied warranty of "
        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
        "GNU General Public License for more details.");
-  static const char license2[] =
-    N_("You should have received a copy of the GNU General Public License "
-       "along with %s; if not, write to the Free Software Foundation, Inc., "
-       "51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA");
   static const char license3[] =
     N_("You should have received a copy of the GNU General Public License "
        "along with this program.  If not, see <http://www.gnu.org/licenses/>.");
 
-  if (version >= 3)
-    license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license3), NULL);
-  else
-    license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license2), NULL);
-
+  license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license3), NULL);
   license_str =
     g_strdup_printf (license_trans, game_name, version, game_name, game_name);
   g_free (license_trans);
 
   return license_str;
-}
-
-/**
- * gamess_get_licence:
- *
- * Returns: a newly allocated string with a GPL licence notice. The GPL version used
- *   depends on the game and the configure options and is determined from
- *   ar_runtime_get_gpl_version()
- */
-gchar *
-ar_get_licence (const gchar * game_name)
-{
-  return ar_get_licence_version (game_name, ar_runtime_get_gpl_version ());
 }

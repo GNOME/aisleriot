@@ -51,7 +51,6 @@ void            ar_runtime_shutdown         (void);
 const char     *ar_runtime_get_directory    (ArRuntimeDirectory directory);
 char           *ar_runtime_get_file         (ArRuntimeDirectory directory,
                                                 const char *name);
-int             ar_runtime_get_gpl_version  (void);
 gboolean        ar_runtime_is_system_prefix (void);
 
 G_END_DECLS

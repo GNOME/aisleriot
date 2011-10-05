@@ -213,7 +213,6 @@ _br_find_exe (GbrInitError *error)
 #endif /* ENABLE_BINRELOC && !G_OS_WIN32 */
 
 static char *app_name;
-static int gpl_version;
 static char *cached_directories[AR_RUNTIME_LAST_DIRECTORY];
 
 typedef struct {
@@ -316,12 +315,6 @@ ar_runtime_init (const char *name)
 #else /* !ENABLE_BINRELOC */
   retval = TRUE;
 #endif /* ENABLE_BINRELOC */
-
-  if (strcmp (app_name, "aisleriot") == 0) {
-    gpl_version = 3;
-  } else {
-    gpl_version = 2;
-  }
 
   ar_profileend ("ar_runtime_init");
 
@@ -449,17 +442,6 @@ ar_runtime_get_file (ArRuntimeDirectory directory,
     return NULL;
 
   return g_build_filename (dir, name, NULL);
-}
-
-/**
- * ar_runtime_get_gpl_version:
- *
- * Returns: the minimum GPL version that the executable is licensed under
- */
-int
-ar_runtime_get_gpl_version (void)
-{
-  return gpl_version;
 }
 
 /**
