@@ -54,9 +54,6 @@ MAINTAINERCLEANFILES = \
 	`find "$(srcdir)" -type f -name Makefile.in -print` \
 	$(NULL)
 
-# Ignore score files, these *should* be left behind.
-distuninstallcheck_listfiles = find . -type f -print | grep -v '.scores' | grep-v scrollkeeper
-
 # Build ChangeLog from git log
 ChangeLog:
 	$(AM_V_GEN) if test -f $(top_srcdir)/.git/HEAD; then \
