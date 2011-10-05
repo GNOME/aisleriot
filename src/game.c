@@ -666,7 +666,8 @@ cscmi_add_slot (SCM slot_data)
 static SCM
 scm_gettext (SCM message)
 {
-  char *input, *output;
+  char *input;
+  const char *output;
   SCM translated = SCM_UNDEFINED;
 
   if (!scm_is_string (message))
@@ -679,7 +680,7 @@ scm_gettext (SCM message)
   if (!input)
     goto out;
 
-  output = _(input);
+  output = g_dgettext (NULL, input);
 
   if (input != output) {
     translated = scm_from_locale_string (output);
