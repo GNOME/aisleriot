@@ -392,8 +392,8 @@
     (if (car move) 
        (list 2 (get-name (get-top-card (car (cdr move))))
                (make-destination-hint (car (reverse move))) 
-       )     
-       (list 0 (_"Bug! make-hint called on false move.") )
+       )
+       (list 0 ("Bug! make-hint called on false move.") )
     )
 )
 
