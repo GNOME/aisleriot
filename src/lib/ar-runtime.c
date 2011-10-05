@@ -286,17 +286,9 @@ ar_runtime_init (const char *name)
   }
 #endif /* G_OS_WIN32 */
 
-#if defined(HAVE_GNOME) || defined(HAVE_RSVG_GNOMEVFS) || defined(ENABLE_SOUND)
-  /* If we're going to use gconf, gnome-vfs, or canberra, we need to
-   * init threads; and this has to be done before calling any other glib functions.
-   */
-#if defined(LIBGAMES_SUPPORT_GI)
-  /* Seed has already called g_thread_init() */
-  g_assert (g_thread_get_initialized());
-#else
-  g_thread_init (NULL);
-#endif
-#endif
+  /* This also initialises gthread */
+  g_type_init ();
+
   /* May call any glib function after this point */
 
   ar_profilestart ("ar_runtime_init");
