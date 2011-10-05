@@ -23,8 +23,8 @@
 #include "ar-card-private.h"
 
 static const char extra_cards[] =
-  "black_joker\0"
-  "red_joker\0"
+  "joker_black\0"
+  "joker_red\0"
   "back\0"
   "slot";
 static const guint8 extra_card_offsets[] = {
@@ -73,16 +73,16 @@ static const guint8 rank_offsets[] = {
  */
 int
 ar_card_get_node_by_suit_and_rank_snprintf (char *buffer,
-                                               gsize bufsize,
-                                               int suit,
-                                               int rank)
+                                            gsize bufsize,
+                                            int suit,
+                                            int rank)
 {
   int len;
 
   if (G_LIKELY (suit < 4)) {
     len = g_snprintf (buffer, bufsize, "#%s_%s",
-                      ranks + rank_offsets[rank],
-                      suites + suite_offsets[suit]);
+                      suites + suite_offsets[suit],
+                      ranks + rank_offsets[rank]);
   } else {
     len = g_snprintf (buffer, bufsize, "#%s",
                       extra_cards + extra_card_offsets[rank]);
