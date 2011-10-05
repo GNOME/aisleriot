@@ -67,7 +67,7 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
   /* First the slot image */
   /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
   slot_dir = ar_runtime_get_directory (AR_RUNTIME_PIXMAP_DIRECTORY);
-  path = g_build_filename (slot_dir, "slot.svg", NULL);
+  path = g_build_filename (slot_dir, "slot.svgz", NULL);
   theme->slot_preimage = ar_svg_new_from_filename_sync (path, NULL, error);
   g_free (path);
   if (!theme->slot_preimage)
@@ -222,11 +222,7 @@ ar_card_theme_preimage_class_get_theme_info (ArCardThemeClass *klass,
   ArCardThemeInfo *info;
   char *display_name;
 
-  if (!g_str_has_suffix (filename, ".svg")
-#if defined(LIBRSVG_HAVE_SVGZ) && LIBRSVG_HAVE_SVGZ
-      && !g_str_has_suffix (filename, ".svgz")
-#endif
-     )
+  if (!g_str_has_suffix (filename, ".svgz"))
     return NULL;
 
   display_name = ar_filename_to_display_name (filename);
