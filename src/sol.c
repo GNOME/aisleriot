@@ -230,6 +230,8 @@ main (int argc, char *argv[])
   g_setenv ("GUILE_AUTO_COMPILE", "0", TRUE);
 #endif
 
+  g_setenv ("UBUNTU_MENUPROXY", "0", TRUE);
+
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 
   return 0;
