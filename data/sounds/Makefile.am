@@ -3,6 +3,8 @@ NULL =
 sounddir = $(pkgdatadir)/sounds
 
 sound_DATA = \
+	click.ogg \
+	slide.ogg \
 	splat.ogg \
 	victory.ogg \
 	$(NULL)
