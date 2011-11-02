@@ -370,7 +370,7 @@
 
 ; hint procedures
 (define (get-joker-name card) 
-  (if (is-black? card) (_"black joker") (_"red joker")))
+  (if (is-black? card) (_"the black joker") (_"the red joker")))
 
 (define (get-name card)
   ; Do not use this function directly. To create a hint for moving a card or
