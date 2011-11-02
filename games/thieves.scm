@@ -133,8 +133,7 @@
           (empty-slot? where)
 	  (not (values-match? (get-top-card where) (get-top-card 8))))
       #f
-      (list 1 (get-name (get-top-card where))
-             (get-name (get-top-card 8)))))
+      (hint-move where 1 8)))
 
 (define (get-hint)
   (or (hint-move-from 0)
