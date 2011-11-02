@@ -14,31 +14,33 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(define foundation '(2 3 4 5))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards-face-up 0 '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12
 			    9 10 11 12 10 11 12 11 12 12))
@@ -151,11 +153,7 @@
 	 (check-foundations 6))
 	((and (not (empty-slot? slot))
 	      (check-to-foundation (get-top-card slot) 2))
-	 (if (= (get-value (get-top-card slot)) ace)
-	     (list 2 (get-name (get-top-card slot)) (_"an empty foundation"))
-	     (list 1
-		   (get-name (get-top-card slot))
-		   (get-name (get-top-card (check-to-foundation (get-top-card slot) 2))))))
+	 (hint-move slot 1 (check-to-foundation (get-top-card slot) 2)))
 	(#t (check-foundations (+ 1 slot)))))
 
 (define (check-a-tab-slot card slot2 same-suit?)
@@ -175,7 +173,16 @@
 	       (check-same-suit-list card-list))
 	  (car (reverse card-list))
 	  (stripped (reverse (cdr (reverse card-list))) slot))))
-  
+
+(define (stripped-size card-list slot)
+  (if (or (= slot 1)
+	  (= (length card-list) 1))
+      1
+      (if (and (check-straight-descending-list card-list)
+	       (check-same-suit-list card-list))
+	  (length card-list)
+	  (stripped-size (reverse (cdr (reverse card-list))) slot))))
+
 
 (define (check-same-suit-builds slot1 slot2)
   (cond ((= slot1 13)
@@ -188,9 +195,7 @@
 	((and (not (= slot1 slot2))
 	      (not (empty-slot? slot2))
 	      (check-a-tab-slot (stripped (get-cards slot1) slot1) slot2 #t))
-	 (list 1 
-	       (get-name (stripped (get-cards slot1) slot1)) 
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (stripped-size (get-cards slot1) slot1) slot2))
 	(#t (check-same-suit-builds slot1 (+ 1 slot2)))))
 
 (define (check-same-color-builds slot1 slot2)
@@ -204,9 +209,7 @@
 	((and (not (= slot1 slot2))
 	      (not (empty-slot? slot2))
 	      (check-a-tab-slot (stripped (get-cards slot1) slot1) slot2 #f))
-	 (list 1 
-	       (get-name (stripped (get-cards slot1) slot1)) 
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (stripped-size (get-cards slot1) slot1) slot2))
 	(#t (check-same-color-builds slot1 (+ 1 slot2)))))
 
 (define (empty-tab? slot)
