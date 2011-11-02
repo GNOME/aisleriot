@@ -14,37 +14,39 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(define foundation '(1 2 3 4 5 6 7 8))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-double-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'stock)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
 
   (add-blank-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(9 10 11 12 13 14 15 16 9 10 11 12 13 14 15 16))
   (deal-cards-face-up 0 '(9 10 11 12 13 14 15 16))
@@ -221,7 +223,7 @@
 		   (get-suit (get-top-card slot-id)))
 	      (= (get-value card)
 		 (+ 1 (get-value (get-top-card slot-id)))))
-	 #t)
+	 slot-id)
 	(#t (check-a-foundation card (+ 1 slot-id)))))
 
 (define (check-to-foundations? slot-id)
@@ -230,12 +232,9 @@
 	((empty-slot? slot-id)
 	 (check-to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (_"an empty foundation")))
+	 (hint-move slot-id 1 (find-empty-slot foundation)))
 	((check-a-foundation (get-top-card slot-id) 1)
-	 (list 1 
-	       (get-name (get-top-card slot-id))
-	       (get-name (make-card (- (get-value (get-top-card slot-id)) 1)
-				    (get-suit (get-top-card slot-id))))))
+	 (hint-move slot-id 1 (check-a-foundation (get-top-card slot-id) 1)))
 	(#t (check-to-foundations? (+ 1 slot-id)))))
 
 (define (stripped card-list card)
@@ -261,7 +260,7 @@
 		  imbedded?
 		  (not (= (+ 1 (get-value (car card-list)))
 			  (get-value (cadr card-list))))
-		  (check-a-foundation (cadr card-list) 0)
+		  (check-a-foundation (cadr card-list) 1)
 		  (and (check-alternating-color-list (list (car card-list) (cadr card-list)))
 		       (check-straight-descending-list (list (car card-list) (cadr card-list)))
 		       (check-a-tableau (get-top-card slot2)
@@ -279,7 +278,7 @@
 					(get-cards slot1)
 					slot1
 					#t)))
-	     (list 1 (get-name (car card-list)) (get-name card))
+	     (hint-move slot2 (+ 1 (- (length (get-cards slot2)) (length card-list))) slot1)
 	     (and (not imbedded?)
 		  (> (length card-list) 1)
 		  (check-alternating-color-list (list (car card-list)
@@ -327,7 +326,7 @@
 	(#t (or (and (not (empty-slot? slot2))
 		     (check-a-tableau (get-top-card slot2) 
 				      slot2 
-				      (list (get-top-card slot1))
+				      (get-cards slot1)
 				      slot1 
 				      #f))
 		(check-from-foundation? slot1 (+ 1 slot2))))))
