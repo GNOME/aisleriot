@@ -405,11 +405,11 @@ game_scm_pre_unwind_handler (void *user_data,
     return SCM_UNDEFINED;
 
   message = cscmi_exception_get_backtrace (tag, throw_args);
-  g_set_error (error,
-               AISLERIOT_GAME_ERROR,
-               GAME_ERROR_EXCEPTION,
-               message ? message
-                       : "A scheme exception occurred, but there was no exception info");
+  g_set_error_literal (error,
+                       AISLERIOT_GAME_ERROR,
+                       GAME_ERROR_EXCEPTION,
+                       message ? message
+                               : "A scheme exception occurred, but there was no exception info");
   return SCM_UNDEFINED;
 }
 
