@@ -450,33 +450,25 @@ AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
 # *****************
 
 AC_ARG_VAR([GLIB_GENMARSHAL],[the glib-genmarschal programme])
-AC_MSG_CHECKING([for glib-genmarshal])
 AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
-AC_MSG_RESULT([$GLIB_GENMARSHAL])
 if test -z "$GLIB_GENMARSHAL"; then
   AC_MSG_ERROR([glib-genmarshal not found])
 fi
 
 AC_ARG_VAR([GZIP],[the gzip programme])
-AC_MSG_CHECKING([for gzip])
 AC_PATH_PROG([GZIP],[gzip],[])
-AC_MSG_RESULT([$GZIP])
 if test -z "$GZIP"; then
   AC_MSG_ERROR([gzip not found])
 fi
 
 AC_ARG_VAR([XMLLINT],[the xmllint programme])
-AC_MSG_CHECKING([for xmllint])
 AC_PATH_PROG([XMLLINT],[xmllint],[])
-AC_MSG_RESULT([$XMLLINT])
 if test -z "$XMLLINT"; then
   AC_MSG_ERROR([xmllint not found])
 fi
 
 if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
-  AC_MSG_CHECKING([for windres])
   AC_CHECK_TOOL([WINDRES],[windres],[no])
-  AC_MSG_RESULT([$WINDRES])
   if test "$WINDRES" = "no"; then
     AC_MSG_ERROR([windres is required for native win32])
   fi
