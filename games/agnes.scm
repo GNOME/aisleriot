@@ -18,29 +18,33 @@
 ; Andersca claims that seed 1791329065 wins
 (define BASE-VAL 0)
 
+(define stock 0)
+(define foundation '(1 2 3 4))
+(define tableau '(5 6 7 8 9 10 11))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
   
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'stock)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(5 6 7 8 9 10 11 6 7 8 9 10 11 7 8 9 10 11 8 9 10 11
 		    9 10 11 10 11 11))
@@ -217,14 +221,10 @@
 	((and (not (empty-slot? slot))
 	      (= (get-value (get-top-card slot))
 		 BASE-VAL))
-	 (list 2
-	       (get-name (get-top-card slot))
-	       (_"an empty foundation pile")))
+	 (hint-move slot 1 (find-empty-slot foundation)))
 	((and (not (empty-slot? slot))
 	      (check-dc slot 1 #t))
-	 (list 1
-	       (get-name (get-top-card slot))
-	       (get-name (get-top-card (check-dc slot 1 #t)))))
+	 (hint-move slot 1 (check-dc slot 1 #t)))
 	(#t (check-to-foundation? (+ 1 slot)))))
 
 (define (check-a-tableau card slot)
@@ -255,9 +255,7 @@
 	 (check-to-tableau? (+ 1 slot1) 5))
 	((and (not (= slot1 slot2))
 	      (check-a-tableau (strip (get-cards slot1)) slot2))
-	 (list 1 
-	       (get-name (strip (get-cards slot1)))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (find-card slot1 (strip (get-cards slot1))) slot2))
 	(#t (check-to-tableau? slot1 (+ 1 slot2)))))
 
 

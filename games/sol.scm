@@ -301,6 +301,16 @@
       (car slots)
       (find-empty-slot (cdr slots))))
 
+(define (find-card-helper card cards n)
+  (if (null? cards)
+      #f
+      (if (equal? (car cards) card)
+          n
+          (find-card-helper card (cdr cards) (+ n 1)))))
+
+(define (find-card slot card)
+  (find-card-helper card (get-cards slot) 1))
+
 ; Get the nth card from a slot. Returns #f if n is out of range.
 (define (get-nth-card slot-id n)
   (let ((cards (get-cards slot-id)))
