@@ -20,45 +20,45 @@
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'stock)
 
   (set! HORIZPOS (+ HORIZPOS 0.75))
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
+  (add-normal-slot '() 'reserve)
+  (add-normal-slot '() 'reserve)
 
   (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-
-  (add-carriage-return-slot)
-
-  (add-extended-slot '() right)
-  (add-blank-slot)
-  (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-extended-slot '() right)
-  (add-blank-slot)
-  (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-extended-slot '() right)
-  (add-blank-slot)
-  (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-extended-slot '() right)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.75))
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
+
+  (add-carriage-return-slot)
+
+  (add-extended-slot '() right 'tableau)
+  (add-blank-slot)
+  (set! HORIZPOS (+ HORIZPOS 0.75))
+  (add-extended-slot '() right 'tableau)
+  (add-blank-slot)
+  (set! HORIZPOS (+ HORIZPOS 0.75))
+  (add-extended-slot '() right 'tableau)
+  (add-blank-slot)
+  (set! HORIZPOS (+ HORIZPOS 0.75))
+  (add-extended-slot '() right 'tableau)
 
   (deal-cards-face-up 0 '(8 9 10 11 12 13 14 15 
 			    8 9 10 11 12 13 14 15 
@@ -188,15 +188,11 @@
       #f
       (cond ((and (empty-slot? foundation-id)
 		  (= (get-value (get-top-card slot-id)) ace))
-	     (list 2
-		   (get-name (get-top-card slot-id)) 
-		   (_"an empty foundation pile")))
+	     (hint-move slot-id 1 foundation-id))
 	    ((and (not (empty-slot? foundation-id))
 		  (= (+ 1 (get-value (get-top-card foundation-id)))
 		     (get-value (get-top-card slot-id))))
-	     (list 1
-		   (get-name (get-top-card slot-id))
-		   (get-name (get-top-card foundation-id))))
+	     (hint-move slot-id 1 foundation-id))
 	    (#t (check-a-foundation slot-id (+ 1 foundation-id))))))
 
 (define (check-to-foundations slot-id)
@@ -236,17 +232,13 @@
 	       (= (+ 1 (get-value (car card-list)))
 		  (get-value (get-top-card slot2))))
 	  (if (= depth 1)
-	      (list 1 
-		    (get-name (get-top-card slot1))
-		    (get-name (get-top-card slot2)))
+	      (hint-move slot1 1 slot2)
 
 	      (and (check-a-tslot slot1 
 				  (cdr card-list)
 				  (- depth 1)
 				  8)
-		   (list 1 
-			 (get-name (get-top-card slot1))
-			 (get-name (get-top-card slot2)))))
+		   (hint-move slot1 1 slot2)))
 	  (check-a-tslot slot1 card-list depth (+ 1 slot2)))))
 
 (define (check-tableau slot-id)
