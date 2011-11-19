@@ -21,27 +21,27 @@
   (set! DECK (make-deck-list-ace-high 3 3 club))
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
-  (add-normal-slot (list (make-visible (make-card 2 club))))
-  (add-normal-slot (list (make-visible (make-card 2 diamond))))
-  (add-normal-slot (list (make-visible (make-card 2 heart))))
-  (add-normal-slot (list (make-visible (make-card 2 spade))))
+  (add-normal-slot (list (make-visible (make-card 2 club))) 'foundation)
+  (add-normal-slot (list (make-visible (make-card 2 diamond))) 'foundation)
+  (add-normal-slot (list (make-visible (make-card 2 heart))) 'foundation)
+  (add-normal-slot (list (make-visible (make-card 2 spade))) 'foundation)
 
   (add-carriage-return-slot)
 
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
 
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(6 6 6 6 6 6 6 6 6 6 6 6))
   (deal-cards-face-up 0 '(6 7 8 9 10))
@@ -176,8 +176,9 @@
 	 #f)
 	((eq? (get-suit (get-top-card slot-id))
 	      (get-suit (get-top-card foundation-id)))
-	 (= (get-value (get-top-card slot-id))
-	    (+ 1 (get-value (get-top-card foundation-id)))))
+	 (and (= (get-value (get-top-card slot-id))
+	         (+ 1 (get-value (get-top-card foundation-id))))
+	      foundation-id))
 	(#t (check-a-foundation slot-id (+ 1 foundation-id)))))	
 
 (define (to-foundations slot-id)
@@ -187,11 +188,7 @@
 	 (to-foundations 6))
 	((and (not (empty-slot? slot-id))
 	      (check-a-foundation slot-id 2))
-	 (list 1 
-	       (get-name (get-top-card slot-id))
-	       (get-name (make-card (- (get-value (get-top-card slot-id))
-				       1)
-				    (get-suit (get-top-card slot-id))))))
+	 (hint-move slot-id 1 (check-a-foundation slot-id 2)))
 	(#t
 	 (to-foundations (+ 1 slot-id)))))
 
@@ -210,7 +207,7 @@
 			  (+ 1 
 			     (get-value 
 			      (car (reverse (get-cards slot-id)))))))))
-	 #t)
+	 t-slot)
 	(#t (check-a-tableau slot-id (+ 1 t-slot)))))
 
 (define (to-tableau slot-id)
@@ -221,24 +218,8 @@
 	((and (not (empty-slot? slot-id))
 	      (check-a-tableau slot-id 7))
 	 (if (< slot-id 7)
-	     (list 1 
-		   (get-name (get-top-card slot-id))
-		   (get-name (make-card (+ (get-value 
-					    (get-top-card slot-id))
-					   1)
-					(get-suit 
-					 (get-top-card slot-id)))))
-	     (list 1 
-		   (get-name 
-		    (car (reverse (get-cards slot-id))))
-		   (get-name 
-		    (make-card (+ (get-value 
-				   (car
-				    (reverse (get-cards slot-id))))
-				  1)
-			       (get-suit 
-				(car 
-				 (reverse (get-cards slot-id)))))))))
+	     (hint-move slot-id 1 (check-a-tableau slot-id 7))
+	     (hint-move slot-id (length (get-cards slot-id)) (check-a-tableau slot-id 7))))
 	(#t (to-tableau (+ 1 slot-id)))))
 
 (define (empty-tableau? slot-id)
@@ -246,7 +227,7 @@
 	     (> slot-id 10))
 	 #f)
 	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) (_"an empty tableau slot")))
+	 (hint-move 1 1 slot-id))
 	(#t (empty-tableau? (+ 1 slot-id)))))
 
 (define (get-hint)
