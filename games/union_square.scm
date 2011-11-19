@@ -14,66 +14,71 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(define stock 0)
+(define waste 1)
+(define tableau '(2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))
+(define foundation '(6 11 16 21))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-double-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
 
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'foundation)
 
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
 
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'foundation)
 
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
 
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'foundation)
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
+  (add-partially-extended-slot '() right 2 'tableau)
 
   (add-blank-slot)
 
-  (add-partially-extended-slot '() right 2)
+  (add-partially-extended-slot '() right 2 'foundation)
 
   (deal-cards-face-up 0 '(2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))
 
@@ -221,7 +226,7 @@
   (if (> end-slot 21)
       #f
       (if (to-foundation? card-list end-slot)
-	  #t
+	  end-slot
 	  (check-a-foundation card-list (+ 5 end-slot)))))
 
 (define (check-to-foundations slot-id)
@@ -233,7 +238,7 @@
 	      (= slot-id 16)
 	      (not (check-a-foundation (list (get-top-card slot-id)) 6)))
 	  (check-to-foundations (+ 1 slot-id))
-	  (list 2 (get-name (get-top-card slot-id)) (_"appropriate foundation pile")))))
+	  (hint-move slot-id 1 (check-a-foundation (list (get-top-card slot-id)) 6)))))
 
 (define (check-imbedded card-list foundation-id)
   (if (> (length card-list) 0)
@@ -377,10 +382,8 @@
 		   (not (empty-slot? slot2))
 		   (to-tableau? (list (get-top-card slot2)) slot1)
 		   (check-slot-contents slot2))
-	      (list 1 (get-name (get-top-card slot2))
-		    (get-name (get-top-card slot1)))
-	      (list 1 (get-name (get-top-card slot1))
-		    (get-name (get-top-card slot2))))
+	      (hint-move slot2 1 slot1)
+	      (hint-move slot1 1 slot2))
 	  (check-a-tslot slot1 (+ 1 slot2)))))
 
 (define (check-tableau slot-id)
@@ -447,13 +450,11 @@
   (if (not (check-for-empty 2))
       #f
       (cond ((contents-check 2)
-	     (list 2 (get-name (get-top-card (contents-check 2)))
-		   (_"an empty slot")))
+	     (hint-move (contents-check 2) 1 (find-empty-slot tableau)))
 	    ((check-for-bottom 2)
-	     (list 2 (get-name (get-top-card (check-for-bottom 2)))
-		   (_"an empty slot")))
-	    ((not (empty-slot? 1))
-	     (list 2 (get-name (get-top-card 1)) (_"an empty slot")))
+	     (hint-move (check-for-bottom 2) 1 (find-empty-slot tableau)))
+	    ((not (empty-slot? waste))
+	     (hint-move waste 1 (find-empty-slot tableau)))
 	    (#t #f))))
 
 (define (dealable?)
@@ -465,7 +466,8 @@
   (or (check-to-foundations 1)
       (check-tableau 20)
       (check-empty-slot)
-      (dealable?)))
+      (dealable?)
+      (list 0 (_"No hint available right now"))))
 
 (define (get-options) 
   #f)
