@@ -16,39 +16,44 @@
 
 (define BASE-VAL 0)
 
+(define stock 0)
+(define waste 1)
+(define foundation '(2 4 8 10))
+(define tableau '(3 5 6 7 9))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'tableau)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
 
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
+  (add-normal-slot '() 'tableau)
+  (add-normal-slot '() 'tableau)
   (add-carriage-return-slot)
 
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'tableau)
+  (add-normal-slot '() 'foundation)
 
   (deal-cards-face-up 0 '(2 3 5 6 7 9))
 
@@ -198,7 +203,7 @@
 		    (+ 1 (get-value (get-top-card f-slot))))
 		 (and (= (get-value card) ace)
 		      (= (get-value (get-top-card f-slot)) king)))
-	     (get-top-card f-slot)
+	     f-slot
 	     #f))
 	(#t (check-a-foundation card (+ 2 f-slot)))))
 
@@ -211,13 +216,9 @@
 	     (= slot-id 8))
 	 (to-foundations? (+ 1 slot-id)))
 	((= BASE-VAL (get-value (get-top-card slot-id)))
-	 (list 2 
-	       (get-name (get-top-card slot-id)) 
-	       (_"an empty foundation pile")))
+	 (hint-move slot-id 1 (find-empty-slot foundation)))
 	((check-a-foundation (get-top-card slot-id) 2)
-	 (list 1
-	       (get-name (get-top-card slot-id))
-	       (get-name (check-a-foundation (get-top-card slot-id) 2))))
+	 (hint-move slot-id 1 (check-a-foundation (get-top-card slot-id) 2)))
 	(#t (to-foundations? (+ 1 slot-id)))))
 
 (define (waste-to-tableau? slot-id)
@@ -227,15 +228,12 @@
 	((or (= slot-id 4)
 	     (= slot-id 8))
 	 (waste-to-tableau? (+ 1 slot-id)))
-	((empty-slot? slot-id)
-	 (list 2 (get-name (get-top-card 1)) (_"an empty tableau pile")))
-	((or (and (= (get-value (get-top-card 1)) king)
+	((or (empty-slot? slot-id)
+	     (and (= (get-value (get-top-card 1)) king)
 		  (= (get-value (get-top-card slot-id)) ace))
 	     (= (+ 1 (get-value (get-top-card 1)))
 		(get-value (get-top-card slot-id))))
-	 (list 1 
-	       (get-name (get-top-card 1))
-	       (get-name (get-top-card slot-id))))
+	 (hint-move waste 1 slot-id))
 	(#t (waste-to-tableau? (+ 1 slot-id)))))
 
 (define (check-tslot slot1 card-list slot2)
@@ -253,9 +251,7 @@
 		  (= (+ 1 (get-value (car card-list)))
 		     (get-value (get-top-card slot2))))
 	      (check-tslot slot1 (cdr card-list) 3))
-	 (list 1 
-	       (get-name (get-top-card slot1)) 
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 1 slot2))
 	(#t (check-tslot slot1 card-list (+ 1 slot2)))))
 
 (define (tableau-movement? slot-id)
