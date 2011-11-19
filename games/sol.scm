@@ -69,7 +69,8 @@
   (set-statusbar-message " ")
   (set! HISTORY '())
   (set! FOUNDATION-SLOTS '())
-  (set! TABLEAU-SLOTS '()))
+  (set! TABLEAU-SLOTS '())
+  (set! EDGE-SLOTS '()))
 
 ; Use this instead of define for variables which determine the state of
 ; the game. i.e. anything that isn't a constant. This is so undo/redo
@@ -444,6 +445,7 @@
   (if (empty-slot? to-slot)
       (cond ((member to-slot FOUNDATION-SLOTS) (if (= (length FOUNDATION-SLOTS) 1) (_"Move ~a onto the foundation.") (_"Move ~a onto an empty foundation slot.")))
             ((member to-slot TABLEAU-SLOTS) (if (= (length TABLEAU-SLOTS) 1) (_"Move ~a onto the tableau.") (_"Move ~a onto an empty tableau slot.")))
+            ((member to-slot EDGE-SLOTS) (_"Move ~a onto an empty edge slot."))
             (else (_"Move ~a onto an empty slot.")))
       (let* ((card (get-top-card to-slot)) (value (get-value card)) (suit (get-suit card)))
              (cond ((is-joker? card)
@@ -573,6 +575,7 @@
 (define (set-tag! slot)
   (case (cadddr slot)
     ((tableau) (set! TABLEAU-SLOTS (cons SLOTS TABLEAU-SLOTS)))
+    ((edge) (set! EDGE-SLOTS (cons SLOTS EDGE-SLOTS)))
     ((foundation) (set! FOUNDATION-SLOTS (cons SLOTS FOUNDATION-SLOTS))))
   (set! SLOTS (+ 1 SLOTS))
   (cons (- SLOTS 1) (cdr slot)))
@@ -612,6 +615,7 @@
 (define IN-GAME #f)
 (define FOUNDATION-SLOTS '())
 (define TABLEAU-SLOTS '())
+(define EDGE-SLOTS '())
 
 ; called from C:
 (define (start-game)
