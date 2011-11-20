@@ -21,32 +21,32 @@
   (shuffle-deck)
 
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
 
   (add-blank-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(10 11 12 13 14 15 16 17 18 10 11 12 13 14 15 16 17
 		     10 11 12 13 14 15 16 10 11 12 13 14 15 10 11 12
@@ -174,11 +174,6 @@
        (empty-slot? 17)
        (empty-slot? 18)))
 
-(define (get-name-from-tableau slot)
-  (if (empty-slot? slot)
-      (_"an empty tableau slot")
-      (get-name (get-top-card slot))))
-
 (define (strip card-list)
   (if (not (is-visible? (cadr card-list)))
       (car card-list)
@@ -205,10 +200,7 @@
 	((and (not (empty-slot? t-slot))
 	      (not (is-visible? (car (reverse (get-cards t-slot)))))
 	      (check-plop (strip (get-cards t-slot)) 10))
-     (list 1 
-	   (get-name (strip (get-cards t-slot)))
-	   (get-name-from-tableau (check-plop (strip (get-cards t-slot)) 
-					       10))))
+         (hint-move t-slot (find-card t-slot (strip (get-cards t-slot))) (check-plop (strip (get-cards t-slot)) 10)))
 	((and (not (empty-slot? t-slot))
 	      (> (length (get-cards t-slot)) 1)
 	      (not (is-visible? (cadr (get-cards t-slot))))
@@ -225,9 +217,7 @@
 	      (= (+ 1 (get-value card))
 		 (get-value (get-top-card f-slot)))
 	      (check-plop (get-top-card f-slot) 10))
-	 (list 1 
-	       (get-name (get-top-card f-slot))
-	       (get-name-from-tableau (check-plop (get-top-card f-slot) 10))))
+	 (hint-move f-slot 1 (check-plop (get-top-card f-slot) 10)))
 	(#t (check-a-foundation-for-uncover card (+ 1 f-slot)))))
 
 (define (check-foundation-for-uncover t-slot)
@@ -247,10 +237,7 @@
 	      (check-plop (car (reverse (get-cards t-slot))) 10))
 	 (if (empty-slot? (check-plop (car (reverse (get-cards t-slot))) 10))
 	     (check-empty-tslot (+ 1 t-slot))
-	     (list 1
-		   (get-name (car (reverse (get-cards t-slot))))
-		   (get-name-from-tableau (check-plop (car (reverse (get-cards t-slot)))
-						       10)))))
+	     (hint-move t-slot (length (get-cards t-slot)) (check-plop (car (reverse (get-cards t-slot))) 10))))
 	(#t (check-empty-tslot (+ 1 t-slot)))))
 
 (define (check-move-waste t-slot)
@@ -262,14 +249,10 @@
 		   (is-black? (get-top-card t-slot)))
 	      (= (+ 1 (get-value (get-top-card 1)))
 		 (get-value (get-top-card t-slot))))
-	 (list 1 
-	       (get-name (get-top-card 1))
-	       (get-name (get-top-card t-slot))))
+	 (hint-move 1 1 t-slot))
 	((and (empty-slot? t-slot)
 	      (= (get-value (get-top-card 1)) king))
-	 (list 2
-	       (get-name (get-top-card 1))
-	       (_"an empty tableau slot")))
+	 (hint-move 1 1 t-slot))
 	((check-a-slot-to-foundations 1 2)
 	 (check-a-slot-to-foundations 1 2))
 	(#t (check-move-waste (+ 1 t-slot)))))
@@ -288,19 +271,13 @@
 (define (check-a-slot-to-foundations slot f-slot)
   (cond ((= f-slot 10)
 	 #f)
-	((= (get-value (get-top-card slot))
-	    ace)
-	 (list 2
-	       (get-name (get-top-card slot))
-	       (_"an empty foundation")))
-	((and (not (empty-slot? f-slot))
-	      (= (get-suit (get-top-card slot))
-		 (get-suit (get-top-card f-slot)))
-	      (= (get-value (get-top-card slot))
-		 (+ 1 (get-value (get-top-card f-slot)))))
-	 (list 1
-	       (get-name (get-top-card slot))
-	       (get-name (get-top-card f-slot))))
+	((if (empty-slot? f-slot)
+	     (= (get-value (get-top-card slot)) ace)
+	     (and (= (get-suit (get-top-card slot))
+		     (get-suit (get-top-card f-slot)))
+	          (= (get-value (get-top-card slot))
+		     (+ 1 (get-value (get-top-card f-slot))))))
+	 (hint-move slot 1 f-slot))
 	(#t (check-a-slot-to-foundations slot (+ 1 f-slot)))))
 	
 (define (check-simple-foundation slot happynum)
@@ -339,9 +316,7 @@
 	      (= (get-value (get-top-card f-slot))
 		 (+ 1 (get-value (get-top-card 1))))
 	      (check-plop (get-top-card f-slot) 10))
-	 (list 1
-	       (get-name (get-top-card f-slot))
-	       (get-name-from-tableau (check-plop (get-top-card f-slot) 10))))
+	 (hint-move f-slot 1 (check-plop (get-top-card f-slot) 10)))
 	(#t (check-foundation-for-waste (+ 1 f-slot)))))
 
 (define (get-hint)
