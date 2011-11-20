@@ -22,27 +22,27 @@
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-extended-slot '() right)      ;Slot 0
+  (add-extended-slot '() right 'reserve)      ;Slot 0
   (add-blank-slot)
-  (add-extended-slot '() right)      ;Slot 1
+  (add-extended-slot '() right 'foundation)      ;Slot 1
   (add-carriage-return-slot)
-  (add-extended-slot '() right)      ;Slot 2
+  (add-extended-slot '() right 'reserve)      ;Slot 2
   (add-blank-slot)
-  (add-extended-slot '() right)      ;Slot 3
+  (add-extended-slot '() right 'foundation)      ;Slot 3
   (add-carriage-return-slot)
-  (add-extended-slot '() right)      ;Slot 4
+  (add-extended-slot '() right 'reserve)      ;Slot 4
   (add-blank-slot)
-  (add-extended-slot '() right)      ;Slot 5
+  (add-extended-slot '() right 'foundation)      ;Slot 5
   (add-carriage-return-slot)
-  (add-extended-slot '() right)      ;Slot 6
+  (add-extended-slot '() right 'reserve)      ;Slot 6
   (add-blank-slot)
-  (add-extended-slot '() right)      ;Slot 7
+  (add-extended-slot '() right 'foundation)      ;Slot 7
   (add-carriage-return-slot)
-  (add-normal-slot DECK)             ;Slot 8
+  (add-normal-slot DECK 'stock)             ;Slot 8
 
   (if deal-three
-    (add-partially-extended-slot '() right 3)
-    (add-normal-slot '())             
+    (add-partially-extended-slot '() right 3 'waste)
+    (add-normal-slot '() 'waste)             
   )                                  ;Slot 9
 
   (initial-deal)
@@ -173,24 +173,23 @@
 			(#t #f))))))	 
       #f))
 
-(define (placeable? card slot-id)
+(define (placeable? from-slot card slot-id)
   (and (< slot-id 9)
        (or (if (empty-slot? slot-id)
 	       (and (= (get-value card) 
 		       (get-value (car (reverse (get-cards 1)))))
-		    (list 1 (get-name card) (_"an empty slot")))
+		    (hint-move from-slot 1 slot-id))
 	       (and (= (get-suit card) (get-suit (get-top-card slot-id)))
 		    (or (= slot-id 1)
 			(find-card-val-in-list? (get-cards (- slot-id 2)) 
 						(get-value card)))
-		    (list 2 (get-name card) 
-			  (get-name (get-top-card slot-id)))))
-	   (placeable? card (+ slot-id 2)))))
+		    (hint-move from-slot 1 slot-id)))
+	   (placeable? from-slot card (+ slot-id 2)))))
 
 (define (get-valid-move id-list)
   (and (not (null? id-list))
        (or (and (not (empty-slot? (car id-list)))
-		(placeable? (get-top-card (car id-list)) 1))
+		(placeable? (car id-list) (get-top-card (car id-list)) 1))
 	   (get-valid-move (cdr id-list)))))
 
 (define (game-continuable)
