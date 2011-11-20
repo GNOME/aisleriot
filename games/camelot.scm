@@ -26,40 +26,40 @@
   (add-blank-slot)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.5))
-  (add-normal-slot '())           ; Slot 0
-  (add-normal-slot '())           ; Slot 1
-  (add-normal-slot '())           ; Slot 2
-  (add-normal-slot '())           ; Slot 3
+  (add-normal-slot '() 'corner)           ; Slot 0
+  (add-normal-slot '() 'top)              ; Slot 1
+  (add-normal-slot '() 'top)              ; Slot 2
+  (add-normal-slot '() 'corner)           ; Slot 3
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.5))
-  (add-normal-slot '())           ; Slot 4
-  (add-normal-slot '())           ; Slot 5
-  (add-normal-slot '())           ; Slot 6
-  (add-normal-slot '())           ; Slot 7
+  (add-normal-slot '() 'left)     ; Slot 4
+  (add-normal-slot '() 'tableau)  ; Slot 5
+  (add-normal-slot '() 'tableau)  ; Slot 6
+  (add-normal-slot '() 'right)    ; Slot 7
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.5))
-  (add-normal-slot '())           ; Slot 8
-  (add-normal-slot '())           ; Slot 9
-  (add-normal-slot '())           ; Slot 10
-  (add-normal-slot '())           ; Slot 11
+  (add-normal-slot '() 'left)     ; Slot 8
+  (add-normal-slot '() 'tableau)  ; Slot 9
+  (add-normal-slot '() 'tableau)  ; Slot 10
+  (add-normal-slot '() 'right)    ; Slot 11
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (set! HORIZPOS (+ HORIZPOS 0.5))
-  (add-normal-slot '())           ; Slot 12
-  (add-normal-slot '())           ; Slot 13
-  (add-normal-slot '())           ; Slot 14
-  (add-normal-slot '())           ; Slot 15
+  (add-normal-slot '() 'corner)   ; Slot 12
+  (add-normal-slot '() 'bottom)   ; Slot 13
+  (add-normal-slot '() 'bottom)   ; Slot 14
+  (add-normal-slot '() 'corner)   ; Slot 15
 
   (set! HORIZPOS 0)
   (set! VERTPOS 0)
 
-  (add-normal-slot DECK)          ; Slot 16
-  (add-normal-slot '())           ; Slot 17
+  (add-normal-slot DECK 'stock)   ; Slot 16
+  (add-normal-slot '() 'waste)    ; Slot 17
   (set! add-stage #t)
   (set! fill-count 0)
 
@@ -162,54 +162,32 @@
        (empty-slot? 9)
        (empty-slot? 10)))
 
-(define (list-cards slot)
-  (if (= slot 16) 
-      '() 
-      (append (if (and (not (empty-slot? slot))
-		       (< (get-value (get-top-card slot)) 11)) 
-		  (get-cards slot) 
-		  '()) 
-	      (list-cards (+ 1 slot)))))
+(define (hint-remove-ten suit)
+  (cond ((eq? suit club) (_"Remove the ten of clubs."))
+        ((eq? suit diamond) (_"Remove the ten of diamonds."))
+        ((eq? suit heart) (_"Remove the ten of hearts."))
+        ((eq? suit spade) (_"Remove the ten of spades."))))
 
-(define (find-card-val-in-list? cards value)
-  (and (not (null? cards))
-       (if (= value (get-value (car cards))) 
-	   (car cards)
-	   (find-card-val-in-list? (cdr cards) value))))
-
-(define (find-match cards)
-  (and (not (null? cards))
-       (if (= 10 (get-value (car cards))) 
-	   (list 2 (get-name (car cards)) (_"itself")) ; yuk..
-	   (let ((match (find-card-val-in-list? 
-			 (cdr cards)
-			 (- 10 (get-value (car cards))))))
-	     (if match
-		 (list 1 (get-name (car cards)) (get-name match))
-		 (find-match (cdr cards)))))))
+(define (find-match slot1 slot2)
+  (cond ((= slot2 16) (find-match (+ 1 slot1) 0))
+        ((= slot1 16) #f)
+        ((or (empty-slot? slot2) (> (get-value (get-top-card slot2)) 10)) (find-match slot1 (+ 1 slot2)))
+        ((or (empty-slot? slot1) (> (get-value (get-top-card slot1)) 10)) (find-match (+ 1 slot1) 0))
+        ((= 10 (get-value (get-top-card slot2))) (list 0 (hint-remove-ten (get-suit (get-top-card slot2)))))
+        ((= slot1 slot2) (find-match slot1 (+ 1 slot2)))
+        ((= 10 (+ (get-value (get-top-card slot1)) (get-value (get-top-card slot2))))
+         (hint-move slot1 1 slot2))
+        (#t (find-match slot1 (+ 1 slot2)))))
 
 (define (placeable? card)
   (cond ((= (get-value card) king)
-	 (and (or (empty-slot? 0)
-		  (empty-slot? 3)
-		  (empty-slot? 12)
-		  (empty-slot? 15))
-	      (_"an empty corner slot")))
-	 ((= (get-value card) queen)
-	  (or (and (or (empty-slot? 1)
-		       (empty-slot? 2))
-		   (_"an empty top slot"))
-	      (and (or (empty-slot? 13)
-		       (empty-slot? 14))
-		   (_"an empty bottom slot"))))
+	 (find-empty-slot '(0 3 12 15)))
+	((= (get-value card) queen)
+	 (find-empty-slot '(1 2 13 14)))
 	((= (get-value card) jack)
-	  (or (and (or (empty-slot? 4)
-		       (empty-slot? 8))
-		   (_"an empty left slot"))
-	      (and (or (empty-slot? 7)
-		       (empty-slot? 11))
-		   (_"an empty right slot"))))
-	(#t (_"an empty slot"))))
+	 (find-empty-slot '(4 8 7 11)))
+	(#t
+	 (find-empty-slot '(5 6 9 10 0 1 2 3 4 7 8 11 12 13 14 15)))))
 
 (define (game-over)
   (give-status-message)
@@ -217,16 +195,15 @@
 	  (and (empty-slot? 16) (empty-slot? 17)))
       (begin 
 	(set! add-stage #f)
-	(find-match (list-cards 0)))
+	(find-match 0 0))
       (or (empty-slot? 17)
 	  (placeable? (get-top-card 17)))))
 
 (define (get-hint)
   (or (if add-stage
 	  (and (not (empty-slot? 17))
-	       (list 2 (get-name (get-top-card 17))
-		     (placeable? (get-top-card 17))))
-	  (find-match (list-cards 0)))
+	       (hint-move 17 1 (placeable? (get-top-card 17))))
+	  (find-match 0 0))
       (list 0 (_"Deal a new card from the deck"))))
 
 (define (get-options) #f)

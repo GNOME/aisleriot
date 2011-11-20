@@ -70,7 +70,12 @@
   (set! HISTORY '())
   (set! FOUNDATION-SLOTS '())
   (set! TABLEAU-SLOTS '())
-  (set! EDGE-SLOTS '()))
+  (set! EDGE-SLOTS '())
+  (set! CORNER-SLOTS '())
+  (set! TOP-SLOTS '())
+  (set! BOTTOM-SLOTS '())
+  (set! LEFT-SLOTS '())
+  (set! RIGHT-SLOTS '()))
 
 ; Use this instead of define for variables which determine the state of
 ; the game. i.e. anything that isn't a constant. This is so undo/redo
@@ -297,9 +302,9 @@
           (any-slot-empty? (cdr slots)))))
 
 (define (find-empty-slot slots)
-  (if (empty-slot? (car slots))
-      (car slots)
-      (find-empty-slot (cdr slots))))
+  (cond ((null? slots) #f)
+        ((empty-slot? (car slots)) (car slots))
+        (#t (find-empty-slot (cdr slots)))))
 
 (define (find-card-helper card cards n)
   (if (null? cards)
@@ -456,6 +461,11 @@
       (cond ((member to-slot FOUNDATION-SLOTS) (if (= (length FOUNDATION-SLOTS) 1) (_"Move ~a onto the foundation.") (_"Move ~a onto an empty foundation slot.")))
             ((member to-slot TABLEAU-SLOTS) (if (= (length TABLEAU-SLOTS) 1) (_"Move ~a onto the tableau.") (_"Move ~a onto an empty tableau slot.")))
             ((member to-slot EDGE-SLOTS) (_"Move ~a onto an empty edge slot."))
+            ((member to-slot CORNER-SLOTS) (_"Move ~a onto an empty corner slot."))
+            ((member to-slot TOP-SLOTS) (_"Move ~a onto an empty top slot."))
+            ((member to-slot BOTTOM-SLOTS) (_"Move ~a onto an empty bottom slot."))
+            ((member to-slot LEFT-SLOTS) (_"Move ~a onto an empty left slot."))
+            ((member to-slot RIGHT-SLOTS) (_"Move ~a onto an empty right slot."))
             (else (_"Move ~a onto an empty slot.")))
       (let* ((card (get-top-card to-slot)) (value (get-value card)) (suit (get-suit card)))
              (cond ((is-joker? card)
@@ -586,6 +596,11 @@
   (case (cadddr slot)
     ((tableau) (set! TABLEAU-SLOTS (cons SLOTS TABLEAU-SLOTS)))
     ((edge) (set! EDGE-SLOTS (cons SLOTS EDGE-SLOTS)))
+    ((corner) (set! CORNER-SLOTS (cons SLOTS CORNER-SLOTS)))
+    ((top) (set! TOP-SLOTS (cons SLOTS TOP-SLOTS)))
+    ((bottom) (set! BOTTOM-SLOTS (cons SLOTS BOTTOM-SLOTS)))
+    ((left) (set! LEFT-SLOTS (cons SLOTS LEFT-SLOTS)))
+    ((right) (set! RIGHT-SLOTS (cons SLOTS RIGHT-SLOTS)))
     ((foundation) (set! FOUNDATION-SLOTS (cons SLOTS FOUNDATION-SLOTS))))
   (set! SLOTS (+ 1 SLOTS))
   (cons (- SLOTS 1) (cdr slot)))
@@ -626,6 +641,11 @@
 (define FOUNDATION-SLOTS '())
 (define TABLEAU-SLOTS '())
 (define EDGE-SLOTS '())
+(define CORNER-SLOTS '())
+(define TOP-SLOTS '())
+(define BOTTOM-SLOTS '())
+(define LEFT-SLOTS '())
+(define RIGHT-SLOTS '())
 
 ; called from C:
 (define (start-game)
