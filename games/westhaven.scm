@@ -14,34 +14,39 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(define stock 0)
+(define waste 1)
+(define foundation '(2 3 4 5))
+(define tableau '(6 7 8 9 10 11 12 13 14 15))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(6 7 8 9 10 11 12 13 14 15))
   (deal-cards 0 '(6 7 8 9 10 11 12 13 14 15))
@@ -197,39 +202,31 @@
 	((empty-slot? slot-id)
 	 (to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (_"an empty foundation")))
+	 (hint-move slot-id 1 (find-empty-slot foundation)))
 	((and (not (empty-slot? 2))
 	      (eq? (get-suit (get-top-card 2))
 		   (get-suit (get-top-card slot-id)))
 	      (= (+ 1 (get-value (get-top-card 2)))
 		 (get-value (get-top-card slot-id))))
-	 (list 1 
-	       (get-name (get-top-card slot-id)) 
-	       (get-name (get-top-card 2))))
+	 (hint-move slot-id 1 2))
 	((and (not (empty-slot? 5))
 	      (eq? (get-suit (get-top-card 5))
 		   (get-suit (get-top-card slot-id)))
 	      (= (+ 1 (get-value (get-top-card 5)))
 		 (get-value (get-top-card slot-id))))
-	 (list 1 
-	       (get-name (get-top-card slot-id)) 
-	       (get-name (get-top-card 5))))
+	 (hint-move slot-id 1 5))
 	((and (not (empty-slot? 3))
 	      (eq? (get-suit (get-top-card 3))
 		   (get-suit (get-top-card slot-id)))
 	      (= (+ 1 (get-value (get-top-card 3)))
 		 (get-value (get-top-card slot-id))))
-	 (list 1 
-	       (get-name (get-top-card slot-id)) 
-	       (get-name (get-top-card 3))))
+	 (hint-move slot-id 1 3))
 	((and (not (empty-slot? 4))
 	      (eq? (get-suit (get-top-card 4))
 		   (get-suit (get-top-card slot-id)))
 	      (= (+ 1 (get-value (get-top-card 4)))
 		 (get-value (get-top-card slot-id))))
-	 (list 1 
-	       (get-name (get-top-card slot-id)) 
-	       (get-name (get-top-card 4))))
+	 (hint-move slot-id 1 4))
 	(#t
 	 (to-foundations? (+ 1 slot-id)))))
 
@@ -242,9 +239,7 @@
 			 (is-red? (get-top-card end-slot))))
 	       (= (+ 1 (get-value (get-top-card 1)))
 		  (get-value (get-top-card end-slot))))
-	  (list 1
-		(get-name (get-top-card 1))
-		(get-name (get-top-card end-slot)))
+	  (hint-move 1 1 end-slot)
 	  (waste-to-tableau? (+ 1 end-slot)))))
 
 (define (strip-invisible card-list)
@@ -271,9 +266,7 @@
 	     (= slot1 slot2))
 	 (tableau-to-tableau? slot1 (+ 1 slot2)))
 	((check-move (get-available-bottom slot1) slot2)
-	 (list 1
-	       (get-name (get-available-bottom slot1))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (find-card slot1 (get-available-bottom slot1)) slot2))
 	(#t
 	 (tableau-to-tableau? slot1 (+ 1 slot2)))))
 
@@ -291,7 +284,7 @@
 
 	((and (not (empty-slot? slot-id))
 	      (not (is-visible? (car (reverse (get-cards slot-id))))))
-	 (get-available-bottom slot-id))
+	 slot-id)
 	(#t
 	 (check-invisible (+ 1 slot-id)))))
 
@@ -299,13 +292,10 @@
   (if (not (check-for-empty 6))
       #f
       (cond ((check-invisible 6)
-	     (list 2 
-		   (get-name (check-invisible 6))
-		   (_"an empty tableau pile")))
+             (let ((from-slot (check-invisible 6)))
+              (hint-move from-slot (find-card from-slot (get-available-bottom from-slot)) (find-empty-slot tableau))))
 	    ((not (empty-slot? 1))
-	     (list 2
-		   (get-name (get-top-card 1))
-		   (_"an empty tableau pile")))
+	     (hint-move 1 1 (find-empty-slot tableau)))
 	    (#t #f))))
 
 (define (get-hint)
