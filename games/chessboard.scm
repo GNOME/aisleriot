@@ -25,53 +25,53 @@
 
   (set! base-set? #f)
 
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
 
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (add-extended-slot '() right)
-
-  (add-carriage-return-slot)
-
-  (add-extended-slot '() right)
-  (add-blank-slot)
-  (add-blank-slot)
-  (add-blank-slot)
-  (add-normal-slot DECK)
-  (add-blank-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'foundation)
   (add-blank-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-blank-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
+
   (add-carriage-return-slot)
 
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-blank-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'tableau)
+  (add-carriage-return-slot)
+
+  (add-extended-slot '() right 'tableau)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-blank-slot)
+  (add-normal-slot '() 'foundation)
+  (add-blank-slot)
+  (add-extended-slot '() right 'tableau)
 
   (deal-cards-face-up 3 '(0 2 5 8 11 1 4 7 10 13 0 2 5 8 11 1 4 7 10 13 0 2 5 8 11 1 4 7 10 13 0 2 5 8 11 1 4 7 10 13 0 2 5 8 11 1 4 7 10 13 0 1))
 
@@ -204,9 +204,7 @@
 	((and (empty-slot? f-slot)
 	      (= (get-value (get-top-card slot))
 		 BASE-VAL))
-	 (list 2
-	       (get-name (get-top-card slot))
-	       (_"an empty foundation")))
+	 (hint-move slot 1 f-slot))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))
@@ -214,9 +212,7 @@
 		       (= (get-value (get-top-card f-slot)) king))
 		  (= (get-value (get-top-card slot))
 		     (+ 1 (get-value (get-top-card f-slot))))))
-	 (list 1
-	       (get-name (get-top-card slot))
-	       (get-name (get-top-card f-slot))))
+	 (hint-move slot 1 f-slot))
 	(#t (to-foundations? slot (+ 3 f-slot)))))
 
 (define (to-tableau? slot1 slot2)
@@ -244,9 +240,7 @@
 		       (= (get-value (get-top-card slot2)) king))
 		  (= (get-value (get-top-card slot2))
 		     (+ 1 (get-value (get-top-card slot1))))))
-	 (list 1
-	       (get-name (get-top-card slot1))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 1 slot2))
 	(#t
 	 (to-tableau? slot1 (+ 1 slot2)))))
 
