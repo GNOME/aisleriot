@@ -1793,7 +1793,7 @@ game_scm_new_game (void *user_data)
  */
 static void
 aisleriot_game_new_game_internal (AisleriotGame *game,
-                                  GRand *rand,
+                                  GRand *g_rand,
                                   gboolean count_loss)
 {
   GObject *object = G_OBJECT (game);
@@ -1820,11 +1820,11 @@ aisleriot_game_new_game_internal (AisleriotGame *game,
     update_statistics (game);
   }
 
-  if (rand != NULL) {
+  if (g_rand != NULL) {
     if (game->rand)
       g_rand_free (game->rand);
 
-    game->rand = rand; /* adopted */
+    game->rand = g_rand; /* adopted */
   } else if (game->rand == NULL) {
     game->rand = g_rand_new ();
   }
@@ -1883,9 +1883,9 @@ aisleriot_game_new_game (AisleriotGame *game)
  */
 void
 aisleriot_game_new_game_with_rand (AisleriotGame *game,
-                                   GRand *rand)
+                                   GRand *g_rand)
 {
-  aisleriot_game_new_game_internal (game, rand, TRUE);
+  aisleriot_game_new_game_internal (game, g_rand, TRUE);
 }
 
 /**
@@ -1897,12 +1897,12 @@ aisleriot_game_new_game_with_rand (AisleriotGame *game,
 void
 aisleriot_game_restart_game (AisleriotGame *game)
 {
-  GRand *rand;
+  GRand *g_rand;
 
-  rand = game->saved_rand;
+  g_rand = game->saved_rand;
   game->saved_rand = NULL;
 
-  aisleriot_game_new_game_internal (game, rand, FALSE);
+  aisleriot_game_new_game_internal (game, g_rand, FALSE);
 }
 
 /**

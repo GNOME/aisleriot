@@ -3111,7 +3111,6 @@ draw_cards:
 #endif /* OPTIMISED_EXPOSE */
   {
     GdkRectangle card_rect;
-    cairo_pattern_t *pattern;
 
     get_rect_by_slot_and_card (board,
                                priv->show_card_slot,
