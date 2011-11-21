@@ -858,8 +858,10 @@ check_animations_cb (gpointer user_data)
     if (slot->cards->len == 0) {
       clutter_actor_lower_bottom (slot->slot_renderer);
     } else {
+      ClutterActor *animation_layer;
+
       clutter_actor_raise_top (slot->slot_renderer);
-      ClutterActor *animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(slot->slot_renderer)));
+      animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(slot->slot_renderer)));
       clutter_actor_raise_top (animation_layer);
     }
 
@@ -1155,12 +1157,14 @@ drag_end (AisleriotBoard *board,
   if (!moved &&
       priv->moving_cards_origin_slot != NULL &&
       priv->moving_cards->len > 0) {
+    ClutterActor *animation_layer;
+
     aisleriot_game_slot_add_cards (priv->game,
                                    priv->moving_cards_origin_slot,
                                    priv->moving_cards->data,
                                    priv->moving_cards->len);
     clutter_actor_raise_top (priv->moving_cards_origin_slot->slot_renderer);
-    ClutterActor *animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(priv->moving_cards_origin_slot->slot_renderer)));
+    animation_layer = CLUTTER_ACTOR(aisleriot_slot_renderer_get_animation_layer(AISLERIOT_SLOT_RENDERER(priv->moving_cards_origin_slot->slot_renderer)));
     clutter_actor_raise_top (animation_layer);
   }
 
