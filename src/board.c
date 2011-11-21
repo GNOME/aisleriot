@@ -1044,7 +1044,7 @@ drag_begin (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   ArSlot *hslot;
-  int delta, height, width;
+  int delta;
   int x, y;
   int num_moving_cards;
   guint i;
@@ -1090,8 +1090,6 @@ drag_begin (AisleriotBoard *board)
                        cards->data + priv->moving_cards_origin_card_id,
                        cards->len - priv->moving_cards_origin_card_id);
 
-  width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
-  height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
 
   priv->moving_cards_group = g_object_ref_sink (clutter_group_new ());
   clutter_actor_set_position (priv->moving_cards_group, x, y);
@@ -1101,8 +1099,6 @@ drag_begin (AisleriotBoard *board)
    * does allow that.)
    */
   x = y = 0;
-  width = priv->card_size.width;
-  height = priv->card_size.height;
 
   for (i = 0; i < priv->moving_cards->len; ++i) {
     Card hcard = CARD (priv->moving_cards->data[i]);

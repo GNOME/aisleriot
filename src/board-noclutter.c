@@ -758,7 +758,6 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   GPtrArray *slots;
   guint i, n_slots;
   CardSize card_size;
-  gboolean size_changed;
   ArCardTheme *theme;
 
   /* Nothing to do yet */
@@ -775,7 +774,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   if (theme == NULL)
     return;
 
-  size_changed = ar_card_theme_set_size (theme,
+  ar_card_theme_set_size (theme,
                                          priv->xslotstep,
                                          priv->yslotstep,
                                          priv->card_slot_ratio);

@@ -118,7 +118,6 @@ ar_game_chooser_constructor (GType type,
   GObject *object;
   ArGameChooser *chooser;
   ArGameChooserPrivate *priv;
-  GtkWidget *widget;
   GtkWindow *window;
   GtkListStore *list;
   GtkWidget *list_view;
@@ -138,7 +137,6 @@ ar_game_chooser_constructor (GType type,
   object = G_OBJECT_CLASS (ar_game_chooser_parent_class)->constructor
             (type, n_construct_properties, construct_params);
 
-  widget = GTK_WIDGET (object);
   window = GTK_WINDOW (object);
   chooser = AR_GAME_CHOOSER (object);
   priv = chooser->priv;

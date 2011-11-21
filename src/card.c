@@ -118,9 +118,7 @@ aisleriot_card_class_init (AisleriotCardClass *klass)
 static void
 aisleriot_card_init (AisleriotCard *self)
 {
-  AisleriotCardPrivate *priv;
-
-  priv = self->priv = AISLERIOT_CARD_GET_PRIVATE (self);
+  self->priv = AISLERIOT_CARD_GET_PRIVATE (self);
 }
 
 static void

@@ -428,13 +428,11 @@ aisleriot_slot_renderer_paint (ClutterActor *actor)
   AisleriotSlotRenderer *srend = (AisleriotSlotRenderer *) actor;
   AisleriotSlotRendererPrivate *priv = srend->priv;
   guint n_cards, n_animated_cards;
-  guint8 *cards;
   guint i;
 
   g_return_if_fail (priv->cache != NULL);
   g_return_if_fail (priv->slot != NULL);
 
-  cards = priv->slot->cards->data;
   n_cards = priv->slot->cards->len;
   n_animated_cards = priv->animations->len + priv->n_unexposed_animated_cards;
 
