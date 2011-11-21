@@ -85,7 +85,7 @@ ar_clutter_embed_unrealize (GtkWidget *widget)
   guint i;
 
   for (i = 0; i < AR_LAST_CURSOR; ++i) {
-    gdk_cursor_unref (priv->cursor[i]);
+    g_object_unref (priv->cursor[i]);
     priv->cursor[i] = NULL;
   }
 #endif /* !NO_MOUSE*/
