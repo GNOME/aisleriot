@@ -33,9 +33,6 @@ AC_PROG_LIBTOOL
 
 GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
-GNOME_COMPILE_WARNINGS([maximum])
-GNOME_CXX_WARNINGS([yes])
-GNOME_MAINTAINER_MODE_DEFINES
 
 # *****************
 # Distribution info
@@ -506,6 +503,23 @@ if test "$enable_binreloc" = "yes"; then
 
   AC_DEFINE([ENABLE_BINRELOC],[1],[Define for binary relocation support])
 fi
+
+# ***********
+# Compilation
+# ***********
+
+CC_CHECK_CFLAGS_APPEND([ \
+  -Wall -Wextra \
+  -Wformat-nonliteral -Werror=format-security \
+  -Wsign-compare -Werror=implicit-function-declaration \
+  -Wpointer-arith -Wwrite-strings -Wstrict-prototypes \
+  -Waggregate-return -Wcast-align -Wimplicit -Wuninitialized \
+  -Wmissing-prototypes -Wmissing-declarations -Wnested-externs \
+  -Wpacked -Wmissing-format-attribute -Wshadow \
+  -Wstrict-aliasing=2 -Winit-self -Wunsafe-loop-optimizations \
+  -Wdeclaration-after-statement -Wold-style-definition \
+  -Wno-missing-field-initializers -Wno-unused-parameter \
+  -fno-common -Wno-switch-enum])
 
 # ********
 
