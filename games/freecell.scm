@@ -215,7 +215,7 @@
   (and (field-sequence? card-list)
        (<= (length card-list)
            (* (+ (empty-freecell-number) 1)
-              ($expt 2 (max (- (empty-field-number)
+              (expt 2 (max (- (empty-field-number)
                                (if (empty-slot? field-id) 1 0)
                                (if (empty-slot? start-slot) 1 0))
                             0))))
