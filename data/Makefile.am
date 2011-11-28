@@ -11,8 +11,8 @@ slotdir = $(pkgdatadir)/pixmaps
 dist_slot_DATA = slot.svg
 endif # HAVE_RSVG
 
-themeinstalldir = $(pkgdatadir)
-dist_themeinstall_DATA = theme-install.ini
+pkcatalogdir = $(pkgdatadir)
+pkcatalog_DATA = aisleriot.catalog
 
 desktop_in_files = \
 	sol.desktop.in.in \
@@ -28,10 +28,12 @@ EXTRA_DIST = \
 
 CLEANFILES = \
 	$(desktop_DATA) \
+	$(pkcatalog_DATA) \
 	$(NULL)
 
 DISTCLEANFILES = \
 	$(desktop_DATA) \
+	$(pkcatalog_DATA) \
 	$(NULL)
 
 @INTLTOOL_DESKTOP_RULE@

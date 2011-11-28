@@ -374,8 +374,8 @@ theme_install_reply_cb (GDBusConnection  *connection,
   variant = g_dbus_connection_call_finish (connection, result, &error);
   if (variant == NULL) {
     ar_debug_print (AR_DEBUG_CARD_THEME,
-                        "Failed to call InstallPackages: %s\n",
-                        error->message);
+                    "Failed to call InstallCatalogs: %s\n",
+                    error->message);
     g_error_free (error);
     g_object_unref (theme_manager);
     return;
@@ -641,85 +641,49 @@ ar_card_themes_get_themes (ArCardThemes *theme_manager)
  */
 void
 ar_card_themes_install_themes (ArCardThemes *theme_manager,
-                                  GtkWindow *parent_window,
-                                  guint user_time)
+                               GtkWidget *parent_window,
+                               guint user_time)
 {
-  static const char *formats[] = {
-#ifdef ENABLE_CARD_THEME_FORMAT_SVG
-    "ThemesSVG",
-#endif
-#ifdef ENABLE_CARD_THEME_FORMAT_KDE
-    "ThemesKDE",
-#endif
-#ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
-    "ThemesPySol",
-#endif
-    NULL
-  };
   char *path;
-  GKeyFile *key_file;
   GDBusConnection *connection;
   GVariantBuilder builder;
-  gsize i;
   GError *error = NULL;
+
+  path = ar_runtime_get_file (AR_RUNTIME_PKG_DATA_DIRECTORY, "aisleriot.catalog");
+
+  /* The gnome-packagekit DBUS API is broken */
+  if (!g_utf8_validate (path, -1, NULL)) {
+    g_free (path);
+    g_warning ("Borked! Cannot call InstallCatalogs with non-UTF-8 path!\n");
+    return;
+  }
 
   connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
   if (connection == NULL) {
     ar_debug_print (AR_DEBUG_CARD_THEME,
-                        "Failed to get the session bus: %s\n",
-                        error->message);
+                    "Failed to get the session bus: %s\n",
+                    error->message);
     g_error_free (error);
-    return;
-  }
-
-  key_file = g_key_file_new ();
-  path = ar_runtime_get_file (AR_RUNTIME_PKG_DATA_DIRECTORY, "theme-install.ini");
-  if (!g_key_file_load_from_file (key_file, path, 0, NULL)) {
     g_free (path);
-    g_key_file_free (key_file);
-    g_object_unref (connection);
     return;
   }
-  g_free (path);
 
   g_variant_builder_init (&builder, G_VARIANT_TYPE ("(uass)"));
 
 #ifdef GDK_WINDOWING_X11
-  if (parent_window) {
+  if (parent_window &&
+      GDK_IS_X11_DISPLAY (gtk_widget_get_display (parent_window))) {
     g_variant_builder_add (&builder, "u",
-                           (guint) GDK_WINDOW_XID (gtk_widget_get_window (GTK_WIDGET (parent_window))));
+                           (guint) GDK_WINDOW_XID (gtk_widget_get_window (parent_window)));
   } else
 #endif
     g_variant_builder_add (&builder, "u", (guint) 0);
 
   g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
-
-  /* If there's a group for the specific distribution, use that one, or
-   * otherwise the generic one. E.g.:
-   * If "Ubuntu 8.10" group exists, use it, else fallback to "Ubuntu" group.
-   */
-  for (i = 0; formats[i] != NULL; ++i) {
-    char **packages;
-    gsize n_packages, j;
-
-    packages = g_key_file_get_string_list (key_file, LSB_DISTRIBUTION, formats[i], &n_packages, NULL);
-    if (packages == NULL)
-      packages = g_key_file_get_string_list (key_file, LSB_DISTRIBUTOR, formats[i], &n_packages, NULL);
-    if (packages == NULL)
-      continue;
-    
-    for (j = 0; j < n_packages; ++j) {
-      g_variant_builder_add (&builder, "s", packages[j]);
-      ar_debug_print (AR_DEBUG_CARD_THEME, "Requesting pkg '%s'\n",
-                          packages[j]);
-    }
-
-    g_strfreev (packages);
-  }
-
-  g_key_file_free (key_file);
-
+  g_variant_builder_add (&builder, "s", path);
   g_variant_builder_close (&builder);
+  g_free (path);
+
   g_variant_builder_add (&builder, "s", "hide-confirm-search" ","
                                         "show-confirm-install" ","
                                         "hide-warning");
@@ -728,12 +692,12 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
                           "org.freedesktop.PackageKit",
                           "/org/freedesktop/PackageKit",
                           "org.freedesktop.PackageKit.Modify",
-                          "InstallPackageNames",
+                          "InstallCatalogs",
                           g_variant_builder_end (&builder),
                           G_VARIANT_TYPE ("()"),
                           G_DBUS_CALL_FLAGS_NONE,
                           G_MAXINT /* no timeout */,
-                          NULL,
+                          NULL /* cancellable */,
                           (GAsyncReadyCallback) theme_install_reply_cb,
                           g_object_ref (theme_manager));
 }
