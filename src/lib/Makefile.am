@@ -74,8 +74,10 @@ endif
 libaisleriot_la_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
+	-DPKGLIBDIR="\"$(pkglibdir)\"" \
 	-DPKGDATADIR="\"$(pkgdatadir)\"" \
 	-DPREFIX="\"$(prefix)\"" \
+	-DLIBDIR="\"$(libdir)\"" \
 	-DDATADIR="\"$(datadir)\"" \
 	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\"" \
 	-DSCORESDIR="\"$(scoredir)\"" \

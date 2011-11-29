@@ -224,6 +224,7 @@ static const DerivedDirectory derived_directories[] = {
   /* Keep this in the same order as in the ArRuntimeDirectory enum! */
 #ifdef ENABLE_BINRELOC
   { AR_RUNTIME_PREFIX,             "share"              }, /* AR_RUNTIME_DATA_DIRECTORY              */
+  { AR_RUNTIME_LIBRARY_DIRECTORY,  PACKAGE              }, /* AR_RUNTIME_PKG_LIBRARY_DIRECTORY       */
   { AR_RUNTIME_DATA_DIRECTORY,     PACKAGE              }, /* AR_RUNTIME_PKG_DATA_DIRECTORY          */
 #endif /* ENABLE_BINRELOC */
   { AR_RUNTIME_DATA_DIRECTORY,         "locale"         }, /* AR_RUNTIME_LOCALE_DIRECTORY            */
@@ -233,6 +234,7 @@ static const DerivedDirectory derived_directories[] = {
   { AR_RUNTIME_PKG_DATA_DIRECTORY,     "icons"          }, /* AR_RUNTIME_ICON_THEME_DIRECTORY        */
   { AR_RUNTIME_PKG_DATA_DIRECTORY,     "sounds"         }, /* AR_RUNTIME_SOUNDS_DIRECTORY            */
   { AR_RUNTIME_PKG_DATA_DIRECTORY,     "games"          }, /* AR_RUNTIME_GAMES_DIRECTORY             */
+  { AR_RUNTIME_PKG_LIBRARY_DIRECTORY,  "games"          }, /* AR_RUNTIME_GAMES_COMPILED_DIRECTORY    */
   { AR_RUNTIME_PKG_DATA_DIRECTORY,     "help"           }, /* AR_RUNTIME_HELP_DIRECTORY              */
 };
 
@@ -368,7 +370,7 @@ ar_runtime_get_directory (ArRuntimeDirectory directory)
         GbrInitError errv = 0;
         const char *env;
 
-        if ((env = g_getenv ("GAMES_RELOC_ROOT")) != NULL) {
+        if ((env = g_getenv ("AR_RELOC_ROOT")) != NULL) {
           path = g_strdup (env);
         } else {
           char *exe, *bindir, *prefix;
@@ -398,12 +400,20 @@ ar_runtime_get_directory (ArRuntimeDirectory directory)
       path = g_strdup (PREFIX);
       break;
 
+    case AR_RUNTIME_LIBRARY_DIRECTORY:
+      path = g_strdup (LIBDIR);
+      break;
+
     case AR_RUNTIME_DATA_DIRECTORY:
       path = g_strdup (DATADIR);
       break;
 
     case AR_RUNTIME_PKG_DATA_DIRECTORY:
       path = g_strdup (PKGDATADIR);
+      break;
+
+    case AR_RUNTIME_PKG_LIBRARY_DIRECTORY:
+      path = g_strdup (PKGLIBDIR);
       break;
 
 #endif /* ENABLE_BINRELOC */
