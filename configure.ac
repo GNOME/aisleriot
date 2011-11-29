@@ -570,6 +570,7 @@ PKG_CHECK_MODULES([GUILE],[$GUILE_PKGS])
 
 AM_CONDITIONAL([HAVE_GUILE_2_X],[test "$with_guile" != "1.8"])
 
+AC_ARG_VAR([GUILE_TOOLS])
 AC_PATH_PROG([GUILE_TOOLS],[guile-tools],[false])
 if test "$GUILE_TOOLS" = "false"; then
   AC_MSG_ERROR([guile-tools not found])
