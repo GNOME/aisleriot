@@ -544,7 +544,7 @@
   (add-cards! end-slot cards))
 
 (define-public (remove-n-cards slot-id n)
-  (set-cards! slot-id (nthcdr n (get-cards slot-id))))
+  (set-cards! slot-id (list-tail n (get-cards slot-id))))
 
 (define-public (deal-cards-from-deck deck slot-list)
   (if (not (null? slot-list))
@@ -618,10 +618,6 @@
 
 (define-public (register-undo-function function data)
   (set! MOVE (cons '(function data) (cdr MOVE))))
-
-; common lisp procedure not provided in guile 1.3
-(define-public (nthcdr n lst)
-  (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
 
 ;; INTERNAL procedures
 
