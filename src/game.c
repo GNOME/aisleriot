@@ -1052,7 +1052,7 @@ scm_delayed_call (SCM callback)
 }
 
 static void
-cscm_init (void)
+cscm_init (void *data G_GNUC_UNUSED)
 {
   /* Let the scheme side of things know about our C functions. */
   scm_c_define_gsubr ("set-feature-word!", 1, 0, 0, scm_set_feature_word);
@@ -1080,6 +1080,30 @@ cscm_init (void)
   scm_c_define_gsubr ("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
   scm_c_define_gsubr ("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
   scm_c_define_gsubr ("dealable-set-sensitive", 1, 0, 0, scm_dealable_set_sensitive);
+
+  scm_c_export ("set-feature-word!", 
+                "get-feature-word", 
+                "set-statusbar-message",
+                "reset-surface",
+                "add-slot", 
+                "get-slot", 
+                "set-cards-c!",
+                "set-slot-y-expansion!", 
+                "set-slot-x-expansion!",
+                "set-lambda", 
+                "aisleriot-random", 
+                "click-to-move?", 
+                "get-score", 
+                "set-score!",
+                "get-timeout", 
+                "set-timeout!", 
+                "delayed-call", 
+                "add-to-score!",
+                "_", 
+                "undo-set-sensitive", 
+                "redo-set-sensitive", 
+                "dealable-set-sensitive",
+                NULL);
 }
 
 static void
@@ -1332,8 +1356,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                         G_PARAM_READABLE |
                         G_PARAM_STATIC_STRINGS));
 
-  /* Initialise our scheme interfaces */
-  cscm_init ();
+  scm_c_define_module ("aisleriot interface", cscm_init, NULL);
 }
 
 /* public API */
