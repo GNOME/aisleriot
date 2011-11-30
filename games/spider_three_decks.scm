@@ -14,6 +14,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 (load "spider.scm")
 
 (define tableau '(13 14 15 16 17 18 19 20 21 22 23 24))

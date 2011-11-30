@@ -158,7 +158,7 @@ ar_game_chooser_constructor (GType type,
       GtkTreeIter iter;
 
       if (!g_str_has_suffix (game_file, ".scm") ||
-          strcmp (game_file, "sol.scm") == 0)
+          strcmp (game_file, "api.scm") == 0)
         continue;
 
       game_name = ar_filename_to_display_name (game_file);

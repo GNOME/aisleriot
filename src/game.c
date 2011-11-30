@@ -44,6 +44,10 @@
 
 #define I_(string) g_intern_static_string (string)
 
+#ifndef SCM_MAJOR_VERSION
+#define SCM_MAJOR_VERSION 1
+#endif
+
 struct _AisleriotGameClass
 {
   GObjectClass parent_class;
@@ -1243,6 +1247,8 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   GType param_types[] = { G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE };
   GType error_types[] = { G_TYPE_ERROR | G_SIGNAL_TYPE_STATIC_SCOPE };
   GType ptr_types[] = { G_TYPE_POINTER };
+  SCM variable;
+  const char *path;
 
   gobject_class->constructor = aisleriot_game_constructor;
   gobject_class->finalize = aisleriot_game_finalize;
@@ -1357,6 +1363,19 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                         G_PARAM_STATIC_STRINGS));
 
   scm_c_define_module ("aisleriot interface", cscm_init, NULL);
+
+  /* Append load-path */
+  path = ar_runtime_get_directory (AR_RUNTIME_PKG_DATA_DIRECTORY);
+  variable = scm_c_module_lookup (scm_the_root_module (), "%load-path");
+  scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
+                                                          scm_list_1 (scm_from_locale_string (path)))));
+
+#if SCM_MAJOR_VERSION >= 2
+  path = ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY);
+  variable = scm_c_module_lookup (scm_the_root_module (), "%load-compiled-path");
+  scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
+                                                          scm_list_1 (scm_from_locale_string (path)))));
+#endif
 }
 
 /* public API */
@@ -1642,13 +1661,6 @@ game_scm_load_game (void *user_data)
   int i;
 
   scm_dynwind_begin (0);
-
-  /* Although this line slows down game switching by a noticeable amount, we
-    * add it here in order to make sure all the original functions are
-    * "clean". */
-  path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, "sol.scm");
-  scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);
-  scm_c_primitive_load (path);
 
   path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, game_file);
   scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);

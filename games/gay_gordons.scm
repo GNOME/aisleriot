@@ -17,6 +17,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 ; Check if two cards match within the rules of the game.
 ;
 ; Note that we can use simple sums for normal matches and

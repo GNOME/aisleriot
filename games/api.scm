@@ -1,4 +1,4 @@
-; AisleRiot - sol.scm
+; AisleRiot API
 ; Copyright (C) 1998, 2003 Jonathan Blandford <jrb@mit.edu>
 ;
 ; This program is free software: you can redistribute it and/or modify
@@ -14,40 +14,42 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(use-modules (ice-9 format) (aisleriot interface))
+(define-module (aisleriot api))
+
+(use-modules (aisleriot interface) (ice-9 format))
 
 ;; Feature masks:
-(define droppable-feature 1)
-(define scores-disabled 2)
-(define dealable-feature 4)
+(define-public droppable-feature 1)
+(define-public scores-disabled 2)
+(define-public dealable-feature 4)
 
-(define (set-features . feature-list)
+(define-public (set-features . feature-list)
   (set-feature-word! (+ (get-feature-word)
 		       (apply + feature-list))))
 
-(define jack 11)
-(define queen 12)
-(define king 13)
-(define ace 1)
-(define joker 0)
+(define-public jack 11)
+(define-public queen 12)
+(define-public king 13)
+(define-public ace 1)
+(define-public joker 0)
 
-(define club 0)
-(define diamond 1)
-(define heart 2)
-(define spade 3)
+(define-public club 0)
+(define-public diamond 1)
+(define-public heart 2)
+(define-public spade 3)
 
-(define black 0)
-(define red 1)
+(define-public black 0)
+(define-public red 1)
 
-(define down 0)
-(define right 1)
+(define-public down 0)
+(define-public right 1)
 
 ;; Global variables:
 
-(define DECK '())
+(define-public DECK '())
 
 ; The list of variables to save when saving the game state
-(define variable-list '())
+(define-public variable-list '())
 
 ;; NEW-GAME PROCEDURES
 ; these may be used in game files during the new-game procedure.
@@ -58,7 +60,7 @@
 ; done before calling this and we would loose our variable list. At worst
 ; case we end up saving and restoring variables that are not currently in use 
 ; (but will be defined) so it will work out OK.
-(define (initialize-playing-area)
+(define-public (initialize-playing-area)
   (reset-surface)
   (set! FLIP-COUNTER 0)
   (set! SLOTS 0)
@@ -80,18 +82,18 @@
 ; Use this instead of define for variables which determine the state of
 ; the game. i.e. anything that isn't a constant. This is so undo/redo
 ; is transparent. It should behave otherwise identically to define.
-(defmacro def-save-var (nm value)
+(defmacro-public def-save-var (nm value)
   `(begin (define ,nm ,value)
           (set! variable-list (cons ',nm variable-list))))
 
 ; create a 52 card deck (puts list of cards into DECK)
-(define (make-standard-deck)
+(define-public (make-standard-deck)
   (if (= ace 14)
       (set! DECK (make-standard-deck-list-ace-high 2 club))
       (set! DECK (make-standard-deck-list-ace-low ace club))))
 
 ; create a 54 card deck with 2 jokers.
-(define (make-joker-deck)
+(define-public (make-joker-deck)
   (if (= ace 14)
      (set! DECK (cons (make-card joker club) (cons (make-card joker diamond) 
 		 (make-standard-deck-list-ace-high 2 club))))
@@ -99,13 +101,13 @@
 		 (make-standard-deck-list-ace-low ace club))))))
      
 ; create a double deck of 104 cards (puts list of cards into DECK)
-(define (make-standard-double-deck)
+(define-public (make-standard-double-deck)
   (if (= ace 14)
       (set! DECK (append (make-standard-deck-list-ace-high 2 club) (make-standard-deck-list-ace-high 2 club)))
       (set! DECK (append (make-standard-deck-list-ace-low ace club) (make-standard-deck-list-ace-low ace club)))))
 
  ; makes a deck from init-value to kings
-(define (make-deck-list-ace-low init-value value suit)
+(define-public (make-deck-list-ace-low init-value value suit)
    (if (eq? king value)
       (if (eq? spade suit)
 	  (list (make-card king spade))
@@ -116,7 +118,7 @@
 	    (make-deck-list-ace-low init-value (+ 1 value) suit))))
  
  ; makes a deck from init-value to aces
-(define (make-deck-list-ace-high init-value value suit)
+(define-public (make-deck-list-ace-high init-value value suit)
    (if (eq? 14 value)
       (if (eq? spade suit)
 	  (list (make-card ace spade))
@@ -129,7 +131,7 @@
 
 
 ; shuffle the card list in DECK
-(define (shuffle-deck)
+(define-public (shuffle-deck)
   (let* ((vec (list->vector DECK))
 	 (len (vector-length vec)))
     (set! DECK (shuffle-deck-helper vec '() 0 len))))
@@ -145,21 +147,21 @@
 ; A space may be added using the add-blank-slot procedure. These false
 ; slots are not assigned identifiers.
 
-(define (add-blank-slot)
+(define-public (add-blank-slot)
   (get-and-increment-position))
 
-(define (add-carriage-return-slot)
+(define-public (add-carriage-return-slot)
   (linefeed-position))
 
 ; The real slots come in three varieties:
 ; A slot in which only the topmost card is visible:
-(define (add-normal-slot cards . type)
+(define-public (add-normal-slot cards . type)
   (add-slot (set-tag! (new-slot cards
 				(list 'normal (get-and-increment-position)) type))))
 
 ; A slot in which all the cards are visible, arranged as an overlapped pile:
 ; (either proceeding to the right or down).
-(define (add-extended-slot cards direction . type)
+(define-public (add-extended-slot cards direction . type)
   (if (= right direction)
       (add-slot (set-tag! (new-slot cards 
 				    (list 'expanded-right 
@@ -169,7 +171,7 @@
 					  (get-and-increment-position)) type)))))
 
 ; A slot in only the n topmost cards are visible:
-(define (add-partially-extended-slot cards direction n . type)
+(define-public (add-partially-extended-slot cards direction n . type)
   (if (= right direction)
       (add-slot (set-tag! (new-slot cards 
 				    (list 'partially-expanded-right 
@@ -180,13 +182,13 @@
 
 ; Cards may be dealt off one slot (usually the one containing the deck)
 ; and onto a list of other slots using these procedures:
-(define (deal-cards target-slot-id slot-list)
+(define-public (deal-cards target-slot-id slot-list)
   (if (not (null? slot-list))
       (begin 
 	(add-card! (car slot-list) (remove-card target-slot-id))
 	(deal-cards target-slot-id (cdr slot-list)))))
 
-(define (deal-cards-face-up target-slot-id slot-list)
+(define-public (deal-cards-face-up target-slot-id slot-list)
   (if (not (null? slot-list))
       (begin 
 	(add-card! (car slot-list) (make-visible (remove-card target-slot-id)))
@@ -198,30 +200,30 @@
 ;; Procedures that change slot contents:
 
 ; turn the top card of a slot over (face up to face down and vice versa)
-(define (flip-top-card slot-id)
+(define-public (flip-top-card slot-id)
   (add-card! slot-id (flip-card (remove-card slot-id))))
 
 ; turn the top card of a slot face side up 
-(define (make-visible-top-card slot-id)
+(define-public (make-visible-top-card slot-id)
   (add-card! slot-id (make-visible (remove-card slot-id))))
 
 ; add a card onto the top of a slot
-(define (add-card! slot-id card)
+(define-public (add-card! slot-id card)
   (set-cards! slot-id (cons card (get-cards slot-id))))
 
 ; add a list of cards onto the top of a slot
-(define (add-cards! slot-id cards)
+(define-public (add-cards! slot-id cards)
   (set-cards! slot-id (append cards (get-cards slot-id))))
 
 ; remove (and return) the top card from a slot
-(define (remove-card slot-id)
+(define-public (remove-card slot-id)
   (let ((cards (get-cards slot-id)))
     (set-cards! slot-id (cdr cards))
     (car cards)))
 
 ;; Utilities
 
-(define (flippable? stock-slot waste-slot flip-limit)
+(define-public (flippable? stock-slot waste-slot flip-limit)
   (or (not (empty-slot? stock-slot))
       (and (not (empty-slot? waste-slot))
            (or (< flip-limit 0)
@@ -232,7 +234,7 @@
 ; onto the stock unless the flip limit has been reached.
 ; an optional forth argument indicates the number of cards to deal.
 ; If the flip limit is negative, it is treated as infinite.
-(define (flip-stock stock-slot waste-slot flip-limit . rest)
+(define-public (flip-stock stock-slot waste-slot flip-limit . rest)
   (if (empty-slot? stock-slot)
       (and (not (empty-slot? waste-slot))
            (or (< flip-limit 0)
@@ -247,7 +249,7 @@
 	  #t)))
 
 ; turn the cards in the waste slot over and add them to the stock-slot.
-(define (flip-deck stock-slot waste-slot)
+(define-public (flip-deck stock-slot waste-slot)
   (and (not (empty-slot? waste-slot))
        (add-card! stock-slot (flip-card (remove-card waste-slot)))
        (or (flip-deck stock-slot waste-slot)
@@ -258,137 +260,137 @@
 ; NB: In order to use these procedures you must remove the cards 
 ;     from their slots and then replace them after applying the procedure 
 ;     (as in the make-top-card-visible procedure above)
-(define (flip-card card)
+(define-public (flip-card card)
   (list (car card) (cadr card) (not (caddr card))))
 
-(define (make-visible card)
+(define-public (make-visible card)
   (list (car card) (cadr card) #t))
 
 ;; Procedures that provide information only:
 
 ; card procedures
-(define (is-visible? card)
+(define-public (is-visible? card)
   (caddr card))
 
-(define (get-suit card) 
+(define-public (get-suit card) 
       (cadr card))
 
-(define (get-color card)
+(define-public (get-color card)
   (cond ((eq? (get-suit card) club) black)
 	((eq? (get-suit card) spade) black)
 	((eq? (get-suit card) heart) red)
 	((eq? (get-suit card) diamond) red)
 	(#t (_"Unknown color"))))
 
-(define (get-value card)
+(define-public (get-value card)
       (car card))
 
 ;; WARNING: This generates a synthetic card that isn't part of the game.
 ;;          See gaps.scm for an example of its intended use.
-(define (add-to-value card n)
+(define-public (add-to-value card n)
   (cons (+ (car card) n) (cdr card)))
 
 ; slot procedures
-(define (get-cards slot-id)
+(define-public (get-cards slot-id)
   (cadr (get-slot slot-id)))
 
-(define (empty-slot? slot-id)
+(define-public (empty-slot? slot-id)
   (null? (get-cards slot-id)))
 
-(define (any-slot-empty? slots)
+(define-public (any-slot-empty? slots)
   (if (eq? slots '())
       #f
       (or (empty-slot? (car slots))
           (any-slot-empty? (cdr slots)))))
 
-(define (find-empty-slot slots)
+(define-public (find-empty-slot slots)
   (cond ((null? slots) #f)
         ((empty-slot? (car slots)) (car slots))
         (#t (find-empty-slot (cdr slots)))))
 
-(define (find-card-helper card cards n)
+(define-public (find-card-helper card cards n)
   (if (null? cards)
       #f
       (if (equal? (car cards) card)
           n
           (find-card-helper card (cdr cards) (+ n 1)))))
 
-(define (find-card slot card)
+(define-public (find-card slot card)
   (find-card-helper card (get-cards slot) 1))
 
 ; Get the nth card from a slot. Returns #f if n is out of range.
-(define (get-nth-card slot-id n)
+(define-public (get-nth-card slot-id n)
   (let ((cards (get-cards slot-id)))
     (cond ((< n 1) #f)
 	  ((> n (length cards)) #f)
 	  (#t (list-ref cards (- n 1))))))
 
-(define (get-top-card slot-id)
+(define-public (get-top-card slot-id)
   (let ((cards (get-cards slot-id)))
     (if (null? cards)
 	'()
 	(car cards))))
 
 ;; Utilities - need more of these:
-(define (suit-eq? card1 card2)
+(define-public (suit-eq? card1 card2)
   (eq? (get-suit card1) (get-suit card2)))
 
-(define (color-eq? card1 card2)
+(define-public (color-eq? card1 card2)
   (eq? (get-color card1) (get-color card2)))
 
-(define (value-eq? card1 card2)
+(define-public (value-eq? card1 card2)
   (eq? (get-value card1) (get-value card2)))
 
-(define (cards-eq? card1 card2)
+(define-public (cards-eq? card1 card2)
   (and (eq? (get-value card1) (get-value card2))
        (eq? (get-suit card1) (get-suit card2))))
 
-(define (is-red? card)
+(define-public (is-red? card)
   (eq? red (get-color card)))
 
-(define (is-black? card)
+(define-public (is-black? card)
   (eq? black (get-color card)))
 
-(define (is-joker? card)
+(define-public (is-joker? card)
   (= (get-value card) joker))
 
-(define (set-ace-low)  (set! ace 1))
+(define-public (set-ace-low)  (set! ace 1))
 
-(define (set-ace-high) (set! ace 14))
+(define-public (set-ace-high) (set! ace 14))
 
 ; use to compare two cards when aces are treated as high:
-(define (ace-high-order value)
+(define-public (ace-high-order value)
   (remainder (+ 11 value) 13))
 
-(define (check-same-suit-list card-list)
+(define-public (check-same-suit-list card-list)
   (or (< (length card-list) 2)
       (and (= (get-suit (car card-list)) (get-suit (cadr card-list)))
 	   (check-same-suit-list (cdr card-list)))))
 
-(define (check-same-color-list card-list)
+(define-public (check-same-color-list card-list)
   (or (< (length card-list) 2)
       (and (eq? (is-red? (car card-list)) (is-red? (cadr card-list)))
 	   (check-same-color-list (cdr card-list)))))
 
-(define (check-alternating-color-list card-list)
+(define-public (check-alternating-color-list card-list)
   (or (< (length card-list) 2)
       (and (eq? (is-black? (car card-list)) (is-red? (cadr card-list)))
 	   (check-alternating-color-list (cdr card-list)))))
 
-(define (check-straight-descending-list card-list)
+(define-public (check-straight-descending-list card-list)
   (or (< (length card-list) 2)
       (and (= (get-value (car card-list)) (- (get-value (cadr card-list)) 1))
 	   (check-straight-descending-list (cdr card-list)))))
 
 ; debugging aid:
-(define (display-list . objs)
+(define-public (display-list . objs)
   (map display objs) (newline))
 
 ; hint procedures
-(define (get-joker-name card) 
+(define-public (get-joker-name card) 
   (if (is-black? card) (_"the black joker") (_"the red joker")))
 
-(define (get-name card)
+(define-public (get-name card)
   ; Do not use this function directly. To create a hint for moving a card or
   ; stack of cards, use (hint-move).
   (let ((value (get-value card)) (suit (get-suit card)))
@@ -456,7 +458,7 @@
                      (#t (_"the unknown card"))))
               (#t (_"the unknown card"))))))
 
-(define (hint-get-dest-format to-slot)
+(define-public (hint-get-dest-format to-slot)
   (if (empty-slot? to-slot)
       (cond ((member to-slot FOUNDATION-SLOTS) (if (= (length FOUNDATION-SLOTS) 1) (_"Move ~a onto the foundation.") (_"Move ~a onto an empty foundation slot.")))
             ((member to-slot TABLEAU-SLOTS) (if (= (length TABLEAU-SLOTS) 1) (_"Move ~a onto the tableau.") (_"Move ~a onto an empty tableau slot.")))
@@ -532,38 +534,38 @@
                           (#t (_"Move ~a onto the unknown card."))))
                    (#t (_"Move ~a onto the unknown card."))))))
 
-(define (hint-move from-slot from-slot-count to-slot)
+(define-public (hint-move from-slot from-slot-count to-slot)
   (list 0 (format (hint-get-dest-format to-slot) (get-name (get-nth-card from-slot from-slot-count)))))
 
-(define (hint-click slot-id hint-string)
+(define-public (hint-click slot-id hint-string)
   (list 0 hint-string))
 
-(define (move-n-cards! start-slot end-slot cards)
+(define-public (move-n-cards! start-slot end-slot cards)
   (add-cards! end-slot cards))
 
-(define (remove-n-cards slot-id n)
+(define-public (remove-n-cards slot-id n)
   (set-cards! slot-id (nthcdr n (get-cards slot-id))))
 
-(define (deal-cards-from-deck deck slot-list)
+(define-public (deal-cards-from-deck deck slot-list)
   (if (not (null? slot-list))
       (begin 
 	(add-card! (car slot-list) (car deck))
 	(deal-cards-from-deck (cdr deck) (cdr slot-list)))))
 
-(define (deal-cards-face-up-from-deck deck slot-list)
+(define-public (deal-cards-face-up-from-deck deck slot-list)
   (if (not (null? slot-list))
       (begin 
 	(add-card! (car slot-list) (make-visible (car deck)))
 	(deal-cards-face-up-from-deck (cdr deck) (cdr slot-list)))))
 
 
-(define (set-cards! slot-id new_cards)
+(define-public (set-cards! slot-id new_cards)
   (set-cards-c! slot-id new_cards))
 
-(define (make-card value suit)
+(define-public (make-card value suit)
   (list value suit #f))
 
-(define (make-standard-deck-list-ace-high value suit)
+(define-public (make-standard-deck-list-ace-high value suit)
   (if (eq? ace value)
       (if (eq? spade suit)
 	  (list (make-card ace spade))
@@ -572,7 +574,7 @@
       (cons (make-card value suit) 
 	    (make-standard-deck-list-ace-high (+ 1 value) suit))))
 
-(define (make-standard-deck-list-ace-low value suit)
+(define-public (make-standard-deck-list-ace-low value suit)
   (if (eq? king value)
       (if (eq? spade suit)
 	  (list (make-card king spade))
@@ -581,7 +583,7 @@
       (cons (make-card value suit) 
 	    (make-standard-deck-list-ace-low (+ 1 value) suit))))
 
-(define (shuffle-deck-helper deck result ref1 len)
+(define-public (shuffle-deck-helper deck result ref1 len)
   (if (zero? len)
       result
       (let* ((ref2 (+ ref1 (aisleriot-random len)))
@@ -589,10 +591,10 @@
 	(vector-set! deck ref2 (vector-ref deck ref1))
 	(shuffle-deck-helper deck (cons val-at-ref2 result) (+ ref1 1) (- len 1)))))
 
-(define (new-slot deck placement type)
+(define-public (new-slot deck placement type)
   (list #f deck placement (if (null? type) 'unknown (car type))))
 
-(define (set-tag! slot)
+(define-public (set-tag! slot)
   (case (cadddr slot)
     ((tableau) (set! TABLEAU-SLOTS (cons SLOTS TABLEAU-SLOTS)))
     ((edge) (set! EDGE-SLOTS (cons SLOTS EDGE-SLOTS)))
@@ -605,24 +607,24 @@
   (set! SLOTS (+ 1 SLOTS))
   (cons (- SLOTS 1) (cdr slot)))
 
-(define (get-and-increment-position)
+(define-public (get-and-increment-position)
   (let ((retval (list HORIZPOS VERTPOS)))
     (set! HORIZPOS (+ HORIZPOS 1))
     retval))
 
-(define (linefeed-position)
+(define-public (linefeed-position)
   (set! HORIZPOS 0)
   (set! VERTPOS (+ VERTPOS 1)))
 
-(define (register-undo-function function data)
+(define-public (register-undo-function function data)
   (set! MOVE (cons '(function data) (cdr MOVE))))
 
 ; common lisp procedure not provided in guile 1.3
-(define (nthcdr n lst)
+(define-public (nthcdr n lst)
   (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
 
 ; guile library function I'm not sure I can rely on
-(define (list-head lst k)
+(define-public (list-head lst k)
   (if (= k 0)
       '()
       (cons (car lst) (list-head (cdr lst) (- k 1)))))
@@ -630,29 +632,29 @@
 ;; INTERNAL procedures
 
 ; global variables
-(define FLIP-COUNTER 0)
-(define SLOTS 0)
-(define HORIZPOS 0)
-(define VERTPOS 0)
-(define MOVE '())
-(define HISTORY '())
-(define FUTURE '())
-(define IN-GAME #f)
-(define FOUNDATION-SLOTS '())
-(define TABLEAU-SLOTS '())
-(define EDGE-SLOTS '())
-(define CORNER-SLOTS '())
-(define TOP-SLOTS '())
-(define BOTTOM-SLOTS '())
-(define LEFT-SLOTS '())
-(define RIGHT-SLOTS '())
+(define-public FLIP-COUNTER 0)
+(define-public SLOTS 0)
+(define-public HORIZPOS 0)
+(define-public VERTPOS 0)
+(define-public MOVE '())
+(define-public HISTORY '())
+(define-public FUTURE '())
+(define-public IN-GAME #f)
+(define-public FOUNDATION-SLOTS '())
+(define-public TABLEAU-SLOTS '())
+(define-public EDGE-SLOTS '())
+(define-public CORNER-SLOTS '())
+(define-public TOP-SLOTS '())
+(define-public BOTTOM-SLOTS '())
+(define-public LEFT-SLOTS '())
+(define-public RIGHT-SLOTS '())
 
 ; called from C:
-(define (start-game)
+(define-public (start-game)
   (set! IN-GAME #t))
 
 ; called from C:
-(define (end-move)
+(define-public (end-move)
   (if (not (= 0 (length MOVE)))
       (begin
 	(set! HISTORY (cons MOVE HISTORY))
@@ -665,21 +667,21 @@
             (redo-set-sensitive #f)
             (redo-set-sensitive #t)))))
 
-(define (return-cards card-positions slot-id)
+(define-public (return-cards card-positions slot-id)
   (and (not (= 0 (length card-positions)))
        (set-cards! slot-id (car card-positions))
        (return-cards (cdr card-positions) (+ 1 slot-id))))
 
-(define (give-status-message)
+(define-public (give-status-message)
   #t)
 
-(define (eval-move move)
+(define-public (eval-move move)
   (return-cards (caddr move) 0)
   ((car move) (cadr move))
   (give-status-message))
 
 ; called from C:
-(define (undo)
+(define-public (undo)
   (and (not (null? HISTORY))
        (record-move -1 '())
        (eval-move (car HISTORY))
@@ -691,7 +693,7 @@
            (undo-set-sensitive #f))))
 
 ; called from C:
-(define (redo)
+(define-public (redo)
   (and (not (null? FUTURE))
        (record-move -1 '())
        (eval-move (car FUTURE))
@@ -702,13 +704,13 @@
        (if (null? FUTURE)
            (redo-set-sensitive #f))))
 
-(define (undo-func data)
+(define-public (undo-func data)
   (set-score! (car data))
   (set! FLIP-COUNTER (cadr data))
   (restore-variables variable-list (caddr data)))
 ;(register-undo-function undo-func '(score FLIP-COUNTER))
 	     
-(define (snapshot-board slot-id moving-slot old-cards)
+(define-public (snapshot-board slot-id moving-slot old-cards)
   (cond ((>= slot-id SLOTS)
 	 '())
 	((= slot-id moving-slot)
@@ -719,20 +721,20 @@
 	       (snapshot-board (+ 1 slot-id) moving-slot old-cards)))))
 
 ; called from C:
-(define (record-move slot-id old-cards)
+(define-public (record-move slot-id old-cards)
   (set! MOVE (list undo-func 
                    (list (get-score) FLIP-COUNTER 
                          (save-variables variable-list))
                    (snapshot-board 0 slot-id old-cards))))
 
 ; called from C:
-(define (discard-move)
+(define-public (discard-move)
   (set! MOVE '()))
 
 ;; Routines for saving/restoring generic variables
 
 ; Get a list of values for the variables we wish to save.
-(define save-variables
+(define-public save-variables
   (lambda (names)
     (if (equal? '() names)
         '()
@@ -740,7 +742,7 @@
               (save-variables (cdr names))))))
 
 ; Restore all the state variables for a game
-(define restore-variables
+(define-public restore-variables
   (lambda (names values)
     (or (equal? '() names)
         (begin

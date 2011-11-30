@@ -14,6 +14,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 (define row1 '(0 1 2 3 4 5 6 7 8 ))
 (define row2 '(9 10 11 12 13 14 15 16 17 ))
 (define row3 '(18 19 20 21 22 23 24 25 26 ))

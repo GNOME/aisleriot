@@ -605,7 +605,7 @@ debug_ensure_game_list (AisleriotWindow *window)
 
     while ((game_file = g_dir_read_name (dir)) != NULL) {
       if (!g_str_has_suffix (game_file, ".scm") ||
-          strcmp (game_file, "sol.scm") == 0)
+          strcmp (game_file, "api.scm") == 0)
         continue;
 
       list = g_list_prepend (list, g_strdup (game_file));

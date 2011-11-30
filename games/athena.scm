@@ -16,6 +16,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 ;; Athena differs from Klondike only in the intial layout
 ;; including 1 or 3 card deal, and any other options like ...
 ;; Optional "King Only" enabled by default [TODO]

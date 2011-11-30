@@ -14,6 +14,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api) (ice-9 format))
+
 (define stock 0)
 (define foundations '(1 2 3 4))
 (define from-list '(5 6 7 8 9 10 11 12 13 14 15 16))

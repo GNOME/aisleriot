@@ -14,6 +14,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 (define (tableau? slot-id)
   (< 5 slot-id))
 (define foundation '(2 3 4 5))

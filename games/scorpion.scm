@@ -13,6 +13,8 @@
 ;
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+(use-modules (aisleriot interface) (aisleriot api))
 ; winning game seed: 2036201447
 
 (define (new-game)

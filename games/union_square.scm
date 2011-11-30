@@ -14,6 +14,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 (define stock 0)
 (define waste 1)
 (define tableau '(2 3 4 5 7 8 9 10 12 13 14 15 17 18 19 20))

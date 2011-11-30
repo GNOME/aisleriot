@@ -1,10 +1,14 @@
 NULL = 
 
+guiledir = $(pkgdatadir)/aisleriot
+
+guile_DATA = \
+	api.scm \
+	$(NULL)
+
 rulesdir  = $(pkgdatadir)/games
 
 rules_DATA  = 			\
-	sol.scm			\
-				\
 	accordion.scm		\
 	agnes.scm		\
 	athena.scm		\
@@ -101,6 +105,7 @@ rules_DATA  = 			\
 
 EXTRA_DIST = \
 	$(rules_DATA) \
+	$(guile_DATA) \
 	template.scm \
 	Rules.HOWTO \
 	$(NULL)

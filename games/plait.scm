@@ -17,6 +17,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 ;; @(#) $Id: plait.scm,v 1.14 2005/07/10 07:08:54 callum Exp $
 
 ;; Constants

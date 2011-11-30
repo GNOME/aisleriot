@@ -14,10 +14,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-;;
-;;
-;; Goodsol gives odds as < 1%.  It is possible to win in theory.  
-;; In practice I've only ever won when the deck wasn't shuffled
+
+(use-modules (aisleriot interface) (aisleriot api))
 
 (load "klondike.scm") 
 

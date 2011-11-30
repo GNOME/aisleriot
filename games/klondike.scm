@@ -14,6 +14,8 @@
 ; You should have received a copy of the GNU General Public License
 ; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+(use-modules (aisleriot interface) (aisleriot api))
+
 (define deal-one #t)    ;deal one card at a time from stock to waste
 (define deal-three #f)  ;deal three cards at a time from stock to waste
 (define no-redeal #f)   ;stock deals a card face-up to each pile in the tableau instead of to waste
