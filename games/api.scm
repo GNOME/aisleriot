@@ -535,7 +535,7 @@
                    (#t (_"Move ~a onto the unknown card."))))))
 
 (define-public (hint-move from-slot from-slot-count to-slot)
-  (list 0 (format (hint-get-dest-format to-slot) (get-name (get-nth-card from-slot from-slot-count)))))
+  (list 0 (format #f (hint-get-dest-format to-slot) (get-name (get-nth-card from-slot from-slot-count)))))
 
 (define-public (hint-click slot-id hint-string)
   (list 0 hint-string))
