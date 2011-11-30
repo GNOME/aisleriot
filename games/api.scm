@@ -623,12 +623,6 @@
 (define-public (nthcdr n lst)
   (if (zero? n) lst (nthcdr (+ -1 n) (cdr lst))))
 
-; guile library function I'm not sure I can rely on
-(define-public (list-head lst k)
-  (if (= k 0)
-      '()
-      (cons (car lst) (list-head (cdr lst) (- k 1)))))
-
 ;; INTERNAL procedures
 
 ; global variables
