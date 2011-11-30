@@ -1068,7 +1068,7 @@ cscm_init (void)
   scm_c_define_gsubr ("set-slot-x-expansion!", 2, 0, 0,
                       scm_set_slot_x_expansion);
   scm_c_define_gsubr ("set-lambda", 8, 0, 1, scm_set_lambda);
-  scm_c_define_gsubr ("random", 1, 0, 0, scm_myrandom);
+  scm_c_define_gsubr ("aisleriot-random", 1, 0, 0, scm_myrandom);
   scm_c_define_gsubr ("click-to-move?", 0, 0, 0, scm_click_to_move_p);
   scm_c_define_gsubr ("get-score", 0, 0, 0, scm_get_score);
   scm_c_define_gsubr ("set-score!", 1, 0, 0, scm_set_score);

@@ -584,7 +584,7 @@
 (define (shuffle-deck-helper deck result ref1 len)
   (if (zero? len)
       result
-      (let* ((ref2 (+ ref1 (random len)))
+      (let* ((ref2 (+ ref1 (aisleriot-random len)))
 	     (val-at-ref2 (vector-ref deck ref2)))
 	(vector-set! deck ref2 (vector-ref deck ref1))
 	(shuffle-deck-helper deck (cons val-at-ref2 result) (+ ref1 1) (- len 1)))))

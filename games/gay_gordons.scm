@@ -87,7 +87,7 @@
         (deepest (apply max holes))
         (total (apply + holes))
         (n (apply + (map (lambda (x) (if (= (car x) 0) 0 1)) slots)))
-        (r (random n)))
+        (r (aisleriot-random n)))
     (if (<= total (* deepest 2)) ; Catch the case where we are forced to
                                 ; fill in a hole
        (find-deepest holes deepest)
@@ -95,7 +95,7 @@
 
 (define (select-second slots first)
   (let* ((n (apply + (map (lambda (x) (if (= (car x) 0) 0 1)) slots)))
-        (r (random (- n 1))))
+        (r (aisleriot-random (- n 1))))
     (find-hole slots r first)))
 
 ; Accepts a source slot and a list of count, slot-id pairs and distributes

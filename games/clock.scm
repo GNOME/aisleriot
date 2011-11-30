@@ -191,7 +191,7 @@
 	       (_"When without a stapler, a staple and a ruler will work")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 	       (_"Never blow in a dog's ear"))
-	 (random 12))))
+	 (aisleriot-random 12))))
 
 (define (get-options) #f)
 
