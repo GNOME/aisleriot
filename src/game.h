@@ -103,8 +103,8 @@ char *ar_slot_get_hint_string (ArSlot *slot,
 #define AISLERIOT_IS_GAME_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), AISLERIOT_TYPE_GAME))
 #define AISLERIOT_GAME_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), AISLERIOT_TYPE_GAME, AisleriotGameClass))
 
-#define DEFAULT_VARIATION  "klondike.scm"
-#define FREECELL_VARIATION "freecell.scm"
+#define DEFAULT_VARIATION  "klondike"
+#define FREECELL_VARIATION "freecell"
 
 #define AISLERIOT_GAME_ERROR  (aisleriot_game_error_quark ())
 
@@ -186,7 +186,7 @@ void aisleriot_game_new_game_with_rand (AisleriotGame *game,
 
 void aisleriot_game_restart_game (AisleriotGame * game);
 
-const char *aisleriot_game_get_game_file (AisleriotGame * game);
+const char *aisleriot_game_get_game_module (AisleriotGame * game);
 
 char *aisleriot_game_get_name (AisleriotGame * game);
 

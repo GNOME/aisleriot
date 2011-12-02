@@ -54,7 +54,7 @@ enum {
 
 enum {
   COL_NAME,
-  COL_GAME_FILE
+  COL_GAME_MODULE
 };
 
 #define SELECT_GAME_DIALOG_MIN_HEIGHT (256)
@@ -83,16 +83,16 @@ response_cb (GtkWidget *dialog,
 
   if (response == GTK_RESPONSE_OK &&
       gtk_tree_selection_get_selected (priv->selection, &model, &iter)) {
-    char *game_file = NULL;
+    char *game_module = NULL;
 
     gtk_tree_model_get (model, &iter,
-                        COL_GAME_FILE, &game_file,
+                        COL_GAME_MODULE, &game_module,
                         -1);
-    g_assert (game_file != NULL);
+    g_assert (game_module != NULL);
 
-    aisleriot_window_set_game (priv->window, game_file, 0);
+    aisleriot_window_set_game_module (priv->window, game_module, NULL);
 
-    g_free (game_file);
+    g_free (game_module);
   }
 
   gtk_widget_destroy (dialog);
@@ -128,7 +128,7 @@ ar_game_chooser_constructor (GType type,
   GtkWidget *hbox;
   GtkTreeIter current_iter;
   gboolean current_iter_set = FALSE;
-  const char *current_game_file;
+  const char *current_game_module;
   const char *games_dir;
   GDir *dir;
   GtkWidget *content_area;
@@ -145,7 +145,7 @@ ar_game_chooser_constructor (GType type,
 
   priv->store = list = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
 
-  current_game_file = aisleriot_game_get_game_file (aisleriot_window_get_game (priv->window));
+  current_game_module = aisleriot_window_get_game_module (priv->window);
 
   games_dir = ar_runtime_get_directory (AR_RUNTIME_GAMES_DIRECTORY);
 
@@ -154,7 +154,7 @@ ar_game_chooser_constructor (GType type,
     const char *game_file;
 
     while ((game_file = g_dir_read_name (dir)) != NULL) {
-      char *game_name;
+      char *game_name, *game_module;
       GtkTreeIter iter;
 
       if (!g_str_has_suffix (game_file, ".scm") ||
@@ -162,20 +162,22 @@ ar_game_chooser_constructor (GType type,
         continue;
 
       game_name = ar_filename_to_display_name (game_file);
+      game_module = ar_filename_to_game_module (game_file);
 
       gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
                                          -1,
                                          COL_NAME, game_name,
-                                         COL_GAME_FILE, game_file,
+                                         COL_GAME_MODULE, game_module,
                                          -1);
 
-      if (current_game_file &&
-          strcmp (current_game_file, game_file) == 0) {
+      if (current_game_module &&
+          strcmp (current_game_module, game_module) == 0) {
         current_iter = iter;
         current_iter_set = TRUE;
       }
 
       g_free (game_name);
+      g_free (game_module);
     }
 
     g_dir_close (dir);

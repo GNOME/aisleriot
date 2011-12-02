@@ -71,11 +71,17 @@ static GConfClient *gconf_client;
 static GHashTable *stats;
 
 static char *
-options_gconf_key (const char *game_file)
+options_gconf_key (const char *game_module)
 {
   static const char basekey[] = "/apps/aisleriot/rules/";
 
-  return g_strconcat (basekey, game_file, NULL);
+  return g_strdelimit (g_strconcat (basekey, game_module, ".scm", NULL), "-", '_');
+}
+
+static char *
+game_module_to_game_name (const char *game_module)
+{
+  return g_strdelimit (g_strconcat (game_module, ".scm", NULL), "-", '_');
 }
 
 static void
@@ -183,7 +189,7 @@ aisleriot_conf_init (void)
   }
 
 #ifdef HAVE_GNOME
-  
+
   gconf_client = gconf_client_get_default ();
 
   stats = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
@@ -217,7 +223,7 @@ aisleriot_conf_get_key (AisleriotConfKey key)
 }
 
 gboolean
-aisleriot_conf_get_options (const char *game_file,
+aisleriot_conf_get_options (const char *game_module,
                             int *options)
 {
 #ifdef HAVE_GNOME
@@ -225,7 +231,7 @@ aisleriot_conf_get_options (const char *game_file,
   GConfValue *value;
   char *gconf_key;
 
-  gconf_key = options_gconf_key (game_file);
+  gconf_key = options_gconf_key (game_module);
   entry = gconf_client_get_entry (gconf_client, gconf_key, NULL, TRUE, NULL);
   g_free (gconf_key);
   if (!entry)
@@ -245,7 +251,7 @@ aisleriot_conf_get_options (const char *game_file,
 #else
   GError *error = NULL;
 
-  *options = ar_conf_get_integer (game_file, "Options", &error);
+  *options = ar_conf_get_integer (game_module, "Options", &error);
   if (error) {
     g_error_free (error);
     return FALSE;
@@ -256,14 +262,14 @@ aisleriot_conf_get_options (const char *game_file,
 }
 
 void
-aisleriot_conf_set_options (const char *game_file,
+aisleriot_conf_set_options (const char *game_module,
                             int value)
 {
 #ifdef HAVE_GNOME
   GConfSchema *schema;
   char *gconf_key, *schemas_key;
 
-  gconf_key = options_gconf_key (game_file);
+  gconf_key = options_gconf_key (game_module);
 
   schemas_key = g_strconcat ("/schemas", gconf_key, NULL);
 
@@ -296,25 +302,28 @@ aisleriot_conf_set_options (const char *game_file,
   gconf_client_set_int (gconf_client, gconf_key, value, NULL);
   g_free (gconf_key);
 #else
-  ar_conf_set_integer (game_file, "Options", value);
+  ar_conf_set_integer (game_module, "Options", value);
 #endif /* HAVE_GNOME */
 }
 
 void
-aisleriot_conf_get_statistic (const char *game_file,
+aisleriot_conf_get_statistic (const char *game_module,
                               AisleriotStatistic *statistic)
 {
 #ifdef HAVE_GNOME
   AisleriotStatistic *game_stat;
+  char *game_name;
 
-  game_stat = g_hash_table_lookup (stats, game_file);
+  game_name = game_module_to_game_name (game_module);
+
+  game_stat = g_hash_table_lookup (stats, game_name);
   if (!game_stat) {
     char *display_name;
 
     /* Previous versions used the localised name as key, so try it as fall-back.
      * See bug #406267 and bug #525177.
      */
-    display_name = ar_filename_to_display_name (game_file);
+    display_name = ar_filename_to_display_name (game_module);
     game_stat = g_hash_table_lookup (stats, display_name);
     g_free (display_name);
   }
@@ -325,21 +334,28 @@ aisleriot_conf_get_statistic (const char *game_file,
     memset (statistic, 0, sizeof (AisleriotStatistic));
   }
 
+  g_free (game_name);
+
 #else
 
   int *values;
   gsize len = 0;
   GError *error = NULL;
+  char *game_name;
+
+  game_name = game_module_to_game_name (game_module);
 
   memset (statistic, 0, sizeof (AisleriotStatistic));
 
-  values = ar_conf_get_integer_list (game_file, "Statistic", &len, &error);
+  values = ar_conf_get_integer_list (game_name, "Statistic", &len, &error);
   if (error) {
     g_error_free (error);
+    g_free (game_name);
     return;
   }
   if (len != 4) {
     g_free (values);
+    g_free (game_name);
     return;
   }
 
@@ -358,46 +374,57 @@ aisleriot_conf_get_statistic (const char *game_file,
   }
 
   g_free (values);
+  g_free (game_name);
 #endif /* HAVE_GNOME */
 }
 
 void
-aisleriot_conf_set_statistic (const char *game_file,
+aisleriot_conf_set_statistic (const char *game_module,
                               AisleriotStatistic *statistic)
 {
 #ifdef HAVE_GNOME
   AisleriotStatistic *game_stat;
+  char *game_name;
 
-  game_stat = g_hash_table_lookup (stats, game_file);
+  game_name = game_module_to_game_name (game_module);
+
+  game_stat = g_hash_table_lookup (stats, game_name);
   /* Backward compatibility with buggy old aisleriot versions
    * which stored the localised game name.
    */
   if (!game_stat) {
     char *localised_name;
 
-    localised_name = ar_filename_to_display_name (game_file);
+    localised_name = ar_filename_to_display_name (game_module);
     game_stat = g_hash_table_lookup (stats, localised_name);
     g_free (localised_name);
   }
 
   if (!game_stat) {
     game_stat = g_new0 (AisleriotStatistic, 1);
-    g_hash_table_insert (stats, g_strdup (game_file), game_stat);
+    g_hash_table_insert (stats, g_strdup (game_name), game_stat);
   }
 
   *game_stat = *statistic;
 
   save_statistics ();
 
+  g_free (game_name);
+
 #else
 
+  char *game_name;
   int values[4];
+
+  game_name = game_module_to_game_name (game_module);
 
   values[0] = statistic->wins;
   values[1] = statistic->total;
   values[2] = statistic->best;
   values[3] = statistic->worst;
 
-  ar_conf_set_integer_list (game_file, "Statistic", values, G_N_ELEMENTS (values));
+  ar_conf_set_integer_list (game_name, "Statistic", values, G_N_ELEMENTS (values));
+
+  g_free (game_name);
 #endif /* HAVE_GNOME */
 }

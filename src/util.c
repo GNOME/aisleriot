@@ -31,11 +31,11 @@
 #include "util.h"
 
 static char *
-game_file_to_help_section (const char *game_file)
+game_module_to_help_section (const char *game_module)
 {
   char *p, *buf;
 
-  buf = g_path_get_basename (game_file);
+  buf = g_path_get_basename (game_module);
 
   if ((p = strrchr (buf, '.')))
     *p = '\0';
@@ -60,27 +60,27 @@ game_file_to_help_section (const char *game_file)
 /**
  * aisleriot_show_help:
  * @window: a parent window to use for error messages
- * @game_file: the game to show help for, or %NULL to show
+ * @game_module: the game to show help for, or %NULL to show
  *   general help
  *
- * Shows help for @game_file, or the main help if @game_file is %NULL.
+ * Shows help for @game_module, or the main help if @game_module is %NULL.
  */
 void
 aisleriot_show_help (GtkWidget *window,
-                        const char *game_file)
+                        const char *game_module)
 {
   char *help_section = NULL;
   GError *error = NULL;
 
-  if (game_file != NULL) {
-    help_section = game_file_to_help_section (game_file);
+  if (game_module != NULL) {
+    help_section = game_module_to_help_section (game_module);
   }
 
   if (!ar_help_display_full (GTK_WIDGET (window), DOC_MODULE, help_section, &error)) {
-    if (game_file != NULL) {
+    if (game_module != NULL) {
       char *help_section_display;
 
-      help_section_display = ar_filename_to_display_name (game_file);
+      help_section_display = ar_filename_to_display_name (game_module);
 
       ar_show_error (window, error,
                         _("Could not show help for “%s”"),
@@ -95,38 +95,6 @@ aisleriot_show_help (GtkWidget *window,
   }
 
   g_free (help_section);
-}
-
-/**
- * aisleriot_variation_to_game_file:
- * @variation: name of a game from command line
- *
- * Creates a game file name from a command line --variation argument.
- * This strips dangerous characters like .. and /.
- *
- * Returns: a newly allocated string containing the game file name for @variation
- */
-char *
-aisleriot_variation_to_game_file (const char *variation)
-{
-  char *game_file, *s;
-
-  game_file = g_ascii_strdown (variation, -1);
-
-  /* Replace dangerous characters: '.' (as in ".."), '/' and '\' */
-  g_strdelimit (game_file, "./\\" , '\0');
-  g_strdelimit (game_file, NULL, '_');
-
-  if (game_file[0] == '\0') {
-    g_free (game_file);
-    return NULL;
-  }
-
-  /* Add the suffix */
-  s = g_strconcat (game_file, ".scm", NULL);
-  g_free (game_file);
-
-  return s;
 }
 
 /**

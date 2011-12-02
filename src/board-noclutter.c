@@ -1929,7 +1929,7 @@ game_new_cb (AisleriotGame *game,
 #if 0
   g_print ("{ %.3f , %.3f /* %s */ },\n",
            priv->width, priv->height,
-           aisleriot_game_get_game_file (priv->game));
+           aisleriot_game_get_game_module (priv->game));
 #endif
 
   gtk_widget_queue_draw (GTK_WIDGET (board));

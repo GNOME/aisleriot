@@ -47,11 +47,11 @@ GType aisleriot_window_get_type (void);
 
 GtkWidget *aisleriot_window_new (gboolean freecell_mode);
 
-void aisleriot_window_set_game (AisleriotWindow * window,
-                                const char *game_file,
-                                GRand *rand);
+void aisleriot_window_set_game_module (AisleriotWindow * window,
+                                       const char *game_module,
+                                       GRand *rand);
 
-AisleriotGame *aisleriot_window_get_game (AisleriotWindow * window);
+const char *aisleriot_window_get_game_module (AisleriotWindow *window);
 
 G_END_DECLS
 

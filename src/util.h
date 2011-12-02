@@ -25,9 +25,7 @@
 G_BEGIN_DECLS
 
 void aisleriot_show_help (GtkWidget *window,
-                          const char *game_file);
-
-char *aisleriot_variation_to_game_file (const char *variation);
+                          const char *game_module);
 
 void ar_atk_util_add_atk_relation (GtkWidget *widget,
                                    GtkWidget *other,

@@ -2074,7 +2074,7 @@ game_new_cb (AisleriotGame *game,
 #if 0
   g_print ("{ %.3f , %.3f /* %s */ },\n",
            priv->width, priv->height,
-           aisleriot_game_get_game_file (priv->game));
+           aisleriot_game_get_game_module (priv->game));
 #endif
 
   /* Check for animations so that the differences will be reset */

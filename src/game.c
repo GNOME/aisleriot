@@ -77,7 +77,7 @@ struct _AisleriotGame
 
   GPtrArray *slots;
 
-  char *game_file;
+  char *game_module;
 
   GRand *rand;
   GRand *saved_rand;
@@ -219,7 +219,7 @@ update_statistics (AisleriotGame *game)
   AisleriotStatistic current_stats;
   time_t t;
 
-  aisleriot_conf_get_statistic (game->game_file, &current_stats);
+  aisleriot_conf_get_statistic (game->game_module, &current_stats);
 
   current_stats.total++;
 
@@ -237,7 +237,7 @@ update_statistics (AisleriotGame *game)
     }
   }
 
-  aisleriot_conf_set_statistic (game->game_file, &current_stats);
+  aisleriot_conf_set_statistic (game->game_module, &current_stats);
 }
 
 static void
@@ -313,7 +313,7 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
 
   message = g_string_sized_new (1024);
 
-  g_string_append_printf (message, "Variation: %s\n", aisleriot_game_get_game_file (game));
+  g_string_append_printf (message, "Variation: %s\n", aisleriot_game_get_game_module (game));
 #if 0
   g_string_append_printf (message, "Seed: %u\n", game->seed);
 #endif
@@ -1196,7 +1196,7 @@ aisleriot_game_finalize (GObject *object)
   clear_slots (game, FALSE);
   g_ptr_array_free (game->slots, TRUE);
 
-  g_free (game->game_file);
+  g_free (game->game_module);
 
   g_timer_destroy (game->timer);
 
@@ -1229,7 +1229,7 @@ aisleriot_game_get_property (GObject *object,
       g_value_set_boolean (value, game->can_deal);
       break;
     case PROP_GAME_FILE:
-      g_value_set_string (value, game->game_file);
+      g_value_set_string (value, game->game_module);
       break;
     case PROP_SCORE:
       g_value_set_int (value, game->score);
@@ -1656,12 +1656,14 @@ static SCM
 game_scm_load_game (void *user_data)
 {
   AisleriotGame *game = app_game;
-  const char *game_file = user_data;
-  char *path;
+  const char *game_module = user_data;
+  char *game_file, *path;
   int i;
 
   scm_dynwind_begin (0);
 
+  game_file = g_strconcat (game_module, ".scm", NULL);
+  scm_dynwind_unwind_handler (g_free, game_file, SCM_F_WIND_EXPLICITLY);
   path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, game_file);
   scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);
   scm_c_primitive_load (path);
@@ -1695,33 +1697,33 @@ game_scm_load_game (void *user_data)
 /**
  * aisleriot_game_load_game:
  * @game:
- * @game_file: the game file to load
+ * @game_module: the game module to load
  * @error: a location for a #GError
  *
- * Loads the game @game_file into @game. If there is an error,
+ * Loads the game @game_module into @game. If there is an error,
  * @error is filled in and %FALSE returned.
  *
  * Returns: %TRUE iff loading the game succeeded
  */
 gboolean
 aisleriot_game_load_game (AisleriotGame *game,
-                          const char *game_file,
+                          const char *game_module,
                           GError **error)
 {
   GObject *object = G_OBJECT (game);
   GError *err = NULL;
   int i;
 
-  g_return_val_if_fail (game_file != NULL && game_file[0] != '\0', FALSE);
+  g_return_val_if_fail (game_module != NULL && game_module[0] != '\0', FALSE);
 
   /* FIXMEchpe: allow re-loading */
-  if (g_strcmp0 (game_file, game->game_file) == 0)
+  if (g_strcmp0 (game_module, game->game_module) == 0)
     return TRUE;
 
-  /* We use @game_file as a filename, but since it'll be used in configuration
+  /* We use @game_module as a filename, but since it'll be used in configuration
    * as a key, we also require it to be valid UTF-8 !
    */
-  if (!g_utf8_validate (game_file, -1, NULL)) {
+  if (!g_utf8_validate (game_module, -1, NULL)) {
     g_set_error (error, AISLERIOT_GAME_ERROR, GAME_ERROR_GENERIC,
                  "Invalid UTF-8");
     return FALSE;
@@ -1748,7 +1750,7 @@ aisleriot_game_load_game (AisleriotGame *game,
     game->lambdas[i] = SCM_UNDEFINED;
 
   scm_c_catch (SCM_BOOL_T,
-               (scm_t_catch_body) game_scm_load_game, (void *) game_file,
+               (scm_t_catch_body) game_scm_load_game, (void *) game_module,
                game_scm_catch_handler, NULL,
                game_scm_pre_unwind_handler, &err);
 
@@ -1758,8 +1760,8 @@ aisleriot_game_load_game (AisleriotGame *game,
     return FALSE;
   }
 
-  g_free (game->game_file);
-  game->game_file = g_strdup (game_file);
+  g_free (game->game_module);
+  game->game_module = g_strdup (game_module);
 
   set_game_state (game, GAME_LOADED);
 
@@ -1941,7 +1943,7 @@ aisleriot_game_restart_game (AisleriotGame *game)
 }
 
 /**
- * aisleriot_game_get_game_file:
+ * aisleriot_game_get_game_module:
  * @game:
  *
  * Returns the game filename for the currently loaded game type.
@@ -1949,9 +1951,9 @@ aisleriot_game_restart_game (AisleriotGame *game)
  * Returns: a string owned by @game; you must not modify or free it
  */
 const char *
-aisleriot_game_get_game_file (AisleriotGame *game)
+aisleriot_game_get_game_module (AisleriotGame *game)
 {
-  return game->game_file;
+  return game->game_module;
 }
 
 /**
@@ -1966,11 +1968,11 @@ aisleriot_game_get_game_file (AisleriotGame *game)
 char *
 aisleriot_game_get_name (AisleriotGame *game)
 {
-  return ar_filename_to_display_name (game->game_file);
+  return ar_filename_to_display_name (game->game_module);
 }
 
 /**
- * aisleriot_game_get_game_file:
+ * aisleriot_game_get_game_module:
  * @game:
  * @width: a location to store the width in
  * @height: a location to store the height in
@@ -2219,7 +2221,7 @@ aisleriot_game_get_hint (AisleriotGame *game)
                  "Please file a bug at http://bugzilla.gnome.org "
                  "including this message and the name of the game "
                  "you were playing, which is %s.\n",
-                 aisleriot_game_get_game_file (game));
+                 aisleriot_game_get_game_module (game));
       break;
 
     case 4: /* This is deprecated (due to i18n issues) do not use. */
@@ -2227,7 +2229,7 @@ aisleriot_game_get_hint (AisleriotGame *game)
                  "Please file a bug at http://bugzilla.gnome.org "
                  "including this message and the name of the game "
                  "you were playing, which is %s.\n",
-                 aisleriot_game_get_game_file (game));
+                 aisleriot_game_get_game_module (game));
       break;
 
     default:

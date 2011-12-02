@@ -25,6 +25,8 @@ G_BEGIN_DECLS
 
 char *ar_filename_to_display_name (const char *filename);
 
+char *ar_filename_to_game_module (const char *game_file);
+
 G_END_DECLS
 
 #endif /* !GAMES_STRING_UTILS_H */

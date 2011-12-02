@@ -43,9 +43,10 @@
 #include "eggsmclient.h"
 #endif /* WITH_SMCLIENT */
 
+#include "ar-string-utils.h"
 #include "conf.h"
-#include "game.h"
 #include "window.h"
+#include "game.h"
 #include "util.h"
 
 #if 0
@@ -69,14 +70,11 @@ save_state_cb (EggSMClient *client,
                GKeyFile *key_file,
                AppData *data)
 {
-  AisleriotGame *game;
   char *argv[5];
   const char *game_name;
   int argc = 0;
 
-  game = aisleriot_window_get_game (data->window);
-
-  game_name = aisleriot_game_get_game_file (game);
+  game_name = aisleriot_window_get_game_module (data->window);
 
   argv[argc++] = g_get_prgname ();
 
@@ -170,18 +168,22 @@ main_prog (void *closure, int argc, char *argv[])
   /* If we are asked for a specific game, check that it is valid. */
   if (!data.freecell &&
       data.variation != NULL) {
-    char *game_file = NULL;
+    char *game_module = NULL;
 
     if (data.variation[0] != '\0') {
-      game_file = aisleriot_variation_to_game_file (data.variation);
+      game_module = ar_filename_to_game_module (data.variation);
     }
 
     g_free (data.variation);
-    data.variation = game_file;
+    data.variation = game_module;
   }
 
   if (!data.freecell && !data.variation) {
-    data.variation = ar_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
+    char *pref;
+
+    pref = ar_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
+    data.variation = ar_filename_to_game_module (pref);
+    g_free (pref);
   }
 
   g_assert (data.variation != NULL || data.freecell);
@@ -203,9 +205,9 @@ main_prog (void *closure, int argc, char *argv[])
 #endif /* WITH_SMCLIENT */
 
   if (data.freecell) {
-    aisleriot_window_set_game (data.window, FREECELL_VARIATION, NULL);
+    aisleriot_window_set_game_module (data.window, FREECELL_VARIATION, NULL);
   } else {
-    aisleriot_window_set_game (data.window, data.variation, NULL);
+    aisleriot_window_set_game_module (data.window, data.variation, NULL);
   }
 
   gtk_window_present (GTK_WINDOW (data.window));

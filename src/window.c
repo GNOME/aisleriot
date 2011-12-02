@@ -286,7 +286,7 @@ update_statistics_display (AisleriotWindow *window)
   aisleriot_stats_dialog_set_name (priv->stats_dialog, game_name);
   g_free (game_name);
 
-  aisleriot_conf_get_statistic (aisleriot_game_get_game_file (priv->game),
+  aisleriot_conf_get_statistic (aisleriot_game_get_game_module (priv->game),
                                 &current_stats);
 
   aisleriot_stats_dialog_update (priv->stats_dialog, &current_stats);
@@ -302,7 +302,7 @@ stats_dialog_response_cb (GtkWidget *widget,
   if (response == GTK_RESPONSE_REJECT) {
     AisleriotStatistic current_stats = { 0, 0, 0, 0 };
 
-    aisleriot_conf_set_statistic (aisleriot_game_get_game_file (priv->game),
+    aisleriot_conf_set_statistic (aisleriot_game_get_game_module (priv->game),
                                   &current_stats);
     aisleriot_stats_dialog_update (priv->stats_dialog, &current_stats);
 
@@ -476,10 +476,10 @@ help_on_game_cb (GtkAction *action,
                  AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  const char *game_file;
+  const char *game_module;
   
-  game_file = aisleriot_game_get_game_file (priv->game);
-  aisleriot_show_help (GTK_WIDGET (window), game_file);
+  game_module = aisleriot_game_get_game_module (priv->game);
+  aisleriot_show_help (GTK_WIDGET (window), game_module);
 }
 
 static void
@@ -518,8 +518,8 @@ install_themes_cb (GtkAction *action,
   AisleriotWindowPrivate *priv = window->priv;
 
   ar_card_themes_install_themes (priv->theme_manager,
-                                    GTK_WINDOW (window),
-                                    gtk_get_current_event_time ());
+                                 GTK_WIDGET (window),
+                                 gtk_get_current_event_time ());
 }
 
 #ifdef ENABLE_DEBUG_UI
@@ -608,7 +608,7 @@ debug_ensure_game_list (AisleriotWindow *window)
           strcmp (game_file, "api.scm") == 0)
         continue;
 
-      list = g_list_prepend (list, g_strdup (game_file));
+      list = g_list_prepend (list, ar_filename_to_game_module (game_file));
     }
 
     list = g_list_sort (list, (GCompareFunc) strcmp);
@@ -619,7 +619,7 @@ debug_ensure_game_list (AisleriotWindow *window)
   data->window = window;
   data->games_list = list;
   data->current_game = g_list_find_custom (data->games_list,
-                                           aisleriot_game_get_game_file (priv->game),
+                                           aisleriot_game_get_game_module (priv->game),
                                            (GCompareFunc) strcmp);
 
   g_object_set_data_full (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY,
@@ -632,7 +632,7 @@ static gboolean
 debug_cycle_timeout_cb (AisleriotWindow *window)
 {
   DebugWindowData *data;
-  char *game_file;
+  char *game_module;
 
   data = debug_ensure_game_list (window);
   if (data->current_game != NULL) {
@@ -647,8 +647,8 @@ debug_cycle_timeout_cb (AisleriotWindow *window)
   if (!data->current_game)
     return FALSE;
 
-  game_file = data->current_game->data;  
-  aisleriot_window_set_game (data->window, game_file, NULL);
+  game_module = data->current_game->data;  
+  aisleriot_window_set_game_module (data->window, game_module, NULL);
 
   return TRUE;
 }
@@ -671,7 +671,7 @@ debug_game_first (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
+  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -685,7 +685,7 @@ debug_game_last (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
+  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -704,7 +704,7 @@ debug_game_next (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
+  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -723,7 +723,7 @@ debug_game_prev (GtkAction *action,
   if (!data->current_game)
     return;
 
-  aisleriot_window_set_game (data->window, (const char *) data->current_game->data, NULL);
+  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
 }
 
 static void
@@ -1101,7 +1101,7 @@ option_cb (GtkToggleAction *action,
 
   value = aisleriot_game_change_options (priv->game, changed_mask, changed_value);
 
-  aisleriot_conf_set_options (aisleriot_game_get_game_file (priv->game), (int) value);
+  aisleriot_conf_set_options (aisleriot_game_get_game_module (priv->game), (int) value);
 
   /* Now re-deal, so the option is applied */
   aisleriot_game_new_game (priv->game);
@@ -1132,7 +1132,7 @@ install_options_menu (AisleriotWindow *window)
   /* Only apply the options if they exist. Otherwise the options in the menu
    * and the real game options are out of sync until first changed by the user.
    */
-  if (aisleriot_conf_get_options (aisleriot_game_get_game_file (priv->game), &options_value)) {
+  if (aisleriot_conf_get_options (aisleriot_game_get_game_module (priv->game), &options_value)) {
     aisleriot_game_change_options (priv->game, AISLERIOT_GAME_OPTIONS_MAX, options_value);
   }
 
@@ -1205,13 +1205,13 @@ install_options_menu (AisleriotWindow *window)
  */
 static void
 add_recently_played_game (AisleriotWindow *window,
-                          const char *game_file)
+                          const char *game_module)
 {
   AisleriotWindowPrivate *priv = window->priv;
   char **recent_games, **new_recent;
   gsize i, n_recent = 0, n_new_recent = 0;
 
-  if (!game_file)
+  if (!game_module)
     return;
 
   /* Don't store the game type in freecell mode */
@@ -1222,17 +1222,17 @@ add_recently_played_game (AisleriotWindow *window,
 
   if (recent_games == NULL) {
     new_recent = g_new (char *, 2);
-    new_recent[0] = g_strdup (game_file);
+    new_recent[0] = g_strdup (game_module);
     new_recent[1] = NULL;
     n_new_recent = 1;
   } else {
     new_recent = g_new (char *, MIN (n_recent + 1, MAX_RECENT) + 1);
     n_new_recent = 0;
 
-    new_recent[n_new_recent++] = g_strdup (game_file);
+    new_recent[n_new_recent++] = g_strdup (game_module);
 
     for (i = 0; i < n_recent && n_new_recent < MAX_RECENT; ++i) {
-      if (g_ascii_strcasecmp (game_file, recent_games[i]) != 0) {
+      if (g_ascii_strcasecmp (game_module, recent_games[i]) != 0) {
         new_recent[n_new_recent++] = g_strdup (recent_games[i]);
       }
     }
@@ -1252,14 +1252,14 @@ static void
 recent_game_cb (GtkAction *action,
                 AisleriotWindow *window)
 {
-  const char *game_file;
+  const char *game_module;
 
-  game_file = g_object_get_data (G_OBJECT (action), "game");
-  g_return_if_fail (game_file != NULL);
+  game_module = g_object_get_data (G_OBJECT (action), "game");
+  g_return_if_fail (game_module != NULL);
 
-  aisleriot_window_set_game (window, game_file, NULL);
-  
-  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_file);
+  aisleriot_window_set_game_module (window, game_module, NULL);
+
+  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_module);
 }
 
 static void
@@ -1301,7 +1301,8 @@ install_recently_played_menu (AisleriotWindow *window)
     g_free (tooltip);
  
     g_object_set_data_full (G_OBJECT (action), "game",
-                            recent_games[i], (GDestroyNotify) g_free);
+                            ar_filename_to_game_module (recent_games[i]),
+                            (GDestroyNotify) g_free);
     g_signal_connect (action, "activate",
                       G_CALLBACK (recent_game_cb), window);
     gtk_action_group_add_action (priv->recent_games_group, action);
@@ -1627,7 +1628,7 @@ game_type_changed_cb (AisleriotGame *game,
 
   g_free (game_name);
 
-  add_recently_played_game (window, aisleriot_game_get_game_file (game));
+  add_recently_played_game (window, aisleriot_game_get_game_module (game));
 
   install_recently_played_menu (window);
 
@@ -2611,7 +2612,7 @@ aisleriot_window_new (gboolean freecell_mode)
 
 typedef struct {
   AisleriotWindow *window;
-  char *game_file;
+  char *game_module;
   GRand *rand;
 } LoadIdleData;
 
@@ -2621,7 +2622,7 @@ load_error_response_cb (GtkWidget *dialog,
                         AisleriotWindow *window)
 {
   /* Load the default game */
-  aisleriot_window_set_game (window, DEFAULT_VARIATION, NULL);
+  aisleriot_window_set_game_module (window, DEFAULT_VARIATION, NULL);
 
   gtk_widget_destroy (dialog);
 }
@@ -2633,11 +2634,11 @@ load_idle_cb (LoadIdleData *data)
   GError *error = NULL;
   GRand *rand;
 
-  if (!aisleriot_game_load_game (priv->game, data->game_file, &error)) {
+  if (!aisleriot_game_load_game (priv->game, data->game_module, &error)) {
     GtkWidget *dialog;
     char *name;
 
-    name = ar_filename_to_display_name (data->game_file);
+    name = ar_filename_to_display_name (data->game_module);
 
     dialog = gtk_message_dialog_new (GTK_WINDOW (data->window),
                                      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -2648,7 +2649,7 @@ load_idle_cb (LoadIdleData *data)
     g_free (name);
 
     if (priv->freecell_mode ||
-        strcmp (data->game_file, DEFAULT_VARIATION) == 0) {
+        strcmp (data->game_module, DEFAULT_VARIATION) == 0) {
       /* Loading freecell/the fallback game failed; all we can do is exit */
       g_signal_connect_swapped (dialog, "response",
                                 G_CALLBACK (gtk_widget_destroy), data->window);
@@ -2679,7 +2680,11 @@ load_idle_cb (LoadIdleData *data)
    * store it in conf, except when we're running in freecell mode.
    */
   if (!priv->freecell_mode) {
-    ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), data->game_file);
+    char *pref;
+
+    pref = g_strconcat (data->game_module, ".scm", NULL);
+    ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), pref);
+    g_free (pref);
   }
 
   rand = data->rand;
@@ -2700,24 +2705,24 @@ free_load_idle_data (LoadIdleData *data)
   if (data->rand)
     g_rand_free (data->rand);
 
-  g_free (data->game_file);
+  g_free (data->game_module);
   g_slice_free (LoadIdleData, data);
 }
 
 /**
  * aisleriot_window_set_game:
  * @window:
- * @game_file: a UTF-8 string
+ * @game_module: a UTF-8 string
  * @rand: (allow-none) (transfer full): a #GRand, or %NULL
  *
- * Loads the game variation defined in the @game_file file.
- * Note that even though @game_file is used as a filename,
+ * Loads the game variation defined in the @game_module file.
+ * Note that even though @game_module is used as a filename,
  * it must be in UTF-8!
  */
 void
-aisleriot_window_set_game (AisleriotWindow *window,
-                           const char *game_file,
-                           GRand *rand)
+aisleriot_window_set_game_module (AisleriotWindow *window,
+                                  const char *game_module,
+                                  GRand *rand)
 {
   AisleriotWindowPrivate *priv = window->priv;
   LoadIdleData *data;
@@ -2729,7 +2734,7 @@ aisleriot_window_set_game (AisleriotWindow *window,
 
   data = g_slice_new (LoadIdleData);
   data->window = window;
-  data->game_file = g_strdup (game_file);
+  data->game_module = g_strdup (game_module);
   data->rand = rand; /* adopted */
 
   priv->load_idle_id = g_idle_add_full (G_PRIORITY_LOW,
@@ -2739,15 +2744,15 @@ aisleriot_window_set_game (AisleriotWindow *window,
 }
 
 /**
- * aisleriot_window_get_game:
+ * aisleriot_window_get_game_module:
  * @window:
  *
- * Returns: the #AisleriotGame running in @window
+ * Returns: the name of the game running in @window
  */
-AisleriotGame *
-aisleriot_window_get_game (AisleriotWindow *window)
+const char *
+aisleriot_window_get_game_module (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-  return priv->game;
+  return aisleriot_game_get_game_module (priv->game);
 }

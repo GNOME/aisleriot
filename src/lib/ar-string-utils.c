@@ -96,3 +96,29 @@ ar_filename_to_display_name (const char *filename)
 
   return display_name;
 }
+
+/**
+ * ar_filename_to_game_module:
+ * @game_file: name of a game from command line
+ *
+ * Creates a game module name from a command line argument.
+ *
+ * Returns: a newly allocated string containing the game file name for @game_file
+ */
+char *
+ar_filename_to_game_module (const char *game_file)
+{
+  char *game_module;
+
+  game_module = g_ascii_strdown (game_file, -1);
+
+  /* Replace dangerous characters: '.' (as in ".."), '/' and '\' */
+  g_strdelimit (game_module, "./\\" , '\0');
+  if (game_module[0] == '\0') {
+    g_free (game_module);
+    return NULL;
+  }
+
+  g_strdelimit (game_module, NULL, '-');
+  return game_module;
+}

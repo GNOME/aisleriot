@@ -48,14 +48,14 @@ void aisleriot_conf_shutdown (void);
 
 const char *aisleriot_conf_get_key (AisleriotConfKey key);
 
-gboolean aisleriot_conf_get_options (const char *game_file, int *options);
+gboolean aisleriot_conf_get_options (const char *game_module, int *options);
 
-void aisleriot_conf_set_options (const char *game_file, int options);
+void aisleriot_conf_set_options (const char *game_module, int options);
 
-void aisleriot_conf_get_statistic (const char *game_file,
+void aisleriot_conf_get_statistic (const char *game_module,
                                    AisleriotStatistic * statistic);
 
-void aisleriot_conf_set_statistic (const char *game_file,
+void aisleriot_conf_set_statistic (const char *game_module,
                                    AisleriotStatistic * statistic);
 
 G_END_DECLS
