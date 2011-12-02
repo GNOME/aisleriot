@@ -1,14 +1,13 @@
 NULL = 
 
-guiledir = $(pkgdatadir)/aisleriot
+pkgguiledir = $(pkgdatadir)/guile/$(GUILE_EFFECTIVE_VERSION)
 
-guile_DATA = \
+moduledir = $(pkgguiledir)/aisleriot
+module_DATA = \
 	api.scm \
 	$(NULL)
 
-rulesdir  = $(pkgdatadir)/games
-
-rules_DATA  = \
+pkgguile_DATA  = \
 	accordion.scm \
 	agnes.scm \
 	athena.scm \
@@ -100,8 +99,8 @@ rules_DATA  = \
 	$(NULL)
 
 EXTRA_DIST = \
-	$(rules_DATA) \
-	$(guile_DATA) \
+	$(pkgguile_DATA) \
+	$(module_DATA) \
 	template.scm \
 	Rules.HOWTO \
 	$(NULL)

@@ -129,8 +129,8 @@ ar_game_chooser_constructor (GType type,
   GtkTreeIter current_iter;
   gboolean current_iter_set = FALSE;
   const char *current_game_module;
-  const char *games_dir;
-  GDir *dir;
+  char **games;
+  int i;
   GtkWidget *content_area;
   GtkDialog *dialog;
 
@@ -147,22 +147,14 @@ ar_game_chooser_constructor (GType type,
 
   current_game_module = aisleriot_window_get_game_module (priv->window);
 
-  games_dir = ar_runtime_get_directory (AR_RUNTIME_GAMES_DIRECTORY);
-
-  dir = g_dir_open (games_dir, 0, NULL);
-  if (dir != NULL) {
-    const char *game_file;
-
-    while ((game_file = g_dir_read_name (dir)) != NULL) {
-      char *game_name, *game_module;
+  games = ar_get_game_modules ();
+  if (games != NULL) {
+    for (i = 0; games[i]; ++i) {
+      const char *game_module = games[i];
+      char *game_name;
       GtkTreeIter iter;
 
-      if (!g_str_has_suffix (game_file, ".scm") ||
-          strcmp (game_file, "api.scm") == 0)
-        continue;
-
-      game_name = ar_filename_to_display_name (game_file);
-      game_module = ar_filename_to_game_module (game_file);
+      game_name = ar_filename_to_display_name (game_module);
 
       gtk_list_store_insert_with_values (GTK_LIST_STORE (list), &iter,
                                          -1,
@@ -177,11 +169,10 @@ ar_game_chooser_constructor (GType type,
       }
 
       g_free (game_name);
-      g_free (game_module);
     }
-
-    g_dir_close (dir);
   }
+
+  g_strfreev (games);
 
   /* Now construct the window contents */
   gtk_window_set_title (window, _("Select Game"));

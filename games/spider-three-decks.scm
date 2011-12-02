@@ -16,7 +16,7 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
-(load "spider.scm")
+(primitive-load-path "spider")
 
 (define tableau '(13 14 15 16 17 18 19 20 21 22 23 24))
 (define foundation '(1 2 3 4 5 6 7 8 9 10 11 12))

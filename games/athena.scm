@@ -24,7 +24,7 @@
 ;; TODO rewrite in a way less redundant way and share code with Klondike
 ;; As seen in Pretty Good Solitaire 10  http://goodsol.com  2005.  
 
-(load "klondike.scm")
+(primitive-load-path "klondike")
 
 (define deal-one #t)
 (define deal-three #f)

@@ -573,15 +573,16 @@ debug_exception_cb (GtkAction *action,
 
 typedef struct {
   AisleriotWindow *window;
-  GList *games_list;
-  GList *current_game;
+  char **games;
+  int n_games;
+  int current;
 } DebugWindowData;
 
 static void
 debug_data_free (DebugWindowData *data)
 {
-  g_list_foreach (data->games_list, (GFunc) g_free, NULL);
-  g_list_free (data->games_list);
+  g_strfreev (data->games);
+
   g_slice_free (DebugWindowData, data);
 }
 
@@ -590,37 +591,37 @@ debug_ensure_game_list (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
   DebugWindowData *data;
-  GDir *dir;
-  GList *list = NULL;
-  const char *games_dir;
+  char **games;
+  int n_games;
+  const char *current_game_module;
+  int i;
 
   data = g_object_get_data (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY);
   if (data != NULL)
     return data;
 
-  games_dir = ar_runtime_get_directory (AR_RUNTIME_GAMES_DIRECTORY);
-  dir = g_dir_open (games_dir, 0, NULL);
-  if (dir != NULL) {
-    const char *game_file;
+  games = ar_get_game_modules ();
+  if (games == NULL)
+    return NULL;
 
-    while ((game_file = g_dir_read_name (dir)) != NULL) {
-      if (!g_str_has_suffix (game_file, ".scm") ||
-          strcmp (game_file, "api.scm") == 0)
-        continue;
-
-      list = g_list_prepend (list, ar_filename_to_game_module (game_file));
-    }
-
-    list = g_list_sort (list, (GCompareFunc) strcmp);
-    g_dir_close (dir);
+  n_games = g_strv_length (games);
+  if (n_games == 0) {
+    g_strfreev (games);
+    return NULL;
   }
 
-  data = g_slice_new (DebugWindowData);
   data->window = window;
-  data->games_list = list;
-  data->current_game = g_list_find_custom (data->games_list,
-                                           aisleriot_game_get_game_module (priv->game),
-                                           (GCompareFunc) strcmp);
+  data->games = games;
+  data->n_games = n_games;
+  data->current = -1;
+
+  current_game_module = aisleriot_game_get_game_module (priv->game);
+  for (i = 0; data->games[i]; ++i) {
+    if (strcmp (data->games[i], current_game_module) == 0) {
+      data->current = i;
+      break;
+    }
+  }
 
   g_object_set_data_full (G_OBJECT (window), DEBUG_WINDOW_DATA_KEY,
                           data, (GDestroyNotify) debug_data_free);
@@ -629,35 +630,31 @@ debug_ensure_game_list (AisleriotWindow *window)
 }
 
 static gboolean
-debug_cycle_timeout_cb (AisleriotWindow *window)
+debug_cycle_timeout_cb (DebugWindowData *data)
 {
-  DebugWindowData *data;
-  char *game_module;
+  if (data->current >= -1)
+    data->current++;
 
-  data = debug_ensure_game_list (window);
-  if (data->current_game != NULL) {
-    data->current_game = data->current_game->next;
-    /* We're done */
-    if (!data->current_game)
-      return FALSE;
-  }
-  if (!data->current_game) {
-    data->current_game = data->games_list;
-  }
-  if (!data->current_game)
+  /* We're done */
+  if (data->current >= data->n_games)
     return FALSE;
 
-  game_module = data->current_game->data;  
-  aisleriot_window_set_game_module (data->window, game_module, NULL);
+  aisleriot_window_set_game_module (data->window, data->games[data->current], NULL);
 
-  return TRUE;
+  return TRUE; /* run again */
 }
 
 static void
 debug_cycle_cb (GtkAction *action,
                 AisleriotWindow *window)
 {
-  g_timeout_add (500, (GSourceFunc) debug_cycle_timeout_cb, window);
+  DebugWindowData *data;
+
+  data = debug_ensure_game_list (window);
+  if (data == NULL)
+    return;
+
+  g_timeout_add (500, (GSourceFunc) debug_cycle_timeout_cb, data);
 }
 
 static void
@@ -667,11 +664,11 @@ debug_game_first (GtkAction *action,
   DebugWindowData *data;
 
   data = debug_ensure_game_list (window);
-  data->current_game = data->games_list;
-  if (!data->current_game)
+  if (data == NULL)
     return;
 
-  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
+  data->current = 0;
+  aisleriot_window_set_game_module (data->window, data->games[data->current], NULL);
 }
 
 static void
@@ -681,11 +678,11 @@ debug_game_last (GtkAction *action,
   DebugWindowData *data;
 
   data = debug_ensure_game_list (window);
-  data->current_game = g_list_last (data->games_list);
-  if (!data->current_game)
+  if (data == NULL)
     return;
 
-  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
+  data->current = data->n_games - 1;
+  aisleriot_window_set_game_module (data->window, data->games[data->current], NULL);
 }
 
 static void
@@ -695,16 +692,11 @@ debug_game_next (GtkAction *action,
   DebugWindowData *data;
 
   data = debug_ensure_game_list (window);
-  if (data->current_game) {
-    data->current_game = data->current_game->next;
-  }
-  if (!data->current_game) {
-    data->current_game = data->games_list;
-  }
-  if (!data->current_game)
+  if (data == NULL || data->current + 1 == data->n_games)
     return;
 
-  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
+  data->current++;
+  aisleriot_window_set_game_module (data->window, data->games[data->current], NULL);
 }
 
 static void
@@ -714,16 +706,11 @@ debug_game_prev (GtkAction *action,
   DebugWindowData *data;
 
   data = debug_ensure_game_list (window);
-  if (data->current_game) {
-    data->current_game = data->current_game->prev;
-  }
-  if (!data->current_game) {
-    data->current_game = data->games_list;
-  }
-  if (!data->current_game)
+  if (data == NULL || data->current == 0)
     return;
 
-  aisleriot_window_set_game_module (data->window, (const char *) data->current_game->data, NULL);
+  data->current--;
+  aisleriot_window_set_game_module (data->window, data->games[data->current], NULL);
 }
 
 static void

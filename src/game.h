@@ -243,6 +243,8 @@ void aisleriot_game_get_card_offset (ArSlot *slot,
 
 void aisleriot_game_reset_old_cards (ArSlot *slot);
 
+char **ar_get_game_modules (void);
+
 G_END_DECLS
 
 #endif /* !AISLERIOT_GAME_H */

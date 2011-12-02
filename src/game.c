@@ -47,6 +47,9 @@
 #ifndef SCM_MAJOR_VERSION
 #define SCM_MAJOR_VERSION 1
 #endif
+#ifndef SCM_EFFECTIVE_VERSION
+#define SCM_EFFECTIVE_VERSION "1.8"
+#endif
 
 struct _AisleriotGameClass
 {
@@ -1288,7 +1291,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   GType error_types[] = { G_TYPE_ERROR | G_SIGNAL_TYPE_STATIC_SCOPE };
   GType ptr_types[] = { G_TYPE_POINTER };
   SCM variable;
-  const char *path;
+  char *path;
 
   gobject_class->constructor = aisleriot_game_constructor;
   gobject_class->finalize = aisleriot_game_finalize;
@@ -1405,16 +1408,24 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   scm_c_define_module ("aisleriot interface", cscm_init, NULL);
 
   /* Append load-path */
-  path = ar_runtime_get_directory (AR_RUNTIME_PKG_DATA_DIRECTORY);
+  path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_DATA_DIRECTORY),
+                           "guile",
+                           SCM_EFFECTIVE_VERSION,
+                           NULL);
   variable = scm_c_module_lookup (scm_the_root_module (), "%load-path");
   scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
                                                           scm_list_1 (scm_from_locale_string (path)))));
+  g_free (path);
 
 #if SCM_MAJOR_VERSION >= 2
-  path = ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY);
+  path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY),
+                           "guile",
+                           SCM_EFFECTIVE_VERSION,
+                           NULL);
   variable = scm_c_module_lookup (scm_the_root_module (), "%load-compiled-path");
   scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
                                                           scm_list_1 (scm_from_locale_string (path)))));
+  g_free (path);
 #endif
 }
 
@@ -1697,16 +1708,11 @@ game_scm_load_game (void *user_data)
 {
   AisleriotGame *game = app_game;
   const char *game_module = user_data;
-  char *game_file, *path;
   int i;
 
   scm_dynwind_begin (0);
 
-  game_file = g_strconcat (game_module, ".scm", NULL);
-  scm_dynwind_unwind_handler (g_free, game_file, SCM_F_WIND_EXPLICITLY);
-  path = ar_runtime_get_file (AR_RUNTIME_GAMES_DIRECTORY, game_file);
-  scm_dynwind_unwind_handler (g_free, path, SCM_F_WIND_EXPLICITLY);
-  scm_c_primitive_load (path);
+  scm_primitive_load_path (scm_from_locale_string (game_module));
 
   for (i = 0; i <= LAST_MANDATORY_LAMBDA; ++i) {
     if (scm_is_false (scm_procedure_p (game->lambdas[i]))) {
@@ -2622,3 +2628,41 @@ aisleriot_game_reset_old_cards (ArSlot *slot)
 }
 
 #endif /* HAVE_CLUTTER */
+
+/**
+ * ar_get_game_modules:
+ * 
+ * Returns: (tranfer full): the list of available games
+ */
+char **
+ar_get_game_modules (void)
+{
+  char *path;
+  const char *filename;
+  GDir *dir;
+  GPtrArray *array;
+
+  path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_DATA_DIRECTORY),
+                           "guile",
+                           SCM_EFFECTIVE_VERSION,
+                           NULL);
+  dir = g_dir_open (path, 0, NULL);
+  g_free (path);
+  if (dir == NULL)
+    return NULL;
+
+  array = g_ptr_array_new ();
+
+  while ((filename = g_dir_read_name (dir)) != NULL) {
+    if (!g_str_has_suffix (filename, ".scm") ||
+        strcmp (filename, "api.scm") == 0)
+      continue;
+
+    g_ptr_array_add (array, ar_filename_to_game_module (filename));
+  }
+
+  g_ptr_array_sort (array, (GCompareFunc) strcmp);
+  g_ptr_array_add (array, NULL);
+
+  return (char **) g_ptr_array_free (array, FALSE);
+}

@@ -16,7 +16,7 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
-(load "spider.scm")
+(primitive-load-path "spider")
 
 (define stock 0)
 (define foundation '(1 2 3 4))

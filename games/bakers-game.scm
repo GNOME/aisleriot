@@ -16,7 +16,7 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
-(load "freecell.scm")
+(primitive-load-path "freecell")
 
 (define (field-join? lower upper)
   (and (eq? (get-suit lower) (get-suit upper))

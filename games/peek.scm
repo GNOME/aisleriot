@@ -16,7 +16,7 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
-(load "osmosis.scm")
+(primitive-load-path "osmosis")
 
 (define (initial-deal)
   (deal-cards-face-up 8 '(0 2 4 6 0 2 4 6 0 2 4 6 0 2 4 6 1))

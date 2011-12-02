@@ -25,7 +25,7 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
-(load "klondike.scm")
+(primitive-load-path "klondike")
 
 (define deal-one #t)
 (define deal-three #f)
