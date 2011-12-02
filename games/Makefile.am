@@ -99,10 +99,6 @@ rules_DATA  = \
 	zebra.scm \
 	$(NULL)
 
-# aunt_mary.scm
-# was temporarily disabled because the licence is unclear
-# about whether it's GPL 2 or GPL 2+ (see bug #325039 comment 5).
-
 EXTRA_DIST = \
 	$(rules_DATA) \
 	$(guile_DATA) \
