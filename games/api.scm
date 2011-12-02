@@ -83,7 +83,7 @@
 ; the game. i.e. anything that isn't a constant. This is so undo/redo
 ; is transparent. It should behave otherwise identically to define.
 (defmacro-public def-save-var (nm value)
-  `(begin (define ,nm ,value)
+  `(begin (define-public ,nm ,value)
           (set! variable-list (cons ',nm variable-list))))
 
 ; create a 52 card deck (puts list of cards into DECK)
