@@ -45,7 +45,7 @@
 
   (make-standard-deck)
   (shuffle-deck)
-  
+
   (add-normal-slot DECK 'stock)
 
   (if deal-three
@@ -82,4 +82,6 @@
 (define (apply-options options)
   (set! deal-three (cadar options)))
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable? dealable?)
+(set-lambda! 'new-game new-game)
+(set-lambda! 'get-options get-options)
+(set-lambda! 'apply-options apply-options)

@@ -61,4 +61,6 @@
 
 (define (apply-options options) #f)
 
-(set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-over game-won get-hint get-options apply-options timeout droppable?)
+(set-lambda! 'new-game new-game)
+(set-lambda! 'get-options get-options)
+(set-lambda! 'apply-options apply-options)

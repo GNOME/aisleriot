@@ -54,7 +54,7 @@ struct _AisleriotGameClass
 };
 
 enum {
-  START_GAME_LAMBDA,
+  NEW_GAME_LAMBDA,
   BUTTON_PRESSED_LAMBDA,
   BUTTON_RELEASED_LAMBDA,
   BUTTON_CLICKED_LAMBDA,
@@ -69,6 +69,22 @@ enum {
   DEALABLE_LAMBDA,
   N_LAMBDAS,
   LAST_MANDATORY_LAMBDA = TIMEOUT_LAMBDA
+};
+
+static const char lambda_names[] = {
+  "new-game\0"
+  "button-pressed\0"
+  "button-released\0"
+  "button-clicked\0"
+  "button-double-clicked\0"
+  "game-over\0"
+  "winning-game\0"
+  "hint\0"
+  "get-options\0"
+  "apply-options\0"
+  "timeout\0"
+  "droppable\0"
+  "dealable\0"
 };
 
 struct _AisleriotGame
@@ -897,7 +913,7 @@ scm_set_lambda (SCM start_game_lambda,
 {
   AisleriotGame *game = app_game;
 
-  game->lambdas[START_GAME_LAMBDA] = start_game_lambda;
+  game->lambdas[NEW_GAME_LAMBDA] = start_game_lambda;
   game->lambdas[BUTTON_PRESSED_LAMBDA] = pressed_lambda;
   game->lambdas[BUTTON_RELEASED_LAMBDA] = released_lambda;
   game->lambdas[BUTTON_CLICKED_LAMBDA] = clicked_lambda;
@@ -930,6 +946,28 @@ scm_set_lambda (SCM start_game_lambda,
   }
 
   return SCM_EOL;
+}
+
+static SCM
+scm_set_lambda_x (SCM symbol,
+                  SCM lambda)
+{
+  AisleriotGame *game = app_game;
+  const char *lambda_name;
+  int i;
+
+  lambda_name = lambda_names;
+  for (i = 0; i < N_LAMBDAS; ++i) {
+    if (scm_is_true (scm_equal_p (symbol, scm_from_locale_symbol (lambda_name)))) {
+      game->lambdas[i] = lambda;
+      return SCM_EOL;
+    }
+
+    lambda_name += strlen (lambda_name) + 1;
+  }
+
+  return scm_throw (scm_from_locale_symbol ("aisleriot-invalid-call"),
+                    scm_list_1 (scm_from_locale_string ("Unknown lambda name in set-lambda!")));
 }
 
 static SCM
@@ -1072,6 +1110,7 @@ cscm_init (void *data G_GNUC_UNUSED)
   scm_c_define_gsubr ("set-slot-x-expansion!", 2, 0, 0,
                       scm_set_slot_x_expansion);
   scm_c_define_gsubr ("set-lambda", 8, 0, 1, scm_set_lambda);
+  scm_c_define_gsubr ("set-lambda!", 2, 0, 0, scm_set_lambda_x);
   scm_c_define_gsubr ("aisleriot-random", 1, 0, 0, scm_myrandom);
   scm_c_define_gsubr ("click-to-move?", 0, 0, 0, scm_click_to_move_p);
   scm_c_define_gsubr ("get-score", 0, 0, 0, scm_get_score);
@@ -1095,6 +1134,7 @@ cscm_init (void *data G_GNUC_UNUSED)
                 "set-slot-y-expansion!", 
                 "set-slot-x-expansion!",
                 "set-lambda", 
+                "set-lambda!",
                 "aisleriot-random", 
                 "click-to-move?", 
                 "get-score", 
@@ -1793,7 +1833,7 @@ game_scm_new_game (void *user_data)
       g_rand_free (game->saved_rand);
     game->saved_rand = g_rand_copy (game->rand);
 
-    size = scm_call_0 (game->lambdas[START_GAME_LAMBDA]);
+    size = scm_call_0 (game->lambdas[NEW_GAME_LAMBDA]);
     game->width = scm_to_double (SCM_CAR (size));
     game->height = scm_to_double (SCM_CADR (size));
     scm_remember_upto_here_1 (size);
