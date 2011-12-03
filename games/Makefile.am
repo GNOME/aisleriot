@@ -128,6 +128,7 @@ endif # HAVE_GUILE_2_X
 EXTRA_DIST = \
 	$(games_GUILE) \
 	$(module_GUILE) \
+	guile-compile \
 	template.scm \
 	Rules.HOWTO \
 	$(NULL)
