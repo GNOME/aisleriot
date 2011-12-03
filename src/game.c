@@ -2650,6 +2650,13 @@ append_games_from_path (GHashTable *hash_table,
   }
 }
 
+static int
+compare (gconstpointer *a,
+         gconstpointer *b)
+{
+  return strcmp ((char *) *a, (char *) *b);
+}
+
 /**
  * ar_get_game_modules:
  * 
@@ -2691,7 +2698,7 @@ ar_get_game_modules (void)
   }
   g_hash_table_unref (hash_table);
 
-  g_ptr_array_sort (array, (GCompareFunc) strcmp);
+  g_ptr_array_sort (array, (GCompareFunc) compare);
   g_ptr_array_add (array, NULL);
 
   return (char **) g_ptr_array_free (array, FALSE);
