@@ -106,7 +106,7 @@ struct _AisleriotGame
   GTimer *timer;
 
   int timeout;
-  int score;
+  char *score;
 
   double width;
   double height;
@@ -985,13 +985,16 @@ static SCM
 scm_update_score (SCM new_score)
 {
   AisleriotGame *game = app_game;
-  int score;
+  char *score;
 
-  score = scm_to_int (new_score);
-  if (score != game->score) {
+  score = scm_to_locale_string (new_score);
+  if (g_strcmp0 (score, game->score) != 0) {
+    free (game->score);
     game->score = score;
 
     g_object_notify (G_OBJECT (game), "score");
+  } else {
+    free (score);
   }
 
   return new_score;
@@ -1178,7 +1181,7 @@ aisleriot_game_init (AisleriotGame *game)
   game->timer = g_timer_new ();
 
   game->timeout = 60 * 60;
-  game->score = 0;
+  game->score = NULL;
 }
 
 static GObject *
@@ -1222,6 +1225,8 @@ aisleriot_game_finalize (GObject *object)
   if (game->saved_rand)
     g_rand_free (game->saved_rand);
 
+  free (game->score);
+
   app_game = NULL;
 
   G_OBJECT_CLASS (aisleriot_game_parent_class)->finalize (object);
@@ -1249,7 +1254,7 @@ aisleriot_game_get_property (GObject *object,
       g_value_set_string (value, game->game_module);
       break;
     case PROP_SCORE:
-      g_value_set_int (value, game->score);
+      g_value_set_string (value, game->score);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1366,10 +1371,10 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   g_object_class_install_property
     (gobject_class,
      PROP_SCORE,
-     g_param_spec_int ("score", NULL, NULL,
-                       G_MININT, G_MAXINT, 0,
-                       G_PARAM_READABLE |
-                       G_PARAM_STATIC_STRINGS));
+     g_param_spec_string ("score", NULL, NULL,
+                          NULL,
+                          G_PARAM_READABLE |
+                          G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (gobject_class,
@@ -2560,6 +2565,20 @@ aisleriot_game_deal_cards (AisleriotGame *game)
 
   aisleriot_game_end_move (game);
   aisleriot_game_test_end_of_game (game);
+}
+
+/**
+ * aisleriot_game_get_score:
+ * @game:
+ * 
+ * Returns: (transfer none): the current score as a string
+ */
+const char *
+aisleriot_game_get_score (AisleriotGame *game)
+{
+  g_return_val_if_fail (AISLERIOT_IS_GAME (game), NULL);
+
+  return game->score ? game->score : "";
 }
 
 #ifdef HAVE_CLUTTER

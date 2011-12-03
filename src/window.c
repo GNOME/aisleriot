@@ -1505,17 +1505,9 @@ sync_game_score (AisleriotGame *game,
                  AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  guint score = 0;
-  char str[64];
 
-  g_object_get (game, "score", &score, NULL);
-
-  /* Translators: if you want to use localised digits for the game score,
-   * then translate this string to "%I6d", else to "%6d".
-   * Do not translate it to anything else!
-   */
-  g_snprintf (str, sizeof (str), C_("score", "%6d"), score);
-  gtk_label_set_text (GTK_LABEL (priv->score_label), str);
+  gtk_label_set_text (GTK_LABEL (priv->score_label),
+                      aisleriot_game_get_score (game));
 }
 
 static void

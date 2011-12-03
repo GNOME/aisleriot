@@ -16,7 +16,7 @@
 
 (define-module (aisleriot api))
 
-(use-modules (aisleriot interface) (ice-9 format))
+(use-modules (aisleriot interface) (ice-9 format) (ice-9 i18n))
 
 ;; Feature masks:
 (define-public droppable-feature 1)
@@ -78,7 +78,7 @@
   (set! BOTTOM-SLOTS '())
   (set! LEFT-SLOTS '())
   (set! RIGHT-SLOTS '())
-  (set! SCORE 0))
+  (set-score! 0))
 
 ; Use this instead of define for variables which determine the state of
 ; the game. i.e. anything that isn't a constant. This is so undo/redo
@@ -624,7 +624,8 @@
 (define-public (set-score! value)
   (begin
     (set! SCORE value)
-    (update-score SCORE)))
+    (update-score (number->locale-string SCORE))
+    SCORE))
 
 (define-public (get-score) 
   SCORE)
