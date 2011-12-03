@@ -1794,6 +1794,8 @@ aisleriot_game_load_game (AisleriotGame *game,
   game->had_exception = FALSE;
   for (i = 0; i < N_LAMBDAS; ++i)
     game->lambdas[i] = SCM_UNDEFINED;
+  g_free (game->game_module);
+  game->game_module = g_strdup (game_module);
 
   scm_c_catch (SCM_BOOL_T,
                (scm_t_catch_body) game_scm_load_game, (void *) game_module,
@@ -1805,9 +1807,6 @@ aisleriot_game_load_game (AisleriotGame *game,
     g_object_thaw_notify (object);
     return FALSE;
   }
-
-  g_free (game->game_module);
-  game->game_module = g_strdup (game_module);
 
   set_game_state (game, GAME_LOADED);
 
