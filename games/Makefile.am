@@ -113,7 +113,7 @@ GUILE_FLAGS =
 # GUILE_WARNINGS = -Wunbound-variable -Warity-mismatch -Wformat
 
 %.go: %.scm
-	$(AM_V_GUILEC) GUILE=$(GUILE) GUILE_FLAGS=$(GUILE_FLAGS) GUILE_AUTO_COMPILE=0 GUILE_LOAD_PATH=. GUILE_LOAD_COMPILED_PATH=. $(srcdir)/guile-compile compile $(GUILE_WARNINGS) -o "$@" "$<"
+	$(AM_V_GUILEC) GUILE=$(GUILE) GUILE_FLAGS=$(GUILE_FLAGS) GUILE_AUTO_COMPILE=0 GUILE_LOAD_PATH=.:$(srcdir) GUILE_LOAD_COMPILED_PATH=. $(srcdir)/guile-compile compile $(GUILE_WARNINGS) -o "$@" "$<"
 
 else # !HAVE_GUILE_2_X
 
