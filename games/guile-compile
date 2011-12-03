@@ -29,9 +29,7 @@ exec $GUILE $GUILE_FLAGS -e '(@@ (guild) main)' -s "$0" "$@"
 
 ;; empty
 
-(define-module (aisleriot api))
-
-;; empty
+(primitive-load-path "api")
 
 (define-module (guild)
   #:use-module (ice-9 getopt-long)
