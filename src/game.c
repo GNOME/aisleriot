@@ -185,17 +185,6 @@ set_game_state (AisleriotGame *game,
 }
 
 static void
-set_game_score (AisleriotGame *game,
-                int score)
-{
-  if (score != game->score) {
-    game->score = score;
-
-    g_object_notify (G_OBJECT (game), "score");
-  }
-}
-
-static void
 set_game_undoable (AisleriotGame *game,
                    gboolean enabled)
 {
@@ -993,31 +982,19 @@ scm_click_to_move_p (void)
 }
 
 static SCM
-scm_get_score (void)
+scm_update_score (SCM new_score)
 {
   AisleriotGame *game = app_game;
+  int score;
 
-  return scm_from_int (game->score);
-}
+  score = scm_to_int (new_score);
+  if (score != game->score) {
+    game->score = score;
 
-static SCM
-scm_set_score (SCM new_score)
-{
-  AisleriotGame *game = app_game;
+    g_object_notify (G_OBJECT (game), "score");
+  }
 
-  set_game_score (game, scm_to_int (new_score));
   return new_score;
-}
-
-static SCM
-scm_add_to_score (SCM delta)
-{
-  AisleriotGame *game = app_game;
-  int new_score;
-
-  new_score = game->score + scm_to_int (delta);
-  set_game_score (game, new_score);
-  return scm_from_int (new_score);
 }
 
 static SCM
@@ -1116,12 +1093,10 @@ cscm_init (void *data G_GNUC_UNUSED)
   scm_c_define_gsubr ("set-lambda!", 2, 0, 0, scm_set_lambda_x);
   scm_c_define_gsubr ("aisleriot-random", 1, 0, 0, scm_myrandom);
   scm_c_define_gsubr ("click-to-move?", 0, 0, 0, scm_click_to_move_p);
-  scm_c_define_gsubr ("get-score", 0, 0, 0, scm_get_score);
-  scm_c_define_gsubr ("set-score!", 1, 0, 0, scm_set_score);
+  scm_c_define_gsubr ("update-score", 1, 0, 0, scm_update_score);
   scm_c_define_gsubr ("get-timeout", 0, 0, 0, scm_get_timeout);
   scm_c_define_gsubr ("set-timeout!", 1, 0, 0, scm_set_timeout);
   scm_c_define_gsubr ("delayed-call", 1, 0, 0, scm_delayed_call);
-  scm_c_define_gsubr ("add-to-score!", 1, 0, 0, scm_add_to_score);
   scm_c_define_gsubr ("_", 1, 0, 0, scm_gettext);
   scm_c_define_gsubr ("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
   scm_c_define_gsubr ("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
@@ -1140,12 +1115,10 @@ cscm_init (void *data G_GNUC_UNUSED)
                 "set-lambda!",
                 "aisleriot-random", 
                 "click-to-move?", 
-                "get-score", 
-                "set-score!",
+                "update-score", 
                 "get-timeout", 
                 "set-timeout!", 
                 "delayed-call", 
-                "add-to-score!",
                 "_", 
                 "undo-set-sensitive", 
                 "redo-set-sensitive", 
@@ -1205,6 +1178,7 @@ aisleriot_game_init (AisleriotGame *game)
   game->timer = g_timer_new ();
 
   game->timeout = 60 * 60;
+  game->score = 0;
 }
 
 static GObject *
@@ -1786,7 +1760,6 @@ aisleriot_game_load_game (AisleriotGame *game,
 
   clear_delayed_call (game);
   set_game_state (game, GAME_UNINITIALISED);
-  set_game_score (game, 0);
   set_game_undoable (game, FALSE);
   set_game_redoable (game, FALSE);
   set_game_dealable (game, FALSE);
@@ -1918,7 +1891,6 @@ aisleriot_game_new_game_internal (AisleriotGame *game,
   clear_delayed_call (game);
   /* The game isn't actually in progress until the user makes a move */
   set_game_state (game, GAME_BEGIN);
-  set_game_score (game, 0);
   set_game_undoable (game, FALSE);
   set_game_redoable (game, FALSE);
 

@@ -77,7 +77,8 @@
   (set! TOP-SLOTS '())
   (set! BOTTOM-SLOTS '())
   (set! LEFT-SLOTS '())
-  (set! RIGHT-SLOTS '()))
+  (set! RIGHT-SLOTS '())
+  (set! SCORE 0))
 
 ; Use this instead of define for variables which determine the state of
 ; the game. i.e. anything that isn't a constant. This is so undo/redo
@@ -619,6 +620,18 @@
 (define-public (register-undo-function function data)
   (set! MOVE (cons '(function data) (cdr MOVE))))
 
+; set score
+(define-public (set-score! value)
+  (begin
+    (set! SCORE value)
+    (update-score SCORE)))
+
+(define-public (get-score) 
+  SCORE)
+
+(define-public (add-to-score! delta)
+  (set-score! (+ (get-score) delta)))
+
 ;; INTERNAL procedures
 
 ; global variables
@@ -638,6 +651,7 @@
 (define-public BOTTOM-SLOTS '())
 (define-public LEFT-SLOTS '())
 (define-public RIGHT-SLOTS '())
+(define-public SCORE 0)
 
 ; called from C:
 (define-public (start-game)
