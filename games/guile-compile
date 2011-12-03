@@ -1,0 +1,84 @@
+#!/bin/sh
+# -*- scheme -*-
+exec $GUILE $GUILE_FLAGS -e '(@@ (guild) main)' -s "$0" "$@"
+!#
+
+;;;; guild --- running scripts bundled with Guile
+;;;; Andy Wingo <wingo@pobox.com> --- April 2009
+;;;; 
+;;;; 	Copyright (C) 2009, 2010, 2011 Free Software Foundation, Inc.
+;;;; 
+;;;; This library is free software; you can redistribute it and/or
+;;;; modify it under the terms of the GNU Lesser General Public
+;;;; License as published by the Free Software Foundation; either
+;;;; version 3 of the License, or (at your option) any later version.
+;;;; 
+;;;; This library is distributed in the hope that it will be useful,
+;;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;;;; Lesser General Public License for more details.
+;;;; 
+;;;; You should have received a copy of the GNU Lesser General Public
+;;;; License along with this library; if not, write to the Free
+;;;; Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;;;; Boston, MA 02110-1301 USA
+
+;; We need to provide a dummy module for our internal API
+
+(define-module (aisleriot interface))
+
+;; empty
+
+(define-module (aisleriot api))
+
+;; empty
+
+(define-module (guild)
+  #:use-module (ice-9 getopt-long)
+  #:use-module (ice-9 command-line)
+  #:autoload (ice-9 format) (format))
+
+;; Hack to provide scripts with the bug-report address.
+(module-define! the-scm-module
+                '%guile-bug-report-address
+                "bug-guile@gnu.org")
+
+
+(define *option-grammar*
+  '((help (single-char #\h))
+    (version (single-char #\v))))
+
+(define (display-version)
+  (version-etc "GNU Guile"
+               (version)
+               #:command-name "guild"
+               #:license *LGPLv3+*))
+
+(define (find-script s)
+  (resolve-module (list 'scripts (string->symbol s)) #:ensure #f))
+
+(define (main args)
+  (if (defined? 'setlocale)
+      (setlocale LC_ALL ""))
+
+  (let* ((options (getopt-long args *option-grammar*
+                               #:stop-at-first-non-option #t))
+         (args (option-ref options '() '())))
+    (cond
+     ((option-ref options 'help #f)
+      (apply (module-ref (resolve-module '(scripts help)) 'main) args)
+      (exit 0))
+     ((option-ref options 'version #f)
+      (display-version)
+      (exit 0))
+     ((find-script (if (null? args) "help" (car args)))
+      => (lambda (mod)
+           (exit (apply (module-ref mod 'main) (if (null? args)
+                                                   '()
+                                                   (cdr args))))))
+     (else
+      (format (current-error-port)
+              "guild: unknown script ~s~%" (car args))
+      (format (current-error-port)
+              "Try `guild help' for more information.~%")
+      (exit 1)))))

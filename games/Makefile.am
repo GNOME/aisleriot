@@ -1,13 +1,10 @@
 NULL = 
 
-pkgguiledir = $(pkgdatadir)/guile/$(GUILE_EFFECTIVE_VERSION)
-
-moduledir = $(pkgguiledir)/aisleriot
-module_DATA = \
+module_GUILE = \
 	api.scm \
 	$(NULL)
 
-pkgguile_DATA  = \
+games_GUILE = \
 	accordion.scm \
 	agnes.scm \
 	athena.scm \
@@ -98,9 +95,39 @@ pkgguile_DATA  = \
 	zebra.scm \
 	$(NULL)
 
+if HAVE_GUILE_2_X
+
+pkglibguiledir = $(pkglibdir)/guile/$(GUILE_EFFECTIVE_VERSION)
+compiledmoduledir = $(pkglibguiledir)/aisleriot
+
+nodist_pkglibguile_DATA = $(games_GUILE:.scm=.go)
+nodist_compiledmodule_DATA = $(module_GUILE:.scm=.go)
+
+CLEANFILES = $(nodist_pkglibguile_DATA) $(nodist_compiledmodule_DATA)
+
+AM_V_GUILEC = $(AM_V_GUILEC_$(V))
+AM_V_GUILEC_ = $(AM_V_GUILEC_$(AM_DEFAULT_VERBOSITY))
+AM_V_GUILEC_0 = @echo "  GUILEC" $@;
+
+GUILE_FLAGS =
+# GUILE_WARNINGS = -Wunbound-variable -Warity-mismatch -Wformat
+
+%.go: %.scm
+	$(AM_V_GUILEC) GUILE=$(GUILE) GUILE_FLAGS=$(GUILE_FLAGS) GUILE_AUTO_COMPILE=0 GUILE_LOAD_PATH=. GUILE_LOAD_COMPILED_PATH=. $(srcdir)/guile-compile compile $(GUILE_WARNINGS) -o "$@" "$<"
+
+else # !HAVE_GUILE_2_X
+
+pkgdataguiledir = $(pkgdatadir)/guile/$(GUILE_EFFECTIVE_VERSION)
+moduledir = $(pkgdataguiledir)/aisleriot
+
+nodist_pkgdataguile_DATA = $(games_GUILE)
+nodist_module_DATA = $(module_GUILE)
+
+endif # HAVE_GUILE_2_X
+
 EXTRA_DIST = \
-	$(pkgguile_DATA) \
-	$(module_DATA) \
+	$(games_GUILE) \
+	$(module_GUILE) \
 	template.scm \
 	Rules.HOWTO \
 	$(NULL)
