@@ -610,6 +610,7 @@ debug_ensure_game_list (AisleriotWindow *window)
     return NULL;
   }
 
+  data = g_slice_new (DebugWindowData);
   data->window = window;
   data->games = games;
   data->n_games = n_games;
@@ -636,8 +637,10 @@ debug_cycle_timeout_cb (DebugWindowData *data)
     data->current++;
 
   /* We're done */
-  if (data->current >= data->n_games)
-    return FALSE;
+  if (data->current >= data->n_games) {
+    data->current = data->n_games - 1;
+    return FALSE; /* don't run again */
+  }
 
   aisleriot_window_set_game_module (data->window, data->games[data->current], NULL);
 
