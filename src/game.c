@@ -2629,6 +2629,28 @@ aisleriot_game_reset_old_cards (ArSlot *slot)
 
 #endif /* HAVE_CLUTTER */
 
+static void
+append_games_from_path (GHashTable *hash_table,
+                        const char *path,
+                        const char *suffix)
+{
+  GDir *dir;
+  const char *filename;
+
+  dir = g_dir_open (path, 0, NULL);
+  if (dir == NULL)
+    return;
+
+  while ((filename = g_dir_read_name (dir)) != NULL) {
+    if (!g_str_has_suffix (filename, suffix))
+      continue;
+
+    g_hash_table_insert (hash_table, 
+                         ar_filename_to_game_module (filename),
+                         NULL);
+  }
+}
+
 /**
  * ar_get_game_modules:
  * 
@@ -2637,29 +2659,38 @@ aisleriot_game_reset_old_cards (ArSlot *slot)
 char **
 ar_get_game_modules (void)
 {
+  GHashTable *hash_table;
   char *path;
-  const char *filename;
-  GDir *dir;
   GPtrArray *array;
+  GHashTableIter iter;
+  gpointer key;
+
+  hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+
+#if SCM_MAJOR_VERSION >= 2
+  path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY),
+                           "guile",
+                           SCM_EFFECTIVE_VERSION,
+                           NULL);
+  append_games_from_path (hash_table, path, ".go");
+  g_free (path);
+#endif
 
   path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_DATA_DIRECTORY),
                            "guile",
                            SCM_EFFECTIVE_VERSION,
                            NULL);
-  dir = g_dir_open (path, 0, NULL);
+  append_games_from_path (hash_table, path, ".scm");
   g_free (path);
-  if (dir == NULL)
-    return NULL;
 
-  array = g_ptr_array_new ();
+  array = g_ptr_array_sized_new (g_hash_table_size (hash_table));
 
-  while ((filename = g_dir_read_name (dir)) != NULL) {
-    if (!g_str_has_suffix (filename, ".scm") ||
-        strcmp (filename, "api.scm") == 0)
-      continue;
-
-    g_ptr_array_add (array, ar_filename_to_game_module (filename));
+  g_hash_table_iter_init (&iter, hash_table);
+  while (g_hash_table_iter_next (&iter, &key, NULL)) {
+    g_hash_table_iter_steal (&iter);
+    g_ptr_array_add (array, key);
   }
+  g_hash_table_unref (hash_table);
 
   g_ptr_array_sort (array, (GCompareFunc) strcmp);
   g_ptr_array_add (array, NULL);
