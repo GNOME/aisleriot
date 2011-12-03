@@ -201,16 +201,20 @@ AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_PYSOL],[test "$enable_card_theme_format
 
 AC_PATH_PROG([LSB_RELEASE],[lsb_release],[false])
 if test "$LSB_RELEASE" != "false"; then
+  LSB_DISTRIBUTOR="$($LSB_RELEASE -s -i | sed 's,^\",,;s,\"$,,')"
   LSB_DISTRIBUTION="$($LSB_RELEASE -s -d | sed 's,^\",,;s,\"$,,')"
 else
+  LSB_DISTRIBUTOR=
   LSB_DISTRIBUTION=
 fi
+
+LSB_HINT="$LSB_DISTRIBUTOR $LSB_DISTRIBUTION"
 
 if test "$enable_card_theme_format_kde" = "yes"; then
   AC_MSG_CHECKING([for KDE card themes base path])
   AC_ARG_WITH([kde-card-theme-path],
     [AS_HELP_STRING([--with-kde-card-theme-path],[The base path to the KDE card themes])],
-    [],[case "$LSB_DISTRIBUTION" in
+    [],[case "$LSB_HINT" in
           *Debian*|*Fedora*|*RedHat*|*SUSE*|*Ubuntu*) with_kde_card_theme_path="/usr/share/kde4/apps/carddecks" ;;
           *) AC_MSG_ERROR([When enabling the KDE card theme format, you must specify the KDE card themes base path.]) ;;
         esac])
@@ -223,7 +227,7 @@ if test "$enable_card_theme_format_pysol" = "yes"; then
   AC_MSG_CHECKING([for PySol card themes base path])
   AC_ARG_WITH([pysol-card-theme-path],
     [AS_HELP_STRING([--with-pysol-card-theme-path],[The base path to the PySol card themes])],
-    [],[case "$LSB_DISTRIBUTION" in
+    [],[case "$LSB_HINT" in
           *Debian*|*Ubuntu*) with_pysol_card_theme_path="/usr/share/games/pysol" ;;
           *Fedora*|*RedHat*) with_pysol_card_theme_path="/usr/share/PySolFC" ;;
           *SUSE*)            with_pysol_card_theme_path="/usr/share/games/pysol/data" ;;
