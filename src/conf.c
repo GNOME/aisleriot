@@ -81,7 +81,11 @@ options_gconf_key (const char *game_module)
 static char *
 game_module_to_game_name (const char *game_module)
 {
-  return g_strdelimit (g_strconcat (game_module, ".scm", NULL), "-", '_');
+  char *game_name;
+
+  game_name = g_strdelimit (g_strconcat (game_module, ".scm", NULL), "-", '_');
+
+  return game_name;
 }
 
 static void
@@ -250,8 +254,11 @@ aisleriot_conf_get_options (const char *game_module,
   return TRUE;
 #else
   GError *error = NULL;
+  char *game_name;
 
-  *options = ar_conf_get_integer (game_module, "Options", &error);
+  game_name = game_module_to_game_name (game_module);
+  *options = ar_conf_get_integer (game_name, "Options", &error);
+  g_free (game_name);
   if (error) {
     g_error_free (error);
     return FALSE;
@@ -302,7 +309,11 @@ aisleriot_conf_set_options (const char *game_module,
   gconf_client_set_int (gconf_client, gconf_key, value, NULL);
   g_free (gconf_key);
 #else
-  ar_conf_set_integer (game_module, "Options", value);
+  char *game_name;
+
+  game_name = game_module_to_game_name (game_module);
+  ar_conf_set_integer (game_name, "Options", value);
+  g_free (game_name);
 #endif /* HAVE_GNOME */
 }
 
