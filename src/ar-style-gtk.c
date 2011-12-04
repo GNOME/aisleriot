@@ -52,6 +52,7 @@ ar_style_provider_new (void)
   static const char css[] =
     "" NAME "{\n"
     "-" NAME "-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
+    "-" NAME "-baize-color: " DEFAULT_BAIZE_COLOR_STRING ";\n"
   "}\n";
 #undef NAME
 
@@ -232,7 +233,7 @@ style_updated_cb (GtkWidget *widget,
 {
   ArStylePrivate *style_priv = style->priv;
   GObject *style_object = G_OBJECT (style);
-  GdkRGBA *selection_color = NULL;
+  GdkRGBA *selection_color, *baize_color;
   int focus_line_width, focus_padding;
   gboolean interior_focus;
   double card_slot_ratio, card_overhang, card_step;
@@ -251,6 +252,7 @@ style_updated_cb (GtkWidget *widget,
                         "card-overhang", &card_overhang,
                         "card-step", &card_step,
                         "selection-color", &selection_color,
+                        "baize-color", &baize_color,
                         NULL);
 
   if (style_priv->interior_focus != interior_focus) {
@@ -296,6 +298,13 @@ style_updated_cb (GtkWidget *widget,
   }
   gdk_rgba_free (selection_color);
 
+  if (!gdk_rgba_equal (&style_priv->baize_color, baize_color)) {
+    style_priv->baize_color = *baize_color;
+
+    g_object_notify (style_object, AR_STYLE_PROP_BAIZE_COLOR);
+  }
+  gdk_rgba_free (baize_color);
+
   g_object_thaw_notify (style_object);
 }
 
@@ -318,6 +327,18 @@ _ar_style_gtk_class_install_style_properties (GtkWidgetClass *widget_class)
   gtk_widget_class_install_style_property
     (widget_class,
      g_param_spec_boxed ("selection-color", NULL, NULL,
+                         GDK_TYPE_RGBA,
+                         G_PARAM_READWRITE |
+                         G_PARAM_STATIC_STRINGS));
+
+  /**
+   * ArClutterEmbed:baize-color:
+   *
+   * The card selection colour.
+   */
+  gtk_widget_class_install_style_property
+    (widget_class,
+     g_param_spec_boxed ("baize-color", NULL, NULL,
                          GDK_TYPE_RGBA,
                          G_PARAM_READWRITE |
                          G_PARAM_STATIC_STRINGS));
