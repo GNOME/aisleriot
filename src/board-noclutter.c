@@ -2951,16 +2951,11 @@ aisleriot_board_draw (GtkWidget *widget,
 
   /* First paint the background */
 
-  ar_style_get_baize_color (priv->style, &color);
-  gdk_cairo_set_source_rgba (cr, &color);
-
-#ifdef OPTIMISED_EXPOSE
-  gdk_cairo_region (cr, region);
-#else
-  gdk_cairo_rectangle (cr, &clip_rect);
-#endif
-
-  cairo_fill (cr);
+  gtk_render_background (gtk_widget_get_style_context (widget),
+                         cr, 
+                         0, 0,
+                         gtk_widget_get_allocated_width (widget),
+                         gtk_widget_get_allocated_height (widget));
 
   /* Only draw the the cards when the geometry is set, and we're in a resize */
   if (!priv->geometry_set) {

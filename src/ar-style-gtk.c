@@ -53,7 +53,12 @@ ar_style_provider_new (void)
     "" NAME "{\n"
     "-" NAME "-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
     "-" NAME "-baize-color: " DEFAULT_BAIZE_COLOR_STRING ";\n"
+    "background-color: " DEFAULT_BAIZE_COLOR_STRING ";\n"
   "}\n";
+#if 0
+    "background-image: url('baize.png');\n"
+    "background-repeat: repeat;\n"
+#endif
 #undef NAME
 
   GtkCssProvider *provider;
