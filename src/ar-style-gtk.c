@@ -36,6 +36,36 @@
 
 /* private functions */
 
+/*
+ * ar_style_provider_new:
+ * 
+ * Returns: (transfer full): a new #GtkStyleProvider
+ */
+static GtkStyleProvider *
+ar_style_provider_new (void)
+{
+#ifdef HAVE_CLUTTER
+#define NAME "ArClutterEmbed"
+#else
+#define NAME "AisleriotBoard"
+#endif
+  static const char css[] =
+    "" NAME "{\n"
+    "-" NAME "-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
+  "}\n";
+#undef NAME
+
+  GtkCssProvider *provider;
+  GError *err = NULL;
+
+  provider = gtk_css_provider_new ();
+  gtk_css_provider_load_from_data (provider, css, -1,  &err);
+  if (err)
+    g_error ("ERROR: %s\n", err->message);
+
+  return GTK_STYLE_PROVIDER (provider);
+}
+
 static void
 sync_settings (GtkSettings *settings,
                GParamSpec *pspec,
@@ -202,8 +232,7 @@ style_updated_cb (GtkWidget *widget,
 {
   ArStylePrivate *style_priv = style->priv;
   GObject *style_object = G_OBJECT (style);
-  GdkRGBA selection_color;
-  GdkRGBA *color = NULL;
+  GdkRGBA *selection_color = NULL;
   int focus_line_width, focus_padding;
   gboolean interior_focus;
   double card_slot_ratio, card_overhang, card_step;
@@ -221,7 +250,7 @@ style_updated_cb (GtkWidget *widget,
                         "card-slot-ratio", &card_slot_ratio,
                         "card-overhang", &card_overhang,
                         "card-step", &card_step,
-                        "selection-color", &color,
+                        "selection-color", &selection_color,
                         NULL);
 
   if (style_priv->interior_focus != interior_focus) {
@@ -260,18 +289,12 @@ style_updated_cb (GtkWidget *widget,
     g_object_notify (style_object, AR_STYLE_PROP_CARD_STEP);
   }
 
-  if (color != NULL) {
-    selection_color = *color;
-    gdk_rgba_free (color);
-  } else {
-    selection_color = default_selection_color;
-  }
-
-  if (!gdk_rgba_equal (&style_priv->selection_color, &selection_color)) {
-    style_priv->selection_color = selection_color;
+  if (!gdk_rgba_equal (&style_priv->selection_color, selection_color)) {
+    style_priv->selection_color = *selection_color;
 
     g_object_notify (style_object, AR_STYLE_PROP_SELECTION_COLOR);
   }
+  gdk_rgba_free (selection_color);
 
   g_object_thaw_notify (style_object);
 }
@@ -352,11 +375,20 @@ void
 _ar_style_gtk_attach (ArStyle *style,
                       GtkWidget *widget)
 {
+  GtkStyleContext *context;
+  GtkStyleProvider *provider;
+
   g_return_if_fail (AR_IS_STYLE (style));
   g_return_if_fail (GTK_IS_WIDGET (widget));
 
   ar_debug_print (AR_DEBUG_GAME_STYLE,
                       "[ArStyle %p] Attaching to widget %p\n", style, widget);
+
+  context = gtk_widget_get_style_context (widget);
+  provider = ar_style_provider_new ();
+  gtk_style_context_add_provider (context, provider,
+                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  g_object_unref (provider);
 
   g_assert (g_object_get_data (G_OBJECT (widget), "Ar::Style") == NULL);
   g_object_set_data (G_OBJECT (widget), "Ar::Style", style);

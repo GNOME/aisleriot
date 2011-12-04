@@ -3217,8 +3217,6 @@ aisleriot_board_init (AisleriotBoard *board)
 
   priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
 
-  gtk_widget_set_name (widget, "aisleriot-board");
-
   gtk_widget_set_can_focus (widget, TRUE);
 
   priv->is_rtl = gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL;

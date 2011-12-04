@@ -23,6 +23,9 @@ G_BEGIN_DECLS
 static const GdkRGBA default_selection_color = { 0. /* red */, 0. /* green */, 0.6666 /* blue */, 0.5 /* alpha */ };
 static const GdkRGBA default_baize_color = { 0. /* red */, 0.3125 /* green */, 0.0625 /* blue */, 1.0 /* alpha */ };
 
+#define DEFAULT_SELECTION_COLOR_STRING  "rgba(0%,0%,66%,0.5)"
+#define DEFAULT_BAIZE_COLOR_STRING      "rgb(0%, 31%,6%)"
+
 /* The proportion of a slot dedicated to the card (horiz or vert). */
 #define DEFAULT_CARD_OVERHANG (0.0)
 
