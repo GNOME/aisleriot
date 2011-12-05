@@ -2374,11 +2374,6 @@ aisleriot_board_sync_style (ArStyle *style,
     redraw_selection = TRUE;
   }
 
-  if (realized &&
-      (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_BAIZE_COLOR))) {
-    queue_redraw = TRUE;
-  }
-
   if (pspec_name == NULL || pspec_name == I_(AR_STYLE_PROP_SHOW_TOOLTIPS)) {
     gtk_widget_set_has_tooltip (widget, ar_style_get_show_tooltips (priv->style));
   }

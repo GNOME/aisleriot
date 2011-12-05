@@ -25,7 +25,6 @@
 enum
 {
   PROP_0,
-  PROP_BAIZE_COLOR,
   PROP_CARD_OVERHANG,
   PROP_CARD_SLOT_RATIO,
   PROP_CARD_STEP,
@@ -59,7 +58,6 @@ ar_style_init (ArStyle *style)
   priv = style->priv = G_TYPE_INSTANCE_GET_PRIVATE (style, AR_TYPE_STYLE, ArStylePrivate);
 
   priv->selection_color = default_selection_color;
-  priv->baize_color = default_baize_color;
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
   priv->card_overhang = DEFAULT_CARD_OVERHANG;
   priv->card_step = DEFAULT_CARD_STEP;
@@ -102,10 +100,6 @@ ar_style_get_property (GObject    *object,
   ArStylePrivate *priv = style->priv;
 
   switch (property_id) {
-    case PROP_BAIZE_COLOR:
-      g_value_set_boxed (value, &priv->baize_color);
-      break;
-
     case PROP_CARD_OVERHANG:
       g_value_set_double (value, ar_style_get_card_overhang (style));
       break;
@@ -189,17 +183,6 @@ ar_style_set_property (GObject      *object,
   ArStylePrivate *priv = style->priv;
 
   switch (property_id) {
-    case PROP_BAIZE_COLOR: {
-      const GdkRGBA *color;
-
-      if ((color = g_value_get_boxed (value)) != NULL) {
-        priv->baize_color = *color;
-      } else {
-        priv->baize_color = default_baize_color;
-      }
-      break;
-    }
-
     case PROP_CARD_OVERHANG:
       priv->card_overhang = g_value_get_double (value);
       break;
@@ -290,19 +273,6 @@ ar_style_class_init (ArStyleClass *klass)
   object_class->set_property = ar_style_set_property;
   object_class->get_property = ar_style_get_property;
   object_class->finalize     = ar_style_finalize;
-
-  /**
-   * ArStyle:baize-color:
-   *
-   * The board baize color.
-   */
-  g_object_class_install_property
-    (object_class,
-     PROP_BAIZE_COLOR,
-     g_param_spec_boxed (AR_STYLE_PROP_BAIZE_COLOR, NULL, NULL,
-                         GDK_TYPE_RGBA,
-                         G_PARAM_READWRITE |
-                         G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property
     (object_class,
@@ -791,21 +761,6 @@ ar_style_get_selection_color (ArStyle *style,
   ArStylePrivate *priv = style->priv;
 
   *color = priv->selection_color;
-}
-
-/**
- * ar_style_get_baize_color:
- * @style: an #ArStyle
- * @color: location to store the color
- *
- */
-void
-ar_style_get_baize_color (ArStyle *style,
-                          GdkRGBA * const color)
-{
-  ArStylePrivate *priv = style->priv;
-
-  *color = priv->baize_color;
 }
 
 /**

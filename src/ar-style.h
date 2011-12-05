@@ -53,7 +53,6 @@ GType ar_style_get_type (void);
 
 ArStyle* ar_style_new (void);
 
-#define AR_STYLE_PROP_BAIZE_COLOR         "baize-color"
 #define AR_STYLE_PROP_CARD_SLOT_RATIO     "card-slot-prop"
 #define AR_STYLE_PROP_CARD_THEME          "card-theme"
 #define AR_STYLE_PROP_CARD_OVERHANG       "card-overhang"
@@ -105,8 +104,6 @@ double ar_style_get_card_step       (ArStyle *style);
 
 void ar_style_get_selection_color  (ArStyle *style,
                                     GdkRGBA * const color);
-void ar_style_get_baize_color (ArStyle *style,
-                               GdkRGBA * const color);
 
 gboolean ar_style_check_dnd_drag_threshold (ArStyle *style,
                                             float x1,
