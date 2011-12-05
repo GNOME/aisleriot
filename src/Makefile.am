@@ -1,9 +1,5 @@
 SUBDIRS = lib
 
-if WITH_SMCLIENT
-SUBDIRS += smclient
-endif
-
 NULL =
 
 # Same as in help/Makefile.am
@@ -71,11 +67,6 @@ sol_LDADD = \
 	$(GTK_LIBS) \
 	$(GUILE_LIBS) \
 	-lm
-
-if WITH_SMCLIENT
-sol_CPPFLAGS += -I$(srcdir)/smclient -Ismclient
-sol_LDADD += smclient/libsmclient.la
-endif
 
 if HAVE_GNOME
 sol_CFLAGS += $(GNOME_CFLAGS)

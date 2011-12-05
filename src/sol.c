@@ -39,10 +39,6 @@
 #include "ar-runtime.h"
 #include "ar-sound.h"
 
-#ifdef WITH_SMCLIENT
-#include "eggsmclient.h"
-#endif /* WITH_SMCLIENT */
-
 #include "ar-string-utils.h"
 #include "conf.h"
 #include "window.h"
@@ -62,43 +58,6 @@ typedef struct {
   gint seed; /* unused */
   gboolean freecell;
 } AppData;
-
-#ifdef WITH_SMCLIENT
-
-static void
-save_state_cb (EggSMClient *client,
-               GKeyFile *key_file,
-               AppData *data)
-{
-  char *argv[5];
-  const char *game_name;
-  int argc = 0;
-
-  game_name = aisleriot_window_get_game_module (data->window);
-
-  argv[argc++] = g_get_prgname ();
-
-  if (data->freecell) {
-    argv[argc++] = (char *) "--freecell";
-  } else {
-    argv[argc++] = (char *) "--variation";
-    argv[argc++] = (char *) game_name;
-  }
-
-  /* FIXMEchpe: save game state too? */
-
-  egg_sm_client_set_restart_command (client, argc, (const char **) argv);
-}
-
-static void
-quit_cb (EggSMClient *client,
-         AppData *data)
-{
-  /* This will cause gtk_main_quit */
-  gtk_widget_destroy (GTK_WIDGET (data->window));
-}
-
-#endif /* WITH_SMCLIENT */
 
 static void
 add_main_options (GOptionContext *option_context,
@@ -128,9 +87,6 @@ main_prog (void *closure, int argc, char *argv[])
   GOptionContext *option_context;
   GError *error = NULL;
   gboolean retval;
-#ifdef WITH_SMCLIENT
-  EggSMClient *sm_client;
-#endif /* WITH_SMCLIENT */
 
   memset (&data, 0, sizeof (AppData));
 
@@ -142,9 +98,6 @@ main_prog (void *closure, int argc, char *argv[])
   ar_sound_enable (FALSE);
 
   g_option_context_add_group (option_context, gtk_get_option_group (TRUE));
-#ifdef WITH_SMCLIENT
-  g_option_context_add_group (option_context, egg_sm_client_get_option_group ());
-#endif /* WITH_SMCLIENT */
 
 #ifdef HAVE_CLUTTER
   g_option_context_add_group (option_context, cogl_get_option_group ());
@@ -196,14 +149,6 @@ main_prog (void *closure, int argc, char *argv[])
   g_signal_connect (data.window, "destroy",
 		    G_CALLBACK (gtk_main_quit), NULL);
 
-#ifdef WITH_SMCLIENT
-  sm_client = egg_sm_client_get ();
-  g_signal_connect (sm_client, "save-state",
-		    G_CALLBACK (save_state_cb), &data);
-  g_signal_connect (sm_client, "quit",
-                    G_CALLBACK (quit_cb), &data);
-#endif /* WITH_SMCLIENT */
-
   if (data.freecell) {
     aisleriot_window_set_game_module (data.window, FREECELL_VARIATION, NULL);
   } else {
@@ -215,11 +160,6 @@ main_prog (void *closure, int argc, char *argv[])
   gtk_main ();
 
   aisleriot_conf_shutdown ();
-
-#ifdef WITH_SMCLIENT
-  g_signal_handlers_disconnect_matched (sm_client, G_SIGNAL_MATCH_DATA,
-                                        0, 0, NULL, NULL, &data);
-#endif /* WITH_SMCLIENT */
 
 cleanup:
   g_free (data.variation);

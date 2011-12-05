@@ -389,49 +389,6 @@ fi
 
 AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 
-# SMClient
-
-SMCLIENT_PKGS=
-
-AC_MSG_CHECKING([for GDK target])
-case "$with_gtk" in
-  3.0) for target in $($PKG_CONFIG --variable targets gdk-$GTK_API_VERSION); do
-          GDK_TARGET="$target"
-          break
-        done
-        ;;
-esac
-AC_MSG_RESULT([$GDK_TARGET])
-
-case "$GDK_TARGET" in
-  x11|win32|quartz) ;;
-  *) AC_MSG_ERROR([unknown GDK target])
-esac
-
-AC_MSG_CHECKING([which smclient backend to use])
-AC_ARG_WITH([smclient],
-  [AS_HELP_STRING([--with-smclient],[which smclient backend to use (xsmp|win32|quartz|no)])],
-  [],
-  [case "$GDK_TARGET" in
-     x11) with_smclient=xsmp SMCLIENT_PKGS="sm ice" ;;
-     win32|quartz) with_smclient=$GDK_TARGET ;;
-     *) with_smclient=no ;;
-   esac])
-AC_MSG_RESULT([$with_smclient])
-
-if test "$with_smclient" != "no"; then
-  if test -n "$SMCLIENT_PKGS"; then
-    PKG_CHECK_MODULES([SMCLIENT],[$SMCLIENT_PKGS])
-  fi
-
-  AC_DEFINE([WITH_SMCLIENT],[1],[Define if smclient is enabled])
-fi
-
-AM_CONDITIONAL([WITH_SMCLIENT],[test "$with_smclient" != "no"])
-AM_CONDITIONAL([WITH_SMCLIENT_XSMP],[test "$with_smclient" = "xsmp"])
-AM_CONDITIONAL([WITH_SMCLIENT_WIN32],[test "$with_smclient" = "win32"])
-AM_CONDITIONAL([WITH_SMCLIENT_QUARTZ],[test "$with_smclient" = "quartz"])
-
 # *****************
 # Extra build tools
 # *****************
@@ -661,7 +618,6 @@ help/Makefile
 po/Makefile.in
 src/Makefile
 src/lib/Makefile
-src/smclient/Makefile
 ])
 AC_OUTPUT
 
@@ -675,7 +631,6 @@ Configuration:
     GTK+ API version:      ${GTK_API_VERSION}
     Platform:              ${with_platform}
     Help method:           ${with_help_method} ${with_help_file_format}
-    Using SM Client:       ${with_smclient}
     Using RSVG:            ${have_rsvg}
     Card theme formats:    ${with_card_theme_formats}
     Default theme format:  ${with_default_card_theme_format}
