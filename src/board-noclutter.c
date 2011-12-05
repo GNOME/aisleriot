@@ -2893,6 +2893,7 @@ aisleriot_board_draw (GtkWidget *widget,
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
   AisleriotBoardPrivate *priv = board->priv;
+  GtkStyleContext *style_context;
   int i;
   GPtrArray *slots;
   guint n_slots;
@@ -2944,9 +2945,10 @@ aisleriot_board_draw (GtkWidget *widget,
   }
 #endif
 
+  style_context = gtk_widget_get_style_context (widget);
   /* First paint the background */
 
-  gtk_render_background (gtk_widget_get_style_context (widget),
+  gtk_render_background (style_context,
                          cr, 
                          0, 0,
                          gtk_widget_get_allocated_width (widget),
@@ -3127,8 +3129,6 @@ draw_focus:
                   priv->focus_slot != NULL &&
                   gtk_widget_has_focus (widget))) {
     GdkRectangle focus_rect;
-    double line_width;
-    gint8 *line_pattern = NULL;
 
     /* Check whether this needs to be drawn */
 #ifdef OPTIMISED_EXPOSE
@@ -3146,35 +3146,10 @@ draw_focus:
                                  &focus_rect);
     }
 
-    cairo_save (cr);
-    line_width = ar_style_get_focus_line_width (priv->style);
-    cairo_set_line_cap (cr, CAIRO_LINE_CAP_ROUND);
-    cairo_set_line_width (cr, line_width);
-    gdk_cairo_set_source_color (cr, &gtk_widget_get_style (widget)->fg[gtk_widget_get_state (widget)]);
-
-    gtk_widget_style_get (widget, "focus-line-pattern", &line_pattern, NULL);
-    if (line_pattern && line_pattern[0]) {
-      int i, n_dashes; 
-      double *dashes;
-
-      n_dashes = strlen ((char *) line_pattern);
-      dashes = g_newa (double, n_dashes);
-      for (i = 0; i < n_dashes; i++)
-        dashes[i] = (double) line_pattern[i];
-
-      cairo_set_dash (cr, dashes, n_dashes, - line_width / 2.);
-    } else {
-      static const double dashes[] = { 1., 1. };
-
-      cairo_set_dash (cr, dashes, G_N_ELEMENTS (dashes), - line_width / 2.);
-    }
-    g_free (line_pattern);
-
-    cairo_rectangle (cr,
-                     focus_rect.x + line_width / 2., focus_rect.y + line_width / 2.,
-                     focus_rect.width - line_width, focus_rect.height - line_width);
-    cairo_stroke (cr);
-    cairo_restore (cr);
+    gtk_render_focus (style_context,
+                      cr,
+                      focus_rect.x, focus_rect.y,
+                      focus_rect.width, focus_rect.height);
   }
 
 #ifdef OPTIMISED_EXPOSE
