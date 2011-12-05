@@ -204,6 +204,7 @@ ar_card_theme_kde_get_card_extents (ArCardThemeKDE *theme,
 
   surface = cairo_recording_surface_create (CAIRO_CONTENT_ALPHA, NULL);
   cr = cairo_create (surface);
+  cairo_set_tolerance (cr, 1.);
   ar_profilestart ("getting ink extents for node %s", node);
   rsvg_handle_render_cairo_sub (RSVG_HANDLE (svg), cr, node);
   ar_profileend ("getting ink extents for node %s", node);
