@@ -102,13 +102,22 @@ typedef enum {
 } ArCardIDType;
 
 int ar_card_get_node_by_suit_and_rank_snprintf (char *buffer,
-                                                   gsize bufsize,
-                                                   int suit,
-                                                   int rank);
+                                                gsize bufsize,
+                                                int suit,
+                                                int rank);
+
+int ar_card_get_legacy_node_by_suit_and_rank_snprintf (char *buffer,
+                                                       gsize bufsize,
+                                                       int suit,
+                                                       int rank);
 
 int ar_card_get_node_by_id_snprintf (char *buffer,
-                                        gsize bufsize,
-                                        int card_id);
+                                     gsize bufsize,
+                                     int card_id);
+
+int ar_card_get_legacy_node_by_id_snprintf (char *buffer,
+                                            gsize bufsize,
+                                            int card_id);
 
 int ar_card_get_name_by_id_snprintf (char *buffer,
                                         gsize bufsize,

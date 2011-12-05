@@ -93,7 +93,39 @@ ar_card_get_node_by_suit_and_rank_snprintf (char *buffer,
 
 
 /**
- * ar_card_get_node_by_suit_and_rank_snprintf:
+ * ar_card_get_legacy_node_by_suit_and_rank_snprintf:
+ * @buffer: the output buffer
+ * @bufsize: the size of the output buffer
+ * @suit: the suit of the card
+ * @rank: the rank of the card
+ *
+ * Prints the legacy identifier for the card @card into @buffer.
+ *
+ * Returns: the number of bytes which would be produced if the buffer
+ * was large enough.
+ */
+int
+ar_card_get_legacy_node_by_suit_and_rank_snprintf (char *buffer,
+                                                   gsize bufsize,
+                                                   int suit,
+                                                   int rank)
+{
+  int len;
+
+  if (G_LIKELY (suit < 4)) {
+    len = g_snprintf (buffer, bufsize, "#%s_%s",
+                      ranks + rank_offsets[rank],
+                      suites + suite_offsets[suit]);
+  } else {
+    len = g_snprintf (buffer, bufsize, "#%s",
+                      extra_cards + extra_card_offsets[rank]);
+  }
+
+  return len;
+}
+
+/**
+ * ar_card_get_node_by_id_snprintf:
  * @buffer: the output buffer
  * @bufsize: the size of the output buffer
  * @card_id: the ID of the card
@@ -105,8 +137,8 @@ ar_card_get_node_by_suit_and_rank_snprintf (char *buffer,
  */
 int
 ar_card_get_node_by_id_snprintf (char *buffer,
-                                    gsize bufsize,
-                                    int card_id)
+                                 gsize bufsize,
+                                 int card_id)
 {
   int suit, rank;
 
@@ -114,6 +146,30 @@ ar_card_get_node_by_id_snprintf (char *buffer,
   rank = card_id % 13;
 
   return ar_card_get_node_by_suit_and_rank_snprintf (buffer, bufsize, suit, rank);
+}
+
+/**
+ * ar_card_get_legacy_node_by_id_snprintf:
+ * @buffer: the output buffer
+ * @bufsize: the size of the output buffer
+ * @card_id: the ID of the card
+ *
+ * Prints the legacy identifier for the card @card into @buffer.
+ *
+ * Returns: the number of bytes which would be produced if the buffer
+ * was large enough.
+ */
+int
+ar_card_get_legacy_node_by_id_snprintf (char *buffer,
+                                        gsize bufsize,
+                                        int card_id)
+{
+  int suit, rank;
+
+  suit = card_id / 13;
+  rank = card_id % 13;
+
+  return ar_card_get_legacy_node_by_suit_and_rank_snprintf (buffer, bufsize, suit, rank);
 }
 
 /**

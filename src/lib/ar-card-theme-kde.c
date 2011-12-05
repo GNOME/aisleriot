@@ -53,6 +53,7 @@ struct _ArCardThemeKDE {
   guint back_index : 4; /* same */
   guint has_2_jokers : 1;
   guint has_joker : 1;
+  guint legacy : 1;
 };
 
 enum {
@@ -291,6 +292,9 @@ ar_card_theme_kde_load (ArCardTheme *card_theme,
   theme->has_2_jokers = has_red_joker && has_black_joker;
   theme->has_joker = has_joker;
 
+  ar_card_get_legacy_node_by_suit_and_rank_snprintf (node, sizeof (node), AR_CARDS_CLUBS, AR_CARD_ACE);
+  theme->legacy = rsvg_handle_has_sub (rsvg_handle, node);
+
   /* Get the card_extents of the card back, which we use to compute the theme's aspect ratio */
   if (!ar_card_theme_kde_get_card_extents (theme, AR_CARD_BACK, theme->backs[theme->back_index])) {
     g_set_error (error, AR_CARD_THEME_ERROR, AR_CARD_THEME_ERROR_GENERIC,
@@ -334,7 +338,10 @@ ar_card_theme_kde_paint_card (ArCardTheme *card_theme,
     return;
   }
 
-  ar_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
+  if (theme->legacy)
+    ar_card_get_legacy_node_by_id_snprintf (node, sizeof (node), card_id);
+  else
+    ar_card_get_node_by_id_snprintf (node, sizeof (node), card_id);
 
   card_extents = ar_card_theme_kde_get_card_extents (theme, card_id, node);
   if (!card_extents)
