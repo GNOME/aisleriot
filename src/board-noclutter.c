@@ -583,12 +583,6 @@ slot_update_geometry (AisleriotBoard *board,
   xofs = priv->xoffset;
   yofs = priv->yoffset;
 
-  /* FIXMEchpe: what exactly is the purpose of the following lines? */
-  if (slot->expanded_right)
-    xofs = yofs;
-  if (slot->expanded_down)
-    yofs = xofs;
-
   if (priv->is_rtl) {
     slot->rect.x = priv->xslotstep * (priv->width - slot->x) - priv->card_size.width - xofs + priv->xbaseoffset;
   } else {
