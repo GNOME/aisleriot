@@ -87,8 +87,13 @@ save (const char *content,
 
   filename = g_strdup ("./svg-crush-XXXXXXXX");
   fd = g_mkstemp (filename);
-  if (fd == -1 ||
-      !g_file_set_contents (filename, decoded, *len, NULL)) {
+  if (fd == -1) {
+    g_free (filename);
+    g_free (decoded);
+    return NULL;
+  }
+  if (!g_file_set_contents (filename, decoded, *len, NULL)) {
+    unlink (filename);
     g_free (filename);
     g_free (decoded);
     return NULL;
@@ -216,7 +221,11 @@ transform (xmlDocPtr doc)
   n_nodes = set->nodeNr;
 
   for (i = 0; i < n_nodes; ++i) {
-    xmlNodePtr child = nodes[i]->children;
+    xmlNodePtr node = nodes[i];
+    xmlNodePtr child = node->children;
+
+    if (strcmp ((const char *) node->name, "href") != 0)
+      continue;
 
     if (child == NULL ||
         child->content == NULL)
