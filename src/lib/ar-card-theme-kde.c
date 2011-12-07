@@ -82,7 +82,7 @@ static gboolean
 get_is_blacklisted (const char *filename)
 {
   static const char *blacklist[] = {
-    /* These exist in g-g-extra-data too, and ours render faster */
+    /* We have these as native themes, and ours even render faster */
     "svg-dondorf",
     "svg-nicu-ornamental",
     "svg-gm-paris",
