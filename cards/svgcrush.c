@@ -150,7 +150,11 @@ crush (const char *tmp_in,
   /* pngcrush sometimes exits with status 0 but writes a zero-length file */
   if (*len == 0) {
     g_free (contents);
-    contents = NULL;
+    unlink (tmp_out);
+    link (tmp_in, tmp_out);
+    g_printerr ("pngcrush choked on file %s\n", tmp_out);
+    g_free (tmp_out);
+    return NULL;
   }
 
 out:
