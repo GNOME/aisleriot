@@ -38,4 +38,13 @@ DISTCLEANFILES = \
 %.svgz: %.svg
 	$(AM_V_GEN)$(XMLLINT) $(XMLLINT_FLAGS) $< | $(GZIP) $(GZIP_FLAGS) > $@
 
+# SVG crush utility
+
+svgcrush: svgcrush.c Makefile
+	$(AM_V_GEN) $(CC) `$(PKG_CONFIG) --libs --cflags glib-2.0 libxml-2.0` $(AM_CPPFLAGS) $(AM_CFLAGS) $(AM_LDFLAGS) -o $@ $<
+
+EXTRA_DIST += svgcrush.c
+
+# .gitignore
+
 -include $(top_srcdir)/git.mk
