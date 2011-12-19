@@ -95,8 +95,6 @@ games_GUILE = \
 	zebra.scm \
 	$(NULL)
 
-if HAVE_GUILE_2_X
-
 pkglibguiledir = $(pkglibdir)/guile/$(GUILE_EFFECTIVE_VERSION)
 compiledmoduledir = $(pkglibguiledir)/aisleriot
 
@@ -114,16 +112,6 @@ GUILE_FLAGS =
 
 %.go: %.scm
 	$(AM_V_GUILEC) GUILE=$(GUILE) GUILE_FLAGS=$(GUILE_FLAGS) GUILE_AUTO_COMPILE=0 GUILE_LOAD_PATH=.:$(srcdir) GUILE_LOAD_COMPILED_PATH=. $(srcdir)/guile-compile compile $(GUILE_WARNINGS) -o "$@" "$<"
-
-else # !HAVE_GUILE_2_X
-
-pkgdataguiledir = $(pkgdatadir)/guile/$(GUILE_EFFECTIVE_VERSION)
-moduledir = $(pkgdataguiledir)/aisleriot
-
-nodist_pkgdataguile_DATA = $(games_GUILE)
-nodist_module_DATA = $(module_GUILE)
-
-endif # HAVE_GUILE_2_X
 
 EXTRA_DIST = \
 	$(games_GUILE) \

@@ -488,7 +488,6 @@ IT_PROG_INTLTOOL([0.35.0])
 # Guile
 # *****
 
-GUILE_1_8_REQUIRED=1.8.0
 GUILE_2_0_REQUIRED=2.0.0
 GUILE_2_2_REQUIRED=2.0.0
 
@@ -496,16 +495,17 @@ GUILE_PKGS=
 
 AC_MSG_CHECKING([which guile version to use])
 AC_ARG_WITH([guile],
-  [AS_HELP_STRING([--with-guile=1.8|2.0|2.2|auto],[Which guile version to use (default: 1.8)])],
+  [AS_HELP_STRING([--with-guile=2.0|2.2|auto],[Which guile version to use (default: 2.0)])],
   [case "$with_guile" in
-     1.8|2.0|2.2|auto) ;;
-     *) AC_MSG_ERROR([unknown or unsupported guile version $with_guile specified]) ;;
+     1.8) AC_MSG_ERROR([unsupported guile version $with_guile requested]) ;;
+     2.0|2.2|auto) ;;
+     *) AC_MSG_ERROR([unsupported guile version $with_guile requested]) ;;
     esac],
-   [with_guile=1.8])
+   [with_guile=2.0])
 
 if test "$with_guile" = "auto"; then
   with_guile=
-  for version in 2.2 2.0 1.8; do
+  for version in 2.2 2.0; do
     GUILE_REQUIRED=AS_TR_SH([GUILE_${version}_REQUIRED])
     GUILE_PKGS="guile-$version >= ${!GUILE_REQUIRED}"
     if $PKG_CONFIG --exists $GUILE_PKGS; then
@@ -528,8 +528,6 @@ fi
 AC_MSG_RESULT([$with_guile_result])
 
 PKG_CHECK_MODULES([GUILE],[$GUILE_PKGS])
-
-AM_CONDITIONAL([HAVE_GUILE_2_X],[test "$with_guile" != "1.8"])
 
 AC_SUBST([GUILE_EFFECTIVE_VERSION],[$with_guile])
 

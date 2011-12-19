@@ -44,13 +44,6 @@
 
 #define I_(string) g_intern_static_string (string)
 
-#ifndef SCM_MAJOR_VERSION
-#define SCM_MAJOR_VERSION 1
-#endif
-#ifndef SCM_EFFECTIVE_VERSION
-#define SCM_EFFECTIVE_VERSION "1.8"
-#endif
-
 struct _AisleriotGameClass
 {
   GObjectClass parent_class;
@@ -1396,7 +1389,6 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                                                           scm_list_1 (scm_from_locale_string (path)))));
   g_free (path);
 
-#if SCM_MAJOR_VERSION >= 2
   path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY),
                            "guile",
                            SCM_EFFECTIVE_VERSION,
@@ -1405,7 +1397,6 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
   scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
                                                           scm_list_1 (scm_from_locale_string (path)))));
   g_free (path);
-#endif
 }
 
 /* public API */
@@ -2664,14 +2655,12 @@ ar_get_game_modules (void)
 
   hash_table = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
 
-#if SCM_MAJOR_VERSION >= 2
   path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY),
                            "guile",
                            SCM_EFFECTIVE_VERSION,
                            NULL);
   append_games_from_path (hash_table, path, ".go");
   g_free (path);
-#endif
 
   path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_DATA_DIRECTORY),
                            "guile",
