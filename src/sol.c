@@ -175,14 +175,8 @@ main (int argc, char *argv[])
   if (!ar_runtime_init ("aisleriot"))
     return 1;
 
-#if GNOME_ENABLE_DEBUG
-  _AR_DEBUG_IF (AR_DEBUG_SCHEME)
-    g_setenv ("GUILE_WARN_DEPRECATED", "detailed", TRUE);
-#endif
-
-#if SCM_MAJOR_VERSION >= 2
+  g_setenv ("GUILE_WARN_DEPRECATED", "detailed", TRUE);
   g_setenv ("GUILE_AUTO_COMPILE", "0", TRUE);
-#endif
 
   g_setenv ("UBUNTU_MENUPROXY", "0", TRUE);
 
