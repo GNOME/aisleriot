@@ -149,7 +149,7 @@ ar_card_theme_fixed_init (ArCardThemeFixed *theme)
   theme->size_available = FALSE;
 
   theme->card_size.width = theme->card_size.height = theme->slot_size.width =
-    theme->slot_size.width = -1;
+    theme->slot_size.height = -1;
 }
 
 static void
