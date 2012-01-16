@@ -28,6 +28,7 @@ private_icons = \
 
 EXTRA_DIST = \
 	gnome-aisleriot.svg \
+	hicolor_apps_scalable_gnome-freecell.svg \
 	$(private_icons) \
 	$(NULL)
 
