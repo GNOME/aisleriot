@@ -14,8 +14,8 @@ dist_noinst_DATA = \
 	hicolor_apps_24x24_gnome-freecell.png \
 	hicolor_apps_32x32_gnome-freecell.png \
 	hicolor_apps_48x48_gnome-freecell.png \
+	hicolor_apps_256x256_gnome-freecell.png \
 	$(NULL)
-
 
 private_icons = \
 	hicolor_actions_16x16_cards-deal.png \
