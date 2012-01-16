@@ -455,6 +455,8 @@ fi
 # Compilation
 # ***********
 
+save_CFLAGS="$CFLAGS"
+CFLAGS=
 CC_CHECK_CFLAGS_APPEND([ \
   -Wall -Wextra \
   -Wformat-nonliteral -Werror=format-security \
@@ -466,12 +468,10 @@ CC_CHECK_CFLAGS_APPEND([ \
   -Wstrict-aliasing=2 -Winit-self -Wunsafe-loop-optimizations \
   -Wdeclaration-after-statement -Wold-style-definition \
   -Wno-missing-field-initializers -Wno-unused-parameter \
+  -Wempty-body \
   -fno-common -Wno-switch-enum])
-
-# ********
-
-AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS"
-AM_CXXFLAGS="$AM_CXXFLAGS $WARN_CXXFLAGS"
+AM_CFLAGS="$AM_CFLAGS $CFLAGS"
+CFLAGS="$save_CFLAGS"
 
 # ****
 # i18n
