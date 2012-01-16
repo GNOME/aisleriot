@@ -189,8 +189,6 @@ ar_svg_class_init (ArSvgClass * klass)
                           G_PARAM_WRITABLE |
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS));
-
-  rsvg_init ();
 }
 
 static void
