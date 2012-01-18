@@ -290,8 +290,8 @@ case "$with_gtk" in
 esac
 
 GCONF_REQUIRED=2.0
-GLIB_REQUIRED=2.26.0
-GIO_REQUIRED=2.26.0
+GLIB_REQUIRED=2.31.10
+GIO_REQUIRED=2.31.10
 
 # Check for common modules
 
@@ -393,10 +393,16 @@ AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 # Extra build tools
 # *****************
 
-AC_ARG_VAR([GLIB_GENMARSHAL],[the glib-genmarschal programme])
+AC_ARG_VAR([GLIB_GENMARSHAL],[the glib-genmarshal programme])
 AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
 if test -z "$GLIB_GENMARSHAL"; then
   AC_MSG_ERROR([glib-genmarshal not found])
+fi
+
+AC_ARG_VAR([GLIB_COMPILE_RESOURCES],[the glib-compile-resources programme])
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
+if test -z "$GLIB_COMPILE_RESOURCES"; then
+  AC_MSG_ERROR([glib-compile-resources not found])
 fi
 
 AC_ARG_VAR([GZIP],[the gzip programme])
@@ -616,6 +622,7 @@ help/Makefile
 po/Makefile.in
 src/Makefile
 src/lib/Makefile
+src/aisleriot.gresource.xml
 ])
 AC_OUTPUT
 

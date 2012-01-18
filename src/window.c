@@ -422,7 +422,7 @@ help_about_cb (GtkAction *action,
                              "card engine that allows many different "
                              "games to be played."),
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
-                                      "Copyright © 2007, 2008, 2009, 2010, 2011 Christian Persch",
+                                      "Copyright © 2007, 2008, 2009, 2010, 2011, 2012 Christian Persch",
                          "license", licence,
                          "authors", authors,
                          "artists", artists,

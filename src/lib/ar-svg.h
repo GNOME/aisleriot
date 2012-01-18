@@ -43,6 +43,10 @@ GType ar_svg_get_type (void);
 
 ArSvg *ar_svg_new (void);
 
+ArSvg *ar_svg_new_from_uri_sync (const char *uri,
+                                 GCancellable *cancellable,
+                                 GError ** error);
+
 ArSvg *ar_svg_new_from_gfile_sync (GFile *file,
                                    GCancellable *cancellable,
                                    GError ** error);

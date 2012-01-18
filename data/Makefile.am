@@ -6,10 +6,7 @@ if ENABLE_SOUND
 SUBDIRS += sounds
 endif
 
-if HAVE_RSVG
-slotdir = $(pkgdatadir)/pixmaps
-dist_slot_DATA = slot.svg
-endif # HAVE_RSVG
+dist_noinst_DATA = slot.svg
 
 pkcatalogdir = $(pkgdatadir)
 pkcatalog_DATA = aisleriot.catalog

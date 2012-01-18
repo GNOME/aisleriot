@@ -61,18 +61,8 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
 {
   ArCardThemePreimage *theme = (ArCardThemePreimage *) card_theme;
   ArCardThemeInfo *theme_info = card_theme->theme_info;
-  const char *slot_dir;
+  GError *err;
   char *path;
-
-  /* First the slot image */
-  /* FIXMEchpe: use uninstalled data dir for rendering the card theme! */
-  slot_dir = ar_runtime_get_directory (AR_RUNTIME_PIXMAP_DIRECTORY);
-  path = g_build_filename (slot_dir, "slot.svg", NULL);
-  theme->slot_preimage = ar_svg_new_from_filename_sync (path, NULL, error);
-  g_free (path);
-  if (!theme->slot_preimage)
-    return FALSE;
-
 
   /* Now the main course */
   path = g_build_filename (theme_info->path, theme_info->filename, NULL);
@@ -85,6 +75,10 @@ ar_card_theme_preimage_load (ArCardTheme *card_theme,
     ar_svg_set_font_options (theme->slot_preimage, theme->font_options);
     ar_svg_set_font_options (theme->cards_svg, theme->font_options);
   }
+
+  err = NULL;
+  theme->slot_preimage = ar_svg_new_from_uri_sync ("resource:///org/gnome/aisleriot/art/slot.svg", NULL, &err);
+  g_assert_no_error (err);
 
   return TRUE;
 }

@@ -274,6 +274,35 @@ ar_svg_render_cairo_sub (ArSvg *svg,
 }
 
 /**
+ * ar_svg_new_from_uri_sync:
+ * @file: an URI
+ * @cancellable: (allow-none): a #GCancellable, or %NULL
+ * @error: (allow-none): a location to store a #GError, or %NULL
+ *
+ * Creates a new #ArSvg and synchronously loads its contents from @uri.
+ *
+ * Returns: (allow-none): a new #ArSvg, or %NULL on error with @error
+ *   filled in
+ */
+ArSvg *
+ar_svg_new_from_uri_sync (const char *uri,
+                          GCancellable *cancellable,
+                          GError **error)
+{
+  GFile *file;
+  ArSvg *svg;
+
+  g_return_val_if_fail (uri != NULL, NULL);
+
+  file = g_file_new_for_uri (uri);
+  svg = ar_svg_new_from_gfile_sync (file, cancellable, error);
+  g_object_unref (file);
+
+  return svg;
+}
+
+
+/**
  * ar_svg_new_from_gfile_sync:
  * @file: a #GFile
  * @cancellable: (allow-none): a #GCancellable, or %NULL
