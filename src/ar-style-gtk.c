@@ -53,11 +53,9 @@ ar_style_provider_new (void)
     "" NAME "{\n"
       "background-color: " DEFAULT_BACKGROUND_COLOR_STRING ";\n"
       "-" NAME "-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
+      "background-image: url('resource:///org/gnome/aisleriot/art/baize.png');\n"
+      "background-repeat: repeat;\n"
   "}\n";
-#if 0
-    "background-image: url('baize.png');\n"
-    "background-repeat: repeat;\n"
-#endif
 #undef NAME
 
   GtkCssProvider *provider;

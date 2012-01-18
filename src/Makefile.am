@@ -5,10 +5,6 @@ NULL =
 # Same as in help/Makefile.am
 DOC_MODULE = aisleriot
 
-cardimagedir = $(pkgdatadir)/pixmaps
-cardimage_DATA = \
-	baize.png
-
 bin_PROGRAMS = sol
 
 sol_SOURCES = \

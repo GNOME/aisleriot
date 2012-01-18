@@ -6,7 +6,10 @@ if ENABLE_SOUND
 SUBDIRS += sounds
 endif
 
-dist_noinst_DATA = slot.svg
+dist_noinst_DATA = \
+	baize.png \
+	slot.svg \
+	$(NULL)
 
 pkcatalogdir = $(pkgdatadir)
 pkcatalog_DATA = aisleriot.catalog
