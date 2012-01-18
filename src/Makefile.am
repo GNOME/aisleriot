@@ -142,6 +142,11 @@ sol_clutter_LDADD = $(sol_LDADD) $(CLUTTER_GTK_LIBS) $(CLUTTER_LIBS)
 
 endif # HAVE_CLUTTER
 
+BUILT_SOURCES = \
+	ar-resources.c \
+	ar-resources.h \
+	$(NULL)
+
 # FIXME autogen the dependencies from the gresource file too?
 ar-resources.c: aisleriot.gresource.xml Makefile
 	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --sourcedir . --generate-source --c-name aisleriot $<
@@ -183,8 +188,7 @@ EXTRA_DIST = \
 	game-names.h
 
 CLEANFILES = \
-	ar-resources.c \
-	ar-resources.h \
+	$(BUILT_SOURCES) \
 	$(schema_DATA)	\
 	$(service_DATA)
 
