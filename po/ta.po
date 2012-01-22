@@ -9,7 +9,7 @@
 # Jayaradha N <jaya@pune.redhat.com>, 2004.
 # Felix <ifelix@redhat.com>, 2006.
 # drtvasudevan <agnihot3@gmail.com>, 2006.
-# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009, 2010, 2011.
+# Dr.T.Vasudevan <agnihot3@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012.
 # I. Felix <ifelix@redhat.com>, 2008, 2009.
 # Dr.T.vasudevan <agnihot3@gmail.com>, 2009.
 # Dr,T,Vasudevan <agnihot3@gmail.com>, 2009, 2010, 2011.
@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.master.ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 05:51+0530\n"
-"PO-Revision-Date: 2011-09-27 05:56+0530\n"
+"POT-Creation-Date: 2012-01-22 07:27+0530\n"
+"PO-Revision-Date: 2012-01-22 08:08+0530\n"
 "Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -31,7 +31,7 @@ msgstr ""
 "\n"
 "X-Generator: Lokalize 1.1\n"
 
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:166 ../src/window.c:409
+#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:117 ../src/window.c:409
 #: ../src/window.c:413
 msgid "FreeCell Solitaire"
 msgstr "இலவசகளம் சாலிடேர்"
@@ -121,80 +121,80 @@ msgid "Whether or not to show the toolbar"
 msgstr "கருவிபட்டியை காண்பிக்கவா அல்லது வேண்டாமா"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:187 ../src/window.c:2312
+#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
 msgid "Select Game"
 msgstr "விளையாட்டை தேர்வு செய்"
 
-#: ../src/ar-game-chooser.c:201
+#: ../src/ar-game-chooser.c:192
 msgid "_Select"
 msgstr "_S தேர்வு செய்"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1373
+#: ../src/game.c:1437
 msgctxt "slot type"
 msgid "foundation"
 msgstr "அடித்தளம்"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1377
+#: ../src/game.c:1441
 msgctxt "slot type"
 msgid "reserve"
 msgstr "ஒதுக்கப்பட்டது"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1381
+#: ../src/game.c:1445
 msgctxt "slot type"
 msgid "stock"
 msgstr "இருப்பு"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1385
+#: ../src/game.c:1449
 msgctxt "slot type"
 msgid "tableau"
 msgstr "பலகை"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1389
+#: ../src/game.c:1453
 msgctxt "slot type"
 msgid "waste"
 msgstr "தேவையில்லாதது"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1421
+#: ../src/game.c:1485
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "அடித்தளத்தில் %s"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1425
+#: ../src/game.c:1489
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "சேமிப்பில் %s"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1429
+#: ../src/game.c:1493
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "இருப்பில் %s"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1433
+#: ../src/game.c:1497
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "பலகையில் %s"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1437
+#: ../src/game.c:1501
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "தேவையில்லாததில் %s"
 
-#: ../src/game.c:2117
+#: ../src/game.c:2168
 msgid "This game does not have hint support yet."
 msgstr "விளையாட்டில் உதவி குறிப்புகள் எதுவும் இதுவரை இல்லை."
 
@@ -202,17 +202,12 @@ msgstr "விளையாட்டில் உதவி குறிப்ப�
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2152 ../src/game.c:2178
+#: ../src/game.c:2203 ../src/game.c:2229
 #, c-format
 msgid "Move %s onto %s."
 msgstr "%s ஐ %s மேல் நகற்று."
 
-#: ../src/game.c:2199
-#, c-format
-msgid "You are searching for a %s."
-msgstr "%s இதற்கு நீங்கள் தேடுகிறீர்கள்."
-
-#: ../src/game.c:2203
+#: ../src/game.c:2249
 msgid "This game is unable to provide a hint."
 msgstr "விளையாட்டு உதவிக் குறிப்பு தர இயலவில்லை."
 
@@ -1038,27 +1033,27 @@ msgid "Zebra"
 msgstr "வரிகுதிரை"
 
 #. String reserve
-#: ../src/sol.c:53
+#: ../src/sol.c:50
 msgid "Solitaire"
 msgstr "சாலிடேர்"
 
-#: ../src/sol.c:54
+#: ../src/sol.c:51
 msgid "GNOME Solitaire"
 msgstr "க்னோம் சாலிடேர்"
 
-#: ../src/sol.c:55
+#: ../src/sol.c:52
 msgid "About Solitaire"
 msgstr "சாலிடேர் பற்றி"
 
-#: ../src/sol.c:111
+#: ../src/sol.c:68
 msgid "Select the game type to play"
 msgstr "ஆட வேண்டிய ஆட்ட வகையை தேர்ந்தெடு"
 
-#: ../src/sol.c:111
+#: ../src/sol.c:68
 msgid "NAME"
 msgstr "பெயர்"
 
-#: ../src/sol.c:166 ../src/window.c:414 ../src/window.c:1890
+#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
 msgid "AisleRiot"
 msgstr "எய்ல்ரயட்"
 
@@ -1189,193 +1184,183 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "க்னோம் விளையாட்டு வலையகம்"
 
-#: ../src/window.c:1298
+#: ../src/window.c:1288
 #, c-format
 msgid "Play “%s”"
 msgstr "\"%s\" ஐ விளையாடு"
 
-#: ../src/window.c:1459
+#: ../src/window.c:1450
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "சீட்டுகளை \"%s\" சீட்டு கருப்பொருளுடன் காட்டுக."
 
-#. Translators: if you want to use localised digits for the game score,
-#. * then translate this string to "%I6d", else to "%6d".
-#. * Do not translate it to anything else!
-#.
-#: ../src/window.c:1526
-#, c-format
-msgctxt "score"
-msgid "%6d"
-msgstr "%6d"
-
-#: ../src/window.c:1764
+#: ../src/window.c:1747
 msgid "A scheme exception occurred"
 msgstr "ஒரு திட்ட பிழை ஏற்பட்டது"
 
-#: ../src/window.c:1767
+#: ../src/window.c:1750
 msgid "Please report this bug to the developers."
 msgstr "இந்த வழுவை உருவாக்கியோருக்கு அறிவிக்கவும்."
 
-#: ../src/window.c:1773
+#: ../src/window.c:1756
 msgid "_Don't report"
 msgstr "அறிக்கை வேண்டாம்."
 
-#: ../src/window.c:1774
+#: ../src/window.c:1757
 msgid "_Report"
 msgstr "_அறிக்கை"
 
-#: ../src/window.c:1888
+#: ../src/window.c:1871
 msgid "Freecell Solitaire"
 msgstr "இலவசகளம் சாலிடேர்"
 
 #. Menu actions
-#: ../src/window.c:2008
+#: ../src/window.c:1990
 msgid "_Game"
 msgstr "_ஆட்டம்"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1991
 msgid "_View"
 msgstr "பார்வை (_V)"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1992
 msgid "_Control"
 msgstr "(_C)கட்டுப்பாடு"
 
-#: ../src/window.c:2012
+#: ../src/window.c:1994
 msgid "_Help"
 msgstr "உதவி (_H)"
 
-#: ../src/window.c:2017
+#: ../src/window.c:1999
 msgid "Start a new game"
 msgstr "புதிய விளையாட்டை துவக்கு"
 
-#: ../src/window.c:2020
+#: ../src/window.c:2002
 msgid "Restart the game"
 msgstr "விளையாட்டை மீண்டும் துவக்கு"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2004
 msgid "_Select Game…"
 msgstr "_S விளையாட்டை தேர்வு செய்"
 
-#: ../src/window.c:2024
+#: ../src/window.c:2006
 msgid "Play a different game"
 msgstr "வேறு விளையாட்டை தேர்வு செய்"
 
-#: ../src/window.c:2026
+#: ../src/window.c:2008
 msgid "_Recently Played"
 msgstr "_அண்மையில் விளையாடியவை"
 
-#: ../src/window.c:2027
+#: ../src/window.c:2009
 msgid "S_tatistics"
 msgstr "_புள்ளிவிவரம்"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2010
 msgid "Show gameplay statistics"
 msgstr "விளையாட்டு புள்ளிவிவரங்களை காட்டு"
 
-#: ../src/window.c:2031
+#: ../src/window.c:2013
 msgid "Close this window"
 msgstr "இந்த சாளரத்தை மூடு"
 
-#: ../src/window.c:2034
+#: ../src/window.c:2016
 msgid "Undo the last move"
 msgstr "கடைசி செயலை செயல் நீக்கு"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2019
 msgid "Redo the undone move"
 msgstr "ரத்து செய்த நகர்வை மீளச் செய்"
 
-#: ../src/window.c:2040
+#: ../src/window.c:2022
 msgid "Deal next card or cards"
 msgstr "அடுத்த சீட்டு அல்லது சீட்டுகளை பறிமாறலாமா"
 
-#: ../src/window.c:2043
+#: ../src/window.c:2025
 msgid "Get a hint for your next move"
 msgstr "உங்களின் அடுத்த நகர்வுக்கு உதவி குறிப்பு கொடு"
 
-#: ../src/window.c:2046
+#: ../src/window.c:2028
 msgid "View help for Aisleriot"
 msgstr "எய்ல்ரயட் விளையாட்டிற்கான உதவியை பார்"
 
-#: ../src/window.c:2050
+#: ../src/window.c:2032
 msgid "View help for this game"
 msgstr "தற்போதைய விளையாட்டிற்கான உதவியை பார்"
 
-#: ../src/window.c:2053
+#: ../src/window.c:2035
 msgid "About this game"
 msgstr "இந்த விளையாட்டு பற்றி"
 
-#: ../src/window.c:2055
+#: ../src/window.c:2037
 msgid "Install card themes…"
 msgstr "சீட்டு கருத்துக்களை நிறுவு..."
 
-#: ../src/window.c:2056
+#: ../src/window.c:2038
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "புதிய சீட்டு கருத்துக்களை வினியோக பொதி கிடங்கில் இருந்து நிறுவுக"
 
-#: ../src/window.c:2062
+#: ../src/window.c:2044
 msgid "_Card Style"
 msgstr "சீட்டு பாணி (_C)"
 
-#: ../src/window.c:2096
+#: ../src/window.c:2078
 msgid "_Toolbar"
 msgstr "_கருவிபட்டி"
 
-#: ../src/window.c:2097
+#: ../src/window.c:2079
 msgid "Show or hide the toolbar"
 msgstr "கருவிபட்டியை காண்பிக்கவா அல்லது மறைக்கவா"
 
-#: ../src/window.c:2101
+#: ../src/window.c:2083
 msgid "_Statusbar"
 msgstr "_S நிலைப்பட்டை"
 
-#: ../src/window.c:2102
+#: ../src/window.c:2084
 msgid "Show or hide statusbar"
 msgstr "நிலைப்பட்டியை காட்டவோ மறைக்கவோ செய்யவும்."
 
-#: ../src/window.c:2106
+#: ../src/window.c:2088
 msgid "_Click to Move"
 msgstr "(_C)நகர்த்த க்ளிக் செய்யவும்"
 
-#: ../src/window.c:2107
+#: ../src/window.c:2089
 msgid "Pick up and drop cards by clicking"
 msgstr "சொடுக்குவதால் ஒரு சீட்டை எடுத்து போடவும்."
 
-#: ../src/window.c:2111
+#: ../src/window.c:2093
 msgid "_Sound"
 msgstr "_S ஒலி"
 
-#: ../src/window.c:2112
+#: ../src/window.c:2094
 msgid "Whether or not to play event sounds"
 msgstr "சம்பவ ஒலியை ஒலிக்கவா அல்லது வேண்டாமா"
 
-#: ../src/window.c:2117
+#: ../src/window.c:2099
 msgid "_Animations"
 msgstr "_A அசைவூட்டம்"
 
-#: ../src/window.c:2118
+#: ../src/window.c:2100
 msgid "Whether or not to animate card moves"
 msgstr "அசைவூட்ட சீட்டு நகர்வை பயன்படுத்துவதா அல்லது வேண்டாமா"
 
-#: ../src/window.c:2336
+#: ../src/window.c:2318
 msgid "Score:"
 msgstr "மதிப்பெண்:"
 
-#: ../src/window.c:2348
+#: ../src/window.c:2330
 msgid "Time:"
 msgstr "நேரம்:"
 
-#: ../src/window.c:2647
+#: ../src/window.c:2629
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "\"%s\" விளையாட்டை துவக்க முடியவில்லை"
 
-#: ../src/window.c:2660
+#: ../src/window.c:2642
 msgid "Aisleriot cannot find the last game you played."
 msgstr "எய்ல்ரயட் நீங்கள் கடைசியாக ஆடிய ஆட்டத்தை கண்டு பிடிக்க இயலவில்லை"
 
-#: ../src/window.c:2661
+#: ../src/window.c:2643
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1437,7 +1422,7 @@ msgid "_Pause"
 msgstr "_தாமதி"
 
 #. %s is replaced with the name of the game in gnome-games.
-#: ../src/ar-stock.c:263
+#: ../src/ar-stock.c:267
 #, c-format
 msgid ""
 "%s is free software; you can redistribute it and/or modify it under the "
@@ -1449,7 +1434,7 @@ msgstr ""
 "அனுமதிக்கான இந்த %d பதிப்பு அல்லது அடுத்த பதிப்புகள் விதிகளின் படி நீங்கள் (விருப்பப்படி) "
 "மாற்றலாம். அல்லது மீண்டும் பறிமாறலாம்"
 
-#: ../src/ar-stock.c:268
+#: ../src/ar-stock.c:272
 #, c-format
 msgid ""
 "%s is distributed in the hope that it will be useful, but WITHOUT ANY "
@@ -1460,17 +1445,6 @@ msgstr ""
 "%s உபயோகப்படும் என்ற எதிர்பார்ப்புடன் வெளியிடப்படுகிறது. ஆனால் விற்க தகுதி,குறிப்பிட்ட "
 "செயலுக்கான தகுதி உள்பட எந்த உத்திரவாதமும் அளிக்கப்படவில்லை. மேற் கொண்டு விவரங்களுக்கு "
 "ஜிஎன்யு பொது அனுமதிக்கான விதிகளை பார்க்கவும்"
-
-#: ../src/ar-stock.c:273
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
-"Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
-"%s நிரலுடன் ஜிஎன்யு பொது அனுமதிக்கான விதிகளின் பிரதி உங்களுக்கு கிடைத்திருக்க "
-"வேண்டும். இல்லையானால் கீழ் கண்ட முகவரிக்கு கடிதம் எழுதவும்.Free Software Foundation, "
-"Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA "
 
 #: ../src/ar-stock.c:277
 msgid ""
@@ -1503,403 +1477,828 @@ msgid "Window width"
 msgstr "சாளரத்தின் அகலம்"
 
 #. Translators: this is the symbol that's on a Joker card
-#: ../src/lib/ar-card.c:181
+#: ../src/lib/ar-card.c:237
 msgctxt "card symbol"
 msgid "JOKER"
 msgstr "ஜோக்கர்"
 
 #. Translators: this is the symbol that's on an Ace card
-#: ../src/lib/ar-card.c:183 ../src/lib/ar-card.c:207
+#: ../src/lib/ar-card.c:239 ../src/lib/ar-card.c:263
 msgctxt "card symbol"
 msgid "A"
 msgstr "A"
 
 #. Translators: this is the symbol that's on a 2 card
-#: ../src/lib/ar-card.c:185
+#: ../src/lib/ar-card.c:241
 msgctxt "card symbol"
 msgid "2"
 msgstr "2"
 
 #. Translators: this is the symbol that's on a 3 card
-#: ../src/lib/ar-card.c:187
+#: ../src/lib/ar-card.c:243
 msgctxt "card symbol"
 msgid "3"
 msgstr "3"
 
 #. Translators: this is the symbol that's on a 4 card
-#: ../src/lib/ar-card.c:189
+#: ../src/lib/ar-card.c:245
 msgctxt "card symbol"
 msgid "4"
 msgstr "4"
 
 #. Translators: this is the symbol that's on a 5 card
-#: ../src/lib/ar-card.c:191
+#: ../src/lib/ar-card.c:247
 msgctxt "card symbol"
 msgid "5"
 msgstr "5"
 
 #. Translators: this is the symbol that's on a 6 card
-#: ../src/lib/ar-card.c:193
+#: ../src/lib/ar-card.c:249
 msgctxt "card symbol"
 msgid "6"
 msgstr "6"
 
 #. Translators: this is the symbol that's on a 7 card
-#: ../src/lib/ar-card.c:195
+#: ../src/lib/ar-card.c:251
 msgctxt "card symbol"
 msgid "7"
 msgstr "7"
 
 #. Translators: this is the symbol that's on a 8 card
-#: ../src/lib/ar-card.c:197
+#: ../src/lib/ar-card.c:253
 msgctxt "card symbol"
 msgid "8"
 msgstr "8"
 
 #. Translators: this is the symbol that's on a 9 card
-#: ../src/lib/ar-card.c:199
+#: ../src/lib/ar-card.c:255
 msgctxt "card symbol"
 msgid "9"
 msgstr "9"
 
 #. Translators: this is the symbol that's on a Jack card
-#: ../src/lib/ar-card.c:201
+#: ../src/lib/ar-card.c:257
 msgctxt "card symbol"
 msgid "J"
 msgstr "J"
 
 #. Translators: this is the symbol that's on a Queen card
-#: ../src/lib/ar-card.c:203
+#: ../src/lib/ar-card.c:259
 msgctxt "card symbol"
 msgid "Q"
 msgstr "Q"
 
 #. Translators: this is the symbol that's on a King card
-#: ../src/lib/ar-card.c:205
+#: ../src/lib/ar-card.c:261
 msgctxt "card symbol"
 msgid "K"
 msgstr "K"
 
 #. Translators: this is the symbol that's on a 1 card
-#: ../src/lib/ar-card.c:209
+#: ../src/lib/ar-card.c:265
 msgctxt "card symbol"
 msgid "1"
 msgstr "1"
 
-#: ../src/lib/ar-card.c:243
+#: ../src/lib/ar-card.c:299
 msgid "ace of clubs"
-msgstr "க்ளாவரின் ஏஸ்"
+msgstr "க்ளப்ஸின்   ஏஸ்"
 
-#: ../src/lib/ar-card.c:244
+#: ../src/lib/ar-card.c:300
 msgid "two of clubs"
-msgstr "க்ளாவரின் இரண்டு"
+msgstr "க்ளப்ஸின்   இரண்டு"
 
-#: ../src/lib/ar-card.c:245
+#: ../src/lib/ar-card.c:301
 msgid "three of clubs"
-msgstr "க்ளாவரின் மூன்று"
+msgstr "க்ளப்ஸின்   மூன்று"
 
-#: ../src/lib/ar-card.c:246
+#: ../src/lib/ar-card.c:302
 msgid "four of clubs"
-msgstr "க்ளாவரின் நான்கு"
+msgstr "க்ளப்ஸின்   நான்கு"
 
-#: ../src/lib/ar-card.c:247
+#: ../src/lib/ar-card.c:303
 msgid "five of clubs"
-msgstr "க்ளாவரின் ஜந்து"
+msgstr "க்ளப்ஸின்   ஐந்து "
 
-#: ../src/lib/ar-card.c:248
+#: ../src/lib/ar-card.c:304
 msgid "six of clubs"
-msgstr "க்ளாவரின் ஆறு"
+msgstr "க்ளப்ஸின்   ஆறு"
 
-#: ../src/lib/ar-card.c:249
+#: ../src/lib/ar-card.c:305
 msgid "seven of clubs"
-msgstr "க்ளாவரின் எழு"
+msgstr "க்ளப்ஸின்   ஏழு  "
 
-#: ../src/lib/ar-card.c:250
+#: ../src/lib/ar-card.c:306
 msgid "eight of clubs"
-msgstr "க்ளாவரின் எட்டு"
+msgstr "க்ளப்ஸின்   எட்டு"
 
-#: ../src/lib/ar-card.c:251
+#: ../src/lib/ar-card.c:307
 msgid "nine of clubs"
-msgstr "க்ளாவரின் ஒன்பது"
+msgstr "க்ளப்ஸின்   ஒன்பது"
 
-#: ../src/lib/ar-card.c:252
+#: ../src/lib/ar-card.c:308
 msgid "ten of clubs"
-msgstr "க்ளாவரின் பத்து"
+msgstr "க்ளப்ஸின்   பத்து"
 
-#: ../src/lib/ar-card.c:253
+#: ../src/lib/ar-card.c:309
 msgid "jack of clubs"
-msgstr "க்ளாவரின் மந்திரி"
+msgstr "க்ளப்ஸின்   ஜாக் "
 
-#: ../src/lib/ar-card.c:254
+#: ../src/lib/ar-card.c:310
 msgid "queen of clubs"
-msgstr "க்ளாவரின் ராணி"
+msgstr "க்ளப்ஸின்   ராணி"
 
-#: ../src/lib/ar-card.c:255
+#: ../src/lib/ar-card.c:311
 msgid "king of clubs"
-msgstr "க்ளாவரின் ராஜா"
+msgstr "க்ளப்ஸின்   ராஜா"
 
-#: ../src/lib/ar-card.c:256
+#: ../src/lib/ar-card.c:312
 msgid "ace of diamonds"
 msgstr "டைமண்டின் ஏஸ்"
 
-#: ../src/lib/ar-card.c:257
+#: ../src/lib/ar-card.c:313
 msgid "two of diamonds"
 msgstr "டைமண்டின் இரண்டு"
 
-#: ../src/lib/ar-card.c:258
+#: ../src/lib/ar-card.c:314
 msgid "three of diamonds"
 msgstr "டைமண்டின் மூன்று"
 
-#: ../src/lib/ar-card.c:259
+#: ../src/lib/ar-card.c:315
 msgid "four of diamonds"
 msgstr "டைமண்டின் நான்கு"
 
-#: ../src/lib/ar-card.c:260
+#: ../src/lib/ar-card.c:316
 msgid "five of diamonds"
-msgstr "டைமண்டின் ஜந்து"
+msgstr "டைமண்டின் ஐந்து "
 
-#: ../src/lib/ar-card.c:261
+#: ../src/lib/ar-card.c:317
 msgid "six of diamonds"
 msgstr "டைமண்டின் ஆறு"
 
-#: ../src/lib/ar-card.c:262
+#: ../src/lib/ar-card.c:318
 msgid "seven of diamonds"
-msgstr "டைமண்டின் எழு"
+msgstr "டைமண்டின் ஏழு  "
 
-#: ../src/lib/ar-card.c:263
+#: ../src/lib/ar-card.c:319
 msgid "eight of diamonds"
 msgstr "டைமண்டின் எட்டு"
 
-#: ../src/lib/ar-card.c:264
+#: ../src/lib/ar-card.c:320
 msgid "nine of diamonds"
 msgstr "டைமண்டின் ஒன்பது"
 
-#: ../src/lib/ar-card.c:265
+#: ../src/lib/ar-card.c:321
 msgid "ten of diamonds"
 msgstr "டைமண்டின் பத்து"
 
-#: ../src/lib/ar-card.c:266
+#: ../src/lib/ar-card.c:322
 msgid "jack of diamonds"
-msgstr "டைமண்டின் மந்திரி"
+msgstr "டைமண்டின் ஜாக் "
 
-#: ../src/lib/ar-card.c:267
+#: ../src/lib/ar-card.c:323
 msgid "queen of diamonds"
 msgstr "டைமண்டின் ராணி"
 
-#: ../src/lib/ar-card.c:268
+#: ../src/lib/ar-card.c:324
 msgid "king of diamonds"
 msgstr "டைமண்டின் ராஜா"
 
-#: ../src/lib/ar-card.c:269
+#: ../src/lib/ar-card.c:325
 msgid "ace of hearts"
-msgstr "இருதயத்தின் ஏஸ்"
+msgstr "ஹார்ட்ஸின்   ஏஸ்"
 
-#: ../src/lib/ar-card.c:270
+#: ../src/lib/ar-card.c:326
 msgid "two of hearts"
-msgstr "இருதயத்தின் இரண்டு"
+msgstr "ஹார்ட்ஸின்   இரண்டு"
 
-#: ../src/lib/ar-card.c:271
+#: ../src/lib/ar-card.c:327
 msgid "three of hearts"
-msgstr "இருதயத்தின் மூன்று"
+msgstr "ஹார்ட்ஸின்   மூன்று"
 
-#: ../src/lib/ar-card.c:272
+#: ../src/lib/ar-card.c:328
 msgid "four of hearts"
-msgstr "இருதயத்தின் நான்கு"
+msgstr "ஹார்ட்ஸின்   நான்கு"
 
-#: ../src/lib/ar-card.c:273
+#: ../src/lib/ar-card.c:329
 msgid "five of hearts"
-msgstr "இருதயத்தின் ஜந்து"
+msgstr "ஹார்ட்ஸின்   ஐந்து "
 
-#: ../src/lib/ar-card.c:274
+#: ../src/lib/ar-card.c:330
 msgid "six of hearts"
-msgstr "இருதயத்தின் ஆறு"
+msgstr "ஹார்ட்ஸின்   ஆறு"
 
-#: ../src/lib/ar-card.c:275
+#: ../src/lib/ar-card.c:331
 msgid "seven of hearts"
-msgstr "இருதயத்தின் எழு"
+msgstr "ஹார்ட்ஸின்   ஏழு  "
 
-#: ../src/lib/ar-card.c:276
+#: ../src/lib/ar-card.c:332
 msgid "eight of hearts"
-msgstr "இருதயதின் எட்டு"
+msgstr "ஹார்ட்ஸின்    எட்டு"
 
-#: ../src/lib/ar-card.c:277
+#: ../src/lib/ar-card.c:333
 msgid "nine of hearts"
-msgstr "இருதயத்தின் ஒன்பது"
+msgstr "ஹார்ட்ஸின்   ஒன்பது"
 
-#: ../src/lib/ar-card.c:278
+#: ../src/lib/ar-card.c:334
 msgid "ten of hearts"
-msgstr "இருதயத்தின் பத்து"
+msgstr "ஹார்ட்ஸின்   பத்து"
 
-#: ../src/lib/ar-card.c:279
+#: ../src/lib/ar-card.c:335
 msgid "jack of hearts"
-msgstr "இருதயத்தின் மந்திரி"
+msgstr "ஹார்ட்ஸின்   ஜாக் "
 
-#: ../src/lib/ar-card.c:280
+#: ../src/lib/ar-card.c:336
 msgid "queen of hearts"
-msgstr "இருதயத்தின் ராணி"
+msgstr "ஹார்ட்ஸின்   ராணி"
 
-#: ../src/lib/ar-card.c:281
+#: ../src/lib/ar-card.c:337
 msgid "king of hearts"
-msgstr "இருதயத்தின் ராஜா"
+msgstr "ஹார்ட்ஸின்   ராஜா"
 
-#: ../src/lib/ar-card.c:282
+#: ../src/lib/ar-card.c:338
 msgid "ace of spades"
 msgstr "ஸ்பேடின் ஏஸ்"
 
-#: ../src/lib/ar-card.c:283
+#: ../src/lib/ar-card.c:339
 msgid "two of spades"
-msgstr "ஸ்பெட்டின் இரண்டு"
+msgstr "ஸ்பேடின்  இரண்டு"
 
-#: ../src/lib/ar-card.c:284
+#: ../src/lib/ar-card.c:340
 msgid "three of spades"
-msgstr "ஸ்பெட்டின் மூன்று"
+msgstr "ஸ்பேடின்  மூன்று"
 
-#: ../src/lib/ar-card.c:285
+#: ../src/lib/ar-card.c:341
 msgid "four of spades"
 msgstr "ஸ்பேட்டின் நான்கு"
 
-#: ../src/lib/ar-card.c:286
+#: ../src/lib/ar-card.c:342
 msgid "five of spades"
-msgstr "ஸ்பேடின் ஜந்து"
+msgstr "ஸ்பேடின் ஐந்து "
 
-#: ../src/lib/ar-card.c:287
+#: ../src/lib/ar-card.c:343
 msgid "six of spades"
-msgstr "ஸ்பெட்டின் ஆறு"
+msgstr "ஸ்பேடின்  ஆறு"
 
-#: ../src/lib/ar-card.c:288
+#: ../src/lib/ar-card.c:344
 msgid "seven of spades"
-msgstr "ஸ்பெட்டின் எழு"
+msgstr "ஸ்பேடின்  ஏழு  "
 
-#: ../src/lib/ar-card.c:289
+#: ../src/lib/ar-card.c:345
 msgid "eight of spades"
 msgstr "ஸ்பேடின் எட்டு"
 
-#: ../src/lib/ar-card.c:290
+#: ../src/lib/ar-card.c:346
 msgid "nine of spades"
-msgstr "ஸ்பெட்டின் ஒன்பது"
+msgstr "ஸ்பேடின்  ஒன்பது"
 
-#: ../src/lib/ar-card.c:291
+#: ../src/lib/ar-card.c:347
 msgid "ten of spades"
-msgstr "ஸ்பெட்டின் பத்து"
+msgstr "ஸ்பேடின்  பத்து"
 
-#: ../src/lib/ar-card.c:292
+#: ../src/lib/ar-card.c:348
 msgid "jack of spades"
-msgstr "ஸ்பேட்டின் மந்திரி"
+msgstr "ஸ்பேட்டின் ஜாக் "
 
-#: ../src/lib/ar-card.c:293
+#: ../src/lib/ar-card.c:349
 msgid "queen of spades"
-msgstr "ஸ்பெட்டின் ராணி"
+msgstr "ஸ்பேடின்  ராணி"
 
-#: ../src/lib/ar-card.c:294
+#: ../src/lib/ar-card.c:350
 msgid "king of spades"
-msgstr "ஸ்பெட்டின் ராஜா"
+msgstr "ஸ்பேடின்  ராஜா"
 
-#: ../src/lib/ar-card.c:311
+#: ../src/lib/ar-card.c:367
 msgid "face-down card"
 msgstr "தெரியாத சீட்டு"
 
 #. A black joker.
-#: ../src/lib/ar-card.c:322 ../games/sol.scm.h:5
+#: ../src/lib/ar-card.c:378
 msgid "black joker"
-msgstr "கருப்பு கோமாளி"
+msgstr "கருப்பு ஜோக்கர் "
 
 #. A red joker.
-#: ../src/lib/ar-card.c:325 ../games/sol.scm.h:16
+#: ../src/lib/ar-card.c:381
 msgid "red joker"
-msgstr "சிகப்பு கோமாளி"
+msgstr "சிகப்பு ஜோக்கர் "
 
-#: ../src/smclient/eggdesktopfile.c:169
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "கோப்பு செல்லுபடியாகும்  .desktop கோப்பு அல்ல"
+#: ../games/api.scm.h:1
+msgid "Move ~a onto an empty bottom slot."
+msgstr "~a ஐ  காலியான கீழ் செருகுவாய் க்கு நகர்த்தவும்."
 
-#: ../src/smclient/eggdesktopfile.c:192
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "அடையாளம் காண இயலாத மேல்மேசை கோப்பு `%s'"
+#: ../games/api.scm.h:2
+msgid "Move ~a onto an empty corner slot."
+msgstr "~a  ஐ காலியான மூலையில் உள்ள செருகுவாய்க்கு நகர்த்து"
 
-#: ../src/smclient/eggdesktopfile.c:966
-#, c-format
-msgid "Starting %s"
-msgstr "%s ஐ துவக்குகிறது"
+#: ../games/api.scm.h:3
+msgid "Move ~a onto an empty edge slot."
+msgstr "~a ஐ காலியான விளிம்புக்கு க்கு நகர்த்து"
 
-#: ../src/smclient/eggdesktopfile.c:1108
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "பயன்பாடு கட்டளை வரியில் ஆவணங்களை ஒப்புக்கொள்ளாது"
+#: ../games/api.scm.h:4
+msgid "Move ~a onto an empty foundation slot."
+msgstr "~a ஐ வெற்று அடித்தளத்துக்கு நகற்று"
 
-#: ../src/smclient/eggdesktopfile.c:1176
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "அடையாளம் காண இயலாத துவக்க தேர்வு : %d"
+#: ../games/api.scm.h:5
+msgid "Move ~a onto an empty left slot."
+msgstr "~a ஐ காலியான இடது செருகுவாய்க்கு நகர்த்து"
 
-#: ../src/smclient/eggdesktopfile.c:1381
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "'Type=Link' மேல்மேசை உள்ளீடுக்கு ஆவண யூஆர்ஐ ஐ கொடுக்க இயலாது"
+#: ../games/api.scm.h:6
+msgid "Move ~a onto an empty right slot."
+msgstr "~a ஐ காலியான வலது செருகுவாய்க்கு நகர்த்து"
 
-#: ../src/smclient/eggdesktopfile.c:1402
-#, c-format
-msgid "Not a launchable item"
-msgstr "துவக்க முடியாத உருப்படி"
+#: ../games/api.scm.h:7
+msgid "Move ~a onto an empty slot."
+msgstr "~a ஐ ஒரு காலியான  செருகுவாய்க்கு நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "அமர்வு மேலாளருக்கு இணைப்பை செயல் நீக்கு"
+#: ../games/api.scm.h:8
+msgid "Move ~a onto an empty tableau slot."
+msgstr " ~a ஐ காலியான முக்கிய தள செருகுவாய்க்கு நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "சேமித்த வடிவமைப்பு உள்ள கோப்பை குறிப்பிடுக"
+#: ../games/api.scm.h:9
+msgid "Move ~a onto an empty top slot."
+msgstr "~a ஐ காலியான மேலே உள்ள செருகுவாய்க்கு நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:229
-msgid "FILE"
-msgstr "FILE"
+#: ../games/api.scm.h:10
+msgid "Move ~a onto the ace of clubs."
+msgstr "க்ளப் ஏஸ் மீது ~a ஐ நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "அமர்வு மேலாண்மை அடையாளத்தை குறிப்பிடுக"
+#: ../games/api.scm.h:11
+msgid "Move ~a onto the ace of diamonds."
+msgstr "டைமண்டின் ஏஸ் மீது ~a ஐ நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:232
-msgid "ID"
-msgstr "ஐடி (ID)"
+#: ../games/api.scm.h:12
+msgid "Move ~a onto the ace of hearts."
+msgstr "ஹார்ட்ஸ் ஏஸ் மீது ~a ஐ நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "அமர்வு மேலாண்மை தேர்வுகள்:"
+#: ../games/api.scm.h:13
+msgid "Move ~a onto the ace of spades."
+msgstr "ஸ்பேடின் ஏஸ் மீது ~a ஐ நகர்த்து"
 
-#: ../src/smclient/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "அமர்வு மேலாணமை தேர்வுகளை காட்டு"
+#: ../games/api.scm.h:14
+msgid "Move ~a onto the black joker."
+msgstr "கருப்பு ஜோக்கர் மீது ~a ஐ நகர்த்து"
 
-#: ../games/agnes.scm.h:1 ../games/bear_river.scm.h:2
+#: ../games/api.scm.h:15
+msgid "Move ~a onto the eight of clubs."
+msgstr "க்ளப்ஸின்   எட்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:16
+msgid "Move ~a onto the eight of diamonds."
+msgstr "டைமண்டின் எட்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:17
+msgid "Move ~a onto the eight of hearts."
+msgstr "ஹார்ட்ஸின்    எட்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:18
+msgid "Move ~a onto the eight of spades."
+msgstr "ஸ்பேடின் எட்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:19
+msgid "Move ~a onto the five of clubs."
+msgstr "க்ளப்ஸின்   ஐந்து  மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:20
+msgid "Move ~a onto the five of diamonds."
+msgstr "டைமண்டின் ஐந்து  மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:21
+msgid "Move ~a onto the five of hearts."
+msgstr "ஹார்ட்ஸின்   ஐந்து மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:22
+msgid "Move ~a onto the five of spades."
+msgstr "ஸ்பேடின் ஐந்து மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:23
+msgid "Move ~a onto the foundation."
+msgstr "அடித்தளத்துக்கு  ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:24
+msgid "Move ~a onto the four of clubs."
+msgstr "க்ளப்ஸின்   நான்கு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:25
+msgid "Move ~a onto the four of diamonds."
+msgstr "டைமண்டின் நான்கு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:26
+msgid "Move ~a onto the four of hearts."
+msgstr "ஹார்ட்ஸின்   நான்கு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:27
+msgid "Move ~a onto the four of spades."
+msgstr "ஸ்பேடின் நான்கு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:28
+msgid "Move ~a onto the jack of clubs."
+msgstr "க்ளப்ஸின் ஜாக்  மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:29
+msgid "Move ~a onto the jack of diamonds."
+msgstr "டயமண்டின் ஜாக்  மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:30
+msgid "Move ~a onto the jack of hearts."
+msgstr "ஹார்ட்ஸின்  ஜாக்   மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:31
+msgid "Move ~a onto the jack of spades."
+msgstr "ஸ்பேட்டின் ஜாக்  மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:32
+msgid "Move ~a onto the king of clubs."
+msgstr "க்ளப்ஸின்  ராஜா  மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:33
+msgid "Move ~a onto the king of diamonds."
+msgstr "டைமண்டின் ராஜா மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:34
+msgid "Move ~a onto the king of hearts."
+msgstr "ஹார்ட்ஸின்  ராஜா மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:35
+msgid "Move ~a onto the king of spades."
+msgstr "ஸ்பேடின் ராஜா மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:36
+msgid "Move ~a onto the nine of clubs."
+msgstr "க்ளப்ஸின் ஒன்பது மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:37
+msgid "Move ~a onto the nine of diamonds."
+msgstr "டைமண்டின் ஒன்பது மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:38
+msgid "Move ~a onto the nine of hearts."
+msgstr "ஹார்ட்ஸின் ஒன்பது மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:39
+msgid "Move ~a onto the nine of spades."
+msgstr "ஸ்பேடின் ஒன்பது மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:40
+msgid "Move ~a onto the queen of clubs."
+msgstr "க்ளப்ஸ் ராணி மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:41
+msgid "Move ~a onto the queen of diamonds."
+msgstr "டைமண்டின் ராணி மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:42
+msgid "Move ~a onto the queen of hearts."
+msgstr "ஹார்ட்ஸின் ராணி மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:43
+msgid "Move ~a onto the queen of spades."
+msgstr "ஸ்பேடின் ராணி மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:44
+msgid "Move ~a onto the red joker."
+msgstr "சிவப்பு ஜோக்கர் மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:45
+msgid "Move ~a onto the seven of clubs."
+msgstr "க்ளப்ஸின் ஏழு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:46
+msgid "Move ~a onto the seven of diamonds."
+msgstr "டைமண்டின் ஏழு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:47
+msgid "Move ~a onto the seven of hearts."
+msgstr "ஹார்ட்ஸின் ஏழு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:48
+msgid "Move ~a onto the seven of spades."
+msgstr "ஸ்பேடின் ஏழு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:49
+msgid "Move ~a onto the six of clubs."
+msgstr "க்ளப்ஸின் ஆறு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:50
+msgid "Move ~a onto the six of diamonds."
+msgstr "டைமண்டின் ஆறு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:51
+msgid "Move ~a onto the six of hearts."
+msgstr "ஹார்ட்ஸின் ஆறு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:52
+msgid "Move ~a onto the six of spades."
+msgstr "ஸ்பேடின் ஆறு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:53
+msgid "Move ~a onto the tableau."
+msgstr "வெற்று முக்கிய தள செருகுவாய் மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:54
+msgid "Move ~a onto the ten of clubs."
+msgstr "க்ளப்ஸின் பத்து மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:55
+msgid "Move ~a onto the ten of diamonds."
+msgstr "டைமண்டின் பத்து மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:56
+msgid "Move ~a onto the ten of hearts."
+msgstr "ஹார்ட்ஸின் பத்து மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:57
+msgid "Move ~a onto the ten of spades."
+msgstr "ஸ்பேடின் பத்து மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:58
+msgid "Move ~a onto the three of clubs."
+msgstr "க்ளப்ஸின் மூன்று மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:59
+msgid "Move ~a onto the three of diamonds."
+msgstr "டைமண்டின் மூன்று மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:60
+msgid "Move ~a onto the three of hearts."
+msgstr "ஹார்ட்ஸின்  மூன்று மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:61
+msgid "Move ~a onto the three of spades."
+msgstr "ஸ்பேடின் மூன்று மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:62
+msgid "Move ~a onto the two of clubs."
+msgstr "க்ளப்ஸின் இரண்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:63
+msgid "Move ~a onto the two of diamonds."
+msgstr "டைமண்டின் இரண்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:64
+msgid "Move ~a onto the two of hearts."
+msgstr "ஹார்ட்ஸின் இரண்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:65
+msgid "Move ~a onto the two of spades."
+msgstr "ஸ்பேடின் இரண்டு மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:66
+msgid "Move ~a onto the unknown card."
+msgstr "தெரியாத சீட்டின் மீது ~a ஐ நகர்த்து"
+
+#: ../games/api.scm.h:67
+msgid "Unknown color"
+msgstr "தெரியாத வண்ணம்"
+
+#: ../games/api.scm.h:68
+msgid "the ace of clubs"
+msgstr "க்ளப்ஸின்   ஏஸ்"
+
+#: ../games/api.scm.h:69
+msgid "the ace of diamonds"
+msgstr "டைமண்டின் ஏஸ்"
+
+#: ../games/api.scm.h:70
+msgid "the ace of hearts"
+msgstr "ஹார்ட்ஸின்   ஏஸ்"
+
+#: ../games/api.scm.h:71
+msgid "the ace of spades"
+msgstr "ஸ்பேடின் ஏஸ்"
+
+#: ../games/api.scm.h:72
+msgid "the black joker"
+msgstr "கருப்பு ஜோக்கர் "
+
+#: ../games/api.scm.h:73
+msgid "the eight of clubs"
+msgstr "க்ளப்ஸின்   எட்டு"
+
+#: ../games/api.scm.h:74
+msgid "the eight of diamonds"
+msgstr "டைமண்டின் எட்டு"
+
+#: ../games/api.scm.h:75
+msgid "the eight of hearts"
+msgstr "ஹார்ட்ஸின்    எட்டு"
+
+#: ../games/api.scm.h:76
+msgid "the eight of spades"
+msgstr "ஸ்பேடின் எட்டு"
+
+#: ../games/api.scm.h:77
+msgid "the five of clubs"
+msgstr "க்ளப்ஸின்   ஐந்து "
+
+#: ../games/api.scm.h:78
+msgid "the five of diamonds"
+msgstr "டைமண்டின் ஐந்து "
+
+#: ../games/api.scm.h:79
+msgid "the five of hearts"
+msgstr "ஹார்ட்ஸின்   ஐந்து "
+
+#: ../games/api.scm.h:80
+msgid "the five of spades"
+msgstr "ஸ்பேடின் ஐந்து "
+
+#: ../games/api.scm.h:81
+msgid "the four of clubs"
+msgstr "க்ளப்ஸின்   நான்கு"
+
+#: ../games/api.scm.h:82
+msgid "the four of diamonds"
+msgstr "டைமண்டின் நான்கு"
+
+#: ../games/api.scm.h:83
+msgid "the four of hearts"
+msgstr "ஹார்ட்ஸின்   நான்கு"
+
+#: ../games/api.scm.h:84
+msgid "the four of spades"
+msgstr "ஸ்பேட்டின் நான்கு"
+
+#: ../games/api.scm.h:85
+msgid "the jack of clubs"
+msgstr "க்ளப்ஸின்   ஜாக் "
+
+#: ../games/api.scm.h:86
+msgid "the jack of diamonds"
+msgstr "டயமண்டின்  ஜாக் "
+
+#: ../games/api.scm.h:87
+msgid "the jack of hearts"
+msgstr "ஹார்ட்ஸின்   ஜாக் "
+
+#: ../games/api.scm.h:88
+msgid "the jack of spades"
+msgstr "ஸ்பேட்டின் ஜாக் "
+
+#: ../games/api.scm.h:89
+msgid "the king of clubs"
+msgstr "க்ளப்ஸின்   ராஜா"
+
+#: ../games/api.scm.h:90
+msgid "the king of diamonds"
+msgstr "டைமண்டின் ராஜா"
+
+#: ../games/api.scm.h:91
+msgid "the king of hearts"
+msgstr "ஹார்ட்ஸின்   ராஜா"
+
+#: ../games/api.scm.h:92
+msgid "the king of spades"
+msgstr "ஸ்பேடின்  ராஜா"
+
+#: ../games/api.scm.h:93
+msgid "the nine of clubs"
+msgstr "க்ளப்ஸின்   ஒன்பது"
+
+#: ../games/api.scm.h:94
+msgid "the nine of diamonds"
+msgstr "டைமண்டின் ஒன்பது"
+
+#: ../games/api.scm.h:95
+msgid "the nine of hearts"
+msgstr "ஹார்ட்ஸின்   ஒன்பது"
+
+#: ../games/api.scm.h:96
+msgid "the nine of spades"
+msgstr "ஸ்பேடின்  ஒன்பது"
+
+#: ../games/api.scm.h:97
+msgid "the queen of clubs"
+msgstr "க்ளப்ஸின்   ராணி"
+
+#: ../games/api.scm.h:98
+msgid "the queen of diamonds"
+msgstr "டைமண்டின் ராணி"
+
+#: ../games/api.scm.h:99
+msgid "the queen of hearts"
+msgstr "ஹார்ட்ஸின்   ராணி"
+
+#: ../games/api.scm.h:100
+msgid "the queen of spades"
+msgstr "ஸ்பேடின்  ராணி"
+
+#: ../games/api.scm.h:101
+msgid "the red joker"
+msgstr "சிகப்பு ஜோக்கர் "
+
+#: ../games/api.scm.h:102
+msgid "the seven of clubs"
+msgstr "க்ளப்ஸின்   ஏழு  "
+
+#: ../games/api.scm.h:103
+msgid "the seven of diamonds"
+msgstr "டைமண்டின் ஏழு  "
+
+#: ../games/api.scm.h:104
+msgid "the seven of hearts"
+msgstr "ஹார்ட்ஸின்   ஏழு  "
+
+#: ../games/api.scm.h:105
+msgid "the seven of spades"
+msgstr "ஸ்பேடின்  ஏழு  "
+
+#: ../games/api.scm.h:106
+msgid "the six of clubs"
+msgstr "க்ளப்ஸின்   ஆறு"
+
+#: ../games/api.scm.h:107
+msgid "the six of diamonds"
+msgstr "டைமண்டின் ஆறு"
+
+#: ../games/api.scm.h:108
+msgid "the six of hearts"
+msgstr "ஹார்ட்ஸின்   ஆறு"
+
+#: ../games/api.scm.h:109
+msgid "the six of spades"
+msgstr "ஸ்பேடின்  ஆறு"
+
+#: ../games/api.scm.h:110
+msgid "the ten of clubs"
+msgstr "க்ளப்ஸின்   பத்து"
+
+#: ../games/api.scm.h:111
+msgid "the ten of diamonds"
+msgstr "டைமண்டின் பத்து"
+
+#: ../games/api.scm.h:112
+msgid "the ten of hearts"
+msgstr "ஹார்ட்ஸின்   பத்து"
+
+#: ../games/api.scm.h:113
+msgid "the ten of spades"
+msgstr "ஸ்பேடின்  பத்து"
+
+#: ../games/api.scm.h:114
+msgid "the three of clubs"
+msgstr "க்ளப்ஸின்   மூன்று"
+
+#: ../games/api.scm.h:115
+msgid "the three of diamonds"
+msgstr "டைமண்டின் மூன்று"
+
+#: ../games/api.scm.h:116
+msgid "the three of hearts"
+msgstr "ஹார்ட்ஸின்   மூன்று"
+
+#: ../games/api.scm.h:117
+msgid "the three of spades"
+msgstr "ஸ்பேடின்  மூன்று"
+
+#: ../games/api.scm.h:118
+msgid "the two of clubs"
+msgstr "க்ளப்ஸின்   இரண்டு"
+
+#: ../games/api.scm.h:119
+msgid "the two of diamonds"
+msgstr "டைமண்டின் இரண்டு"
+
+#: ../games/api.scm.h:120
+msgid "the two of hearts"
+msgstr "ஹார்ட்ஸின்   இரண்டு"
+
+#: ../games/api.scm.h:121
+msgid "the two of spades"
+msgstr "ஸ்பேடின்  இரண்டு"
+
+#: ../games/api.scm.h:122
+msgid "the unknown card"
+msgstr "தெரியாத சீட்டு"
+
+#: ../games/agnes.scm.h:1 ../games/bear-river.scm.h:2
 #: ../games/canfield.scm.h:2 ../games/chessboard.scm.h:2
-#: ../games/eagle_wing.scm.h:2 ../games/glenwood.scm.h:2
-#: ../games/kansas.scm.h:2 ../games/lady_jane.scm.h:2 ../games/plait.scm.h:2
-#: ../games/royal_east.scm.h:2 ../games/terrace.scm.h:1
+#: ../games/eagle-wing.scm.h:2 ../games/glenwood.scm.h:2
+#: ../games/kansas.scm.h:2 ../games/lady-jane.scm.h:2 ../games/plait.scm.h:2
+#: ../games/royal-east.scm.h:2 ../games/terrace.scm.h:1
 msgid "Base Card: Ace"
 msgstr "அடிப்படை சீட்டு: ஏஸ்"
 
-#: ../games/agnes.scm.h:2 ../games/bear_river.scm.h:3
+#: ../games/agnes.scm.h:2 ../games/bear-river.scm.h:3
 #: ../games/canfield.scm.h:3 ../games/chessboard.scm.h:3
-#: ../games/eagle_wing.scm.h:3 ../games/glenwood.scm.h:3
-#: ../games/kansas.scm.h:3 ../games/lady_jane.scm.h:3 ../games/plait.scm.h:3
-#: ../games/royal_east.scm.h:3 ../games/terrace.scm.h:2
+#: ../games/eagle-wing.scm.h:3 ../games/glenwood.scm.h:3
+#: ../games/kansas.scm.h:3 ../games/lady-jane.scm.h:3 ../games/plait.scm.h:3
+#: ../games/royal-east.scm.h:3 ../games/terrace.scm.h:2
 msgid "Base Card: Jack"
-msgstr "அடிப்படை சீட்டு:மந்திரி"
+msgstr "அடிப்படை சீட்டு:ஜாக் "
 
-#: ../games/agnes.scm.h:3 ../games/bear_river.scm.h:4
+#: ../games/agnes.scm.h:3 ../games/bear-river.scm.h:4
 #: ../games/canfield.scm.h:4 ../games/chessboard.scm.h:4
-#: ../games/eagle_wing.scm.h:4 ../games/glenwood.scm.h:4
-#: ../games/kansas.scm.h:4 ../games/lady_jane.scm.h:4 ../games/plait.scm.h:4
-#: ../games/royal_east.scm.h:4 ../games/terrace.scm.h:3
+#: ../games/eagle-wing.scm.h:4 ../games/glenwood.scm.h:4
+#: ../games/kansas.scm.h:4 ../games/lady-jane.scm.h:4 ../games/plait.scm.h:4
+#: ../games/royal-east.scm.h:4 ../games/terrace.scm.h:3
 msgid "Base Card: King"
 msgstr "அடிப்படை சீட்டு:ராஜா"
 
-#: ../games/agnes.scm.h:4 ../games/bear_river.scm.h:5
+#: ../games/agnes.scm.h:4 ../games/bear-river.scm.h:5
 #: ../games/canfield.scm.h:5 ../games/chessboard.scm.h:5
-#: ../games/eagle_wing.scm.h:5 ../games/glenwood.scm.h:5
-#: ../games/kansas.scm.h:5 ../games/lady_jane.scm.h:5 ../games/plait.scm.h:5
-#: ../games/royal_east.scm.h:5 ../games/terrace.scm.h:4
+#: ../games/eagle-wing.scm.h:5 ../games/glenwood.scm.h:5
+#: ../games/kansas.scm.h:5 ../games/lady-jane.scm.h:5 ../games/plait.scm.h:5
+#: ../games/royal-east.scm.h:5 ../games/terrace.scm.h:4
 msgid "Base Card: Queen"
 msgstr "அடிப்படை சீட்டு:ராணி"
 
@@ -1908,76 +2307,70 @@ msgid "Base Card: ~a"
 msgstr "அடிப்படை சீட்டு:~a"
 
 #: ../games/agnes.scm.h:6 ../games/easthaven.scm.h:1
-#: ../games/labyrinth.scm.h:1 ../games/monte_carlo.scm.h:1
+#: ../games/labyrinth.scm.h:1 ../games/monte-carlo.scm.h:1
 #: ../games/valentine.scm.h:1
 msgid "Deal more cards"
 msgstr "அடுத்து சீட்டுகளை பறிமாறலாமா"
 
-#: ../games/agnes.scm.h:7 ../games/auld_lang_syne.scm.h:2
-#: ../games/backbone.scm.h:3 ../games/block_ten.scm.h:1
-#: ../games/bristol.scm.h:2 ../games/camelot.scm.h:2 ../games/canfield.scm.h:9
+#: ../games/agnes.scm.h:7 ../games/auld-lang-syne.scm.h:2
+#: ../games/backbone.scm.h:3 ../games/block-ten.scm.h:1
+#: ../games/bristol.scm.h:2 ../games/camelot.scm.h:6 ../games/canfield.scm.h:9
 #: ../games/carpet.scm.h:2 ../games/cover.scm.h:1 ../games/doublets.scm.h:2
-#: ../games/eagle_wing.scm.h:11 ../games/easthaven.scm.h:4
+#: ../games/eagle-wing.scm.h:11 ../games/easthaven.scm.h:4
 #: ../games/elevator.scm.h:2 ../games/escalator.scm.h:2
-#: ../games/first_law.scm.h:17 ../games/fortunes.scm.h:4
-#: ../games/forty_thieves.scm.h:3 ../games/glenwood.scm.h:11
+#: ../games/first-law.scm.h:17 ../games/fortunes.scm.h:4
+#: ../games/forty-thieves.scm.h:2 ../games/glenwood.scm.h:11
 #: ../games/gypsy.scm.h:3 ../games/helsinki.scm.h:1 ../games/hopscotch.scm.h:3
 #: ../games/jamestown.scm.h:1 ../games/jumbo.scm.h:4 ../games/kansas.scm.h:8
 #: ../games/klondike.scm.h:7 ../games/labyrinth.scm.h:2
-#: ../games/lady_jane.scm.h:7 ../games/monte_carlo.scm.h:2
-#: ../games/neighbor.scm.h:1 ../games/plait.scm.h:11 ../games/quatorze.scm.h:1
-#: ../games/royal_east.scm.h:7 ../games/scuffle.scm.h:4
-#: ../games/sir_tommy.scm.h:3 ../games/straight_up.scm.h:5
+#: ../games/lady-jane.scm.h:7 ../games/monte-carlo.scm.h:2
+#: ../games/neighbor.scm.h:1 ../games/plait.scm.h:9 ../games/quatorze.scm.h:1
+#: ../games/royal-east.scm.h:7 ../games/scuffle.scm.h:4
+#: ../games/sir-tommy.scm.h:3 ../games/straight-up.scm.h:5
 #: ../games/terrace.scm.h:18 ../games/thieves.scm.h:2
-#: ../games/thirteen.scm.h:3 ../games/thumb_and_pouch.scm.h:4
-#: ../games/treize.scm.h:2 ../games/triple_peaks.scm.h:4
-#: ../games/union_square.scm.h:2 ../games/westhaven.scm.h:2
+#: ../games/thirteen.scm.h:3 ../games/thumb-and-pouch.scm.h:4
+#: ../games/treize.scm.h:2 ../games/triple-peaks.scm.h:4
+#: ../games/union-square.scm.h:3 ../games/westhaven.scm.h:2
 #: ../games/whitehead.scm.h:3 ../games/yield.scm.h:2 ../games/zebra.scm.h:4
 msgid "Stock left:"
 msgstr "மீதி இருப்பு:"
 
-#: ../games/agnes.scm.h:8 ../games/lady_jane.scm.h:8
+#: ../games/agnes.scm.h:8 ../games/lady-jane.scm.h:8
 msgid "Stock left: 0"
 msgstr "மீதி இருப்பு: 0"
 
 #: ../games/agnes.scm.h:9 ../games/backbone.scm.h:4
-#: ../games/bakers_dozen.scm.h:1 ../games/beleaguered_castle.scm.h:1
+#: ../games/bakers-dozen.scm.h:1 ../games/beleaguered-castle.scm.h:1
 #: ../games/canfield.scm.h:10 ../games/jumbo.scm.h:5
-#: ../games/king_albert.scm.h:1 ../games/lady_jane.scm.h:9
-#: ../games/streets_and_alleys.scm.h:1
+#: ../games/king-albert.scm.h:1 ../games/lady-jane.scm.h:9
+#: ../games/streets-and-alleys.scm.h:1
 msgid "Try rearranging the cards"
 msgstr "சீட்டுகளை மீண்டும் அடுக்க முயற்சி"
-
-#: ../games/agnes.scm.h:10 ../games/bristol.scm.h:3
-#: ../games/lady_jane.scm.h:10 ../games/royal_east.scm.h:8
-#: ../games/thumb_and_pouch.scm.h:5
-msgid "an empty foundation pile"
-msgstr "வெற்று அடித்தள குவியல்"
 
 #: ../games/athena.scm.h:1 ../games/klondike.scm.h:8 ../games/osmosis.scm.h:5
 #: ../games/saratoga.scm.h:1
 msgid "Three card deals"
 msgstr "முன்று சீட்டு பறிமாறல்"
 
-#: ../games/auld_lang_syne.scm.h:1 ../games/bristol.scm.h:1
-#: ../games/first_law.scm.h:1 ../games/fortunes.scm.h:2
-#: ../games/lady_jane.scm.h:6 ../games/scuffle.scm.h:1 ../games/spider.scm.h:1
-#: ../games/thumb_and_pouch.scm.h:1 ../games/zebra.scm.h:1
+#: ../games/auld-lang-syne.scm.h:1 ../games/bristol.scm.h:1
+#: ../games/first-law.scm.h:1 ../games/fortunes.scm.h:2
+#: ../games/lady-jane.scm.h:6 ../games/scuffle.scm.h:1 ../games/spider.scm.h:1
+#: ../games/thumb-and-pouch.scm.h:1 ../games/zebra.scm.h:1
 msgid "Deal another round"
 msgstr "இன்னொருசுற்று விளையாடலாமா"
 
 #: ../games/backbone.scm.h:1 ../games/camelot.scm.h:1
 #: ../games/canfield.scm.h:6 ../games/carpet.scm.h:1 ../games/glenwood.scm.h:6
 #: ../games/klondike.scm.h:2 ../games/osmosis.scm.h:1 ../games/plait.scm.h:6
-#: ../games/straight_up.scm.h:1 ../games/terrace.scm.h:8
+#: ../games/straight-up.scm.h:1 ../games/terrace.scm.h:8
 msgid "Deal a new card from the deck"
 msgstr "தட்டில் இருந்து புதிய சீட்டை ஏடு"
 
 #: ../games/backbone.scm.h:2 ../games/doublets.scm.h:1
-#: ../games/eagle_wing.scm.h:9 ../games/gaps.scm.h:7 ../games/glenwood.scm.h:9
-#: ../games/jumbo.scm.h:3 ../games/klondike.scm.h:5 ../games/plait.scm.h:10
-#: ../games/scuffle.scm.h:2 ../games/straight_up.scm.h:3
-#: ../games/terrace.scm.h:13 ../games/thumb_and_pouch.scm.h:3
+#: ../games/eagle-wing.scm.h:9 ../games/gaps.scm.h:7 ../games/glenwood.scm.h:9
+#: ../games/jumbo.scm.h:3 ../games/klondike.scm.h:5 ../games/plait.scm.h:8
+#: ../games/scuffle.scm.h:2 ../games/straight-up.scm.h:3
+#: ../games/terrace.scm.h:13 ../games/thumb-and-pouch.scm.h:3
 #: ../games/zebra.scm.h:3
 msgid "Redeals left:"
 msgstr "பறிமாற்றங்கள் இருப்பு:"
@@ -1990,73 +2383,52 @@ msgstr "அடித்தளத்தில் வெற்று செரு�
 msgid "an empty slot on the tableau"
 msgstr "முக்கிய தளத்தில் ஒரு வெற்று செருகுவாய்"
 
-#: ../games/bakers_dozen.scm.h:2 ../games/chessboard.scm.h:8
-#: ../games/easthaven.scm.h:5 ../games/eight_off.scm.h:2
-#: ../games/fortress.scm.h:2 ../games/forty_thieves.scm.h:4
-#: ../games/gypsy.scm.h:4 ../games/jumbo.scm.h:6 ../games/kansas.scm.h:9
-#: ../games/king_albert.scm.h:2 ../games/seahaven.scm.h:2
-#: ../games/streets_and_alleys.scm.h:2 ../games/westhaven.scm.h:3
-#: ../games/whitehead.scm.h:4 ../games/yukon.scm.h:1
+#: ../games/bakers-dozen.scm.h:2 ../games/easthaven.scm.h:5
+#: ../games/eight-off.scm.h:2 ../games/fortress.scm.h:2
+#: ../games/king-albert.scm.h:2 ../games/seahaven.scm.h:2
+#: ../games/streets-and-alleys.scm.h:2 ../games/yukon.scm.h:1
 msgid "an empty foundation"
 msgstr "வெற்று அடித்தளம்"
 
-#: ../games/bear_river.scm.h:1 ../games/canfield.scm.h:1
-#: ../games/chessboard.scm.h:1 ../games/eagle_wing.scm.h:1
+#: ../games/bear-river.scm.h:1 ../games/canfield.scm.h:1
+#: ../games/chessboard.scm.h:1 ../games/eagle-wing.scm.h:1
 #: ../games/glenwood.scm.h:1 ../games/kansas.scm.h:1 ../games/plait.scm.h:1
 msgid "Base Card: "
 msgstr "அடிப்படை சீட்டு:"
 
-#: ../games/bear_river.scm.h:6
+#: ../games/bear-river.scm.h:6
 msgid "Move something onto an empty right-hand tableau slot"
 msgstr "வெற்று வலது பக்க செருகுவாய்க்கு எதாவதை நகற்று"
 
-#: ../games/bear_river.scm.h:7
+#: ../games/bear-river.scm.h:7
 msgid "an empty foundation slot"
 msgstr "வெற்று அடித்தள இடம்"
 
+#: ../games/camelot.scm.h:2
+msgid "Remove the ten of clubs."
+msgstr "க்ளப்ஸின் பத்தை நீக்கவும் "
+
 #: ../games/camelot.scm.h:3
-msgid "an empty bottom slot"
-msgstr "காலியான கீழ் செருகுவாய்"
+msgid "Remove the ten of diamonds."
+msgstr "டைமண்டின் பத்தை நீக்கவும் "
 
 #: ../games/camelot.scm.h:4
-msgid "an empty corner slot"
-msgstr "காலியான ஓர செருகுவாய்"
+msgid "Remove the ten of hearts."
+msgstr "ஹார்ட்ஸின் பத்தை நீக்கவும் "
 
 #: ../games/camelot.scm.h:5
-msgid "an empty left slot"
-msgstr "காலியான இடது செருகுவாய்"
+msgid "Remove the ten of spades."
+msgstr "ஸ்பேடின் பத்தை நீக்கவும் "
 
-#: ../games/camelot.scm.h:6
-msgid "an empty right slot"
-msgstr "காலியான வலது செருகுவாய்"
-
-#: ../games/camelot.scm.h:7 ../games/diamond_mine.scm.h:1
-#: ../games/klondike.scm.h:10 ../games/odessa.scm.h:1 ../games/osmosis.scm.h:6
-#: ../games/pileon.scm.h:1 ../games/scorpion.scm.h:2
-#: ../games/ten_across.scm.h:4 ../games/union_square.scm.h:3
-#: ../games/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "காலியான செருகுவாய்"
-
-#: ../games/camelot.scm.h:8
-msgid "an empty top slot"
-msgstr "காலியான மேல் செருகுவாய்"
-
-#: ../games/camelot.scm.h:9 ../games/helsinki.scm.h:2
-#: ../games/neighbor.scm.h:2 ../games/thirteen.scm.h:4 ../games/treize.scm.h:3
-#: ../games/yield.scm.h:3
-msgid "itself"
-msgstr "அதுவே"
-
-#: ../games/canfield.scm.h:7 ../games/eagle_wing.scm.h:7
+#: ../games/canfield.scm.h:7 ../games/eagle-wing.scm.h:7
 #: ../games/glenwood.scm.h:8 ../games/plait.scm.h:7
-#: ../games/straight_up.scm.h:2 ../games/thumb_and_pouch.scm.h:2
+#: ../games/straight-up.scm.h:2 ../games/thumb-and-pouch.scm.h:2
 #: ../games/zebra.scm.h:2
 msgid "Move waste back to stock"
 msgstr "தேவையில்லாதை இருப்புக்கு  நகற்று"
 
-#: ../games/canfield.scm.h:8 ../games/eagle_wing.scm.h:10
-#: ../games/kansas.scm.h:7 ../games/straight_up.scm.h:4
+#: ../games/canfield.scm.h:8 ../games/eagle-wing.scm.h:10
+#: ../games/kansas.scm.h:7 ../games/straight-up.scm.h:4
 msgid "Reserve left:"
 msgstr "சேமிப்பில் இருப்பு:"
 
@@ -2144,23 +2516,85 @@ msgstr "மீதியான சீட்டுகள்: ~a"
 msgid "Redeal."
 msgstr "மறு ஆட்டம்"
 
-#: ../games/diamond_mine.scm.h:2
+#: ../games/diamond-mine.scm.h:1 ../games/odessa.scm.h:1
+#: ../games/pileon.scm.h:1 ../games/scorpion.scm.h:2
+#: ../games/ten-across.scm.h:4 ../games/yukon.scm.h:2
+msgid "an empty slot"
+msgstr "காலியான செருகுவாய்"
+
+#: ../games/diamond-mine.scm.h:2
 msgid "the foundation pile"
 msgstr "அடித்தள குவியல்"
 
-#: ../games/eagle_wing.scm.h:6 ../games/elevator.scm.h:1
-#: ../games/escalator.scm.h:1 ../games/royal_east.scm.h:6
+#: ../games/doublets.scm.h:3
+msgid "Unknown value"
+msgstr "தெரியாத மதிப்பு"
+
+#: ../games/doublets.scm.h:4
+msgid "You are searching for a five."
+msgstr "ஒரு ஐந்துக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:5
+msgid "You are searching for a four."
+msgstr "ஒரு நான்கிற்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:6
+msgid "You are searching for a jack."
+msgstr "ஒரு ஜாகுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:7
+msgid "You are searching for a king."
+msgstr "ஒரு ராஜாவுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:8
+msgid "You are searching for a nine."
+msgstr "ஒரு ஒன்பதற்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:9
+msgid "You are searching for a queen."
+msgstr "ஒரு ராணிக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:10
+msgid "You are searching for a seven."
+msgstr "ஒரு ஏழுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:11
+msgid "You are searching for a six."
+msgstr "ஒரு ஆறுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:12
+msgid "You are searching for a ten."
+msgstr "ஒரு பத்துக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:13
+msgid "You are searching for a three."
+msgstr "ஒரு மூன்றுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:14
+msgid "You are searching for a two."
+msgstr "ஒரு இரண்டுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:15
+msgid "You are searching for an ace."
+msgstr "ஒரு ஏஸுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/doublets.scm.h:16
+msgid "You are searching for an eight."
+msgstr "ஒரு எட்டுக்கு நீங்கள் தேடுகிறீர்கள்."
+
+#: ../games/eagle-wing.scm.h:6 ../games/elevator.scm.h:1
+#: ../games/escalator.scm.h:1 ../games/royal-east.scm.h:6
 #: ../games/thirteen.scm.h:1 ../games/treize.scm.h:1
-#: ../games/triple_peaks.scm.h:1 ../games/union_square.scm.h:1
+#: ../games/triple-peaks.scm.h:1 ../games/union-square.scm.h:1
 #: ../games/westhaven.scm.h:1 ../games/yield.scm.h:1
 msgid "Deal a card"
 msgstr "சீட்டை போடு"
 
-#: ../games/eagle_wing.scm.h:8
+#: ../games/eagle-wing.scm.h:8
 msgid "Move ~a to an empty foundation"
 msgstr "~a வை வெற்று அடித்தளத்துக்கு நகற்று"
 
-#: ../games/eagle_wing.scm.h:12
+#: ../games/eagle-wing.scm.h:12
 msgid "an empty slot on tableau"
 msgstr "முக்கிய தளத்தில் ஒரு வெற்று செருகுவாய்"
 
@@ -2169,14 +2603,15 @@ msgid "Move a King on to the empty tableau slot"
 msgstr "வெற்று முக்கிய தள செருகுவாயில் ராஜாவை நகற்று"
 
 #: ../games/easthaven.scm.h:3 ../games/klondike.scm.h:3
+#: ../games/union-square.scm.h:2
 msgid "No hint available right now"
 msgstr "இப்போது எந்த உதவிக் குறிப்பும் இல்லை"
 
-#: ../games/eight_off.scm.h:1 ../games/seahaven.scm.h:1
+#: ../games/eight-off.scm.h:1 ../games/seahaven.scm.h:1
 msgid "Move something on to an empty reserve"
 msgstr "வெற்று வளத்தில் எதையாவது நகற்று"
 
-#: ../games/eight_off.scm.h:3 ../games/seahaven.scm.h:3
+#: ../games/eight-off.scm.h:3 ../games/seahaven.scm.h:3
 msgid "an empty tableau"
 msgstr "வெற்று முக்கிய தளம்"
 
@@ -2200,63 +2635,63 @@ msgstr "அடித்தளத்துக்கு ஒரு சீட்ட�
 msgid "Six Foundations"
 msgstr "ஆறு அடித்தளங்கள்"
 
-#: ../games/first_law.scm.h:2
+#: ../games/first-law.scm.h:2
 msgid "I'm not sure"
 msgstr "உறுதியாக இல்லை"
 
-#: ../games/first_law.scm.h:3
+#: ../games/first-law.scm.h:3
 msgid "Remove the aces"
 msgstr "ஏஸ்களை நீக்கு"
 
-#: ../games/first_law.scm.h:4
+#: ../games/first-law.scm.h:4
 msgid "Remove the eights"
 msgstr "எட்டுகளை நீக்கு"
 
-#: ../games/first_law.scm.h:5
+#: ../games/first-law.scm.h:5
 msgid "Remove the fives"
 msgstr "ஐந்துகளை நீக்கு"
 
-#: ../games/first_law.scm.h:6
+#: ../games/first-law.scm.h:6
 msgid "Remove the fours"
 msgstr "நான்குகளை நீக்கு"
 
-#: ../games/first_law.scm.h:7
+#: ../games/first-law.scm.h:7
 msgid "Remove the jacks"
-msgstr "மந்திரியை நீக்கு"
+msgstr "ஜாக் யை நீக்கு"
 
-#: ../games/first_law.scm.h:8
+#: ../games/first-law.scm.h:8
 msgid "Remove the kings"
 msgstr "ராஜாவை நீக்கு"
 
-#: ../games/first_law.scm.h:9
+#: ../games/first-law.scm.h:9
 msgid "Remove the nines"
 msgstr "ஒன்பதை நீக்கு"
 
-#: ../games/first_law.scm.h:10
+#: ../games/first-law.scm.h:10
 msgid "Remove the queens"
 msgstr "ராணியை நீக்கு"
 
-#: ../games/first_law.scm.h:11
+#: ../games/first-law.scm.h:11
 msgid "Remove the sevens"
 msgstr "ஏழை நீக்கு"
 
-#: ../games/first_law.scm.h:12
+#: ../games/first-law.scm.h:12
 msgid "Remove the sixes"
 msgstr "ஆறை நீக்கு"
 
-#: ../games/first_law.scm.h:13
+#: ../games/first-law.scm.h:13
 msgid "Remove the tens"
 msgstr "பத்தை நீக்கு"
 
-#: ../games/first_law.scm.h:14
+#: ../games/first-law.scm.h:14
 msgid "Remove the threes"
 msgstr "மூன்றை நீக்கு"
 
-#: ../games/first_law.scm.h:15
+#: ../games/first-law.scm.h:15
 msgid "Remove the twos"
 msgstr "இரண்டை நீக்கு"
 
-#: ../games/first_law.scm.h:16
+#: ../games/first-law.scm.h:16
 msgid "Return cards to stock"
 msgstr "இருப்பிற்கு சீட்டுகளை திருப்பு"
 
@@ -2268,17 +2703,9 @@ msgstr "வெற்று செருகுவாயில் ஏதோ ஒன
 msgid "Move ~a off the board"
 msgstr "பலகையில் இருந்து ~a  ஐ நகற்று"
 
-#: ../games/forty_thieves.scm.h:1
-msgid "Bug! make-hint called on false move."
-msgstr "பிழை! தவறான இயக்கத்தில் உதவி கேட்கப்பட்டது"
-
-#: ../games/forty_thieves.scm.h:2
+#: ../games/forty-thieves.scm.h:1
 msgid "Deal a card from stock"
 msgstr "ஸ்டாக்கிலிருந்து ஒரு அட்டையை போடுக"
-
-#: ../games/forty_thieves.scm.h:5
-msgid "an empty space"
-msgstr "ஒரு வெற்று இடைவெளி"
 
 #: ../games/freecell.scm.h:1
 msgid "No moves are possible. Undo or start again."
@@ -2373,7 +2800,7 @@ msgid "on to the empty tableau slot"
 msgstr " முக்கிய தளத்தில் வெற்று செருகுவாயிற்கு "
 
 #: ../games/golf.scm.h:1 ../games/hopscotch.scm.h:1 ../games/jumbo.scm.h:1
-#: ../games/kansas.scm.h:6 ../games/sir_tommy.scm.h:1
+#: ../games/kansas.scm.h:6 ../games/sir-tommy.scm.h:1
 #: ../games/whitehead.scm.h:1
 msgid "Deal another card"
 msgstr "இன்னொருசீட்டு எடு"
@@ -2390,6 +2817,11 @@ msgstr "இன்னொரு கை போடலாமா"
 msgid "Move a card or build of cards on to the empty slot"
 msgstr "சீட்டை நகற்று அல்லது வெற்று செருகுவாயில் சீட்டுகளை கட்டு"
 
+#: ../games/helsinki.scm.h:2 ../games/neighbor.scm.h:2
+#: ../games/thirteen.scm.h:4 ../games/treize.scm.h:3 ../games/yield.scm.h:3
+msgid "itself"
+msgstr "அதுவே"
+
 #: ../games/hopscotch.scm.h:2
 msgid "Move card from waste"
 msgstr "குப்பையில் இருந்து சீட்டை நகற்று"
@@ -2398,17 +2830,15 @@ msgstr "குப்பையில் இருந்து சீட்டை 
 msgid "Move waste to stock"
 msgstr "இருப்புக்கு குப்பையை நகற்று"
 
-#: ../games/jumbo.scm.h:7 ../games/kansas.scm.h:10
-#: ../games/king_albert.scm.h:3 ../games/lady_jane.scm.h:11
-#: ../games/straight_up.scm.h:6
+#: ../games/king-albert.scm.h:3 ../games/lady-jane.scm.h:11
 msgid "an empty tableau slot"
 msgstr "முக்கிய தளத்தில் வெற்று செருகுவாய்"
 
-#: ../games/kings_audience.scm.h:1
+#: ../games/kings-audience.scm.h:1
 msgid "Deal a new card"
 msgstr "இன்னொரு சீட்டு போடு"
 
-#: ../games/kings_audience.scm.h:2
+#: ../games/kings-audience.scm.h:2
 msgid "Stock remaining: ~a"
 msgstr "மீதி இருப்பு: ~a"
 
@@ -2424,9 +2854,13 @@ msgstr "ஒரே சீட்டு பறிமாறல்கள்"
 msgid "Try moving cards down from the foundation"
 msgstr "அடித்தளத்தில் இருந்து சீட்டுகளை கீழ் நகற்ற முயற்சிக்கவும்"
 
-#: ../games/lady_jane.scm.h:1 ../games/royal_east.scm.h:1
+#: ../games/lady-jane.scm.h:1 ../games/royal-east.scm.h:1
 msgid "Base Card:"
 msgstr "அடிப்படை சீட்டு"
+
+#: ../games/lady-jane.scm.h:10 ../games/thumb-and-pouch.scm.h:5
+msgid "an empty foundation pile"
+msgstr "வெற்று அடித்தள குவியல்"
 
 #: ../games/maze.scm.h:1
 msgid ""
@@ -2446,14 +2880,6 @@ msgstr "பறிமாற்றங்கள் இருப்பு: ~a"
 msgid "something"
 msgstr "எதாவது"
 
-#: ../games/plait.scm.h:8
-msgid "Move ~a from the stock to an empty edge or tableau slot"
-msgstr "இருப்பில் இருந்து ~a வை வெற்று முனை அல்லது முக்கிய தளத்தில் செருகுவாயுக்கு நகற்று  "
-
-#: ../games/plait.scm.h:9
-msgid "Move ~a to an empty field"
-msgstr "~a வை வெற்று புலத்துக்கு நகற்று"
-
 #: ../games/poker.scm.h:1
 msgid "Place cards on to the Tableau to form poker hands"
 msgstr "எடுப்பவின் கையில் இருந்து முக்கிய தளத்தில் சீட்டை வை"
@@ -2461,11 +2887,6 @@ msgstr "எடுப்பவின் கையில் இருந்து 
 #: ../games/poker.scm.h:2
 msgid "Shuffle mode"
 msgstr "கலக்கு"
-
-#: ../games/royal_east.scm.h:9 ../games/thumb_and_pouch.scm.h:6
-#: ../games/westhaven.scm.h:4
-msgid "an empty tableau pile"
-msgstr "வெற்று முக்கிய தளத்தில் குவியல்"
 
 #: ../games/scorpion.scm.h:1
 msgid "Deal the cards"
@@ -2475,305 +2896,9 @@ msgstr "சீட்டுகளை பறிமாறு"
 msgid "Reshuffle cards"
 msgstr "சீட்டுகளை மீண்டும் குலுக்கு"
 
-#: ../games/sir_tommy.scm.h:2
+#: ../games/sir-tommy.scm.h:2
 msgid "Move waste on to a reserve slot"
 msgstr "செருகுவாயிற்கு குப்பையிலிருந்து நகற்று"
-
-#: ../games/sir_tommy.scm.h:4
-msgid "empty foundation"
-msgstr "வெற்று அடித்தளம்"
-
-#: ../games/sol.scm.h:1
-msgid "Unknown color"
-msgstr "தெரியாத வண்ணம்:"
-
-#: ../games/sol.scm.h:2
-msgid "Unknown suit"
-msgstr "தெரியாத கூட்டுத்தொகுப்பு"
-
-#: ../games/sol.scm.h:3
-msgid "Unknown value"
-msgstr "தெரியாத மதிப்பு"
-
-#: ../games/sol.scm.h:4
-msgid "ace"
-msgstr "ஏஸ்"
-
-#: ../games/sol.scm.h:6
-msgid "clubs"
-msgstr "க்ளாவர்"
-
-#: ../games/sol.scm.h:7
-msgid "diamonds"
-msgstr "டயமண்ட்"
-
-#: ../games/sol.scm.h:8
-msgid "eight"
-msgstr "எட்டு"
-
-#: ../games/sol.scm.h:9
-msgid "five"
-msgstr "ஐந்து"
-
-#: ../games/sol.scm.h:10
-msgid "four"
-msgstr "நான்கு"
-
-#: ../games/sol.scm.h:11
-msgid "hearts"
-msgstr "இருதயம்"
-
-#: ../games/sol.scm.h:12
-msgid "jack"
-msgstr "மந்திரி"
-
-#: ../games/sol.scm.h:13
-msgid "king"
-msgstr "ராஜா"
-
-#: ../games/sol.scm.h:14
-msgid "nine"
-msgstr "ஒன்பது"
-
-#: ../games/sol.scm.h:15
-msgid "queen"
-msgstr "ராணி"
-
-#: ../games/sol.scm.h:17
-msgid "seven"
-msgstr "ஏழு"
-
-#: ../games/sol.scm.h:18
-msgid "six"
-msgstr "ஆறு"
-
-#: ../games/sol.scm.h:19
-msgid "spades"
-msgstr "ஸ்பேட்"
-
-#: ../games/sol.scm.h:20
-msgid "ten"
-msgstr "பத்து"
-
-#: ../games/sol.scm.h:21
-msgid "the ace of clubs"
-msgstr "க்ளாவரின் ஏஸ்"
-
-#: ../games/sol.scm.h:22
-msgid "the ace of diamonds"
-msgstr "டைமண்டின் ஏஸ்"
-
-#: ../games/sol.scm.h:23
-msgid "the ace of hearts"
-msgstr "இருதயத்தின் ஏஸ்"
-
-#: ../games/sol.scm.h:24
-msgid "the ace of spades"
-msgstr "ஸ்பேடின் ஏஸ்"
-
-#: ../games/sol.scm.h:25
-msgid "the eight of clubs"
-msgstr "க்ளாவரின் எட்டு"
-
-#: ../games/sol.scm.h:26
-msgid "the eight of diamonds"
-msgstr "டைமண்டின் எட்டு"
-
-#: ../games/sol.scm.h:27
-msgid "the eight of hearts"
-msgstr "இருதயதின் எட்டு"
-
-#: ../games/sol.scm.h:28
-msgid "the eight of spades"
-msgstr "ஸ்பேடின் எட்டு"
-
-#: ../games/sol.scm.h:29
-msgid "the five of clubs"
-msgstr "க்ளாவரின் ஜந்து"
-
-#: ../games/sol.scm.h:30
-msgid "the five of diamonds"
-msgstr "டைமண்டின் ஜந்து"
-
-#: ../games/sol.scm.h:31
-msgid "the five of hearts"
-msgstr "இருதயத்தின் ஜந்து"
-
-#: ../games/sol.scm.h:32
-msgid "the five of spades"
-msgstr "ஸ்பேடின் ஜந்து"
-
-#: ../games/sol.scm.h:33
-msgid "the four of clubs"
-msgstr "க்ளாவரின் நான்கு"
-
-#: ../games/sol.scm.h:34
-msgid "the four of diamonds"
-msgstr "டைமண்டின் நான்கு"
-
-#: ../games/sol.scm.h:35
-msgid "the four of hearts"
-msgstr "இருதயத்தின் நான்கு"
-
-#: ../games/sol.scm.h:36
-msgid "the four of spades"
-msgstr "ஸ்பேட்டின் நான்கு"
-
-#: ../games/sol.scm.h:37
-msgid "the jack of clubs"
-msgstr "க்ளாவரின் மந்திரி"
-
-#: ../games/sol.scm.h:38
-msgid "the jack of diamonds"
-msgstr "வைரத்தின் மந்திரி"
-
-#: ../games/sol.scm.h:39
-msgid "the jack of hearts"
-msgstr "இருதயத்தின் மந்திரி"
-
-#: ../games/sol.scm.h:40
-msgid "the jack of spades"
-msgstr "ஸ்பேட்டின் மந்திரி"
-
-#: ../games/sol.scm.h:41
-msgid "the king of clubs"
-msgstr "க்ளாவரின் ராஜா"
-
-#: ../games/sol.scm.h:42
-msgid "the king of diamonds"
-msgstr "டைமண்டின் ராஜா"
-
-#: ../games/sol.scm.h:43
-msgid "the king of hearts"
-msgstr "இருதயத்தின் ராஜா"
-
-#: ../games/sol.scm.h:44
-msgid "the king of spades"
-msgstr "ஸ்பெட்டின் ராஜா"
-
-#: ../games/sol.scm.h:45
-msgid "the nine of clubs"
-msgstr "க்ளாவரின் ஒன்பது"
-
-#: ../games/sol.scm.h:46
-msgid "the nine of diamonds"
-msgstr "டைமண்டின் ஒன்பது"
-
-#: ../games/sol.scm.h:47
-msgid "the nine of hearts"
-msgstr "இருதயத்தின் ஒன்பது"
-
-#: ../games/sol.scm.h:48
-msgid "the nine of spades"
-msgstr "ஸ்பெட்டின் ஒன்பது"
-
-#: ../games/sol.scm.h:49
-msgid "the queen of clubs"
-msgstr "க்ளாவரின் ராணி"
-
-#: ../games/sol.scm.h:50
-msgid "the queen of diamonds"
-msgstr "டைமண்டின் ராணி"
-
-#: ../games/sol.scm.h:51
-msgid "the queen of hearts"
-msgstr "இருதயத்தின் ராணி"
-
-#: ../games/sol.scm.h:52
-msgid "the queen of spades"
-msgstr "ஸ்பெட்டின் ராணி"
-
-#: ../games/sol.scm.h:53
-msgid "the seven of clubs"
-msgstr "க்ளாவரின் எழு"
-
-#: ../games/sol.scm.h:54
-msgid "the seven of diamonds"
-msgstr "டைமண்டின் எழு"
-
-#: ../games/sol.scm.h:55
-msgid "the seven of hearts"
-msgstr "இருதயத்தின் எழு"
-
-#: ../games/sol.scm.h:56
-msgid "the seven of spades"
-msgstr "ஸ்பெட்டின் எழு"
-
-#: ../games/sol.scm.h:57
-msgid "the six of clubs"
-msgstr "க்ளாவரின் ஆறு"
-
-#: ../games/sol.scm.h:58
-msgid "the six of diamonds"
-msgstr "டைமண்டின் ஆறு"
-
-#: ../games/sol.scm.h:59
-msgid "the six of hearts"
-msgstr "இருதயத்தின் ஆறு"
-
-#: ../games/sol.scm.h:60
-msgid "the six of spades"
-msgstr "ஸ்பெட்டின் ஆறு"
-
-#: ../games/sol.scm.h:61
-msgid "the ten of clubs"
-msgstr "க்ளாவரின் பத்து"
-
-#: ../games/sol.scm.h:62
-msgid "the ten of diamonds"
-msgstr "டைமண்டின் பத்து"
-
-#: ../games/sol.scm.h:63
-msgid "the ten of hearts"
-msgstr "இருதயத்தின் பத்து"
-
-#: ../games/sol.scm.h:64
-msgid "the ten of spades"
-msgstr "ஸ்பெட்டின் பத்து"
-
-#: ../games/sol.scm.h:65
-msgid "the three of clubs"
-msgstr "க்ளாவரின் மூன்று"
-
-#: ../games/sol.scm.h:66
-msgid "the three of diamonds"
-msgstr "டைமண்டின் மூன்று"
-
-#: ../games/sol.scm.h:67
-msgid "the three of hearts"
-msgstr "இருதயத்தின் மூன்று"
-
-#: ../games/sol.scm.h:68
-msgid "the three of spades"
-msgstr "ஸ்பெட்டின் மூன்று"
-
-#: ../games/sol.scm.h:69
-msgid "the two of clubs"
-msgstr "க்ளாவரின் இரண்டு"
-
-#: ../games/sol.scm.h:70
-msgid "the two of diamonds"
-msgstr "டைமண்டின் இரண்டு"
-
-#: ../games/sol.scm.h:71
-msgid "the two of hearts"
-msgstr "இருதயத்தின் இரண்டு"
-
-#: ../games/sol.scm.h:72
-msgid "the two of spades"
-msgstr "ஸ்பெட்டின் இரண்டு"
-
-#: ../games/sol.scm.h:73
-msgid "the unknown card"
-msgstr "தெரியாத சீட்டு"
-
-#: ../games/sol.scm.h:74
-msgid "three"
-msgstr "மூன்று"
-
-#: ../games/sol.scm.h:75
-msgid "two"
-msgstr "இரண்டு"
 
 #: ../games/spider.scm.h:2
 msgid "Four Suits"
@@ -2799,15 +2924,15 @@ msgstr "இரண்டு சாதிகள்"
 msgid "Undo until there are enough cards to fill all tableau piles"
 msgstr "முக்கிய தளத்தில் குவியல் எல்லாவற்றையும் நிரப்பும் வரை மீள் செய்க"
 
-#: ../games/ten_across.scm.h:1
+#: ../games/ten-across.scm.h:1
 msgid "Allow temporary spots use"
 msgstr "தற்காலிக இடம் பயன்படுத்த அனுமதி"
 
-#: ../games/ten_across.scm.h:2
+#: ../games/ten-across.scm.h:2
 msgid "Move a card to an empty temporary slot"
 msgstr "காலியான தற்காலிக செருகுவாயில் சீட்டை நகற்று"
 
-#: ../games/ten_across.scm.h:3
+#: ../games/ten-across.scm.h:3
 msgid "No hint available"
 msgstr "உதவி குறிப்பு எதுவும் இல்லை"
 
@@ -2849,17 +2974,17 @@ msgstr "தட்டில் இருந்து சீட்டை ஏடு
 msgid "Match the top two cards of the waste."
 msgstr "குப்பையின் மேல் சீட்டுகள் இரண்டை பொருத்தவும்"
 
-#: ../games/triple_peaks.scm.h:2
+#: ../games/thumb-and-pouch.scm.h:6
+msgid "an empty tableau pile"
+msgstr "வெற்று முக்கிய தளத்தில் குவியல்"
+
+#: ../games/triple-peaks.scm.h:2
 msgid "Multiplier Scoring"
 msgstr "பல்பெருகும் மதிப்பு"
 
-#: ../games/triple_peaks.scm.h:3
+#: ../games/triple-peaks.scm.h:3
 msgid "Progressive Rounds"
 msgstr "முன்னேறும் சுற்றுகள்"
-
-#: ../games/union_square.scm.h:4
-msgid "appropriate foundation pile"
-msgstr "அதற்குறிய அடித்தள பைல் "
 
 #: ../games/whitehead.scm.h:2
 msgid "Move a build of cards on to the empty Tableau slot"
@@ -2868,6 +2993,144 @@ msgstr "வெற்று முக்கிய தள செருகுவா
 #: ../games/zebra.scm.h:5
 msgid "the appropriate Foundation pile"
 msgstr "அதற்குறிய அந்த அடித்தள பைல் "
+
+#~ msgctxt "score"
+#~ msgid "%6d"
+#~ msgstr "%6d"
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with %s; if not, write to the Free Software Foundation, Inc., 51 Franklin "
+#~ "Street, Fifth Floor, Boston, MA  02110-1301  USA"
+#~ msgstr ""
+#~ "%s நிரலுடன் ஜிஎன்யு பொது அனுமதிக்கான விதிகளின் பிரதி உங்களுக்கு கிடைத்திருக்க "
+#~ "வேண்டும். இல்லையானால் கீழ் கண்ட முகவரிக்கு கடிதம் ஏழு  தவும்.Free Software "
+#~ "Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, "
+#~ "USA "
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "கோப்பு செல்லுபடியாகும்  .desktop கோப்பு அல்ல"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "அடையாளம் காண இயலாத மேல்மேசை கோப்பு `%s'"
+
+#~ msgid "Starting %s"
+#~ msgstr "%s ஐ துவக்குகிறது"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "பயன்பாடு கட்டளை வரியில் ஆவணங்களை ஒப்புக்கொள்ளாது"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "அடையாளம் காண இயலாத துவக்க தேர்வு : %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "'Type=Link' மேல்மேசை உள்ளீடுக்கு ஆவண யூஆர்ஐ ஐ கொடுக்க இயலாது"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "துவக்க முடியாத உருப்படி"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "அமர்வு மேலாளருக்கு இணைப்பை செயல் நீக்கு"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "சேமித்த வடிவமைப்பு உள்ள கோப்பை குறிப்பிடுக"
+
+#~ msgid "FILE"
+#~ msgstr "FILE"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "அமர்வு மேலாண்மை அடையாளத்தை குறிப்பிடுக"
+
+#~ msgid "ID"
+#~ msgstr "ஐடி (ID)"
+
+#~ msgid "Session management options:"
+#~ msgstr "அமர்வு மேலாண்மை தேர்வுகள்:"
+
+#~ msgid "Show session management options"
+#~ msgstr "அமர்வு மேலாணமை தேர்வுகளை காட்டு"
+
+#~ msgid "an empty corner slot"
+#~ msgstr "காலியான ஓர செருகுவாய்"
+
+#~ msgid "an empty left slot"
+#~ msgstr "காலியான இடது செருகுவாய்"
+
+#~ msgid "an empty right slot"
+#~ msgstr "காலியான வலது செருகுவாய்"
+
+#~ msgid "an empty top slot"
+#~ msgstr "காலியான மேல் செருகுவாய்"
+
+#~ msgid "Bug! make-hint called on false move."
+#~ msgstr "பிழை! தவறான இயக்கத்தில் உதவி கேட்கப்பட்டது"
+
+#~ msgid "an empty space"
+#~ msgstr "ஒரு வெற்று இடைவெளி"
+
+#~ msgid "Move ~a from the stock to an empty edge or tableau slot"
+#~ msgstr ""
+#~ "இருப்பில் இருந்து ~a வை வெற்று முனை அல்லது முக்கிய தளத்தில் செருகுவாயுக்கு நகற்று  "
+
+#~ msgid "empty foundation"
+#~ msgstr "வெற்று அடித்தளம்"
+
+#~ msgid "Unknown suit"
+#~ msgstr "தெரியாத கூட்டுத்தொகுப்பு"
+
+#~ msgid "ace"
+#~ msgstr "ஏஸ்"
+
+#~ msgid "clubs"
+#~ msgstr "க்ளாவர்"
+
+#~ msgid "diamonds"
+#~ msgstr "டயமண்ட்"
+
+#~ msgid "eight"
+#~ msgstr "எட்டு"
+
+#~ msgid "five"
+#~ msgstr "ஐந்து"
+
+#~ msgid "four"
+#~ msgstr "நான்கு"
+
+#~ msgid "hearts"
+#~ msgstr "இருதயம்"
+
+#~ msgid "jack"
+#~ msgstr "ஜாக் "
+
+#~ msgid "king"
+#~ msgstr "ராஜா"
+
+#~ msgid "nine"
+#~ msgstr "ஒன்பது"
+
+#~ msgid "queen"
+#~ msgstr "ராணி"
+
+#~ msgid "seven"
+#~ msgstr "ஏழு"
+
+#~ msgid "six"
+#~ msgstr "ஆறு"
+
+#~ msgid "spades"
+#~ msgstr "ஸ்பேட்"
+
+#~ msgid "ten"
+#~ msgstr "பத்து"
+
+#~ msgid "three"
+#~ msgstr "மூன்று"
+
+#~ msgid "two"
+#~ msgstr "இரண்டு"
+
+#~ msgid "appropriate foundation pile"
+#~ msgstr "அதற்குறிய அடித்தள பைல் "
 
 #~ msgid ""
 #~ "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
@@ -4369,7 +4632,7 @@ msgstr "அதற்குறிய அந்த அடித்தள பைல
 #~ msgstr "_ஒலிகளை செயல்படசெய்"
 
 #~ msgid "Play sounds for events like winning a level and dying."
-#~ msgstr "வெற்றி தோல்விகளின் போது ஒலி எழுப்பு"
+#~ msgstr "வெற்றி தோல்விகளின் போது ஒலி ஏழு  ப்பு"
 
 #~ msgid "Graphics Theme"
 #~ msgstr "சித்திரங்களின் கருத்து"
@@ -7292,7 +7555,7 @@ msgstr "அதற்குறிய அந்த அடித்தள பைல
 #~ msgstr "பயனர் பெயர் மிக நீளமாக உள்ளது!"
 
 #~ msgid "Invalid username, do not use special characters!"
-#~ msgstr "செல்லாத பயனர் பெயர். சிறப்பு எண் எழுத்து குறியீடுகளை பயன்படுத்தாதீர்கள்!"
+#~ msgstr "செல்லாத பயனர் பெயர். சிறப்பு எண் ஏழு  த்து குறியீடுகளை பயன்படுத்தாதீர்கள்!"
 
 #~ msgid "Login failed for unknown reason: %s"
 #~ msgstr "தெரியாத காரணத்தால் உள்நுழைவு இயலவில்லை:%s"
@@ -7898,7 +8161,7 @@ msgstr "அதற்குறிய அந்த அடித்தள பைல
 #~ msgstr "சேவையகங்கள்"
 
 #~ msgid "Chat Font:"
-#~ msgstr "அரட்டை எழுத்துரு:"
+#~ msgstr "அரட்டை ஏழு  த்துரு:"
 
 #~ msgid "Change"
 #~ msgstr "மாற்று"
@@ -7982,7 +8245,7 @@ msgstr "அதற்குறிய அந்த அடித்தள பைல
 #~ msgstr "எதையும் காட்டாதே"
 
 #~ msgid "Select Font"
-#~ msgstr "எழுத்துருவை தேர்வுசெய்"
+#~ msgstr "ஏழு  த்துருவை தேர்வுசெய்"
 
 #~ msgid "Connect four tiles in a row"
 #~ msgstr "நான்கு தட்டுகளை ஒரே வரியில் இணை"
