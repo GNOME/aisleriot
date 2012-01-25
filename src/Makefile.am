@@ -53,8 +53,7 @@ sol_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 sol_CFLAGS = \
-	$(GTK_CFLAGS)	      \
-	$(GUILE_CFLAGS)	      \
+	$(AISLERIOT_CFLAGS) \
 	$(AM_CFLAGS)
 
 sol_LDFLAGS = \
@@ -62,24 +61,8 @@ sol_LDFLAGS = \
 
 sol_LDADD = \
 	lib/libaisleriot.la \
-	$(GTK_LIBS) \
-	$(GUILE_LIBS) \
+	$(AISLERIOT_LIBS) \
 	-lm
-
-if HAVE_GNOME
-sol_CFLAGS += $(GNOME_CFLAGS)
-sol_LDADD += $(GNOME_LIBS)
-endif
-
-if HAVE_RSVG
-sol_CFLAGS += $(RSVG_CFLAGS)
-sol_LDADD += $(RSVG_LIBS)
-endif
-
-if WITH_GTHREAD
-sol_CFLAGS += $(GHTREAD_CFLAGS)
-sol_LDADD += $(GTHREAD_LIBS)
-endif
 
 if PLATFORM_WIN32_NATIVE
 sol_LDFLAGS += -mwindows
@@ -147,7 +130,7 @@ BUILT_SOURCES = \
 	ar-resources.h \
 	$(NULL)
 
-ar-resources.h ar-resources.c: aisleriot.gresource.xml Makefile $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/aisleriot.gresource.xml)
+ar-resources.h ar-resources.c: aisleriot.gresource.xml Makefile $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies aisleriot.gresource.xml)
 	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --sourcedir . --generate --c-name aisleriot $<
 
 schema_in_files = aisleriot.schemas.in
@@ -177,9 +160,6 @@ EXTRA_DIST = \
 	$(cardimage_DATA)	\
 	$(icon_DATA)		\
 	$(allicons)		\
-	$(ossobackup_in_files)	\
-	$(ossoscript_in_files)	\
-	$(ossoservice_in_files)	\
 	$(schema_in_files)	\
 	game-names.h
 

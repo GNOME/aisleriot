@@ -22,6 +22,7 @@ AM_MAINTAINER_MODE([enable])
 # *****************************************************************************
 
 PKG_PROG_PKG_CONFIG([0.15])
+PKGS=
 
 AC_PROG_CC
 AC_PROG_CPP
@@ -107,20 +108,6 @@ case "$host" in
 esac
 AC_MSG_RESULT([$os_win32])
 AM_CONDITIONAL([PLATFORM_WIN32_NATIVE],[test "$os_win32" = "yes"])
-
-# ********
-# Features
-# ********
-
-# *****
-# Sound
-# *****
-
-AC_MSG_CHECKING([whether to enable sound support])
-AC_ARG_ENABLE([sound],
-  [AS_HELP_STRING([--enable-sound],[Enable sound using libcanberra])],
-  [],[enable_sound=yes])
-AC_MSG_RESULT([$enable_sound])
 
 # *******
 # Clutter
@@ -295,22 +282,25 @@ GIO_REQUIRED=2.31.13
 
 # Check for common modules
 
-need_gthread=no
-PKG_CHECK_MODULES([GTHREAD],[gthread-2.0])
-AC_SUBST([GTHREAD_CFLAGS])
-AC_SUBST([GTHREAD_LIBS])
+PKGS="$PKGS gtk+-$GTK_API_VERSION >= $GTK_REQUIRED"
 
-PKG_CHECK_MODULES([GMODULE],[gmodule-2.0])
-AC_SUBST([GMODULE_CFLAGS])
-AC_SUBST([GMODULE_LIBS])
+# *****
+# Sound
+# *****
 
-PKG_CHECK_MODULES([GOBJECT],[gobject-2.0])
-AC_SUBST([GOBJECT_CFLAGS])
-AC_SUBST([GOBJECT_LIBS])
+AC_MSG_CHECKING([whether to enable sound support])
+AC_ARG_ENABLE([sound],
+  [AS_HELP_STRING([--enable-sound],[Enable sound using libcanberra])],
+  [],[enable_sound=yes])
+AC_MSG_RESULT([$enable_sound])
 
-PKG_CHECK_MODULES([GTK],[gtk+-$GTK_API_VERSION >= $GTK_REQUIRED])
-AC_SUBST([GTK_CFLAGS])
-AC_SUBST([GTK_LIBS])
+if test "$enable_sound" = "yes"; then
+  PKGS="$PKGS $LIBCANBERRA_GTK_PKGS"
+
+  AC_DEFINE([ENABLE_SOUND],[1],[Define if sound support is enabled])
+fi
+
+AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 
 # *********
 # GSettings
@@ -324,11 +314,7 @@ AM_GCONF_SOURCE_2
 AC_PATH_PROG([GCONFTOOL],[gconftool-2])
 
 if test "$with_platform" = "gnome"; then
-  PKG_CHECK_MODULES([GNOME],[gconf-2.0 >= $GCONF_REQUIRED])
-  AC_SUBST([GNOME_CFLAGS])
-  AC_SUBST([GNOME_LIBS])
-
-  need_gthread=yes
+  PKGS="$PKGS gconf-2.0 >= $GCONF_REQUIRED"
 fi
 
 # Check for librsvg
@@ -339,13 +325,7 @@ if test "$need_rsvg" = "yes"; then
 
   CAIRO_REQUIRED=1.10.0
 
-  # Errors out if rsvg is not found
-  PKG_CHECK_MODULES([RSVG],[
-    librsvg-2.0 >= $RSVG_REQUIRED
-    cairo >= $CAIRO_REQUIRED])
-
-  AC_SUBST([RSVG_CFLAGS])
-  AC_SUBST([RSVG_LIBS])
+  PKGS="$PKGS librsvg-2.0 >= $RSVG_REQUIRED cairo >= $CAIRO_REQUIRED"
 
   AC_DEFINE([HAVE_RSVG],[1],[Refine if librsvg is available])
 fi
@@ -373,21 +353,6 @@ if test "$with_clutter" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_CLUTTER],[test "$with_clutter" = "yes"])
-
-# GThread
-
-AM_CONDITIONAL([WITH_GTHREAD],[test "$need_gthread" = "yes"])
-
-# libcanberra
-
-if test "$enable_sound" = "yes"; then
-  PKG_CHECK_MODULES([CANBERRA_GTK],[$LIBCANBERRA_GTK_PKGS],[],
-    [AC_MSG_ERROR([Sound support was requested, but libcanberra-gtk not found.])])
-
-  AC_DEFINE([ENABLE_SOUND],[1],[Define if sound support is enabled])
-fi
-
-AM_CONDITIONAL([ENABLE_SOUND],[test "$enable_sound" = "yes"])
 
 # *****************
 # Extra build tools
@@ -533,7 +498,7 @@ fi
 
 AC_MSG_RESULT([$with_guile_result])
 
-PKG_CHECK_MODULES([GUILE],[$GUILE_PKGS])
+PKGS="$PKGS $GUILE_PKGS"
 
 AC_SUBST([GUILE_EFFECTIVE_VERSION],[$with_guile])
 
@@ -542,6 +507,14 @@ AC_PATH_PROG([GUILE],[guile],[false])
 if test "$GUILE" = "false"; then
   AC_MSG_ERROR([guile not found])
 fi
+
+# ************
+# Dependencies
+# ************
+
+PKG_CHECK_MODULES([AISLERIOT],[$PKGS])
+AC_SUBST([AISLERIOT_CFLAGS])
+AC_SUBST([AISLERIOT_LIBS])
 
 # *************
 # Documentation

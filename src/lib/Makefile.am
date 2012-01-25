@@ -84,33 +84,16 @@ libaisleriot_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 libaisleriot_la_CFLAGS = \
-	$(GTK_CFLAGS) \
-	$(GIO_CFLAGS) \
+	$(AISLERIOT_CFLAGS) \
 	$(AM_CFLAGS)
 
 libaisleriot_la_LIBADD = \
-	$(GTK_LIBS) \
-	$(GIO_LIBS)
-
-if HAVE_RSVG
-libaisleriot_la_CFLAGS += $(RSVG_CFLAGS)
-libaisleriot_la_LIBADD += $(RSVG_LIBS)
-endif # HAVE_RSVG
+	$(AISLERIOT_LIBS)
 
 if HAVE_CLUTTER
 libaisleriot_la_CFLAGS += $(CLUTTER_CFLAGS)
 libaisleriot_la_LIBADD += $(CLUTTER_LIBS)
 endif # HAVE_CLUTTER
-
-if HAVE_GNOME
-libaisleriot_la_CFLAGS += $(GNOME_CFLAGS)
-libaisleriot_la_LIBADD += $(GNOME_LIBS)
-endif
-
-if ENABLE_SOUND
-libaisleriot_la_CFLAGS += $(CANBERRA_GTK_CFLAGS)
-libaisleriot_la_LIBADD += $(CANBERRA_GTK_LIBS)
-endif
 
 gsettingsschema_in_files = org.gnome.Patience.WindowState.gschema.xml.in
 gsettings_SCHEMAS = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
@@ -142,8 +125,7 @@ ar_cards_renderer_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 ar_cards_renderer_CFLAGS = \
-	$(GTK_CFLAGS) \
-	$(RSVG_CFLAGS) \
+	$(AISLERIOT_CFLAGS) \
 	$(AM_CFLAGS)
 
 ar_cards_renderer_LDFLAGS = \
@@ -151,13 +133,7 @@ ar_cards_renderer_LDFLAGS = \
 
 ar_cards_renderer_LDADD = \
 	libaisleriot.la \
-	$(GTK_LIBS) \
-	$(RSVG_LIBS)
-
-if WITH_GTHREAD
-ar_cards_renderer_CFLAGS += $(GHTREAD_CFLAGS)
-ar_cards_renderer_LDADD += $(GTHREAD_LIBS)
-endif # WITH_GTHREAD
+	$(AISLERIOT_LIBS)
 
 endif # HAVE_RSVG
 
