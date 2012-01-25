@@ -147,12 +147,8 @@ BUILT_SOURCES = \
 	ar-resources.h \
 	$(NULL)
 
-# FIXME autogen the dependencies from the gresource file too?
-ar-resources.c: aisleriot.gresource.xml Makefile
-	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --sourcedir . --generate-source --c-name aisleriot $<
-
-ar-resources.h: aisleriot.gresource.xml Makefile
-	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --sourcedir . --generate-header --c-name aisleriot $<
+ar-resources.h ar-resources.c: aisleriot.gresource.xml Makefile $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/aisleriot.gresource.xml)
+	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --sourcedir . --generate --c-name aisleriot $<
 
 schema_in_files = aisleriot.schemas.in
 if HAVE_GNOME

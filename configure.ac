@@ -290,8 +290,8 @@ case "$with_gtk" in
 esac
 
 GCONF_REQUIRED=2.0
-GLIB_REQUIRED=2.31.10
-GIO_REQUIRED=2.31.10
+GLIB_REQUIRED=2.31.13
+GIO_REQUIRED=2.31.13
 
 # Check for common modules
 
