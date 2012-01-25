@@ -248,6 +248,5 @@ ar_card_theme_preimage_class_init (ArCardThemePreimageClass * klass)
   theme_class->set_card_size = ar_card_theme_preimage_set_card_size;
   theme_class->get_card_size = ar_card_theme_preimage_get_card_size;
   theme_class->get_card_aspect = ar_card_theme_preimage_get_card_aspect;
-  theme_class->get_card_pixbuf = NULL;
   theme_class->set_font_options = ar_card_theme_preimage_set_font_options;
 }
