@@ -114,7 +114,7 @@ stamp-ar-marshal.h: ar-marshal.list Makefile
 
 if HAVE_RSVG
 
-pkglib_PROGRAMS = ar-cards-renderer
+pkglibexec_PROGRAMS = ar-cards-renderer
 
 ar_cards_renderer_SOURCES = \
 	render-cards.c
