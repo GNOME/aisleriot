@@ -22,7 +22,7 @@ desktop_in_files = \
 desktopdir = $(datadir)/applications
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
-EXTRA_DIST = \
+dist_valgrind_DATA = \
 	aisleriot.supp \
 	$(NULL)
 

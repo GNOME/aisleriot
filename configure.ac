@@ -571,6 +571,15 @@ YELP_HELP_INIT([3.1.1],
 
 AM_CONDITIONAL([BUILD_HELP],[test "$with_help_method" = "ghelp"])
 
+# ********
+# Valgrind
+# ********
+
+AC_ARG_WITH([valgrind-dir],
+  [AC_HELP_STRING([--with-valgrind-dir=PATH],[directory to install Valgrind suppressions to])],
+  [],[with_valgrind_dir='${libdir}/valgrind'])
+AC_SUBST([valgrinddir],[$with_valgrind_dir])
+
 ##############################################
 
 AC_SUBST([AM_CPPFLAGS])
