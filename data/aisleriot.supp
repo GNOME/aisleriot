@@ -1,6 +1,4 @@
 # Aisleriot suppressions file
-# Suppresses common invalid reads and conditional jumps from guile GC.
-# Might be a bit overly aggressive.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,76 +13,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Shut up errors from garbage collection (libGC)
+
 {
-  scm_i_find_heap_segment_containing_object
+  libGC/Cond
   Memcheck:Cond
-  fun:scm_i_find_heap_segment_containing_object
+  fun:GC_*
 }
 
 {
-  scm_gc_mark/scm_mark_locations
-  Memcheck:Cond
-  fun:scm_gc_mark
-}
-
-{
-  scm_gc_mark
+  libGC/Value4
   Memcheck:Value4
-  fun:scm_gc_mark
+  fun:GC_*
 }
 
 {
-  scm_gc_mark_dependencies
+  libGC/Value8
+  Memcheck:Value8
+  fun:GC_*
+}
+
+# libunistring freea reads a possibly uninitialised value *by design*
+
+{
+  libunistring/freea
   Memcheck:Cond
-  fun:scm_gc_mark_dependencies
+  fun:libunistring_freea
 }
 
-{
-  scm_gc_mark_dependencies
-  Memcheck:Value4
-  fun:scm_gc_mark_dependencies
-}
-
-{
-  scm_i_sweep_card
-  Memcheck:Cond
-  fun:scm_i_sweep_card
-}
-
-{
-  internal/scm_gc_mark_dependencies
-  Memcheck:Value4
-  obj:*/libguile.so*
-  fun:scm_gc_mark_dependencies
-}
-
-{
-  scm_i_string_mark
-  Memcheck:Value4
-  fun:scm_i_string_mark
-}
-
-{
-  scm_i_mark_weak_vectors_non_weaks
-  Memcheck:Cond
-  fun:scm_i_mark_weak_vectors_non_weaks
-}
-
-{
-  scm_i_remove_weaks_from_weak_vectors
-  Memcheck:Cond
-  fun:scm_i_remove_weaks_from_weak_vectors
-}
-
-{
-  internal/scm_c_hook_run
-  Memcheck:Cond
-  obj:*/libguile.so*
-  fun:scm_c_hook_run
-}
-
-{
-  scm_markstream
-  Memcheck:Value4
-  fun:scm_markstream
-}
