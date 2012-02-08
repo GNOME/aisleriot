@@ -1,30 +1,30 @@
 # Serbian translation of aisleriot
-#
 # Courtesy of Prevod.org team (http://prevod.org/) -- 2003 - 2011.
 # This file is distributed under the same license as the aisleriot package.
-#
 # Душан Марјановић <madafaka@bsd.org.yu>
 # Игор Несторовић <igor@prevod.org>
 # Милош Поповић <gpopac@gmail.com>
 # Бранко Кокановић <branko.kokanovic@gmail.com>
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011.
-#
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-18 00:03+0100\n"
-"PO-Revision-Date: 2011-11-17 10:28+0200\n"
-"Last-Translator: Горан Ракић <grakic@devbase.net>\n"
-"Language-Team: Serbian <gnom@prevod.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aisler"
+"iot&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-02-07 22:02+0000\n"
+"PO-Revision-Date: 2012-02-08 20:00+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian <gnu@prevod.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:166 ../src/window.c:409
+#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:117 ../src/window.c:409
 #: ../src/window.c:413
 msgid "FreeCell Solitaire"
 msgstr "Фрисел пасијанс"
@@ -42,25 +42,20 @@ msgid "Play many different solitaire games"
 msgstr "Играј различите варијанте пасијанса"
 
 #: ../src/aisleriot.schemas.in.h:1
-msgid "A list of recently played games."
-msgstr "Списак скорашњих игара."
+msgid "Theme file name"
+msgstr "Датотека са темом"
 
 #: ../src/aisleriot.schemas.in.h:2
-msgid ""
-"A list of strings that come in the form of a quintuple: name, wins, total "
-"games played, best time (in seconds) and worst time (also in seconds). "
-"Unplayed games do not need to be represented."
-msgstr ""
-"Списак ниски у облику петорке: име, број победа, укупно одиграних, најбоље и "
-"најгоре време (у секундама). Неодигране игре не морају да буду представљене."
+msgid "The name of the file with the graphics for the cards."
+msgstr "Име датотеке са сликама за карте."
 
 #: ../src/aisleriot.schemas.in.h:3
-msgid "Animations"
-msgstr "Анимације"
+msgid "Whether or not to show the toolbar"
+msgstr "Да ли приказивати палету алатки."
 
 #: ../src/aisleriot.schemas.in.h:4
-msgid "Recently played games"
-msgstr "Скорашње игре"
+msgid "Whether or not to show the status bar"
+msgstr "Да ли приказати линију са стањем."
 
 #: ../src/aisleriot.schemas.in.h:5
 msgid "Select the style of control"
@@ -79,116 +74,206 @@ msgid "Sound"
 msgstr "Звук"
 
 #: ../src/aisleriot.schemas.in.h:8
-msgid "Statistics of games played"
-msgstr "Статистика одиграних игара"
-
-#: ../src/aisleriot.schemas.in.h:9
-msgid "The game file to use"
-msgstr "Датотека са игром"
-
-#: ../src/aisleriot.schemas.in.h:10
-msgid "The name of the file with the graphics for the cards."
-msgstr "Име датотеке са сликама за карте."
-
-#: ../src/aisleriot.schemas.in.h:11
-msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "Име датотеке која садржи опис врсте пасијанса који ће се играти."
-
-#: ../src/aisleriot.schemas.in.h:12
-msgid "Theme file name"
-msgstr "Датотека са темом"
-
-#: ../src/aisleriot.schemas.in.h:13
-msgid "Whether or not to animate card moves."
-msgstr "Да ли приказивати анимације."
-
-#: ../src/aisleriot.schemas.in.h:14
 msgid "Whether or not to play event sounds."
 msgstr "Да ли пуштати звукове при догађајима."
 
+#: ../src/aisleriot.schemas.in.h:9
+msgid "Animations"
+msgstr "Анимације"
+
+#: ../src/aisleriot.schemas.in.h:10
+msgid "Whether or not to animate card moves."
+msgstr "Да ли приказивати анимације."
+
+#: ../src/aisleriot.schemas.in.h:11
+msgid "The game file to use"
+msgstr "Датотека са игром"
+
+#: ../src/aisleriot.schemas.in.h:12
+msgid "The name of the scheme file containing the solitaire game to play."
+msgstr "Име датотеке која садржи опис врсте пасијанса који ће се играти."
+
+#: ../src/aisleriot.schemas.in.h:13
+msgid "Statistics of games played"
+msgstr "Статистика одиграних игара"
+
+#: ../src/aisleriot.schemas.in.h:14
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"Списак ниски у облику петорке: име, број победа, укупно одиграних, најбоље и "
+"најгоре време (у секундама). Неодигране игре не морају да буду представљене."
+
 #: ../src/aisleriot.schemas.in.h:15
-msgid "Whether or not to show the status bar"
-msgstr "Да ли приказати линију са стањем."
+msgid "Recently played games"
+msgstr "Скорашње игре"
 
 #: ../src/aisleriot.schemas.in.h:16
-msgid "Whether or not to show the toolbar"
-msgstr "Да ли приказивати палету алатки."
+msgid "A list of recently played games."
+msgstr "Списак скорашњих игара."
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:187 ../src/window.c:2312
+#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
 msgid "Select Game"
 msgstr "Изаберите игру"
 
-#: ../src/ar-game-chooser.c:201
+#: ../src/ar-game-chooser.c:192
 msgid "_Select"
 msgstr "_Изабери"
 
+#: ../src/ar-stock.c:190
+msgid "_Contents"
+msgstr "_Садржај"
+
+#: ../src/ar-stock.c:191
+msgid "_Fullscreen"
+msgstr "_Цео екран"
+
+#: ../src/ar-stock.c:192
+msgid "_Hint"
+msgstr "_Савет"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../src/ar-stock.c:194
+msgid "_New"
+msgstr "_Нова"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../src/ar-stock.c:196
+msgid "_New Game"
+msgstr "_Нова игра"
+
+#: ../src/ar-stock.c:197
+msgid "_Redo Move"
+msgstr "_Понови потез"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../src/ar-stock.c:199
+msgid "_Reset"
+msgstr "_Поништи"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../src/ar-stock.c:201
+msgid "_Restart"
+msgstr "_Поново покрени"
+
+#: ../src/ar-stock.c:202
+msgid "_Undo Move"
+msgstr "_Опозови потез"
+
+#: ../src/ar-stock.c:203
+msgid "_Deal"
+msgstr "_Дели"
+
+#: ../src/ar-stock.c:204
+msgid "_Leave Fullscreen"
+msgstr "_Напусти пун екран"
+
+#: ../src/ar-stock.c:205
+msgid "_Pause"
+msgstr "_Пауза"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../src/ar-stock.c:267
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s је слободан софтвер; можете га прослеђивати и/или мењати под условима ГНУ "
+"Опште јавне лиценце коју је објавила Задужбина слободног софтвера; било "
+"верзије %d лиценце или (по вашем избору) било које новије верзије."
+
+#: ../src/ar-stock.c:272
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s се расподељује у нади да ће бити користан, али БЕЗ ИКАКВЕ ГАРАНЦИЈЕ; чак "
+"и без примењене гаранције ТРЖИШНЕ ВРЕДНОСТИ или ПРИЛАГОЂЕНОСТИ ОДРЕЂЕНОЈ "
+"НАМЕНИ. Погледајте ГНУ Општу јавну лиценцу за више детаља."
+
+#: ../src/ar-stock.c:277
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Требало је да примите примерак ГНУ Опште Јавне Лиценце уз %s; ако нисте, "
+"погледајте <http://www.gnu.org/licenses/>."
+
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1374
+#: ../src/game.c:1437
 msgctxt "slot type"
 msgid "foundation"
 msgstr "темељ"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1378
+#: ../src/game.c:1441
 msgctxt "slot type"
 msgid "reserve"
 msgstr "резерва"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1382
+#: ../src/game.c:1445
 msgctxt "slot type"
 msgid "stock"
 msgstr "гомила"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1386
+#: ../src/game.c:1449
 msgctxt "slot type"
 msgid "tableau"
 msgstr "талон"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1390
+#: ../src/game.c:1453
 msgctxt "slot type"
 msgid "waste"
 msgstr "отпад"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1422
+#: ../src/game.c:1485
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s на темељу"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1426
+#: ../src/game.c:1489
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s на резерви"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1430
+#: ../src/game.c:1493
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s на гомили"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1434
+#: ../src/game.c:1497
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s на талону"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1438
+#: ../src/game.c:1501
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s на отпаду"
 
-#: ../src/game.c:2118
+#: ../src/game.c:2168
 msgid "This game does not have hint support yet."
 msgstr "Још увек не постоје савети за ову игру."
 
@@ -196,12 +281,12 @@ msgstr "Још увек не постоје савети за ову игру."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2153 ../src/game.c:2179
+#: ../src/game.c:2203 ../src/game.c:2229
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Пребаци %s на %s."
 
-#: ../src/game.c:2199
+#: ../src/game.c:2249
 msgid "This game is unable to provide a hint."
 msgstr "Није могуће дати савет за ову игру."
 
@@ -519,7 +604,7 @@ msgstr "Пукотине"
 #.
 #: ../src/game-names.h:245
 msgid "Gay Gordons"
-msgstr "Гај Гордонов"
+msgstr "Весели Гордони"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -905,7 +990,7 @@ msgstr "Десет попреко"
 #. freely, literally, or not at all, at your option.
 #.
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../src/game-names.h:546 ../games/terrace.scm.h:20
+#: ../src/game-names.h:546 ../games/terrace.scm:39
 msgid "Terrace"
 msgstr "Тераса"
 
@@ -1026,28 +1111,361 @@ msgstr "Јукон"
 msgid "Zebra"
 msgstr "Зебра"
 
+#. Translators: this is the symbol that's on a Joker card
+#: ../src/lib/ar-card.c:237
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "ЏОКЕР"
+
+#. Translators: this is the symbol that's on an Ace card
+#: ../src/lib/ar-card.c:239 ../src/lib/ar-card.c:263
+msgctxt "card symbol"
+msgid "A"
+msgstr "А"
+
+#. Translators: this is the symbol that's on a 2 card
+#: ../src/lib/ar-card.c:241
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: ../src/lib/ar-card.c:243
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: ../src/lib/ar-card.c:245
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: ../src/lib/ar-card.c:247
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: ../src/lib/ar-card.c:249
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: ../src/lib/ar-card.c:251
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: ../src/lib/ar-card.c:253
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: ../src/lib/ar-card.c:255
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: ../src/lib/ar-card.c:257
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: ../src/lib/ar-card.c:259
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: ../src/lib/ar-card.c:261
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: ../src/lib/ar-card.c:265
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
+
+#: ../src/lib/ar-card.c:299
+msgid "ace of clubs"
+msgstr "кец треф"
+
+#: ../src/lib/ar-card.c:300
+msgid "two of clubs"
+msgstr "двојка треф"
+
+#: ../src/lib/ar-card.c:301
+msgid "three of clubs"
+msgstr "тројка треф"
+
+#: ../src/lib/ar-card.c:302
+msgid "four of clubs"
+msgstr "четворка треф"
+
+#: ../src/lib/ar-card.c:303
+msgid "five of clubs"
+msgstr "петица треф"
+
+#: ../src/lib/ar-card.c:304
+msgid "six of clubs"
+msgstr "шестица треф"
+
+#: ../src/lib/ar-card.c:305
+msgid "seven of clubs"
+msgstr "седмица треф"
+
+#: ../src/lib/ar-card.c:306
+msgid "eight of clubs"
+msgstr "осмица треф"
+
+#: ../src/lib/ar-card.c:307
+msgid "nine of clubs"
+msgstr "деветка треф"
+
+#: ../src/lib/ar-card.c:308
+msgid "ten of clubs"
+msgstr "десетка треф"
+
+#: ../src/lib/ar-card.c:309
+msgid "jack of clubs"
+msgstr "жандар треф"
+
+#: ../src/lib/ar-card.c:310
+msgid "queen of clubs"
+msgstr "краљица треф"
+
+#: ../src/lib/ar-card.c:311
+msgid "king of clubs"
+msgstr "краљ треф"
+
+#: ../src/lib/ar-card.c:312
+msgid "ace of diamonds"
+msgstr "кец каро"
+
+#: ../src/lib/ar-card.c:313
+msgid "two of diamonds"
+msgstr "двојка каро"
+
+#: ../src/lib/ar-card.c:314
+msgid "three of diamonds"
+msgstr "тројка каро"
+
+#: ../src/lib/ar-card.c:315
+msgid "four of diamonds"
+msgstr "четворка каро"
+
+#: ../src/lib/ar-card.c:316
+msgid "five of diamonds"
+msgstr "петица каро"
+
+#: ../src/lib/ar-card.c:317
+msgid "six of diamonds"
+msgstr "шестица каро"
+
+#: ../src/lib/ar-card.c:318
+msgid "seven of diamonds"
+msgstr "седмица каро"
+
+#: ../src/lib/ar-card.c:319
+msgid "eight of diamonds"
+msgstr "осмица каро"
+
+#: ../src/lib/ar-card.c:320
+msgid "nine of diamonds"
+msgstr "деветка каро"
+
+#: ../src/lib/ar-card.c:321
+msgid "ten of diamonds"
+msgstr "десетка каро"
+
+#: ../src/lib/ar-card.c:322
+msgid "jack of diamonds"
+msgstr "жандар каро"
+
+#: ../src/lib/ar-card.c:323
+msgid "queen of diamonds"
+msgstr "краљица каро"
+
+#: ../src/lib/ar-card.c:324
+msgid "king of diamonds"
+msgstr "краљ каро"
+
+#: ../src/lib/ar-card.c:325
+msgid "ace of hearts"
+msgstr "кец херц"
+
+#: ../src/lib/ar-card.c:326
+msgid "two of hearts"
+msgstr "двојка херц"
+
+#: ../src/lib/ar-card.c:327
+msgid "three of hearts"
+msgstr "тројка херц"
+
+#: ../src/lib/ar-card.c:328
+msgid "four of hearts"
+msgstr "четворка херц"
+
+#: ../src/lib/ar-card.c:329
+msgid "five of hearts"
+msgstr "петица херц"
+
+#: ../src/lib/ar-card.c:330
+msgid "six of hearts"
+msgstr "шестица херц"
+
+#: ../src/lib/ar-card.c:331
+msgid "seven of hearts"
+msgstr "седмица херц"
+
+#: ../src/lib/ar-card.c:332
+msgid "eight of hearts"
+msgstr "осмица херц"
+
+#: ../src/lib/ar-card.c:333
+msgid "nine of hearts"
+msgstr "деветка херц"
+
+#: ../src/lib/ar-card.c:334
+msgid "ten of hearts"
+msgstr "десетка херц"
+
+#: ../src/lib/ar-card.c:335
+msgid "jack of hearts"
+msgstr "жандар херц"
+
+#: ../src/lib/ar-card.c:336
+msgid "queen of hearts"
+msgstr "краљица херц"
+
+#: ../src/lib/ar-card.c:337
+msgid "king of hearts"
+msgstr "краљ херц"
+
+#: ../src/lib/ar-card.c:338
+msgid "ace of spades"
+msgstr "кец пик"
+
+#: ../src/lib/ar-card.c:339
+msgid "two of spades"
+msgstr "двојка пик"
+
+#: ../src/lib/ar-card.c:340
+msgid "three of spades"
+msgstr "тројка пик"
+
+#: ../src/lib/ar-card.c:341
+msgid "four of spades"
+msgstr "четворка пик"
+
+#: ../src/lib/ar-card.c:342
+msgid "five of spades"
+msgstr "петица пик"
+
+#: ../src/lib/ar-card.c:343
+msgid "six of spades"
+msgstr "шестица пик"
+
+#: ../src/lib/ar-card.c:344
+msgid "seven of spades"
+msgstr "седмица пик"
+
+#: ../src/lib/ar-card.c:345
+msgid "eight of spades"
+msgstr "осмица пик"
+
+#: ../src/lib/ar-card.c:346
+msgid "nine of spades"
+msgstr "деветка пик"
+
+#: ../src/lib/ar-card.c:347
+msgid "ten of spades"
+msgstr "десетка пик"
+
+#: ../src/lib/ar-card.c:348
+msgid "jack of spades"
+msgstr "жандар пик"
+
+#: ../src/lib/ar-card.c:349
+msgid "queen of spades"
+msgstr "краљица пик"
+
+#: ../src/lib/ar-card.c:350
+msgid "king of spades"
+msgstr "краљ пик"
+
+#: ../src/lib/ar-card.c:367
+msgid "face-down card"
+msgstr "затворена карта"
+
+#. A black joker.
+#: ../src/lib/ar-card.c:378
+msgid "black joker"
+msgstr "црни џокер"
+
+#. A red joker.
+#: ../src/lib/ar-card.c:381
+msgid "red joker"
+msgstr "црвени џокер"
+
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../src/lib/ar-help.c:108
+#, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "Упутство „%s.%s“ није пронађено"
+
+#: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "Не могу да прикажем помоћ за „%s“"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
+msgid "Whether the window is maximized"
+msgstr "Да ли је прозор приказан увећан"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
+msgid "Whether the window is fullscreen"
+msgstr "Да ли је прозор приказан преко целог екрана"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
+msgid "Window width"
+msgstr "Ширина прозора"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
+msgid "Window height"
+msgstr "Висина прозора"
+
 #. String reserve
-#: ../src/sol.c:53
+#: ../src/sol.c:50
 msgid "Solitaire"
 msgstr "Пасијанс"
 
-#: ../src/sol.c:54
+#: ../src/sol.c:51
 msgid "GNOME Solitaire"
 msgstr "Гномов пасијанс"
 
-#: ../src/sol.c:55
+#: ../src/sol.c:52
 msgid "About Solitaire"
 msgstr "О Пасијансу"
 
-#: ../src/sol.c:111
+#: ../src/sol.c:68
 msgid "Select the game type to play"
 msgstr "Изабери врсту игре"
 
-#: ../src/sol.c:111
+#: ../src/sol.c:68
 msgid "NAME"
 msgstr "ИМЕ"
 
-#: ../src/sol.c:166 ../src/window.c:414 ../src/window.c:1890
+#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
 msgid "AisleRiot"
 msgstr "Пасијанс"
 
@@ -1128,11 +1546,6 @@ msgstr "нема"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/util.c:86 ../src/util.c:90 ../src/lib/ar-help.c:146
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "Не могу да прикажем помоћ за „%s“"
-
 #: ../src/window.c:220
 msgid "Congratulations, you have won!"
 msgstr "Честитамо, победили сте!"
@@ -1180,194 +1593,184 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "Веб сајт Гномових игара"
 
-#: ../src/window.c:1298
+#: ../src/window.c:1288
 #, c-format
 msgid "Play “%s”"
 msgstr "Играј „%s“"
 
-#: ../src/window.c:1459
+#: ../src/window.c:1450
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Изглед карата: „%s“"
 
-#. Translators: if you want to use localised digits for the game score,
-#. * then translate this string to "%I6d", else to "%6d".
-#. * Do not translate it to anything else!
-#.
-#: ../src/window.c:1526
-#, c-format
-msgctxt "score"
-msgid "%6d"
-msgstr "%6d"
-
-#: ../src/window.c:1764
+#: ../src/window.c:1747
 msgid "A scheme exception occurred"
 msgstr "Јавио се изузетак у језику scheme"
 
-#: ../src/window.c:1767
+#: ../src/window.c:1750
 msgid "Please report this bug to the developers."
 msgstr "Пријавите грешку програмерима."
 
-#: ../src/window.c:1773
+#: ../src/window.c:1756
 msgid "_Don't report"
 msgstr "_Не пријављуј"
 
-#: ../src/window.c:1774
+#: ../src/window.c:1757
 msgid "_Report"
 msgstr "_Извештај"
 
-#: ../src/window.c:1888
+#: ../src/window.c:1871
 msgid "Freecell Solitaire"
 msgstr "Фрисел пасијанс"
 
 #. Menu actions
-#: ../src/window.c:2008
+#: ../src/window.c:1990
 msgid "_Game"
 msgstr "_Игра"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1991
 msgid "_View"
 msgstr "П_реглед"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1992
 msgid "_Control"
 msgstr "Упр_ављање"
 
-#: ../src/window.c:2012
+#: ../src/window.c:1994
 msgid "_Help"
 msgstr "_Помоћ"
 
-#: ../src/window.c:2017
+#: ../src/window.c:1999
 msgid "Start a new game"
 msgstr "Започни нову игру"
 
-#: ../src/window.c:2020
+#: ../src/window.c:2002
 msgid "Restart the game"
 msgstr "Поново покрени игру"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2004
 msgid "_Select Game…"
 msgstr "И_забери игру…"
 
-#: ../src/window.c:2024
+#: ../src/window.c:2006
 msgid "Play a different game"
 msgstr "Играј другу игру"
 
-#: ../src/window.c:2026
+#: ../src/window.c:2008
 msgid "_Recently Played"
 msgstr "_Скорашње игре"
 
-#: ../src/window.c:2027
+#: ../src/window.c:2009
 msgid "S_tatistics"
 msgstr "С_татистике"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2010
 msgid "Show gameplay statistics"
 msgstr "Прикажи статистике тока игре"
 
-#: ../src/window.c:2031
+#: ../src/window.c:2013
 msgid "Close this window"
 msgstr "Затвори прозор"
 
-#: ../src/window.c:2034
+#: ../src/window.c:2016
 msgid "Undo the last move"
 msgstr "Опозови потез"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2019
 msgid "Redo the undone move"
 msgstr "Понови опозван потез"
 
-#: ../src/window.c:2040
+#: ../src/window.c:2022
 msgid "Deal next card or cards"
 msgstr "Подели следећу карту или карате"
 
-#: ../src/window.c:2043
+#: ../src/window.c:2025
 msgid "Get a hint for your next move"
 msgstr "Савет за следећи потез"
 
-#: ../src/window.c:2046
+#: ../src/window.c:2028
 msgid "View help for Aisleriot"
 msgstr "Прикажи помоћ за програм"
 
-#: ../src/window.c:2050
+#: ../src/window.c:2032
 msgid "View help for this game"
 msgstr "Прикажи помоћ за ову игру"
 
-#: ../src/window.c:2053
+#: ../src/window.c:2035
 msgid "About this game"
 msgstr "О овој игри"
 
-#: ../src/window.c:2055
+#: ../src/window.c:2037
 msgid "Install card themes…"
 msgstr "Додај изглед карата…"
 
-#: ../src/window.c:2056
+#: ../src/window.c:2038
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Додај нови изглед карата инсталацијом из складишта пакета за дистрибуцију"
 
-#: ../src/window.c:2062
+#: ../src/window.c:2044
 msgid "_Card Style"
 msgstr "_Изглед карата"
 
-#: ../src/window.c:2096
+#: ../src/window.c:2078
 msgid "_Toolbar"
 msgstr "_Палета алатки"
 
-#: ../src/window.c:2097
+#: ../src/window.c:2079
 msgid "Show or hide the toolbar"
 msgstr "Прикажи или сакриј палету алатки"
 
-#: ../src/window.c:2101
+#: ../src/window.c:2083
 msgid "_Statusbar"
 msgstr "Линија са _стањем"
 
-#: ../src/window.c:2102
+#: ../src/window.c:2084
 msgid "Show or hide statusbar"
 msgstr "Прикажи или сакриј линију са стањем"
 
-#: ../src/window.c:2106
+#: ../src/window.c:2088
 msgid "_Click to Move"
 msgstr "_Кликни за потез"
 
-#: ../src/window.c:2107
+#: ../src/window.c:2089
 msgid "Pick up and drop cards by clicking"
 msgstr "Подигни и постави карте кликом"
 
-#: ../src/window.c:2111
+#: ../src/window.c:2093
 msgid "_Sound"
 msgstr "_Звук"
 
-#: ../src/window.c:2112
+#: ../src/window.c:2094
 msgid "Whether or not to play event sounds"
 msgstr "Да ли пуштати звукове при догађајима"
 
-#: ../src/window.c:2117
+#: ../src/window.c:2099
 msgid "_Animations"
 msgstr "_Анимације"
 
-#: ../src/window.c:2118
+#: ../src/window.c:2100
 msgid "Whether or not to animate card moves"
 msgstr "Да ли приказивати анимације"
 
-#: ../src/window.c:2336
+#: ../src/window.c:2318
 msgid "Score:"
 msgstr "Разултат:"
 
-#: ../src/window.c:2348
+#: ../src/window.c:2330
 msgid "Time:"
 msgstr "Време:"
 
-#: ../src/window.c:2647
+#: ../src/window.c:2629
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Не могу да покренем игру „%s“"
 
-#: ../src/window.c:2660
+#: ../src/window.c:2642
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Програм не може да пронађе коју сте игру последње играли."
 
-#: ../src/window.c:2661
+#: ../src/window.c:2643
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1376,1094 +1779,1188 @@ msgstr ""
 "Ово се обично дешава када покренете старију верзију Пасијенса која нема ону "
 "игру коју сте претходно играли. Биће покренута подразумевана игра Клондајк."
 
-#: ../src/ar-stock.c:190
-msgid "_Contents"
-msgstr "_Садржај"
-
-#: ../src/ar-stock.c:191
-msgid "_Fullscreen"
-msgstr "_Цео екран"
-
-#: ../src/ar-stock.c:192
-msgid "_Hint"
-msgstr "_Савет"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../src/ar-stock.c:194
-msgid "_New"
-msgstr "_Нова"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../src/ar-stock.c:196
-msgid "_New Game"
-msgstr "_Нова игра"
-
-#: ../src/ar-stock.c:197
-msgid "_Redo Move"
-msgstr "_Понови потез"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../src/ar-stock.c:199
-msgid "_Reset"
-msgstr "_Поништи"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../src/ar-stock.c:201
-msgid "_Restart"
-msgstr "_Поново покрени"
-
-#: ../src/ar-stock.c:202
-msgid "_Undo Move"
-msgstr "_Опозови потез"
-
-#: ../src/ar-stock.c:203
-msgid "_Deal"
-msgstr "_Дели"
-
-#: ../src/ar-stock.c:204
-msgid "_Leave Fullscreen"
-msgstr "_Напусти пун екран"
-
-#: ../src/ar-stock.c:205
-msgid "_Pause"
-msgstr "_Пауза"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../src/ar-stock.c:267
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s је слободан софтвер; можете га прослеђивати и/или мењати под условима ГНУ "
-"Опште јавне лиценце коју је објавила Задужбина слободног софтвера; било "
-"верзије %d лиценце или (по вашем избору) било које новије верзије."
-
-#: ../src/ar-stock.c:272
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"%s се расподељује у нади да ће бити користан, али БЕЗ ИКАКВЕ ГАРАНЦИЈЕ; чак "
-"и без примењене гаранције ТРЖИШНЕ ВРЕДНОСТИ или ПРИЛАГОЂЕНОСТИ ОДРЕЂЕНОЈ "
-"НАМЕНИ. Погледајте ГНУ Општу јавну лиценцу за више детаља."
-
-#: ../src/ar-stock.c:277
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Требало је да примите примерак ГНУ Опште Јавне Лиценце уз %s; ако нисте, "
-"погледајте <http://www.gnu.org/licenses/>."
-
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../src/lib/ar-help.c:108
-#, c-format
-msgid "Help file “%s.%s” not found"
-msgstr "Упутство „%s.%s“ није пронађено"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
-msgid "Whether the window is fullscreen"
-msgstr "Да ли је прозор приказан преко целог екрана"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
-msgid "Whether the window is maximized"
-msgstr "Да ли је прозор приказан увећан"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
-msgid "Window height"
-msgstr "Висина прозора"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
-msgid "Window width"
-msgstr "Ширина прозора"
-
-#. Translators: this is the symbol that's on a Joker card
-#: ../src/lib/ar-card.c:181
-msgctxt "card symbol"
-msgid "JOKER"
-msgstr "ЏОКЕР"
-
-#. Translators: this is the symbol that's on an Ace card
-#: ../src/lib/ar-card.c:183 ../src/lib/ar-card.c:207
-msgctxt "card symbol"
-msgid "A"
-msgstr "А"
-
-#. Translators: this is the symbol that's on a 2 card
-#: ../src/lib/ar-card.c:185
-msgctxt "card symbol"
-msgid "2"
-msgstr "2"
-
-#. Translators: this is the symbol that's on a 3 card
-#: ../src/lib/ar-card.c:187
-msgctxt "card symbol"
-msgid "3"
-msgstr "3"
-
-#. Translators: this is the symbol that's on a 4 card
-#: ../src/lib/ar-card.c:189
-msgctxt "card symbol"
-msgid "4"
-msgstr "4"
-
-#. Translators: this is the symbol that's on a 5 card
-#: ../src/lib/ar-card.c:191
-msgctxt "card symbol"
-msgid "5"
-msgstr "5"
-
-#. Translators: this is the symbol that's on a 6 card
-#: ../src/lib/ar-card.c:193
-msgctxt "card symbol"
-msgid "6"
-msgstr "6"
-
-#. Translators: this is the symbol that's on a 7 card
-#: ../src/lib/ar-card.c:195
-msgctxt "card symbol"
-msgid "7"
-msgstr "7"
-
-#. Translators: this is the symbol that's on a 8 card
-#: ../src/lib/ar-card.c:197
-msgctxt "card symbol"
-msgid "8"
-msgstr "8"
-
-#. Translators: this is the symbol that's on a 9 card
-#: ../src/lib/ar-card.c:199
-msgctxt "card symbol"
-msgid "9"
-msgstr "9"
-
-#. Translators: this is the symbol that's on a Jack card
-#: ../src/lib/ar-card.c:201
-msgctxt "card symbol"
-msgid "J"
-msgstr "J"
-
-#. Translators: this is the symbol that's on a Queen card
-#: ../src/lib/ar-card.c:203
-msgctxt "card symbol"
-msgid "Q"
-msgstr "Q"
-
-#. Translators: this is the symbol that's on a King card
-#: ../src/lib/ar-card.c:205
-msgctxt "card symbol"
-msgid "K"
-msgstr "K"
-
-#. Translators: this is the symbol that's on a 1 card
-#: ../src/lib/ar-card.c:209
-msgctxt "card symbol"
-msgid "1"
-msgstr "1"
-
-#: ../src/lib/ar-card.c:243
-msgid "ace of clubs"
-msgstr "кец треф"
-
-#: ../src/lib/ar-card.c:244
-msgid "two of clubs"
-msgstr "двојка треф"
-
-#: ../src/lib/ar-card.c:245
-msgid "three of clubs"
-msgstr "тројка треф"
-
-#: ../src/lib/ar-card.c:246
-msgid "four of clubs"
-msgstr "четворка треф"
-
-#: ../src/lib/ar-card.c:247
-msgid "five of clubs"
-msgstr "петица треф"
-
-#: ../src/lib/ar-card.c:248
-msgid "six of clubs"
-msgstr "шестица треф"
-
-#: ../src/lib/ar-card.c:249
-msgid "seven of clubs"
-msgstr "седмица треф"
-
-#: ../src/lib/ar-card.c:250
-msgid "eight of clubs"
-msgstr "осмица треф"
-
-#: ../src/lib/ar-card.c:251
-msgid "nine of clubs"
-msgstr "деветка треф"
-
-#: ../src/lib/ar-card.c:252
-msgid "ten of clubs"
-msgstr "десетка треф"
-
-#: ../src/lib/ar-card.c:253
-msgid "jack of clubs"
-msgstr "жандар треф"
-
-#: ../src/lib/ar-card.c:254
-msgid "queen of clubs"
-msgstr "краљица треф"
-
-#: ../src/lib/ar-card.c:255
-msgid "king of clubs"
-msgstr "краљ треф"
-
-#: ../src/lib/ar-card.c:256
-msgid "ace of diamonds"
-msgstr "кец каро"
-
-#: ../src/lib/ar-card.c:257
-msgid "two of diamonds"
-msgstr "двојка каро"
-
-#: ../src/lib/ar-card.c:258
-msgid "three of diamonds"
-msgstr "тројка каро"
-
-#: ../src/lib/ar-card.c:259
-msgid "four of diamonds"
-msgstr "четворка каро"
-
-#: ../src/lib/ar-card.c:260
-msgid "five of diamonds"
-msgstr "петица каро"
-
-#: ../src/lib/ar-card.c:261
-msgid "six of diamonds"
-msgstr "шестица каро"
-
-#: ../src/lib/ar-card.c:262
-msgid "seven of diamonds"
-msgstr "седмица каро"
-
-#: ../src/lib/ar-card.c:263
-msgid "eight of diamonds"
-msgstr "осмица каро"
-
-#: ../src/lib/ar-card.c:264
-msgid "nine of diamonds"
-msgstr "деветка каро"
-
-#: ../src/lib/ar-card.c:265
-msgid "ten of diamonds"
-msgstr "десетка каро"
-
-#: ../src/lib/ar-card.c:266
-msgid "jack of diamonds"
-msgstr "жандар каро"
-
-#: ../src/lib/ar-card.c:267
-msgid "queen of diamonds"
-msgstr "краљица каро"
-
-#: ../src/lib/ar-card.c:268
-msgid "king of diamonds"
-msgstr "краљ каро"
-
-#: ../src/lib/ar-card.c:269
-msgid "ace of hearts"
-msgstr "кец херц"
-
-#: ../src/lib/ar-card.c:270
-msgid "two of hearts"
-msgstr "двојка херц"
-
-#: ../src/lib/ar-card.c:271
-msgid "three of hearts"
-msgstr "тројка херц"
-
-#: ../src/lib/ar-card.c:272
-msgid "four of hearts"
-msgstr "четворка херц"
-
-#: ../src/lib/ar-card.c:273
-msgid "five of hearts"
-msgstr "петица херц"
-
-#: ../src/lib/ar-card.c:274
-msgid "six of hearts"
-msgstr "шестица херц"
-
-#: ../src/lib/ar-card.c:275
-msgid "seven of hearts"
-msgstr "седмица херц"
-
-#: ../src/lib/ar-card.c:276
-msgid "eight of hearts"
-msgstr "осмица херц"
-
-#: ../src/lib/ar-card.c:277
-msgid "nine of hearts"
-msgstr "деветка херц"
-
-#: ../src/lib/ar-card.c:278
-msgid "ten of hearts"
-msgstr "десетка херц"
-
-#: ../src/lib/ar-card.c:279
-msgid "jack of hearts"
-msgstr "жандар херц"
-
-#: ../src/lib/ar-card.c:280
-msgid "queen of hearts"
-msgstr "краљица херц"
-
-#: ../src/lib/ar-card.c:281
-msgid "king of hearts"
-msgstr "краљ херц"
-
-#: ../src/lib/ar-card.c:282
-msgid "ace of spades"
-msgstr "кец пик"
-
-#: ../src/lib/ar-card.c:283
-msgid "two of spades"
-msgstr "двојка пик"
-
-#: ../src/lib/ar-card.c:284
-msgid "three of spades"
-msgstr "тројка пик"
-
-#: ../src/lib/ar-card.c:285
-msgid "four of spades"
-msgstr "четворка пик"
-
-#: ../src/lib/ar-card.c:286
-msgid "five of spades"
-msgstr "петица пик"
-
-#: ../src/lib/ar-card.c:287
-msgid "six of spades"
-msgstr "шестица пик"
-
-#: ../src/lib/ar-card.c:288
-msgid "seven of spades"
-msgstr "седмица пик"
-
-#: ../src/lib/ar-card.c:289
-msgid "eight of spades"
-msgstr "осмица пик"
-
-#: ../src/lib/ar-card.c:290
-msgid "nine of spades"
-msgstr "деветка пик"
-
-#: ../src/lib/ar-card.c:291
-msgid "ten of spades"
-msgstr "десетка пик"
-
-#: ../src/lib/ar-card.c:292
-msgid "jack of spades"
-msgstr "жандар пик"
-
-#: ../src/lib/ar-card.c:293
-msgid "queen of spades"
-msgstr "краљица пик"
-
-#: ../src/lib/ar-card.c:294
-msgid "king of spades"
-msgstr "краљ пик"
-
-#: ../src/lib/ar-card.c:311
-msgid "face-down card"
-msgstr "затворена карта"
-
-#. A black joker.
-#: ../src/lib/ar-card.c:322
-msgid "black joker"
-msgstr "црни џокер"
-
-#. A red joker.
-#: ../src/lib/ar-card.c:325
-msgid "red joker"
-msgstr "црвени џокер"
-
-#: ../src/smclient/eggdesktopfile.c:169
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Ово није исправна .desktop датотека"
-
-#: ../src/smclient/eggdesktopfile.c:192
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Непрепознато издање .desktop датотеке „%s“"
-
-#: ../src/smclient/eggdesktopfile.c:966
-#, c-format
-msgid "Starting %s"
-msgstr "Покрећем %s"
-
-#: ../src/smclient/eggdesktopfile.c:1108
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Програм не прихвата документе на командној линији"
-
-#: ../src/smclient/eggdesktopfile.c:1176
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Непозната опција при покретању: %d"
-
-#: ../src/smclient/eggdesktopfile.c:1381
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Не могу да упишем адресу документа у „Type=Link“ унос унутар датотеке за "
-"радну површ"
-
-#: ../src/smclient/eggdesktopfile.c:1402
-#, c-format
-msgid "Not a launchable item"
-msgstr "Ову ставку не можете да покренете"
-
-#: ../src/smclient/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Онемогући везу са управником сесије"
-
-#: ../src/smclient/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Одаберите датотеку која садржи сачувана подешавања"
-
-#: ../src/smclient/eggsmclient.c:229
-msgid "FILE"
-msgstr "ДАТОТЕКА"
-
-#: ../src/smclient/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Наведите ИБ управника сесије"
-
-#: ../src/smclient/eggsmclient.c:232
-msgid "ID"
-msgstr "ИБ"
-
-#: ../src/smclient/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Могућности управника сесије:"
-
-#: ../src/smclient/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Прикажи могућности управника сесије"
-
-#: ../games/agnes.scm.h:1 ../games/bear_river.scm.h:2
-#: ../games/canfield.scm.h:2 ../games/chessboard.scm.h:2
-#: ../games/eagle_wing.scm.h:2 ../games/glenwood.scm.h:2
-#: ../games/kansas.scm.h:2 ../games/lady_jane.scm.h:2 ../games/plait.scm.h:2
-#: ../games/royal_east.scm.h:2 ../games/terrace.scm.h:1
-msgid "Base Card: Ace"
-msgstr "Основна карта: Кец"
-
-#: ../games/agnes.scm.h:2 ../games/bear_river.scm.h:3
-#: ../games/canfield.scm.h:3 ../games/chessboard.scm.h:3
-#: ../games/eagle_wing.scm.h:3 ../games/glenwood.scm.h:3
-#: ../games/kansas.scm.h:3 ../games/lady_jane.scm.h:3 ../games/plait.scm.h:3
-#: ../games/royal_east.scm.h:3 ../games/terrace.scm.h:2
-msgid "Base Card: Jack"
-msgstr "Oсновна карта: Жандар"
-
-#: ../games/agnes.scm.h:3 ../games/bear_river.scm.h:4
-#: ../games/canfield.scm.h:4 ../games/chessboard.scm.h:4
-#: ../games/eagle_wing.scm.h:4 ../games/glenwood.scm.h:4
-#: ../games/kansas.scm.h:4 ../games/lady_jane.scm.h:4 ../games/plait.scm.h:4
-#: ../games/royal_east.scm.h:4 ../games/terrace.scm.h:3
-msgid "Base Card: King"
-msgstr "Основна карта: Краљ"
-
-#: ../games/agnes.scm.h:4 ../games/bear_river.scm.h:5
-#: ../games/canfield.scm.h:5 ../games/chessboard.scm.h:5
-#: ../games/eagle_wing.scm.h:5 ../games/glenwood.scm.h:5
-#: ../games/kansas.scm.h:5 ../games/lady_jane.scm.h:5 ../games/plait.scm.h:5
-#: ../games/royal_east.scm.h:5 ../games/terrace.scm.h:4
-msgid "Base Card: Queen"
-msgstr "Основна карта: Краљица"
-
 # bug(slobo): ово провери шта је
-#: ../games/agnes.scm.h:5 ../games/terrace.scm.h:5
+#: ../games/agnes.scm:72 ../games/terrace.scm:139
+#, scheme-format
 msgid "Base Card: ~a"
 msgstr "Основна карта: ~a"
 
-#: ../games/agnes.scm.h:6 ../games/easthaven.scm.h:1
-#: ../games/labyrinth.scm.h:1 ../games/monte_carlo.scm.h:1
-#: ../games/valentine.scm.h:1
-msgid "Deal more cards"
-msgstr "Подели још карата"
+#: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
+#: ../games/chessboard.scm:94 ../games/eagle-wing.scm:98
+#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
+msgid "Base Card: Ace"
+msgstr "Основна карта: Кец"
 
-#: ../games/agnes.scm.h:7 ../games/auld_lang_syne.scm.h:2
-#: ../games/backbone.scm.h:3 ../games/block_ten.scm.h:1
-#: ../games/bristol.scm.h:2 ../games/camelot.scm.h:2 ../games/canfield.scm.h:9
-#: ../games/carpet.scm.h:2 ../games/cover.scm.h:1 ../games/doublets.scm.h:2
-#: ../games/eagle_wing.scm.h:11 ../games/easthaven.scm.h:4
-#: ../games/elevator.scm.h:2 ../games/escalator.scm.h:2
-#: ../games/first_law.scm.h:17 ../games/fortunes.scm.h:4
-#: ../games/forty_thieves.scm.h:2 ../games/glenwood.scm.h:11
-#: ../games/gypsy.scm.h:3 ../games/helsinki.scm.h:1 ../games/hopscotch.scm.h:3
-#: ../games/jamestown.scm.h:1 ../games/jumbo.scm.h:4 ../games/kansas.scm.h:8
-#: ../games/klondike.scm.h:7 ../games/labyrinth.scm.h:2
-#: ../games/lady_jane.scm.h:7 ../games/monte_carlo.scm.h:2
-#: ../games/neighbor.scm.h:1 ../games/plait.scm.h:11 ../games/quatorze.scm.h:1
-#: ../games/royal_east.scm.h:7 ../games/scuffle.scm.h:4
-#: ../games/sir_tommy.scm.h:3 ../games/straight_up.scm.h:5
-#: ../games/terrace.scm.h:18 ../games/thieves.scm.h:2
-#: ../games/thirteen.scm.h:3 ../games/thumb_and_pouch.scm.h:4
-#: ../games/treize.scm.h:2 ../games/triple_peaks.scm.h:4
-#: ../games/union_square.scm.h:2 ../games/westhaven.scm.h:2
-#: ../games/whitehead.scm.h:3 ../games/yield.scm.h:2 ../games/zebra.scm.h:4
+#: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
+#: ../games/chessboard.scm:96 ../games/eagle-wing.scm:100
+#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
+msgid "Base Card: Jack"
+msgstr "Oсновна карта: Жандар"
+
+#: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
+#: ../games/chessboard.scm:98 ../games/eagle-wing.scm:102
+#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
+msgid "Base Card: Queen"
+msgstr "Основна карта: Краљица"
+
+#: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
+#: ../games/chessboard.scm:100 ../games/eagle-wing.scm:104
+#: ../games/glenwood.scm:90 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
+msgid "Base Card: King"
+msgstr "Основна карта: Краљ"
+
+#: ../games/agnes.scm:85 ../games/auld-lang-syne.scm:53
+#: ../games/backbone.scm:131 ../games/block-ten.scm:54 ../games/bristol.scm:78
+#: ../games/camelot.scm:77 ../games/canfield.scm:69 ../games/carpet.scm:103
+#: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:86
+#: ../games/easthaven.scm:56 ../games/elevator.scm:98
+#: ../games/escalator.scm:123 ../games/first-law.scm:42
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
+#: ../games/glenwood.scm:72 ../games/gypsy.scm:65 ../games/helsinki.scm:53
+#: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
+#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
+#: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
+#: ../games/straight-up.scm:64 ../games/terrace.scm:159
+#: ../games/thieves.scm:48 ../games/thirteen.scm:105
+#: ../games/thumb-and-pouch.scm:61 ../games/treize.scm:102
+#: ../games/triple-peaks.scm:104 ../games/union-square.scm:96
+#: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
+#: ../games/zebra.scm:71
 msgid "Stock left:"
 msgstr "На гомили:"
 
-#: ../games/agnes.scm.h:8 ../games/lady_jane.scm.h:8
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
 msgid "Stock left: 0"
 msgstr "На гомили: 0"
 
-#: ../games/agnes.scm.h:9 ../games/backbone.scm.h:4
-#: ../games/bakers_dozen.scm.h:1 ../games/beleaguered_castle.scm.h:1
-#: ../games/canfield.scm.h:10 ../games/jumbo.scm.h:5
-#: ../games/king_albert.scm.h:1 ../games/lady_jane.scm.h:9
-#: ../games/streets_and_alleys.scm.h:1
+#: ../games/agnes.scm:264 ../games/easthaven.scm:229
+#: ../games/labyrinth.scm:197 ../games/monte-carlo.scm:196
+#: ../games/monte-carlo.scm:201 ../games/valentine.scm:138
+msgid "Deal more cards"
+msgstr "Подели још карата"
+
+#: ../games/agnes.scm:270 ../games/backbone.scm:295
+#: ../games/bakers-dozen.scm:197 ../games/beleaguered-castle.scm:171
+#: ../games/canfield.scm:306 ../games/jumbo.scm:333
+#: ../games/king-albert.scm:292 ../games/lady-jane.scm:428
+#: ../games/streets-and-alleys.scm:182
 msgid "Try rearranging the cards"
 msgstr "Пробајте да прераспоредите карте"
 
-#: ../games/agnes.scm.h:10 ../games/bristol.scm.h:3
-#: ../games/lady_jane.scm.h:10 ../games/royal_east.scm.h:8
-#: ../games/thumb_and_pouch.scm.h:5
-msgid "an empty foundation pile"
-msgstr "празна гомила на „темељу“"
+#: ../games/api.scm:284
+msgid "Unknown color"
+msgstr "Непозната боја"
 
-#: ../games/athena.scm.h:1 ../games/klondike.scm.h:8 ../games/osmosis.scm.h:5
-#: ../games/saratoga.scm.h:1
+#: ../games/api.scm:392
+msgid "the black joker"
+msgstr "црни џокер"
+
+#: ../games/api.scm:392
+msgid "the red joker"
+msgstr "црвени џокер"
+
+#: ../games/api.scm:401
+msgid "the ace of clubs"
+msgstr "кец треф"
+
+#: ../games/api.scm:402
+msgid "the two of clubs"
+msgstr "двојка треф"
+
+#: ../games/api.scm:403
+msgid "the three of clubs"
+msgstr "тројка треф"
+
+#: ../games/api.scm:404
+msgid "the four of clubs"
+msgstr "четворка треф"
+
+#: ../games/api.scm:405
+msgid "the five of clubs"
+msgstr "петица треф"
+
+#: ../games/api.scm:406
+msgid "the six of clubs"
+msgstr "шестица треф"
+
+#: ../games/api.scm:407
+msgid "the seven of clubs"
+msgstr "седмица треф"
+
+#: ../games/api.scm:408
+msgid "the eight of clubs"
+msgstr "осмица треф"
+
+#: ../games/api.scm:409
+msgid "the nine of clubs"
+msgstr "деветка треф"
+
+#: ../games/api.scm:410
+msgid "the ten of clubs"
+msgstr "десетка треф"
+
+#: ../games/api.scm:411
+msgid "the jack of clubs"
+msgstr "жандар треф"
+
+#: ../games/api.scm:412
+msgid "the queen of clubs"
+msgstr "краљица треф"
+
+#: ../games/api.scm:413
+msgid "the king of clubs"
+msgstr "краљ треф"
+
+#: ../games/api.scm:414 ../games/api.scm:429 ../games/api.scm:444
+#: ../games/api.scm:459 ../games/api.scm:460
+msgid "the unknown card"
+msgstr "непозната карта"
+
+#: ../games/api.scm:416
+msgid "the ace of spades"
+msgstr "кец пик"
+
+#: ../games/api.scm:417
+msgid "the two of spades"
+msgstr "двојка пик"
+
+#: ../games/api.scm:418
+msgid "the three of spades"
+msgstr "тројка пик"
+
+#: ../games/api.scm:419
+msgid "the four of spades"
+msgstr "четворка пик"
+
+#: ../games/api.scm:420
+msgid "the five of spades"
+msgstr "петица пик"
+
+#: ../games/api.scm:421
+msgid "the six of spades"
+msgstr "шестица пик"
+
+#: ../games/api.scm:422
+msgid "the seven of spades"
+msgstr "седмица пик"
+
+#: ../games/api.scm:423
+msgid "the eight of spades"
+msgstr "осмица пик"
+
+#: ../games/api.scm:424
+msgid "the nine of spades"
+msgstr "деветка пик"
+
+#: ../games/api.scm:425
+msgid "the ten of spades"
+msgstr "десетка пик"
+
+#: ../games/api.scm:426
+msgid "the jack of spades"
+msgstr "жандар пик"
+
+#: ../games/api.scm:427
+msgid "the queen of spades"
+msgstr "краљица пик"
+
+#: ../games/api.scm:428
+msgid "the king of spades"
+msgstr "краљ пик"
+
+#: ../games/api.scm:431
+msgid "the ace of hearts"
+msgstr "кец херц"
+
+#: ../games/api.scm:432
+msgid "the two of hearts"
+msgstr "двојка херц"
+
+#: ../games/api.scm:433
+msgid "the three of hearts"
+msgstr "тројка херц"
+
+#: ../games/api.scm:434
+msgid "the four of hearts"
+msgstr "четворка херц"
+
+#: ../games/api.scm:435
+msgid "the five of hearts"
+msgstr "петица херц"
+
+#: ../games/api.scm:436
+msgid "the six of hearts"
+msgstr "шестица херц"
+
+#: ../games/api.scm:437
+msgid "the seven of hearts"
+msgstr "седмица херц"
+
+#: ../games/api.scm:438
+msgid "the eight of hearts"
+msgstr "осмица херц"
+
+#: ../games/api.scm:439
+msgid "the nine of hearts"
+msgstr "деветка херц"
+
+#: ../games/api.scm:440
+msgid "the ten of hearts"
+msgstr "десетка херц"
+
+#: ../games/api.scm:441
+msgid "the jack of hearts"
+msgstr "жандар херц"
+
+#: ../games/api.scm:442
+msgid "the queen of hearts"
+msgstr "краљица херц"
+
+#: ../games/api.scm:443
+msgid "the king of hearts"
+msgstr "краљ херц"
+
+#: ../games/api.scm:446
+msgid "the ace of diamonds"
+msgstr "кец каро"
+
+#: ../games/api.scm:447
+msgid "the two of diamonds"
+msgstr "двојка каро"
+
+#: ../games/api.scm:448
+msgid "the three of diamonds"
+msgstr "тројка каро"
+
+#: ../games/api.scm:449
+msgid "the four of diamonds"
+msgstr "четворка каро"
+
+#: ../games/api.scm:450
+msgid "the five of diamonds"
+msgstr "петица каро"
+
+#: ../games/api.scm:451
+msgid "the six of diamonds"
+msgstr "шестица каро"
+
+#: ../games/api.scm:452
+msgid "the seven of diamonds"
+msgstr "седмица каро"
+
+#: ../games/api.scm:453
+msgid "the eight of diamonds"
+msgstr "осмица каро"
+
+#: ../games/api.scm:454
+msgid "the nine of diamonds"
+msgstr "деветка каро"
+
+#: ../games/api.scm:455
+msgid "the ten of diamonds"
+msgstr "десетка каро"
+
+#: ../games/api.scm:456
+msgid "the jack of diamonds"
+msgstr "жандар каро"
+
+#: ../games/api.scm:457
+msgid "the queen of diamonds"
+msgstr "краљица каро"
+
+#: ../games/api.scm:458
+msgid "the king of diamonds"
+msgstr "краљ каро"
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto the foundation."
+msgstr "Карта ~a на темељ."
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto an empty foundation slot."
+msgstr "Карта ~a на празно поље у темељу."
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto the tableau."
+msgstr "Карта ~a на талон."
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto an empty tableau slot."
+msgstr "Карта ~a на празно талон поље."
+
+# bug: what's ~a
+#: ../games/api.scm:466
+#, scheme-format
+#| msgid "Move ~a onto an empty slot."
+msgid "Move ~a onto an empty edge slot."
+msgstr "Премести ~a на празно крајње поље."
+
+# bug: what's ~a
+#: ../games/api.scm:467
+#, scheme-format
+#| msgid "Move ~a onto an empty slot."
+msgid "Move ~a onto an empty corner slot."
+msgstr "Премести ~a на празно угаоно поље."
+
+# bug: what's ~a
+#: ../games/api.scm:468
+#, scheme-format
+#| msgid "Move ~a onto an empty slot."
+msgid "Move ~a onto an empty top slot."
+msgstr "Премести ~a на празно горње поље."
+
+# bug: what's ~a
+#: ../games/api.scm:469
+#, scheme-format
+#| msgid "Move ~a onto an empty slot."
+msgid "Move ~a onto an empty bottom slot."
+msgstr "Премести ~a на празно доње поље."
+
+# bug: what's ~a
+#: ../games/api.scm:470
+#, scheme-format
+#| msgid "Move ~a onto an empty slot."
+msgid "Move ~a onto an empty left slot."
+msgstr "Премести ~a на празно лево поље."
+
+# bug: what's ~a
+#: ../games/api.scm:471
+#, scheme-format
+#| msgid "Move ~a onto an empty slot."
+msgid "Move ~a onto an empty right slot."
+msgstr "Премести ~a на празно десно поље."
+
+# bug: what's ~a
+#: ../games/api.scm:472
+#, scheme-format
+msgid "Move ~a onto an empty slot."
+msgstr "Премести ~a на празно поље."
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the black joker."
+msgstr "Карта ~a на црног џокера."
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the red joker."
+msgstr "Карта ~a на црвеног џокера."
+
+#: ../games/api.scm:477
+#, scheme-format
+msgid "Move ~a onto the ace of clubs."
+msgstr "Карта ~a на кеца треф."
+
+#: ../games/api.scm:478
+#, scheme-format
+msgid "Move ~a onto the two of clubs."
+msgstr "Карта ~a на двојку треф."
+
+#: ../games/api.scm:479
+#, scheme-format
+msgid "Move ~a onto the three of clubs."
+msgstr "Карта ~a на тројку треф."
+
+#: ../games/api.scm:480
+#, scheme-format
+msgid "Move ~a onto the four of clubs."
+msgstr "Карта ~a на четворку треф."
+
+#: ../games/api.scm:481
+#, scheme-format
+msgid "Move ~a onto the five of clubs."
+msgstr "Карта ~a на петицу треф."
+
+#: ../games/api.scm:482
+#, scheme-format
+msgid "Move ~a onto the six of clubs."
+msgstr "Карта ~a на шестицу треф."
+
+#: ../games/api.scm:483
+#, scheme-format
+msgid "Move ~a onto the seven of clubs."
+msgstr "Карта ~a на седмицу треф."
+
+#: ../games/api.scm:484
+#, scheme-format
+msgid "Move ~a onto the eight of clubs."
+msgstr "Карта ~a на осмицу треф."
+
+#: ../games/api.scm:485
+#, scheme-format
+msgid "Move ~a onto the nine of clubs."
+msgstr "Карта ~a на деветку треф."
+
+#: ../games/api.scm:486
+#, scheme-format
+msgid "Move ~a onto the ten of clubs."
+msgstr "Карта ~a на десетку треф."
+
+#: ../games/api.scm:487
+#, scheme-format
+msgid "Move ~a onto the jack of clubs."
+msgstr "Карта ~a на жандара треф."
+
+#: ../games/api.scm:488
+#, scheme-format
+msgid "Move ~a onto the queen of clubs."
+msgstr "Карта ~a на краљицу треф."
+
+#: ../games/api.scm:489
+#, scheme-format
+msgid "Move ~a onto the king of clubs."
+msgstr "Карта ~a на краља треф."
+
+#: ../games/api.scm:490 ../games/api.scm:505 ../games/api.scm:520
+#: ../games/api.scm:535 ../games/api.scm:536
+#, scheme-format
+msgid "Move ~a onto the unknown card."
+msgstr "Карта ~a на непознату карту."
+
+#: ../games/api.scm:492
+#, scheme-format
+msgid "Move ~a onto the ace of spades."
+msgstr "Карта ~a на кеца пик."
+
+#: ../games/api.scm:493
+#, scheme-format
+msgid "Move ~a onto the two of spades."
+msgstr "Карта ~a на двојку пик."
+
+#: ../games/api.scm:494
+#, scheme-format
+msgid "Move ~a onto the three of spades."
+msgstr "Карта ~a на тројку пик."
+
+#: ../games/api.scm:495
+#, scheme-format
+msgid "Move ~a onto the four of spades."
+msgstr "Карта ~a на четворку пик."
+
+#: ../games/api.scm:496
+#, scheme-format
+msgid "Move ~a onto the five of spades."
+msgstr "Карта ~a на петицу пик."
+
+#: ../games/api.scm:497
+#, scheme-format
+msgid "Move ~a onto the six of spades."
+msgstr "Карта ~a на шестицу пик."
+
+#: ../games/api.scm:498
+#, scheme-format
+msgid "Move ~a onto the seven of spades."
+msgstr "Карта ~a на седмицу пик."
+
+#: ../games/api.scm:499
+#, scheme-format
+msgid "Move ~a onto the eight of spades."
+msgstr "Карта ~a на осмицу пик."
+
+#: ../games/api.scm:500
+#, scheme-format
+msgid "Move ~a onto the nine of spades."
+msgstr "Карта ~a на деветку пик."
+
+#: ../games/api.scm:501
+#, scheme-format
+msgid "Move ~a onto the ten of spades."
+msgstr "Карта ~a на десетку пик."
+
+#: ../games/api.scm:502
+#, scheme-format
+msgid "Move ~a onto the jack of spades."
+msgstr "Карта ~a на жандара пик."
+
+#: ../games/api.scm:503
+#, scheme-format
+msgid "Move ~a onto the queen of spades."
+msgstr "~a на краљицу пик."
+
+#: ../games/api.scm:504
+#, scheme-format
+msgid "Move ~a onto the king of spades."
+msgstr "Карта ~a на краља пик."
+
+#: ../games/api.scm:507
+#, scheme-format
+msgid "Move ~a onto the ace of hearts."
+msgstr "Карта ~a на кеца херц."
+
+#: ../games/api.scm:508
+#, scheme-format
+msgid "Move ~a onto the two of hearts."
+msgstr "Карта ~a на двојку херц."
+
+#: ../games/api.scm:509
+#, scheme-format
+msgid "Move ~a onto the three of hearts."
+msgstr "Карта ~a на тројку херц."
+
+#: ../games/api.scm:510
+#, scheme-format
+msgid "Move ~a onto the four of hearts."
+msgstr "Карта ~a на четворку херц."
+
+#: ../games/api.scm:511
+#, scheme-format
+msgid "Move ~a onto the five of hearts."
+msgstr "Карта ~a на петицу херц."
+
+#: ../games/api.scm:512
+#, scheme-format
+msgid "Move ~a onto the six of hearts."
+msgstr "Карта ~a на шестицу херц."
+
+#: ../games/api.scm:513
+#, scheme-format
+msgid "Move ~a onto the seven of hearts."
+msgstr "Карта ~a на седмицу херц."
+
+#: ../games/api.scm:514
+#, scheme-format
+msgid "Move ~a onto the eight of hearts."
+msgstr "Карта ~a на осмицу херц."
+
+#: ../games/api.scm:515
+#, scheme-format
+msgid "Move ~a onto the nine of hearts."
+msgstr "Карта ~a на деветку херц."
+
+#: ../games/api.scm:516
+#, scheme-format
+msgid "Move ~a onto the ten of hearts."
+msgstr "Карта ~a на десетку херц."
+
+#: ../games/api.scm:517
+#, scheme-format
+msgid "Move ~a onto the jack of hearts."
+msgstr "Карта ~a на жандара херц."
+
+#: ../games/api.scm:518
+#, scheme-format
+msgid "Move ~a onto the queen of hearts."
+msgstr "Карта ~a на краљицу херц."
+
+#: ../games/api.scm:519
+#, scheme-format
+msgid "Move ~a onto the king of hearts."
+msgstr "Карта ~a на краља херц."
+
+#: ../games/api.scm:522
+#, scheme-format
+msgid "Move ~a onto the ace of diamonds."
+msgstr "Карта ~a на кеца каро."
+
+#: ../games/api.scm:523
+#, scheme-format
+msgid "Move ~a onto the two of diamonds."
+msgstr "Карта ~a на двојку каро."
+
+#: ../games/api.scm:524
+#, scheme-format
+msgid "Move ~a onto the three of diamonds."
+msgstr "Карта ~a на тројку каро."
+
+#: ../games/api.scm:525
+#, scheme-format
+msgid "Move ~a onto the four of diamonds."
+msgstr "Карта ~a на четворку каро."
+
+#: ../games/api.scm:526
+#, scheme-format
+msgid "Move ~a onto the five of diamonds."
+msgstr "Карта ~a на петицу каро."
+
+#: ../games/api.scm:527
+#, scheme-format
+msgid "Move ~a onto the six of diamonds."
+msgstr "Карта ~a на шестицу каро."
+
+#: ../games/api.scm:528
+#, scheme-format
+msgid "Move ~a onto the seven of diamonds."
+msgstr "Карта ~a на седмицу каро."
+
+#: ../games/api.scm:529
+#, scheme-format
+msgid "Move ~a onto the eight of diamonds."
+msgstr "Карта ~a на осмицу каро."
+
+#: ../games/api.scm:530
+#, scheme-format
+msgid "Move ~a onto the nine of diamonds."
+msgstr "Карта ~a на деветку каро."
+
+#: ../games/api.scm:531
+#, scheme-format
+msgid "Move ~a onto the ten of diamonds."
+msgstr "Карта ~a на десетку каро."
+
+#: ../games/api.scm:532
+#, scheme-format
+msgid "Move ~a onto the jack of diamonds."
+msgstr "Карта ~a на жандара каро."
+
+#: ../games/api.scm:533
+#, scheme-format
+msgid "Move ~a onto the queen of diamonds."
+msgstr "Карта ~a на краљицу каро."
+
+#: ../games/api.scm:534
+#, scheme-format
+msgid "Move ~a onto the king of diamonds."
+msgstr "Карта ~a на краља каро."
+
+#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
+#: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "Дељење по три карте"
 
-#: ../games/auld_lang_syne.scm.h:1 ../games/bristol.scm.h:1
-#: ../games/first_law.scm.h:1 ../games/fortunes.scm.h:2
-#: ../games/lady_jane.scm.h:6 ../games/scuffle.scm.h:1 ../games/spider.scm.h:1
-#: ../games/thumb_and_pouch.scm.h:1 ../games/zebra.scm.h:1
+#: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
+#: ../games/first-law.scm:127 ../games/fortunes.scm:161
+#: ../games/lady-jane.scm:233 ../games/scuffle.scm:140 ../games/spider.scm:282
+#: ../games/thumb-and-pouch.scm:260 ../games/zebra.scm:217
 msgid "Deal another round"
 msgstr "Подели још једну руку"
 
-#: ../games/backbone.scm.h:1 ../games/camelot.scm.h:1
-#: ../games/canfield.scm.h:6 ../games/carpet.scm.h:1 ../games/glenwood.scm.h:6
-#: ../games/klondike.scm.h:2 ../games/osmosis.scm.h:1 ../games/plait.scm.h:6
-#: ../games/straight_up.scm.h:1 ../games/terrace.scm.h:8
-msgid "Deal a new card from the deck"
-msgstr "Подели нову карту са талона"
-
-#: ../games/backbone.scm.h:2 ../games/doublets.scm.h:1
-#: ../games/eagle_wing.scm.h:9 ../games/gaps.scm.h:7 ../games/glenwood.scm.h:9
-#: ../games/jumbo.scm.h:3 ../games/klondike.scm.h:5 ../games/plait.scm.h:10
-#: ../games/scuffle.scm.h:2 ../games/straight_up.scm.h:3
-#: ../games/terrace.scm.h:13 ../games/thumb_and_pouch.scm.h:3
-#: ../games/zebra.scm.h:3
+#: ../games/backbone.scm:127 ../games/doublets.scm:71
+#: ../games/eagle-wing.scm:108 ../games/gaps.scm:106 ../games/glenwood.scm:76
+#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
+#: ../games/scuffle.scm:55 ../games/straight-up.scm:72
+#: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
+#: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "Број преосталих дељења: "
 
-#: ../games/backbone.scm.h:5 ../games/terrace.scm.h:23
-msgid "an empty slot on the foundation"
-msgstr "празно поље на „темељу“"
-
-#: ../games/backbone.scm.h:6 ../games/terrace.scm.h:24
+#: ../games/backbone.scm:234 ../games/terrace.scm:355
 msgid "an empty slot on the tableau"
 msgstr "празно поље на талону"
 
-#: ../games/bakers_dozen.scm.h:2 ../games/chessboard.scm.h:8
-#: ../games/easthaven.scm.h:5 ../games/eight_off.scm.h:2
-#: ../games/fortress.scm.h:2 ../games/forty_thieves.scm.h:3
-#: ../games/jumbo.scm.h:6 ../games/kansas.scm.h:9 ../games/king_albert.scm.h:2
-#: ../games/seahaven.scm.h:2 ../games/streets_and_alleys.scm.h:2
-#: ../games/westhaven.scm.h:3 ../games/yukon.scm.h:1
+#: ../games/backbone.scm:235 ../games/terrace.scm:293
+msgid "an empty slot on the foundation"
+msgstr "празно поље на „темељу“"
+
+#: ../games/backbone.scm:293 ../games/camelot.scm:209
+#: ../games/canfield.scm:228 ../games/carpet.scm:175 ../games/glenwood.scm:250
+#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/osmosis.scm:215 ../games/plait.scm:103
+#: ../games/straight-up.scm:240 ../games/terrace.scm:361
+msgid "Deal a new card from the deck"
+msgstr "Подели нову карту са талона"
+
+#: ../games/bakers-dozen.scm:156 ../games/easthaven.scm:188
+#: ../games/eight-off.scm:180 ../games/fortress.scm:166
+#: ../games/king-albert.scm:258 ../games/seahaven.scm:245
+#: ../games/streets-and-alleys.scm:158 ../games/yukon.scm:244
 msgid "an empty foundation"
 msgstr "Празан „темељ“"
 
-#: ../games/bear_river.scm.h:1 ../games/canfield.scm.h:1
-#: ../games/chessboard.scm.h:1 ../games/eagle_wing.scm.h:1
-#: ../games/glenwood.scm.h:1 ../games/kansas.scm.h:1 ../games/plait.scm.h:1
+#: ../games/bear-river.scm:88 ../games/canfield.scm:79
+#: ../games/chessboard.scm:92 ../games/eagle-wing.scm:96
+#: ../games/glenwood.scm:82 ../games/kansas.scm:86 ../games/plait.scm:240
 msgid "Base Card: "
 msgstr "Основна карта: "
 
-#: ../games/bear_river.scm.h:6
-msgid "Move something onto an empty right-hand tableau slot"
-msgstr "Поставите нешто у празно десно место талона"
-
-#: ../games/bear_river.scm.h:7
+#: ../games/bear-river.scm:160
 msgid "an empty foundation slot"
 msgstr "празан „темељ“"
 
-#: ../games/camelot.scm.h:3
-msgid "an empty bottom slot"
-msgstr "Празно поље на дну"
+#: ../games/bear-river.scm:209
+msgid "Move something onto an empty right-hand tableau slot"
+msgstr "Поставите нешто у празно десно место талона"
 
-#: ../games/camelot.scm.h:4
-msgid "an empty corner slot"
-msgstr "Празно поље у углу"
+#: ../games/camelot.scm:168
+#| msgid "the ten of clubs"
+msgid "Remove the ten of clubs."
+msgstr "Уклоните десетку треф."
 
-#: ../games/camelot.scm.h:5
-msgid "an empty left slot"
-msgstr "Празно лево поље"
+#: ../games/camelot.scm:169
+#| msgid "the ten of diamonds"
+msgid "Remove the ten of diamonds."
+msgstr "Уклоните десетку каро."
 
-#: ../games/camelot.scm.h:6
-msgid "an empty right slot"
-msgstr "Празно десно поље"
+#: ../games/camelot.scm:170
+#| msgid "the ten of hearts"
+msgid "Remove the ten of hearts."
+msgstr "Уклоните десетку херц."
 
-#: ../games/camelot.scm.h:7 ../games/diamond_mine.scm.h:1
-#: ../games/odessa.scm.h:1 ../games/osmosis.scm.h:6 ../games/pileon.scm.h:1
-#: ../games/scorpion.scm.h:2 ../games/ten_across.scm.h:4
-#: ../games/union_square.scm.h:3 ../games/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "Празно поље"
+#: ../games/camelot.scm:171
+#| msgid "the ten of spades"
+msgid "Remove the ten of spades."
+msgstr "Уклоните десетку пик."
 
-#: ../games/camelot.scm.h:8
-msgid "an empty top slot"
-msgstr "празно горње поље"
-
-#: ../games/camelot.scm.h:9 ../games/helsinki.scm.h:2
-#: ../games/neighbor.scm.h:2 ../games/thirteen.scm.h:4 ../games/treize.scm.h:3
-#: ../games/yield.scm.h:3
-msgid "itself"
-msgstr "самом себи"
-
-#: ../games/canfield.scm.h:7 ../games/eagle_wing.scm.h:7
-#: ../games/glenwood.scm.h:8 ../games/plait.scm.h:7
-#: ../games/straight_up.scm.h:2 ../games/thumb_and_pouch.scm.h:2
-#: ../games/zebra.scm.h:2
-msgid "Move waste back to stock"
-msgstr "Врати „отпад“ назад на куп"
-
-#: ../games/canfield.scm.h:8 ../games/eagle_wing.scm.h:10
-#: ../games/kansas.scm.h:7 ../games/straight_up.scm.h:4
+#: ../games/canfield.scm:73 ../games/eagle-wing.scm:90 ../games/kansas.scm:80
+#: ../games/straight-up.scm:68
 msgid "Reserve left:"
 msgstr "Број преосталих замена: "
 
-#: ../games/canfield.scm.h:11 ../games/glenwood.scm.h:12
+#: ../games/canfield.scm:229 ../games/eagle-wing.scm:337
+#: ../games/glenwood.scm:253 ../games/plait.scm:106
+#: ../games/straight-up.scm:243 ../games/thumb-and-pouch.scm:263
+#: ../games/zebra.scm:220
+msgid "Move waste back to stock"
+msgstr "Врати „отпад“ назад на куп"
+
+#: ../games/canfield.scm:235 ../games/glenwood.scm:283
 msgid "empty slot on foundation"
 msgstr "празно поље на „темељу“"
 
-#: ../games/canfield.scm.h:12
+#: ../games/canfield.scm:257
 msgid "empty space on tableau"
 msgstr "празан простор на талону"
 
-#: ../games/chessboard.scm.h:6
+#: ../games/chessboard.scm:198
 msgid "Move a card to the Foundation"
 msgstr "Померите карту на „темељ“"
 
-#: ../games/chessboard.scm.h:7 ../games/fortress.scm.h:1
+#: ../games/chessboard.scm:260 ../games/fortress.scm:215
 msgid "Move something into the empty Tableau slot"
 msgstr "Поставите нешто у празно место талона"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:2
-msgid "Consistency is key"
-msgstr "Доследност је кључна"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:4
-msgid "Fishing wire makes bad dental floss"
-msgstr "Најлон за пецање је лоша замена за конац за зубе"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:6
-msgid "Have you read the help file?"
-msgstr "Да ли сте прочитали упутство?"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:8
-msgid "I could sure use a backrub right about now..."
-msgstr "Баш би ми требала четка за трљање леђа..."
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:10
-msgid "If you're ever lost and alone in the woods, hug a tree"
-msgstr "Ако се икада затекнете сами и изгубљени у шуми, загрлите дрво"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:12
+#: ../games/clock.scm:173
 msgid ""
 "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr "Пешачки прелаз није простор за играње школица,иако личи на њега"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:14
+#: ../games/clock.scm:175
 msgid "Look both ways before you cross the street"
 msgstr "Гледај на обе стране пре него пређеш улицу"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:16
-msgid "Monitors won't give you Vitamin D -- but sunlight will..."
-msgstr "Монитори вас неће снадбети витамином Д -- сунчева светлост хоће..."
+#: ../games/clock.scm:177
+msgid "Have you read the help file?"
+msgstr "Да ли сте прочитали упутство?"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:18
-msgid "Never blow in a dog's ear"
-msgstr "Никад не дувај у ухо пса"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:20
+#: ../games/clock.scm:179
 msgid "Odessa is a better game.  Really."
 msgstr "Одеса је боља игра.  Стварно."
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:22
+#: ../games/clock.scm:181
 msgid "Tourniquets are not recommended unless in the direst emergency"
 msgstr "Стезници се не препоручују сем у највећој невољи"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:24
+#: ../games/clock.scm:183
+msgid "I could sure use a backrub right about now..."
+msgstr "Баш би ми требала четка за трљање леђа..."
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:185
+msgid "Monitors won't give you Vitamin D -- but sunlight will..."
+msgstr "Монитори вас неће снадбети витамином Д -- сунчева светлост хоће..."
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:187
+msgid "If you're ever lost and alone in the woods, hug a tree"
+msgstr "Ако се икада затекнете сами и изгубљени у шуми, загрлите дрво"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:189
+msgid "Fishing wire makes bad dental floss"
+msgstr "Најлон за пецање је лоша замена за конац за зубе"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:191
+msgid "Consistency is key"
+msgstr "Доследност је кључна"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:193
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Када сте без алата за хефтање, спајалица и лењир могу послужити"
 
-#: ../games/cruel.scm.h:1
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:195
+msgid "Never blow in a dog's ear"
+msgstr "Никад не дувај у ухо пса"
+
+#: ../games/cruel.scm:157
+#, scheme-format
 msgid "Cards remaining: ~a"
 msgstr "Преостало карата: ~a"
 
-#: ../games/cruel.scm.h:2
+#: ../games/cruel.scm:200
 msgid "Redeal."
 msgstr "Подели поново."
 
-#: ../games/diamond_mine.scm.h:2
+#: ../games/diamond-mine.scm:244 ../games/diamond-mine.scm:296
+#: ../games/odessa.scm:180 ../games/odessa.scm:214 ../games/pileon.scm:158
+#: ../games/pileon.scm:160 ../games/scorpion.scm:183
+#: ../games/ten-across.scm:180 ../games/ten-across.scm:227
+#: ../games/yukon.scm:204
+msgid "an empty slot"
+msgstr "Празно поље"
+
+#: ../games/diamond-mine.scm:253
 msgid "the foundation pile"
 msgstr "гомила на „темељу“"
 
-#: ../games/doublets.scm.h:3
-msgid "Unknown value"
-msgstr "Непозната вредност"
-
-#: ../games/doublets.scm.h:4
-msgid "You are searching for a five."
-msgstr "Тражите петицу."
-
-#: ../games/doublets.scm.h:5
-msgid "You are searching for a four."
-msgstr "Тражите четворку."
-
-#: ../games/doublets.scm.h:6
-msgid "You are searching for a jack."
-msgstr "Тражите жандара."
-
-#: ../games/doublets.scm.h:7
-msgid "You are searching for a king."
-msgstr "Тражите краља."
-
-#: ../games/doublets.scm.h:8
-msgid "You are searching for a nine."
-msgstr "Тражите деветку."
-
-#: ../games/doublets.scm.h:9
-msgid "You are searching for a queen."
-msgstr "Тражите краљицу."
-
-#: ../games/doublets.scm.h:10
-msgid "You are searching for a seven."
-msgstr "Тражите седмицу."
-
-#: ../games/doublets.scm.h:11
-msgid "You are searching for a six."
-msgstr "Тражите шестицу."
-
-#: ../games/doublets.scm.h:12
-msgid "You are searching for a ten."
-msgstr "Тражите десетку."
-
-#: ../games/doublets.scm.h:13
-msgid "You are searching for a three."
-msgstr "Тражите тројку."
-
-#: ../games/doublets.scm.h:14
-msgid "You are searching for a two."
-msgstr "Тражите двојку."
-
-#: ../games/doublets.scm.h:15
+#: ../games/doublets.scm:157
 msgid "You are searching for an ace."
 msgstr "Тражите кеца."
 
-#: ../games/doublets.scm.h:16
+#: ../games/doublets.scm:158
+msgid "You are searching for a two."
+msgstr "Тражите двојку."
+
+#: ../games/doublets.scm:159
+msgid "You are searching for a three."
+msgstr "Тражите тројку."
+
+#: ../games/doublets.scm:160
+msgid "You are searching for a four."
+msgstr "Тражите четворку."
+
+#: ../games/doublets.scm:161
+msgid "You are searching for a five."
+msgstr "Тражите петицу."
+
+#: ../games/doublets.scm:162
+msgid "You are searching for a six."
+msgstr "Тражите шестицу."
+
+#: ../games/doublets.scm:163
+msgid "You are searching for a seven."
+msgstr "Тражите седмицу."
+
+#: ../games/doublets.scm:164
 msgid "You are searching for an eight."
 msgstr "Тражите осмицу."
 
-#: ../games/eagle_wing.scm.h:6 ../games/elevator.scm.h:1
-#: ../games/escalator.scm.h:1 ../games/royal_east.scm.h:6
-#: ../games/thirteen.scm.h:1 ../games/treize.scm.h:1
-#: ../games/triple_peaks.scm.h:1 ../games/union_square.scm.h:1
-#: ../games/westhaven.scm.h:1 ../games/yield.scm.h:1
-msgid "Deal a card"
-msgstr "Подели карту"
+#: ../games/doublets.scm:165
+msgid "You are searching for a nine."
+msgstr "Тражите деветку."
 
-#: ../games/eagle_wing.scm.h:8
+#: ../games/doublets.scm:166
+msgid "You are searching for a ten."
+msgstr "Тражите десетку."
+
+#: ../games/doublets.scm:167
+msgid "You are searching for a jack."
+msgstr "Тражите жандара."
+
+#: ../games/doublets.scm:168
+msgid "You are searching for a queen."
+msgstr "Тражите краљицу."
+
+#: ../games/doublets.scm:169
+msgid "You are searching for a king."
+msgstr "Тражите краља."
+
+#: ../games/doublets.scm:170
+msgid "Unknown value"
+msgstr "Непозната вредност"
+
+#: ../games/eagle-wing.scm:269
+#, scheme-format
 msgid "Move ~a to an empty foundation"
 msgstr "Карта ~a на празан „темељ“"
 
-#: ../games/eagle_wing.scm.h:12
+#: ../games/eagle-wing.scm:302
 msgid "an empty slot on tableau"
 msgstr "празно поље на талону"
 
-#: ../games/easthaven.scm.h:2
+#: ../games/eagle-wing.scm:334 ../games/elevator.scm:365
+#: ../games/escalator.scm:224 ../games/royal-east.scm:193
+#: ../games/thirteen.scm:415 ../games/treize.scm:301
+#: ../games/triple-peaks.scm:344 ../games/union-square.scm:464
+#: ../games/westhaven.scm:196 ../games/yield.scm:317
+msgid "Deal a card"
+msgstr "Подели карту"
+
+#: ../games/easthaven.scm:224
 msgid "Move a King on to the empty tableau slot"
 msgstr "Помери краља на празно талон поље"
 
-#: ../games/easthaven.scm.h:3 ../games/klondike.scm.h:3
+#: ../games/easthaven.scm:236 ../games/klondike.scm:270
+#: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Тренутно нема савета"
 
-#: ../games/eight_off.scm.h:1 ../games/seahaven.scm.h:1
-msgid "Move something on to an empty reserve"
-msgstr "Поставите нешто у празно место"
-
-#: ../games/eight_off.scm.h:3 ../games/seahaven.scm.h:3
+#: ../games/eight-off.scm:233 ../games/seahaven.scm:300
 msgid "an empty tableau"
 msgstr "празан талон"
 
-#: ../games/eliminator.scm.h:1
-msgid "Five Foundations"
-msgstr "Пет темеља"
+#: ../games/eight-off.scm:249 ../games/seahaven.scm:316
+msgid "Move something on to an empty reserve"
+msgstr "Поставите нешто у празно место"
 
-#: ../games/eliminator.scm.h:2
-msgid "Four Foundations"
-msgstr "Четири темеља"
-
-#: ../games/eliminator.scm.h:3
-msgid "No moves."
-msgstr "Без потеза."
-
-#: ../games/eliminator.scm.h:4
-msgid "Play a card to foundation."
-msgstr "Поставите карту на темељ."
-
-#: ../games/eliminator.scm.h:5
+#: ../games/eliminator.scm:176
 msgid "Six Foundations"
 msgstr "Шест темеља"
 
-#: ../games/first_law.scm.h:2
-msgid "I'm not sure"
-msgstr "Нисам сигуран"
+#: ../games/eliminator.scm:177
+msgid "Five Foundations"
+msgstr "Пет темеља"
 
-#: ../games/first_law.scm.h:3
+#: ../games/eliminator.scm:178
+msgid "Four Foundations"
+msgstr "Четири темеља"
+
+#: ../games/eliminator.scm:196
+msgid "Play a card to foundation."
+msgstr "Поставите карту на темељ."
+
+#: ../games/eliminator.scm:197
+msgid "No moves."
+msgstr "Без потеза."
+
+#: ../games/first-law.scm:139
 msgid "Remove the aces"
 msgstr "Уклони кечеве"
 
-#: ../games/first_law.scm.h:4
-msgid "Remove the eights"
-msgstr "Уклони осмице"
-
-#: ../games/first_law.scm.h:5
-msgid "Remove the fives"
-msgstr "Уклони петице"
-
-#: ../games/first_law.scm.h:6
-msgid "Remove the fours"
-msgstr "Уклони четворке"
-
-#: ../games/first_law.scm.h:7
-msgid "Remove the jacks"
-msgstr "Уклони жандаре"
-
-#: ../games/first_law.scm.h:8
-msgid "Remove the kings"
-msgstr "Уклони краљеве"
-
-#: ../games/first_law.scm.h:9
-msgid "Remove the nines"
-msgstr "Уклони деветке"
-
-#: ../games/first_law.scm.h:10
-msgid "Remove the queens"
-msgstr "Уклони краљице"
-
-#: ../games/first_law.scm.h:11
-msgid "Remove the sevens"
-msgstr "Уклони седмице"
-
-#: ../games/first_law.scm.h:12
-msgid "Remove the sixes"
-msgstr "Уклони шестице"
-
-#: ../games/first_law.scm.h:13
-msgid "Remove the tens"
-msgstr "Уклони десетке"
-
-#: ../games/first_law.scm.h:14
-msgid "Remove the threes"
-msgstr "Уклони тројке"
-
-#: ../games/first_law.scm.h:15
+#: ../games/first-law.scm:141
 msgid "Remove the twos"
 msgstr "Уклони двојке"
 
-#: ../games/first_law.scm.h:16
+#: ../games/first-law.scm:143
+msgid "Remove the threes"
+msgstr "Уклони тројке"
+
+#: ../games/first-law.scm:145
+msgid "Remove the fours"
+msgstr "Уклони четворке"
+
+#: ../games/first-law.scm:147
+msgid "Remove the fives"
+msgstr "Уклони петице"
+
+#: ../games/first-law.scm:149
+msgid "Remove the sixes"
+msgstr "Уклони шестице"
+
+#: ../games/first-law.scm:151
+msgid "Remove the sevens"
+msgstr "Уклони седмице"
+
+#: ../games/first-law.scm:153
+msgid "Remove the eights"
+msgstr "Уклони осмице"
+
+#: ../games/first-law.scm:155
+msgid "Remove the nines"
+msgstr "Уклони деветке"
+
+#: ../games/first-law.scm:157
+msgid "Remove the tens"
+msgstr "Уклони десетке"
+
+#: ../games/first-law.scm:159
+msgid "Remove the jacks"
+msgstr "Уклони жандаре"
+
+#: ../games/first-law.scm:161
+msgid "Remove the queens"
+msgstr "Уклони краљице"
+
+#: ../games/first-law.scm:163
+msgid "Remove the kings"
+msgstr "Уклони краљеве"
+
+#: ../games/first-law.scm:165
+msgid "I'm not sure"
+msgstr "Нисам сигуран"
+
+#: ../games/first-law.scm:185
 msgid "Return cards to stock"
 msgstr "Врати карте на гомилу"
 
-#: ../games/fortunes.scm.h:1 ../games/klondike.scm.h:1
-msgid "Consider moving something into an empty slot"
-msgstr "Размислите о томе да нешто пребаците у празно поље"
-
-#: ../games/fortunes.scm.h:3
+#: ../games/fortunes.scm:135 ../games/fortunes.scm:138
+#, scheme-format
 msgid "Move ~a off the board"
 msgstr "Карта ~a са табле"
 
-#: ../games/forty_thieves.scm.h:1
+#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+msgid "Consider moving something into an empty slot"
+msgstr "Размислите о томе да нешто пребаците у празно поље"
+
+#: ../games/forty-thieves.scm:374
 msgid "Deal a card from stock"
 msgstr "Подели карте са гомиле"
 
-#: ../games/forty_thieves.scm.h:4
-msgid "an empty space"
-msgstr "празно поље"
-
-#: ../games/freecell.scm.h:1
+#: ../games/freecell.scm:625
 msgid "No moves are possible. Undo or start again."
 msgstr "Нема могућих покрета. Да опозовем потез или почнем нову игру."
 
-#: ../games/freecell.scm.h:2
+#: ../games/freecell.scm:631
 msgid "The game has no solution. Undo or start again."
 msgstr "Игра нема решења. Опозовите потез или почните поново."
 
-#: ../games/freecell.scm.h:3
+#: ../games/freecell.scm:633
 msgid "an empty reserve"
 msgstr "празна резерва"
 
-#: ../games/freecell.scm.h:4
-msgid "an open tableau"
-msgstr "отворени талон"
-
-#: ../games/freecell.scm.h:5 ../games/terrace.scm.h:26
+#: ../games/freecell.scm:634 ../games/napoleons-tomb.scm:338
+#: ../games/terrace.scm:286
 msgid "the foundation"
 msgstr "основа"
 
-#: ../games/gaps.scm.h:1
-msgid "Add to the sequence in row ~a."
-msgstr "Додај у део реда ~a."
+#: ../games/freecell.scm:635
+msgid "an open tableau"
+msgstr "отворени талон"
 
-#: ../games/gaps.scm.h:2
+#: ../games/gaps.scm:278
 msgid "Double click any card to redeal."
 msgstr "Два пута притисни на било коју карту за ново дељење."
 
-#: ../games/gaps.scm.h:3
+#: ../games/gaps.scm:284
 msgid "No hint available."
 msgstr "Савети нису доступни."
 
-#: ../games/gaps.scm.h:4
+#: ../games/gaps.scm:293
+#, scheme-format
 msgid "Place a two in the leftmost slot of row ~a."
 msgstr "Постави два у крајње лево поље реда ~a."
 
-#: ../games/gaps.scm.h:5
+#: ../games/gaps.scm:297
+#, scheme-format
+msgid "Add to the sequence in row ~a."
+msgstr "Додај у део реда ~a."
+
+#: ../games/gaps.scm:316
+#, scheme-format
 msgid "Place the ~a next to ~a."
 msgstr "Постави ~a поред ~a."
 
-#: ../games/gaps.scm.h:6
+#: ../games/gaps.scm:325
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Случајно изостављање при новом дељењу"
 
-#: ../games/giant.scm.h:1
-msgid "Alternating colors"
-msgstr "Наизменичне боје"
-
-#: ../games/giant.scm.h:2
-msgid "Deal a row"
-msgstr "Подели ред"
-
-#: ../games/giant.scm.h:3
+#: ../games/giant.scm:76
+#, scheme-format
 msgid "Deals left: ~a"
 msgstr "Број преосталих дељења: ~a"
 
-#: ../games/giant.scm.h:4
-msgid "Same suit"
-msgstr "Иста боја"
+#: ../games/giant.scm:252
+msgid "Deal a row"
+msgstr "Подели ред"
 
-#: ../games/giant.scm.h:5
-msgid "Try dealing a row of cards"
-msgstr "Пробајте да поделите ред карата"
-
-#: ../games/giant.scm.h:6
-msgid "Try moving a card to the reserve"
-msgstr "Покушајте да померите карту на резерву"
-
-#: ../games/giant.scm.h:7 ../games/spider.scm.h:7
-msgid "Try moving card piles around"
-msgstr "Покушајте да померите карте около"
-
-#: ../games/giant.scm.h:8
+#: ../games/giant.scm:259
 msgid "an empty foundation place"
 msgstr "празно место на „темељу“"
 
-#: ../games/giant.scm.h:9
+#: ../games/giant.scm:260
 msgid "an empty tableau place"
 msgstr "празно место на талону"
 
-#: ../games/glenwood.scm.h:7
-msgid "Move a card from the reserve on to the empty tableau slot"
-msgstr "Пребаци карту из резерве у празно поље на талону"
+#: ../games/giant.scm:287
+msgid "Try moving a card to the reserve"
+msgstr "Покушајте да померите карту на резерву"
 
-#: ../games/glenwood.scm.h:10
+#: ../games/giant.scm:288
+msgid "Try dealing a row of cards"
+msgstr "Пробајте да поделите ред карата"
+
+#. this isn't great, but it will get around the premature end-of-game call
+#: ../games/giant.scm:290 ../games/spider.scm:301
+msgid "Try moving card piles around"
+msgstr "Покушајте да померите карте около"
+
+#: ../games/giant.scm:295
+msgid "Same suit"
+msgstr "Иста боја"
+
+#: ../games/giant.scm:296
+msgid "Alternating colors"
+msgstr "Наизменичне боје"
+
+#: ../games/glenwood.scm:258
 msgid "Select a card from the reserve for first foundation pile"
 msgstr "Изабери карту из резерве за темељ гомиле"
 
-#: ../games/glenwood.scm.h:13
+#: ../games/glenwood.scm:359
+msgid "Move a card from the reserve on to the empty tableau slot"
+msgstr "Пребаци карту из резерве у празно поље на талону"
+
+#: ../games/glenwood.scm:361
 msgid "on to the empty tableau slot"
 msgstr "на празно талон поље"
 
-#: ../games/golf.scm.h:1 ../games/hopscotch.scm.h:1 ../games/jumbo.scm.h:1
-#: ../games/kansas.scm.h:6 ../games/sir_tommy.scm.h:1
-#: ../games/whitehead.scm.h:1
-msgid "Deal another card"
-msgstr "Подели још једну карту"
-
-#: ../games/golf.scm.h:2 ../games/osmosis.scm.h:4 ../games/spider.scm.h:6
+#: ../games/golf.scm:67 ../games/osmosis.scm:68 ../games/spider.scm:88
+#, scheme-format
 msgid "Stock left: ~a"
 msgstr "Преостало на гомили: ~a"
 
-#: ../games/gypsy.scm.h:1
-msgid "Deal another hand"
-msgstr "Подели још једну руку"
+#: ../games/golf.scm:139 ../games/hopscotch.scm:132 ../games/jumbo.scm:298
+#: ../games/kansas.scm:219 ../games/sir-tommy.scm:134
+#: ../games/whitehead.scm:252
+msgid "Deal another card"
+msgstr "Подели још једну карту"
 
-#: ../games/gypsy.scm.h:2
+#: ../games/gypsy.scm:216
 msgid "Move a card or build of cards on to the empty slot"
 msgstr "Помери карту или низ карата на празно поље"
 
-#: ../games/hopscotch.scm.h:2
+#: ../games/gypsy.scm:339
+msgid "Deal another hand"
+msgstr "Подели још једну руку"
+
+#: ../games/helsinki.scm:116 ../games/neighbor.scm:142
+#: ../games/thirteen.scm:391 ../games/treize.scm:285 ../games/yield.scm:301
+msgid "itself"
+msgstr "самом себи"
+
+#: ../games/hopscotch.scm:128
 msgid "Move card from waste"
 msgstr "Премести карту из „Отпада“"
 
-#: ../games/jumbo.scm.h:2
+#: ../games/jumbo.scm:301
 msgid "Move waste to stock"
 msgstr "Врати „отпад“ назад на куп"
 
-#: ../games/jumbo.scm.h:7 ../games/kansas.scm.h:10
-#: ../games/king_albert.scm.h:3 ../games/lady_jane.scm.h:11
-#: ../games/straight_up.scm.h:6
+#: ../games/king-albert.scm:193 ../games/lady-jane.scm:397
+#: ../games/lady-jane.scm:409
 msgid "an empty tableau slot"
 msgstr "празно талон поље"
 
-#: ../games/kings_audience.scm.h:1
-msgid "Deal a new card"
-msgstr "Подели једну нову карту"
-
-#: ../games/kings_audience.scm.h:2
+#: ../games/kings-audience.scm:88
+#, scheme-format
 msgid "Stock remaining: ~a"
 msgstr "Преостало на гомили: ~a"
 
-#: ../games/klondike.scm.h:4
-msgid "No redeals"
-msgstr "Нема више дељења"
+#: ../games/kings-audience.scm:229
+msgid "Deal a new card"
+msgstr "Подели једну нову карту"
 
-#: ../games/klondike.scm.h:6
-msgid "Single card deals"
-msgstr "Дељење по једне карте"
-
-#: ../games/klondike.scm.h:9
+#: ../games/klondike.scm:269
 msgid "Try moving cards down from the foundation"
 msgstr "Покушајте да померите карте са „темеља“"
 
-#: ../games/lady_jane.scm.h:1 ../games/royal_east.scm.h:1
+#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+msgid "Single card deals"
+msgstr "Дељење по једне карте"
+
+#: ../games/klondike.scm:294
+msgid "No redeals"
+msgstr "Нема више дељења"
+
+#: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "Основна карта: "
 
-#: ../games/maze.scm.h:1
+#: ../games/lady-jane.scm:253 ../games/thumb-and-pouch.scm:197
+msgid "an empty foundation pile"
+msgstr "празна гомила на „темељу“"
+
+#: ../games/maze.scm:147
 msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
@@ -2471,617 +2968,218 @@ msgstr ""
 "Нациљај да наместиш боје у поретку који најприродније одговара тренутном "
 "распореду."
 
-#: ../games/osmosis.scm.h:2
-msgid "Deal new cards from the deck"
-msgstr "Подели нове карте из шпила"
+#: ../games/napoleons-tomb.scm:373
+msgid "Autoplay"
+msgstr "Сам одиграј"
 
-#: ../games/osmosis.scm.h:3
+#: ../games/osmosis.scm:74
+#, scheme-format
 msgid "Redeals left: ~a"
 msgstr "Број преосталих дељења: ~a"
 
-#: ../games/pileon.scm.h:2 ../games/terrace.scm.h:25
+#: ../games/osmosis.scm:214
+msgid "Deal new cards from the deck"
+msgstr "Подели нове карте из шпила"
+
+#: ../games/pileon.scm:158 ../games/pileon.scm:160 ../games/terrace.scm:286
 msgid "something"
 msgstr "нешто"
 
-# bug: what's "~a"?
-#: ../games/plait.scm.h:8
-msgid "Move ~a from the stock to an empty edge or tableau slot"
-msgstr "Пребаци ~a из резерве у празно поље или на талон"
-
-# bug: what's ~a
-#: ../games/plait.scm.h:9
-msgid "Move ~a to an empty field"
-msgstr "Премести ~a у празно поље"
-
-#: ../games/poker.scm.h:1
+#: ../games/poker.scm:297
 msgid "Place cards on to the Tableau to form poker hands"
 msgstr "Постави карте на талон да формирају покер"
 
-#: ../games/poker.scm.h:2
+#: ../games/poker.scm:300
 msgid "Shuffle mode"
 msgstr "Помешани режим"
 
-#: ../games/royal_east.scm.h:9 ../games/thumb_and_pouch.scm.h:6
-#: ../games/westhaven.scm.h:4
-msgid "an empty tableau pile"
-msgstr "празна талон гомила"
-
-#: ../games/scorpion.scm.h:1
+#: ../games/scorpion.scm:144
 msgid "Deal the cards"
 msgstr "Подели карте"
 
-#: ../games/scuffle.scm.h:3
+#: ../games/scuffle.scm:142
 msgid "Reshuffle cards"
 msgstr "Промешај карте"
 
-#: ../games/sir_tommy.scm.h:2
+#: ../games/sir-tommy.scm:130
 msgid "Move waste on to a reserve slot"
 msgstr "Помери отпад на резервно поље"
 
-#: ../games/sir_tommy.scm.h:4
-msgid "empty foundation"
-msgstr "празан темељ"
-
-#: ../games/sol.scm.h:1
-msgid "Move ~a onto an empty foundation slot."
-msgstr "Карта ~a на празно поље у темељу."
-
-# bug: what's ~a
-#: ../games/sol.scm.h:2
-msgid "Move ~a onto an empty slot."
-msgstr "Премести ~a на празно поље."
-
-#: ../games/sol.scm.h:3
-msgid "Move ~a onto an empty tableau slot."
-msgstr "Карта ~a на празно талон поље."
-
-#: ../games/sol.scm.h:4
-msgid "Move ~a onto the ace of clubs."
-msgstr "Карта ~a на кеца треф."
-
-#: ../games/sol.scm.h:5
-msgid "Move ~a onto the ace of diamonds."
-msgstr "Карта ~a на кеца каро."
-
-#: ../games/sol.scm.h:6
-msgid "Move ~a onto the ace of hearts."
-msgstr "Карта ~a на кеца херц."
-
-#: ../games/sol.scm.h:7
-msgid "Move ~a onto the ace of spades."
-msgstr "Карта ~a на кеца пик."
-
-#: ../games/sol.scm.h:8
-msgid "Move ~a onto the black joker."
-msgstr "Карта ~a на црног џокера."
-
-#: ../games/sol.scm.h:9
-msgid "Move ~a onto the eight of clubs."
-msgstr "Карта ~a на осмицу треф."
-
-#: ../games/sol.scm.h:10
-msgid "Move ~a onto the eight of diamonds."
-msgstr "Карта ~a на осмицу каро."
-
-#: ../games/sol.scm.h:11
-msgid "Move ~a onto the eight of hearts."
-msgstr "Карта ~a на осмицу херц."
-
-#: ../games/sol.scm.h:12
-msgid "Move ~a onto the eight of spades."
-msgstr "Карта ~a на осмицу пик."
-
-#: ../games/sol.scm.h:13
-msgid "Move ~a onto the five of clubs."
-msgstr "Карта ~a на петицу треф."
-
-#: ../games/sol.scm.h:14
-msgid "Move ~a onto the five of diamonds."
-msgstr "Карта ~a на петицу каро."
-
-#: ../games/sol.scm.h:15
-msgid "Move ~a onto the five of hearts."
-msgstr "Карта ~a на петицу херц."
-
-#: ../games/sol.scm.h:16
-msgid "Move ~a onto the five of spades."
-msgstr "Карта ~a на петицу пик."
-
-#: ../games/sol.scm.h:17
-msgid "Move ~a onto the foundation."
-msgstr "Карта ~a на темељ."
-
-#: ../games/sol.scm.h:18
-msgid "Move ~a onto the four of clubs."
-msgstr "Карта ~a на четворку треф."
-
-#: ../games/sol.scm.h:19
-msgid "Move ~a onto the four of diamonds."
-msgstr "Карта ~a на четворку каро."
-
-#: ../games/sol.scm.h:20
-msgid "Move ~a onto the four of hearts."
-msgstr "Карта ~a на четворку херц."
-
-#: ../games/sol.scm.h:21
-msgid "Move ~a onto the four of spades."
-msgstr "Карта ~a на четворку пик."
-
-#: ../games/sol.scm.h:22
-msgid "Move ~a onto the jack of clubs."
-msgstr "Карта ~a на жандара треф."
-
-#: ../games/sol.scm.h:23
-msgid "Move ~a onto the jack of diamonds."
-msgstr "Карта ~a на жандара каро."
-
-#: ../games/sol.scm.h:24
-msgid "Move ~a onto the jack of hearts."
-msgstr "Карта ~a на жандара херц."
-
-#: ../games/sol.scm.h:25
-msgid "Move ~a onto the jack of spades."
-msgstr "Карта ~a на жандара пик."
-
-#: ../games/sol.scm.h:26
-msgid "Move ~a onto the king of clubs."
-msgstr "Карта ~a на краља треф."
-
-#: ../games/sol.scm.h:27
-msgid "Move ~a onto the king of diamonds."
-msgstr "Карта ~a на краља каро."
-
-#: ../games/sol.scm.h:28
-msgid "Move ~a onto the king of hearts."
-msgstr "Карта ~a на краља херц."
-
-#: ../games/sol.scm.h:29
-msgid "Move ~a onto the king of spades."
-msgstr "Карта ~a на краља пик."
-
-#: ../games/sol.scm.h:30
-msgid "Move ~a onto the nine of clubs."
-msgstr "Карта ~a на деветку треф."
-
-#: ../games/sol.scm.h:31
-msgid "Move ~a onto the nine of diamonds."
-msgstr "Карта ~a на деветку каро."
-
-#: ../games/sol.scm.h:32
-msgid "Move ~a onto the nine of hearts."
-msgstr "Карта ~a на деветку херц."
-
-#: ../games/sol.scm.h:33
-msgid "Move ~a onto the nine of spades."
-msgstr "Карта ~a на деветку пик."
-
-#: ../games/sol.scm.h:34
-msgid "Move ~a onto the queen of clubs."
-msgstr "Карта ~a на краљицу треф."
-
-#: ../games/sol.scm.h:35
-msgid "Move ~a onto the queen of diamonds."
-msgstr "Карта ~a на краљицу каро."
-
-#: ../games/sol.scm.h:36
-msgid "Move ~a onto the queen of hearts."
-msgstr "Карта ~a на краљицу херц."
-
-#: ../games/sol.scm.h:37
-msgid "Move ~a onto the queen of spades."
-msgstr "~a на краљицу пик."
-
-#: ../games/sol.scm.h:38
-msgid "Move ~a onto the red joker."
-msgstr "Карта ~a на црвеног џокера."
-
-#: ../games/sol.scm.h:39
-msgid "Move ~a onto the seven of clubs."
-msgstr "Карта ~a на седмицу треф."
-
-#: ../games/sol.scm.h:40
-msgid "Move ~a onto the seven of diamonds."
-msgstr "Карта ~a на седмицу каро."
-
-#: ../games/sol.scm.h:41
-msgid "Move ~a onto the seven of hearts."
-msgstr "Карта ~a на седмицу херц."
-
-#: ../games/sol.scm.h:42
-msgid "Move ~a onto the seven of spades."
-msgstr "Карта ~a на седмицу пик."
-
-#: ../games/sol.scm.h:43
-msgid "Move ~a onto the six of clubs."
-msgstr "Карта ~a на шестицу треф."
-
-#: ../games/sol.scm.h:44
-msgid "Move ~a onto the six of diamonds."
-msgstr "Карта ~a на шестицу каро."
-
-#: ../games/sol.scm.h:45
-msgid "Move ~a onto the six of hearts."
-msgstr "Карта ~a на шестицу херц."
-
-#: ../games/sol.scm.h:46
-msgid "Move ~a onto the six of spades."
-msgstr "Карта ~a на шестицу пик."
-
-#: ../games/sol.scm.h:47
-msgid "Move ~a onto the tableau."
-msgstr "Карта ~a на талон."
-
-#: ../games/sol.scm.h:48
-msgid "Move ~a onto the ten of clubs."
-msgstr "Карта ~a на десетку треф."
-
-#: ../games/sol.scm.h:49
-msgid "Move ~a onto the ten of diamonds."
-msgstr "Карта ~a на десетку каро."
-
-#: ../games/sol.scm.h:50
-msgid "Move ~a onto the ten of hearts."
-msgstr "Карта ~a на десетку херц."
-
-#: ../games/sol.scm.h:51
-msgid "Move ~a onto the ten of spades."
-msgstr "Карта ~a на десетку пик."
-
-#: ../games/sol.scm.h:52
-msgid "Move ~a onto the three of clubs."
-msgstr "Карта ~a на тројку треф."
-
-#: ../games/sol.scm.h:53
-msgid "Move ~a onto the three of diamonds."
-msgstr "Карта ~a на тројку каро."
-
-#: ../games/sol.scm.h:54
-msgid "Move ~a onto the three of hearts."
-msgstr "Карта ~a на тројку херц."
-
-#: ../games/sol.scm.h:55
-msgid "Move ~a onto the three of spades."
-msgstr "Карта ~a на тројку пик."
-
-#: ../games/sol.scm.h:56
-msgid "Move ~a onto the two of clubs."
-msgstr "Карта ~a на двојку треф."
-
-#: ../games/sol.scm.h:57
-msgid "Move ~a onto the two of diamonds."
-msgstr "Карта ~a на двојку каро."
-
-#: ../games/sol.scm.h:58
-msgid "Move ~a onto the two of hearts."
-msgstr "Карта ~a на двојку херц."
-
-#: ../games/sol.scm.h:59
-msgid "Move ~a onto the two of spades."
-msgstr "Карта ~a на двојку пик."
-
-#: ../games/sol.scm.h:60
-msgid "Move ~a onto the unknown card."
-msgstr "Карта ~a на непознату карту."
-
-#: ../games/sol.scm.h:61
-msgid "Unknown color"
-msgstr "Непозната боја"
-
-#: ../games/sol.scm.h:62
-msgid "the ace of clubs"
-msgstr "кец треф"
-
-#: ../games/sol.scm.h:63
-msgid "the ace of diamonds"
-msgstr "кец каро"
-
-#: ../games/sol.scm.h:64
-msgid "the ace of hearts"
-msgstr "кец херц"
-
-#: ../games/sol.scm.h:65
-msgid "the ace of spades"
-msgstr "кец пик"
-
-#: ../games/sol.scm.h:66
-msgid "the black joker"
-msgstr "црни џокер"
-
-#: ../games/sol.scm.h:67
-msgid "the eight of clubs"
-msgstr "осмица треф"
-
-#: ../games/sol.scm.h:68
-msgid "the eight of diamonds"
-msgstr "осмица каро"
-
-#: ../games/sol.scm.h:69
-msgid "the eight of hearts"
-msgstr "осмица херц"
-
-#: ../games/sol.scm.h:70
-msgid "the eight of spades"
-msgstr "осмица пик"
-
-#: ../games/sol.scm.h:71
-msgid "the five of clubs"
-msgstr "петица треф"
-
-#: ../games/sol.scm.h:72
-msgid "the five of diamonds"
-msgstr "петица каро"
-
-#: ../games/sol.scm.h:73
-msgid "the five of hearts"
-msgstr "петица херц"
-
-#: ../games/sol.scm.h:74
-msgid "the five of spades"
-msgstr "петица пик"
-
-#: ../games/sol.scm.h:75
-msgid "the four of clubs"
-msgstr "четворка треф"
-
-#: ../games/sol.scm.h:76
-msgid "the four of diamonds"
-msgstr "четворка каро"
-
-#: ../games/sol.scm.h:77
-msgid "the four of hearts"
-msgstr "четворка херц"
-
-#: ../games/sol.scm.h:78
-msgid "the four of spades"
-msgstr "четворка пик"
-
-#: ../games/sol.scm.h:79
-msgid "the jack of clubs"
-msgstr "жандар треф"
-
-#: ../games/sol.scm.h:80
-msgid "the jack of diamonds"
-msgstr "жандар каро"
-
-#: ../games/sol.scm.h:81
-msgid "the jack of hearts"
-msgstr "жандар херц"
-
-#: ../games/sol.scm.h:82
-msgid "the jack of spades"
-msgstr "жандар пик"
-
-#: ../games/sol.scm.h:83
-msgid "the king of clubs"
-msgstr "краљ треф"
-
-#: ../games/sol.scm.h:84
-msgid "the king of diamonds"
-msgstr "краљ каро"
-
-#: ../games/sol.scm.h:85
-msgid "the king of hearts"
-msgstr "краљ херц"
-
-#: ../games/sol.scm.h:86
-msgid "the king of spades"
-msgstr "краљ пик"
-
-#: ../games/sol.scm.h:87
-msgid "the nine of clubs"
-msgstr "деветка треф"
-
-#: ../games/sol.scm.h:88
-msgid "the nine of diamonds"
-msgstr "деветка каро"
-
-#: ../games/sol.scm.h:89
-msgid "the nine of hearts"
-msgstr "деветка херц"
-
-#: ../games/sol.scm.h:90
-msgid "the nine of spades"
-msgstr "деветка пик"
-
-#: ../games/sol.scm.h:91
-msgid "the queen of clubs"
-msgstr "краљица треф"
-
-#: ../games/sol.scm.h:92
-msgid "the queen of diamonds"
-msgstr "краљица каро"
-
-#: ../games/sol.scm.h:93
-msgid "the queen of hearts"
-msgstr "краљица херц"
-
-#: ../games/sol.scm.h:94
-msgid "the queen of spades"
-msgstr "краљица пик"
-
-#: ../games/sol.scm.h:95
-msgid "the red joker"
-msgstr "црвени џокер"
-
-#: ../games/sol.scm.h:96
-msgid "the seven of clubs"
-msgstr "седмица треф"
-
-#: ../games/sol.scm.h:97
-msgid "the seven of diamonds"
-msgstr "седмица каро"
-
-#: ../games/sol.scm.h:98
-msgid "the seven of hearts"
-msgstr "седмица херц"
-
-#: ../games/sol.scm.h:99
-msgid "the seven of spades"
-msgstr "седмица пик"
-
-#: ../games/sol.scm.h:100
-msgid "the six of clubs"
-msgstr "шестица треф"
-
-#: ../games/sol.scm.h:101
-msgid "the six of diamonds"
-msgstr "шестица каро"
-
-#: ../games/sol.scm.h:102
-msgid "the six of hearts"
-msgstr "шестица херц"
-
-#: ../games/sol.scm.h:103
-msgid "the six of spades"
-msgstr "шестица пик"
-
-#: ../games/sol.scm.h:104
-msgid "the ten of clubs"
-msgstr "десетка треф"
-
-#: ../games/sol.scm.h:105
-msgid "the ten of diamonds"
-msgstr "десетка каро"
-
-#: ../games/sol.scm.h:106
-msgid "the ten of hearts"
-msgstr "десетка херц"
-
-#: ../games/sol.scm.h:107
-msgid "the ten of spades"
-msgstr "десетка пик"
-
-#: ../games/sol.scm.h:108
-msgid "the three of clubs"
-msgstr "тројка треф"
-
-#: ../games/sol.scm.h:109
-msgid "the three of diamonds"
-msgstr "тројка каро"
-
-#: ../games/sol.scm.h:110
-msgid "the three of hearts"
-msgstr "тројка херц"
-
-#: ../games/sol.scm.h:111
-msgid "the three of spades"
-msgstr "тројка пик"
-
-#: ../games/sol.scm.h:112
-msgid "the two of clubs"
-msgstr "двојка треф"
-
-#: ../games/sol.scm.h:113
-msgid "the two of diamonds"
-msgstr "двојка каро"
-
-#: ../games/sol.scm.h:114
-msgid "the two of hearts"
-msgstr "двојка херц"
-
-#: ../games/sol.scm.h:115
-msgid "the two of spades"
-msgstr "двојка пик"
-
-#: ../games/sol.scm.h:116
-msgid "the unknown card"
-msgstr "непозната карта"
-
-#: ../games/spider.scm.h:2
-msgid "Four Suits"
-msgstr "Четири знака"
-
-#: ../games/spider.scm.h:3
-msgid "One Suit"
-msgstr "Један знак"
-
-#: ../games/spider.scm.h:4
-msgid "Place something on empty slot"
-msgstr "Поставите нешто у празно место"
-
-#: ../games/spider.scm.h:5
-msgid "Please fill in empty pile first."
-msgstr "Попуните прво испражњену гомилу."
-
-#: ../games/spider.scm.h:8
-msgid "Two Suits"
-msgstr "Два знака"
-
-#: ../games/spider.scm.h:9
+#: ../games/spider.scm:184 ../games/spider.scm:292
 msgid "Undo until there are enough cards to fill all tableau piles"
 msgstr "Опозивајте док не добијете довољно карата да попуните гомилу на талону"
 
-#: ../games/ten_across.scm.h:1
-msgid "Allow temporary spots use"
-msgstr "Дозвољена употреба привремених поља"
+#: ../games/spider.scm:185
+msgid "Please fill in empty pile first."
+msgstr "Попуните прво испражњену гомилу."
 
-#: ../games/ten_across.scm.h:2
+#: ../games/spider.scm:277
+msgid "Place something on empty slot"
+msgstr "Поставите нешто у празно место"
+
+#: ../games/spider.scm:305
+msgid "Four Suits"
+msgstr "Четири знака"
+
+#: ../games/spider.scm:306
+msgid "Two Suits"
+msgstr "Два знака"
+
+#: ../games/spider.scm:307
+msgid "One Suit"
+msgstr "Један знак"
+
+#: ../games/ten-across.scm:251
 msgid "Move a card to an empty temporary slot"
 msgstr "Премести карту на празно привремено поље"
 
-#: ../games/ten_across.scm.h:3
+#: ../games/ten-across.scm:252
 msgid "No hint available"
 msgstr "Савети нису доступни"
 
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:7
-msgid "Blondes and Brunettes"
-msgstr "Плавуше и бринете"
+#: ../games/ten-across.scm:288
+msgid "Allow temporary spots use"
+msgstr "Дозвољена употреба привремених поља"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:10
-msgid "Falling Stars"
-msgstr "Падајуће звезде"
-
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:12
+#: ../games/terrace.scm:41
 msgid "General's Patience"
 msgstr "Основно стрпљење"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:15
+#: ../games/terrace.scm:43
+msgid "Falling Stars"
+msgstr "Падајуће звезде"
+
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../games/terrace.scm:45
+msgid "Signora"
+msgstr "Госпођа"
+
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../games/terrace.scm:47
 msgid "Redheads"
 msgstr "Црвенокоси"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:17
-msgid "Signora"
-msgstr "Сињора"
+#: ../games/terrace.scm:49
+msgid "Blondes and Brunettes"
+msgstr "Плавуше и бринете"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:22
+#: ../games/terrace.scm:51
 msgid "Wood"
 msgstr "Дрво"
 
-#: ../games/thieves.scm.h:1
+#: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "Подели карту са талона"
 
-#: ../games/thirteen.scm.h:2
+#: ../games/thirteen.scm:381
 msgid "Match the top two cards of the waste."
 msgstr "Поклопи две најгорње карте вишка."
 
-#: ../games/triple_peaks.scm.h:2
-msgid "Multiplier Scoring"
-msgstr "Вишеиграчки резултати"
+#: ../games/thumb-and-pouch.scm:165 ../games/thumb-and-pouch.scm:177
+msgid "an empty tableau pile"
+msgstr "празна талон гомила"
 
-#: ../games/triple_peaks.scm.h:3
+#: ../games/triple-peaks.scm:351
 msgid "Progressive Rounds"
 msgstr "Напредне партије"
 
-# bug(slobo): msgstr "одговарајућа `темељ` гомила"
-# за седмице требају карте од 7 до Кеца, да ли се о овоме ради?
-#: ../games/union_square.scm.h:4
-msgid "appropriate foundation pile"
-msgstr "Карте које су у игри"
+#: ../games/triple-peaks.scm:352
+msgid "Multiplier Scoring"
+msgstr "Вишеиграчки резултати"
 
-#: ../games/whitehead.scm.h:2
+#: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Помери низ карата на празно поље на талону"
 
-#: ../games/zebra.scm.h:5
+#: ../games/zebra.scm:182
 msgid "the appropriate Foundation pile"
 msgstr "одговарајућа „темељ“ гомила"
+
+#~ msgctxt "score"
+#~ msgid "%6d"
+#~ msgstr "%6d"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Ово није исправна .desktop датотека"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Непрепознато издање .desktop датотеке „%s“"
+
+#~ msgid "Starting %s"
+#~ msgstr "Покрећем %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Програм не прихвата документе на командној линији"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Непозната опција при покретању: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Не могу да упишем адресу документа у „Type=Link“ унос унутар датотеке за "
+#~ "радну површ"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Ову ставку не можете да покренете"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Онемогући везу са управником сесије"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Одаберите датотеку која садржи сачувана подешавања"
+
+#~ msgid "FILE"
+#~ msgstr "ДАТОТЕКА"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Наведите ИБ управника сесије"
+
+#~ msgid "ID"
+#~ msgstr "ИБ"
+
+#~ msgid "Session management options:"
+#~ msgstr "Могућности управника сесије:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Прикажи могућности управника сесије"
+
+#~ msgid "an empty bottom slot"
+#~ msgstr "Празно поље на дну"
+
+#~ msgid "an empty corner slot"
+#~ msgstr "Празно поље у углу"
+
+#~ msgid "an empty left slot"
+#~ msgstr "Празно лево поље"
+
+#~ msgid "an empty right slot"
+#~ msgstr "Празно десно поље"
+
+#~ msgid "an empty top slot"
+#~ msgstr "празно горње поље"
+
+#~ msgid "an empty space"
+#~ msgstr "празно поље"
+
+# bug: what's "~a"?
+#~ msgid "Move ~a from the stock to an empty edge or tableau slot"
+#~ msgstr "Пребаци ~a из резерве у празно поље или на талон"
+
+# bug: what's ~a
+#~ msgid "Move ~a to an empty field"
+#~ msgstr "Премести ~a у празно поље"
+
+#~ msgid "empty foundation"
+#~ msgstr "празан темељ"
+
+# bug(slobo): msgstr "одговарајућа `темељ` гомила"
+# за седмице требају карте од 7 до Кеца, да ли се о овоме ради?
+#~ msgid "appropriate foundation pile"
+#~ msgstr "Карте које су у игри"
 
 #~ msgid ""
 #~ "You should have received a copy of the GNU General Public License along "
