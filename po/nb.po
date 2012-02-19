@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-25 11:07+0100\n"
-"PO-Revision-Date: 2012-01-25 11:08+0100\n"
+"POT-Creation-Date: 2012-02-19 15:26+0100\n"
+"PO-Revision-Date: 2012-02-19 15:27+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -115,6 +115,92 @@ msgstr "Velg spill"
 #: ../src/ar-game-chooser.c:192
 msgid "_Select"
 msgstr "_Velg"
+
+#: ../src/ar-stock.c:190
+msgid "_Contents"
+msgstr "_Innhold"
+
+#: ../src/ar-stock.c:191
+msgid "_Fullscreen"
+msgstr "_Fullskjerm"
+
+#: ../src/ar-stock.c:192
+msgid "_Hint"
+msgstr "_Hint"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../src/ar-stock.c:194
+msgid "_New"
+msgstr "_Nytt"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../src/ar-stock.c:196
+msgid "_New Game"
+msgstr "_Nytt spill"
+
+#: ../src/ar-stock.c:197
+msgid "_Redo Move"
+msgstr "_Gjenopprett trekk"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../src/ar-stock.c:199
+msgid "_Reset"
+msgstr "_Nullstill"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../src/ar-stock.c:201
+msgid "_Restart"
+msgstr "Sta_rt på nytt"
+
+#: ../src/ar-stock.c:202
+msgid "_Undo Move"
+msgstr "_Angre trekk"
+
+#: ../src/ar-stock.c:203
+msgid "_Deal"
+msgstr "_Del ut"
+
+#: ../src/ar-stock.c:204
+msgid "_Leave Fullscreen"
+msgstr "_Forlat fullskjerm"
+
+#: ../src/ar-stock.c:205
+msgid "_Pause"
+msgstr "_Pause"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../src/ar-stock.c:267
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s er fri programvare. Du kan redistribuere og/eller endre programmet under "
+"betingelsene gitt i GNU General Public License som utgitt av Free Software "
+"Foundation; enten versjon %d av lisensen, eller (hvis du ønsker det) enhver "
+"senere versjon."
+
+#: ../src/ar-stock.c:272
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s distribueres i håp om at programmet er nyttig, men UTEN NOEN GARANTI, "
+"ikke engang implisitt garanti om at det er SALGBART eller PASSER ET BESTEMT "
+"FORMÅL. Se GNU General Public License for detaljer."
+
+#: ../src/ar-stock.c:277
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Du skal ha mottatt en kopi av GNU General Public License sammen med %s. Hvis "
+"ikke se på <http://www.gnu.org/licenses/>."
 
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1437
@@ -1019,452 +1105,6 @@ msgstr "Yukon"
 msgid "Zebra"
 msgstr "Zebra"
 
-#. String reserve
-#: ../src/sol.c:50
-msgid "Solitaire"
-msgstr "Solitaire"
-
-#: ../src/sol.c:51
-msgid "GNOME Solitaire"
-msgstr "GNOME Solitaire"
-
-#: ../src/sol.c:52
-msgid "About Solitaire"
-msgstr "Om Solitaire"
-
-#: ../src/sol.c:68
-msgid "Select the game type to play"
-msgstr "Velg type spill som skal spilles"
-
-#: ../src/sol.c:68
-msgid "NAME"
-msgstr "NAVN"
-
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
-msgid "AisleRiot"
-msgstr "AisleRiot"
-
-#. Translators: this is the total number of won games
-#: ../src/stats-dialog.c:148
-msgid "Wins:"
-msgstr "Seiere:"
-
-#. Translators: this is the number of games played
-#: ../src/stats-dialog.c:150
-msgid "Total:"
-msgstr "Totalt:"
-
-#. Translators: this is the percentage of games won out of all games played
-#: ../src/stats-dialog.c:152
-msgid "Percentage:"
-msgstr "Prosent:"
-
-#. Translators: this is the section title of a section which contains the n
-#. * number of games played, number of games won, and the ratio of these 2 numbers.
-#.
-#: ../src/stats-dialog.c:156
-msgid "Wins"
-msgstr "Seiere"
-
-#. Translators: this is the best time of all wins
-#: ../src/stats-dialog.c:163
-msgid "Best:"
-msgstr "Best:"
-
-#. Translators: this is the worst time of all wins
-#: ../src/stats-dialog.c:165
-msgid "Worst:"
-msgstr "Verst:"
-
-#. Translators: this is the section title of a section containing the
-#. * best and worst time taken to win a game.
-#.
-#: ../src/stats-dialog.c:169
-msgid "Time"
-msgstr "Tid:"
-
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistikk"
-
-#. Translators: Translate this to "%Id" if you want to use localised digits,
-#. * and to "%d" otherwise. Do not translate it to anything else!
-#.
-#: ../src/stats-dialog.c:213 ../src/stats-dialog.c:219
-#, c-format
-msgid "%d"
-msgstr "%d"
-
-#. Translators: Translate the "%d" in this string this to "%Id" if you
-#. * want to use localised digits, and to "%d" otherwise.
-#. * Do not translate the "%d" part to anything else!
-#. * You may translate the "%%" part to use any other percent character(s)
-#. * instead, or leave it as "%%". If you chose a character other than
-#. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
-#.
-#: ../src/stats-dialog.c:230
-#, c-format
-msgid "%d%%"
-msgstr "%d%%"
-
-#. For translators: N/A means "Not Applicable", use whatever
-#. * abbreviation you have for a value that has no meaning.
-#: ../src/stats-dialog.c:236 ../src/stats-dialog.c:245
-#: ../src/stats-dialog.c:253
-msgid "N/A"
-msgstr "I/T"
-
-#. Translators: this represents minutes:seconds.
-#: ../src/stats-dialog.c:240 ../src/stats-dialog.c:248
-#, c-format
-msgid "%d:%02d"
-msgstr "%d:%02d"
-
-#: ../src/util.c:86 ../src/util.c:90 ../src/lib/ar-help.c:146
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "Kunne ikke vise hjelp for «%s»"
-
-#: ../src/window.c:220
-msgid "Congratulations, you have won!"
-msgstr "Gratulerer. Du har vunnet!"
-
-#: ../src/window.c:224
-msgid "There are no more moves"
-msgstr "Ingen flere trekk"
-
-#: ../src/window.c:365
-msgid "Main game:"
-msgstr "Hovedspill:"
-
-#: ../src/window.c:373
-msgid "Card games:"
-msgstr "Kortspill:"
-
-#: ../src/window.c:388
-msgid "Card themes:"
-msgstr "Tema for kort:"
-
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Om FreeCell Solitaire"
-
-#: ../src/window.c:417
-msgid "About AisleRiot"
-msgstr "Om AisleRiot"
-
-#: ../src/window.c:421
-msgid ""
-"AisleRiot provides a rule-based solitaire card engine that allows many "
-"different games to be played."
-msgstr ""
-"AislerRiot gir deg en regelbasert solitaire-kabalmotor som lar deg spille "
-"mange forskjellige spill."
-
-#: ../src/window.c:430
-msgid "translator-credits"
-msgstr ""
-"Kjartan Maraas <kmaraas@gnome.org>\n"
-"Espen Stefansen <espens@svn.gnome.org>\n"
-"Torstein Adolf Winterseth <kvikende@fsfe.org>"
-
-#: ../src/window.c:434
-msgid "GNOME Games web site"
-msgstr "GNOME spill nettsted"
-
-#: ../src/window.c:1288
-#, c-format
-msgid "Play “%s”"
-msgstr "Spill «%s»"
-
-#: ../src/window.c:1450
-#, c-format
-msgid "Display cards with “%s” card theme"
-msgstr "Vis kort med korttema «%s»"
-
-#: ../src/window.c:1747
-msgid "A scheme exception occurred"
-msgstr "Et unntak oppsto med schema"
-
-#: ../src/window.c:1750
-msgid "Please report this bug to the developers."
-msgstr "Vennligst rapporter denne feilen til utviklerene."
-
-#: ../src/window.c:1756
-msgid "_Don't report"
-msgstr "_Ikke send rapport"
-
-#: ../src/window.c:1757
-msgid "_Report"
-msgstr "Send _rapport"
-
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell Solitaire"
-
-#. Menu actions
-#: ../src/window.c:1990
-msgid "_Game"
-msgstr "_Spill"
-
-#: ../src/window.c:1991
-msgid "_View"
-msgstr "_Vis"
-
-#: ../src/window.c:1992
-msgid "_Control"
-msgstr "_Kontroll"
-
-#: ../src/window.c:1994
-msgid "_Help"
-msgstr "_Hjelp"
-
-#: ../src/window.c:1999
-msgid "Start a new game"
-msgstr "Start et nytt spill"
-
-#: ../src/window.c:2002
-msgid "Restart the game"
-msgstr "Start spillet på nytt"
-
-#: ../src/window.c:2004
-msgid "_Select Game…"
-msgstr "_Velg spill …"
-
-#: ../src/window.c:2006
-msgid "Play a different game"
-msgstr "Spill et annet spill"
-
-#: ../src/window.c:2008
-msgid "_Recently Played"
-msgstr "Sist s_pilt"
-
-#: ../src/window.c:2009
-msgid "S_tatistics"
-msgstr "S_tatistikk"
-
-#: ../src/window.c:2010
-msgid "Show gameplay statistics"
-msgstr "Vis spillstatistikk"
-
-#: ../src/window.c:2013
-msgid "Close this window"
-msgstr "Lukk dette vinduet"
-
-#: ../src/window.c:2016
-msgid "Undo the last move"
-msgstr "Angre forrige trekk"
-
-#: ../src/window.c:2019
-msgid "Redo the undone move"
-msgstr "Gjenopprett angret trekk"
-
-#: ../src/window.c:2022
-msgid "Deal next card or cards"
-msgstr "Del ut kort"
-
-#: ../src/window.c:2025
-msgid "Get a hint for your next move"
-msgstr "Hint for ditt neste trekk"
-
-#: ../src/window.c:2028
-msgid "View help for Aisleriot"
-msgstr "Vis hjelp for Aisleriot"
-
-#: ../src/window.c:2032
-msgid "View help for this game"
-msgstr "Vis hjelp for dette spillet"
-
-#: ../src/window.c:2035
-msgid "About this game"
-msgstr "Om dette spillet"
-
-#: ../src/window.c:2037
-msgid "Install card themes…"
-msgstr "Installer tema for kort …"
-
-#: ../src/window.c:2038
-msgid "Install new card themes from the distribution packages repositories"
-msgstr "Installer nye tema for kortstokken fra distribusjonens pakkelager"
-
-#: ../src/window.c:2044
-msgid "_Card Style"
-msgstr "_Kortstil"
-
-#: ../src/window.c:2078
-msgid "_Toolbar"
-msgstr "_Verktøylinje"
-
-#: ../src/window.c:2079
-msgid "Show or hide the toolbar"
-msgstr "Vis eller skjul verktøylinjen"
-
-#: ../src/window.c:2083
-msgid "_Statusbar"
-msgstr "_Statuslinje"
-
-#: ../src/window.c:2084
-msgid "Show or hide statusbar"
-msgstr "Vis eller skjul statuslinjen"
-
-#: ../src/window.c:2088
-msgid "_Click to Move"
-msgstr "_Klikk for å flytte"
-
-#: ../src/window.c:2089
-msgid "Pick up and drop cards by clicking"
-msgstr "Plukk opp og slipp kort ved å klikke"
-
-#: ../src/window.c:2093
-msgid "_Sound"
-msgstr "_Lyd"
-
-#: ../src/window.c:2094
-msgid "Whether or not to play event sounds"
-msgstr "Om lyder skal spilles av for hendelser"
-
-#: ../src/window.c:2099
-msgid "_Animations"
-msgstr "_Animasjon"
-
-#: ../src/window.c:2100
-msgid "Whether or not to animate card moves"
-msgstr "Om animasjoner skal brukes eller ikke"
-
-#: ../src/window.c:2318
-msgid "Score:"
-msgstr "Poeng:"
-
-#: ../src/window.c:2330
-msgid "Time:"
-msgstr "Tid:"
-
-#: ../src/window.c:2629
-#, c-format
-msgid "Cannot start the game “%s”"
-msgstr "Kan ikke starte spill «%s»"
-
-#: ../src/window.c:2642
-msgid "Aisleriot cannot find the last game you played."
-msgstr "Aisleriot kan ikke finne det siste spillet du spilte."
-
-#: ../src/window.c:2643
-msgid ""
-"This usually occurs when you run an older version of Aisleriot which does "
-"not have the game you last played. The default game, Klondike, is being "
-"started instead."
-msgstr ""
-"Dette skjer vanligvis når du kjører en eldre versjon av Aisleriot som ikke "
-"har det siste spillet du spilte. Forvalgt spill, Klondike, startes i stedet."
-
-#: ../src/ar-stock.c:190
-msgid "_Contents"
-msgstr "_Innhold"
-
-#: ../src/ar-stock.c:191
-msgid "_Fullscreen"
-msgstr "_Fullskjerm"
-
-#: ../src/ar-stock.c:192
-msgid "_Hint"
-msgstr "_Hint"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../src/ar-stock.c:194
-msgid "_New"
-msgstr "_Nytt"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../src/ar-stock.c:196
-msgid "_New Game"
-msgstr "_Nytt spill"
-
-#: ../src/ar-stock.c:197
-msgid "_Redo Move"
-msgstr "_Gjenopprett trekk"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../src/ar-stock.c:199
-msgid "_Reset"
-msgstr "_Nullstill"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../src/ar-stock.c:201
-msgid "_Restart"
-msgstr "Sta_rt på nytt"
-
-#: ../src/ar-stock.c:202
-msgid "_Undo Move"
-msgstr "_Angre trekk"
-
-#: ../src/ar-stock.c:203
-msgid "_Deal"
-msgstr "_Del ut"
-
-#: ../src/ar-stock.c:204
-msgid "_Leave Fullscreen"
-msgstr "_Forlat fullskjerm"
-
-#: ../src/ar-stock.c:205
-msgid "_Pause"
-msgstr "_Pause"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../src/ar-stock.c:267
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s er fri programvare. Du kan redistribuere og/eller endre programmet under "
-"betingelsene gitt i GNU General Public License som utgitt av Free Software "
-"Foundation; enten versjon %d av lisensen, eller (hvis du ønsker det) enhver "
-"senere versjon."
-
-#: ../src/ar-stock.c:272
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"%s distribueres i håp om at programmet er nyttig, men UTEN NOEN GARANTI, "
-"ikke engang implisitt garanti om at det er SALGBART eller PASSER ET BESTEMT "
-"FORMÅL. Se GNU General Public License for detaljer."
-
-#: ../src/ar-stock.c:277
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Du skal ha mottatt en kopi av GNU General Public License sammen med %s. Hvis "
-"ikke se på <http://www.gnu.org/licenses/>."
-
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../src/lib/ar-help.c:108
-#, c-format
-msgid "Help file “%s.%s” not found"
-msgstr "Hjelpfil «%s.%s» ble ikke funnet"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
-msgid "Whether the window is maximized"
-msgstr "Hvorvidt vinduet er maksimert"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
-msgid "Whether the window is fullscreen"
-msgstr "Hvorvidt vinduet er fullskjerm"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
-msgid "Window width"
-msgstr "Vindusbredde"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
-msgid "Window height"
-msgstr "Vindushøyde"
-
 #. Translators: this is the symbol that's on a Joker card
 #: ../src/lib/ar-card.c:237
 msgctxt "card symbol"
@@ -1770,6 +1410,440 @@ msgstr "sort joker"
 #: ../src/lib/ar-card.c:381
 msgid "red joker"
 msgstr "rød joker"
+
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../src/lib/ar-help.c:108
+#, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "Hjelpfil «%s.%s» ble ikke funnet"
+
+#: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "Kunne ikke vise hjelp for «%s»"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
+msgid "Whether the window is maximized"
+msgstr "Hvorvidt vinduet er maksimert"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
+msgid "Whether the window is fullscreen"
+msgstr "Hvorvidt vinduet er fullskjerm"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
+msgid "Window width"
+msgstr "Vindusbredde"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
+msgid "Window height"
+msgstr "Vindushøyde"
+
+#. String reserve
+#: ../src/sol.c:50
+msgid "Solitaire"
+msgstr "Solitaire"
+
+#: ../src/sol.c:51
+msgid "GNOME Solitaire"
+msgstr "GNOME Solitaire"
+
+#: ../src/sol.c:52
+msgid "About Solitaire"
+msgstr "Om Solitaire"
+
+#: ../src/sol.c:68
+msgid "Select the game type to play"
+msgstr "Velg type spill som skal spilles"
+
+#: ../src/sol.c:68
+msgid "NAME"
+msgstr "NAVN"
+
+#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+msgid "AisleRiot"
+msgstr "AisleRiot"
+
+#. Translators: this is the total number of won games
+#: ../src/stats-dialog.c:148
+msgid "Wins:"
+msgstr "Seiere:"
+
+#. Translators: this is the number of games played
+#: ../src/stats-dialog.c:150
+msgid "Total:"
+msgstr "Totalt:"
+
+#. Translators: this is the percentage of games won out of all games played
+#: ../src/stats-dialog.c:152
+msgid "Percentage:"
+msgstr "Prosent:"
+
+#. Translators: this is the section title of a section which contains the n
+#. * number of games played, number of games won, and the ratio of these 2 numbers.
+#.
+#: ../src/stats-dialog.c:156
+msgid "Wins"
+msgstr "Seiere"
+
+#. Translators: this is the best time of all wins
+#: ../src/stats-dialog.c:163
+msgid "Best:"
+msgstr "Best:"
+
+#. Translators: this is the worst time of all wins
+#: ../src/stats-dialog.c:165
+msgid "Worst:"
+msgstr "Verst:"
+
+#. Translators: this is the section title of a section containing the
+#. * best and worst time taken to win a game.
+#.
+#: ../src/stats-dialog.c:169
+msgid "Time"
+msgstr "Tid:"
+
+#: ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistikk"
+
+#. Translators: Translate this to "%Id" if you want to use localised digits,
+#. * and to "%d" otherwise. Do not translate it to anything else!
+#.
+#: ../src/stats-dialog.c:213 ../src/stats-dialog.c:219
+#, c-format
+msgid "%d"
+msgstr "%d"
+
+#. Translators: Translate the "%d" in this string this to "%Id" if you
+#. * want to use localised digits, and to "%d" otherwise.
+#. * Do not translate the "%d" part to anything else!
+#. * You may translate the "%%" part to use any other percent character(s)
+#. * instead, or leave it as "%%". If you chose a character other than
+#. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
+#.
+#: ../src/stats-dialog.c:230
+#, c-format
+msgid "%d%%"
+msgstr "%d%%"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: ../src/stats-dialog.c:236 ../src/stats-dialog.c:245
+#: ../src/stats-dialog.c:253
+msgid "N/A"
+msgstr "I/T"
+
+#. Translators: this represents minutes:seconds.
+#: ../src/stats-dialog.c:240 ../src/stats-dialog.c:248
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
+
+#: ../src/window.c:220
+msgid "Congratulations, you have won!"
+msgstr "Gratulerer. Du har vunnet!"
+
+#: ../src/window.c:224
+msgid "There are no more moves"
+msgstr "Ingen flere trekk"
+
+#: ../src/window.c:365
+msgid "Main game:"
+msgstr "Hovedspill:"
+
+#: ../src/window.c:373
+msgid "Card games:"
+msgstr "Kortspill:"
+
+#: ../src/window.c:388
+msgid "Card themes:"
+msgstr "Tema for kort:"
+
+#: ../src/window.c:416
+msgid "About FreeCell Solitaire"
+msgstr "Om FreeCell Solitaire"
+
+#: ../src/window.c:417
+msgid "About AisleRiot"
+msgstr "Om AisleRiot"
+
+#: ../src/window.c:421
+msgid ""
+"AisleRiot provides a rule-based solitaire card engine that allows many "
+"different games to be played."
+msgstr ""
+"AislerRiot gir deg en regelbasert solitaire-kabalmotor som lar deg spille "
+"mange forskjellige spill."
+
+#: ../src/window.c:430
+msgid "translator-credits"
+msgstr ""
+"Kjartan Maraas <kmaraas@gnome.org>\n"
+"Espen Stefansen <espens@svn.gnome.org>\n"
+"Torstein Adolf Winterseth <kvikende@fsfe.org>"
+
+#: ../src/window.c:434
+msgid "GNOME Games web site"
+msgstr "GNOME spill nettsted"
+
+#: ../src/window.c:1288
+#, c-format
+msgid "Play “%s”"
+msgstr "Spill «%s»"
+
+#: ../src/window.c:1450
+#, c-format
+msgid "Display cards with “%s” card theme"
+msgstr "Vis kort med korttema «%s»"
+
+#: ../src/window.c:1747
+msgid "A scheme exception occurred"
+msgstr "Et unntak oppsto med schema"
+
+#: ../src/window.c:1750
+msgid "Please report this bug to the developers."
+msgstr "Vennligst rapporter denne feilen til utviklerene."
+
+#: ../src/window.c:1756
+msgid "_Don't report"
+msgstr "_Ikke send rapport"
+
+#: ../src/window.c:1757
+msgid "_Report"
+msgstr "Send _rapport"
+
+#: ../src/window.c:1871
+msgid "Freecell Solitaire"
+msgstr "Freecell Solitaire"
+
+#. Menu actions
+#: ../src/window.c:1990
+msgid "_Game"
+msgstr "_Spill"
+
+#: ../src/window.c:1991
+msgid "_View"
+msgstr "_Vis"
+
+#: ../src/window.c:1992
+msgid "_Control"
+msgstr "_Kontroll"
+
+#: ../src/window.c:1994
+msgid "_Help"
+msgstr "_Hjelp"
+
+#: ../src/window.c:1999
+msgid "Start a new game"
+msgstr "Start et nytt spill"
+
+#: ../src/window.c:2002
+msgid "Restart the game"
+msgstr "Start spillet på nytt"
+
+#: ../src/window.c:2004
+msgid "_Select Game…"
+msgstr "_Velg spill …"
+
+#: ../src/window.c:2006
+msgid "Play a different game"
+msgstr "Spill et annet spill"
+
+#: ../src/window.c:2008
+msgid "_Recently Played"
+msgstr "Sist s_pilt"
+
+#: ../src/window.c:2009
+msgid "S_tatistics"
+msgstr "S_tatistikk"
+
+#: ../src/window.c:2010
+msgid "Show gameplay statistics"
+msgstr "Vis spillstatistikk"
+
+#: ../src/window.c:2013
+msgid "Close this window"
+msgstr "Lukk dette vinduet"
+
+#: ../src/window.c:2016
+msgid "Undo the last move"
+msgstr "Angre forrige trekk"
+
+#: ../src/window.c:2019
+msgid "Redo the undone move"
+msgstr "Gjenopprett angret trekk"
+
+#: ../src/window.c:2022
+msgid "Deal next card or cards"
+msgstr "Del ut kort"
+
+#: ../src/window.c:2025
+msgid "Get a hint for your next move"
+msgstr "Hint for ditt neste trekk"
+
+#: ../src/window.c:2028
+msgid "View help for Aisleriot"
+msgstr "Vis hjelp for Aisleriot"
+
+#: ../src/window.c:2032
+msgid "View help for this game"
+msgstr "Vis hjelp for dette spillet"
+
+#: ../src/window.c:2035
+msgid "About this game"
+msgstr "Om dette spillet"
+
+#: ../src/window.c:2037
+msgid "Install card themes…"
+msgstr "Installer tema for kort …"
+
+#: ../src/window.c:2038
+msgid "Install new card themes from the distribution packages repositories"
+msgstr "Installer nye tema for kortstokken fra distribusjonens pakkelager"
+
+#: ../src/window.c:2044
+msgid "_Card Style"
+msgstr "_Kortstil"
+
+#: ../src/window.c:2078
+msgid "_Toolbar"
+msgstr "_Verktøylinje"
+
+#: ../src/window.c:2079
+msgid "Show or hide the toolbar"
+msgstr "Vis eller skjul verktøylinjen"
+
+#: ../src/window.c:2083
+msgid "_Statusbar"
+msgstr "_Statuslinje"
+
+#: ../src/window.c:2084
+msgid "Show or hide statusbar"
+msgstr "Vis eller skjul statuslinjen"
+
+#: ../src/window.c:2088
+msgid "_Click to Move"
+msgstr "_Klikk for å flytte"
+
+#: ../src/window.c:2089
+msgid "Pick up and drop cards by clicking"
+msgstr "Plukk opp og slipp kort ved å klikke"
+
+#: ../src/window.c:2093
+msgid "_Sound"
+msgstr "_Lyd"
+
+#: ../src/window.c:2094
+msgid "Whether or not to play event sounds"
+msgstr "Om lyder skal spilles av for hendelser"
+
+#: ../src/window.c:2099
+msgid "_Animations"
+msgstr "_Animasjon"
+
+#: ../src/window.c:2100
+msgid "Whether or not to animate card moves"
+msgstr "Om animasjoner skal brukes eller ikke"
+
+#: ../src/window.c:2318
+msgid "Score:"
+msgstr "Poeng:"
+
+#: ../src/window.c:2330
+msgid "Time:"
+msgstr "Tid:"
+
+#: ../src/window.c:2629
+#, c-format
+msgid "Cannot start the game “%s”"
+msgstr "Kan ikke starte spill «%s»"
+
+#: ../src/window.c:2642
+msgid "Aisleriot cannot find the last game you played."
+msgstr "Aisleriot kan ikke finne det siste spillet du spilte."
+
+#: ../src/window.c:2643
+msgid ""
+"This usually occurs when you run an older version of Aisleriot which does "
+"not have the game you last played. The default game, Klondike, is being "
+"started instead."
+msgstr ""
+"Dette skjer vanligvis når du kjører en eldre versjon av Aisleriot som ikke "
+"har det siste spillet du spilte. Forvalgt spill, Klondike, startes i stedet."
+
+#: ../games/agnes.scm:72 ../games/terrace.scm:139
+#, scheme-format
+msgid "Base Card: ~a"
+msgstr "Basiskort: ~a"
+
+#: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
+#: ../games/chessboard.scm:94 ../games/eagle-wing.scm:98
+#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
+msgid "Base Card: Ace"
+msgstr "Basiskort: Ess"
+
+#: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
+#: ../games/chessboard.scm:96 ../games/eagle-wing.scm:100
+#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
+msgid "Base Card: Jack"
+msgstr "Basiskort: Knekt"
+
+#: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
+#: ../games/chessboard.scm:98 ../games/eagle-wing.scm:102
+#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
+msgid "Base Card: Queen"
+msgstr "Basiskort: Dronning"
+
+#: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
+#: ../games/chessboard.scm:100 ../games/eagle-wing.scm:104
+#: ../games/glenwood.scm:90 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
+msgid "Base Card: King"
+msgstr "Basiskort: Konge"
+
+#: ../games/agnes.scm:85 ../games/auld-lang-syne.scm:53
+#: ../games/backbone.scm:131 ../games/block-ten.scm:54 ../games/bristol.scm:78
+#: ../games/camelot.scm:77 ../games/canfield.scm:69 ../games/carpet.scm:103
+#: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:86
+#: ../games/easthaven.scm:56 ../games/elevator.scm:98
+#: ../games/escalator.scm:123 ../games/first-law.scm:42
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
+#: ../games/glenwood.scm:72 ../games/gypsy.scm:65 ../games/helsinki.scm:53
+#: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
+#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
+#: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
+#: ../games/straight-up.scm:64 ../games/terrace.scm:159
+#: ../games/thieves.scm:48 ../games/thirteen.scm:105
+#: ../games/thumb-and-pouch.scm:61 ../games/treize.scm:102
+#: ../games/triple-peaks.scm:104 ../games/union-square.scm:96
+#: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
+#: ../games/zebra.scm:71
+msgid "Stock left:"
+msgstr "Igjen i stokken:"
+
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
+msgid "Stock left: 0"
+msgstr "Igjen i stokken: 0"
+
+#: ../games/agnes.scm:264 ../games/easthaven.scm:229
+#: ../games/labyrinth.scm:197 ../games/monte-carlo.scm:196
+#: ../games/monte-carlo.scm:201 ../games/valentine.scm:138
+msgid "Deal more cards"
+msgstr "Del ut flere kort"
+
+#: ../games/agnes.scm:270 ../games/backbone.scm:295
+#: ../games/bakers-dozen.scm:197 ../games/beleaguered-castle.scm:171
+#: ../games/canfield.scm:306 ../games/jumbo.scm:333
+#: ../games/king-albert.scm:292 ../games/lady-jane.scm:428
+#: ../games/streets-and-alleys.scm:182
+msgid "Try rearranging the cards"
+msgstr "Prøv å omarrangere kortene"
 
 #: ../games/api.scm:284
 msgid "Unknown color"
@@ -2327,80 +2401,8 @@ msgstr "Flytt ~a opp på ruter dronning."
 msgid "Move ~a onto the king of diamonds."
 msgstr "Flytt ~a opp på ruter konge."
 
-#: ../games/agnes.scm:72 ../games/terrace.scm:139
-#, scheme-format
-msgid "Base Card: ~a"
-msgstr "Basiskort: ~a"
-
-#: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
-#: ../games/chessboard.scm:94 ../games/eagle-wing.scm:98
-#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady-jane.scm:105
-#: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
-msgid "Base Card: Ace"
-msgstr "Basiskort: Ess"
-
-#: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
-#: ../games/chessboard.scm:96 ../games/eagle-wing.scm:100
-#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady-jane.scm:107
-#: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
-msgid "Base Card: Jack"
-msgstr "Basiskort: Knekt"
-
-#: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
-#: ../games/chessboard.scm:98 ../games/eagle-wing.scm:102
-#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady-jane.scm:109
-#: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
-msgid "Base Card: Queen"
-msgstr "Basiskort: Dronning"
-
-#: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
-#: ../games/chessboard.scm:100 ../games/eagle-wing.scm:104
-#: ../games/glenwood.scm:90 ../games/kansas.scm:94 ../games/lady-jane.scm:111
-#: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
-msgid "Base Card: King"
-msgstr "Basiskort: Konge"
-
-#: ../games/agnes.scm:85 ../games/auld-lang-syne.scm:53
-#: ../games/backbone.scm:131 ../games/block-ten.scm:54 ../games/bristol.scm:78
-#: ../games/camelot.scm:77 ../games/canfield.scm:69 ../games/carpet.scm:103
-#: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:86
-#: ../games/easthaven.scm:56 ../games/elevator.scm:98
-#: ../games/escalator.scm:123 ../games/first-law.scm:42
-#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
-#: ../games/glenwood.scm:72 ../games/gypsy.scm:65 ../games/helsinki.scm:53
-#: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
-#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
-#: ../games/neighbor.scm:75 ../games/plait.scm:234 ../games/quatorze.scm:75
-#: ../games/royal-east.scm:77 ../games/scuffle.scm:59
-#: ../games/sir-tommy.scm:49 ../games/straight-up.scm:64
-#: ../games/terrace.scm:159 ../games/thieves.scm:48 ../games/thirteen.scm:105
-#: ../games/thumb-and-pouch.scm:61 ../games/treize.scm:102
-#: ../games/triple-peaks.scm:104 ../games/union-square.scm:96
-#: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
-#: ../games/zebra.scm:71
-msgid "Stock left:"
-msgstr "Igjen i stokken:"
-
-#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
-msgid "Stock left: 0"
-msgstr "Igjen i stokken: 0"
-
-#: ../games/agnes.scm:264 ../games/easthaven.scm:229
-#: ../games/labyrinth.scm:197 ../games/monte-carlo.scm:196
-#: ../games/monte-carlo.scm:201 ../games/valentine.scm:138
-msgid "Deal more cards"
-msgstr "Del ut flere kort"
-
-#: ../games/agnes.scm:270 ../games/backbone.scm:295
-#: ../games/bakers-dozen.scm:197 ../games/beleaguered-castle.scm:171
-#: ../games/canfield.scm:306 ../games/jumbo.scm:333
-#: ../games/king-albert.scm:292 ../games/lady-jane.scm:428
-#: ../games/streets-and-alleys.scm:182
-msgid "Try rearranging the cards"
-msgstr "Prøv å omarrangere kortene"
-
-#: ../games/athena.scm:80 ../games/klondike.scm:292 ../games/osmosis.scm:221
+#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "Del tre kort om gangen"
@@ -2414,7 +2416,8 @@ msgstr "Del ut en ny runde"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:108 ../games/gaps.scm:106 ../games/glenwood.scm:76
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82 ../games/plait.scm:252
+#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
 #: ../games/zebra.scm:75
@@ -2431,7 +2434,8 @@ msgstr "en tom plass på fundamentet"
 
 #: ../games/backbone.scm:293 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:175 ../games/glenwood.scm:250
-#: ../games/klondike.scm:266 ../games/osmosis.scm:215 ../games/plait.scm:103
+#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:361
 msgid "Deal a new card from the deck"
 msgstr "Del ut et nytt kort fra stokken"
@@ -2780,7 +2784,8 @@ msgstr "Spillet har ingen løsning. Angre eller start på nytt."
 msgid "an empty reserve"
 msgstr "en tom plass"
 
-#: ../games/freecell.scm:634 ../games/terrace.scm:286
+#: ../games/freecell.scm:634 ../games/napoleons-tomb.scm:338
+#: ../games/terrace.scm:286
 msgid "the foundation"
 msgstr "fundamenthaugen"
 
@@ -2915,7 +2920,7 @@ msgstr "Del ut et nytt kort"
 msgid "Try moving cards down from the foundation"
 msgstr "Prøv å flytte kort ned fra fundamentet"
 
-#: ../games/klondike.scm:293
+#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "Del ett kort om gangen"
 
@@ -2937,6 +2942,10 @@ msgid ""
 "naturally."
 msgstr ""
 "Prøv å plassere stokkene i rekkefølgen som passer best for denne utformingen."
+
+#: ../games/napoleons-tomb.scm:373
+msgid "Autoplay"
+msgstr "Automatisk spill"
 
 #: ../games/osmosis.scm:74
 #, scheme-format
