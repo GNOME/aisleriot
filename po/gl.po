@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games-master-po-gl-54590\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-21 12:03+0100\n"
-"PO-Revision-Date: 2012-02-21 12:03+0100\n"
+"POT-Creation-Date: 2012-02-23 10:35+0100\n"
+"PO-Revision-Date: 2012-02-23 10:35+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:166 ../src/window.c:409
+#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:117 ../src/window.c:409
 #: ../src/window.c:413
 msgid "FreeCell Solitaire"
 msgstr "Solitario FreeCell"
@@ -121,80 +121,166 @@ msgid "A list of recently played games."
 msgstr "Unha lista dos xogos recentemente xogados."
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:185 ../src/window.c:2311
+#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
 msgid "Select Game"
 msgstr "Seleccionar xogo"
 
-#: ../src/ar-game-chooser.c:199
+#: ../src/ar-game-chooser.c:192
 msgid "_Select"
 msgstr "_Seleccionar"
 
+#: ../src/ar-stock.c:190
+msgid "_Contents"
+msgstr "_Contidos"
+
+#: ../src/ar-stock.c:191
+msgid "_Fullscreen"
+msgstr "_Pantalla completa"
+
+#: ../src/ar-stock.c:192
+msgid "_Hint"
+msgstr "S_uxestión"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../src/ar-stock.c:194
+msgid "_New"
+msgstr "_Novo"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../src/ar-stock.c:196
+msgid "_New Game"
+msgstr "Xogo _novo"
+
+#: ../src/ar-stock.c:197
+msgid "_Redo Move"
+msgstr "_Refacer movemento"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../src/ar-stock.c:199
+msgid "_Reset"
+msgstr "_Restabelecer"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../src/ar-stock.c:201
+msgid "_Restart"
+msgstr "_Reiniciar"
+
+#: ../src/ar-stock.c:202
+msgid "_Undo Move"
+msgstr "_Desfacer movemento"
+
+#: ../src/ar-stock.c:203
+msgid "_Deal"
+msgstr "R_epartir"
+
+#: ../src/ar-stock.c:204
+msgid "_Leave Fullscreen"
+msgstr "_Saír da pantalla completa"
+
+#: ../src/ar-stock.c:205
+msgid "_Pause"
+msgstr "_Pausa"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../src/ar-stock.c:267
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s é software libre, pode redistribuílo ou modificalo baixo as condicións da "
+"Licenza pública xeral GNU tal como a publica a Free Software Foundation; "
+"tanto na versión %d da Licenza como (segundo o seu criterio) en calquera "
+"versión posterior."
+
+#: ../src/ar-stock.c:272
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s distribúese esperando que sexa útil, mais SEN NINGUNHA GARANTÍA; mesmo "
+"sen a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN PARA UN PROPÓSITO "
+"PARTICULAR. Para máis detalles vexa a Licenza pública xeral de GNU."
+
+#: ../src/ar-stock.c:277
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Debeu recibir unha copia da Licenza pública xeral GNU xunto con este "
+"programa; en caso contrario, olle <http://www.gnu.org/licenses/>."
+
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1374
+#: ../src/game.c:1437
 msgctxt "slot type"
 msgid "foundation"
 msgstr "fundación"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1378
+#: ../src/game.c:1441
 msgctxt "slot type"
 msgid "reserve"
 msgstr "reservada"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1382
+#: ../src/game.c:1445
 msgctxt "slot type"
 msgid "stock"
 msgstr "reserva"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1386
+#: ../src/game.c:1449
 msgctxt "slot type"
 msgid "tableau"
 msgstr "retablo"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1390
+#: ../src/game.c:1453
 msgctxt "slot type"
 msgid "waste"
 msgstr "desperdicio"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1422
+#: ../src/game.c:1485
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s en fundación"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1426
+#: ../src/game.c:1489
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s en reservado"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1430
+#: ../src/game.c:1493
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s en reserva"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1434
+#: ../src/game.c:1497
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s en retablo"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1438
+#: ../src/game.c:1501
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s en desperdicio"
 
-#: ../src/game.c:2118
+#: ../src/game.c:2168
 msgid "This game does not have hint support yet."
 msgstr "Este xogo aínda non conta con compatibilidade de suxestións."
 
@@ -202,12 +288,12 @@ msgstr "Este xogo aínda non conta con compatibilidade de suxestións."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2153 ../src/game.c:2179
+#: ../src/game.c:2203 ../src/game.c:2229
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Mova %s sobre %s."
 
-#: ../src/game.c:2199
+#: ../src/game.c:2249
 msgid "This game is unable to provide a hint."
 msgstr "Este xogo non lle pode fornecer suxestións."
 
@@ -911,7 +997,7 @@ msgstr "Dez seguidos"
 #. freely, literally, or not at all, at your option.
 #.
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../src/game-names.h:546 ../games/terrace.scm:37
+#: ../src/game-names.h:546 ../games/terrace.scm:39
 msgid "Terrace"
 msgstr "Terrace"
 
@@ -1032,28 +1118,361 @@ msgstr "Yukon"
 msgid "Zebra"
 msgstr "Zebra"
 
+#. Translators: this is the symbol that's on a Joker card
+#: ../src/lib/ar-card.c:237
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "COMODÍN"
+
+#. Translators: this is the symbol that's on an Ace card
+#: ../src/lib/ar-card.c:239 ../src/lib/ar-card.c:263
+msgctxt "card symbol"
+msgid "A"
+msgstr "A"
+
+#. Translators: this is the symbol that's on a 2 card
+#: ../src/lib/ar-card.c:241
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: ../src/lib/ar-card.c:243
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: ../src/lib/ar-card.c:245
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: ../src/lib/ar-card.c:247
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: ../src/lib/ar-card.c:249
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: ../src/lib/ar-card.c:251
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: ../src/lib/ar-card.c:253
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: ../src/lib/ar-card.c:255
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: ../src/lib/ar-card.c:257
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: ../src/lib/ar-card.c:259
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: ../src/lib/ar-card.c:261
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: ../src/lib/ar-card.c:265
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
+
+#: ../src/lib/ar-card.c:299
+msgid "ace of clubs"
+msgstr "o ás de trevos"
+
+#: ../src/lib/ar-card.c:300
+msgid "two of clubs"
+msgstr "o dous de trevos"
+
+#: ../src/lib/ar-card.c:301
+msgid "three of clubs"
+msgstr "o tres de trevos"
+
+#: ../src/lib/ar-card.c:302
+msgid "four of clubs"
+msgstr "o catro de trevos"
+
+#: ../src/lib/ar-card.c:303
+msgid "five of clubs"
+msgstr "o cinco de trevos"
+
+#: ../src/lib/ar-card.c:304
+msgid "six of clubs"
+msgstr "o seis de trevos"
+
+#: ../src/lib/ar-card.c:305
+msgid "seven of clubs"
+msgstr "o sete de trevos"
+
+#: ../src/lib/ar-card.c:306
+msgid "eight of clubs"
+msgstr "o oito de trevos"
+
+#: ../src/lib/ar-card.c:307
+msgid "nine of clubs"
+msgstr "o nove de trevos"
+
+#: ../src/lib/ar-card.c:308
+msgid "ten of clubs"
+msgstr "o dez de picas"
+
+#: ../src/lib/ar-card.c:309
+msgid "jack of clubs"
+msgstr "a sota de trevos"
+
+#: ../src/lib/ar-card.c:310
+msgid "queen of clubs"
+msgstr "a raíña de trevos"
+
+#: ../src/lib/ar-card.c:311
+msgid "king of clubs"
+msgstr "o rei de trevos"
+
+#: ../src/lib/ar-card.c:312
+msgid "ace of diamonds"
+msgstr "o ás de diamantes"
+
+#: ../src/lib/ar-card.c:313
+msgid "two of diamonds"
+msgstr "o dous de diamantes"
+
+#: ../src/lib/ar-card.c:314
+msgid "three of diamonds"
+msgstr "o tres de diamantes"
+
+#: ../src/lib/ar-card.c:315
+msgid "four of diamonds"
+msgstr "o catro de diamantes"
+
+#: ../src/lib/ar-card.c:316
+msgid "five of diamonds"
+msgstr "o cinco de diamantes"
+
+#: ../src/lib/ar-card.c:317
+msgid "six of diamonds"
+msgstr "o seis de diamantes"
+
+#: ../src/lib/ar-card.c:318
+msgid "seven of diamonds"
+msgstr "o sete de diamantes"
+
+#: ../src/lib/ar-card.c:319
+msgid "eight of diamonds"
+msgstr "o oito de diamantes"
+
+#: ../src/lib/ar-card.c:320
+msgid "nine of diamonds"
+msgstr "o nove de diamantes"
+
+#: ../src/lib/ar-card.c:321
+msgid "ten of diamonds"
+msgstr "o dez de diamantes"
+
+#: ../src/lib/ar-card.c:322
+msgid "jack of diamonds"
+msgstr "a sota de diamantes"
+
+#: ../src/lib/ar-card.c:323
+msgid "queen of diamonds"
+msgstr "a raíña de diamantes"
+
+#: ../src/lib/ar-card.c:324
+msgid "king of diamonds"
+msgstr "o rei de diamantes"
+
+#: ../src/lib/ar-card.c:325
+msgid "ace of hearts"
+msgstr "o ás de corazóns"
+
+#: ../src/lib/ar-card.c:326
+msgid "two of hearts"
+msgstr "o dous de corazóns"
+
+#: ../src/lib/ar-card.c:327
+msgid "three of hearts"
+msgstr "o tres de corazóns"
+
+#: ../src/lib/ar-card.c:328
+msgid "four of hearts"
+msgstr "o catro de corazóns"
+
+#: ../src/lib/ar-card.c:329
+msgid "five of hearts"
+msgstr "o cinco de corazóns"
+
+#: ../src/lib/ar-card.c:330
+msgid "six of hearts"
+msgstr "o seis de corazóns"
+
+#: ../src/lib/ar-card.c:331
+msgid "seven of hearts"
+msgstr "o sete de corazóns"
+
+#: ../src/lib/ar-card.c:332
+msgid "eight of hearts"
+msgstr "o oito de corazóns"
+
+#: ../src/lib/ar-card.c:333
+msgid "nine of hearts"
+msgstr "o nove de corazóns"
+
+#: ../src/lib/ar-card.c:334
+msgid "ten of hearts"
+msgstr "o dez de corazóns"
+
+#: ../src/lib/ar-card.c:335
+msgid "jack of hearts"
+msgstr "a sota de corazóns"
+
+#: ../src/lib/ar-card.c:336
+msgid "queen of hearts"
+msgstr "a raíña de corazóns"
+
+#: ../src/lib/ar-card.c:337
+msgid "king of hearts"
+msgstr "o rei de corazóns"
+
+#: ../src/lib/ar-card.c:338
+msgid "ace of spades"
+msgstr "o ás de picas"
+
+#: ../src/lib/ar-card.c:339
+msgid "two of spades"
+msgstr "o dous de picas"
+
+#: ../src/lib/ar-card.c:340
+msgid "three of spades"
+msgstr "o tres de picas"
+
+#: ../src/lib/ar-card.c:341
+msgid "four of spades"
+msgstr "o catro de picas"
+
+#: ../src/lib/ar-card.c:342
+msgid "five of spades"
+msgstr "o cinco de picas"
+
+#: ../src/lib/ar-card.c:343
+msgid "six of spades"
+msgstr "o seis de picas"
+
+#: ../src/lib/ar-card.c:344
+msgid "seven of spades"
+msgstr "o sete de picas"
+
+#: ../src/lib/ar-card.c:345
+msgid "eight of spades"
+msgstr "o oito de picas"
+
+#: ../src/lib/ar-card.c:346
+msgid "nine of spades"
+msgstr "o nove de picas"
+
+#: ../src/lib/ar-card.c:347
+msgid "ten of spades"
+msgstr "o dez de picas"
+
+#: ../src/lib/ar-card.c:348
+msgid "jack of spades"
+msgstr "a sota de picas"
+
+#: ../src/lib/ar-card.c:349
+msgid "queen of spades"
+msgstr "a raíña de picas"
+
+#: ../src/lib/ar-card.c:350
+msgid "king of spades"
+msgstr "o rei de picas"
+
+#: ../src/lib/ar-card.c:367
+msgid "face-down card"
+msgstr "carta cara abaixo"
+
+#. A black joker.
+#: ../src/lib/ar-card.c:378
+msgid "black joker"
+msgstr "comodín negro"
+
+#. A red joker.
+#: ../src/lib/ar-card.c:381
+msgid "red joker"
+msgstr "comodín vermello"
+
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../src/lib/ar-help.c:108
+#, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "Non se atopou o ficheiro de axuda \"%s.%s\""
+
+#: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "Non foi posíbel mostrar a axuda para «%s»"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
+msgid "Whether the window is maximized"
+msgstr "Indica se a xanela está maximizada"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
+msgid "Whether the window is fullscreen"
+msgstr "Indica se o nivel superior é a xanela actual"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
+msgid "Window width"
+msgstr "Anchura da xanela"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
+msgid "Window height"
+msgstr "Altura da xanela"
+
 #. String reserve
-#: ../src/sol.c:53
+#: ../src/sol.c:50
 msgid "Solitaire"
 msgstr "Solitario"
 
-#: ../src/sol.c:54
+#: ../src/sol.c:51
 msgid "GNOME Solitaire"
 msgstr "Solitario de GNOME"
 
-#: ../src/sol.c:55
+#: ../src/sol.c:52
 msgid "About Solitaire"
 msgstr "Sobre o Solitario"
 
-#: ../src/sol.c:111
+#: ../src/sol.c:68
 msgid "Select the game type to play"
 msgstr "Seleccione o tipo de xogo ao que quere xogar"
 
-#: ../src/sol.c:111
+#: ../src/sol.c:68
 msgid "NAME"
 msgstr "NOME"
 
-#: ../src/sol.c:166 ../src/window.c:414 ../src/window.c:1890
+#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1133,11 +1552,6 @@ msgstr "N/D"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/util.c:86 ../src/util.c:90 ../src/lib/ar-help.c:146
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "Non foi posíbel mostrar a axuda para «%s»"
-
 #: ../src/window.c:220
 msgid "Congratulations, you have won!"
 msgstr "Parabéns, gañou vostede!"
@@ -1185,195 +1599,185 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "Sitio web do GNOME Games"
 
-#: ../src/window.c:1298
+#: ../src/window.c:1288
 #, c-format
 msgid "Play “%s”"
 msgstr "Xogar a «%s»"
 
-#: ../src/window.c:1459
+#: ../src/window.c:1450
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Mostrar as cartas co tema de cartas «%s»"
 
-#. Translators: if you want to use localised digits for the game score,
-#. * then translate this string to "%I6d", else to "%6d".
-#. * Do not translate it to anything else!
-#.
-#: ../src/window.c:1526
-#, c-format
-msgctxt "score"
-msgid "%6d"
-msgstr "%6d"
-
-#: ../src/window.c:1764
+#: ../src/window.c:1747
 msgid "A scheme exception occurred"
 msgstr "Produciuse unha excepción de esquema"
 
-#: ../src/window.c:1767
+#: ../src/window.c:1750
 msgid "Please report this bug to the developers."
 msgstr "Informe deste fallo aos desenvolvedores."
 
-#: ../src/window.c:1773
+#: ../src/window.c:1756
 msgid "_Don't report"
 msgstr "_Non informar do erro"
 
-#: ../src/window.c:1774
+#: ../src/window.c:1757
 msgid "_Report"
 msgstr "_Informe do erro"
 
-#: ../src/window.c:1888
+#: ../src/window.c:1871
 msgid "Freecell Solitaire"
 msgstr "Solitario FreeCell"
 
 #. Menu actions
-#: ../src/window.c:2007
+#: ../src/window.c:1990
 msgid "_Game"
 msgstr "_Xogo"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_View"
 msgstr "_Ver"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "_Control"
 msgstr "_Control"
 
-#: ../src/window.c:2011
+#: ../src/window.c:1994
 msgid "_Help"
 msgstr "_Axuda"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Start a new game"
 msgstr "Comezar un xogo novo"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Restart the game"
 msgstr "Comezar de novo o xogo"
 
-#: ../src/window.c:2021
+#: ../src/window.c:2004
 msgid "_Select Game…"
 msgstr "_Seleccionar un xogo…"
 
-#: ../src/window.c:2023
+#: ../src/window.c:2006
 msgid "Play a different game"
 msgstr "Xogar a un xogo diferente"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "_Recently Played"
 msgstr "X_ogados recentemente"
 
-#: ../src/window.c:2026
+#: ../src/window.c:2009
 msgid "S_tatistics"
 msgstr "Es_tatísticas"
 
-#: ../src/window.c:2027
+#: ../src/window.c:2010
 msgid "Show gameplay statistics"
 msgstr "Mostrar estatísticas do xogo"
 
-#: ../src/window.c:2030
+#: ../src/window.c:2013
 msgid "Close this window"
 msgstr "Pechar esta xanela"
 
-#: ../src/window.c:2033
+#: ../src/window.c:2016
 msgid "Undo the last move"
 msgstr "Desfacer o último movemento"
 
-#: ../src/window.c:2036
+#: ../src/window.c:2019
 msgid "Redo the undone move"
 msgstr "Refacer o movemento desfeito"
 
-#: ../src/window.c:2039
+#: ../src/window.c:2022
 msgid "Deal next card or cards"
 msgstr "Repartir a próxima carta ou cartas"
 
-#: ../src/window.c:2042
+#: ../src/window.c:2025
 msgid "Get a hint for your next move"
 msgstr "Recibir unha suxestión para o próximo movemento"
 
-#: ../src/window.c:2045
+#: ../src/window.c:2028
 msgid "View help for Aisleriot"
 msgstr "Ver a axuda do AisleRiot"
 
-#: ../src/window.c:2049
+#: ../src/window.c:2032
 msgid "View help for this game"
 msgstr "Ver a axuda deste xogo"
 
-#: ../src/window.c:2052
+#: ../src/window.c:2035
 msgid "About this game"
 msgstr "Sobre este xogo"
 
-#: ../src/window.c:2054
+#: ../src/window.c:2037
 msgid "Install card themes…"
 msgstr "Instalar temas de cartas…"
 
-#: ../src/window.c:2055
+#: ../src/window.c:2038
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Instalar temas de cartas novos desde os repositorios de paquetes da "
 "distribución"
 
-#: ../src/window.c:2061
+#: ../src/window.c:2044
 msgid "_Card Style"
 msgstr "Estilo de _carta"
 
-#: ../src/window.c:2095
+#: ../src/window.c:2078
 msgid "_Toolbar"
 msgstr "_Barra de ferramentas"
 
-#: ../src/window.c:2096
+#: ../src/window.c:2079
 msgid "Show or hide the toolbar"
 msgstr "Mostrar ou agochar a barra de ferramentas"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2083
 msgid "_Statusbar"
 msgstr "Barra de e_stado"
 
-#: ../src/window.c:2101
+#: ../src/window.c:2084
 msgid "Show or hide statusbar"
 msgstr "Mostrar ou agochar a barra de estado"
 
-#: ../src/window.c:2105
+#: ../src/window.c:2088
 msgid "_Click to Move"
 msgstr "Pr_emer para mover"
 
-#: ../src/window.c:2106
+#: ../src/window.c:2089
 msgid "Pick up and drop cards by clicking"
 msgstr "Recolla e solte as cartas facendo clic"
 
-#: ../src/window.c:2110
+#: ../src/window.c:2093
 msgid "_Sound"
 msgstr "_Son"
 
-#: ../src/window.c:2111
+#: ../src/window.c:2094
 msgid "Whether or not to play event sounds"
 msgstr "Indica se hai que reproducir os eventos de son"
 
-#: ../src/window.c:2116
+#: ../src/window.c:2099
 msgid "_Animations"
 msgstr "_Animacións"
 
-#: ../src/window.c:2117
+#: ../src/window.c:2100
 msgid "Whether or not to animate card moves"
 msgstr "Indica se hai que animar os movementos de cartas ou non"
 
-#: ../src/window.c:2335
+#: ../src/window.c:2318
 msgid "Score:"
 msgstr "Puntuación:"
 
-#: ../src/window.c:2347
+#: ../src/window.c:2330
 msgid "Time:"
 msgstr "Tempo:"
 
-#: ../src/window.c:2646
+#: ../src/window.c:2629
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Non é posíbel iniciar o xogo «%s»"
 
-#: ../src/window.c:2659
+#: ../src/window.c:2642
 msgid "Aisleriot cannot find the last game you played."
 msgstr "O AisleRiot non pode atopar o último xogo realizado."
 
-#: ../src/window.c:2660
+#: ../src/window.c:2643
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1383,1780 +1787,1358 @@ msgstr ""
 "que non dispón do último xogo ao que vostede xogou. No seu lugar iniciarase "
 "o xogo predeterminado Klondike."
 
-#: ../src/ar-stock.c:190
-msgid "_Contents"
-msgstr "_Contidos"
-
-#: ../src/ar-stock.c:191
-msgid "_Fullscreen"
-msgstr "_Pantalla completa"
-
-#: ../src/ar-stock.c:192
-msgid "_Hint"
-msgstr "S_uxestión"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../src/ar-stock.c:194
-msgid "_New"
-msgstr "_Novo"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../src/ar-stock.c:196
-msgid "_New Game"
-msgstr "Xogo _novo"
-
-#: ../src/ar-stock.c:197
-msgid "_Redo Move"
-msgstr "_Refacer movemento"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../src/ar-stock.c:199
-msgid "_Reset"
-msgstr "_Restabelecer"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../src/ar-stock.c:201
-msgid "_Restart"
-msgstr "_Reiniciar"
-
-#: ../src/ar-stock.c:202
-msgid "_Undo Move"
-msgstr "_Desfacer movemento"
-
-#: ../src/ar-stock.c:203
-msgid "_Deal"
-msgstr "R_epartir"
-
-#: ../src/ar-stock.c:204
-msgid "_Leave Fullscreen"
-msgstr "_Saír da pantalla completa"
-
-#: ../src/ar-stock.c:205
-msgid "_Pause"
-msgstr "_Pausa"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../src/ar-stock.c:267
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s é software libre, pode redistribuílo ou modificalo baixo as condicións da "
-"Licenza pública xeral GNU tal como a publica a Free Software Foundation; "
-"tanto na versión %d da Licenza como (segundo o seu criterio) en calquera "
-"versión posterior."
-
-#: ../src/ar-stock.c:272
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"%s distribúese esperando que sexa útil, mais SEN NINGUNHA GARANTÍA; mesmo "
-"sen a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN PARA UN PROPÓSITO "
-"PARTICULAR. Para máis detalles vexa a Licenza pública xeral de GNU."
-
-#: ../src/ar-stock.c:277
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Debeu recibir unha copia da Licenza pública xeral GNU xunto con este "
-"programa; en caso contrario, olle <http://www.gnu.org/licenses/>."
-
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../src/lib/ar-help.c:108
-#, c-format
-msgid "Help file “%s.%s” not found"
-msgstr "Non se atopou o ficheiro de axuda \"%s.%s\""
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
-msgid "Whether the window is maximized"
-msgstr "Indica se a xanela está maximizada"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
-msgid "Whether the window is fullscreen"
-msgstr "Indica se o nivel superior é a xanela actual"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
-msgid "Window width"
-msgstr "Anchura da xanela"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
-msgid "Window height"
-msgstr "Altura da xanela"
-
-#. Translators: this is the symbol that's on a Joker card
-#: ../src/lib/ar-card.c:181
-msgctxt "card symbol"
-msgid "JOKER"
-msgstr "COMODÍN"
-
-#. Translators: this is the symbol that's on an Ace card
-#: ../src/lib/ar-card.c:183 ../src/lib/ar-card.c:207
-msgctxt "card symbol"
-msgid "A"
-msgstr "A"
-
-#. Translators: this is the symbol that's on a 2 card
-#: ../src/lib/ar-card.c:185
-msgctxt "card symbol"
-msgid "2"
-msgstr "2"
-
-#. Translators: this is the symbol that's on a 3 card
-#: ../src/lib/ar-card.c:187
-msgctxt "card symbol"
-msgid "3"
-msgstr "3"
-
-#. Translators: this is the symbol that's on a 4 card
-#: ../src/lib/ar-card.c:189
-msgctxt "card symbol"
-msgid "4"
-msgstr "4"
-
-#. Translators: this is the symbol that's on a 5 card
-#: ../src/lib/ar-card.c:191
-msgctxt "card symbol"
-msgid "5"
-msgstr "5"
-
-#. Translators: this is the symbol that's on a 6 card
-#: ../src/lib/ar-card.c:193
-msgctxt "card symbol"
-msgid "6"
-msgstr "6"
-
-#. Translators: this is the symbol that's on a 7 card
-#: ../src/lib/ar-card.c:195
-msgctxt "card symbol"
-msgid "7"
-msgstr "7"
-
-#. Translators: this is the symbol that's on a 8 card
-#: ../src/lib/ar-card.c:197
-msgctxt "card symbol"
-msgid "8"
-msgstr "8"
-
-#. Translators: this is the symbol that's on a 9 card
-#: ../src/lib/ar-card.c:199
-msgctxt "card symbol"
-msgid "9"
-msgstr "9"
-
-#. Translators: this is the symbol that's on a Jack card
-#: ../src/lib/ar-card.c:201
-msgctxt "card symbol"
-msgid "J"
-msgstr "J"
-
-#. Translators: this is the symbol that's on a Queen card
-#: ../src/lib/ar-card.c:203
-msgctxt "card symbol"
-msgid "Q"
-msgstr "Q"
-
-#. Translators: this is the symbol that's on a King card
-#: ../src/lib/ar-card.c:205
-msgctxt "card symbol"
-msgid "K"
-msgstr "K"
-
-#. Translators: this is the symbol that's on a 1 card
-#: ../src/lib/ar-card.c:209
-msgctxt "card symbol"
-msgid "1"
-msgstr "1"
-
-#: ../src/lib/ar-card.c:243
-msgid "ace of clubs"
-msgstr "o ás de trevos"
-
-#: ../src/lib/ar-card.c:244
-msgid "two of clubs"
-msgstr "o dous de trevos"
-
-#: ../src/lib/ar-card.c:245
-msgid "three of clubs"
-msgstr "o tres de trevos"
-
-#: ../src/lib/ar-card.c:246
-msgid "four of clubs"
-msgstr "o catro de trevos"
-
-#: ../src/lib/ar-card.c:247
-msgid "five of clubs"
-msgstr "o cinco de trevos"
-
-#: ../src/lib/ar-card.c:248
-msgid "six of clubs"
-msgstr "o seis de trevos"
-
-#: ../src/lib/ar-card.c:249
-msgid "seven of clubs"
-msgstr "o sete de trevos"
-
-#: ../src/lib/ar-card.c:250
-msgid "eight of clubs"
-msgstr "o oito de trevos"
-
-#: ../src/lib/ar-card.c:251
-msgid "nine of clubs"
-msgstr "o nove de trevos"
-
-#: ../src/lib/ar-card.c:252
-msgid "ten of clubs"
-msgstr "o dez de picas"
-
-#: ../src/lib/ar-card.c:253
-msgid "jack of clubs"
-msgstr "a sota de trevos"
-
-#: ../src/lib/ar-card.c:254
-msgid "queen of clubs"
-msgstr "a raíña de trevos"
-
-#: ../src/lib/ar-card.c:255
-msgid "king of clubs"
-msgstr "o rei de trevos"
-
-#: ../src/lib/ar-card.c:256
-msgid "ace of diamonds"
-msgstr "o ás de diamantes"
-
-#: ../src/lib/ar-card.c:257
-msgid "two of diamonds"
-msgstr "o dous de diamantes"
-
-#: ../src/lib/ar-card.c:258
-msgid "three of diamonds"
-msgstr "o tres de diamantes"
-
-#: ../src/lib/ar-card.c:259
-msgid "four of diamonds"
-msgstr "o catro de diamantes"
-
-#: ../src/lib/ar-card.c:260
-msgid "five of diamonds"
-msgstr "o cinco de diamantes"
-
-#: ../src/lib/ar-card.c:261
-msgid "six of diamonds"
-msgstr "o seis de diamantes"
-
-#: ../src/lib/ar-card.c:262
-msgid "seven of diamonds"
-msgstr "o sete de diamantes"
-
-#: ../src/lib/ar-card.c:263
-msgid "eight of diamonds"
-msgstr "o oito de diamantes"
-
-#: ../src/lib/ar-card.c:264
-msgid "nine of diamonds"
-msgstr "o nove de diamantes"
-
-#: ../src/lib/ar-card.c:265
-msgid "ten of diamonds"
-msgstr "o dez de diamantes"
-
-#: ../src/lib/ar-card.c:266
-msgid "jack of diamonds"
-msgstr "a sota de diamantes"
-
-#: ../src/lib/ar-card.c:267
-msgid "queen of diamonds"
-msgstr "a raíña de diamantes"
-
-#: ../src/lib/ar-card.c:268
-msgid "king of diamonds"
-msgstr "o rei de diamantes"
-
-#: ../src/lib/ar-card.c:269
-msgid "ace of hearts"
-msgstr "o ás de corazóns"
-
-#: ../src/lib/ar-card.c:270
-msgid "two of hearts"
-msgstr "o dous de corazóns"
-
-#: ../src/lib/ar-card.c:271
-msgid "three of hearts"
-msgstr "o tres de corazóns"
-
-#: ../src/lib/ar-card.c:272
-msgid "four of hearts"
-msgstr "o catro de corazóns"
-
-#: ../src/lib/ar-card.c:273
-msgid "five of hearts"
-msgstr "o cinco de corazóns"
-
-#: ../src/lib/ar-card.c:274
-msgid "six of hearts"
-msgstr "o seis de corazóns"
-
-#: ../src/lib/ar-card.c:275
-msgid "seven of hearts"
-msgstr "o sete de corazóns"
-
-#: ../src/lib/ar-card.c:276
-msgid "eight of hearts"
-msgstr "o oito de corazóns"
-
-#: ../src/lib/ar-card.c:277
-msgid "nine of hearts"
-msgstr "o nove de corazóns"
-
-#: ../src/lib/ar-card.c:278
-msgid "ten of hearts"
-msgstr "o dez de corazóns"
-
-#: ../src/lib/ar-card.c:279
-msgid "jack of hearts"
-msgstr "a sota de corazóns"
-
-#: ../src/lib/ar-card.c:280
-msgid "queen of hearts"
-msgstr "a raíña de corazóns"
-
-#: ../src/lib/ar-card.c:281
-msgid "king of hearts"
-msgstr "o rei de corazóns"
-
-#: ../src/lib/ar-card.c:282
-msgid "ace of spades"
-msgstr "o ás de picas"
-
-#: ../src/lib/ar-card.c:283
-msgid "two of spades"
-msgstr "o dous de picas"
-
-#: ../src/lib/ar-card.c:284
-msgid "three of spades"
-msgstr "o tres de picas"
-
-#: ../src/lib/ar-card.c:285
-msgid "four of spades"
-msgstr "o catro de picas"
-
-#: ../src/lib/ar-card.c:286
-msgid "five of spades"
-msgstr "o cinco de picas"
-
-#: ../src/lib/ar-card.c:287
-msgid "six of spades"
-msgstr "o seis de picas"
-
-#: ../src/lib/ar-card.c:288
-msgid "seven of spades"
-msgstr "o sete de picas"
-
-#: ../src/lib/ar-card.c:289
-msgid "eight of spades"
-msgstr "o oito de picas"
-
-#: ../src/lib/ar-card.c:290
-msgid "nine of spades"
-msgstr "o nove de picas"
-
-#: ../src/lib/ar-card.c:291
-msgid "ten of spades"
-msgstr "o dez de picas"
-
-#: ../src/lib/ar-card.c:292
-msgid "jack of spades"
-msgstr "a sota de picas"
-
-#: ../src/lib/ar-card.c:293
-msgid "queen of spades"
-msgstr "a raíña de picas"
-
-#: ../src/lib/ar-card.c:294
-msgid "king of spades"
-msgstr "o rei de picas"
-
-#: ../src/lib/ar-card.c:311
-msgid "face-down card"
-msgstr "carta cara abaixo"
-
-#. A black joker.
-#: ../src/lib/ar-card.c:322
-msgid "black joker"
-msgstr "comodín negro"
-
-#. A red joker.
-#: ../src/lib/ar-card.c:325
-msgid "red joker"
-msgstr "comodín vermello"
-
-#: ../src/smclient/eggdesktopfile.c:169
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "O ficheiro non é un ficheiro .desktop válido"
-
-#: ../src/smclient/eggdesktopfile.c:192
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "A versión «%s» do ficheiro .desktop non se recoñece"
-
-#: ../src/smclient/eggdesktopfile.c:966
-#, c-format
-msgid "Starting %s"
-msgstr "Iniciando %s"
-
-#: ../src/smclient/eggdesktopfile.c:1108
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "O aplicativo non acepta documentos na liña de ordes"
-
-#: ../src/smclient/eggdesktopfile.c:1176
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Non se recoñece a opción de inicio: %d"
-
-#: ../src/smclient/eggdesktopfile.c:1381
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Non é posíbel pasar os URI do documento a unha entrada de escritorio do tipo "
-"'Type=Link'"
-
-#: ../src/smclient/eggdesktopfile.c:1402
-#, c-format
-msgid "Not a launchable item"
-msgstr "Non é un elemento executábel"
-
-#: ../src/smclient/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Desactivar a conexión co xestor de sesións"
-
-#: ../src/smclient/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Especifique o ficheiro que contén a configuración gardada"
-
-#: ../src/smclient/eggsmclient.c:229
-msgid "FILE"
-msgstr "FICHEIRO"
-
-#: ../src/smclient/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Especificar o ID de xestión de sesión"
-
-#: ../src/smclient/eggsmclient.c:232
-msgid "ID"
-msgstr "ID"
-
-#: ../src/smclient/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Opcións de xestión de sesión:"
-
-#: ../src/smclient/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Mostrar as opcións de xestión de sesión"
-
-#: ../games/agnes.scm:72 ../games/terrace.scm:137
+#: ../games/agnes.scm:72 ../games/terrace.scm:139
 #, scheme-format
 msgid "Base Card: ~a"
 msgstr "Carta base: ~a"
 
-#: ../games/agnes.scm:74 ../games/bear_river.scm:90 ../games/canfield.scm:79
-#: ../games/chessboard.scm:92 ../games/eagle_wing.scm:96
-#: ../games/glenwood.scm:82 ../games/kansas.scm:86 ../games/lady_jane.scm:103
-#: ../games/plait.scm:240 ../games/royal_east.scm:83 ../games/terrace.scm:139
+#: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
+#: ../games/chessboard.scm:94 ../games/eagle-wing.scm:98
+#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
 msgid "Base Card: Ace"
 msgstr "Carta base: ás"
 
-#: ../games/agnes.scm:76 ../games/bear_river.scm:92 ../games/canfield.scm:81
-#: ../games/chessboard.scm:94 ../games/eagle_wing.scm:98
-#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady_jane.scm:105
-#: ../games/plait.scm:242 ../games/royal_east.scm:85 ../games/terrace.scm:141
+#: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
+#: ../games/chessboard.scm:96 ../games/eagle-wing.scm:100
+#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
 msgid "Base Card: Jack"
 msgstr "Carta base: sota"
 
-#: ../games/agnes.scm:78 ../games/bear_river.scm:94 ../games/canfield.scm:83
-#: ../games/chessboard.scm:96 ../games/eagle_wing.scm:100
-#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady_jane.scm:107
-#: ../games/plait.scm:244 ../games/royal_east.scm:87 ../games/terrace.scm:143
+#: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
+#: ../games/chessboard.scm:98 ../games/eagle-wing.scm:102
+#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
 msgid "Base Card: Queen"
 msgstr "Carta base: raíña"
 
-#: ../games/agnes.scm:80 ../games/bear_river.scm:96 ../games/canfield.scm:85
-#: ../games/chessboard.scm:98 ../games/eagle_wing.scm:102
-#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady_jane.scm:109
-#: ../games/plait.scm:246 ../games/royal_east.scm:89 ../games/terrace.scm:145
+#: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
+#: ../games/chessboard.scm:100 ../games/eagle-wing.scm:104
+#: ../games/glenwood.scm:90 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
 msgid "Base Card: King"
 msgstr "Carta base: rei"
 
-#: ../games/agnes.scm:85 ../games/auld_lang_syne.scm:51
-#: ../games/backbone.scm:129 ../games/block_ten.scm:52 ../games/bristol.scm:76
-#: ../games/camelot.scm:75 ../games/canfield.scm:67 ../games/carpet.scm:101
-#: ../games/cover.scm:40 ../games/doublets.scm:65 ../games/eagle_wing.scm:84
-#: ../games/easthaven.scm:54 ../games/elevator.scm:96
-#: ../games/escalator.scm:121 ../games/first_law.scm:40
-#: ../games/fortunes.scm:41 ../games/forty_thieves.scm:90
-#: ../games/glenwood.scm:70 ../games/gypsy.scm:63 ../games/helsinki.scm:51
-#: ../games/hopscotch.scm:53 ../games/jamestown.scm:52 ../games/jumbo.scm:70
-#: ../games/kansas.scm:74 ../games/klondike.scm:84 ../games/labyrinth.scm:72
-#: ../games/lady_jane.scm:114 ../games/monte_carlo.scm:73
-#: ../games/neighbor.scm:73 ../games/plait.scm:232 ../games/quatorze.scm:73
-#: ../games/royal_east.scm:75 ../games/scuffle.scm:57
-#: ../games/sir_tommy.scm:47 ../games/straight_up.scm:62
-#: ../games/terrace.scm:157 ../games/thieves.scm:46 ../games/thirteen.scm:103
-#: ../games/thumb_and_pouch.scm:59 ../games/treize.scm:100
-#: ../games/triple_peaks.scm:102 ../games/union_square.scm:94
-#: ../games/westhaven.scm:64 ../games/whitehead.scm:56 ../games/yield.scm:106
-#: ../games/zebra.scm:69
+#: ../games/agnes.scm:85 ../games/auld-lang-syne.scm:53
+#: ../games/backbone.scm:131 ../games/block-ten.scm:54 ../games/bristol.scm:78
+#: ../games/camelot.scm:77 ../games/canfield.scm:69 ../games/carpet.scm:103
+#: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:86
+#: ../games/easthaven.scm:56 ../games/elevator.scm:98
+#: ../games/escalator.scm:123 ../games/first-law.scm:42
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
+#: ../games/glenwood.scm:72 ../games/gypsy.scm:65 ../games/helsinki.scm:53
+#: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
+#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
+#: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
+#: ../games/straight-up.scm:64 ../games/terrace.scm:159
+#: ../games/thieves.scm:48 ../games/thirteen.scm:105
+#: ../games/thumb-and-pouch.scm:61 ../games/treize.scm:102
+#: ../games/triple-peaks.scm:104 ../games/union-square.scm:96
+#: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
+#: ../games/zebra.scm:71
 msgid "Stock left:"
 msgstr "Montón restante:"
 
-#: ../games/agnes.scm:87 ../games/lady_jane.scm:116
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
 msgid "Stock left: 0"
 msgstr "Montón restante: 0"
 
-#: ../games/agnes.scm:264 ../games/easthaven.scm:227
-#: ../games/labyrinth.scm:195 ../games/monte_carlo.scm:194
-#: ../games/monte_carlo.scm:199 ../games/valentine.scm:136
+#: ../games/agnes.scm:264 ../games/easthaven.scm:229
+#: ../games/labyrinth.scm:197 ../games/monte-carlo.scm:196
+#: ../games/monte-carlo.scm:201 ../games/valentine.scm:138
 msgid "Deal more cards"
 msgstr "Repartir máis cartas"
 
-#: ../games/agnes.scm:270 ../games/backbone.scm:293
-#: ../games/bakers_dozen.scm:195 ../games/beleaguered_castle.scm:169
-#: ../games/canfield.scm:304 ../games/jumbo.scm:331
-#: ../games/king_albert.scm:290 ../games/lady_jane.scm:426
-#: ../games/streets_and_alleys.scm:180
+#: ../games/agnes.scm:270 ../games/backbone.scm:295
+#: ../games/bakers-dozen.scm:197 ../games/beleaguered-castle.scm:171
+#: ../games/canfield.scm:306 ../games/jumbo.scm:333
+#: ../games/king-albert.scm:292 ../games/lady-jane.scm:428
+#: ../games/streets-and-alleys.scm:182
 msgid "Try rearranging the cards"
 msgstr "Probe a reorganizar as cartas"
 
-#: ../games/athena.scm:78 ../games/klondike.scm:290 ../games/osmosis.scm:219
-#: ../games/saratoga.scm:78
+#: ../games/api.scm:284
+msgid "Unknown color"
+msgstr "Cor descoñecida"
+
+#: ../games/api.scm:392
+msgid "the black joker"
+msgstr "o comodín negro"
+
+#: ../games/api.scm:392
+msgid "the red joker"
+msgstr "o comodín vermello"
+
+#: ../games/api.scm:401
+msgid "the ace of clubs"
+msgstr "o ás de trevos"
+
+#: ../games/api.scm:402
+msgid "the two of clubs"
+msgstr "o dous de trevos"
+
+#: ../games/api.scm:403
+msgid "the three of clubs"
+msgstr "o tres de trevos"
+
+#: ../games/api.scm:404
+msgid "the four of clubs"
+msgstr "o catro de trevos"
+
+#: ../games/api.scm:405
+msgid "the five of clubs"
+msgstr "o cinco de trevos"
+
+#: ../games/api.scm:406
+msgid "the six of clubs"
+msgstr "o seis de trevos"
+
+#: ../games/api.scm:407
+msgid "the seven of clubs"
+msgstr "o sete de trevos"
+
+#: ../games/api.scm:408
+msgid "the eight of clubs"
+msgstr "o oito de trevos"
+
+#: ../games/api.scm:409
+msgid "the nine of clubs"
+msgstr "o nove de trevos"
+
+#: ../games/api.scm:410
+msgid "the ten of clubs"
+msgstr "o dez de picas"
+
+#: ../games/api.scm:411
+msgid "the jack of clubs"
+msgstr "a sota de trevos"
+
+#: ../games/api.scm:412
+msgid "the queen of clubs"
+msgstr "a raíña de trevos"
+
+#: ../games/api.scm:413
+msgid "the king of clubs"
+msgstr "o rei de trevos"
+
+#: ../games/api.scm:414 ../games/api.scm:429 ../games/api.scm:444
+#: ../games/api.scm:459 ../games/api.scm:460
+msgid "the unknown card"
+msgstr "a carta descoñecida"
+
+#: ../games/api.scm:416
+msgid "the ace of spades"
+msgstr "o ás de picas"
+
+#: ../games/api.scm:417
+msgid "the two of spades"
+msgstr "o dous de picas"
+
+#: ../games/api.scm:418
+msgid "the three of spades"
+msgstr "o tres de picas"
+
+#: ../games/api.scm:419
+msgid "the four of spades"
+msgstr "o catro de picas"
+
+#: ../games/api.scm:420
+msgid "the five of spades"
+msgstr "o cinco de espadas"
+
+#: ../games/api.scm:421
+msgid "the six of spades"
+msgstr "o seis de picas"
+
+#: ../games/api.scm:422
+msgid "the seven of spades"
+msgstr "o sete de picas"
+
+#: ../games/api.scm:423
+msgid "the eight of spades"
+msgstr "o oito de picas"
+
+#: ../games/api.scm:424
+msgid "the nine of spades"
+msgstr "o nove de picas"
+
+#: ../games/api.scm:425
+msgid "the ten of spades"
+msgstr "o dez de picas"
+
+#: ../games/api.scm:426
+msgid "the jack of spades"
+msgstr "a sota de picas"
+
+#: ../games/api.scm:427
+msgid "the queen of spades"
+msgstr "a raíña de picas"
+
+#: ../games/api.scm:428
+msgid "the king of spades"
+msgstr "o rei de picas"
+
+#: ../games/api.scm:431
+msgid "the ace of hearts"
+msgstr "o ás de corazóns"
+
+#: ../games/api.scm:432
+msgid "the two of hearts"
+msgstr "o dous de corazóns"
+
+#: ../games/api.scm:433
+msgid "the three of hearts"
+msgstr "o tres de corazóns"
+
+#: ../games/api.scm:434
+msgid "the four of hearts"
+msgstr "o catro de corazóns"
+
+#: ../games/api.scm:435
+msgid "the five of hearts"
+msgstr "o cinco de corazóns"
+
+#: ../games/api.scm:436
+msgid "the six of hearts"
+msgstr "o seis de corazóns"
+
+#: ../games/api.scm:437
+msgid "the seven of hearts"
+msgstr "o sete de corazóns"
+
+#: ../games/api.scm:438
+msgid "the eight of hearts"
+msgstr "o oito de corazóns"
+
+#: ../games/api.scm:439
+msgid "the nine of hearts"
+msgstr "o nove de corazóns"
+
+#: ../games/api.scm:440
+msgid "the ten of hearts"
+msgstr "o dez de corazóns"
+
+#: ../games/api.scm:441
+msgid "the jack of hearts"
+msgstr "a sota de corazóns"
+
+#: ../games/api.scm:442
+msgid "the queen of hearts"
+msgstr "a raíña de corazóns"
+
+#: ../games/api.scm:443
+msgid "the king of hearts"
+msgstr "o rei de corazóns"
+
+#: ../games/api.scm:446
+msgid "the ace of diamonds"
+msgstr "o ás de diamantes"
+
+#: ../games/api.scm:447
+msgid "the two of diamonds"
+msgstr "o dous de diamantes"
+
+#: ../games/api.scm:448
+msgid "the three of diamonds"
+msgstr "o tres de diamantes"
+
+#: ../games/api.scm:449
+msgid "the four of diamonds"
+msgstr "o catro de diamantes"
+
+#: ../games/api.scm:450
+msgid "the five of diamonds"
+msgstr "o cinco de diamantes"
+
+#: ../games/api.scm:451
+msgid "the six of diamonds"
+msgstr "o seis de diamantes"
+
+#: ../games/api.scm:452
+msgid "the seven of diamonds"
+msgstr "o sete de diamantes"
+
+#: ../games/api.scm:453
+msgid "the eight of diamonds"
+msgstr "o oito de diamantes"
+
+#: ../games/api.scm:454
+msgid "the nine of diamonds"
+msgstr "o nove de diamantes"
+
+#: ../games/api.scm:455
+msgid "the ten of diamonds"
+msgstr "o dez de diamantes"
+
+#: ../games/api.scm:456
+msgid "the jack of diamonds"
+msgstr "a sota de diamantes"
+
+#: ../games/api.scm:457
+msgid "the queen of diamonds"
+msgstr "a raíña de diamantes"
+
+#: ../games/api.scm:458
+msgid "the king of diamonds"
+msgstr "o rei de diamantes"
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto the foundation."
+msgstr "Mova ~a á fundación."
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto an empty foundation slot."
+msgstr "Mova ~a a un espazo baleiro da fundación."
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto the tableau."
+msgstr "Mova ~a ao taboleiro."
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto an empty tableau slot."
+msgstr "Mova ~a a un espazo baleiro do taboleiro."
+
+#: ../games/api.scm:466
+#, scheme-format
+msgid "Move ~a onto an empty edge slot."
+msgstr "Mova ~a a un espazo baleiro do bordo."
+
+#: ../games/api.scm:467
+#, scheme-format
+msgid "Move ~a onto an empty corner slot."
+msgstr "Mova ~a a un espazo baleiro da esquina."
+
+#: ../games/api.scm:468
+#, scheme-format
+msgid "Move ~a onto an empty top slot."
+msgstr "Mova ~a a un espazo baleiro da parte superior."
+
+#: ../games/api.scm:469
+#, scheme-format
+msgid "Move ~a onto an empty bottom slot."
+msgstr "Mova ~a a un espazo baleiro do fondo."
+
+#: ../games/api.scm:470
+#, scheme-format
+msgid "Move ~a onto an empty left slot."
+msgstr "Mova ~a a un espazo baleiro da esquerda."
+
+#: ../games/api.scm:471
+#, scheme-format
+msgid "Move ~a onto an empty right slot."
+msgstr "Mova ~a a un espazo baleiro da dereita."
+
+#: ../games/api.scm:472
+#, scheme-format
+msgid "Move ~a onto an empty slot."
+msgstr "Mova ~a a un espazo baleiro."
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the black joker."
+msgstr "Mova ~a ao comodín negro."
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the red joker."
+msgstr "Mova ~a ao comodín vermello."
+
+#: ../games/api.scm:477
+#, scheme-format
+msgid "Move ~a onto the ace of clubs."
+msgstr "Mova ~a ao as de tréboles."
+
+#: ../games/api.scm:478
+#, scheme-format
+msgid "Move ~a onto the two of clubs."
+msgstr "Mova ~a ao dous de tréboles."
+
+#: ../games/api.scm:479
+#, scheme-format
+msgid "Move ~a onto the three of clubs."
+msgstr "Mova ~a ao tres de tréboles."
+
+#: ../games/api.scm:480
+#, scheme-format
+msgid "Move ~a onto the four of clubs."
+msgstr "Mova ~a ao catro de tréboles."
+
+#: ../games/api.scm:481
+#, scheme-format
+msgid "Move ~a onto the five of clubs."
+msgstr "Mova ~a ao cinco de tréboles."
+
+#: ../games/api.scm:482
+#, scheme-format
+msgid "Move ~a onto the six of clubs."
+msgstr "Mova ~a ao seis de tréboles."
+
+#: ../games/api.scm:483
+#, scheme-format
+msgid "Move ~a onto the seven of clubs."
+msgstr "Mova ~a ao sete de tréboles."
+
+#: ../games/api.scm:484
+#, scheme-format
+msgid "Move ~a onto the eight of clubs."
+msgstr "Mova ~a ao oito de tréboles."
+
+#: ../games/api.scm:485
+#, scheme-format
+msgid "Move ~a onto the nine of clubs."
+msgstr "Mova ~a ao nove de tréboles."
+
+#: ../games/api.scm:486
+#, scheme-format
+msgid "Move ~a onto the ten of clubs."
+msgstr "Mova ~a ao dez de tréboles."
+
+#: ../games/api.scm:487
+#, scheme-format
+msgid "Move ~a onto the jack of clubs."
+msgstr "Mova ~a á xota de tréboles."
+
+#: ../games/api.scm:488
+#, scheme-format
+msgid "Move ~a onto the queen of clubs."
+msgstr "Mova ~a á raiña de tréboles."
+
+#: ../games/api.scm:489
+#, scheme-format
+msgid "Move ~a onto the king of clubs."
+msgstr "Mova ~a ao rei de tréboles."
+
+#: ../games/api.scm:490 ../games/api.scm:505 ../games/api.scm:520
+#: ../games/api.scm:535 ../games/api.scm:536
+#, scheme-format
+msgid "Move ~a onto the unknown card."
+msgstr "Mova ~a á carta descoñecida."
+
+#: ../games/api.scm:492
+#, scheme-format
+msgid "Move ~a onto the ace of spades."
+msgstr "Mova ~a ao as de picas."
+
+#: ../games/api.scm:493
+#, scheme-format
+msgid "Move ~a onto the two of spades."
+msgstr "Mova ~a ao dous de picas."
+
+#: ../games/api.scm:494
+#, scheme-format
+msgid "Move ~a onto the three of spades."
+msgstr "Mova ~a ao tres de picas."
+
+#: ../games/api.scm:495
+#, scheme-format
+msgid "Move ~a onto the four of spades."
+msgstr "Mova ~a ao catro de picas."
+
+#: ../games/api.scm:496
+#, scheme-format
+msgid "Move ~a onto the five of spades."
+msgstr "Mova ~a ao cinco de picas."
+
+#: ../games/api.scm:497
+#, scheme-format
+msgid "Move ~a onto the six of spades."
+msgstr "Mova ~a ao seis de picas."
+
+#: ../games/api.scm:498
+#, scheme-format
+msgid "Move ~a onto the seven of spades."
+msgstr "Mova ~a ao sete de picas."
+
+#: ../games/api.scm:499
+#, scheme-format
+msgid "Move ~a onto the eight of spades."
+msgstr "Mova ~a ao oito de picas."
+
+#: ../games/api.scm:500
+#, scheme-format
+msgid "Move ~a onto the nine of spades."
+msgstr "Mova ~a ao nove de picas."
+
+#: ../games/api.scm:501
+#, scheme-format
+msgid "Move ~a onto the ten of spades."
+msgstr "Mova ~a ao dez de picas."
+
+#: ../games/api.scm:502
+#, scheme-format
+msgid "Move ~a onto the jack of spades."
+msgstr "Mova ~a á xota de picas."
+
+#: ../games/api.scm:503
+#, scheme-format
+msgid "Move ~a onto the queen of spades."
+msgstr "Mova ~a á raiña de picas."
+
+#: ../games/api.scm:504
+#, scheme-format
+msgid "Move ~a onto the king of spades."
+msgstr "Mova ~a ao rei de picas."
+
+#: ../games/api.scm:507
+#, scheme-format
+msgid "Move ~a onto the ace of hearts."
+msgstr "Mova ~a ao as de corazóns."
+
+#: ../games/api.scm:508
+#, scheme-format
+msgid "Move ~a onto the two of hearts."
+msgstr "Mova ~a ao dous de corazóns."
+
+#: ../games/api.scm:509
+#, scheme-format
+msgid "Move ~a onto the three of hearts."
+msgstr "Mova ~a ao tres de corazóns."
+
+#: ../games/api.scm:510
+#, scheme-format
+msgid "Move ~a onto the four of hearts."
+msgstr "Mova ~a ao catro de corazóns."
+
+#: ../games/api.scm:511
+#, scheme-format
+msgid "Move ~a onto the five of hearts."
+msgstr "Mova ~a ao cinco de corazóns."
+
+#: ../games/api.scm:512
+#, scheme-format
+msgid "Move ~a onto the six of hearts."
+msgstr "Mova ~a ao seis de corazóns."
+
+#: ../games/api.scm:513
+#, scheme-format
+msgid "Move ~a onto the seven of hearts."
+msgstr "Mova ~a ao sete de corazóns."
+
+#: ../games/api.scm:514
+#, scheme-format
+msgid "Move ~a onto the eight of hearts."
+msgstr "Mova ~a ao oito de corazóns."
+
+#: ../games/api.scm:515
+#, scheme-format
+msgid "Move ~a onto the nine of hearts."
+msgstr "Mova ~a ao nove de corazóns."
+
+#: ../games/api.scm:516
+#, scheme-format
+msgid "Move ~a onto the ten of hearts."
+msgstr "Mova ~a ao dez de corazóns."
+
+#: ../games/api.scm:517
+#, scheme-format
+msgid "Move ~a onto the jack of hearts."
+msgstr "Mova ~a á xota de corazóns."
+
+#: ../games/api.scm:518
+#, scheme-format
+msgid "Move ~a onto the queen of hearts."
+msgstr "Mova ~a á raiña de corazóns."
+
+#: ../games/api.scm:519
+#, scheme-format
+msgid "Move ~a onto the king of hearts."
+msgstr "Mova ~a ao rei de corazóns."
+
+#: ../games/api.scm:522
+#, scheme-format
+msgid "Move ~a onto the ace of diamonds."
+msgstr "Mova ~a ao as de diamantes."
+
+#: ../games/api.scm:523
+#, scheme-format
+msgid "Move ~a onto the two of diamonds."
+msgstr "Mova ~a ao dous de diamantes."
+
+#: ../games/api.scm:524
+#, scheme-format
+msgid "Move ~a onto the three of diamonds."
+msgstr "Mova ~a ao tres de diamantes."
+
+#: ../games/api.scm:525
+#, scheme-format
+msgid "Move ~a onto the four of diamonds."
+msgstr "Mova ~a ao catro de diamantes."
+
+#: ../games/api.scm:526
+#, scheme-format
+msgid "Move ~a onto the five of diamonds."
+msgstr "Mova ~a ao cinco de diamantes."
+
+#: ../games/api.scm:527
+#, scheme-format
+msgid "Move ~a onto the six of diamonds."
+msgstr "Mova ~a ao seis de diamantes."
+
+#: ../games/api.scm:528
+#, scheme-format
+msgid "Move ~a onto the seven of diamonds."
+msgstr "Mova ~a ao sete de diamantes."
+
+#: ../games/api.scm:529
+#, scheme-format
+msgid "Move ~a onto the eight of diamonds."
+msgstr "Mova ~a ao oito de diamantes."
+
+#: ../games/api.scm:530
+#, scheme-format
+msgid "Move ~a onto the nine of diamonds."
+msgstr "Mova ~a ao nove de diamantes."
+
+#: ../games/api.scm:531
+#, scheme-format
+msgid "Move ~a onto the ten of diamonds."
+msgstr "Mova ~a ao dez de diamantes"
+
+#: ../games/api.scm:532
+#, scheme-format
+msgid "Move ~a onto the jack of diamonds."
+msgstr "Mova ~a á xota de diamantes."
+
+#: ../games/api.scm:533
+#, scheme-format
+msgid "Move ~a onto the queen of diamonds."
+msgstr "Mova ~a á raiña de diamantes."
+
+#: ../games/api.scm:534
+#, scheme-format
+msgid "Move ~a onto the king of diamonds."
+msgstr "Mova ~a ao rei de diamantes."
+
+#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
+#: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "Repartir tres cartas de cada vez"
 
-#: ../games/auld_lang_syne.scm:122 ../games/bristol.scm:260
-#: ../games/first_law.scm:125 ../games/fortunes.scm:159
-#: ../games/lady_jane.scm:231 ../games/scuffle.scm:138 ../games/spider.scm:280
-#: ../games/thumb_and_pouch.scm:258 ../games/zebra.scm:215
+#: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
+#: ../games/first-law.scm:127 ../games/fortunes.scm:161
+#: ../games/lady-jane.scm:233 ../games/scuffle.scm:140 ../games/spider.scm:282
+#: ../games/thumb-and-pouch.scm:260 ../games/zebra.scm:217
 msgid "Deal another round"
 msgstr "Repartir outra rolda"
 
-#: ../games/backbone.scm:125 ../games/doublets.scm:69
-#: ../games/eagle_wing.scm:106 ../games/gaps.scm:104 ../games/glenwood.scm:74
-#: ../games/jumbo.scm:66 ../games/klondike.scm:80 ../games/plait.scm:250
-#: ../games/scuffle.scm:53 ../games/straight_up.scm:70
-#: ../games/terrace.scm:151 ../games/thumb_and_pouch.scm:63
-#: ../games/zebra.scm:73
+#: ../games/backbone.scm:127 ../games/doublets.scm:71
+#: ../games/eagle-wing.scm:108 ../games/gaps.scm:106 ../games/glenwood.scm:76
+#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
+#: ../games/scuffle.scm:55 ../games/straight-up.scm:72
+#: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
+#: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "Reparticións restantes:"
 
-#: ../games/backbone.scm:232 ../games/terrace.scm:353
+#: ../games/backbone.scm:234 ../games/terrace.scm:355
 msgid "an empty slot on the tableau"
 msgstr "un espazo baleiro no taboleiro"
 
-#: ../games/backbone.scm:233 ../games/terrace.scm:291
+#: ../games/backbone.scm:235 ../games/terrace.scm:293
 msgid "an empty slot on the foundation"
 msgstr "un espazo baleiro na base"
 
-#: ../games/backbone.scm:291 ../games/camelot.scm:207
-#: ../games/canfield.scm:226 ../games/carpet.scm:173 ../games/glenwood.scm:248
-#: ../games/klondike.scm:264 ../games/osmosis.scm:213 ../games/plait.scm:101
-#: ../games/straight_up.scm:238 ../games/terrace.scm:359
+#: ../games/backbone.scm:293 ../games/camelot.scm:209
+#: ../games/canfield.scm:228 ../games/carpet.scm:175 ../games/glenwood.scm:250
+#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/osmosis.scm:215 ../games/plait.scm:103
+#: ../games/straight-up.scm:240 ../games/terrace.scm:361
 msgid "Deal a new card from the deck"
 msgstr "Repartir outra carta da baralla"
 
-#: ../games/bakers_dozen.scm:154 ../games/easthaven.scm:186
-#: ../games/eight_off.scm:178 ../games/fortress.scm:164
-#: ../games/king_albert.scm:256 ../games/seahaven.scm:243
-#: ../games/streets_and_alleys.scm:156 ../games/yukon.scm:242
+#: ../games/bakers-dozen.scm:156 ../games/easthaven.scm:188
+#: ../games/eight-off.scm:180 ../games/fortress.scm:166
+#: ../games/king-albert.scm:258 ../games/seahaven.scm:245
+#: ../games/streets-and-alleys.scm:158 ../games/yukon.scm:244
 msgid "an empty foundation"
 msgstr "unha base baleira"
 
-#: ../games/bear_river.scm:88 ../games/canfield.scm:77
-#: ../games/chessboard.scm:90 ../games/eagle_wing.scm:94
-#: ../games/glenwood.scm:80 ../games/kansas.scm:84 ../games/plait.scm:238
+#: ../games/bear-river.scm:88 ../games/canfield.scm:79
+#: ../games/chessboard.scm:92 ../games/eagle-wing.scm:96
+#: ../games/glenwood.scm:82 ../games/kansas.scm:86 ../games/plait.scm:240
 msgid "Base Card: "
 msgstr "Carta base: "
 
-#: ../games/bear_river.scm:160
+#: ../games/bear-river.scm:160
 msgid "an empty foundation slot"
 msgstr "unha baía base baleira"
 
-#: ../games/bear_river.scm:209
+#: ../games/bear-river.scm:209
 msgid "Move something onto an empty right-hand tableau slot"
 msgstr "Mover algo á baía baleira do lado dereito do taboleiro"
 
-#: ../games/camelot.scm:166
+#: ../games/camelot.scm:168
 msgid "Remove the ten of clubs."
 msgstr "Quitar o dez de tréboles."
 
-#: ../games/camelot.scm:167
+#: ../games/camelot.scm:169
 msgid "Remove the ten of diamonds."
 msgstr "Quitar o dez de diamantes."
 
-#: ../games/camelot.scm:168
+#: ../games/camelot.scm:170
 msgid "Remove the ten of hearts."
 msgstr "Quitar o dez de corazóns."
 
-#: ../games/camelot.scm:169
+#: ../games/camelot.scm:171
 msgid "Remove the ten of spades."
 msgstr "Quitar o dez de picas."
 
-#: ../games/canfield.scm:71 ../games/eagle_wing.scm:88 ../games/kansas.scm:78
-#: ../games/straight_up.scm:66
+#: ../games/canfield.scm:73 ../games/eagle-wing.scm:90 ../games/kansas.scm:80
+#: ../games/straight-up.scm:68
 msgid "Reserve left:"
 msgstr "Reserva restante:"
 
-#: ../games/canfield.scm:227 ../games/eagle_wing.scm:335
-#: ../games/glenwood.scm:251 ../games/plait.scm:104
-#: ../games/straight_up.scm:241 ../games/thumb_and_pouch.scm:261
-#: ../games/zebra.scm:218
+#: ../games/canfield.scm:229 ../games/eagle-wing.scm:337
+#: ../games/glenwood.scm:253 ../games/plait.scm:106
+#: ../games/straight-up.scm:243 ../games/thumb-and-pouch.scm:263
+#: ../games/zebra.scm:220
 msgid "Move waste back to stock"
 msgstr "Mover as descartadas ao montón"
 
-#: ../games/canfield.scm:233 ../games/glenwood.scm:281
+#: ../games/canfield.scm:235 ../games/glenwood.scm:283
 msgid "empty slot on foundation"
 msgstr "espazo baleiro na base"
 
-#: ../games/canfield.scm:255
+#: ../games/canfield.scm:257
 msgid "empty space on tableau"
 msgstr "espazo baleiro no taboleiro"
 
-#: ../games/chessboard.scm:196
+#: ../games/chessboard.scm:198
 msgid "Move a card to the Foundation"
 msgstr "Mover a carta á base"
 
-#: ../games/chessboard.scm:258 ../games/fortress.scm:213
+#: ../games/chessboard.scm:260 ../games/fortress.scm:215
 msgid "Move something into the empty Tableau slot"
 msgstr "Mover algo ao espazo baleiro do taboleiro"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:171
+#: ../games/clock.scm:173
 msgid ""
 "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr ""
 "Só porque un paso de cebra pareza unha mariola, non quere dicir que sexa unha"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:173
+#: ../games/clock.scm:175
 msgid "Look both ways before you cross the street"
 msgstr "Mira aos dous lados antes de cruzar a rúa"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:175
+#: ../games/clock.scm:177
 msgid "Have you read the help file?"
 msgstr "Leu o ficheiro de axuda?"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:177
+#: ../games/clock.scm:179
 msgid "Odessa is a better game.  Really."
 msgstr "O Odessa é un xogo mellor.  De verdade."
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:179
+#: ../games/clock.scm:181
 msgid "Tourniquets are not recommended unless in the direst emergency"
 msgstr ""
 "Os torniquetes non son recomendábeis a non ser que sexa unha urxencia grave"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:181
+#: ../games/clock.scm:183
 msgid "I could sure use a backrub right about now..."
 msgstr "Sentaríame moi ben unha masaxe nas costas…"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:183
+#: ../games/clock.scm:185
 msgid "Monitors won't give you Vitamin D -- but sunlight will..."
 msgstr "Os monitores non lle van fornecer vitamina D -- mais a luz do sol si…"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:185
+#: ../games/clock.scm:187
 msgid "If you're ever lost and alone in the woods, hug a tree"
 msgstr "Se algunha vez está perdido e só no bosque, abrace unha árbore"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:187
+#: ../games/clock.scm:189
 msgid "Fishing wire makes bad dental floss"
 msgstr "Un fío de pesca non é un bo fío dental"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:189
+#: ../games/clock.scm:191
 msgid "Consistency is key"
 msgstr "A consistencia é a chave"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:191
+#: ../games/clock.scm:193
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Cando non teña grampadora, unha grampa e unha regra valerán"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm:193
+#: ../games/clock.scm:195
 msgid "Never blow in a dog's ear"
 msgstr "Nunca lle sopres na orrella a un can"
 
-#: ../games/cruel.scm:155
+#: ../games/cruel.scm:157
 #, scheme-format
 msgid "Cards remaining: ~a"
 msgstr "Cartas restantes: ~a"
 
-#: ../games/cruel.scm:198
+#: ../games/cruel.scm:200
 msgid "Redeal."
 msgstr "Repartir outra vez."
 
-#: ../games/diamond_mine.scm:242 ../games/diamond_mine.scm:294
-#: ../games/odessa.scm:178 ../games/odessa.scm:212 ../games/pileon.scm:156
-#: ../games/pileon.scm:158 ../games/scorpion.scm:181
-#: ../games/ten_across.scm:178 ../games/ten_across.scm:225
-#: ../games/yukon.scm:202
+#: ../games/diamond-mine.scm:244 ../games/diamond-mine.scm:296
+#: ../games/odessa.scm:180 ../games/odessa.scm:214 ../games/pileon.scm:158
+#: ../games/pileon.scm:160 ../games/scorpion.scm:183
+#: ../games/ten-across.scm:180 ../games/ten-across.scm:227
+#: ../games/yukon.scm:204
 msgid "an empty slot"
 msgstr "un espazo baleiro"
 
-#: ../games/diamond_mine.scm:251
+#: ../games/diamond-mine.scm:253
 msgid "the foundation pile"
 msgstr "a pila de fundación"
 
-#: ../games/doublets.scm:155
+#: ../games/doublets.scm:157
 msgid "You are searching for an ace."
 msgstr "Está buscando un as."
 
-#: ../games/doublets.scm:156
+#: ../games/doublets.scm:158
 msgid "You are searching for a two."
 msgstr "Está buscando un dous."
 
-#: ../games/doublets.scm:157
+#: ../games/doublets.scm:159
 msgid "You are searching for a three."
 msgstr "Está buscando un tres."
 
-#: ../games/doublets.scm:158
+#: ../games/doublets.scm:160
 msgid "You are searching for a four."
 msgstr "Está buscando un catro."
 
-#: ../games/doublets.scm:159
+#: ../games/doublets.scm:161
 msgid "You are searching for a five."
 msgstr "Está buscando un cinco."
 
-#: ../games/doublets.scm:160
+#: ../games/doublets.scm:162
 msgid "You are searching for a six."
 msgstr "Está buscando un seis."
 
-#: ../games/doublets.scm:161
+#: ../games/doublets.scm:163
 msgid "You are searching for a seven."
 msgstr "Está buscando un sete."
 
-#: ../games/doublets.scm:162
+#: ../games/doublets.scm:164
 msgid "You are searching for an eight."
 msgstr "Está buscando un oito."
 
-#: ../games/doublets.scm:163
+#: ../games/doublets.scm:165
 msgid "You are searching for a nine."
 msgstr "Está buscando un nove."
 
-#: ../games/doublets.scm:164
+#: ../games/doublets.scm:166
 msgid "You are searching for a ten."
 msgstr "Está buscando un dez."
 
-#: ../games/doublets.scm:165
+#: ../games/doublets.scm:167
 msgid "You are searching for a jack."
 msgstr "Está buscando unha xota."
 
-#: ../games/doublets.scm:166
+#: ../games/doublets.scm:168
 msgid "You are searching for a queen."
 msgstr "Está buscando un raiña."
 
-#: ../games/doublets.scm:167
+#: ../games/doublets.scm:169
 msgid "You are searching for a king."
 msgstr "Está buscando un rei."
 
-#: ../games/doublets.scm:168
+#: ../games/doublets.scm:170
 msgid "Unknown value"
 msgstr "Valor descoñecido"
 
-#: ../games/eagle_wing.scm:267
+#: ../games/eagle-wing.scm:269
 #, scheme-format
 msgid "Move ~a to an empty foundation"
 msgstr "Mover ~a a unha fundación baleira"
 
-#: ../games/eagle_wing.scm:300
+#: ../games/eagle-wing.scm:302
 msgid "an empty slot on tableau"
 msgstr "un espazo baleiro no taboleiro"
 
-#: ../games/eagle_wing.scm:332 ../games/elevator.scm:363
-#: ../games/escalator.scm:222 ../games/royal_east.scm:191
-#: ../games/thirteen.scm:413 ../games/treize.scm:299
-#: ../games/triple_peaks.scm:342 ../games/union_square.scm:462
-#: ../games/westhaven.scm:194 ../games/yield.scm:315
+#: ../games/eagle-wing.scm:334 ../games/elevator.scm:365
+#: ../games/escalator.scm:224 ../games/royal-east.scm:193
+#: ../games/thirteen.scm:415 ../games/treize.scm:301
+#: ../games/triple-peaks.scm:344 ../games/union-square.scm:464
+#: ../games/westhaven.scm:196 ../games/yield.scm:317
 msgid "Deal a card"
 msgstr "Repartir unha carta"
 
-#: ../games/easthaven.scm:222
+#: ../games/easthaven.scm:224
 msgid "Move a King on to the empty tableau slot"
 msgstr "Mova un rei ao espazo baleiro do taboleiro"
 
-#: ../games/easthaven.scm:234 ../games/klondike.scm:268
-#: ../games/union_square.scm:470
+#: ../games/easthaven.scm:236 ../games/klondike.scm:270
+#: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Non hai ningunha suxestión dispoñíbel neste momento"
 
-#: ../games/eight_off.scm:231 ../games/seahaven.scm:298
+#: ../games/eight-off.scm:233 ../games/seahaven.scm:300
 msgid "an empty tableau"
 msgstr "un taboleiro baleiro"
 
-#: ../games/eight_off.scm:247 ../games/seahaven.scm:314
+#: ../games/eight-off.scm:249 ../games/seahaven.scm:316
 msgid "Move something on to an empty reserve"
 msgstr "Mover algo a unha reserva baleira"
 
-#: ../games/eliminator.scm:174
+#: ../games/eliminator.scm:176
 msgid "Six Foundations"
 msgstr "Seis fundacións"
 
-#: ../games/eliminator.scm:175
+#: ../games/eliminator.scm:177
 msgid "Five Foundations"
 msgstr "Cinco fundacións"
 
-#: ../games/eliminator.scm:176
+#: ../games/eliminator.scm:178
 msgid "Four Foundations"
 msgstr "Catro fundacións"
 
-#: ../games/eliminator.scm:194
+#: ../games/eliminator.scm:196
 msgid "Play a card to foundation."
 msgstr "Mova unha carta á fundación."
 
-#: ../games/eliminator.scm:195
+#: ../games/eliminator.scm:197
 msgid "No moves."
 msgstr "Sen movementos."
 
-#: ../games/first_law.scm:137
+#: ../games/first-law.scm:139
 msgid "Remove the aces"
 msgstr "Retire os ases"
 
-#: ../games/first_law.scm:139
+#: ../games/first-law.scm:141
 msgid "Remove the twos"
 msgstr "Retire os dous"
 
-#: ../games/first_law.scm:141
+#: ../games/first-law.scm:143
 msgid "Remove the threes"
 msgstr "Retire os tres"
 
-#: ../games/first_law.scm:143
+#: ../games/first-law.scm:145
 msgid "Remove the fours"
 msgstr "Retire os catros"
 
-#: ../games/first_law.scm:145
+#: ../games/first-law.scm:147
 msgid "Remove the fives"
 msgstr "Retire os cincos"
 
-#: ../games/first_law.scm:147
+#: ../games/first-law.scm:149
 msgid "Remove the sixes"
 msgstr "Retire os seis"
 
-#: ../games/first_law.scm:149
+#: ../games/first-law.scm:151
 msgid "Remove the sevens"
 msgstr "Retire os setes"
 
-#: ../games/first_law.scm:151
+#: ../games/first-law.scm:153
 msgid "Remove the eights"
 msgstr "Retire os oitos"
 
-#: ../games/first_law.scm:153
+#: ../games/first-law.scm:155
 msgid "Remove the nines"
 msgstr "Retire os noves"
 
-#: ../games/first_law.scm:155
+#: ../games/first-law.scm:157
 msgid "Remove the tens"
 msgstr "Retire os deces"
 
-#: ../games/first_law.scm:157
+#: ../games/first-law.scm:159
 msgid "Remove the jacks"
 msgstr "Retire as sotas"
 
-#: ../games/first_law.scm:159
+#: ../games/first-law.scm:161
 msgid "Remove the queens"
 msgstr "Retire as raíñas"
 
-#: ../games/first_law.scm:161
+#: ../games/first-law.scm:163
 msgid "Remove the kings"
 msgstr "Retire os reis"
 
-#: ../games/first_law.scm:163
+#: ../games/first-law.scm:165
 msgid "I'm not sure"
 msgstr "Non estou seguro"
 
-#: ../games/first_law.scm:183
+#: ../games/first-law.scm:185
 msgid "Return cards to stock"
 msgstr "Devolver as cartas ao montón"
 
-#: ../games/fortunes.scm:133 ../games/fortunes.scm:136
+#: ../games/fortunes.scm:135 ../games/fortunes.scm:138
 #, scheme-format
 msgid "Move ~a off the board"
 msgstr "Mova ~a fóra do tapete"
 
-#: ../games/fortunes.scm:156 ../games/klondike.scm:259
+#: ../games/fortunes.scm:158 ../games/klondike.scm:261
 msgid "Consider moving something into an empty slot"
 msgstr "Considere mover algo a un espazo baleiro"
 
-#: ../games/forty_thieves.scm:372
+#: ../games/forty-thieves.scm:374
 msgid "Deal a card from stock"
 msgstr "Repartir unha carta da baralla"
 
-#: ../games/freecell.scm:623
+#: ../games/freecell.scm:625
 msgid "No moves are possible. Undo or start again."
 msgstr ""
 "Non é posíbel realizar ningún movemento. Desfaga accións ou comece de novo."
 
-#: ../games/freecell.scm:629
+#: ../games/freecell.scm:631
 msgid "The game has no solution. Undo or start again."
 msgstr "A partida non ten solución. Desfágaa ou comece de novo."
 
-#: ../games/freecell.scm:631
+#: ../games/freecell.scm:633
 msgid "an empty reserve"
 msgstr "unha reserva baleira"
 
-#: ../games/freecell.scm:632 ../games/terrace.scm:284
+#: ../games/freecell.scm:634 ../games/napoleons-tomb.scm:338
+#: ../games/terrace.scm:286
 msgid "the foundation"
 msgstr "a fundación"
 
-#: ../games/freecell.scm:633
+#: ../games/freecell.scm:635
 msgid "an open tableau"
 msgstr "un taboleiro aberto"
 
-#: ../games/gaps.scm:276
+#: ../games/gaps.scm:278
 msgid "Double click any card to redeal."
 msgstr "Prema dúas veces en calquera carta para repartir outra vez."
 
-#: ../games/gaps.scm:282
+#: ../games/gaps.scm:284
 msgid "No hint available."
 msgstr "Non hai ningunha suxestión dispoñíbel."
 
-#: ../games/gaps.scm:291
+#: ../games/gaps.scm:293
 #, scheme-format
 msgid "Place a two in the leftmost slot of row ~a."
 msgstr "Colocar un dous no espazo máis á esquerda da fila ~a."
 
-#: ../games/gaps.scm:295
+#: ../games/gaps.scm:297
 #, scheme-format
 msgid "Add to the sequence in row ~a."
 msgstr "Engadir á secuencia na fila ~a."
 
-#: ../games/gaps.scm:314
+#: ../games/gaps.scm:316
 #, scheme-format
 msgid "Place the ~a next to ~a."
 msgstr "Colocar o ~a ao lado do ~a."
 
-#: ../games/gaps.scm:323
+#: ../games/gaps.scm:325
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Espazos colocados aleatoriamente ao repartir de novo"
 
-#: ../games/giant.scm:74
+#: ../games/giant.scm:76
 #, scheme-format
 msgid "Deals left: ~a"
 msgstr "Reparticións restantes: ~a"
 
-#: ../games/giant.scm:250
+#: ../games/giant.scm:252
 msgid "Deal a row"
 msgstr "Repartir unha fila"
 
-#: ../games/giant.scm:257
+#: ../games/giant.scm:259
 msgid "an empty foundation place"
 msgstr "un sitio de fundación baleira"
 
-#: ../games/giant.scm:258
+#: ../games/giant.scm:260
 msgid "an empty tableau place"
 msgstr "un pila baleira no taboleiro"
 
-#: ../games/giant.scm:285
+#: ../games/giant.scm:287
 msgid "Try moving a card to the reserve"
 msgstr "Tente mover unha carta á reserva"
 
-#: ../games/giant.scm:286
+#: ../games/giant.scm:288
 msgid "Try dealing a row of cards"
 msgstr "Probe a repartir unha fila de cartas"
 
 #. this isn't great, but it will get around the premature end-of-game call
-#: ../games/giant.scm:288 ../games/spider.scm:299
+#: ../games/giant.scm:290 ../games/spider.scm:301
 msgid "Try moving card piles around"
 msgstr "Tente mover os montóns de cartas a outro sitio"
 
-#: ../games/giant.scm:293
+#: ../games/giant.scm:295
 msgid "Same suit"
 msgstr "Mesmo pau"
 
-#: ../games/giant.scm:294
+#: ../games/giant.scm:296
 msgid "Alternating colors"
 msgstr "Cores alternativos"
 
-#: ../games/glenwood.scm:256
+#: ../games/glenwood.scm:258
 msgid "Select a card from the reserve for first foundation pile"
 msgstr "Seleccione unha carta da reserva para o primeiro montón"
 
-#: ../games/glenwood.scm:357
+#: ../games/glenwood.scm:359
 msgid "Move a card from the reserve on to the empty tableau slot"
 msgstr "Mova unha carta da reserva para o espazo baleiro do taboleiro"
 
-#: ../games/glenwood.scm:359
+#: ../games/glenwood.scm:361
 msgid "on to the empty tableau slot"
 msgstr "sobre o espazo baleiro do taboleiro"
 
-#: ../games/golf.scm:65 ../games/osmosis.scm:66 ../games/spider.scm:86
+#: ../games/golf.scm:67 ../games/osmosis.scm:68 ../games/spider.scm:88
 #, scheme-format
 msgid "Stock left: ~a"
 msgstr "Montón restante: ~a"
 
-#: ../games/golf.scm:137 ../games/hopscotch.scm:130 ../games/jumbo.scm:296
-#: ../games/kansas.scm:217 ../games/sir_tommy.scm:132
-#: ../games/whitehead.scm:250
+#: ../games/golf.scm:139 ../games/hopscotch.scm:132 ../games/jumbo.scm:298
+#: ../games/kansas.scm:219 ../games/sir-tommy.scm:134
+#: ../games/whitehead.scm:252
 msgid "Deal another card"
 msgstr "Repartir outra carta"
 
-#: ../games/gypsy.scm:214
+#: ../games/gypsy.scm:216
 msgid "Move a card or build of cards on to the empty slot"
 msgstr "Mova unha carta ou un conxunto de cartas ao espazo baleiro"
 
-#: ../games/gypsy.scm:337
+#: ../games/gypsy.scm:339
 msgid "Deal another hand"
 msgstr "Repartir outra man"
 
-#: ../games/helsinki.scm:114 ../games/neighbor.scm:140
-#: ../games/thirteen.scm:389 ../games/treize.scm:283 ../games/yield.scm:299
+#: ../games/helsinki.scm:116 ../games/neighbor.scm:142
+#: ../games/thirteen.scm:391 ../games/treize.scm:285 ../games/yield.scm:301
 msgid "itself"
 msgstr "el mesmo"
 
-#: ../games/hopscotch.scm:126
+#: ../games/hopscotch.scm:128
 msgid "Move card from waste"
 msgstr "Colla unha carta dos descartes"
 
-#: ../games/jumbo.scm:299
+#: ../games/jumbo.scm:301
 msgid "Move waste to stock"
 msgstr "Mova os descartes para o montón"
 
-#: ../games/king_albert.scm:191 ../games/lady_jane.scm:395
-#: ../games/lady_jane.scm:407
+#: ../games/king-albert.scm:193 ../games/lady-jane.scm:397
+#: ../games/lady-jane.scm:409
 msgid "an empty tableau slot"
 msgstr "un espazo baleiro no taboleiro"
 
-#: ../games/kings_audience.scm:86
+#: ../games/kings-audience.scm:88
 #, scheme-format
 msgid "Stock remaining: ~a"
 msgstr "Montón restante: ~a"
 
-#: ../games/kings_audience.scm:227
+#: ../games/kings-audience.scm:229
 msgid "Deal a new card"
 msgstr "Repartir unha carta nova"
 
-#: ../games/klondike.scm:267
+#: ../games/klondike.scm:269
 msgid "Try moving cards down from the foundation"
 msgstr "Tente baixar as cartas da fundación"
 
-#: ../games/klondike.scm:291
+#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "Reparticións de 1 carta"
 
-#: ../games/klondike.scm:292
+#: ../games/klondike.scm:294
 msgid "No redeals"
 msgstr "Non hai máis reparticións"
 
-#: ../games/lady_jane.scm:101 ../games/royal_east.scm:81
+#: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "Carta base:"
 
-#: ../games/lady_jane.scm:251 ../games/thumb_and_pouch.scm:195
+#: ../games/lady-jane.scm:253 ../games/thumb-and-pouch.scm:197
 msgid "an empty foundation pile"
 msgstr "un montón de base baleiro"
 
-#: ../games/maze.scm:145
+#: ../games/maze.scm:147
 msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr "Intente colocar os paus na orde que mellor corresponda á capa actual."
 
-#: ../games/osmosis.scm:72
+#: ../games/napoleons-tomb.scm:373
+msgid "Autoplay"
+msgstr "Reprodución automática"
+
+#: ../games/osmosis.scm:74
 #, scheme-format
 msgid "Redeals left: ~a"
 msgstr "Reparticións restantes: ~a"
 
-#: ../games/osmosis.scm:212
+#: ../games/osmosis.scm:214
 msgid "Deal new cards from the deck"
 msgstr "Reparta cartas novas da baralla"
 
-#: ../games/pileon.scm:156 ../games/pileon.scm:158 ../games/terrace.scm:284
+#: ../games/pileon.scm:158 ../games/pileon.scm:160 ../games/terrace.scm:286
 msgid "something"
 msgstr "algo"
 
-#: ../games/poker.scm:295
+#: ../games/poker.scm:297
 msgid "Place cards on to the Tableau to form poker hands"
 msgstr "Coloque as cartas sobre o taboleiro para que formen mans de póker"
 
-#: ../games/poker.scm:298
+#: ../games/poker.scm:300
 msgid "Shuffle mode"
 msgstr "Forma de barallar"
 
-#: ../games/scorpion.scm:142
+#: ../games/scorpion.scm:144
 msgid "Deal the cards"
 msgstr "Repartir as cartas"
 
-#: ../games/scuffle.scm:140
+#: ../games/scuffle.scm:142
 msgid "Reshuffle cards"
 msgstr "Barallar de novo as cartas"
 
-#: ../games/sir_tommy.scm:128
+#: ../games/sir-tommy.scm:130
 msgid "Move waste on to a reserve slot"
 msgstr "Mova as descartadas a un montón da reserva"
 
-#: ../games/sol.scm:281
-msgid "Unknown color"
-msgstr "Cor descoñecida"
-
-#: ../games/sol.scm:389
-msgid "the black joker"
-msgstr "o comodín negro"
-
-#: ../games/sol.scm:389
-msgid "the red joker"
-msgstr "o comodín vermello"
-
-#: ../games/sol.scm:398
-msgid "the ace of clubs"
-msgstr "o ás de trevos"
-
-#: ../games/sol.scm:399
-msgid "the two of clubs"
-msgstr "o dous de trevos"
-
-#: ../games/sol.scm:400
-msgid "the three of clubs"
-msgstr "o tres de trevos"
-
-#: ../games/sol.scm:401
-msgid "the four of clubs"
-msgstr "o catro de trevos"
-
-#: ../games/sol.scm:402
-msgid "the five of clubs"
-msgstr "o cinco de trevos"
-
-#: ../games/sol.scm:403
-msgid "the six of clubs"
-msgstr "o seis de trevos"
-
-#: ../games/sol.scm:404
-msgid "the seven of clubs"
-msgstr "o sete de trevos"
-
-#: ../games/sol.scm:405
-msgid "the eight of clubs"
-msgstr "o oito de trevos"
-
-#: ../games/sol.scm:406
-msgid "the nine of clubs"
-msgstr "o nove de trevos"
-
-#: ../games/sol.scm:407
-msgid "the ten of clubs"
-msgstr "o dez de picas"
-
-#: ../games/sol.scm:408
-msgid "the jack of clubs"
-msgstr "a sota de trevos"
-
-#: ../games/sol.scm:409
-msgid "the queen of clubs"
-msgstr "a raíña de trevos"
-
-#: ../games/sol.scm:410
-msgid "the king of clubs"
-msgstr "o rei de trevos"
-
-#: ../games/sol.scm:411 ../games/sol.scm:426 ../games/sol.scm:441
-#: ../games/sol.scm:456 ../games/sol.scm:457
-msgid "the unknown card"
-msgstr "a carta descoñecida"
-
-#: ../games/sol.scm:413
-msgid "the ace of spades"
-msgstr "o ás de picas"
-
-#: ../games/sol.scm:414
-msgid "the two of spades"
-msgstr "o dous de picas"
-
-#: ../games/sol.scm:415
-msgid "the three of spades"
-msgstr "o tres de picas"
-
-#: ../games/sol.scm:416
-msgid "the four of spades"
-msgstr "o catro de picas"
-
-#: ../games/sol.scm:417
-msgid "the five of spades"
-msgstr "o cinco de espadas"
-
-#: ../games/sol.scm:418
-msgid "the six of spades"
-msgstr "o seis de picas"
-
-#: ../games/sol.scm:419
-msgid "the seven of spades"
-msgstr "o sete de picas"
-
-#: ../games/sol.scm:420
-msgid "the eight of spades"
-msgstr "o oito de picas"
-
-#: ../games/sol.scm:421
-msgid "the nine of spades"
-msgstr "o nove de picas"
-
-#: ../games/sol.scm:422
-msgid "the ten of spades"
-msgstr "o dez de picas"
-
-#: ../games/sol.scm:423
-msgid "the jack of spades"
-msgstr "a sota de picas"
-
-#: ../games/sol.scm:424
-msgid "the queen of spades"
-msgstr "a raíña de picas"
-
-#: ../games/sol.scm:425
-msgid "the king of spades"
-msgstr "o rei de picas"
-
-#: ../games/sol.scm:428
-msgid "the ace of hearts"
-msgstr "o ás de corazóns"
-
-#: ../games/sol.scm:429
-msgid "the two of hearts"
-msgstr "o dous de corazóns"
-
-#: ../games/sol.scm:430
-msgid "the three of hearts"
-msgstr "o tres de corazóns"
-
-#: ../games/sol.scm:431
-msgid "the four of hearts"
-msgstr "o catro de corazóns"
-
-#: ../games/sol.scm:432
-msgid "the five of hearts"
-msgstr "o cinco de corazóns"
-
-#: ../games/sol.scm:433
-msgid "the six of hearts"
-msgstr "o seis de corazóns"
-
-#: ../games/sol.scm:434
-msgid "the seven of hearts"
-msgstr "o sete de corazóns"
-
-#: ../games/sol.scm:435
-msgid "the eight of hearts"
-msgstr "o oito de corazóns"
-
-#: ../games/sol.scm:436
-msgid "the nine of hearts"
-msgstr "o nove de corazóns"
-
-#: ../games/sol.scm:437
-msgid "the ten of hearts"
-msgstr "o dez de corazóns"
-
-#: ../games/sol.scm:438
-msgid "the jack of hearts"
-msgstr "a sota de corazóns"
-
-#: ../games/sol.scm:439
-msgid "the queen of hearts"
-msgstr "a raíña de corazóns"
-
-#: ../games/sol.scm:440
-msgid "the king of hearts"
-msgstr "o rei de corazóns"
-
-#: ../games/sol.scm:443
-msgid "the ace of diamonds"
-msgstr "o ás de diamantes"
-
-#: ../games/sol.scm:444
-msgid "the two of diamonds"
-msgstr "o dous de diamantes"
-
-#: ../games/sol.scm:445
-msgid "the three of diamonds"
-msgstr "o tres de diamantes"
-
-#: ../games/sol.scm:446
-msgid "the four of diamonds"
-msgstr "o catro de diamantes"
-
-#: ../games/sol.scm:447
-msgid "the five of diamonds"
-msgstr "o cinco de diamantes"
-
-#: ../games/sol.scm:448
-msgid "the six of diamonds"
-msgstr "o seis de diamantes"
-
-#: ../games/sol.scm:449
-msgid "the seven of diamonds"
-msgstr "o sete de diamantes"
-
-#: ../games/sol.scm:450
-msgid "the eight of diamonds"
-msgstr "o oito de diamantes"
-
-#: ../games/sol.scm:451
-msgid "the nine of diamonds"
-msgstr "o nove de diamantes"
-
-#: ../games/sol.scm:452
-msgid "the ten of diamonds"
-msgstr "o dez de diamantes"
-
-#: ../games/sol.scm:453
-msgid "the jack of diamonds"
-msgstr "a sota de diamantes"
-
-#: ../games/sol.scm:454
-msgid "the queen of diamonds"
-msgstr "a raíña de diamantes"
-
-#: ../games/sol.scm:455
-msgid "the king of diamonds"
-msgstr "o rei de diamantes"
-
-#: ../games/sol.scm:461
-#, scheme-format
-msgid "Move ~a onto the foundation."
-msgstr "Mova ~a á fundación."
-
-#: ../games/sol.scm:461
-#, scheme-format
-msgid "Move ~a onto an empty foundation slot."
-msgstr "Mova ~a a un espazo baleiro da fundación."
-
-#: ../games/sol.scm:462
-#, scheme-format
-msgid "Move ~a onto the tableau."
-msgstr "Mova ~a ao taboleiro."
-
-#: ../games/sol.scm:462
-#, scheme-format
-msgid "Move ~a onto an empty tableau slot."
-msgstr "Mova ~a a un espazo baleiro do taboleiro."
-
-#: ../games/sol.scm:463
-#, scheme-format
-msgid "Move ~a onto an empty edge slot."
-msgstr "Mova ~a a un espazo baleiro do bordo."
-
-#: ../games/sol.scm:464
-#, scheme-format
-msgid "Move ~a onto an empty corner slot."
-msgstr "Mova ~a a un espazo baleiro da esquina."
-
-#: ../games/sol.scm:465
-#, scheme-format
-msgid "Move ~a onto an empty top slot."
-msgstr "Mova ~a a un espazo baleiro da parte superior."
-
-#: ../games/sol.scm:466
-#, scheme-format
-msgid "Move ~a onto an empty bottom slot."
-msgstr "Mova ~a a un espazo baleiro do fondo."
-
-#: ../games/sol.scm:467
-#, scheme-format
-msgid "Move ~a onto an empty left slot."
-msgstr "Mova ~a a un espazo baleiro da esquerda."
-
-#: ../games/sol.scm:468
-#, scheme-format
-msgid "Move ~a onto an empty right slot."
-msgstr "Mova ~a a un espazo baleiro da dereita."
-
-#: ../games/sol.scm:469
-#, scheme-format
-msgid "Move ~a onto an empty slot."
-msgstr "Mova ~a a un espazo baleiro."
-
-#: ../games/sol.scm:472
-#, scheme-format
-msgid "Move ~a onto the black joker."
-msgstr "Mova ~a ao comodín negro."
-
-#: ../games/sol.scm:472
-#, scheme-format
-msgid "Move ~a onto the red joker."
-msgstr "Mova ~a ao comodín vermello."
-
-#: ../games/sol.scm:474
-#, scheme-format
-msgid "Move ~a onto the ace of clubs."
-msgstr "Mova ~a ao as de tréboles."
-
-#: ../games/sol.scm:475
-#, scheme-format
-msgid "Move ~a onto the two of clubs."
-msgstr "Mova ~a ao dous de tréboles."
-
-#: ../games/sol.scm:476
-#, scheme-format
-msgid "Move ~a onto the three of clubs."
-msgstr "Mova ~a ao tres de tréboles."
-
-#: ../games/sol.scm:477
-#, scheme-format
-msgid "Move ~a onto the four of clubs."
-msgstr "Mova ~a ao catro de tréboles."
-
-#: ../games/sol.scm:478
-#, scheme-format
-msgid "Move ~a onto the five of clubs."
-msgstr "Mova ~a ao cinco de tréboles."
-
-#: ../games/sol.scm:479
-#, scheme-format
-msgid "Move ~a onto the six of clubs."
-msgstr "Mova ~a ao seis de tréboles."
-
-#: ../games/sol.scm:480
-#, scheme-format
-msgid "Move ~a onto the seven of clubs."
-msgstr "Mova ~a ao sete de tréboles."
-
-#: ../games/sol.scm:481
-#, scheme-format
-msgid "Move ~a onto the eight of clubs."
-msgstr "Mova ~a ao oito de tréboles."
-
-#: ../games/sol.scm:482
-#, scheme-format
-msgid "Move ~a onto the nine of clubs."
-msgstr "Mova ~a ao nove de tréboles."
-
-#: ../games/sol.scm:483
-#, scheme-format
-msgid "Move ~a onto the ten of clubs."
-msgstr "Mova ~a ao dez de tréboles."
-
-#: ../games/sol.scm:484
-#, scheme-format
-msgid "Move ~a onto the jack of clubs."
-msgstr "Mova ~a á xota de tréboles."
-
-#: ../games/sol.scm:485
-#, scheme-format
-msgid "Move ~a onto the queen of clubs."
-msgstr "Mova ~a á raiña de tréboles."
-
-#: ../games/sol.scm:486
-#, scheme-format
-msgid "Move ~a onto the king of clubs."
-msgstr "Mova ~a ao rei de tréboles."
-
-#: ../games/sol.scm:487 ../games/sol.scm:502 ../games/sol.scm:517
-#: ../games/sol.scm:532 ../games/sol.scm:533
-#, scheme-format
-msgid "Move ~a onto the unknown card."
-msgstr "Mova ~a á carta descoñecida."
-
-#: ../games/sol.scm:489
-#, scheme-format
-msgid "Move ~a onto the ace of spades."
-msgstr "Mova ~a ao as de picas."
-
-#: ../games/sol.scm:490
-#, scheme-format
-msgid "Move ~a onto the two of spades."
-msgstr "Mova ~a ao dous de picas."
-
-#: ../games/sol.scm:491
-#, scheme-format
-msgid "Move ~a onto the three of spades."
-msgstr "Mova ~a ao tres de picas."
-
-#: ../games/sol.scm:492
-#, scheme-format
-msgid "Move ~a onto the four of spades."
-msgstr "Mova ~a ao catro de picas."
-
-#: ../games/sol.scm:493
-#, scheme-format
-msgid "Move ~a onto the five of spades."
-msgstr "Mova ~a ao cinco de picas."
-
-#: ../games/sol.scm:494
-#, scheme-format
-msgid "Move ~a onto the six of spades."
-msgstr "Mova ~a ao seis de picas."
-
-#: ../games/sol.scm:495
-#, scheme-format
-msgid "Move ~a onto the seven of spades."
-msgstr "Mova ~a ao sete de picas."
-
-#: ../games/sol.scm:496
-#, scheme-format
-msgid "Move ~a onto the eight of spades."
-msgstr "Mova ~a ao oito de picas."
-
-#: ../games/sol.scm:497
-#, scheme-format
-msgid "Move ~a onto the nine of spades."
-msgstr "Mova ~a ao nove de picas."
-
-#: ../games/sol.scm:498
-#, scheme-format
-msgid "Move ~a onto the ten of spades."
-msgstr "Mova ~a ao dez de picas."
-
-#: ../games/sol.scm:499
-#, scheme-format
-msgid "Move ~a onto the jack of spades."
-msgstr "Mova ~a á xota de picas."
-
-#: ../games/sol.scm:500
-#, scheme-format
-msgid "Move ~a onto the queen of spades."
-msgstr "Mova ~a á raiña de picas."
-
-#: ../games/sol.scm:501
-#, scheme-format
-msgid "Move ~a onto the king of spades."
-msgstr "Mova ~a ao rei de picas."
-
-#: ../games/sol.scm:504
-#, scheme-format
-msgid "Move ~a onto the ace of hearts."
-msgstr "Mova ~a ao as de corazóns."
-
-#: ../games/sol.scm:505
-#, scheme-format
-msgid "Move ~a onto the two of hearts."
-msgstr "Mova ~a ao dous de corazóns."
-
-#: ../games/sol.scm:506
-#, scheme-format
-msgid "Move ~a onto the three of hearts."
-msgstr "Mova ~a ao tres de corazóns."
-
-#: ../games/sol.scm:507
-#, scheme-format
-msgid "Move ~a onto the four of hearts."
-msgstr "Mova ~a ao catro de corazóns."
-
-#: ../games/sol.scm:508
-#, scheme-format
-msgid "Move ~a onto the five of hearts."
-msgstr "Mova ~a ao cinco de corazóns."
-
-#: ../games/sol.scm:509
-#, scheme-format
-msgid "Move ~a onto the six of hearts."
-msgstr "Mova ~a ao seis de corazóns."
-
-#: ../games/sol.scm:510
-#, scheme-format
-msgid "Move ~a onto the seven of hearts."
-msgstr "Mova ~a ao sete de corazóns."
-
-#: ../games/sol.scm:511
-#, scheme-format
-msgid "Move ~a onto the eight of hearts."
-msgstr "Mova ~a ao oito de corazóns."
-
-#: ../games/sol.scm:512
-#, scheme-format
-msgid "Move ~a onto the nine of hearts."
-msgstr "Mova ~a ao nove de corazóns."
-
-#: ../games/sol.scm:513
-#, scheme-format
-msgid "Move ~a onto the ten of hearts."
-msgstr "Mova ~a ao dez de corazóns."
-
-#: ../games/sol.scm:514
-#, scheme-format
-msgid "Move ~a onto the jack of hearts."
-msgstr "Mova ~a á xota de corazóns."
-
-#: ../games/sol.scm:515
-#, scheme-format
-msgid "Move ~a onto the queen of hearts."
-msgstr "Mova ~a á raiña de corazóns."
-
-#: ../games/sol.scm:516
-#, scheme-format
-msgid "Move ~a onto the king of hearts."
-msgstr "Mova ~a ao rei de corazóns."
-
-#: ../games/sol.scm:519
-#, scheme-format
-msgid "Move ~a onto the ace of diamonds."
-msgstr "Mova ~a ao as de diamantes."
-
-#: ../games/sol.scm:520
-#, scheme-format
-msgid "Move ~a onto the two of diamonds."
-msgstr "Mova ~a ao dous de diamantes."
-
-#: ../games/sol.scm:521
-#, scheme-format
-msgid "Move ~a onto the three of diamonds."
-msgstr "Mova ~a ao tres de diamantes."
-
-#: ../games/sol.scm:522
-#, scheme-format
-msgid "Move ~a onto the four of diamonds."
-msgstr "Mova ~a ao catro de diamantes."
-
-#: ../games/sol.scm:523
-#, scheme-format
-msgid "Move ~a onto the five of diamonds."
-msgstr "Mova ~a ao cinco de diamantes."
-
-#: ../games/sol.scm:524
-#, scheme-format
-msgid "Move ~a onto the six of diamonds."
-msgstr "Mova ~a ao seis de diamantes."
-
-#: ../games/sol.scm:525
-#, scheme-format
-msgid "Move ~a onto the seven of diamonds."
-msgstr "Mova ~a ao sete de diamantes."
-
-#: ../games/sol.scm:526
-#, scheme-format
-msgid "Move ~a onto the eight of diamonds."
-msgstr "Mova ~a ao oito de diamantes."
-
-#: ../games/sol.scm:527
-#, scheme-format
-msgid "Move ~a onto the nine of diamonds."
-msgstr "Mova ~a ao nove de diamantes."
-
-#: ../games/sol.scm:528
-#, scheme-format
-msgid "Move ~a onto the ten of diamonds."
-msgstr "Mova ~a ao dez de diamantes"
-
-#: ../games/sol.scm:529
-#, scheme-format
-msgid "Move ~a onto the jack of diamonds."
-msgstr "Mova ~a á xota de diamantes."
-
-#: ../games/sol.scm:530
-#, scheme-format
-msgid "Move ~a onto the queen of diamonds."
-msgstr "Mova ~a á raiña de diamantes."
-
-#: ../games/sol.scm:531
-#, scheme-format
-msgid "Move ~a onto the king of diamonds."
-msgstr "Mova ~a ao rei de diamantes."
-
-#: ../games/spider.scm:182 ../games/spider.scm:290
+#: ../games/spider.scm:184 ../games/spider.scm:292
 msgid "Undo until there are enough cards to fill all tableau piles"
 msgstr ""
 "Desfacer ata que haxa abondo cartas para cubrir todas as moreas do taboleiro"
 
-#: ../games/spider.scm:183
+#: ../games/spider.scm:185
 msgid "Please fill in empty pile first."
 msgstr "Encha un montón baleiro primeiro."
 
-#: ../games/spider.scm:275
+#: ../games/spider.scm:277
 msgid "Place something on empty slot"
 msgstr "Coloque algo no espazo baleiro"
 
-#: ../games/spider.scm:303
+#: ../games/spider.scm:305
 msgid "Four Suits"
 msgstr "Catro paus"
 
-#: ../games/spider.scm:304
+#: ../games/spider.scm:306
 msgid "Two Suits"
 msgstr "Dous paus"
 
-#: ../games/spider.scm:305
+#: ../games/spider.scm:307
 msgid "One Suit"
 msgstr "Un pau"
 
-#: ../games/ten_across.scm:249
+#: ../games/ten-across.scm:251
 msgid "Move a card to an empty temporary slot"
 msgstr "Mover a carta a un espazo temporalmente baleiro"
 
-#: ../games/ten_across.scm:250
+#: ../games/ten-across.scm:252
 msgid "No hint available"
 msgstr "Non hai ningunha suxestión dispoñíbel"
 
-#: ../games/ten_across.scm:286
+#: ../games/ten-across.scm:288
 msgid "Allow temporary spots use"
 msgstr "Permitir o uso temporal dos espazos"
 
 # falta: [']
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm:39
+#: ../games/terrace.scm:41
 msgid "General's Patience"
 msgstr "A paciencia do xeneral"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm:41
+#: ../games/terrace.scm:43
 msgid "Falling Stars"
 msgstr "Estrelas fugaces"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm:43
+#: ../games/terrace.scm:45
 msgid "Signora"
 msgstr "Signora"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm:45
+#: ../games/terrace.scm:47
 msgid "Redheads"
 msgstr "Rubias"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm:47
+#: ../games/terrace.scm:49
 msgid "Blondes and Brunettes"
 msgstr "Louras e morenas"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm:49
+#: ../games/terrace.scm:51
 msgid "Wood"
 msgstr "Madeira"
 
-#: ../games/thieves.scm:146
+#: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "Repartir unha carta da baralla"
 
-#: ../games/thirteen.scm:379
+#: ../games/thirteen.scm:381
 msgid "Match the top two cards of the waste."
 msgstr "Facer coincidir as dúas cartas superiores do montón de descartes."
 
-#: ../games/thumb_and_pouch.scm:163 ../games/thumb_and_pouch.scm:175
+#: ../games/thumb-and-pouch.scm:165 ../games/thumb-and-pouch.scm:177
 msgid "an empty tableau pile"
 msgstr "un pila baleira no taboleiro"
 
-#: ../games/triple_peaks.scm:349
+#: ../games/triple-peaks.scm:351
 msgid "Progressive Rounds"
 msgstr "Roldas progresivas"
 
-#: ../games/triple_peaks.scm:350
+#: ../games/triple-peaks.scm:352
 msgid "Multiplier Scoring"
 msgstr "Puntuación multiplicadora"
 
-#: ../games/whitehead.scm:241
+#: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Poña un grupo de cartas sobre un espazo baleiro do taboleiro"
 
-#: ../games/zebra.scm:180
+#: ../games/zebra.scm:182
 msgid "the appropriate Foundation pile"
 msgstr "a pila de Fundación axeitada"
+
+#~ msgctxt "score"
+#~ msgid "%6d"
+#~ msgstr "%6d"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "O ficheiro non é un ficheiro .desktop válido"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "A versión «%s» do ficheiro .desktop non se recoñece"
+
+#~ msgid "Starting %s"
+#~ msgstr "Iniciando %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "O aplicativo non acepta documentos na liña de ordes"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Non se recoñece a opción de inicio: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Non é posíbel pasar os URI do documento a unha entrada de escritorio do "
+#~ "tipo 'Type=Link'"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Non é un elemento executábel"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Desactivar a conexión co xestor de sesións"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Especifique o ficheiro que contén a configuración gardada"
+
+#~ msgid "FILE"
+#~ msgstr "FICHEIRO"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Especificar o ID de xestión de sesión"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Opcións de xestión de sesión:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Mostrar as opcións de xestión de sesión"
 
 #~ msgid "an empty bottom slot"
 #~ msgstr "un espazo inferior baleiro"
