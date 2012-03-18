@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-01-13 19:46+0000\n"
-"PO-Revision-Date: 2012-01-14 00:55+0300\n"
+"POT-Creation-Date: 2012-03-14 19:14+0000\n"
+"PO-Revision-Date: 2012-03-18 16:20+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <>\n"
 "MIME-Version: 1.0\n"
@@ -45,20 +45,20 @@ msgid "Play many different solitaire games"
 msgstr "Žaisti įvairius pasjansų žaidimus"
 
 #: ../src/aisleriot.schemas.in.h:1
-msgid "A list of recently played games."
-msgstr "Paskutiniųjų žaistų žaidimų sąrašas."
+msgid "Theme file name"
+msgstr "Temos failo pavadinimas"
 
 #: ../src/aisleriot.schemas.in.h:2
-msgid "A list of strings that come in the form of a quintuple: name, wins, total games played, best time (in seconds) and worst time (also in seconds). Unplayed games do not need to be represented."
-msgstr "Eilučių sąrašas kuris susideda iš penkių dalių: vardas, pergalės, viso kartų žaista, geriausias laikas (sekundėmis) ir blogiausias laikas (irgi sekundėmis). Nežaisti žaidimai nebus rodomi."
+msgid "The name of the file with the graphics for the cards."
+msgstr "Failo, saugančio kortų grafiką, pavadinimas."
 
 #: ../src/aisleriot.schemas.in.h:3
-msgid "Animations"
-msgstr "Animacijos"
+msgid "Whether or not to show the toolbar"
+msgstr "Ar rodyti įrankių juostą"
 
 #: ../src/aisleriot.schemas.in.h:4
-msgid "Recently played games"
-msgstr "Paskutinieji žaisti žaidimai"
+msgid "Whether or not to show the status bar"
+msgstr "Ar rodyti būsenos juostą"
 
 #: ../src/aisleriot.schemas.in.h:5
 msgid "Select the style of control"
@@ -73,40 +73,40 @@ msgid "Sound"
 msgstr "Garsai"
 
 #: ../src/aisleriot.schemas.in.h:8
-msgid "Statistics of games played"
-msgstr "Žaistų žaidimų statistika"
-
-#: ../src/aisleriot.schemas.in.h:9
-msgid "The game file to use"
-msgstr "Naudotinas žaidimo failas"
-
-#: ../src/aisleriot.schemas.in.h:10
-msgid "The name of the file with the graphics for the cards."
-msgstr "Failo, saugančio kortų grafiką, pavadinimas."
-
-#: ../src/aisleriot.schemas.in.h:11
-msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "Schemos failas, aprašantis žaidžiamą pasjanso žaidimą."
-
-#: ../src/aisleriot.schemas.in.h:12
-msgid "Theme file name"
-msgstr "Temos failo pavadinimas"
-
-#: ../src/aisleriot.schemas.in.h:13
-msgid "Whether or not to animate card moves."
-msgstr "Ar naudoti animaciją kortų ėjimams."
-
-#: ../src/aisleriot.schemas.in.h:14
 msgid "Whether or not to play event sounds."
 msgstr "Ar skleisti garsus žaidimo metu."
 
+#: ../src/aisleriot.schemas.in.h:9
+msgid "Animations"
+msgstr "Animacijos"
+
+#: ../src/aisleriot.schemas.in.h:10
+msgid "Whether or not to animate card moves."
+msgstr "Ar naudoti animaciją kortų ėjimams."
+
+#: ../src/aisleriot.schemas.in.h:11
+msgid "The game file to use"
+msgstr "Naudotinas žaidimo failas"
+
+#: ../src/aisleriot.schemas.in.h:12
+msgid "The name of the scheme file containing the solitaire game to play."
+msgstr "Schemos failas, aprašantis žaidžiamą pasjanso žaidimą."
+
+#: ../src/aisleriot.schemas.in.h:13
+msgid "Statistics of games played"
+msgstr "Žaistų žaidimų statistika"
+
+#: ../src/aisleriot.schemas.in.h:14
+msgid "A list of strings that come in the form of a quintuple: name, wins, total games played, best time (in seconds) and worst time (also in seconds). Unplayed games do not need to be represented."
+msgstr "Eilučių sąrašas kuris susideda iš penkių dalių: vardas, pergalės, viso kartų žaista, geriausias laikas (sekundėmis) ir blogiausias laikas (irgi sekundėmis). Nežaisti žaidimai nebus rodomi."
+
 #: ../src/aisleriot.schemas.in.h:15
-msgid "Whether or not to show the status bar"
-msgstr "Ar rodyti būsenos juostą"
+msgid "Recently played games"
+msgstr "Paskutinieji žaisti žaidimai"
 
 #: ../src/aisleriot.schemas.in.h:16
-msgid "Whether or not to show the toolbar"
-msgstr "Ar rodyti įrankių juostą"
+msgid "A list of recently played games."
+msgstr "Paskutiniųjų žaistų žaidimų sąrašas."
 
 #. Now construct the window contents
 #: ../src/ar-game-chooser.c:178
@@ -117,6 +117,73 @@ msgstr "Pasirinkite žaidimą"
 #: ../src/ar-game-chooser.c:192
 msgid "_Select"
 msgstr "_Pasirinkti"
+
+#: ../src/ar-stock.c:190
+msgid "_Contents"
+msgstr "_Turinys"
+
+#: ../src/ar-stock.c:191
+msgid "_Fullscreen"
+msgstr "_Visame ekrane"
+
+#: ../src/ar-stock.c:192
+msgid "_Hint"
+msgstr "_Užuomina"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../src/ar-stock.c:194
+msgid "_New"
+msgstr "_Naujas"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../src/ar-stock.c:196
+msgid "_New Game"
+msgstr "_Naujas žaidimas"
+
+#: ../src/ar-stock.c:197
+msgid "_Redo Move"
+msgstr "A_tstatyti ėjimą"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../src/ar-stock.c:199
+msgid "_Reset"
+msgstr "_Atstatyti"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../src/ar-stock.c:201
+msgid "_Restart"
+msgstr "_Perkrauti"
+
+#: ../src/ar-stock.c:202
+msgid "_Undo Move"
+msgstr "_Atšaukti ėjimą"
+
+#: ../src/ar-stock.c:203
+msgid "_Deal"
+msgstr "_Dalinti"
+
+#: ../src/ar-stock.c:204
+msgid "_Leave Fullscreen"
+msgstr "_Palikti viso ekrano veikseną"
+
+#: ../src/ar-stock.c:205
+msgid "_Pause"
+msgstr "_Pauzė"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../src/ar-stock.c:267
+#, c-format
+msgid "%s is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version %d of the License, or (at your option) any later version."
+msgstr "%s yra laisva programinė įranga; galite ją platinti ir/ar keisti ją pagal GNU General Public License sąlygas, išdėstytas Free Software Foundation; gali būti naudojama %d ar (pageidaujant) bet kuri vėlesnė licensijos versija."
+
+#: ../src/ar-stock.c:272
+#, c-format
+msgid "%s is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
+msgstr "%s programa platinama tikintis, kad ji bus naudinga , bet BE JOKIŲ GARANTIJŲ; netgi be numanomos garantijos, kad JI TIKS NURODYTAM TIKSLUI. Daugiau detalių nurodyta GNU General Public License."
+
+#: ../src/ar-stock.c:277
+msgid "You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr "Jūs turėjote kartu su šia programa gauti ir GNU Bendrosios Viešosios licencijos kopija; jei ne – jos ieškokite adresu <http://www.gnu.org/licenses/>."
 
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1437
@@ -902,7 +969,7 @@ msgstr "Ten Across"
 #.
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
 #: ../src/game-names.h:546
-#: ../games/terrace.scm.h:20
+#: ../games/terrace.scm:39
 msgid "Terrace"
 msgstr "Terasa"
 
@@ -1022,435 +1089,6 @@ msgstr "Jukonas"
 #: ../src/game-names.h:637
 msgid "Zebra"
 msgstr "Zebras"
-
-#. String reserve
-#: ../src/sol.c:50
-msgid "Solitaire"
-msgstr "Pasjansas"
-
-#: ../src/sol.c:51
-msgid "GNOME Solitaire"
-msgstr "GNOME pasjansas"
-
-#: ../src/sol.c:52
-msgid "About Solitaire"
-msgstr "Apie pasjansą"
-
-#: ../src/sol.c:68
-msgid "Select the game type to play"
-msgstr "Pasirinkite žaidimo tipą"
-
-#: ../src/sol.c:68
-msgid "NAME"
-msgstr "VARDAS"
-
-#: ../src/sol.c:117
-#: ../src/window.c:414
-#: ../src/window.c:1873
-msgid "AisleRiot"
-msgstr "AisleRiot"
-
-#. Translators: this is the total number of won games
-#: ../src/stats-dialog.c:148
-msgid "Wins:"
-msgstr "Laimėjimai:"
-
-#. Translators: this is the number of games played
-#: ../src/stats-dialog.c:150
-msgid "Total:"
-msgstr "Viso:"
-
-#. Translators: this is the percentage of games won out of all games played
-#: ../src/stats-dialog.c:152
-msgid "Percentage:"
-msgstr "Procentai:"
-
-#. Translators: this is the section title of a section which contains the n
-#. * number of games played, number of games won, and the ratio of these 2 numbers.
-#.
-#: ../src/stats-dialog.c:156
-msgid "Wins"
-msgstr "Laimėjimai"
-
-#. Translators: this is the best time of all wins
-#: ../src/stats-dialog.c:163
-msgid "Best:"
-msgstr "Geriausias:"
-
-#. Translators: this is the worst time of all wins
-#: ../src/stats-dialog.c:165
-msgid "Worst:"
-msgstr "Blogiausias:"
-
-#. Translators: this is the section title of a section containing the
-#. * best and worst time taken to win a game.
-#.
-#: ../src/stats-dialog.c:169
-msgid "Time"
-msgstr "Laikas"
-
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistika"
-
-#. Translators: Translate this to "%Id" if you want to use localised digits,
-#. * and to "%d" otherwise. Do not translate it to anything else!
-#.
-#: ../src/stats-dialog.c:213
-#: ../src/stats-dialog.c:219
-#, c-format
-msgid "%d"
-msgstr "%d"
-
-#. Translators: Translate the "%d" in this string this to "%Id" if you
-#. * want to use localised digits, and to "%d" otherwise.
-#. * Do not translate the "%d" part to anything else!
-#. * You may translate the "%%" part to use any other percent character(s)
-#. * instead, or leave it as "%%". If you chose a character other than
-#. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
-#.
-#: ../src/stats-dialog.c:230
-#, c-format
-msgid "%d%%"
-msgstr "%d%%"
-
-#. For translators: N/A means "Not Applicable", use whatever
-#. * abbreviation you have for a value that has no meaning.
-#: ../src/stats-dialog.c:236
-#: ../src/stats-dialog.c:245
-#: ../src/stats-dialog.c:253
-msgid "N/A"
-msgstr "nėra"
-
-#. Translators: this represents minutes:seconds.
-#: ../src/stats-dialog.c:240
-#: ../src/stats-dialog.c:248
-#, c-format
-msgid "%d:%02d"
-msgstr "%d:%02d"
-
-#: ../src/util.c:86
-#: ../src/util.c:90
-#: ../src/lib/ar-help.c:146
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "Nepavyko parodyti „%s“ žinyno."
-
-#: ../src/window.c:220
-msgid "Congratulations, you have won!"
-msgstr "Sveikiname, Jūs laimėjote!"
-
-#: ../src/window.c:224
-msgid "There are no more moves"
-msgstr "Nebėra galimų ėjimų."
-
-#: ../src/window.c:365
-msgid "Main game:"
-msgstr "Pagrindinis žaidimas:"
-
-#: ../src/window.c:373
-msgid "Card games:"
-msgstr "Kortų žaidimai:"
-
-#: ../src/window.c:388
-msgid "Card themes:"
-msgstr "Kortų nugarėlės:"
-
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Apie FreeCell pasjansą"
-
-#: ../src/window.c:417
-msgid "About AisleRiot"
-msgstr "Apie AisleRiot"
-
-#: ../src/window.c:421
-msgid "AisleRiot provides a rule-based solitaire card engine that allows many different games to be played."
-msgstr "AisleRiot pateikia taisyklėmis paremtą pasjanso kortų variklį, kuriuo galima žaisti daug skirtingų žaidimų."
-
-#: ../src/window.c:430
-msgid "translator-credits"
-msgstr ""
-"Paskutinieji vertėjai:\n"
-"Žygimantas Beručka <zygis@gnome.org>,\n"
-"Justina Klingaitė <justina.klingaite@gmail.com>\n"
-"\n"
-"Ankstesnieji vertėjai:\n"
-"Tomas Kuliavas <tokul@users.sf.net>,\n"
-"Gediminas Paulauskas <menesis@chatsubo.lt>"
-
-#: ../src/window.c:434
-msgid "GNOME Games web site"
-msgstr "GNOME Games tinklalapis"
-
-#: ../src/window.c:1288
-#, c-format
-msgid "Play “%s”"
-msgstr "Žaisti „%s“"
-
-#: ../src/window.c:1450
-#, c-format
-msgid "Display cards with “%s” card theme"
-msgstr "Parodyti kortas su „%s“ nugarėlėmis"
-
-#: ../src/window.c:1747
-msgid "A scheme exception occurred"
-msgstr "Schemos klaida"
-
-#: ../src/window.c:1750
-msgid "Please report this bug to the developers."
-msgstr "Prašome pranešti apie riktą kūrėjams."
-
-#: ../src/window.c:1756
-msgid "_Don't report"
-msgstr "_Nepranešti"
-
-#: ../src/window.c:1757
-msgid "_Report"
-msgstr "_Pranešti"
-
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "FreeCell pasjansas"
-
-#. Menu actions
-#: ../src/window.c:1990
-msgid "_Game"
-msgstr "Ž_aidimas"
-
-#: ../src/window.c:1991
-msgid "_View"
-msgstr "R_odymas"
-
-#: ../src/window.c:1992
-msgid "_Control"
-msgstr "V_aldymas"
-
-#: ../src/window.c:1994
-msgid "_Help"
-msgstr "_Žinynas"
-
-#: ../src/window.c:1999
-msgid "Start a new game"
-msgstr "Pradėti naują žaidimą"
-
-#: ../src/window.c:2002
-msgid "Restart the game"
-msgstr "Perkrauti žaidimą"
-
-#: ../src/window.c:2004
-msgid "_Select Game…"
-msgstr "_Pasirinkite žaidimą..."
-
-#: ../src/window.c:2006
-msgid "Play a different game"
-msgstr "Žaisti kitokį žaidimą"
-
-#: ../src/window.c:2008
-msgid "_Recently Played"
-msgstr "Paskutinieji ž_aisti"
-
-#: ../src/window.c:2009
-msgid "S_tatistics"
-msgstr "S_tatistika"
-
-#: ../src/window.c:2010
-msgid "Show gameplay statistics"
-msgstr "Rodyti žaidimo statistiką"
-
-#: ../src/window.c:2013
-msgid "Close this window"
-msgstr "Užverti šį langą"
-
-#: ../src/window.c:2016
-msgid "Undo the last move"
-msgstr "Atšaukti paskutinį ėjimą"
-
-#: ../src/window.c:2019
-msgid "Redo the undone move"
-msgstr "Atšaukti paskutinį ėjimą"
-
-#: ../src/window.c:2022
-msgid "Deal next card or cards"
-msgstr "Išdalinti daugiau kortų"
-
-#: ../src/window.c:2025
-msgid "Get a hint for your next move"
-msgstr "Gauti kito ėjimo patarimą"
-
-#: ../src/window.c:2028
-msgid "View help for Aisleriot"
-msgstr "Rodyti Aisleriot žinyną"
-
-#: ../src/window.c:2032
-msgid "View help for this game"
-msgstr "Rodyti šio žaidimo žinyną"
-
-#: ../src/window.c:2035
-msgid "About this game"
-msgstr "Apie šį žaidimą"
-
-#: ../src/window.c:2037
-msgid "Install card themes…"
-msgstr "Įdiegiamos kortų temos..."
-
-#: ../src/window.c:2038
-msgid "Install new card themes from the distribution packages repositories"
-msgstr "Įdiegti naujas kortų temas iš distributyvo paketų saugyklos"
-
-#: ../src/window.c:2044
-msgid "_Card Style"
-msgstr "_Kortų stilius"
-
-#: ../src/window.c:2078
-msgid "_Toolbar"
-msgstr "Įrankių _juosta"
-
-#: ../src/window.c:2079
-msgid "Show or hide the toolbar"
-msgstr "Rodyti arba paslėpti įrankių juostą"
-
-#: ../src/window.c:2083
-msgid "_Statusbar"
-msgstr "_Būsenos juosta"
-
-#: ../src/window.c:2084
-msgid "Show or hide statusbar"
-msgstr "Rodyti arba paslėpti būsenos juostą"
-
-#: ../src/window.c:2088
-msgid "_Click to Move"
-msgstr "_Norint perkelti reikia spragtelti"
-
-#: ../src/window.c:2089
-msgid "Pick up and drop cards by clicking"
-msgstr "Paimti ir mesti kortą spragtelėjimu"
-
-#: ../src/window.c:2093
-msgid "_Sound"
-msgstr "Gar_sas"
-
-#: ../src/window.c:2094
-msgid "Whether or not to play event sounds"
-msgstr "Ar groti įvykių garsus"
-
-#: ../src/window.c:2099
-msgid "_Animations"
-msgstr "_Animacijos"
-
-#: ../src/window.c:2100
-msgid "Whether or not to animate card moves"
-msgstr "Ar naudoti animaciją kortų ėjimams"
-
-#: ../src/window.c:2318
-msgid "Score:"
-msgstr "Taškai:"
-
-#: ../src/window.c:2330
-msgid "Time:"
-msgstr "Laikas:"
-
-#: ../src/window.c:2629
-#, c-format
-msgid "Cannot start the game “%s”"
-msgstr "Nepavyko pradėti žaidimo „%s“"
-
-#: ../src/window.c:2642
-msgid "Aisleriot cannot find the last game you played."
-msgstr "Aisleriot neranda paskutinio Jūsų žaisto žaidimo."
-
-#: ../src/window.c:2643
-msgid "This usually occurs when you run an older version of Aisleriot which does not have the game you last played. The default game, Klondike, is being started instead."
-msgstr "Tai dažniaisiai atsitinka tada, kai paleidžiate seną Aisleriot versiją, kurioje nėra paskutiniojo Jūsų žaisto žaidimo. Vietoje to paleidžiamas numatytasis žaidimas Klondike."
-
-#: ../src/ar-stock.c:190
-msgid "_Contents"
-msgstr "_Turinys"
-
-#: ../src/ar-stock.c:191
-msgid "_Fullscreen"
-msgstr "_Visame ekrane"
-
-#: ../src/ar-stock.c:192
-msgid "_Hint"
-msgstr "_Užuomina"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../src/ar-stock.c:194
-msgid "_New"
-msgstr "_Naujas"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../src/ar-stock.c:196
-msgid "_New Game"
-msgstr "_Naujas žaidimas"
-
-#: ../src/ar-stock.c:197
-msgid "_Redo Move"
-msgstr "A_tstatyti ėjimą"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../src/ar-stock.c:199
-msgid "_Reset"
-msgstr "_Atstatyti"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../src/ar-stock.c:201
-msgid "_Restart"
-msgstr "_Perkrauti"
-
-#: ../src/ar-stock.c:202
-msgid "_Undo Move"
-msgstr "_Atšaukti ėjimą"
-
-#: ../src/ar-stock.c:203
-msgid "_Deal"
-msgstr "_Dalinti"
-
-#: ../src/ar-stock.c:204
-msgid "_Leave Fullscreen"
-msgstr "_Palikti viso ekrano veikseną"
-
-#: ../src/ar-stock.c:205
-msgid "_Pause"
-msgstr "_Pauzė"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../src/ar-stock.c:267
-#, c-format
-msgid "%s is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version %d of the License, or (at your option) any later version."
-msgstr "%s yra laisva programinė įranga; galite ją platinti ir/ar keisti ją pagal GNU General Public License sąlygas, išdėstytas Free Software Foundation; gali būti naudojama %d ar (pageidaujant) bet kuri vėlesnė licensijos versija."
-
-#: ../src/ar-stock.c:272
-#, c-format
-msgid "%s is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details."
-msgstr "%s programa platinama tikintis, kad ji bus naudinga , bet BE JOKIŲ GARANTIJŲ; netgi be numanomos garantijos, kad JI TIKS NURODYTAM TIKSLUI. Daugiau detalių nurodyta GNU General Public License."
-
-#: ../src/ar-stock.c:277
-msgid "You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr "Jūs turėjote kartu su šia programa gauti ir GNU Bendrosios Viešosios licencijos kopija; jei ne – jos ieškokite adresu <http://www.gnu.org/licenses/>."
-
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../src/lib/ar-help.c:108
-#, c-format
-msgid "Help file “%s.%s” not found"
-msgstr "Žinyno failas „%s.%s“ nerastas"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
-msgid "Whether the window is fullscreen"
-msgstr "Ar langas yra per visą ekraną"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
-msgid "Whether the window is maximized"
-msgstr "Ar langas yra išdidintas"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
-msgid "Window height"
-msgstr "Lango aukštis"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
-msgid "Window width"
-msgstr "Lango plotis"
 
 #. Translators: this is the symbol that's on a Joker card
 #: ../src/lib/ar-card.c:237
@@ -1759,1419 +1397,1802 @@ msgstr "juodasis jokeris"
 msgid "red joker"
 msgstr "raudonasis jokeris"
 
-#: ../games/api.scm.h:1
-#| msgid "an empty bottom slot"
-msgid "Move ~a onto an empty bottom slot."
-msgstr "Perkelkite ~a į tuščią apatinį lauką."
-
-#: ../games/api.scm.h:2
-#| msgid "Move a card to an empty temporary slot"
-msgid "Move ~a onto an empty corner slot."
-msgstr "Perkelkite ~a į tuščią kampinį lauką."
-
-#: ../games/api.scm.h:3
-#| msgid "Move ~a to an empty field"
-msgid "Move ~a onto an empty edge slot."
-msgstr "Perkelkite ~a į tuščią kraštinį lauką."
-
-#: ../games/api.scm.h:4
-#| msgid "Move ~a to an empty foundation"
-msgid "Move ~a onto an empty foundation slot."
-msgstr "Perkelkite ~a į tuščią fondo lauką."
-
-#: ../games/api.scm.h:5
-#| msgid "Move ~a to an empty field"
-msgid "Move ~a onto an empty left slot."
-msgstr "Perkelkite ~a į tuščią kairį lauką."
-
-#: ../games/api.scm.h:6
-#| msgid "Move ~a to an empty field"
-msgid "Move ~a onto an empty right slot."
-msgstr "Perkelkite ~a į tuščią dešinį lauką."
-
-#: ../games/api.scm.h:7
-#| msgid "Move ~a to an empty field"
-msgid "Move ~a onto an empty slot."
-msgstr "Perkelkite ~a į tuščią lauką."
-
-#: ../games/api.scm.h:8
-#| msgid "Move a King on to the empty tableau slot"
-msgid "Move ~a onto an empty tableau slot."
-msgstr "Perkelkite ~a į tuščią vietą ant stalo."
-
-#: ../games/api.scm.h:9
-#| msgid "Move a card to an empty temporary slot"
-msgid "Move ~a onto an empty top slot."
-msgstr "Perkelkite ~a į viršutinį lauką."
-
-#: ../games/api.scm.h:10
-#| msgid "the ace of clubs"
-msgid "Move ~a onto the ace of clubs."
-msgstr "Perkelkite ~a ant kryžių tūzo"
-
-#: ../games/api.scm.h:11
-#| msgid "the ace of diamonds"
-msgid "Move ~a onto the ace of diamonds."
-msgstr "Perkelkite ~a ant būgnų tūzo."
-
-#: ../games/api.scm.h:12
-#| msgid "the ace of hearts"
-msgid "Move ~a onto the ace of hearts."
-msgstr "Perkelkite ~a and širdžių tūzo."
-
-#: ../games/api.scm.h:13
-#| msgid "the ace of spades"
-msgid "Move ~a onto the ace of spades."
-msgstr "Perkelkite ~a and pikų tūzo."
-
-#: ../games/api.scm.h:14
-#| msgid "Move ~a off the board"
-msgid "Move ~a onto the black joker."
-msgstr "Perkelkite ~a ant juodo juokdario."
-
-#: ../games/api.scm.h:15
-#| msgid "the eight of clubs"
-msgid "Move ~a onto the eight of clubs."
-msgstr "Perkelkite ~a and kryžių aštuonakės."
-
-#: ../games/api.scm.h:16
-#| msgid "the eight of diamonds"
-msgid "Move ~a onto the eight of diamonds."
-msgstr "Perkelkite ~a ant būgnų aštuonakė."
-
-#: ../games/api.scm.h:17
-#| msgid "the eight of hearts"
-msgid "Move ~a onto the eight of hearts."
-msgstr "Perkelkite ~a ant širdžių aštuonakės."
-
-#: ../games/api.scm.h:18
-#| msgid "the eight of spades"
-msgid "Move ~a onto the eight of spades."
-msgstr "Perkelkite ~a ant pikų aštuonakės."
-
-#: ../games/api.scm.h:19
-#| msgid "the five of clubs"
-msgid "Move ~a onto the five of clubs."
-msgstr "Perkelkite ~a ant kryžių penkiakės."
-
-#: ../games/api.scm.h:20
-#| msgid "the five of diamonds"
-msgid "Move ~a onto the five of diamonds."
-msgstr "Perkelkite ~a ant būgnų penkiakės."
-
-#: ../games/api.scm.h:21
-#| msgid "the five of hearts"
-msgid "Move ~a onto the five of hearts."
-msgstr "Perkelkite ~a ant širdžių penkiakės."
-
-#: ../games/api.scm.h:22
-#| msgid "the five of spades"
-msgid "Move ~a onto the five of spades."
-msgstr "Perkelkite ~a ant pikų penkiakės."
-
-#: ../games/api.scm.h:23
-#| msgid "Move a card to the Foundation"
-msgid "Move ~a onto the foundation."
-msgstr "Perkelkite ~a į fondą."
-
-#: ../games/api.scm.h:24
-#| msgid "the four of clubs"
-msgid "Move ~a onto the four of clubs."
-msgstr "Perkelkite ~a ant kryžių keturakės."
-
-#: ../games/api.scm.h:25
-#| msgid "the four of diamonds"
-msgid "Move ~a onto the four of diamonds."
-msgstr "Perkelkite ~a ant būgnų keturakė."
-
-#: ../games/api.scm.h:26
-#| msgid "the four of hearts"
-msgid "Move ~a onto the four of hearts."
-msgstr "Perkelkite ~a ant širdžių keturakės."
-
-#: ../games/api.scm.h:27
-#| msgid "the four of spades"
-msgid "Move ~a onto the four of spades."
-msgstr "Perkelkite ~a ant pikų keturakės."
-
-#: ../games/api.scm.h:28
-#| msgid "the jack of clubs"
-msgid "Move ~a onto the jack of clubs."
-msgstr "Perkelkite ~a ant kryžių valeto."
-
-#: ../games/api.scm.h:29
-#| msgid "the jack of diamonds"
-msgid "Move ~a onto the jack of diamonds."
-msgstr "Perkelkite ~a ant būgnų valeto."
-
-#: ../games/api.scm.h:30
-#| msgid "the jack of hearts"
-msgid "Move ~a onto the jack of hearts."
-msgstr "Perkelkite ~a ant širdžių valeto."
-
-#: ../games/api.scm.h:31
-#| msgid "the jack of spades"
-msgid "Move ~a onto the jack of spades."
-msgstr "Perkelkite ~a ant pikų valeto."
-
-#: ../games/api.scm.h:32
-#| msgid "the king of clubs"
-msgid "Move ~a onto the king of clubs."
-msgstr "Perkelkite ~a ant kryžių karaliaus."
-
-#: ../games/api.scm.h:33
-#| msgid "the king of diamonds"
-msgid "Move ~a onto the king of diamonds."
-msgstr "Perkelkite ~a ant būgnų karaliaus."
-
-#: ../games/api.scm.h:34
-#| msgid "the king of hearts"
-msgid "Move ~a onto the king of hearts."
-msgstr "Perkelkite ~a ant širdžių karaliaus."
-
-#: ../games/api.scm.h:35
-#| msgid "the king of spades"
-msgid "Move ~a onto the king of spades."
-msgstr "Perkelkite ~a ant pikų karaliaus."
-
-#: ../games/api.scm.h:36
-#| msgid "the nine of clubs"
-msgid "Move ~a onto the nine of clubs."
-msgstr "Perkelkite ~a ant kryžių devynakės."
-
-#: ../games/api.scm.h:37
-#| msgid "the nine of diamonds"
-msgid "Move ~a onto the nine of diamonds."
-msgstr "Perkelkite ~a ant būgnų devynakės."
-
-#: ../games/api.scm.h:38
-#| msgid "the nine of hearts"
-msgid "Move ~a onto the nine of hearts."
-msgstr "Perkelkite ~a ant širdžių devynakės."
-
-#: ../games/api.scm.h:39
-#| msgid "the nine of spades"
-msgid "Move ~a onto the nine of spades."
-msgstr "Perkelkite ~a ant pikų devynakės."
-
-#: ../games/api.scm.h:40
-#| msgid "the queen of clubs"
-msgid "Move ~a onto the queen of clubs."
-msgstr "Perkelkite ~a ant kryžių damos."
-
-#: ../games/api.scm.h:41
-#| msgid "the queen of diamonds"
-msgid "Move ~a onto the queen of diamonds."
-msgstr "Perkelkite ~a ant būgnų damos."
-
-#: ../games/api.scm.h:42
-#| msgid "the queen of hearts"
-msgid "Move ~a onto the queen of hearts."
-msgstr "Perkelkite ~a ant širdžių damos."
-
-#: ../games/api.scm.h:43
-#| msgid "the queen of spades"
-msgid "Move ~a onto the queen of spades."
-msgstr "Perkelkite ~a ant pikų damos."
-
-#: ../games/api.scm.h:44
-#| msgid "Move ~a off the board"
-msgid "Move ~a onto the red joker."
-msgstr "Perkelkite ~a ant raudono juokdario."
-
-#: ../games/api.scm.h:45
-#| msgid "the seven of clubs"
-msgid "Move ~a onto the seven of clubs."
-msgstr "Perkelkite ~a ant kryžių septynakės."
-
-#: ../games/api.scm.h:46
-#| msgid "the seven of diamonds"
-msgid "Move ~a onto the seven of diamonds."
-msgstr "Perkelkite ~a ant būgnų septynakės."
-
-#: ../games/api.scm.h:47
-#| msgid "the seven of hearts"
-msgid "Move ~a onto the seven of hearts."
-msgstr "Perkelkite ~a ant širdžių septynakės."
-
-#: ../games/api.scm.h:48
-#| msgid "the seven of spades"
-msgid "Move ~a onto the seven of spades."
-msgstr "Perkelkite ~a ant pikų septynakės."
-
-#: ../games/api.scm.h:49
-#| msgid "the six of clubs"
-msgid "Move ~a onto the six of clubs."
-msgstr "Perkelkite ~a ant kryžių šešiakės."
-
-#: ../games/api.scm.h:50
-#| msgid "the six of diamonds"
-msgid "Move ~a onto the six of diamonds."
-msgstr "Perkelkite ~a ant būgnų šešiakės."
-
-#: ../games/api.scm.h:51
-#| msgid "the six of hearts"
-msgid "Move ~a onto the six of hearts."
-msgstr "Perkelkite ~a ant širdžių šešiakės."
-
-#: ../games/api.scm.h:52
-#| msgid "the six of spades"
-msgid "Move ~a onto the six of spades."
-msgstr "Perkelkite ~a ant pikų šešiakės."
-
-#: ../games/api.scm.h:53
-#| msgid "Move a King on to the empty tableau slot"
-msgid "Move ~a onto the tableau."
-msgstr "Perkelkite ~a į tuščią vietą ant stalo."
-
-#: ../games/api.scm.h:54
-#| msgid "the ten of clubs"
-msgid "Move ~a onto the ten of clubs."
-msgstr "Perkelkite ~a ant kryžių dešimtakės."
-
-#: ../games/api.scm.h:55
-#| msgid "the ten of diamonds"
-msgid "Move ~a onto the ten of diamonds."
-msgstr "Perkelkite ~a ant būgnų dešimtakės."
-
-#: ../games/api.scm.h:56
-#| msgid "the ten of hearts"
-msgid "Move ~a onto the ten of hearts."
-msgstr "Perkelkite ~a ant širdžių dešimtakės."
-
-#: ../games/api.scm.h:57
-#| msgid "the ten of spades"
-msgid "Move ~a onto the ten of spades."
-msgstr "Perkelkite ~a ant pikų dešimtakės."
-
-#: ../games/api.scm.h:58
-#| msgid "the three of clubs"
-msgid "Move ~a onto the three of clubs."
-msgstr "Perkelkite ~a ant kryžių triakės."
-
-#: ../games/api.scm.h:59
-#| msgid "the three of diamonds"
-msgid "Move ~a onto the three of diamonds."
-msgstr "Perkelkite ~a ant būgnų triakės."
-
-#: ../games/api.scm.h:60
-#| msgid "the three of hearts"
-msgid "Move ~a onto the three of hearts."
-msgstr "Perkelkite ~a ant širdžių triakės."
-
-#: ../games/api.scm.h:61
-#| msgid "the three of spades"
-msgid "Move ~a onto the three of spades."
-msgstr "Perkelkite ~a ant pikų triakės."
-
-#: ../games/api.scm.h:62
-#| msgid "the two of clubs"
-msgid "Move ~a onto the two of clubs."
-msgstr "Perkelkite ~a ant kryžių dviakės."
-
-#: ../games/api.scm.h:63
-#| msgid "the two of diamonds"
-msgid "Move ~a onto the two of diamonds."
-msgstr "Perkelkite ~a ant būgnų dviakės."
-
-#: ../games/api.scm.h:64
-#| msgid "the two of hearts"
-msgid "Move ~a onto the two of hearts."
-msgstr "Perkelkite ~a ant širdžių dviakės."
-
-#: ../games/api.scm.h:65
-#| msgid "the two of spades"
-msgid "Move ~a onto the two of spades."
-msgstr "Perkelkite ~a ant pikų dviakės."
-
-#: ../games/api.scm.h:66
-#| msgid "Move ~a off the board"
-msgid "Move ~a onto the unknown card."
-msgstr "Perkelkite ~a ant nežinomos kortos."
-
-#: ../games/api.scm.h:67
-msgid "Unknown color"
-msgstr "Nežinoma spalva"
-
-#: ../games/api.scm.h:68
-msgid "the ace of clubs"
-msgstr "kryžių tūzas"
-
-#: ../games/api.scm.h:69
-msgid "the ace of diamonds"
-msgstr "būgnų tūzas"
-
-#: ../games/api.scm.h:70
-msgid "the ace of hearts"
-msgstr "širdžių tūzas"
-
-#: ../games/api.scm.h:71
-msgid "the ace of spades"
-msgstr "pikų tūzas"
-
-#: ../games/api.scm.h:72
-#| msgid "black joker"
-msgid "the black joker"
-msgstr "juodasis juokdarys"
-
-#: ../games/api.scm.h:73
-msgid "the eight of clubs"
-msgstr "kryžių aštuonakė"
-
-#: ../games/api.scm.h:74
-msgid "the eight of diamonds"
-msgstr "būgnų aštuonakė"
-
-#: ../games/api.scm.h:75
-msgid "the eight of hearts"
-msgstr "širdžių aštuonakė"
-
-#: ../games/api.scm.h:76
-msgid "the eight of spades"
-msgstr "pikų aštuonakė"
-
-#: ../games/api.scm.h:77
-msgid "the five of clubs"
-msgstr "kryžių penkiakė"
-
-#: ../games/api.scm.h:78
-msgid "the five of diamonds"
-msgstr "būgnų penkiakė"
-
-#: ../games/api.scm.h:79
-msgid "the five of hearts"
-msgstr "širdžių penkiakė"
-
-#: ../games/api.scm.h:80
-msgid "the five of spades"
-msgstr "pikų penkiakė"
-
-#: ../games/api.scm.h:81
-msgid "the four of clubs"
-msgstr "kryžių keturakė"
-
-#: ../games/api.scm.h:82
-msgid "the four of diamonds"
-msgstr "būgnų keturakė"
-
-#: ../games/api.scm.h:83
-msgid "the four of hearts"
-msgstr "širdžių keturakė"
-
-#: ../games/api.scm.h:84
-msgid "the four of spades"
-msgstr "pikų keturakė"
-
-#: ../games/api.scm.h:85
-msgid "the jack of clubs"
-msgstr "kryžių valetas"
-
-#: ../games/api.scm.h:86
-msgid "the jack of diamonds"
-msgstr "būgnų valetas"
-
-#: ../games/api.scm.h:87
-msgid "the jack of hearts"
-msgstr "širdžių valetas"
-
-#: ../games/api.scm.h:88
-msgid "the jack of spades"
-msgstr "pikų valetas"
-
-#: ../games/api.scm.h:89
-msgid "the king of clubs"
-msgstr "kryžių karalius"
-
-#: ../games/api.scm.h:90
-msgid "the king of diamonds"
-msgstr "būgnų karalius"
-
-#: ../games/api.scm.h:91
-msgid "the king of hearts"
-msgstr "širdžių karalius"
-
-#: ../games/api.scm.h:92
-msgid "the king of spades"
-msgstr "pikų karalius"
-
-#: ../games/api.scm.h:93
-msgid "the nine of clubs"
-msgstr "kryžių devynakė"
-
-#: ../games/api.scm.h:94
-msgid "the nine of diamonds"
-msgstr "būgnų devynakė"
-
-#: ../games/api.scm.h:95
-msgid "the nine of hearts"
-msgstr "širdžių devynakė"
-
-#: ../games/api.scm.h:96
-msgid "the nine of spades"
-msgstr "pikų devynakė"
-
-#: ../games/api.scm.h:97
-msgid "the queen of clubs"
-msgstr "kryžių dama"
-
-#: ../games/api.scm.h:98
-msgid "the queen of diamonds"
-msgstr "būgnų dama"
-
-#: ../games/api.scm.h:99
-msgid "the queen of hearts"
-msgstr "širdžių dama"
-
-#: ../games/api.scm.h:100
-msgid "the queen of spades"
-msgstr "pikų dama"
-
-#: ../games/api.scm.h:101
-#| msgid "red joker"
-msgid "the red joker"
-msgstr "raudonasis juokdarys"
-
-#: ../games/api.scm.h:102
-msgid "the seven of clubs"
-msgstr "kryžių septynakė"
-
-#: ../games/api.scm.h:103
-msgid "the seven of diamonds"
-msgstr "būgnų septynakė"
-
-#: ../games/api.scm.h:104
-msgid "the seven of hearts"
-msgstr "širdžių septynakė"
-
-#: ../games/api.scm.h:105
-msgid "the seven of spades"
-msgstr "pikų septynakė"
-
-#: ../games/api.scm.h:106
-msgid "the six of clubs"
-msgstr "kryžių šešiakė"
-
-#: ../games/api.scm.h:107
-msgid "the six of diamonds"
-msgstr "būgnų šešiakė"
-
-#: ../games/api.scm.h:108
-msgid "the six of hearts"
-msgstr "širdžių šešiakė"
-
-#: ../games/api.scm.h:109
-msgid "the six of spades"
-msgstr "pikų šešiakė"
-
-#: ../games/api.scm.h:110
-msgid "the ten of clubs"
-msgstr "kryžių dešimtakė"
-
-#: ../games/api.scm.h:111
-msgid "the ten of diamonds"
-msgstr "būgnų dešimtakė"
-
-#: ../games/api.scm.h:112
-msgid "the ten of hearts"
-msgstr "širdžių dešimtakė"
-
-#: ../games/api.scm.h:113
-msgid "the ten of spades"
-msgstr "pikų dešimtakė"
-
-#: ../games/api.scm.h:114
-msgid "the three of clubs"
-msgstr "kryžių triakė"
-
-#: ../games/api.scm.h:115
-msgid "the three of diamonds"
-msgstr "būgnų triakė"
-
-#: ../games/api.scm.h:116
-msgid "the three of hearts"
-msgstr "širdžių triakė"
-
-#: ../games/api.scm.h:117
-msgid "the three of spades"
-msgstr "pikų triakė"
-
-#: ../games/api.scm.h:118
-msgid "the two of clubs"
-msgstr "kryžių dviakė"
-
-#: ../games/api.scm.h:119
-msgid "the two of diamonds"
-msgstr "būgnų dviakė"
-
-#: ../games/api.scm.h:120
-msgid "the two of hearts"
-msgstr "širdžių dviakė"
-
-#: ../games/api.scm.h:121
-msgid "the two of spades"
-msgstr "pikų dviakė"
-
-#: ../games/api.scm.h:122
-msgid "the unknown card"
-msgstr "nežinoma korta"
-
-#: ../games/agnes.scm.h:1
-#: ../games/bear-river.scm.h:2
-#: ../games/canfield.scm.h:2
-#: ../games/chessboard.scm.h:2
-#: ../games/eagle-wing.scm.h:2
-#: ../games/glenwood.scm.h:2
-#: ../games/kansas.scm.h:2
-#: ../games/lady-jane.scm.h:2
-#: ../games/plait.scm.h:2
-#: ../games/royal-east.scm.h:2
-#: ../games/terrace.scm.h:1
-msgid "Base Card: Ace"
-msgstr "Pagrindinė korta: tūzas"
-
-#: ../games/agnes.scm.h:2
-#: ../games/bear-river.scm.h:3
-#: ../games/canfield.scm.h:3
-#: ../games/chessboard.scm.h:3
-#: ../games/eagle-wing.scm.h:3
-#: ../games/glenwood.scm.h:3
-#: ../games/kansas.scm.h:3
-#: ../games/lady-jane.scm.h:3
-#: ../games/plait.scm.h:3
-#: ../games/royal-east.scm.h:3
-#: ../games/terrace.scm.h:2
-msgid "Base Card: Jack"
-msgstr "Pagrindinė korta: valetas"
-
-#: ../games/agnes.scm.h:3
-#: ../games/bear-river.scm.h:4
-#: ../games/canfield.scm.h:4
-#: ../games/chessboard.scm.h:4
-#: ../games/eagle-wing.scm.h:4
-#: ../games/glenwood.scm.h:4
-#: ../games/kansas.scm.h:4
-#: ../games/lady-jane.scm.h:4
-#: ../games/plait.scm.h:4
-#: ../games/royal-east.scm.h:4
-#: ../games/terrace.scm.h:3
-msgid "Base Card: King"
-msgstr "Pagrindinė korta: karalius"
-
-#: ../games/agnes.scm.h:4
-#: ../games/bear-river.scm.h:5
-#: ../games/canfield.scm.h:5
-#: ../games/chessboard.scm.h:5
-#: ../games/eagle-wing.scm.h:5
-#: ../games/glenwood.scm.h:5
-#: ../games/kansas.scm.h:5
-#: ../games/lady-jane.scm.h:5
-#: ../games/plait.scm.h:5
-#: ../games/royal-east.scm.h:5
-#: ../games/terrace.scm.h:4
-msgid "Base Card: Queen"
-msgstr "Pagrindinė korta: dama"
-
-#: ../games/agnes.scm.h:5
-#: ../games/terrace.scm.h:5
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../src/lib/ar-help.c:108
+#, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "Žinyno failas „%s.%s“ nerastas"
+
+#: ../src/lib/ar-help.c:146
+#: ../src/util.c:86
+#: ../src/util.c:90
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "Nepavyko parodyti „%s“ žinyno."
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
+msgid "Whether the window is maximized"
+msgstr "Ar langas yra išdidintas"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
+msgid "Whether the window is fullscreen"
+msgstr "Ar langas yra per visą ekraną"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
+msgid "Window width"
+msgstr "Lango plotis"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
+msgid "Window height"
+msgstr "Lango aukštis"
+
+#. String reserve
+#: ../src/sol.c:50
+msgid "Solitaire"
+msgstr "Pasjansas"
+
+#: ../src/sol.c:51
+msgid "GNOME Solitaire"
+msgstr "GNOME pasjansas"
+
+#: ../src/sol.c:52
+msgid "About Solitaire"
+msgstr "Apie pasjansą"
+
+#: ../src/sol.c:68
+msgid "Select the game type to play"
+msgstr "Pasirinkite žaidimo tipą"
+
+#: ../src/sol.c:68
+msgid "NAME"
+msgstr "VARDAS"
+
+#: ../src/sol.c:117
+#: ../src/window.c:414
+#: ../src/window.c:1873
+msgid "AisleRiot"
+msgstr "AisleRiot"
+
+#. Translators: this is the total number of won games
+#: ../src/stats-dialog.c:148
+msgid "Wins:"
+msgstr "Laimėjimai:"
+
+#. Translators: this is the number of games played
+#: ../src/stats-dialog.c:150
+msgid "Total:"
+msgstr "Viso:"
+
+#. Translators: this is the percentage of games won out of all games played
+#: ../src/stats-dialog.c:152
+msgid "Percentage:"
+msgstr "Procentai:"
+
+#. Translators: this is the section title of a section which contains the n
+#. * number of games played, number of games won, and the ratio of these 2 numbers.
+#.
+#: ../src/stats-dialog.c:156
+msgid "Wins"
+msgstr "Laimėjimai"
+
+#. Translators: this is the best time of all wins
+#: ../src/stats-dialog.c:163
+msgid "Best:"
+msgstr "Geriausias:"
+
+#. Translators: this is the worst time of all wins
+#: ../src/stats-dialog.c:165
+msgid "Worst:"
+msgstr "Blogiausias:"
+
+#. Translators: this is the section title of a section containing the
+#. * best and worst time taken to win a game.
+#.
+#: ../src/stats-dialog.c:169
+msgid "Time"
+msgstr "Laikas"
+
+#: ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistika"
+
+#. Translators: Translate this to "%Id" if you want to use localised digits,
+#. * and to "%d" otherwise. Do not translate it to anything else!
+#.
+#: ../src/stats-dialog.c:213
+#: ../src/stats-dialog.c:219
+#, c-format
+msgid "%d"
+msgstr "%d"
+
+#. Translators: Translate the "%d" in this string this to "%Id" if you
+#. * want to use localised digits, and to "%d" otherwise.
+#. * Do not translate the "%d" part to anything else!
+#. * You may translate the "%%" part to use any other percent character(s)
+#. * instead, or leave it as "%%". If you chose a character other than
+#. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
+#.
+#: ../src/stats-dialog.c:230
+#, c-format
+msgid "%d%%"
+msgstr "%d%%"
+
+#. For translators: N/A means "Not Applicable", use whatever
+#. * abbreviation you have for a value that has no meaning.
+#: ../src/stats-dialog.c:236
+#: ../src/stats-dialog.c:245
+#: ../src/stats-dialog.c:253
+msgid "N/A"
+msgstr "nėra"
+
+#. Translators: this represents minutes:seconds.
+#: ../src/stats-dialog.c:240
+#: ../src/stats-dialog.c:248
+#, c-format
+msgid "%d:%02d"
+msgstr "%d:%02d"
+
+#: ../src/window.c:220
+msgid "Congratulations, you have won!"
+msgstr "Sveikiname, Jūs laimėjote!"
+
+#: ../src/window.c:224
+msgid "There are no more moves"
+msgstr "Nebėra galimų ėjimų."
+
+#: ../src/window.c:365
+msgid "Main game:"
+msgstr "Pagrindinis žaidimas:"
+
+#: ../src/window.c:373
+msgid "Card games:"
+msgstr "Kortų žaidimai:"
+
+#: ../src/window.c:388
+msgid "Card themes:"
+msgstr "Kortų nugarėlės:"
+
+#: ../src/window.c:416
+msgid "About FreeCell Solitaire"
+msgstr "Apie FreeCell pasjansą"
+
+#: ../src/window.c:417
+msgid "About AisleRiot"
+msgstr "Apie AisleRiot"
+
+#: ../src/window.c:421
+msgid "AisleRiot provides a rule-based solitaire card engine that allows many different games to be played."
+msgstr "AisleRiot pateikia taisyklėmis paremtą pasjanso kortų variklį, kuriuo galima žaisti daug skirtingų žaidimų."
+
+#: ../src/window.c:430
+msgid "translator-credits"
+msgstr ""
+"Paskutinieji vertėjai:\n"
+"Žygimantas Beručka <zygis@gnome.org>,\n"
+"Justina Klingaitė <justina.klingaite@gmail.com>\n"
+"\n"
+"Ankstesnieji vertėjai:\n"
+"Tomas Kuliavas <tokul@users.sf.net>,\n"
+"Gediminas Paulauskas <menesis@chatsubo.lt>"
+
+#: ../src/window.c:434
+msgid "GNOME Games web site"
+msgstr "GNOME Games tinklalapis"
+
+#: ../src/window.c:1288
+#, c-format
+msgid "Play “%s”"
+msgstr "Žaisti „%s“"
+
+#: ../src/window.c:1450
+#, c-format
+msgid "Display cards with “%s” card theme"
+msgstr "Parodyti kortas su „%s“ nugarėlėmis"
+
+#: ../src/window.c:1747
+msgid "A scheme exception occurred"
+msgstr "Schemos klaida"
+
+#: ../src/window.c:1750
+msgid "Please report this bug to the developers."
+msgstr "Prašome pranešti apie riktą kūrėjams."
+
+#: ../src/window.c:1756
+msgid "_Don't report"
+msgstr "_Nepranešti"
+
+#: ../src/window.c:1757
+msgid "_Report"
+msgstr "_Pranešti"
+
+#: ../src/window.c:1871
+msgid "Freecell Solitaire"
+msgstr "FreeCell pasjansas"
+
+#. Menu actions
+#: ../src/window.c:1990
+msgid "_Game"
+msgstr "Ž_aidimas"
+
+#: ../src/window.c:1991
+msgid "_View"
+msgstr "R_odymas"
+
+#: ../src/window.c:1992
+msgid "_Control"
+msgstr "V_aldymas"
+
+#: ../src/window.c:1994
+msgid "_Help"
+msgstr "_Žinynas"
+
+#: ../src/window.c:1999
+msgid "Start a new game"
+msgstr "Pradėti naują žaidimą"
+
+#: ../src/window.c:2002
+msgid "Restart the game"
+msgstr "Perkrauti žaidimą"
+
+#: ../src/window.c:2004
+msgid "_Select Game…"
+msgstr "_Pasirinkite žaidimą..."
+
+#: ../src/window.c:2006
+msgid "Play a different game"
+msgstr "Žaisti kitokį žaidimą"
+
+#: ../src/window.c:2008
+msgid "_Recently Played"
+msgstr "Paskutinieji ž_aisti"
+
+#: ../src/window.c:2009
+msgid "S_tatistics"
+msgstr "S_tatistika"
+
+#: ../src/window.c:2010
+msgid "Show gameplay statistics"
+msgstr "Rodyti žaidimo statistiką"
+
+#: ../src/window.c:2013
+msgid "Close this window"
+msgstr "Užverti šį langą"
+
+#: ../src/window.c:2016
+msgid "Undo the last move"
+msgstr "Atšaukti paskutinį ėjimą"
+
+#: ../src/window.c:2019
+msgid "Redo the undone move"
+msgstr "Atšaukti paskutinį ėjimą"
+
+#: ../src/window.c:2022
+msgid "Deal next card or cards"
+msgstr "Išdalinti daugiau kortų"
+
+#: ../src/window.c:2025
+msgid "Get a hint for your next move"
+msgstr "Gauti kito ėjimo patarimą"
+
+#: ../src/window.c:2028
+msgid "View help for Aisleriot"
+msgstr "Rodyti Aisleriot žinyną"
+
+#: ../src/window.c:2032
+msgid "View help for this game"
+msgstr "Rodyti šio žaidimo žinyną"
+
+#: ../src/window.c:2035
+msgid "About this game"
+msgstr "Apie šį žaidimą"
+
+#: ../src/window.c:2037
+msgid "Install card themes…"
+msgstr "Įdiegiamos kortų temos..."
+
+#: ../src/window.c:2038
+msgid "Install new card themes from the distribution packages repositories"
+msgstr "Įdiegti naujas kortų temas iš distributyvo paketų saugyklos"
+
+#: ../src/window.c:2044
+msgid "_Card Style"
+msgstr "_Kortų stilius"
+
+#: ../src/window.c:2078
+msgid "_Toolbar"
+msgstr "Įrankių _juosta"
+
+#: ../src/window.c:2079
+msgid "Show or hide the toolbar"
+msgstr "Rodyti arba paslėpti įrankių juostą"
+
+#: ../src/window.c:2083
+msgid "_Statusbar"
+msgstr "_Būsenos juosta"
+
+#: ../src/window.c:2084
+msgid "Show or hide statusbar"
+msgstr "Rodyti arba paslėpti būsenos juostą"
+
+#: ../src/window.c:2088
+msgid "_Click to Move"
+msgstr "_Norint perkelti reikia spragtelti"
+
+#: ../src/window.c:2089
+msgid "Pick up and drop cards by clicking"
+msgstr "Paimti ir mesti kortą spragtelėjimu"
+
+#: ../src/window.c:2093
+msgid "_Sound"
+msgstr "Gar_sas"
+
+#: ../src/window.c:2094
+msgid "Whether or not to play event sounds"
+msgstr "Ar groti įvykių garsus"
+
+#: ../src/window.c:2099
+msgid "_Animations"
+msgstr "_Animacijos"
+
+#: ../src/window.c:2100
+msgid "Whether or not to animate card moves"
+msgstr "Ar naudoti animaciją kortų ėjimams"
+
+#: ../src/window.c:2318
+msgid "Score:"
+msgstr "Taškai:"
+
+#: ../src/window.c:2330
+msgid "Time:"
+msgstr "Laikas:"
+
+#: ../src/window.c:2629
+#, c-format
+msgid "Cannot start the game “%s”"
+msgstr "Nepavyko pradėti žaidimo „%s“"
+
+#: ../src/window.c:2642
+msgid "Aisleriot cannot find the last game you played."
+msgstr "Aisleriot neranda paskutinio Jūsų žaisto žaidimo."
+
+#: ../src/window.c:2643
+msgid "This usually occurs when you run an older version of Aisleriot which does not have the game you last played. The default game, Klondike, is being started instead."
+msgstr "Tai dažniaisiai atsitinka tada, kai paleidžiate seną Aisleriot versiją, kurioje nėra paskutiniojo Jūsų žaisto žaidimo. Vietoje to paleidžiamas numatytasis žaidimas Klondike."
+
+#: ../games/agnes.scm:72
+#: ../games/terrace.scm:139
+#, scheme-format
 msgid "Base Card: ~a"
 msgstr "Pagrindinė korta: ~a"
 
-#: ../games/agnes.scm.h:6
-#: ../games/easthaven.scm.h:1
-#: ../games/labyrinth.scm.h:1
-#: ../games/monte-carlo.scm.h:1
-#: ../games/valentine.scm.h:1
-msgid "Deal more cards"
-msgstr "Išdalinti daugiau kortų"
+#: ../games/agnes.scm:74
+#: ../games/bear-river.scm:90
+#: ../games/canfield.scm:81
+#: ../games/chessboard.scm:94
+#: ../games/eagle-wing.scm:98
+#: ../games/glenwood.scm:84
+#: ../games/kansas.scm:88
+#: ../games/lady-jane.scm:105
+#: ../games/plait.scm:242
+#: ../games/royal-east.scm:85
+#: ../games/terrace.scm:141
+msgid "Base Card: Ace"
+msgstr "Pagrindinė korta: tūzas"
 
-#: ../games/agnes.scm.h:7
-#: ../games/auld-lang-syne.scm.h:2
-#: ../games/backbone.scm.h:3
-#: ../games/block-ten.scm.h:1
-#: ../games/bristol.scm.h:2
-#: ../games/camelot.scm.h:6
-#: ../games/canfield.scm.h:9
-#: ../games/carpet.scm.h:2
-#: ../games/cover.scm.h:1
-#: ../games/doublets.scm.h:2
-#: ../games/eagle-wing.scm.h:11
-#: ../games/easthaven.scm.h:4
-#: ../games/elevator.scm.h:2
-#: ../games/escalator.scm.h:2
-#: ../games/first-law.scm.h:17
-#: ../games/fortunes.scm.h:4
-#: ../games/forty-thieves.scm.h:2
-#: ../games/glenwood.scm.h:11
-#: ../games/gypsy.scm.h:3
-#: ../games/helsinki.scm.h:1
-#: ../games/hopscotch.scm.h:3
-#: ../games/jamestown.scm.h:1
-#: ../games/jumbo.scm.h:4
-#: ../games/kansas.scm.h:8
-#: ../games/klondike.scm.h:7
-#: ../games/labyrinth.scm.h:2
-#: ../games/lady-jane.scm.h:7
-#: ../games/monte-carlo.scm.h:2
-#: ../games/neighbor.scm.h:1
-#: ../games/plait.scm.h:9
-#: ../games/quatorze.scm.h:1
-#: ../games/royal-east.scm.h:7
-#: ../games/scuffle.scm.h:4
-#: ../games/sir-tommy.scm.h:3
-#: ../games/straight-up.scm.h:5
-#: ../games/terrace.scm.h:18
-#: ../games/thieves.scm.h:2
-#: ../games/thirteen.scm.h:3
-#: ../games/thumb-and-pouch.scm.h:4
-#: ../games/treize.scm.h:2
-#: ../games/triple-peaks.scm.h:4
-#: ../games/union-square.scm.h:3
-#: ../games/westhaven.scm.h:2
-#: ../games/whitehead.scm.h:3
-#: ../games/yield.scm.h:2
-#: ../games/zebra.scm.h:4
+#: ../games/agnes.scm:76
+#: ../games/bear-river.scm:92
+#: ../games/canfield.scm:83
+#: ../games/chessboard.scm:96
+#: ../games/eagle-wing.scm:100
+#: ../games/glenwood.scm:86
+#: ../games/kansas.scm:90
+#: ../games/lady-jane.scm:107
+#: ../games/plait.scm:244
+#: ../games/royal-east.scm:87
+#: ../games/terrace.scm:143
+msgid "Base Card: Jack"
+msgstr "Pagrindinė korta: valetas"
+
+#: ../games/agnes.scm:78
+#: ../games/bear-river.scm:94
+#: ../games/canfield.scm:85
+#: ../games/chessboard.scm:98
+#: ../games/eagle-wing.scm:102
+#: ../games/glenwood.scm:88
+#: ../games/kansas.scm:92
+#: ../games/lady-jane.scm:109
+#: ../games/plait.scm:246
+#: ../games/royal-east.scm:89
+#: ../games/terrace.scm:145
+msgid "Base Card: Queen"
+msgstr "Pagrindinė korta: dama"
+
+#: ../games/agnes.scm:80
+#: ../games/bear-river.scm:96
+#: ../games/canfield.scm:87
+#: ../games/chessboard.scm:100
+#: ../games/eagle-wing.scm:104
+#: ../games/glenwood.scm:90
+#: ../games/kansas.scm:94
+#: ../games/lady-jane.scm:111
+#: ../games/plait.scm:248
+#: ../games/royal-east.scm:91
+#: ../games/terrace.scm:147
+msgid "Base Card: King"
+msgstr "Pagrindinė korta: karalius"
+
+#: ../games/agnes.scm:85
+#: ../games/auld-lang-syne.scm:53
+#: ../games/backbone.scm:131
+#: ../games/block-ten.scm:54
+#: ../games/bristol.scm:78
+#: ../games/camelot.scm:77
+#: ../games/canfield.scm:69
+#: ../games/carpet.scm:103
+#: ../games/cover.scm:42
+#: ../games/doublets.scm:67
+#: ../games/eagle-wing.scm:86
+#: ../games/easthaven.scm:56
+#: ../games/elevator.scm:98
+#: ../games/escalator.scm:123
+#: ../games/first-law.scm:42
+#: ../games/fortunes.scm:43
+#: ../games/forty-thieves.scm:92
+#: ../games/glenwood.scm:72
+#: ../games/gypsy.scm:65
+#: ../games/helsinki.scm:53
+#: ../games/hopscotch.scm:55
+#: ../games/jamestown.scm:54
+#: ../games/jumbo.scm:72
+#: ../games/kansas.scm:76
+#: ../games/klondike.scm:86
+#: ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:116
+#: ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:355
+#: ../games/neighbor.scm:75
+#: ../games/plait.scm:234
+#: ../games/quatorze.scm:75
+#: ../games/royal-east.scm:77
+#: ../games/scuffle.scm:59
+#: ../games/sir-tommy.scm:49
+#: ../games/straight-up.scm:64
+#: ../games/terrace.scm:159
+#: ../games/thieves.scm:48
+#: ../games/thirteen.scm:105
+#: ../games/thumb-and-pouch.scm:61
+#: ../games/treize.scm:102
+#: ../games/triple-peaks.scm:104
+#: ../games/union-square.scm:96
+#: ../games/westhaven.scm:66
+#: ../games/whitehead.scm:58
+#: ../games/yield.scm:108
+#: ../games/zebra.scm:71
 msgid "Stock left:"
 msgstr "Malkoje liko:"
 
-#: ../games/agnes.scm.h:8
-#: ../games/lady-jane.scm.h:8
+#: ../games/agnes.scm:87
+#: ../games/lady-jane.scm:118
 msgid "Stock left: 0"
 msgstr "Malkoje liko: 0"
 
-#: ../games/agnes.scm.h:9
-#: ../games/backbone.scm.h:4
-#: ../games/bakers-dozen.scm.h:1
-#: ../games/beleaguered-castle.scm.h:1
-#: ../games/canfield.scm.h:10
-#: ../games/jumbo.scm.h:5
-#: ../games/king-albert.scm.h:1
-#: ../games/lady-jane.scm.h:9
-#: ../games/streets-and-alleys.scm.h:1
+#: ../games/agnes.scm:264
+#: ../games/easthaven.scm:229
+#: ../games/labyrinth.scm:197
+#: ../games/monte-carlo.scm:196
+#: ../games/monte-carlo.scm:201
+#: ../games/valentine.scm:138
+msgid "Deal more cards"
+msgstr "Išdalinti daugiau kortų"
+
+#: ../games/agnes.scm:270
+#: ../games/backbone.scm:295
+#: ../games/bakers-dozen.scm:197
+#: ../games/beleaguered-castle.scm:171
+#: ../games/canfield.scm:306
+#: ../games/jumbo.scm:333
+#: ../games/king-albert.scm:292
+#: ../games/lady-jane.scm:428
+#: ../games/streets-and-alleys.scm:182
 msgid "Try rearranging the cards"
 msgstr "Bandykite pertvarkyti kortas"
 
-#: ../games/athena.scm.h:1
-#: ../games/klondike.scm.h:8
-#: ../games/osmosis.scm.h:5
-#: ../games/saratoga.scm.h:1
+#: ../games/api.scm:284
+msgid "Unknown color"
+msgstr "Nežinoma spalva"
+
+#: ../games/api.scm:392
+msgid "the black joker"
+msgstr "juodasis juokdarys"
+
+#: ../games/api.scm:392
+msgid "the red joker"
+msgstr "raudonasis juokdarys"
+
+#: ../games/api.scm:401
+msgid "the ace of clubs"
+msgstr "kryžių tūzas"
+
+#: ../games/api.scm:402
+msgid "the two of clubs"
+msgstr "kryžių dviakė"
+
+#: ../games/api.scm:403
+msgid "the three of clubs"
+msgstr "kryžių triakė"
+
+#: ../games/api.scm:404
+msgid "the four of clubs"
+msgstr "kryžių keturakė"
+
+#: ../games/api.scm:405
+msgid "the five of clubs"
+msgstr "kryžių penkiakė"
+
+#: ../games/api.scm:406
+msgid "the six of clubs"
+msgstr "kryžių šešiakė"
+
+#: ../games/api.scm:407
+msgid "the seven of clubs"
+msgstr "kryžių septynakė"
+
+#: ../games/api.scm:408
+msgid "the eight of clubs"
+msgstr "kryžių aštuonakė"
+
+#: ../games/api.scm:409
+msgid "the nine of clubs"
+msgstr "kryžių devynakė"
+
+#: ../games/api.scm:410
+msgid "the ten of clubs"
+msgstr "kryžių dešimtakė"
+
+#: ../games/api.scm:411
+msgid "the jack of clubs"
+msgstr "kryžių valetas"
+
+#: ../games/api.scm:412
+msgid "the queen of clubs"
+msgstr "kryžių dama"
+
+#: ../games/api.scm:413
+msgid "the king of clubs"
+msgstr "kryžių karalius"
+
+#: ../games/api.scm:414
+#: ../games/api.scm:429
+#: ../games/api.scm:444
+#: ../games/api.scm:459
+#: ../games/api.scm:460
+msgid "the unknown card"
+msgstr "nežinoma korta"
+
+#: ../games/api.scm:416
+msgid "the ace of spades"
+msgstr "pikų tūzas"
+
+#: ../games/api.scm:417
+msgid "the two of spades"
+msgstr "pikų dviakė"
+
+#: ../games/api.scm:418
+msgid "the three of spades"
+msgstr "pikų triakė"
+
+#: ../games/api.scm:419
+msgid "the four of spades"
+msgstr "pikų keturakė"
+
+#: ../games/api.scm:420
+msgid "the five of spades"
+msgstr "pikų penkiakė"
+
+#: ../games/api.scm:421
+msgid "the six of spades"
+msgstr "pikų šešiakė"
+
+#: ../games/api.scm:422
+msgid "the seven of spades"
+msgstr "pikų septynakė"
+
+#: ../games/api.scm:423
+msgid "the eight of spades"
+msgstr "pikų aštuonakė"
+
+#: ../games/api.scm:424
+msgid "the nine of spades"
+msgstr "pikų devynakė"
+
+#: ../games/api.scm:425
+msgid "the ten of spades"
+msgstr "pikų dešimtakė"
+
+#: ../games/api.scm:426
+msgid "the jack of spades"
+msgstr "pikų valetas"
+
+#: ../games/api.scm:427
+msgid "the queen of spades"
+msgstr "pikų dama"
+
+#: ../games/api.scm:428
+msgid "the king of spades"
+msgstr "pikų karalius"
+
+#: ../games/api.scm:431
+msgid "the ace of hearts"
+msgstr "širdžių tūzas"
+
+#: ../games/api.scm:432
+msgid "the two of hearts"
+msgstr "širdžių dviakė"
+
+#: ../games/api.scm:433
+msgid "the three of hearts"
+msgstr "širdžių triakė"
+
+#: ../games/api.scm:434
+msgid "the four of hearts"
+msgstr "širdžių keturakė"
+
+#: ../games/api.scm:435
+msgid "the five of hearts"
+msgstr "širdžių penkiakė"
+
+#: ../games/api.scm:436
+msgid "the six of hearts"
+msgstr "širdžių šešiakė"
+
+#: ../games/api.scm:437
+msgid "the seven of hearts"
+msgstr "širdžių septynakė"
+
+#: ../games/api.scm:438
+msgid "the eight of hearts"
+msgstr "širdžių aštuonakė"
+
+#: ../games/api.scm:439
+msgid "the nine of hearts"
+msgstr "širdžių devynakė"
+
+#: ../games/api.scm:440
+msgid "the ten of hearts"
+msgstr "širdžių dešimtakė"
+
+#: ../games/api.scm:441
+msgid "the jack of hearts"
+msgstr "širdžių valetas"
+
+#: ../games/api.scm:442
+msgid "the queen of hearts"
+msgstr "širdžių dama"
+
+#: ../games/api.scm:443
+msgid "the king of hearts"
+msgstr "širdžių karalius"
+
+#: ../games/api.scm:446
+msgid "the ace of diamonds"
+msgstr "būgnų tūzas"
+
+#: ../games/api.scm:447
+msgid "the two of diamonds"
+msgstr "būgnų dviakė"
+
+#: ../games/api.scm:448
+msgid "the three of diamonds"
+msgstr "būgnų triakė"
+
+#: ../games/api.scm:449
+msgid "the four of diamonds"
+msgstr "būgnų keturakė"
+
+#: ../games/api.scm:450
+msgid "the five of diamonds"
+msgstr "būgnų penkiakė"
+
+#: ../games/api.scm:451
+msgid "the six of diamonds"
+msgstr "būgnų šešiakė"
+
+#: ../games/api.scm:452
+msgid "the seven of diamonds"
+msgstr "būgnų septynakė"
+
+#: ../games/api.scm:453
+msgid "the eight of diamonds"
+msgstr "būgnų aštuonakė"
+
+#: ../games/api.scm:454
+msgid "the nine of diamonds"
+msgstr "būgnų devynakė"
+
+#: ../games/api.scm:455
+msgid "the ten of diamonds"
+msgstr "būgnų dešimtakė"
+
+#: ../games/api.scm:456
+msgid "the jack of diamonds"
+msgstr "būgnų valetas"
+
+#: ../games/api.scm:457
+msgid "the queen of diamonds"
+msgstr "būgnų dama"
+
+#: ../games/api.scm:458
+msgid "the king of diamonds"
+msgstr "būgnų karalius"
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto the foundation."
+msgstr "Perkelkite ~a į fondą."
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto an empty foundation slot."
+msgstr "Perkelkite ~a į tuščią fondo lauką."
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto the tableau."
+msgstr "Perkelkite ~a į tuščią vietą ant stalo."
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto an empty tableau slot."
+msgstr "Perkelkite ~a į tuščią vietą ant stalo."
+
+#: ../games/api.scm:466
+#, scheme-format
+msgid "Move ~a onto an empty edge slot."
+msgstr "Perkelkite ~a į tuščią kraštinį lauką."
+
+#: ../games/api.scm:467
+#, scheme-format
+msgid "Move ~a onto an empty corner slot."
+msgstr "Perkelkite ~a į tuščią kampinį lauką."
+
+#: ../games/api.scm:468
+#, scheme-format
+msgid "Move ~a onto an empty top slot."
+msgstr "Perkelkite ~a į viršutinį lauką."
+
+#: ../games/api.scm:469
+#, scheme-format
+msgid "Move ~a onto an empty bottom slot."
+msgstr "Perkelkite ~a į tuščią apatinį lauką."
+
+#: ../games/api.scm:470
+#, scheme-format
+msgid "Move ~a onto an empty left slot."
+msgstr "Perkelkite ~a į tuščią kairį lauką."
+
+#: ../games/api.scm:471
+#, scheme-format
+msgid "Move ~a onto an empty right slot."
+msgstr "Perkelkite ~a į tuščią dešinį lauką."
+
+#: ../games/api.scm:472
+#, scheme-format
+msgid "Move ~a onto an empty slot."
+msgstr "Perkelkite ~a į tuščią lauką."
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the black joker."
+msgstr "Perkelkite ~a ant juodo juokdario."
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the red joker."
+msgstr "Perkelkite ~a ant raudono juokdario."
+
+#: ../games/api.scm:477
+#, scheme-format
+msgid "Move ~a onto the ace of clubs."
+msgstr "Perkelkite ~a ant kryžių tūzo"
+
+#: ../games/api.scm:478
+#, scheme-format
+msgid "Move ~a onto the two of clubs."
+msgstr "Perkelkite ~a ant kryžių dviakės."
+
+#: ../games/api.scm:479
+#, scheme-format
+msgid "Move ~a onto the three of clubs."
+msgstr "Perkelkite ~a ant kryžių triakės."
+
+#: ../games/api.scm:480
+#, scheme-format
+msgid "Move ~a onto the four of clubs."
+msgstr "Perkelkite ~a ant kryžių keturakės."
+
+#: ../games/api.scm:481
+#, scheme-format
+msgid "Move ~a onto the five of clubs."
+msgstr "Perkelkite ~a ant kryžių penkiakės."
+
+#: ../games/api.scm:482
+#, scheme-format
+msgid "Move ~a onto the six of clubs."
+msgstr "Perkelkite ~a ant kryžių šešiakės."
+
+#: ../games/api.scm:483
+#, scheme-format
+msgid "Move ~a onto the seven of clubs."
+msgstr "Perkelkite ~a ant kryžių septynakės."
+
+#: ../games/api.scm:484
+#, scheme-format
+msgid "Move ~a onto the eight of clubs."
+msgstr "Perkelkite ~a and kryžių aštuonakės."
+
+#: ../games/api.scm:485
+#, scheme-format
+msgid "Move ~a onto the nine of clubs."
+msgstr "Perkelkite ~a ant kryžių devynakės."
+
+#: ../games/api.scm:486
+#, scheme-format
+msgid "Move ~a onto the ten of clubs."
+msgstr "Perkelkite ~a ant kryžių dešimtakės."
+
+#: ../games/api.scm:487
+#, scheme-format
+msgid "Move ~a onto the jack of clubs."
+msgstr "Perkelkite ~a ant kryžių valeto."
+
+#: ../games/api.scm:488
+#, scheme-format
+msgid "Move ~a onto the queen of clubs."
+msgstr "Perkelkite ~a ant kryžių damos."
+
+#: ../games/api.scm:489
+#, scheme-format
+msgid "Move ~a onto the king of clubs."
+msgstr "Perkelkite ~a ant kryžių karaliaus."
+
+#: ../games/api.scm:490
+#: ../games/api.scm:505
+#: ../games/api.scm:520
+#: ../games/api.scm:535
+#: ../games/api.scm:536
+#, scheme-format
+msgid "Move ~a onto the unknown card."
+msgstr "Perkelkite ~a ant nežinomos kortos."
+
+#: ../games/api.scm:492
+#, scheme-format
+msgid "Move ~a onto the ace of spades."
+msgstr "Perkelkite ~a and pikų tūzo."
+
+#: ../games/api.scm:493
+#, scheme-format
+msgid "Move ~a onto the two of spades."
+msgstr "Perkelkite ~a ant pikų dviakės."
+
+#: ../games/api.scm:494
+#, scheme-format
+msgid "Move ~a onto the three of spades."
+msgstr "Perkelkite ~a ant pikų triakės."
+
+#: ../games/api.scm:495
+#, scheme-format
+msgid "Move ~a onto the four of spades."
+msgstr "Perkelkite ~a ant pikų keturakės."
+
+#: ../games/api.scm:496
+#, scheme-format
+msgid "Move ~a onto the five of spades."
+msgstr "Perkelkite ~a ant pikų penkiakės."
+
+#: ../games/api.scm:497
+#, scheme-format
+msgid "Move ~a onto the six of spades."
+msgstr "Perkelkite ~a ant pikų šešiakės."
+
+#: ../games/api.scm:498
+#, scheme-format
+msgid "Move ~a onto the seven of spades."
+msgstr "Perkelkite ~a ant pikų septynakės."
+
+#: ../games/api.scm:499
+#, scheme-format
+msgid "Move ~a onto the eight of spades."
+msgstr "Perkelkite ~a ant pikų aštuonakės."
+
+#: ../games/api.scm:500
+#, scheme-format
+msgid "Move ~a onto the nine of spades."
+msgstr "Perkelkite ~a ant pikų devynakės."
+
+#: ../games/api.scm:501
+#, scheme-format
+msgid "Move ~a onto the ten of spades."
+msgstr "Perkelkite ~a ant pikų dešimtakės."
+
+#: ../games/api.scm:502
+#, scheme-format
+msgid "Move ~a onto the jack of spades."
+msgstr "Perkelkite ~a ant pikų valeto."
+
+#: ../games/api.scm:503
+#, scheme-format
+msgid "Move ~a onto the queen of spades."
+msgstr "Perkelkite ~a ant pikų damos."
+
+#: ../games/api.scm:504
+#, scheme-format
+msgid "Move ~a onto the king of spades."
+msgstr "Perkelkite ~a ant pikų karaliaus."
+
+#: ../games/api.scm:507
+#, scheme-format
+msgid "Move ~a onto the ace of hearts."
+msgstr "Perkelkite ~a and širdžių tūzo."
+
+#: ../games/api.scm:508
+#, scheme-format
+msgid "Move ~a onto the two of hearts."
+msgstr "Perkelkite ~a ant širdžių dviakės."
+
+#: ../games/api.scm:509
+#, scheme-format
+msgid "Move ~a onto the three of hearts."
+msgstr "Perkelkite ~a ant širdžių triakės."
+
+#: ../games/api.scm:510
+#, scheme-format
+msgid "Move ~a onto the four of hearts."
+msgstr "Perkelkite ~a ant širdžių keturakės."
+
+#: ../games/api.scm:511
+#, scheme-format
+msgid "Move ~a onto the five of hearts."
+msgstr "Perkelkite ~a ant širdžių penkiakės."
+
+#: ../games/api.scm:512
+#, scheme-format
+msgid "Move ~a onto the six of hearts."
+msgstr "Perkelkite ~a ant širdžių šešiakės."
+
+#: ../games/api.scm:513
+#, scheme-format
+msgid "Move ~a onto the seven of hearts."
+msgstr "Perkelkite ~a ant širdžių septynakės."
+
+#: ../games/api.scm:514
+#, scheme-format
+msgid "Move ~a onto the eight of hearts."
+msgstr "Perkelkite ~a ant širdžių aštuonakės."
+
+#: ../games/api.scm:515
+#, scheme-format
+msgid "Move ~a onto the nine of hearts."
+msgstr "Perkelkite ~a ant širdžių devynakės."
+
+#: ../games/api.scm:516
+#, scheme-format
+msgid "Move ~a onto the ten of hearts."
+msgstr "Perkelkite ~a ant širdžių dešimtakės."
+
+#: ../games/api.scm:517
+#, scheme-format
+msgid "Move ~a onto the jack of hearts."
+msgstr "Perkelkite ~a ant širdžių valeto."
+
+#: ../games/api.scm:518
+#, scheme-format
+msgid "Move ~a onto the queen of hearts."
+msgstr "Perkelkite ~a ant širdžių damos."
+
+#: ../games/api.scm:519
+#, scheme-format
+msgid "Move ~a onto the king of hearts."
+msgstr "Perkelkite ~a ant širdžių karaliaus."
+
+#: ../games/api.scm:522
+#, scheme-format
+msgid "Move ~a onto the ace of diamonds."
+msgstr "Perkelkite ~a ant būgnų tūzo."
+
+#: ../games/api.scm:523
+#, scheme-format
+msgid "Move ~a onto the two of diamonds."
+msgstr "Perkelkite ~a ant būgnų dviakės."
+
+#: ../games/api.scm:524
+#, scheme-format
+msgid "Move ~a onto the three of diamonds."
+msgstr "Perkelkite ~a ant būgnų triakės."
+
+#: ../games/api.scm:525
+#, scheme-format
+msgid "Move ~a onto the four of diamonds."
+msgstr "Perkelkite ~a ant būgnų keturakė."
+
+#: ../games/api.scm:526
+#, scheme-format
+msgid "Move ~a onto the five of diamonds."
+msgstr "Perkelkite ~a ant būgnų penkiakės."
+
+#: ../games/api.scm:527
+#, scheme-format
+msgid "Move ~a onto the six of diamonds."
+msgstr "Perkelkite ~a ant būgnų šešiakės."
+
+#: ../games/api.scm:528
+#, scheme-format
+msgid "Move ~a onto the seven of diamonds."
+msgstr "Perkelkite ~a ant būgnų septynakės."
+
+#: ../games/api.scm:529
+#, scheme-format
+msgid "Move ~a onto the eight of diamonds."
+msgstr "Perkelkite ~a ant būgnų aštuonakė."
+
+#: ../games/api.scm:530
+#, scheme-format
+msgid "Move ~a onto the nine of diamonds."
+msgstr "Perkelkite ~a ant būgnų devynakės."
+
+#: ../games/api.scm:531
+#, scheme-format
+msgid "Move ~a onto the ten of diamonds."
+msgstr "Perkelkite ~a ant būgnų dešimtakės."
+
+#: ../games/api.scm:532
+#, scheme-format
+msgid "Move ~a onto the jack of diamonds."
+msgstr "Perkelkite ~a ant būgnų valeto."
+
+#: ../games/api.scm:533
+#, scheme-format
+msgid "Move ~a onto the queen of diamonds."
+msgstr "Perkelkite ~a ant būgnų damos."
+
+#: ../games/api.scm:534
+#, scheme-format
+msgid "Move ~a onto the king of diamonds."
+msgstr "Perkelkite ~a ant būgnų karaliaus."
+
+#: ../games/athena.scm:80
+#: ../games/klondike.scm:292
+#: ../games/napoleons-tomb.scm:370
+#: ../games/osmosis.scm:221
+#: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "Traukiama po tris kortas"
 
-#: ../games/auld-lang-syne.scm.h:1
-#: ../games/bristol.scm.h:1
-#: ../games/first-law.scm.h:1
-#: ../games/fortunes.scm.h:2
-#: ../games/lady-jane.scm.h:6
-#: ../games/scuffle.scm.h:1
-#: ../games/spider.scm.h:1
-#: ../games/thumb-and-pouch.scm.h:1
-#: ../games/zebra.scm.h:1
+#: ../games/auld-lang-syne.scm:124
+#: ../games/bristol.scm:262
+#: ../games/first-law.scm:127
+#: ../games/fortunes.scm:161
+#: ../games/lady-jane.scm:233
+#: ../games/scuffle.scm:140
+#: ../games/spider.scm:282
+#: ../games/thumb-and-pouch.scm:260
+#: ../games/zebra.scm:217
 msgid "Deal another round"
 msgstr "Išdalinti kitą raundą"
 
-#: ../games/backbone.scm.h:1
-#: ../games/camelot.scm.h:1
-#: ../games/canfield.scm.h:6
-#: ../games/carpet.scm.h:1
-#: ../games/glenwood.scm.h:6
-#: ../games/klondike.scm.h:2
-#: ../games/osmosis.scm.h:1
-#: ../games/plait.scm.h:6
-#: ../games/straight-up.scm.h:1
-#: ../games/terrace.scm.h:8
-msgid "Deal a new card from the deck"
-msgstr "Imkite iš kaladės naują kortą"
-
-#: ../games/backbone.scm.h:2
-#: ../games/doublets.scm.h:1
-#: ../games/eagle-wing.scm.h:9
-#: ../games/gaps.scm.h:7
-#: ../games/glenwood.scm.h:9
-#: ../games/jumbo.scm.h:3
-#: ../games/klondike.scm.h:5
-#: ../games/plait.scm.h:8
-#: ../games/scuffle.scm.h:2
-#: ../games/straight-up.scm.h:3
-#: ../games/terrace.scm.h:13
-#: ../games/thumb-and-pouch.scm.h:3
-#: ../games/zebra.scm.h:3
+#: ../games/backbone.scm:127
+#: ../games/doublets.scm:71
+#: ../games/eagle-wing.scm:108
+#: ../games/gaps.scm:106
+#: ../games/glenwood.scm:76
+#: ../games/jumbo.scm:68
+#: ../games/klondike.scm:82
+#: ../games/napoleons-tomb.scm:351
+#: ../games/plait.scm:252
+#: ../games/scuffle.scm:55
+#: ../games/straight-up.scm:72
+#: ../games/terrace.scm:153
+#: ../games/thumb-and-pouch.scm:65
+#: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "Pervertimų liko:"
 
-#: ../games/backbone.scm.h:5
-#: ../games/terrace.scm.h:23
-msgid "an empty slot on the foundation"
-msgstr "tuščią skyrių fonde"
-
-#: ../games/backbone.scm.h:6
-#: ../games/terrace.scm.h:24
+#: ../games/backbone.scm:234
+#: ../games/terrace.scm:355
 msgid "an empty slot on the tableau"
 msgstr "tuščią stalo skyrių"
 
-#: ../games/bakers-dozen.scm.h:2
-#: ../games/easthaven.scm.h:5
-#: ../games/eight-off.scm.h:2
-#: ../games/fortress.scm.h:2
-#: ../games/king-albert.scm.h:2
-#: ../games/seahaven.scm.h:2
-#: ../games/streets-and-alleys.scm.h:2
-#: ../games/yukon.scm.h:1
+#: ../games/backbone.scm:235
+#: ../games/terrace.scm:293
+msgid "an empty slot on the foundation"
+msgstr "tuščią skyrių fonde"
+
+#: ../games/backbone.scm:293
+#: ../games/camelot.scm:209
+#: ../games/canfield.scm:228
+#: ../games/carpet.scm:175
+#: ../games/glenwood.scm:250
+#: ../games/klondike.scm:266
+#: ../games/napoleons-tomb.scm:339
+#: ../games/osmosis.scm:215
+#: ../games/plait.scm:103
+#: ../games/straight-up.scm:240
+#: ../games/terrace.scm:361
+msgid "Deal a new card from the deck"
+msgstr "Imkite iš kaladės naują kortą"
+
+#: ../games/bakers-dozen.scm:156
+#: ../games/easthaven.scm:188
+#: ../games/eight-off.scm:180
+#: ../games/fortress.scm:166
+#: ../games/king-albert.scm:258
+#: ../games/seahaven.scm:245
+#: ../games/streets-and-alleys.scm:158
+#: ../games/yukon.scm:244
 msgid "an empty foundation"
 msgstr "tuščias fondas"
 
-#: ../games/bear-river.scm.h:1
-#: ../games/canfield.scm.h:1
-#: ../games/chessboard.scm.h:1
-#: ../games/eagle-wing.scm.h:1
-#: ../games/glenwood.scm.h:1
-#: ../games/kansas.scm.h:1
-#: ../games/plait.scm.h:1
+#: ../games/bear-river.scm:88
+#: ../games/canfield.scm:79
+#: ../games/chessboard.scm:92
+#: ../games/eagle-wing.scm:96
+#: ../games/glenwood.scm:82
+#: ../games/kansas.scm:86
+#: ../games/plait.scm:240
 msgid "Base Card: "
 msgstr "Pagrindinė korta: "
 
-#: ../games/bear-river.scm.h:6
-msgid "Move something onto an empty right-hand tableau slot"
-msgstr "Padėte ką nors į tuščią stalo vietą iš dešinės"
-
-#: ../games/bear-river.scm.h:7
+#: ../games/bear-river.scm:160
 msgid "an empty foundation slot"
 msgstr "tuščia fondo vieta"
 
-#: ../games/camelot.scm.h:2
-#| msgid "the ten of clubs"
+#: ../games/bear-river.scm:209
+msgid "Move something onto an empty right-hand tableau slot"
+msgstr "Padėte ką nors į tuščią stalo vietą iš dešinės"
+
+#: ../games/camelot.scm:168
 msgid "Remove the ten of clubs."
 msgstr "Pašalinkite kryžių dešimtakę."
 
-#: ../games/camelot.scm.h:3
-#| msgid "the ten of diamonds"
+#: ../games/camelot.scm:169
 msgid "Remove the ten of diamonds."
 msgstr "Pašalinkite būgnų dešimtakę."
 
-#: ../games/camelot.scm.h:4
-#| msgid "the ten of hearts"
+#: ../games/camelot.scm:170
 msgid "Remove the ten of hearts."
 msgstr "Pašalinkite širdžių dešimtakę."
 
-#: ../games/camelot.scm.h:5
-#| msgid "the ten of spades"
+#: ../games/camelot.scm:171
 msgid "Remove the ten of spades."
 msgstr "Pašalinkite pikų dešimtakę."
 
-#: ../games/canfield.scm.h:7
-#: ../games/eagle-wing.scm.h:7
-#: ../games/glenwood.scm.h:8
-#: ../games/plait.scm.h:7
-#: ../games/straight-up.scm.h:2
-#: ../games/thumb-and-pouch.scm.h:2
-#: ../games/zebra.scm.h:2
-msgid "Move waste back to stock"
-msgstr "Perkelk atliekas atgal į malką"
-
-#: ../games/canfield.scm.h:8
-#: ../games/eagle-wing.scm.h:10
-#: ../games/kansas.scm.h:7
-#: ../games/straight-up.scm.h:4
+#: ../games/canfield.scm:73
+#: ../games/eagle-wing.scm:90
+#: ../games/kansas.scm:80
+#: ../games/straight-up.scm:68
 msgid "Reserve left:"
 msgstr "Atsargoje liko:  "
 
-#: ../games/canfield.scm.h:11
-#: ../games/glenwood.scm.h:12
+#: ../games/canfield.scm:229
+#: ../games/eagle-wing.scm:337
+#: ../games/glenwood.scm:253
+#: ../games/plait.scm:106
+#: ../games/straight-up.scm:243
+#: ../games/thumb-and-pouch.scm:263
+#: ../games/zebra.scm:220
+msgid "Move waste back to stock"
+msgstr "Perkelk atliekas atgal į malką"
+
+#: ../games/canfield.scm:235
+#: ../games/glenwood.scm:283
 msgid "empty slot on foundation"
 msgstr "tuščią skylę fonde"
 
-#: ../games/canfield.scm.h:12
+#: ../games/canfield.scm:257
 msgid "empty space on tableau"
 msgstr "tuščią vietą ant stalo"
 
-#: ../games/chessboard.scm.h:6
+#: ../games/chessboard.scm:198
 msgid "Move a card to the Foundation"
 msgstr "Perkelkite kortą į fondą"
 
-#: ../games/chessboard.scm.h:7
-#: ../games/fortress.scm.h:1
+#: ../games/chessboard.scm:260
+#: ../games/fortress.scm:215
 msgid "Move something into the empty Tableau slot"
 msgstr "Padėkite ką nors į tuščią skylę"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:2
-msgid "Consistency is key"
-msgstr "Vieningumas yra raktas"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:4
-msgid "Fishing wire makes bad dental floss"
-msgstr "Valas netinka dantenoms valytis"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:6
-msgid "Have you read the help file?"
-msgstr "Ar skaitėte žinyną?"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:8
-msgid "I could sure use a backrub right about now..."
-msgstr "Man dabar tikrai preverstų plaušinė..."
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:10
-msgid "If you're ever lost and alone in the woods, hug a tree"
-msgstr "Jei kada nors pasiklysi ir būsi vienišas miške, apsikabink medį"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:12
+#: ../games/clock.scm:173
 msgid "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr "Tai, kad kryžkelė panaši į „klasių“ brėžinį, nereiškia, kad joje gali žaisti"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:14
+#: ../games/clock.scm:175
 msgid "Look both ways before you cross the street"
 msgstr "Pasižiūrėkite į abi puses prieš pereidami gatvę"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:16
-msgid "Monitors won't give you Vitamin D -- but sunlight will..."
-msgstr "Vaizduokliai jums neduos vitamino D -- bet saulės šviesa duos..."
+#: ../games/clock.scm:177
+msgid "Have you read the help file?"
+msgstr "Ar skaitėte žinyną?"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:18
-msgid "Never blow in a dog's ear"
-msgstr "Niekada nepūskite į šuns ausį"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:20
+#: ../games/clock.scm:179
 msgid "Odessa is a better game.  Really."
 msgstr "Odessa yra geresnis žaidimas. Tikrai."
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:22
+#: ../games/clock.scm:181
 msgid "Tourniquets are not recommended unless in the direst emergency"
 msgstr "Turniketų geriau nenaudoti, nebent baisiausiame pavojuje"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:24
+#: ../games/clock.scm:183
+msgid "I could sure use a backrub right about now..."
+msgstr "Man dabar tikrai preverstų plaušinė..."
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:185
+msgid "Monitors won't give you Vitamin D -- but sunlight will..."
+msgstr "Vaizduokliai jums neduos vitamino D -- bet saulės šviesa duos..."
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:187
+msgid "If you're ever lost and alone in the woods, hug a tree"
+msgstr "Jei kada nors pasiklysi ir būsi vienišas miške, apsikabink medį"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:189
+msgid "Fishing wire makes bad dental floss"
+msgstr "Valas netinka dantenoms valytis"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:191
+msgid "Consistency is key"
+msgstr "Vieningumas yra raktas"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:193
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "Jei neturi susegiklio, pabandyk sąsagą įsegti liniuote"
 
-#: ../games/cruel.scm.h:1
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:195
+msgid "Never blow in a dog's ear"
+msgstr "Niekada nepūskite į šuns ausį"
+
+#: ../games/cruel.scm:157
+#, scheme-format
 msgid "Cards remaining: ~a"
 msgstr "Liko kortelių: ~a"
 
-#: ../games/cruel.scm.h:2
+#: ../games/cruel.scm:200
 msgid "Redeal."
 msgstr "Dalinti iš naujo."
 
-#: ../games/diamond-mine.scm.h:1
-#: ../games/odessa.scm.h:1
-#: ../games/pileon.scm.h:1
-#: ../games/scorpion.scm.h:2
-#: ../games/ten-across.scm.h:4
-#: ../games/yukon.scm.h:2
+#: ../games/diamond-mine.scm:244
+#: ../games/diamond-mine.scm:296
+#: ../games/odessa.scm:180
+#: ../games/odessa.scm:214
+#: ../games/pileon.scm:158
+#: ../games/pileon.scm:160
+#: ../games/scorpion.scm:183
+#: ../games/ten-across.scm:180
+#: ../games/ten-across.scm:227
+#: ../games/yukon.scm:204
 msgid "an empty slot"
 msgstr "tuščią skylę"
 
-#: ../games/diamond-mine.scm.h:2
+#: ../games/diamond-mine.scm:253
 msgid "the foundation pile"
 msgstr "fondo krūvelė"
 
-#: ../games/doublets.scm.h:3
-msgid "Unknown value"
-msgstr "Nežinoma vertė"
-
-#: ../games/doublets.scm.h:4
-#| msgid "You are searching for a %s."
-msgid "You are searching for a five."
-msgstr "Jūs ieškote penkiakės."
-
-#: ../games/doublets.scm.h:5
-#| msgid "You are searching for a %s."
-msgid "You are searching for a four."
-msgstr "Jūs ieškote keturakės."
-
-#: ../games/doublets.scm.h:6
-#| msgid "You are searching for a %s."
-msgid "You are searching for a jack."
-msgstr "Jūs ieškote juokdario."
-
-#: ../games/doublets.scm.h:7
-#| msgid "You are searching for a %s."
-msgid "You are searching for a king."
-msgstr "Jūs ieškote karaliaus."
-
-#: ../games/doublets.scm.h:8
-#| msgid "You are searching for a %s."
-msgid "You are searching for a nine."
-msgstr "Jūs ieškote devynakės."
-
-#: ../games/doublets.scm.h:9
-#| msgid "You are searching for a %s."
-msgid "You are searching for a queen."
-msgstr "Jūs ieškote damos."
-
-#: ../games/doublets.scm.h:10
-#| msgid "You are searching for a %s."
-msgid "You are searching for a seven."
-msgstr "Jūs ieškote septynakės."
-
-#: ../games/doublets.scm.h:11
-#| msgid "You are searching for a %s."
-msgid "You are searching for a six."
-msgstr "Jūs ieškote šešiakės."
-
-#: ../games/doublets.scm.h:12
-#| msgid "You are searching for a %s."
-msgid "You are searching for a ten."
-msgstr "Jūs ieškote dešimtakės."
-
-#: ../games/doublets.scm.h:13
-#| msgid "You are searching for a %s."
-msgid "You are searching for a three."
-msgstr "Jūs ieškote triakės."
-
-#: ../games/doublets.scm.h:14
-#| msgid "You are searching for a %s."
-msgid "You are searching for a two."
-msgstr "Jūs ieškote dviakės."
-
-#: ../games/doublets.scm.h:15
-#| msgid "You are searching for a %s."
+#: ../games/doublets.scm:157
 msgid "You are searching for an ace."
 msgstr "Jūs ieškote tūzo."
 
-#: ../games/doublets.scm.h:16
-#| msgid "You are searching for a %s."
+#: ../games/doublets.scm:158
+msgid "You are searching for a two."
+msgstr "Jūs ieškote dviakės."
+
+#: ../games/doublets.scm:159
+msgid "You are searching for a three."
+msgstr "Jūs ieškote triakės."
+
+#: ../games/doublets.scm:160
+msgid "You are searching for a four."
+msgstr "Jūs ieškote keturakės."
+
+#: ../games/doublets.scm:161
+msgid "You are searching for a five."
+msgstr "Jūs ieškote penkiakės."
+
+#: ../games/doublets.scm:162
+msgid "You are searching for a six."
+msgstr "Jūs ieškote šešiakės."
+
+#: ../games/doublets.scm:163
+msgid "You are searching for a seven."
+msgstr "Jūs ieškote septynakės."
+
+#: ../games/doublets.scm:164
 msgid "You are searching for an eight."
 msgstr "Jūs ieškote aštuonakės."
 
-#: ../games/eagle-wing.scm.h:6
-#: ../games/elevator.scm.h:1
-#: ../games/escalator.scm.h:1
-#: ../games/royal-east.scm.h:6
-#: ../games/thirteen.scm.h:1
-#: ../games/treize.scm.h:1
-#: ../games/triple-peaks.scm.h:1
-#: ../games/union-square.scm.h:1
-#: ../games/westhaven.scm.h:1
-#: ../games/yield.scm.h:1
-msgid "Deal a card"
-msgstr "Imk kortą"
+#: ../games/doublets.scm:165
+msgid "You are searching for a nine."
+msgstr "Jūs ieškote devynakės."
 
-#: ../games/eagle-wing.scm.h:8
+#: ../games/doublets.scm:166
+msgid "You are searching for a ten."
+msgstr "Jūs ieškote dešimtakės."
+
+#: ../games/doublets.scm:167
+msgid "You are searching for a jack."
+msgstr "Jūs ieškote juokdario."
+
+#: ../games/doublets.scm:168
+msgid "You are searching for a queen."
+msgstr "Jūs ieškote damos."
+
+#: ../games/doublets.scm:169
+msgid "You are searching for a king."
+msgstr "Jūs ieškote karaliaus."
+
+#: ../games/doublets.scm:170
+msgid "Unknown value"
+msgstr "Nežinoma vertė"
+
+#: ../games/eagle-wing.scm:269
+#, scheme-format
 msgid "Move ~a to an empty foundation"
 msgstr "Patraukite ~a į tuščią fondą"
 
-#: ../games/eagle-wing.scm.h:12
+#: ../games/eagle-wing.scm:302
 msgid "an empty slot on tableau"
 msgstr "tuščią skylę ant stalo"
 
-#: ../games/easthaven.scm.h:2
+#: ../games/eagle-wing.scm:334
+#: ../games/elevator.scm:365
+#: ../games/escalator.scm:224
+#: ../games/royal-east.scm:193
+#: ../games/thirteen.scm:415
+#: ../games/treize.scm:301
+#: ../games/triple-peaks.scm:344
+#: ../games/union-square.scm:464
+#: ../games/westhaven.scm:196
+#: ../games/yield.scm:317
+msgid "Deal a card"
+msgstr "Imk kortą"
+
+#: ../games/easthaven.scm:224
 msgid "Move a King on to the empty tableau slot"
 msgstr "Perkelkite Karalių į tuščią vietą ant stalo"
 
-#: ../games/easthaven.scm.h:3
-#: ../games/klondike.scm.h:3
-#: ../games/union-square.scm.h:2
+#: ../games/easthaven.scm:236
+#: ../games/klondike.scm:270
+#: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Šiuo metu negalima niekaip patarti"
 
-#: ../games/eight-off.scm.h:1
-#: ../games/seahaven.scm.h:1
-msgid "Move something on to an empty reserve"
-msgstr "Padėkite ką nors į tuščią rezervinį lauką"
-
-#: ../games/eight-off.scm.h:3
-#: ../games/seahaven.scm.h:3
+#: ../games/eight-off.scm:233
+#: ../games/seahaven.scm:300
 msgid "an empty tableau"
 msgstr "tuščias stalas"
 
-#: ../games/eliminator.scm.h:1
-msgid "Five Foundations"
-msgstr "Penki fondai"
+#: ../games/eight-off.scm:249
+#: ../games/seahaven.scm:316
+msgid "Move something on to an empty reserve"
+msgstr "Padėkite ką nors į tuščią rezervinį lauką"
 
-#: ../games/eliminator.scm.h:2
-msgid "Four Foundations"
-msgstr "Keturi fondai"
-
-#: ../games/eliminator.scm.h:3
-msgid "No moves."
-msgstr "Nėra ėjimų."
-
-#: ../games/eliminator.scm.h:4
-msgid "Play a card to foundation."
-msgstr "Perkelkite kortą į fondą."
-
-#: ../games/eliminator.scm.h:5
+#: ../games/eliminator.scm:176
 msgid "Six Foundations"
 msgstr "Šeši fondai"
 
-#: ../games/first-law.scm.h:2
-msgid "I'm not sure"
-msgstr "Aš nesu tikras"
+#: ../games/eliminator.scm:177
+msgid "Five Foundations"
+msgstr "Penki fondai"
 
-#: ../games/first-law.scm.h:3
+#: ../games/eliminator.scm:178
+msgid "Four Foundations"
+msgstr "Keturi fondai"
+
+#: ../games/eliminator.scm:196
+msgid "Play a card to foundation."
+msgstr "Perkelkite kortą į fondą."
+
+#: ../games/eliminator.scm:197
+msgid "No moves."
+msgstr "Nėra ėjimų."
+
+#: ../games/first-law.scm:139
 msgid "Remove the aces"
 msgstr "Pašalinkite tūzus"
 
-#: ../games/first-law.scm.h:4
-msgid "Remove the eights"
-msgstr "Pašalinkite aštuonakes"
-
-#: ../games/first-law.scm.h:5
-msgid "Remove the fives"
-msgstr "Pašalinkite penkiakes"
-
-#: ../games/first-law.scm.h:6
-msgid "Remove the fours"
-msgstr "Pašalinkite keturakes"
-
-#: ../games/first-law.scm.h:7
-msgid "Remove the jacks"
-msgstr "Pašalinkite valetus"
-
-#: ../games/first-law.scm.h:8
-msgid "Remove the kings"
-msgstr "Pašalinkite karalius"
-
-#: ../games/first-law.scm.h:9
-msgid "Remove the nines"
-msgstr "Pašalinkite devynakes"
-
-#: ../games/first-law.scm.h:10
-msgid "Remove the queens"
-msgstr "Pašalinkite damas"
-
-#: ../games/first-law.scm.h:11
-msgid "Remove the sevens"
-msgstr "Pašalinkite septynakes"
-
-#: ../games/first-law.scm.h:12
-msgid "Remove the sixes"
-msgstr "Pašalinkite šešiakes"
-
-#: ../games/first-law.scm.h:13
-msgid "Remove the tens"
-msgstr "Pašalinkite dešimtakes"
-
-#: ../games/first-law.scm.h:14
-msgid "Remove the threes"
-msgstr "Pašalinkite triakes"
-
-#: ../games/first-law.scm.h:15
+#: ../games/first-law.scm:141
 msgid "Remove the twos"
 msgstr "Pašalinkite dviakes"
 
-#: ../games/first-law.scm.h:16
+#: ../games/first-law.scm:143
+msgid "Remove the threes"
+msgstr "Pašalinkite triakes"
+
+#: ../games/first-law.scm:145
+msgid "Remove the fours"
+msgstr "Pašalinkite keturakes"
+
+#: ../games/first-law.scm:147
+msgid "Remove the fives"
+msgstr "Pašalinkite penkiakes"
+
+#: ../games/first-law.scm:149
+msgid "Remove the sixes"
+msgstr "Pašalinkite šešiakes"
+
+#: ../games/first-law.scm:151
+msgid "Remove the sevens"
+msgstr "Pašalinkite septynakes"
+
+#: ../games/first-law.scm:153
+msgid "Remove the eights"
+msgstr "Pašalinkite aštuonakes"
+
+#: ../games/first-law.scm:155
+msgid "Remove the nines"
+msgstr "Pašalinkite devynakes"
+
+#: ../games/first-law.scm:157
+msgid "Remove the tens"
+msgstr "Pašalinkite dešimtakes"
+
+#: ../games/first-law.scm:159
+msgid "Remove the jacks"
+msgstr "Pašalinkite valetus"
+
+#: ../games/first-law.scm:161
+msgid "Remove the queens"
+msgstr "Pašalinkite damas"
+
+#: ../games/first-law.scm:163
+msgid "Remove the kings"
+msgstr "Pašalinkite karalius"
+
+#: ../games/first-law.scm:165
+msgid "I'm not sure"
+msgstr "Aš nesu tikras"
+
+#: ../games/first-law.scm:185
 msgid "Return cards to stock"
 msgstr "Sugrąžinkite kortas į malką"
 
-#: ../games/fortunes.scm.h:1
-#: ../games/klondike.scm.h:1
-msgid "Consider moving something into an empty slot"
-msgstr "Sugalvokite, ką padėti į tuščią skylę"
-
-#: ../games/fortunes.scm.h:3
+#: ../games/fortunes.scm:135
+#: ../games/fortunes.scm:138
+#, scheme-format
 msgid "Move ~a off the board"
 msgstr "Patraukite ~a iš lentos"
 
-#: ../games/forty-thieves.scm.h:1
+#: ../games/fortunes.scm:158
+#: ../games/klondike.scm:261
+msgid "Consider moving something into an empty slot"
+msgstr "Sugalvokite, ką padėti į tuščią skylę"
+
+#: ../games/forty-thieves.scm:374
 msgid "Deal a card from stock"
 msgstr "Imti kortą iš kaladės"
 
-#: ../games/freecell.scm.h:1
+#: ../games/freecell.scm:625
 msgid "No moves are possible. Undo or start again."
 msgstr "Neliko galimų ėjimų. Atšaukite paskutinį ėjimą arba pradėkite iš naujo."
 
-#: ../games/freecell.scm.h:2
+#: ../games/freecell.scm:631
 msgid "The game has no solution. Undo or start again."
 msgstr "žaidimas neišsprendžiamas. Atšaukite ėjimą arba pradėkite iš naujo."
 
-#: ../games/freecell.scm.h:3
+#: ../games/freecell.scm:633
 msgid "an empty reserve"
 msgstr "tuščias rezervas"
 
-#: ../games/freecell.scm.h:4
-msgid "an open tableau"
-msgstr "atviras stalas"
-
-#: ../games/freecell.scm.h:5
-#: ../games/terrace.scm.h:26
+#: ../games/freecell.scm:634
+#: ../games/napoleons-tomb.scm:338
+#: ../games/terrace.scm:286
 msgid "the foundation"
 msgstr "fondas"
 
-#: ../games/gaps.scm.h:1
-msgid "Add to the sequence in row ~a."
-msgstr "pridėti prie sekos eilutėje ~a"
+#: ../games/freecell.scm:635
+msgid "an open tableau"
+msgstr "atviras stalas"
 
-#: ../games/gaps.scm.h:2
+#: ../games/gaps.scm:278
 msgid "Double click any card to redeal."
 msgstr "Norėdami perdalinti, du kartus spragtelėkite bet kokią kortą."
 
-#: ../games/gaps.scm.h:3
+#: ../games/gaps.scm:284
 msgid "No hint available."
 msgstr "Patarimų nėra."
 
-#: ../games/gaps.scm.h:4
+#: ../games/gaps.scm:293
+#, scheme-format
 msgid "Place a two in the leftmost slot of row ~a."
 msgstr "Įdėti dvejetą į kairiausią ~a eilutės skirsnį"
 
-#: ../games/gaps.scm.h:5
+#: ../games/gaps.scm:297
+#, scheme-format
+msgid "Add to the sequence in row ~a."
+msgstr "pridėti prie sekos eilutėje ~a"
+
+#: ../games/gaps.scm:316
+#, scheme-format
 msgid "Place the ~a next to ~a."
 msgstr "Padėti ~a prie ~a"
 
-#: ../games/gaps.scm.h:6
+#: ../games/gaps.scm:325
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Perdalinant atsitiktinai padaryti tarpai"
 
-#: ../games/giant.scm.h:1
-msgid "Alternating colors"
-msgstr "Kas antra keičiamos spalvos"
-
-#: ../games/giant.scm.h:2
-msgid "Deal a row"
-msgstr "Išdėlioti eilę"
-
-#: ../games/giant.scm.h:3
+#: ../games/giant.scm:76
+#, scheme-format
 msgid "Deals left: ~a"
 msgstr "Perdalinimų liko: ~a"
 
-#: ../games/giant.scm.h:4
-msgid "Same suit"
-msgstr "Tas pats paveikslėlis"
+#: ../games/giant.scm:252
+msgid "Deal a row"
+msgstr "Išdėlioti eilę"
 
-#: ../games/giant.scm.h:5
-msgid "Try dealing a row of cards"
-msgstr "Bandykite išdėlioti kortų eilę"
-
-#: ../games/giant.scm.h:6
-msgid "Try moving a card to the reserve"
-msgstr "Pabandykite perkelti kortą į atsargą"
-
-#: ../games/giant.scm.h:7
-#: ../games/spider.scm.h:7
-msgid "Try moving card piles around"
-msgstr "Pabandykite perstumdyti kortas"
-
-#: ../games/giant.scm.h:8
+#: ../games/giant.scm:259
 msgid "an empty foundation place"
 msgstr "tuščia fondo vieta"
 
-#: ../games/giant.scm.h:9
+#: ../games/giant.scm:260
 msgid "an empty tableau place"
 msgstr "tuščią vietą ant stalo"
 
-#: ../games/glenwood.scm.h:7
-msgid "Move a card from the reserve on to the empty tableau slot"
-msgstr "Perkelkite iš rezervo kortą, skirtą tuščiai skylei stale"
+#: ../games/giant.scm:287
+msgid "Try moving a card to the reserve"
+msgstr "Pabandykite perkelti kortą į atsargą"
 
-#: ../games/glenwood.scm.h:10
+#: ../games/giant.scm:288
+msgid "Try dealing a row of cards"
+msgstr "Bandykite išdėlioti kortų eilę"
+
+#. this isn't great, but it will get around the premature end-of-game call
+#: ../games/giant.scm:290
+#: ../games/spider.scm:301
+msgid "Try moving card piles around"
+msgstr "Pabandykite perstumdyti kortas"
+
+#: ../games/giant.scm:295
+msgid "Same suit"
+msgstr "Tas pats paveikslėlis"
+
+#: ../games/giant.scm:296
+msgid "Alternating colors"
+msgstr "Kas antra keičiamos spalvos"
+
+#: ../games/glenwood.scm:258
 msgid "Select a card from the reserve for first foundation pile"
 msgstr "Pasirinkite iš rezervo kortą, skirtą pirmai fondo krūvelei"
 
-#: ../games/glenwood.scm.h:13
+#: ../games/glenwood.scm:359
+msgid "Move a card from the reserve on to the empty tableau slot"
+msgstr "Perkelkite iš rezervo kortą, skirtą tuščiai skylei stale"
+
+#: ../games/glenwood.scm:361
 msgid "on to the empty tableau slot"
 msgstr "į tuščią skylę ant stalo"
 
-#: ../games/golf.scm.h:1
-#: ../games/hopscotch.scm.h:1
-#: ../games/jumbo.scm.h:1
-#: ../games/kansas.scm.h:6
-#: ../games/sir-tommy.scm.h:1
-#: ../games/whitehead.scm.h:1
-msgid "Deal another card"
-msgstr "Imkite kitą kortą"
-
-#: ../games/golf.scm.h:2
-#: ../games/osmosis.scm.h:4
-#: ../games/spider.scm.h:6
+#: ../games/golf.scm:67
+#: ../games/osmosis.scm:68
+#: ../games/spider.scm:88
+#, scheme-format
 msgid "Stock left: ~a"
 msgstr "Malkoje liko: ~a"
 
-#: ../games/gypsy.scm.h:1
-msgid "Deal another hand"
+#: ../games/golf.scm:139
+#: ../games/hopscotch.scm:132
+#: ../games/jumbo.scm:298
+#: ../games/kansas.scm:219
+#: ../games/sir-tommy.scm:134
+#: ../games/whitehead.scm:252
+msgid "Deal another card"
 msgstr "Imkite kitą kortą"
 
-#: ../games/gypsy.scm.h:2
+#: ../games/gypsy.scm:216
 msgid "Move a card or build of cards on to the empty slot"
 msgstr "Perkelkite kortą arba kortų rinkinį ant tuščios skylės stale"
 
-#: ../games/helsinki.scm.h:2
-#: ../games/neighbor.scm.h:2
-#: ../games/thirteen.scm.h:4
-#: ../games/treize.scm.h:3
-#: ../games/yield.scm.h:3
+#: ../games/gypsy.scm:339
+msgid "Deal another hand"
+msgstr "Imkite kitą kortą"
+
+#: ../games/helsinki.scm:116
+#: ../games/neighbor.scm:142
+#: ../games/thirteen.scm:391
+#: ../games/treize.scm:285
+#: ../games/yield.scm:301
 msgid "itself"
 msgstr "pačios"
 
-#: ../games/hopscotch.scm.h:2
+#: ../games/hopscotch.scm:128
 msgid "Move card from waste"
 msgstr "Perkelkite kortą iš atliekų"
 
-#: ../games/jumbo.scm.h:2
+#: ../games/jumbo.scm:301
 msgid "Move waste to stock"
 msgstr "Perkelkite atliekas atgal į malką"
 
-#: ../games/king-albert.scm.h:3
-#: ../games/lady-jane.scm.h:11
+#: ../games/king-albert.scm:193
+#: ../games/lady-jane.scm:397
+#: ../games/lady-jane.scm:409
 msgid "an empty tableau slot"
 msgstr "tuščia skylė ant stalo"
 
-#: ../games/kings-audience.scm.h:1
-msgid "Deal a new card"
-msgstr "Dalinti naują kortą"
-
-#: ../games/kings-audience.scm.h:2
+#: ../games/kings-audience.scm:88
+#, scheme-format
 msgid "Stock remaining: ~a"
 msgstr "Malkoje liko: ~a"
 
-#: ../games/klondike.scm.h:4
-msgid "No redeals"
-msgstr "be peržaidimų"
+#: ../games/kings-audience.scm:229
+msgid "Deal a new card"
+msgstr "Dalinti naują kortą"
 
-#: ../games/klondike.scm.h:6
-msgid "Single card deals"
-msgstr "Traukiama po vieną kortą"
-
-#: ../games/klondike.scm.h:9
+#: ../games/klondike.scm:269
 msgid "Try moving cards down from the foundation"
 msgstr "Bandyk kortas iš fondo nukelti žemyn"
 
-#: ../games/lady-jane.scm.h:1
-#: ../games/royal-east.scm.h:1
+#: ../games/klondike.scm:293
+#: ../games/napoleons-tomb.scm:371
+msgid "Single card deals"
+msgstr "Traukiama po vieną kortą"
+
+#: ../games/klondike.scm:294
+msgid "No redeals"
+msgstr "be peržaidimų"
+
+#: ../games/lady-jane.scm:103
+#: ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "Pagrindinė korta:"
 
-#: ../games/lady-jane.scm.h:10
-#: ../games/thumb-and-pouch.scm.h:5
+#: ../games/lady-jane.scm:253
+#: ../games/thumb-and-pouch.scm:197
 msgid "an empty foundation pile"
 msgstr "tuščia fondo krūvelė"
 
-#: ../games/maze.scm.h:1
+#: ../games/maze.scm:147
 msgid "Aim to place the suits in the order which fits the current layout most naturally."
 msgstr "Išdėstykite rinkinius tvarka, kuri yra labiausiai tinkama dabartiniame kortų išdėstyme."
 
-#: ../games/osmosis.scm.h:2
-msgid "Deal new cards from the deck"
-msgstr "Dalinti iš kaladės naujas kortas"
+#: ../games/napoleons-tomb.scm:373
+msgid "Autoplay"
+msgstr "Žaisti automatiškai"
 
-#: ../games/osmosis.scm.h:3
+#: ../games/osmosis.scm:74
+#, scheme-format
 msgid "Redeals left: ~a"
 msgstr "Perdalinimų liko: ~a"
 
-#: ../games/pileon.scm.h:2
-#: ../games/terrace.scm.h:25
+#: ../games/osmosis.scm:214
+msgid "Deal new cards from the deck"
+msgstr "Dalinti iš kaladės naujas kortas"
+
+#: ../games/pileon.scm:158
+#: ../games/pileon.scm:160
+#: ../games/terrace.scm:286
 msgid "something"
 msgstr "ką nors"
 
-#: ../games/poker.scm.h:1
+#: ../games/poker.scm:297
 msgid "Place cards on to the Tableau to form poker hands"
 msgstr "Sudėkite kortas ant stalo suformuodami pokerio rinkinius"
 
-#: ../games/poker.scm.h:2
+#: ../games/poker.scm:300
 msgid "Shuffle mode"
 msgstr "Maišymo veiksena"
 
-#: ../games/scorpion.scm.h:1
+#: ../games/scorpion.scm:144
 msgid "Deal the cards"
 msgstr "Išdalinti kortas"
 
-#: ../games/scuffle.scm.h:3
+#: ../games/scuffle.scm:142
 msgid "Reshuffle cards"
 msgstr "Išmaišyti kortas"
 
-#: ../games/sir-tommy.scm.h:2
+#: ../games/sir-tommy.scm:130
 msgid "Move waste on to a reserve slot"
 msgstr "Perkelkite atliekas atgal į malką"
 
-#: ../games/spider.scm.h:2
-msgid "Four Suits"
-msgstr "Keturi tiltai"
-
-#: ../games/spider.scm.h:3
-msgid "One Suit"
-msgstr "Voras (viena rūšis)"
-
-#: ../games/spider.scm.h:4
-msgid "Place something on empty slot"
-msgstr "Padėk ką nors į tuščią skylę"
-
-#: ../games/spider.scm.h:5
-msgid "Please fill in empty pile first."
-msgstr "Pirmiausia užpildyk tuščią krūvelę."
-
-#: ../games/spider.scm.h:8
-msgid "Two Suits"
-msgstr "Voras (dvi rūšys)"
-
-#: ../games/spider.scm.h:9
+#: ../games/spider.scm:184
+#: ../games/spider.scm:292
 msgid "Undo until there are enough cards to fill all tableau piles"
 msgstr "Atšaukti iki kol bus pakankamai kortų visoms stalo vietoms užpildyti"
 
-#: ../games/ten-across.scm.h:1
-msgid "Allow temporary spots use"
-msgstr "Leisti naudoti laikinus laukus"
+#: ../games/spider.scm:185
+msgid "Please fill in empty pile first."
+msgstr "Pirmiausia užpildyk tuščią krūvelę."
 
-#: ../games/ten-across.scm.h:2
+#: ../games/spider.scm:277
+msgid "Place something on empty slot"
+msgstr "Padėk ką nors į tuščią skylę"
+
+#: ../games/spider.scm:305
+msgid "Four Suits"
+msgstr "Keturi tiltai"
+
+#: ../games/spider.scm:306
+msgid "Two Suits"
+msgstr "Voras (dvi rūšys)"
+
+#: ../games/spider.scm:307
+msgid "One Suit"
+msgstr "Voras (viena rūšis)"
+
+#: ../games/ten-across.scm:251
 msgid "Move a card to an empty temporary slot"
 msgstr "Perkelkite kortą į laikiną lauką"
 
-#: ../games/ten-across.scm.h:3
+#: ../games/ten-across.scm:252
 msgid "No hint available"
 msgstr "Patarimų nėra"
 
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:7
-msgid "Blondes and Brunettes"
-msgstr "Blondinės ir brunetės"
+#: ../games/ten-across.scm:288
+msgid "Allow temporary spots use"
+msgstr "Leisti naudoti laikinus laukus"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:10
-msgid "Falling Stars"
-msgstr "Krentančios žvaigždės"
-
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:12
+#: ../games/terrace.scm:41
 msgid "General's Patience"
 msgstr "Paprastasis pasjansas"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:15
-msgid "Redheads"
-msgstr "Raudonplaukės"
+#: ../games/terrace.scm:43
+msgid "Falling Stars"
+msgstr "Krentančios žvaigždės"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:17
+#: ../games/terrace.scm:45
 msgid "Signora"
 msgstr "Sinjora"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:22
+#: ../games/terrace.scm:47
+msgid "Redheads"
+msgstr "Raudonplaukės"
+
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../games/terrace.scm:49
+msgid "Blondes and Brunettes"
+msgstr "Blondinės ir brunetės"
+
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../games/terrace.scm:51
 msgid "Wood"
 msgstr "Medis"
 
-#: ../games/thieves.scm.h:1
+#: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "Imkite kortą iš kaladės"
 
-#: ../games/thirteen.scm.h:2
+#: ../games/thirteen.scm:381
 msgid "Match the top two cards of the waste."
 msgstr "Sutampa dvi viršutines atliekų kortos."
 
-#: ../games/thumb-and-pouch.scm.h:6
+#: ../games/thumb-and-pouch.scm:165
+#: ../games/thumb-and-pouch.scm:177
 msgid "an empty tableau pile"
 msgstr "tuščią krūvelę ant stalo"
 
-#: ../games/triple-peaks.scm.h:2
-msgid "Multiplier Scoring"
-msgstr "Multiplier Scoring"
-
-#: ../games/triple-peaks.scm.h:3
+#: ../games/triple-peaks.scm:351
 msgid "Progressive Rounds"
 msgstr "Progressive Rounds"
 
-#: ../games/whitehead.scm.h:2
+#: ../games/triple-peaks.scm:352
+msgid "Multiplier Scoring"
+msgstr "Multiplier Scoring"
+
+#: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Perkelkite kortų rinkinį į tuščią stalo skylę"
 
-#: ../games/zebra.scm.h:5
+#: ../games/zebra.scm:182
 msgid "the appropriate Foundation pile"
 msgstr "atitinkamą fondo krūvelę"
 
