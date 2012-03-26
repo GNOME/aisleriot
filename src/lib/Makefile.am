@@ -36,6 +36,9 @@ libaisleriot_la_SOURCES = \
 	ar-sound.h \
 	ar-string-utils.c \
 	ar-string-utils.h \
+	$(NULL)
+
+nodist_libaisleriot_la_SOURCES = \
 	$(BUILT_SOURCES) \
 	$(NULL)
 
