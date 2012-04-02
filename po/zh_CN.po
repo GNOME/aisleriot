@@ -6,17 +6,17 @@ msgstr ""
 "Project-Id-Version: gnome-games master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-09-18 21:16+0000\n"
-"PO-Revision-Date: 2011-09-28 01:58+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"POT-Creation-Date: 2012-03-29 17:47+0000\n"
+"PO-Revision-Date: 2012-04-02 14:55+0800\n"
+"Last-Translator: tuhaihe <wangdianjin@linuxdeepin.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:154 ../src/window.c:388
+#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:105 ../src/window.c:388
 #: ../src/window.c:392
 msgid "FreeCell Solitaire"
 msgstr "空当接龙"
@@ -34,25 +34,20 @@ msgid "Play many different solitaire games"
 msgstr "玩各种纸牌游戏"
 
 #: ../src/aisleriot.schemas.in.h:1
-msgid "A list of recently played games."
-msgstr "最近玩过的游戏的列表。"
+msgid "Theme file name"
+msgstr "主题文件名"
 
 #: ../src/aisleriot.schemas.in.h:2
-msgid ""
-"A list of strings that come in the form of a quintuple: name, wins, total "
-"games played, best time (in seconds) and worst time (also in seconds). "
-"Unplayed games do not need to be represented."
-msgstr ""
-"一张字符串列表，由以下五部分组成：姓名、所赢回合数、总计玩过的回合数、最好时"
-"间(以秒计)、最差时间(亦以秒计)。未玩过的游戏不被表示。"
+msgid "The name of the file with the graphics for the cards."
+msgstr "纸牌所用图案的文件名。"
 
 #: ../src/aisleriot.schemas.in.h:3
-msgid "Animations"
-msgstr "动画"
+msgid "Whether or not to show the toolbar"
+msgstr "是否显示工具栏"
 
 #: ../src/aisleriot.schemas.in.h:4
-msgid "Recently played games"
-msgstr "最近玩过的游戏"
+msgid "Whether or not to show the status bar"
+msgstr "是否显示状态栏"
 
 #: ../src/aisleriot.schemas.in.h:5
 msgid "Select the style of control"
@@ -69,116 +64,204 @@ msgid "Sound"
 msgstr "音效"
 
 #: ../src/aisleriot.schemas.in.h:8
-msgid "Statistics of games played"
-msgstr "所玩游戏的统计"
-
-#: ../src/aisleriot.schemas.in.h:9
-msgid "The game file to use"
-msgstr "要使用的游戏文件"
-
-#: ../src/aisleriot.schemas.in.h:10
-msgid "The name of the file with the graphics for the cards."
-msgstr "纸牌所用图案的文件名。"
-
-#: ../src/aisleriot.schemas.in.h:11
-msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "包含要玩的纸牌游戏的 scheme 文件名。"
-
-#: ../src/aisleriot.schemas.in.h:12
-msgid "Theme file name"
-msgstr "主题文件名"
-
-#: ../src/aisleriot.schemas.in.h:13
-msgid "Whether or not to animate card moves."
-msgstr "是否使用动画。"
-
-#: ../src/aisleriot.schemas.in.h:14
 msgid "Whether or not to play event sounds."
 msgstr "是否播放事件声音。"
 
+#: ../src/aisleriot.schemas.in.h:9
+msgid "Animations"
+msgstr "动画"
+
+#: ../src/aisleriot.schemas.in.h:10
+msgid "Whether or not to animate card moves."
+msgstr "是否使用动画。"
+
+#: ../src/aisleriot.schemas.in.h:11
+msgid "The game file to use"
+msgstr "要使用的游戏文件"
+
+#: ../src/aisleriot.schemas.in.h:12
+msgid "The name of the scheme file containing the solitaire game to play."
+msgstr "包含要玩的纸牌游戏的 scheme 文件名。"
+
+#: ../src/aisleriot.schemas.in.h:13
+msgid "Statistics of games played"
+msgstr "所玩游戏的统计"
+
+#: ../src/aisleriot.schemas.in.h:14
+msgid ""
+"A list of strings that come in the form of a quintuple: name, wins, total "
+"games played, best time (in seconds) and worst time (also in seconds). "
+"Unplayed games do not need to be represented."
+msgstr ""
+"一张字符串列表，由以下五部分组成：姓名、所赢回合数、总计玩过的回合数、最好时"
+"间(以秒计)、最差时间(亦以秒计)。未玩过的游戏不被表示。"
+
 #: ../src/aisleriot.schemas.in.h:15
-msgid "Whether or not to show the status bar"
-msgstr "是否显示状态栏"
+msgid "Recently played games"
+msgstr "最近玩过的游戏"
 
 #: ../src/aisleriot.schemas.in.h:16
-msgid "Whether or not to show the toolbar"
-msgstr "是否显示工具栏"
+msgid "A list of recently played games."
+msgstr "最近玩过的游戏的列表。"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:187 ../src/window.c:2188
+#: ../src/ar-game-chooser.c:178 ../src/window.c:2170
 msgid "Select Game"
 msgstr "选择游戏"
 
-#: ../src/ar-game-chooser.c:201
+#: ../src/ar-game-chooser.c:192
 msgid "_Select"
 msgstr "选择(_S)"
 
+#: ../src/ar-stock.c:190
+msgid "_Contents"
+msgstr "目录(_C)"
+
+#: ../src/ar-stock.c:191
+msgid "_Fullscreen"
+msgstr "全屏(_F)"
+
+#: ../src/ar-stock.c:192
+msgid "_Hint"
+msgstr "提示(_H)"
+
+#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
+#: ../src/ar-stock.c:194
+msgid "_New"
+msgstr "新建(_N)"
+
+#. Translators: This "_New Game" is for the game-over dialogue
+#: ../src/ar-stock.c:196
+msgid "_New Game"
+msgstr "新建游戏(_N)"
+
+#: ../src/ar-stock.c:197
+msgid "_Redo Move"
+msgstr "重做移动(_R)"
+
+#. Translators: this is the "Reset" scores button in a scores dialogue
+#: ../src/ar-stock.c:199
+msgid "_Reset"
+msgstr "重置(_R)"
+
+#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
+#: ../src/ar-stock.c:201
+msgid "_Restart"
+msgstr "重新开始(_R)"
+
+#: ../src/ar-stock.c:202
+msgid "_Undo Move"
+msgstr "撤消移动(_U)"
+
+#: ../src/ar-stock.c:203
+msgid "_Deal"
+msgstr "发牌(_D)"
+
+#: ../src/ar-stock.c:204
+msgid "_Leave Fullscreen"
+msgstr "离开全屏(_L)"
+
+#: ../src/ar-stock.c:205
+msgid "_Pause"
+msgstr "暂停(_P)"
+
+#. %s is replaced with the name of the game in gnome-games.
+#: ../src/ar-stock.c:267
+#, c-format
+msgid ""
+"%s is free software; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version %d of the License, or (at your option) any later "
+"version."
+msgstr ""
+"%s 是自由软件；您可以按照自由软件基金会所发表的 GNU GPL 协议自由发放和/或修改"
+"它；采用协议的第 %d 版，或者(根据您的选择)任何更高版本。"
+
+#: ../src/ar-stock.c:272
+#, c-format
+msgid ""
+"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
+"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details."
+msgstr ""
+"%s 发表的目的是希望它能够对您有用，但我们没有任何保证；对于以任何用途使用它所"
+"造成的任何直接或间接后果都不承担任何责任。请参看 GNU GPL 协议中的细节。"
+
+#: ../src/ar-stock.c:277
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"您应该在收到该程序的同时收到了 GNU GPL 协议的副本。如果没有的话，请参见"
+"<http://www.gnu.org/licenses/>。"
+
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1356
+#: ../src/game.c:1420
 msgctxt "slot type"
 msgid "foundation"
 msgstr "收牌区"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1360
+#: ../src/game.c:1424
 msgctxt "slot type"
 msgid "reserve"
 msgstr "保留区"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1364
+#: ../src/game.c:1428
 msgctxt "slot type"
 msgid "stock"
 msgstr "发牌区"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1368
+#: ../src/game.c:1432
 msgctxt "slot type"
 msgid "tableau"
 msgstr "空位"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1372
+#: ../src/game.c:1436
 msgctxt "slot type"
 msgid "waste"
 msgstr "废牌堆"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1404
+#: ../src/game.c:1468
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "收牌区的 %s"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1408
+#: ../src/game.c:1472
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "保留区的 %s"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1412
+#: ../src/game.c:1476
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "发牌区的 %s"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1416
+#: ../src/game.c:1480
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "空位中的 %s"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1420
+#: ../src/game.c:1484
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "废牌堆的 %s"
 
-#: ../src/game.c:2100
+#: ../src/game.c:2151
 msgid "This game does not have hint support yet."
 msgstr "该游戏尚不支持提示功能。"
 
@@ -186,17 +269,12 @@ msgstr "该游戏尚不支持提示功能。"
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2135 ../src/game.c:2161
+#: ../src/game.c:2186 ../src/game.c:2212
 #, c-format
 msgid "Move %s onto %s."
 msgstr "将 %s 移动到 %s 上。"
 
-#: ../src/game.c:2182
-#, c-format
-msgid "You are searching for a %s."
-msgstr "您正在寻找一个 %s。"
-
-#: ../src/game.c:2186
+#: ../src/game.c:2232
 msgid "This game is unable to provide a hint."
 msgstr "该游戏无法提供提示。"
 
@@ -433,7 +511,6 @@ msgstr "电梯"
 #.
 #: ../src/game-names.h:182
 #, fuzzy
-#| msgid "Elevator"
 msgid "Eliminator"
 msgstr "电梯"
 
@@ -831,7 +908,6 @@ msgstr "汤米爵士"
 #.
 #: ../src/game-names.h:490
 #, fuzzy
-#| msgid "Sol_ve"
 msgid "Sol"
 msgstr "解开(_V)"
 
@@ -904,7 +980,7 @@ msgstr "跨越十"
 #. freely, literally, or not at all, at your option.
 #.
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../src/game-names.h:546 ../games/terrace.scm.h:20
+#: ../src/game-names.h:546 ../games/terrace.scm:39
 msgid "Terrace"
 msgstr "阳台"
 
@@ -1025,28 +1101,361 @@ msgstr "育空"
 msgid "Zebra"
 msgstr "斑马"
 
+#. Translators: this is the symbol that's on a Joker card
+#: ../src/lib/ar-card.c:237
+msgctxt "card symbol"
+msgid "JOKER"
+msgstr "王"
+
+#. Translators: this is the symbol that's on an Ace card
+#: ../src/lib/ar-card.c:239 ../src/lib/ar-card.c:263
+msgctxt "card symbol"
+msgid "A"
+msgstr "A"
+
+#. Translators: this is the symbol that's on a 2 card
+#: ../src/lib/ar-card.c:241
+msgctxt "card symbol"
+msgid "2"
+msgstr "2"
+
+#. Translators: this is the symbol that's on a 3 card
+#: ../src/lib/ar-card.c:243
+msgctxt "card symbol"
+msgid "3"
+msgstr "3"
+
+#. Translators: this is the symbol that's on a 4 card
+#: ../src/lib/ar-card.c:245
+msgctxt "card symbol"
+msgid "4"
+msgstr "4"
+
+#. Translators: this is the symbol that's on a 5 card
+#: ../src/lib/ar-card.c:247
+msgctxt "card symbol"
+msgid "5"
+msgstr "5"
+
+#. Translators: this is the symbol that's on a 6 card
+#: ../src/lib/ar-card.c:249
+msgctxt "card symbol"
+msgid "6"
+msgstr "6"
+
+#. Translators: this is the symbol that's on a 7 card
+#: ../src/lib/ar-card.c:251
+msgctxt "card symbol"
+msgid "7"
+msgstr "7"
+
+#. Translators: this is the symbol that's on a 8 card
+#: ../src/lib/ar-card.c:253
+msgctxt "card symbol"
+msgid "8"
+msgstr "8"
+
+#. Translators: this is the symbol that's on a 9 card
+#: ../src/lib/ar-card.c:255
+msgctxt "card symbol"
+msgid "9"
+msgstr "9"
+
+#. Translators: this is the symbol that's on a Jack card
+#: ../src/lib/ar-card.c:257
+msgctxt "card symbol"
+msgid "J"
+msgstr "J"
+
+#. Translators: this is the symbol that's on a Queen card
+#: ../src/lib/ar-card.c:259
+msgctxt "card symbol"
+msgid "Q"
+msgstr "Q"
+
+#. Translators: this is the symbol that's on a King card
+#: ../src/lib/ar-card.c:261
+msgctxt "card symbol"
+msgid "K"
+msgstr "K"
+
+#. Translators: this is the symbol that's on a 1 card
+#: ../src/lib/ar-card.c:265
+msgctxt "card symbol"
+msgid "1"
+msgstr "1"
+
+#: ../src/lib/ar-card.c:299
+msgid "ace of clubs"
+msgstr "梅花 A"
+
+#: ../src/lib/ar-card.c:300
+msgid "two of clubs"
+msgstr "梅花 2"
+
+#: ../src/lib/ar-card.c:301
+msgid "three of clubs"
+msgstr "梅花 3"
+
+#: ../src/lib/ar-card.c:302
+msgid "four of clubs"
+msgstr "梅花 4"
+
+#: ../src/lib/ar-card.c:303
+msgid "five of clubs"
+msgstr "梅花 5"
+
+#: ../src/lib/ar-card.c:304
+msgid "six of clubs"
+msgstr "梅花 6"
+
+#: ../src/lib/ar-card.c:305
+msgid "seven of clubs"
+msgstr "梅花 7"
+
+#: ../src/lib/ar-card.c:306
+msgid "eight of clubs"
+msgstr "梅花 8"
+
+#: ../src/lib/ar-card.c:307
+msgid "nine of clubs"
+msgstr "梅花 9"
+
+#: ../src/lib/ar-card.c:308
+msgid "ten of clubs"
+msgstr "梅花 10"
+
+#: ../src/lib/ar-card.c:309
+msgid "jack of clubs"
+msgstr "梅花 J"
+
+#: ../src/lib/ar-card.c:310
+msgid "queen of clubs"
+msgstr "梅花 Q"
+
+#: ../src/lib/ar-card.c:311
+msgid "king of clubs"
+msgstr "梅花 K"
+
+#: ../src/lib/ar-card.c:312
+msgid "ace of diamonds"
+msgstr "方片 A"
+
+#: ../src/lib/ar-card.c:313
+msgid "two of diamonds"
+msgstr "方片 2"
+
+#: ../src/lib/ar-card.c:314
+msgid "three of diamonds"
+msgstr "方片 3"
+
+#: ../src/lib/ar-card.c:315
+msgid "four of diamonds"
+msgstr "方片 4"
+
+#: ../src/lib/ar-card.c:316
+msgid "five of diamonds"
+msgstr "方片 5"
+
+#: ../src/lib/ar-card.c:317
+msgid "six of diamonds"
+msgstr "方片 6"
+
+#: ../src/lib/ar-card.c:318
+msgid "seven of diamonds"
+msgstr "方片 7"
+
+#: ../src/lib/ar-card.c:319
+msgid "eight of diamonds"
+msgstr "方片 8"
+
+#: ../src/lib/ar-card.c:320
+msgid "nine of diamonds"
+msgstr "方片 9"
+
+#: ../src/lib/ar-card.c:321
+msgid "ten of diamonds"
+msgstr "方片 10"
+
+#: ../src/lib/ar-card.c:322
+msgid "jack of diamonds"
+msgstr "方片 J"
+
+#: ../src/lib/ar-card.c:323
+msgid "queen of diamonds"
+msgstr "方片 Q"
+
+#: ../src/lib/ar-card.c:324
+msgid "king of diamonds"
+msgstr "方片 K"
+
+#: ../src/lib/ar-card.c:325
+msgid "ace of hearts"
+msgstr "红桃 A"
+
+#: ../src/lib/ar-card.c:326
+msgid "two of hearts"
+msgstr "红桃 2"
+
+#: ../src/lib/ar-card.c:327
+msgid "three of hearts"
+msgstr "红桃 3"
+
+#: ../src/lib/ar-card.c:328
+msgid "four of hearts"
+msgstr "红桃 4"
+
+#: ../src/lib/ar-card.c:329
+msgid "five of hearts"
+msgstr "红桃 5"
+
+#: ../src/lib/ar-card.c:330
+msgid "six of hearts"
+msgstr "红桃 6"
+
+#: ../src/lib/ar-card.c:331
+msgid "seven of hearts"
+msgstr "红桃 7"
+
+#: ../src/lib/ar-card.c:332
+msgid "eight of hearts"
+msgstr "红桃 8"
+
+#: ../src/lib/ar-card.c:333
+msgid "nine of hearts"
+msgstr "红桃 9"
+
+#: ../src/lib/ar-card.c:334
+msgid "ten of hearts"
+msgstr "红桃 10"
+
+#: ../src/lib/ar-card.c:335
+msgid "jack of hearts"
+msgstr "红桃 J"
+
+#: ../src/lib/ar-card.c:336
+msgid "queen of hearts"
+msgstr "红桃 Q"
+
+#: ../src/lib/ar-card.c:337
+msgid "king of hearts"
+msgstr "红桃 K"
+
+#: ../src/lib/ar-card.c:338
+msgid "ace of spades"
+msgstr "黑桃 A"
+
+#: ../src/lib/ar-card.c:339
+msgid "two of spades"
+msgstr "黑桃 2"
+
+#: ../src/lib/ar-card.c:340
+msgid "three of spades"
+msgstr "黑桃 3"
+
+#: ../src/lib/ar-card.c:341
+msgid "four of spades"
+msgstr "黑桃 4"
+
+#: ../src/lib/ar-card.c:342
+msgid "five of spades"
+msgstr "黑桃 5"
+
+#: ../src/lib/ar-card.c:343
+msgid "six of spades"
+msgstr "黑桃 6"
+
+#: ../src/lib/ar-card.c:344
+msgid "seven of spades"
+msgstr "黑桃 7"
+
+#: ../src/lib/ar-card.c:345
+msgid "eight of spades"
+msgstr "黑桃 8"
+
+#: ../src/lib/ar-card.c:346
+msgid "nine of spades"
+msgstr "黑桃 9"
+
+#: ../src/lib/ar-card.c:347
+msgid "ten of spades"
+msgstr "黑桃 10"
+
+#: ../src/lib/ar-card.c:348
+msgid "jack of spades"
+msgstr "黑桃 J"
+
+#: ../src/lib/ar-card.c:349
+msgid "queen of spades"
+msgstr "黑桃 Q"
+
+#: ../src/lib/ar-card.c:350
+msgid "king of spades"
+msgstr "黑桃 K"
+
+#: ../src/lib/ar-card.c:367
+msgid "face-down card"
+msgstr "未知牌面"
+
+#. A black joker.
+#: ../src/lib/ar-card.c:378
+msgid "black joker"
+msgstr "小王"
+
+#. A red joker.
+#: ../src/lib/ar-card.c:381
+msgid "red joker"
+msgstr "大王"
+
+#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
+#: ../src/lib/ar-help.c:108
+#, c-format
+msgid "Help file “%s.%s” not found"
+msgstr "无法找到帮助文件“ %s.%s ”"
+
+#: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
+#, c-format
+msgid "Could not show help for “%s”"
+msgstr "无法为“%s”显示帮助"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
+msgid "Whether the window is maximized"
+msgstr "是否最大化"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
+msgid "Whether the window is fullscreen"
+msgstr "是否全屏"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
+msgid "Window width"
+msgstr "窗口宽度"
+
+#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
+msgid "Window height"
+msgstr "窗口高度"
+
 #. String reserve
-#: ../src/sol.c:47
+#: ../src/sol.c:44
 msgid "Solitaire"
 msgstr "纸牌王"
 
-#: ../src/sol.c:48
+#: ../src/sol.c:45
 msgid "GNOME Solitaire"
 msgstr "GNOME 纸牌王"
 
-#: ../src/sol.c:49
+#: ../src/sol.c:46
 msgid "About Solitaire"
 msgstr "关于 纸牌王"
 
-#: ../src/sol.c:105
+#: ../src/sol.c:62
 msgid "Select the game type to play"
 msgstr "选择要玩的游戏类型"
 
-#: ../src/sol.c:105
+#: ../src/sol.c:62
 msgid "NAME"
 msgstr "名称"
 
-#: ../src/sol.c:154 ../src/window.c:393 ../src/window.c:1834
+#: ../src/sol.c:105 ../src/window.c:393 ../src/window.c:1817
 msgid "AisleRiot"
 msgstr "纸牌王"
 
@@ -1126,11 +1535,6 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/util.c:86 ../src/util.c:90 ../src/lib/ar-help.c:146
-#, c-format
-msgid "Could not show help for “%s”"
-msgstr "无法为“%s”显示帮助"
-
 #: ../src/window.c:207
 msgid "Congratulations, you have won!"
 msgstr "恭喜，您赢了！"
@@ -1160,10 +1564,6 @@ msgid "About AisleRiot"
 msgstr "关于纸牌王"
 
 #: ../src/window.c:400
-#| msgid ""
-#| "AisleRiot provides a rule-based solitaire card engine that allows many "
-#| "different games to be played.\n"
-#| "AisleRiot is a part of GNOME Games."
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1180,186 +1580,175 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "GNOME 游戏网站"
 
-#: ../src/window.c:1259
+#: ../src/window.c:1249
 #, c-format
 msgid "Play “%s”"
 msgstr "玩“%s”"
 
-#: ../src/window.c:1420
+#: ../src/window.c:1411
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "使用纸牌样式“%s”"
 
-#. Translators: if you want to use localised digits for the game score,
-#. * then translate this string to "%I6d", else to "%6d".
-#. * Do not translate it to anything else!
-#.
-#: ../src/window.c:1487
-#, c-format
-msgctxt "score"
-msgid "%6d"
-msgstr "%6d"
-
-#: ../src/window.c:1725
+#: ../src/window.c:1708
 msgid "A scheme exception occurred"
 msgstr "发生了一个 scheme 异常"
 
-#: ../src/window.c:1728
+#: ../src/window.c:1711
 msgid "Please report this bug to the developers."
 msgstr "请将这个 bug 报告给开发人员。"
 
-#: ../src/window.c:1734
+#: ../src/window.c:1717
 msgid "_Don't report"
 msgstr "不报告(_D)"
 
-#: ../src/window.c:1735
+#: ../src/window.c:1718
 msgid "_Report"
 msgstr "报告(_R)"
 
-#: ../src/window.c:1832
+#: ../src/window.c:1815
 msgid "Freecell Solitaire"
 msgstr "空当接龙"
 
 #. Menu actions
-#: ../src/window.c:1923
+#: ../src/window.c:1905
 msgid "_Game"
 msgstr "游戏(_G)"
 
-#: ../src/window.c:1924
+#: ../src/window.c:1906
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../src/window.c:1925
+#: ../src/window.c:1907
 msgid "_Control"
 msgstr "控制(_C)"
 
-#: ../src/window.c:1927
+#: ../src/window.c:1909
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/window.c:1932
+#: ../src/window.c:1914
 msgid "Start a new game"
 msgstr "开始新游戏"
 
-#: ../src/window.c:1935
+#: ../src/window.c:1917
 msgid "Restart the game"
 msgstr "重新开始游戏"
 
-#: ../src/window.c:1937
-#| msgid "Select Game"
+#: ../src/window.c:1919
 msgid "_Select Game…"
 msgstr "选择游戏(_S)..."
 
-#: ../src/window.c:1939
+#: ../src/window.c:1921
 msgid "Play a different game"
 msgstr "玩多种不同的游戏"
 
-#: ../src/window.c:1941
+#: ../src/window.c:1923
 msgid "_Recently Played"
 msgstr "最近玩过的游戏(_R)"
 
-#: ../src/window.c:1942
+#: ../src/window.c:1924
 msgid "S_tatistics"
 msgstr "统计(_T)"
 
-#: ../src/window.c:1943
+#: ../src/window.c:1925
 msgid "Show gameplay statistics"
 msgstr "显示游戏统计"
 
-#: ../src/window.c:1946
+#: ../src/window.c:1928
 msgid "Close this window"
 msgstr "关闭此窗口"
 
-#: ../src/window.c:1949
+#: ../src/window.c:1931
 msgid "Undo the last move"
 msgstr "撤消最后一着"
 
-#: ../src/window.c:1952
+#: ../src/window.c:1934
 msgid "Redo the undone move"
 msgstr "重做撤消的一着"
 
-#: ../src/window.c:1955
+#: ../src/window.c:1937
 msgid "Deal next card or cards"
 msgstr "继续发牌"
 
-#: ../src/window.c:1958
+#: ../src/window.c:1940
 msgid "Get a hint for your next move"
 msgstr "获取您的下一步的提示"
 
-#: ../src/window.c:1961
+#: ../src/window.c:1943
 msgid "View help for Aisleriot"
 msgstr "查看 Aisleriot 的帮助"
 
-#: ../src/window.c:1965
+#: ../src/window.c:1947
 msgid "View help for this game"
 msgstr "查看此游戏的帮助"
 
-#: ../src/window.c:1968
+#: ../src/window.c:1950
 msgid "About this game"
 msgstr "关于此游戏"
 
-#: ../src/window.c:1970
+#: ../src/window.c:1952
 msgid "Install card themes…"
 msgstr "安装纸牌样式..."
 
-#: ../src/window.c:1971
+#: ../src/window.c:1953
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "从发行版软件库安装新的纸牌样式"
 
-#: ../src/window.c:1977
+#: ../src/window.c:1959
 msgid "_Card Style"
 msgstr "纸牌样式(_C)"
 
-#: ../src/window.c:2011
+#: ../src/window.c:1993
 msgid "_Toolbar"
 msgstr "工具栏(_T)"
 
-#: ../src/window.c:2012
+#: ../src/window.c:1994
 msgid "Show or hide the toolbar"
 msgstr "显示或隐藏工具栏"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1998
 msgid "_Statusbar"
 msgstr "状态栏(_S)"
 
-#: ../src/window.c:2017
+#: ../src/window.c:1999
 msgid "Show or hide statusbar"
 msgstr "显示或隐藏状态栏"
 
-#: ../src/window.c:2021
+#: ../src/window.c:2003
 msgid "_Click to Move"
 msgstr "单击移动(_C)"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2004
 msgid "Pick up and drop cards by clicking"
 msgstr "通过点击来抓起或放下牌"
 
-#: ../src/window.c:2026
+#: ../src/window.c:2008
 msgid "_Sound"
 msgstr "声音(_S)"
 
-#: ../src/window.c:2027
+#: ../src/window.c:2009
 msgid "Whether or not to play event sounds"
 msgstr "是否播放事件声音"
 
-#: ../src/window.c:2207
+#: ../src/window.c:2189
 msgid "Score:"
 msgstr "得分:"
 
-#: ../src/window.c:2219
+#: ../src/window.c:2201
 msgid "Time:"
 msgstr "时间:"
 
-#: ../src/window.c:2507
+#: ../src/window.c:2489
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "无法开始游戏“%s”"
 
-#: ../src/window.c:2520
+#: ../src/window.c:2502
 msgid "Aisleriot cannot find the last game you played."
 msgstr "纸牌王无法找到您上次玩的游戏。"
 
-#: ../src/window.c:2521
+#: ../src/window.c:2503
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1368,1501 +1757,1442 @@ msgstr ""
 "这通常发生在您运行一个并不包含您上次玩过游戏的老版本纸牌王时。将运行默认游戏"
 "克朗代克。"
 
-#: ../src/ar-stock.c:190
-msgid "_Contents"
-msgstr "目录(_C)"
-
-#: ../src/ar-stock.c:191
-msgid "_Fullscreen"
-msgstr "全屏(_F)"
-
-#: ../src/ar-stock.c:192
-msgid "_Hint"
-msgstr "提示(_H)"
-
-#. Translators: This "_New" is for the menu item 'Game->New', implies "New Game"
-#: ../src/ar-stock.c:194
-msgid "_New"
-msgstr "新建(_N)"
-
-#. Translators: This "_New Game" is for the game-over dialogue
-#: ../src/ar-stock.c:196
-msgid "_New Game"
-msgstr "新建游戏(_N)"
-
-#: ../src/ar-stock.c:197
-msgid "_Redo Move"
-msgstr "重做移动(_R)"
-
-#. Translators: this is the "Reset" scores button in a scores dialogue
-#: ../src/ar-stock.c:199
-msgid "_Reset"
-msgstr "重置(_R)"
-
-#. Translators: "_Restart" is the menu item 'Game->Restart', implies "Restart Game"
-#: ../src/ar-stock.c:201
-msgid "_Restart"
-msgstr "重新开始(_R)"
-
-#: ../src/ar-stock.c:202
-msgid "_Undo Move"
-msgstr "撤消移动(_U)"
-
-#: ../src/ar-stock.c:203
-msgid "_Deal"
-msgstr "发牌(_D)"
-
-#: ../src/ar-stock.c:204
-msgid "_Leave Fullscreen"
-msgstr "离开全屏(_L)"
-
-#: ../src/ar-stock.c:205
-msgid "_Pause"
-msgstr "暂停(_P)"
-
-#. %s is replaced with the name of the game in gnome-games.
-#: ../src/ar-stock.c:263
-#, c-format
-msgid ""
-"%s is free software; you can redistribute it and/or modify it under the "
-"terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version %d of the License, or (at your option) any later "
-"version."
-msgstr ""
-"%s 是自由软件；您可以按照自由软件基金会所发表的 GNU GPL 协议自由发放和/或修改"
-"它；采用协议的第 %d 版，或者(根据您的选择)任何更高版本。"
-
-#: ../src/ar-stock.c:268
-#, c-format
-msgid ""
-"%s is distributed in the hope that it will be useful, but WITHOUT ANY "
-"WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details."
-msgstr ""
-"%s 发表的目的是希望它能够对您有用，但我们没有任何保证；对于以任何用途使用它所"
-"造成的任何直接或间接后果都不承担任何责任。请参看 GNU GPL 协议中的细节。"
-
-#: ../src/ar-stock.c:273
-#, c-format
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"%s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, "
-"Fifth Floor, Boston, MA  02110-1301  USA"
-msgstr ""
-"您应该在收到 %s 的同时收到了 GNU GPL 协议的副本；如果您没有收到的话，请给自由"
-"软件基金会写信，地址是 51 Franklin Street, Fifth Floor, Boston, MA  "
-"02110-1301  USA"
-
-#: ../src/ar-stock.c:277
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"您应该在收到该程序的同时收到了 GNU GPL 协议的副本。如果没有的话，请参见"
-"<http://www.gnu.org/licenses/>。"
-
-#. %s.%s is the game name + the extension HTML or XHTML, e.g. Klondike.html"
-#: ../src/lib/ar-help.c:108
-#, c-format
-msgid "Help file “%s.%s” not found"
-msgstr "无法找到帮助文件“ %s.%s ”"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
-msgid "Whether the window is fullscreen"
-msgstr "是否全屏"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
-msgid "Whether the window is maximized"
-msgstr "是否最大化"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
-msgid "Window height"
-msgstr "窗口高度"
-
-#: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
-msgid "Window width"
-msgstr "窗口宽度"
-
-#. Translators: this is the symbol that's on a Joker card
-#: ../src/lib/ar-card.c:181
-msgctxt "card symbol"
-msgid "JOKER"
-msgstr "王"
-
-#. Translators: this is the symbol that's on an Ace card
-#: ../src/lib/ar-card.c:183 ../src/lib/ar-card.c:207
-msgctxt "card symbol"
-msgid "A"
-msgstr "A"
-
-#. Translators: this is the symbol that's on a 2 card
-#: ../src/lib/ar-card.c:185
-msgctxt "card symbol"
-msgid "2"
-msgstr "2"
-
-#. Translators: this is the symbol that's on a 3 card
-#: ../src/lib/ar-card.c:187
-msgctxt "card symbol"
-msgid "3"
-msgstr "3"
-
-#. Translators: this is the symbol that's on a 4 card
-#: ../src/lib/ar-card.c:189
-msgctxt "card symbol"
-msgid "4"
-msgstr "4"
-
-#. Translators: this is the symbol that's on a 5 card
-#: ../src/lib/ar-card.c:191
-msgctxt "card symbol"
-msgid "5"
-msgstr "5"
-
-#. Translators: this is the symbol that's on a 6 card
-#: ../src/lib/ar-card.c:193
-msgctxt "card symbol"
-msgid "6"
-msgstr "6"
-
-#. Translators: this is the symbol that's on a 7 card
-#: ../src/lib/ar-card.c:195
-msgctxt "card symbol"
-msgid "7"
-msgstr "7"
-
-#. Translators: this is the symbol that's on a 8 card
-#: ../src/lib/ar-card.c:197
-msgctxt "card symbol"
-msgid "8"
-msgstr "8"
-
-#. Translators: this is the symbol that's on a 9 card
-#: ../src/lib/ar-card.c:199
-msgctxt "card symbol"
-msgid "9"
-msgstr "9"
-
-#. Translators: this is the symbol that's on a Jack card
-#: ../src/lib/ar-card.c:201
-msgctxt "card symbol"
-msgid "J"
-msgstr "J"
-
-#. Translators: this is the symbol that's on a Queen card
-#: ../src/lib/ar-card.c:203
-msgctxt "card symbol"
-msgid "Q"
-msgstr "Q"
-
-#. Translators: this is the symbol that's on a King card
-#: ../src/lib/ar-card.c:205
-msgctxt "card symbol"
-msgid "K"
-msgstr "K"
-
-#. Translators: this is the symbol that's on a 1 card
-#: ../src/lib/ar-card.c:209
-msgctxt "card symbol"
-msgid "1"
-msgstr "1"
-
-#: ../src/lib/ar-card.c:243
-msgid "ace of clubs"
-msgstr "梅花 A"
-
-#: ../src/lib/ar-card.c:244
-msgid "two of clubs"
-msgstr "梅花 2"
-
-#: ../src/lib/ar-card.c:245
-msgid "three of clubs"
-msgstr "梅花 3"
-
-#: ../src/lib/ar-card.c:246
-msgid "four of clubs"
-msgstr "梅花 4"
-
-#: ../src/lib/ar-card.c:247
-msgid "five of clubs"
-msgstr "梅花 5"
-
-#: ../src/lib/ar-card.c:248
-msgid "six of clubs"
-msgstr "梅花 6"
-
-#: ../src/lib/ar-card.c:249
-msgid "seven of clubs"
-msgstr "梅花 7"
-
-#: ../src/lib/ar-card.c:250
-msgid "eight of clubs"
-msgstr "梅花 8"
-
-#: ../src/lib/ar-card.c:251
-msgid "nine of clubs"
-msgstr "梅花 9"
-
-#: ../src/lib/ar-card.c:252
-msgid "ten of clubs"
-msgstr "梅花 10"
-
-#: ../src/lib/ar-card.c:253
-msgid "jack of clubs"
-msgstr "梅花 J"
-
-#: ../src/lib/ar-card.c:254
-msgid "queen of clubs"
-msgstr "梅花 Q"
-
-#: ../src/lib/ar-card.c:255
-msgid "king of clubs"
-msgstr "梅花 K"
-
-#: ../src/lib/ar-card.c:256
-msgid "ace of diamonds"
-msgstr "方片 A"
-
-#: ../src/lib/ar-card.c:257
-msgid "two of diamonds"
-msgstr "方片 2"
-
-#: ../src/lib/ar-card.c:258
-msgid "three of diamonds"
-msgstr "方片 3"
-
-#: ../src/lib/ar-card.c:259
-msgid "four of diamonds"
-msgstr "方片 4"
-
-#: ../src/lib/ar-card.c:260
-msgid "five of diamonds"
-msgstr "方片 5"
-
-#: ../src/lib/ar-card.c:261
-msgid "six of diamonds"
-msgstr "方片 6"
-
-#: ../src/lib/ar-card.c:262
-msgid "seven of diamonds"
-msgstr "方片 7"
-
-#: ../src/lib/ar-card.c:263
-msgid "eight of diamonds"
-msgstr "方片 8"
-
-#: ../src/lib/ar-card.c:264
-msgid "nine of diamonds"
-msgstr "方片 9"
-
-#: ../src/lib/ar-card.c:265
-msgid "ten of diamonds"
-msgstr "方片 10"
-
-#: ../src/lib/ar-card.c:266
-msgid "jack of diamonds"
-msgstr "方片 J"
-
-#: ../src/lib/ar-card.c:267
-msgid "queen of diamonds"
-msgstr "方片 Q"
-
-#: ../src/lib/ar-card.c:268
-msgid "king of diamonds"
-msgstr "方片 K"
-
-#: ../src/lib/ar-card.c:269
-msgid "ace of hearts"
-msgstr "红桃 A"
-
-#: ../src/lib/ar-card.c:270
-msgid "two of hearts"
-msgstr "红桃 2"
-
-#: ../src/lib/ar-card.c:271
-msgid "three of hearts"
-msgstr "红桃 3"
-
-#: ../src/lib/ar-card.c:272
-msgid "four of hearts"
-msgstr "红桃 4"
-
-#: ../src/lib/ar-card.c:273
-msgid "five of hearts"
-msgstr "红桃 5"
-
-#: ../src/lib/ar-card.c:274
-msgid "six of hearts"
-msgstr "红桃 6"
-
-#: ../src/lib/ar-card.c:275
-msgid "seven of hearts"
-msgstr "红桃 7"
-
-#: ../src/lib/ar-card.c:276
-msgid "eight of hearts"
-msgstr "红桃 8"
-
-#: ../src/lib/ar-card.c:277
-msgid "nine of hearts"
-msgstr "红桃 9"
-
-#: ../src/lib/ar-card.c:278
-msgid "ten of hearts"
-msgstr "红桃 10"
-
-#: ../src/lib/ar-card.c:279
-msgid "jack of hearts"
-msgstr "红桃 J"
-
-#: ../src/lib/ar-card.c:280
-msgid "queen of hearts"
-msgstr "红桃 Q"
-
-#: ../src/lib/ar-card.c:281
-msgid "king of hearts"
-msgstr "红桃 K"
-
-#: ../src/lib/ar-card.c:282
-msgid "ace of spades"
-msgstr "黑桃 A"
-
-#: ../src/lib/ar-card.c:283
-msgid "two of spades"
-msgstr "黑桃 2"
-
-#: ../src/lib/ar-card.c:284
-msgid "three of spades"
-msgstr "黑桃 3"
-
-#: ../src/lib/ar-card.c:285
-msgid "four of spades"
-msgstr "黑桃 4"
-
-#: ../src/lib/ar-card.c:286
-msgid "five of spades"
-msgstr "黑桃 5"
-
-#: ../src/lib/ar-card.c:287
-msgid "six of spades"
-msgstr "黑桃 6"
-
-#: ../src/lib/ar-card.c:288
-msgid "seven of spades"
-msgstr "黑桃 7"
-
-#: ../src/lib/ar-card.c:289
-msgid "eight of spades"
-msgstr "黑桃 8"
-
-#: ../src/lib/ar-card.c:290
-msgid "nine of spades"
-msgstr "黑桃 9"
-
-#: ../src/lib/ar-card.c:291
-msgid "ten of spades"
-msgstr "黑桃 10"
-
-#: ../src/lib/ar-card.c:292
-msgid "jack of spades"
-msgstr "黑桃 J"
-
-#: ../src/lib/ar-card.c:293
-msgid "queen of spades"
-msgstr "黑桃 Q"
-
-#: ../src/lib/ar-card.c:294
-msgid "king of spades"
-msgstr "黑桃 K"
-
-#: ../src/lib/ar-card.c:311
-msgid "face-down card"
-msgstr "未知牌面"
-
-#. A black joker.
-#: ../src/lib/ar-card.c:322 ../games/sol.scm.h:5
-msgid "black joker"
-msgstr "小王"
-
-#. A red joker.
-#: ../src/lib/ar-card.c:325 ../games/sol.scm.h:16
-msgid "red joker"
-msgstr "大王"
-
-#: ../src/smclient/eggdesktopfile.c:169
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "文件不是一个合法的 .desktop 文件"
-
-#: ../src/smclient/eggdesktopfile.c:192
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "未识别的桌面文件版本“%s”"
-
-#: ../src/smclient/eggdesktopfile.c:966
-#, c-format
-msgid "Starting %s"
-msgstr "启动 %s 中"
-
-#: ../src/smclient/eggdesktopfile.c:1108
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "应用程序在命令行下不接受文件"
-
-#: ../src/smclient/eggdesktopfile.c:1176
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "未识别的启动选项：%d"
-
-#: ../src/smclient/eggdesktopfile.c:1381
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr "无法传递文档 URI 到一个“Type=Link”桌面项"
-
-#: ../src/smclient/eggdesktopfile.c:1402
-#, c-format
-msgid "Not a launchable item"
-msgstr "不是一个可启动的项"
-
-#: ../src/smclient/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "禁用到会话管理器的连接"
-
-#: ../src/smclient/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "指定含有已保存的配置的文件"
-
-#: ../src/smclient/eggsmclient.c:229
-msgid "FILE"
-msgstr "文件"
-
-#: ../src/smclient/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "指定会话管理编号"
-
-#: ../src/smclient/eggsmclient.c:232
-msgid "ID"
-msgstr "编号"
-
-#: ../src/smclient/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "会话管理选项："
-
-#: ../src/smclient/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "显示会话管理选项"
-
-#: ../games/agnes.scm.h:1 ../games/bear_river.scm.h:2
-#: ../games/canfield.scm.h:2 ../games/chessboard.scm.h:2
-#: ../games/eagle_wing.scm.h:2 ../games/glenwood.scm.h:2
-#: ../games/kansas.scm.h:2 ../games/lady_jane.scm.h:2 ../games/plait.scm.h:2
-#: ../games/royal_east.scm.h:2 ../games/terrace.scm.h:1
-msgid "Base Card: Ace"
-msgstr "底牌：A"
-
-#: ../games/agnes.scm.h:2 ../games/bear_river.scm.h:3
-#: ../games/canfield.scm.h:3 ../games/chessboard.scm.h:3
-#: ../games/eagle_wing.scm.h:3 ../games/glenwood.scm.h:3
-#: ../games/kansas.scm.h:3 ../games/lady_jane.scm.h:3 ../games/plait.scm.h:3
-#: ../games/royal_east.scm.h:3 ../games/terrace.scm.h:2
-msgid "Base Card: Jack"
-msgstr "底牌：J"
-
-#: ../games/agnes.scm.h:3 ../games/bear_river.scm.h:4
-#: ../games/canfield.scm.h:4 ../games/chessboard.scm.h:4
-#: ../games/eagle_wing.scm.h:4 ../games/glenwood.scm.h:4
-#: ../games/kansas.scm.h:4 ../games/lady_jane.scm.h:4 ../games/plait.scm.h:4
-#: ../games/royal_east.scm.h:4 ../games/terrace.scm.h:3
-msgid "Base Card: King"
-msgstr "底牌：K"
-
-#: ../games/agnes.scm.h:4 ../games/bear_river.scm.h:5
-#: ../games/canfield.scm.h:5 ../games/chessboard.scm.h:5
-#: ../games/eagle_wing.scm.h:5 ../games/glenwood.scm.h:5
-#: ../games/kansas.scm.h:5 ../games/lady_jane.scm.h:5 ../games/plait.scm.h:5
-#: ../games/royal_east.scm.h:5 ../games/terrace.scm.h:4
-msgid "Base Card: Queen"
-msgstr "底牌：Q"
-
-#: ../games/agnes.scm.h:5 ../games/terrace.scm.h:5
+#: ../games/agnes.scm:72 ../games/terrace.scm:139
+#, scheme-format
 msgid "Base Card: ~a"
 msgstr "底牌：~a"
 
-#: ../games/agnes.scm.h:6 ../games/easthaven.scm.h:1
-#: ../games/labyrinth.scm.h:1 ../games/monte_carlo.scm.h:1
-#: ../games/valentine.scm.h:1
-msgid "Deal more cards"
-msgstr "发更多的牌"
+#: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
+#: ../games/chessboard.scm:94 ../games/eagle-wing.scm:98
+#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
+msgid "Base Card: Ace"
+msgstr "底牌：A"
 
-#: ../games/agnes.scm.h:7 ../games/auld_lang_syne.scm.h:2
-#: ../games/backbone.scm.h:3 ../games/block_ten.scm.h:1
-#: ../games/bristol.scm.h:2 ../games/camelot.scm.h:2 ../games/canfield.scm.h:9
-#: ../games/carpet.scm.h:2 ../games/cover.scm.h:1 ../games/doublets.scm.h:2
-#: ../games/eagle_wing.scm.h:11 ../games/easthaven.scm.h:4
-#: ../games/elevator.scm.h:2 ../games/escalator.scm.h:2
-#: ../games/first_law.scm.h:17 ../games/fortunes.scm.h:4
-#: ../games/forty_thieves.scm.h:3 ../games/glenwood.scm.h:11
-#: ../games/gypsy.scm.h:3 ../games/helsinki.scm.h:1 ../games/hopscotch.scm.h:3
-#: ../games/jamestown.scm.h:1 ../games/jumbo.scm.h:4 ../games/kansas.scm.h:8
-#: ../games/klondike.scm.h:7 ../games/labyrinth.scm.h:2
-#: ../games/lady_jane.scm.h:7 ../games/monte_carlo.scm.h:2
-#: ../games/neighbor.scm.h:1 ../games/plait.scm.h:11 ../games/quatorze.scm.h:1
-#: ../games/royal_east.scm.h:7 ../games/scuffle.scm.h:4
-#: ../games/sir_tommy.scm.h:3 ../games/straight_up.scm.h:5
-#: ../games/terrace.scm.h:18 ../games/thieves.scm.h:2
-#: ../games/thirteen.scm.h:3 ../games/thumb_and_pouch.scm.h:4
-#: ../games/treize.scm.h:2 ../games/triple_peaks.scm.h:4
-#: ../games/union_square.scm.h:2 ../games/westhaven.scm.h:2
-#: ../games/whitehead.scm.h:3 ../games/yield.scm.h:2 ../games/zebra.scm.h:4
+#: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
+#: ../games/chessboard.scm:96 ../games/eagle-wing.scm:100
+#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
+msgid "Base Card: Jack"
+msgstr "底牌：J"
+
+#: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
+#: ../games/chessboard.scm:98 ../games/eagle-wing.scm:102
+#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
+msgid "Base Card: Queen"
+msgstr "底牌：Q"
+
+#: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
+#: ../games/chessboard.scm:100 ../games/eagle-wing.scm:104
+#: ../games/glenwood.scm:90 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
+msgid "Base Card: King"
+msgstr "底牌：K"
+
+#: ../games/agnes.scm:85 ../games/auld-lang-syne.scm:53
+#: ../games/backbone.scm:131 ../games/block-ten.scm:54 ../games/bristol.scm:78
+#: ../games/camelot.scm:77 ../games/canfield.scm:69 ../games/carpet.scm:103
+#: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:86
+#: ../games/easthaven.scm:56 ../games/elevator.scm:98
+#: ../games/escalator.scm:123 ../games/first-law.scm:42
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
+#: ../games/glenwood.scm:72 ../games/gypsy.scm:65 ../games/helsinki.scm:53
+#: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
+#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
+#: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
+#: ../games/straight-up.scm:64 ../games/terrace.scm:159
+#: ../games/thieves.scm:48 ../games/thirteen.scm:105
+#: ../games/thumb-and-pouch.scm:61 ../games/treize.scm:102
+#: ../games/triple-peaks.scm:104 ../games/union-square.scm:96
+#: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
+#: ../games/zebra.scm:71
 msgid "Stock left:"
 msgstr "发牌区剩下："
 
-#: ../games/agnes.scm.h:8 ../games/lady_jane.scm.h:8
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
 msgid "Stock left: 0"
 msgstr "发牌区中剩下：0"
 
-#: ../games/agnes.scm.h:9 ../games/backbone.scm.h:4
-#: ../games/bakers_dozen.scm.h:1 ../games/beleaguered_castle.scm.h:1
-#: ../games/canfield.scm.h:10 ../games/jumbo.scm.h:5
-#: ../games/king_albert.scm.h:1 ../games/lady_jane.scm.h:9
-#: ../games/streets_and_alleys.scm.h:1
+#: ../games/agnes.scm:264 ../games/easthaven.scm:229
+#: ../games/labyrinth.scm:197 ../games/monte-carlo.scm:196
+#: ../games/monte-carlo.scm:201 ../games/valentine.scm:138
+msgid "Deal more cards"
+msgstr "发更多的牌"
+
+#: ../games/agnes.scm:270 ../games/backbone.scm:295
+#: ../games/bakers-dozen.scm:197 ../games/beleaguered-castle.scm:171
+#: ../games/canfield.scm:306 ../games/jumbo.scm:333
+#: ../games/king-albert.scm:292 ../games/lady-jane.scm:428
+#: ../games/streets-and-alleys.scm:182
 msgid "Try rearranging the cards"
 msgstr "尝试重新排列纸牌"
 
-#: ../games/agnes.scm.h:10 ../games/bristol.scm.h:3
-#: ../games/lady_jane.scm.h:10 ../games/royal_east.scm.h:8
-#: ../games/thumb_and_pouch.scm.h:5
-msgid "an empty foundation pile"
-msgstr "空的收牌区牌堆"
+#: ../games/api.scm:284
+msgid "Unknown color"
+msgstr "未知颜色"
 
-#: ../games/athena.scm.h:1 ../games/klondike.scm.h:8 ../games/osmosis.scm.h:5
-#: ../games/saratoga.scm.h:1
+#: ../games/api.scm:392
+msgid "the black joker"
+msgstr "小王"
+
+#: ../games/api.scm:392
+msgid "the red joker"
+msgstr "大王"
+
+#: ../games/api.scm:401
+msgid "the ace of clubs"
+msgstr "梅花 A"
+
+#: ../games/api.scm:402
+msgid "the two of clubs"
+msgstr "梅花 2"
+
+#: ../games/api.scm:403
+msgid "the three of clubs"
+msgstr "梅花 3"
+
+#: ../games/api.scm:404
+msgid "the four of clubs"
+msgstr "梅花 4"
+
+#: ../games/api.scm:405
+msgid "the five of clubs"
+msgstr "梅花 5"
+
+#: ../games/api.scm:406
+msgid "the six of clubs"
+msgstr "梅花 6"
+
+#: ../games/api.scm:407
+msgid "the seven of clubs"
+msgstr "梅花 7"
+
+#: ../games/api.scm:408
+msgid "the eight of clubs"
+msgstr "梅花 8"
+
+#: ../games/api.scm:409
+msgid "the nine of clubs"
+msgstr "梅花 9"
+
+#: ../games/api.scm:410
+msgid "the ten of clubs"
+msgstr "梅花 10"
+
+#: ../games/api.scm:411
+msgid "the jack of clubs"
+msgstr "梅花 J"
+
+#: ../games/api.scm:412
+msgid "the queen of clubs"
+msgstr "梅花 Q"
+
+#: ../games/api.scm:413
+msgid "the king of clubs"
+msgstr "梅花 K"
+
+#: ../games/api.scm:414 ../games/api.scm:429 ../games/api.scm:444
+#: ../games/api.scm:459 ../games/api.scm:460
+msgid "the unknown card"
+msgstr "未知牌面"
+
+#: ../games/api.scm:416
+msgid "the ace of spades"
+msgstr "黑桃 A"
+
+#: ../games/api.scm:417
+msgid "the two of spades"
+msgstr "黑桃 2"
+
+#: ../games/api.scm:418
+msgid "the three of spades"
+msgstr "黑桃 3"
+
+#: ../games/api.scm:419
+msgid "the four of spades"
+msgstr "黑桃 4"
+
+#: ../games/api.scm:420
+msgid "the five of spades"
+msgstr "黑桃 5"
+
+#: ../games/api.scm:421
+msgid "the six of spades"
+msgstr "黑桃 6"
+
+#: ../games/api.scm:422
+msgid "the seven of spades"
+msgstr "黑桃 7"
+
+#: ../games/api.scm:423
+msgid "the eight of spades"
+msgstr "黑桃 8"
+
+#: ../games/api.scm:424
+msgid "the nine of spades"
+msgstr "黑桃 9"
+
+#: ../games/api.scm:425
+msgid "the ten of spades"
+msgstr "黑桃 10"
+
+#: ../games/api.scm:426
+msgid "the jack of spades"
+msgstr "黑桃 J"
+
+#: ../games/api.scm:427
+msgid "the queen of spades"
+msgstr "黑桃 Q"
+
+#: ../games/api.scm:428
+msgid "the king of spades"
+msgstr "黑桃 K"
+
+#: ../games/api.scm:431
+msgid "the ace of hearts"
+msgstr "红桃 A"
+
+#: ../games/api.scm:432
+msgid "the two of hearts"
+msgstr "红桃 2"
+
+#: ../games/api.scm:433
+msgid "the three of hearts"
+msgstr "红桃 3"
+
+#: ../games/api.scm:434
+msgid "the four of hearts"
+msgstr "红桃 4"
+
+#: ../games/api.scm:435
+msgid "the five of hearts"
+msgstr "红桃 5"
+
+#: ../games/api.scm:436
+msgid "the six of hearts"
+msgstr "红桃 6"
+
+#: ../games/api.scm:437
+msgid "the seven of hearts"
+msgstr "红桃 7"
+
+#: ../games/api.scm:438
+msgid "the eight of hearts"
+msgstr "红桃 8"
+
+#: ../games/api.scm:439
+msgid "the nine of hearts"
+msgstr "红桃 9"
+
+#: ../games/api.scm:440
+msgid "the ten of hearts"
+msgstr "红桃 10"
+
+#: ../games/api.scm:441
+msgid "the jack of hearts"
+msgstr "红桃 J"
+
+#: ../games/api.scm:442
+msgid "the queen of hearts"
+msgstr "红桃 Q"
+
+#: ../games/api.scm:443
+msgid "the king of hearts"
+msgstr "红桃 K"
+
+#: ../games/api.scm:446
+msgid "the ace of diamonds"
+msgstr "方片 A"
+
+#: ../games/api.scm:447
+msgid "the two of diamonds"
+msgstr "方片 2"
+
+#: ../games/api.scm:448
+msgid "the three of diamonds"
+msgstr "方片 3"
+
+#: ../games/api.scm:449
+msgid "the four of diamonds"
+msgstr "方片 4"
+
+#: ../games/api.scm:450
+msgid "the five of diamonds"
+msgstr "方片 5"
+
+#: ../games/api.scm:451
+msgid "the six of diamonds"
+msgstr "方片 6"
+
+#: ../games/api.scm:452
+msgid "the seven of diamonds"
+msgstr "方片 7"
+
+#: ../games/api.scm:453
+msgid "the eight of diamonds"
+msgstr "方片 8"
+
+#: ../games/api.scm:454
+msgid "the nine of diamonds"
+msgstr "方片 9"
+
+#: ../games/api.scm:455
+msgid "the ten of diamonds"
+msgstr "方片 10"
+
+#: ../games/api.scm:456
+msgid "the jack of diamonds"
+msgstr "方片 J"
+
+#: ../games/api.scm:457
+msgid "the queen of diamonds"
+msgstr "方片 Q"
+
+#: ../games/api.scm:458
+msgid "the king of diamonds"
+msgstr "方片 K"
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto the foundation."
+msgstr "将 ~a 移入收牌区。"
+
+#: ../games/api.scm:464
+#, scheme-format
+msgid "Move ~a onto an empty foundation slot."
+msgstr "将 ~a 移入空的收牌区。"
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto the tableau."
+msgstr "将 ~a 移动到排列区的空位上"
+
+#: ../games/api.scm:465
+#, scheme-format
+msgid "Move ~a onto an empty tableau slot."
+msgstr "将 ~a 移动到排列区的空位上。"
+
+#: ../games/api.scm:466
+#, scheme-format
+msgid "Move ~a onto an empty edge slot."
+msgstr "将 ~a 移动到边缘空位。"
+
+#: ../games/api.scm:467
+#, scheme-format
+msgid "Move ~a onto an empty corner slot."
+msgstr "将 ~a 移动到角落空位。"
+
+#: ../games/api.scm:468
+#, scheme-format
+msgid "Move ~a onto an empty top slot."
+msgstr "将 ~a 移动到顶部空位。"
+
+#: ../games/api.scm:469
+#, scheme-format
+msgid "Move ~a onto an empty bottom slot."
+msgstr "将 ~a 移动到下方空位。"
+
+#: ../games/api.scm:470
+#, scheme-format
+msgid "Move ~a onto an empty left slot."
+msgstr "将 ~a 移动到左空位。"
+
+#: ../games/api.scm:471
+#, scheme-format
+msgid "Move ~a onto an empty right slot."
+msgstr "将 ~a 移动到右空位。"
+
+#: ../games/api.scm:472
+#, scheme-format
+msgid "Move ~a onto an empty slot."
+msgstr "将 ~a 移动到空位。"
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the black joker."
+msgstr "将 ~a 移动到小王上。"
+
+#: ../games/api.scm:475
+#, scheme-format
+msgid "Move ~a onto the red joker."
+msgstr "将 ~a 移动到大王上。"
+
+#: ../games/api.scm:477
+#, scheme-format
+msgid "Move ~a onto the ace of clubs."
+msgstr "将 ~a 移动到梅花 A 上。"
+
+#: ../games/api.scm:478
+#, scheme-format
+msgid "Move ~a onto the two of clubs."
+msgstr "将 ~a 移动到梅花 2 上。"
+
+#: ../games/api.scm:479
+#, scheme-format
+msgid "Move ~a onto the three of clubs."
+msgstr "将 ~a 移动到梅花 3 上。"
+
+#: ../games/api.scm:480
+#, scheme-format
+msgid "Move ~a onto the four of clubs."
+msgstr "将 ~a 移动到梅花 4 上。"
+
+#: ../games/api.scm:481
+#, scheme-format
+msgid "Move ~a onto the five of clubs."
+msgstr "将 ~a 移动到梅花 5 上。"
+
+#: ../games/api.scm:482
+#, scheme-format
+msgid "Move ~a onto the six of clubs."
+msgstr "将 ~a 移动到梅花 6 上。"
+
+#: ../games/api.scm:483
+#, scheme-format
+msgid "Move ~a onto the seven of clubs."
+msgstr "将 ~a 移动到梅花 7 上。"
+
+#: ../games/api.scm:484
+#, scheme-format
+msgid "Move ~a onto the eight of clubs."
+msgstr "将 ~a 移动到梅花 8 上。"
+
+#: ../games/api.scm:485
+#, scheme-format
+msgid "Move ~a onto the nine of clubs."
+msgstr "将 ~a 移动到梅花 9 上。"
+
+#: ../games/api.scm:486
+#, scheme-format
+msgid "Move ~a onto the ten of clubs."
+msgstr "将 ~a 移动到梅花 10 上。"
+
+#: ../games/api.scm:487
+#, scheme-format
+msgid "Move ~a onto the jack of clubs."
+msgstr "将 ~a 移动到梅花 J 上。"
+
+#: ../games/api.scm:488
+#, scheme-format
+msgid "Move ~a onto the queen of clubs."
+msgstr "将 ~a 移动到梅花 Q 上。"
+
+#: ../games/api.scm:489
+#, scheme-format
+msgid "Move ~a onto the king of clubs."
+msgstr "将 ~a 移动到梅花 K 上。"
+
+#: ../games/api.scm:490 ../games/api.scm:505 ../games/api.scm:520
+#: ../games/api.scm:535 ../games/api.scm:536
+#, scheme-format
+msgid "Move ~a onto the unknown card."
+msgstr "将 ~a 移动到未知纸牌上。"
+
+#: ../games/api.scm:492
+#, scheme-format
+msgid "Move ~a onto the ace of spades."
+msgstr "将 ~a 移动到黑桃 A 上。"
+
+#: ../games/api.scm:493
+#, scheme-format
+msgid "Move ~a onto the two of spades."
+msgstr "将 ~a 移动到黑桃 2 上。"
+
+#: ../games/api.scm:494
+#, scheme-format
+msgid "Move ~a onto the three of spades."
+msgstr "将 ~a 移动到黑桃 3 上。"
+
+#: ../games/api.scm:495
+#, scheme-format
+msgid "Move ~a onto the four of spades."
+msgstr "将 ~a 移动到黑桃 4 上。"
+
+#: ../games/api.scm:496
+#, scheme-format
+msgid "Move ~a onto the five of spades."
+msgstr "将 ~a 移动到黑桃 5 上。"
+
+#: ../games/api.scm:497
+#, scheme-format
+msgid "Move ~a onto the six of spades."
+msgstr "将 ~a 移动到黑桃 6 上。"
+
+#: ../games/api.scm:498
+#, scheme-format
+msgid "Move ~a onto the seven of spades."
+msgstr "将 ~a 移动到黑桃 7 上。"
+
+#: ../games/api.scm:499
+#, scheme-format
+msgid "Move ~a onto the eight of spades."
+msgstr "将 ~a 移动到黑桃 8 上。"
+
+#: ../games/api.scm:500
+#, scheme-format
+msgid "Move ~a onto the nine of spades."
+msgstr "将 ~a 移动到黑桃 9 上。"
+
+#: ../games/api.scm:501
+#, scheme-format
+msgid "Move ~a onto the ten of spades."
+msgstr "将 ~a 移动到黑桃 10 上。"
+
+#: ../games/api.scm:502
+#, scheme-format
+msgid "Move ~a onto the jack of spades."
+msgstr "将 ~a 移动到黑桃 J 上。"
+
+#: ../games/api.scm:503
+#, scheme-format
+msgid "Move ~a onto the queen of spades."
+msgstr "将 ~a 移动到黑桃 Q 上。"
+
+#: ../games/api.scm:504
+#, scheme-format
+msgid "Move ~a onto the king of spades."
+msgstr "将 ~a 移动到黑桃 K 上。"
+
+#: ../games/api.scm:507
+#, scheme-format
+msgid "Move ~a onto the ace of hearts."
+msgstr "将 ~a 移动到红桃 A 上。"
+
+#: ../games/api.scm:508
+#, scheme-format
+msgid "Move ~a onto the two of hearts."
+msgstr "将 ~a 移动到红桃 2 上。"
+
+#: ../games/api.scm:509
+#, scheme-format
+msgid "Move ~a onto the three of hearts."
+msgstr "将 ~a 移动到红桃 3 上。"
+
+#: ../games/api.scm:510
+#, scheme-format
+msgid "Move ~a onto the four of hearts."
+msgstr "将 ~a 移动到红桃 4 上。"
+
+#: ../games/api.scm:511
+#, scheme-format
+msgid "Move ~a onto the five of hearts."
+msgstr "将 ~a 移动到红桃 5 上。"
+
+#: ../games/api.scm:512
+#, scheme-format
+msgid "Move ~a onto the six of hearts."
+msgstr "将 ~a 移动到红桃 6 上。"
+
+#: ../games/api.scm:513
+#, scheme-format
+msgid "Move ~a onto the seven of hearts."
+msgstr "将 ~a 移动到红桃 7 上。"
+
+#: ../games/api.scm:514
+#, scheme-format
+msgid "Move ~a onto the eight of hearts."
+msgstr "将 ~a 移动到红桃 8 上。"
+
+#: ../games/api.scm:515
+#, scheme-format
+msgid "Move ~a onto the nine of hearts."
+msgstr "将 ~a 移动到红桃 9 上。"
+
+#: ../games/api.scm:516
+#, scheme-format
+msgid "Move ~a onto the ten of hearts."
+msgstr "将 ~a 移动到红桃 10 上。"
+
+#: ../games/api.scm:517
+#, scheme-format
+msgid "Move ~a onto the jack of hearts."
+msgstr "将 ~a 移动到红桃 J 上。"
+
+#: ../games/api.scm:518
+#, scheme-format
+msgid "Move ~a onto the queen of hearts."
+msgstr "将 ~a 移动到红桃 Q 上。"
+
+#: ../games/api.scm:519
+#, scheme-format
+msgid "Move ~a onto the king of hearts."
+msgstr "将 ~a 移动到红桃 K 上。"
+
+#: ../games/api.scm:522
+#, scheme-format
+msgid "Move ~a onto the ace of diamonds."
+msgstr "将 ~a 移动到方片 A 上。"
+
+#: ../games/api.scm:523
+#, scheme-format
+msgid "Move ~a onto the two of diamonds."
+msgstr "将 ~a 移动到方片 2 上。"
+
+#: ../games/api.scm:524
+#, scheme-format
+msgid "Move ~a onto the three of diamonds."
+msgstr "将 ~a 移动到方片 3 上。"
+
+#: ../games/api.scm:525
+#, scheme-format
+msgid "Move ~a onto the four of diamonds."
+msgstr "将 ~a 移动到方片 4 上。"
+
+#: ../games/api.scm:526
+#, scheme-format
+msgid "Move ~a onto the five of diamonds."
+msgstr "将 ~a 移动到方片 5 上。"
+
+#: ../games/api.scm:527
+#, scheme-format
+msgid "Move ~a onto the six of diamonds."
+msgstr "将 ~a 移动到方片 6 上。"
+
+#: ../games/api.scm:528
+#, scheme-format
+msgid "Move ~a onto the seven of diamonds."
+msgstr "将 ~a 移动到方片 7 上。"
+
+#: ../games/api.scm:529
+#, scheme-format
+msgid "Move ~a onto the eight of diamonds."
+msgstr "将 ~a 移动到方片 8 上。"
+
+#: ../games/api.scm:530
+#, scheme-format
+msgid "Move ~a onto the nine of diamonds."
+msgstr "将 ~a 移动到方片 9 上。"
+
+#: ../games/api.scm:531
+#, scheme-format
+msgid "Move ~a onto the ten of diamonds."
+msgstr "将 ~a 移动到方片 10 上。"
+
+#: ../games/api.scm:532
+#, scheme-format
+msgid "Move ~a onto the jack of diamonds."
+msgstr "将 ~a 移动到方片 J 上。"
+
+#: ../games/api.scm:533
+#, scheme-format
+msgid "Move ~a onto the queen of diamonds."
+msgstr "将 ~a 移动到方片 Q 上。"
+
+#: ../games/api.scm:534
+#, scheme-format
+msgid "Move ~a onto the king of diamonds."
+msgstr "将 ~a 移动到方片 K 上。"
+
+#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
+#: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "发三张牌"
 
-#: ../games/auld_lang_syne.scm.h:1 ../games/bristol.scm.h:1
-#: ../games/first_law.scm.h:1 ../games/fortunes.scm.h:2
-#: ../games/lady_jane.scm.h:6 ../games/scuffle.scm.h:1 ../games/spider.scm.h:1
-#: ../games/thumb_and_pouch.scm.h:1 ../games/zebra.scm.h:1
+#: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
+#: ../games/first-law.scm:127 ../games/fortunes.scm:161
+#: ../games/lady-jane.scm:233 ../games/scuffle.scm:140 ../games/spider.scm:282
+#: ../games/thumb-and-pouch.scm:260 ../games/zebra.scm:217
 msgid "Deal another round"
 msgstr "发另一轮牌"
 
-#: ../games/backbone.scm.h:1 ../games/camelot.scm.h:1
-#: ../games/canfield.scm.h:6 ../games/carpet.scm.h:1 ../games/glenwood.scm.h:6
-#: ../games/klondike.scm.h:2 ../games/osmosis.scm.h:1 ../games/plait.scm.h:6
-#: ../games/straight_up.scm.h:1 ../games/terrace.scm.h:8
-msgid "Deal a new card from the deck"
-msgstr "从牌垛中发一张新牌"
-
-#: ../games/backbone.scm.h:2 ../games/doublets.scm.h:1
-#: ../games/eagle_wing.scm.h:9 ../games/gaps.scm.h:7 ../games/glenwood.scm.h:9
-#: ../games/jumbo.scm.h:3 ../games/klondike.scm.h:5 ../games/plait.scm.h:10
-#: ../games/scuffle.scm.h:2 ../games/straight_up.scm.h:3
-#: ../games/terrace.scm.h:13 ../games/thumb_and_pouch.scm.h:3
-#: ../games/zebra.scm.h:3
+#: ../games/backbone.scm:127 ../games/doublets.scm:71
+#: ../games/eagle-wing.scm:108 ../games/gaps.scm:106 ../games/glenwood.scm:76
+#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
+#: ../games/scuffle.scm:55 ../games/straight-up.scm:72
+#: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
+#: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "剩余重发次数："
 
-#: ../games/backbone.scm.h:5 ../games/terrace.scm.h:23
-msgid "an empty slot on the foundation"
-msgstr "收牌区上的一个空位"
-
-#: ../games/backbone.scm.h:6 ../games/terrace.scm.h:24
+#: ../games/backbone.scm:234 ../games/terrace.scm:355
 msgid "an empty slot on the tableau"
 msgstr "排列区上的一个空位"
 
-#: ../games/bakers_dozen.scm.h:2 ../games/chessboard.scm.h:8
-#: ../games/easthaven.scm.h:5 ../games/eight_off.scm.h:2
-#: ../games/fortress.scm.h:2 ../games/forty_thieves.scm.h:4
-#: ../games/gypsy.scm.h:4 ../games/jumbo.scm.h:6 ../games/kansas.scm.h:9
-#: ../games/king_albert.scm.h:2 ../games/seahaven.scm.h:2
-#: ../games/streets_and_alleys.scm.h:2 ../games/westhaven.scm.h:3
-#: ../games/whitehead.scm.h:4 ../games/yukon.scm.h:1
+#: ../games/backbone.scm:235 ../games/terrace.scm:293
+msgid "an empty slot on the foundation"
+msgstr "收牌区上的一个空位"
+
+#: ../games/backbone.scm:293 ../games/camelot.scm:209
+#: ../games/canfield.scm:228 ../games/carpet.scm:175 ../games/glenwood.scm:250
+#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/osmosis.scm:215 ../games/plait.scm:103
+#: ../games/straight-up.scm:240 ../games/terrace.scm:361
+msgid "Deal a new card from the deck"
+msgstr "从牌垛中发一张新牌"
+
+#: ../games/bakers-dozen.scm:156 ../games/easthaven.scm:188
+#: ../games/eight-off.scm:180 ../games/fortress.scm:166
+#: ../games/king-albert.scm:258 ../games/seahaven.scm:245
+#: ../games/streets-and-alleys.scm:158 ../games/yukon.scm:244
 msgid "an empty foundation"
 msgstr "空的收牌区"
 
-#: ../games/bear_river.scm.h:1 ../games/canfield.scm.h:1
-#: ../games/chessboard.scm.h:1 ../games/eagle_wing.scm.h:1
-#: ../games/glenwood.scm.h:1 ../games/kansas.scm.h:1 ../games/plait.scm.h:1
+#: ../games/bear-river.scm:88 ../games/canfield.scm:79
+#: ../games/chessboard.scm:92 ../games/eagle-wing.scm:96
+#: ../games/glenwood.scm:82 ../games/kansas.scm:86 ../games/plait.scm:240
 msgid "Base Card: "
 msgstr "底牌："
 
-#: ../games/bear_river.scm.h:6
-msgid "Move something onto an empty right-hand tableau slot"
-msgstr "将一些牌移入右手边排列区的空位"
-
-#: ../games/bear_river.scm.h:7
+#: ../games/bear-river.scm:160
 msgid "an empty foundation slot"
 msgstr "空的收牌区"
 
-#: ../games/camelot.scm.h:3
-msgid "an empty bottom slot"
-msgstr "下方空位"
+#: ../games/bear-river.scm:209
+msgid "Move something onto an empty right-hand tableau slot"
+msgstr "将一些牌移入右手边排列区的空位"
 
-#: ../games/camelot.scm.h:4
-msgid "an empty corner slot"
-msgstr "角落空位"
+#: ../games/camelot.scm:168
+msgid "Remove the ten of clubs."
+msgstr "移除梅花 10。"
 
-#: ../games/camelot.scm.h:5
-msgid "an empty left slot"
-msgstr "左侧空位"
+#: ../games/camelot.scm:169
+msgid "Remove the ten of diamonds."
+msgstr "移除方片 10。"
 
-#: ../games/camelot.scm.h:6
-msgid "an empty right slot"
-msgstr "右侧空位"
+#: ../games/camelot.scm:170
+msgid "Remove the ten of hearts."
+msgstr "移除红桃 10。"
 
-#: ../games/camelot.scm.h:7 ../games/diamond_mine.scm.h:1
-#: ../games/klondike.scm.h:10 ../games/odessa.scm.h:1 ../games/osmosis.scm.h:6
-#: ../games/pileon.scm.h:1 ../games/scorpion.scm.h:2
-#: ../games/ten_across.scm.h:4 ../games/union_square.scm.h:3
-#: ../games/yukon.scm.h:2
-msgid "an empty slot"
-msgstr "空位"
+#: ../games/camelot.scm:171
+msgid "Remove the ten of spades."
+msgstr "移除黑桃 10。"
 
-#: ../games/camelot.scm.h:8
-msgid "an empty top slot"
-msgstr "上方空位"
-
-#: ../games/camelot.scm.h:9 ../games/helsinki.scm.h:2
-#: ../games/neighbor.scm.h:2 ../games/thirteen.scm.h:4 ../games/treize.scm.h:3
-#: ../games/yield.scm.h:3
-msgid "itself"
-msgstr "它自己"
-
-#: ../games/canfield.scm.h:7 ../games/eagle_wing.scm.h:7
-#: ../games/glenwood.scm.h:8 ../games/plait.scm.h:7
-#: ../games/straight_up.scm.h:2 ../games/thumb_and_pouch.scm.h:2
-#: ../games/zebra.scm.h:2
-msgid "Move waste back to stock"
-msgstr "将牌从废牌堆放回发牌区"
-
-#: ../games/canfield.scm.h:8 ../games/eagle_wing.scm.h:10
-#: ../games/kansas.scm.h:7 ../games/straight_up.scm.h:4
+#: ../games/canfield.scm:73 ../games/eagle-wing.scm:90 ../games/kansas.scm:80
+#: ../games/straight-up.scm:68
 msgid "Reserve left:"
 msgstr "保留区剩下："
 
-#: ../games/canfield.scm.h:11 ../games/glenwood.scm.h:12
+#: ../games/canfield.scm:229 ../games/eagle-wing.scm:337
+#: ../games/glenwood.scm:253 ../games/plait.scm:106
+#: ../games/straight-up.scm:243 ../games/thumb-and-pouch.scm:263
+#: ../games/zebra.scm:220
+msgid "Move waste back to stock"
+msgstr "将牌从废牌堆放回发牌区"
+
+#: ../games/canfield.scm:235 ../games/glenwood.scm:283
 msgid "empty slot on foundation"
 msgstr "收牌区的空位"
 
-#: ../games/canfield.scm.h:12
+#: ../games/canfield.scm:257
 msgid "empty space on tableau"
 msgstr "排列区的空白空间"
 
-#: ../games/chessboard.scm.h:6
+#: ../games/chessboard.scm:198
 msgid "Move a card to the Foundation"
 msgstr "将牌移入收牌区"
 
-#: ../games/chessboard.scm.h:7 ../games/fortress.scm.h:1
+#: ../games/chessboard.scm:260 ../games/fortress.scm:215
 msgid "Move something into the empty Tableau slot"
 msgstr "将牌移入空的收牌区"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:2
-msgid "Consistency is key"
-msgstr "一致性是关键"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:4
-msgid "Fishing wire makes bad dental floss"
-msgstr "钓鱼钢丝弄坏牙用棉花"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:6
-msgid "Have you read the help file?"
-msgstr "您读过帮助文件了吗？"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:8
-msgid "I could sure use a backrub right about now..."
-msgstr "我现在肯定可以使用 backrub ……"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:10
-msgid "If you're ever lost and alone in the woods, hug a tree"
-msgstr "假如您在丛林中迷路，就拥抱大树吧"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:12
+#: ../games/clock.scm:173
 msgid ""
 "Just because a crosswalk looks like a hopscotch board doesn't mean it is one"
 msgstr "小朋友，人行横道可不是画出来给您们跳房子用的。"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:14
+#: ../games/clock.scm:175
 msgid "Look both ways before you cross the street"
 msgstr "在您穿过马路前要看看路的两边"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:16
-msgid "Monitors won't give you Vitamin D -- but sunlight will..."
-msgstr "显示器不会给您维生素 D -- 但阳光会..."
+#: ../games/clock.scm:177
+msgid "Have you read the help file?"
+msgstr "您读过帮助文件了吗？"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:18
-msgid "Never blow in a dog's ear"
-msgstr "绝不要在狗耳朵上吹气"
-
-#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:20
+#: ../games/clock.scm:179
 msgid "Odessa is a better game.  Really."
 msgstr "敖德萨是个更好的游戏。真的。"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:22
+#: ../games/clock.scm:181
 msgid "Tourniquets are not recommended unless in the direst emergency"
 msgstr "除非绝对紧急的情况不建议使用脉压器"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-#: ../games/clock.scm.h:24
+#: ../games/clock.scm:183
+msgid "I could sure use a backrub right about now..."
+msgstr "我现在肯定可以使用 backrub ……"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:185
+msgid "Monitors won't give you Vitamin D -- but sunlight will..."
+msgstr "显示器不会给您维生素 D -- 但阳光会..."
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:187
+msgid "If you're ever lost and alone in the woods, hug a tree"
+msgstr "假如您在丛林中迷路，就拥抱大树吧"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:189
+msgid "Fishing wire makes bad dental floss"
+msgstr "钓鱼钢丝弄坏牙用棉花"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:191
+msgid "Consistency is key"
+msgstr "一致性是关键"
+
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:193
 msgid "When without a stapler, a staple and a ruler will work"
 msgstr "在没有钉书机的时候，钉书钉和尺子就够用"
 
-#: ../games/cruel.scm.h:1
+#. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
+#: ../games/clock.scm:195
+msgid "Never blow in a dog's ear"
+msgstr "绝不要在狗耳朵上吹气"
+
+#: ../games/cruel.scm:157
+#, scheme-format
 msgid "Cards remaining: ~a"
 msgstr "还剩牌：~a"
 
-#: ../games/cruel.scm.h:2
+#: ../games/cruel.scm:200
 msgid "Redeal."
 msgstr "重新发牌。"
 
-#: ../games/diamond_mine.scm.h:2
+#: ../games/diamond-mine.scm:244 ../games/diamond-mine.scm:296
+#: ../games/odessa.scm:180 ../games/odessa.scm:214 ../games/pileon.scm:158
+#: ../games/pileon.scm:160 ../games/scorpion.scm:183
+#: ../games/ten-across.scm:180 ../games/ten-across.scm:227
+#: ../games/yukon.scm:204
+msgid "an empty slot"
+msgstr "空位"
+
+#: ../games/diamond-mine.scm:253
 msgid "the foundation pile"
 msgstr "收牌区牌堆"
 
-#: ../games/eagle_wing.scm.h:6 ../games/elevator.scm.h:1
-#: ../games/escalator.scm.h:1 ../games/royal_east.scm.h:6
-#: ../games/thirteen.scm.h:1 ../games/treize.scm.h:1
-#: ../games/triple_peaks.scm.h:1 ../games/union_square.scm.h:1
-#: ../games/westhaven.scm.h:1 ../games/yield.scm.h:1
-msgid "Deal a card"
-msgstr "发一张牌"
+#: ../games/doublets.scm:157
+msgid "You are searching for an ace."
+msgstr "您正在寻找一个 A。"
 
-#: ../games/eagle_wing.scm.h:8
+#: ../games/doublets.scm:158
+msgid "You are searching for a two."
+msgstr "您正在寻找一个 2。"
+
+#: ../games/doublets.scm:159
+msgid "You are searching for a three."
+msgstr "您正在寻找一个 3。"
+
+#: ../games/doublets.scm:160
+msgid "You are searching for a four."
+msgstr "您正在寻找一个 4。"
+
+#: ../games/doublets.scm:161
+msgid "You are searching for a five."
+msgstr "您正在寻找一个 5。"
+
+#: ../games/doublets.scm:162
+msgid "You are searching for a six."
+msgstr "您正在寻找一个 6。"
+
+#: ../games/doublets.scm:163
+msgid "You are searching for a seven."
+msgstr "您正在寻找一个 7。"
+
+#: ../games/doublets.scm:164
+msgid "You are searching for an eight."
+msgstr "您正在寻找一个 8。"
+
+#: ../games/doublets.scm:165
+msgid "You are searching for a nine."
+msgstr "您正在寻找一个 9。"
+
+#: ../games/doublets.scm:166
+msgid "You are searching for a ten."
+msgstr "您正在寻找一个 10。"
+
+#: ../games/doublets.scm:167
+msgid "You are searching for a jack."
+msgstr "您正在寻找一个 J。"
+
+#: ../games/doublets.scm:168
+msgid "You are searching for a queen."
+msgstr "您正在寻找一个 Q。"
+
+#: ../games/doublets.scm:169
+msgid "You are searching for a king."
+msgstr "您正在寻找一个 K。"
+
+#: ../games/doublets.scm:170
+msgid "Unknown value"
+msgstr "未知的值"
+
+#: ../games/eagle-wing.scm:269
+#, scheme-format
 msgid "Move ~a to an empty foundation"
 msgstr "将 ~a 移入空的收牌区"
 
-#: ../games/eagle_wing.scm.h:12
+#: ../games/eagle-wing.scm:302
 msgid "an empty slot on tableau"
 msgstr "排列区的空位"
 
-#: ../games/easthaven.scm.h:2
+#: ../games/eagle-wing.scm:334 ../games/elevator.scm:365
+#: ../games/escalator.scm:224 ../games/royal-east.scm:193
+#: ../games/thirteen.scm:415 ../games/treize.scm:301
+#: ../games/triple-peaks.scm:344 ../games/union-square.scm:464
+#: ../games/westhaven.scm:196 ../games/yield.scm:317
+msgid "Deal a card"
+msgstr "发一张牌"
+
+#: ../games/easthaven.scm:224
 msgid "Move a King on to the empty tableau slot"
 msgstr "将王移动到排列区的空位上"
 
-#: ../games/easthaven.scm.h:3 ../games/klondike.scm.h:3
+#: ../games/easthaven.scm:236 ../games/klondike.scm:270
+#: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "现在没有可用的提示"
 
-#: ../games/eight_off.scm.h:1 ../games/seahaven.scm.h:1
-msgid "Move something on to an empty reserve"
-msgstr "把合适的牌移到空的保留区"
-
-#: ../games/eight_off.scm.h:3 ../games/seahaven.scm.h:3
+#: ../games/eight-off.scm:233 ../games/seahaven.scm:300
 msgid "an empty tableau"
 msgstr "空的排列区"
 
-#: ../games/eliminator.scm.h:1
-#, fuzzy
-#| msgid "the foundation"
+#: ../games/eight-off.scm:249 ../games/seahaven.scm:316
+msgid "Move something on to an empty reserve"
+msgstr "把合适的牌移到空的保留区"
+
+#: ../games/eliminator.scm:176
+msgid "Six Foundations"
+msgstr "6 个收牌区"
+
+#: ../games/eliminator.scm:177
 msgid "Five Foundations"
-msgstr "收牌区"
+msgstr "5 个收牌区"
 
-#: ../games/eliminator.scm.h:2
-#, fuzzy
-#| msgctxt "slot type"
-#| msgid "foundation"
+#: ../games/eliminator.scm:178
 msgid "Four Foundations"
-msgstr "收牌区"
+msgstr "4 个收牌区"
 
-#: ../games/eliminator.scm.h:3
+#: ../games/eliminator.scm:196
+msgid "Play a card to foundation."
+msgstr "发牌到收牌区。"
+
+#: ../games/eliminator.scm:197
 #, fuzzy
-#| msgid "Track moves"
 msgid "No moves."
 msgstr "跟踪着法"
 
-#: ../games/eliminator.scm.h:4
-#, fuzzy
-#| msgid "Move a card to the Foundation"
-msgid "Play a card to foundation."
-msgstr "将牌移入收牌区"
-
-#: ../games/eliminator.scm.h:5
-#, fuzzy
-#| msgctxt "slot type"
-#| msgid "foundation"
-msgid "Six Foundations"
-msgstr "收牌区"
-
-#: ../games/first_law.scm.h:2
-msgid "I'm not sure"
-msgstr "我不确定"
-
-#: ../games/first_law.scm.h:3
+#: ../games/first-law.scm:139
 msgid "Remove the aces"
 msgstr "移去 A"
 
-#: ../games/first_law.scm.h:4
-msgid "Remove the eights"
-msgstr "移去 8"
-
-#: ../games/first_law.scm.h:5
-msgid "Remove the fives"
-msgstr "移去 5"
-
-#: ../games/first_law.scm.h:6
-msgid "Remove the fours"
-msgstr "移去 4"
-
-#: ../games/first_law.scm.h:7
-msgid "Remove the jacks"
-msgstr "移去 J"
-
-#: ../games/first_law.scm.h:8
-msgid "Remove the kings"
-msgstr "移去 K"
-
-#: ../games/first_law.scm.h:9
-msgid "Remove the nines"
-msgstr "移去 9"
-
-#: ../games/first_law.scm.h:10
-msgid "Remove the queens"
-msgstr "移去 Q"
-
-#: ../games/first_law.scm.h:11
-msgid "Remove the sevens"
-msgstr "移去 7"
-
-#: ../games/first_law.scm.h:12
-msgid "Remove the sixes"
-msgstr "移去 6"
-
-#: ../games/first_law.scm.h:13
-msgid "Remove the tens"
-msgstr "移去 10"
-
-#: ../games/first_law.scm.h:14
-msgid "Remove the threes"
-msgstr "移去 3"
-
-#: ../games/first_law.scm.h:15
+#: ../games/first-law.scm:141
 msgid "Remove the twos"
 msgstr "移去 2"
 
-#: ../games/first_law.scm.h:16
+#: ../games/first-law.scm:143
+msgid "Remove the threes"
+msgstr "移去 3"
+
+#: ../games/first-law.scm:145
+msgid "Remove the fours"
+msgstr "移去 4"
+
+#: ../games/first-law.scm:147
+msgid "Remove the fives"
+msgstr "移去 5"
+
+#: ../games/first-law.scm:149
+msgid "Remove the sixes"
+msgstr "移去 6"
+
+#: ../games/first-law.scm:151
+msgid "Remove the sevens"
+msgstr "移去 7"
+
+#: ../games/first-law.scm:153
+msgid "Remove the eights"
+msgstr "移去 8"
+
+#: ../games/first-law.scm:155
+msgid "Remove the nines"
+msgstr "移去 9"
+
+#: ../games/first-law.scm:157
+msgid "Remove the tens"
+msgstr "移去 10"
+
+#: ../games/first-law.scm:159
+msgid "Remove the jacks"
+msgstr "移去 J"
+
+#: ../games/first-law.scm:161
+msgid "Remove the queens"
+msgstr "移去 Q"
+
+#: ../games/first-law.scm:163
+msgid "Remove the kings"
+msgstr "移去 K"
+
+#: ../games/first-law.scm:165
+msgid "I'm not sure"
+msgstr "我不确定"
+
+#: ../games/first-law.scm:185
 msgid "Return cards to stock"
 msgstr "将牌放回发牌区"
 
-#: ../games/fortunes.scm.h:1 ../games/klondike.scm.h:1
-msgid "Consider moving something into an empty slot"
-msgstr "考虑将某物移动到空位上"
-
-#: ../games/fortunes.scm.h:3
+#: ../games/fortunes.scm:135 ../games/fortunes.scm:138
+#, scheme-format
 msgid "Move ~a off the board"
 msgstr "将 ~a 从盘面上移出"
 
-#: ../games/forty_thieves.scm.h:1
-msgid "Bug! make-hint called on false move."
-msgstr "出错了！make-hint 调用了错误的走法。"
+#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+msgid "Consider moving something into an empty slot"
+msgstr "考虑将某物移动到空位上"
 
-#: ../games/forty_thieves.scm.h:2
+#: ../games/forty-thieves.scm:374
 msgid "Deal a card from stock"
 msgstr "从牌垛中发一张牌"
 
-#: ../games/forty_thieves.scm.h:5
-msgid "an empty space"
-msgstr "一个空位"
-
-#: ../games/freecell.scm.h:1
+#: ../games/freecell.scm:625
 msgid "No moves are possible. Undo or start again."
 msgstr "没有下着，撤消或重开一局。"
 
-#: ../games/freecell.scm.h:2
+#: ../games/freecell.scm:631
 msgid "The game has no solution. Undo or start again."
 msgstr "游戏无解，撤消或重开一局。"
 
-#: ../games/freecell.scm.h:3
+#: ../games/freecell.scm:633
 msgid "an empty reserve"
 msgstr "空的保留区"
 
-#: ../games/freecell.scm.h:4
-msgid "an open tableau"
-msgstr "排列区空位"
-
-#: ../games/freecell.scm.h:5 ../games/terrace.scm.h:26
+#: ../games/freecell.scm:634 ../games/napoleons-tomb.scm:338
+#: ../games/terrace.scm:286
 msgid "the foundation"
 msgstr "收牌区"
 
-#: ../games/gaps.scm.h:1
-msgid "Add to the sequence in row ~a."
-msgstr "向第 ~a 行序列上添加一张牌。"
+#: ../games/freecell.scm:635
+msgid "an open tableau"
+msgstr "排列区空位"
 
-#: ../games/gaps.scm.h:2
+#: ../games/gaps.scm:278
 msgid "Double click any card to redeal."
 msgstr "双击任意一张牌重发。"
 
-#: ../games/gaps.scm.h:3
+#: ../games/gaps.scm:284
 msgid "No hint available."
 msgstr "没有可用提示。"
 
-#: ../games/gaps.scm.h:4
+#: ../games/gaps.scm:293
+#, scheme-format
 msgid "Place a two in the leftmost slot of row ~a."
 msgstr "将一张 2 放在第 ~a 行最左边在空位上。"
 
-#: ../games/gaps.scm.h:5
+#: ../games/gaps.scm:297
+#, scheme-format
+msgid "Add to the sequence in row ~a."
+msgstr "向第 ~a 行序列上添加一张牌。"
+
+#: ../games/gaps.scm:316
+#, scheme-format
 msgid "Place the ~a next to ~a."
 msgstr "将 ~a 放在 ~a 旁。"
 
-#: ../games/gaps.scm.h:6
+#: ../games/gaps.scm:325
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "重发时随机放置空位"
 
-#: ../games/giant.scm.h:1
-msgid "Alternating colors"
-msgstr "替换颜色"
-
-#: ../games/giant.scm.h:2
-msgid "Deal a row"
-msgstr "发一行牌"
-
-#: ../games/giant.scm.h:3
+#: ../games/giant.scm:76
+#, scheme-format
 msgid "Deals left: ~a"
 msgstr "剩余可发牌次数：~a"
 
-#: ../games/giant.scm.h:4
-msgid "Same suit"
-msgstr "同花色"
+#: ../games/giant.scm:252
+msgid "Deal a row"
+msgstr "发一行牌"
 
-#: ../games/giant.scm.h:5
-msgid "Try dealing a row of cards"
-msgstr "尝试发放一行牌"
-
-#: ../games/giant.scm.h:6
-msgid "Try moving a card to the reserve"
-msgstr "尝试在将一张牌挪到保留区"
-
-#: ../games/giant.scm.h:7 ../games/spider.scm.h:7
-msgid "Try moving card piles around"
-msgstr "尝试在把牌在牌堆间来回移动"
-
-#: ../games/giant.scm.h:8
+#: ../games/giant.scm:259
 msgid "an empty foundation place"
 msgstr "空的收牌区位置"
 
-#: ../games/giant.scm.h:9
+#: ../games/giant.scm:260
 msgid "an empty tableau place"
 msgstr "空的排列区位置"
 
-#: ../games/glenwood.scm.h:7
-msgid "Move a card from the reserve on to the empty tableau slot"
-msgstr "将一张牌从保留区中移入排列区的空位上"
+#: ../games/giant.scm:287
+msgid "Try moving a card to the reserve"
+msgstr "尝试在将一张牌挪到保留区"
 
-#: ../games/glenwood.scm.h:10
+#: ../games/giant.scm:288
+msgid "Try dealing a row of cards"
+msgstr "尝试发放一行牌"
+
+#. this isn't great, but it will get around the premature end-of-game call
+#: ../games/giant.scm:290 ../games/spider.scm:301
+msgid "Try moving card piles around"
+msgstr "尝试在把牌在牌堆间来回移动"
+
+#: ../games/giant.scm:295
+msgid "Same suit"
+msgstr "同花色"
+
+#: ../games/giant.scm:296
+msgid "Alternating colors"
+msgstr "替换颜色"
+
+#: ../games/glenwood.scm:258
 msgid "Select a card from the reserve for first foundation pile"
 msgstr "从保留区中选一张牌放入第一收牌区"
 
-#: ../games/glenwood.scm.h:13
+#: ../games/glenwood.scm:359
+msgid "Move a card from the reserve on to the empty tableau slot"
+msgstr "将一张牌从保留区中移入排列区的空位上"
+
+#: ../games/glenwood.scm:361
 msgid "on to the empty tableau slot"
 msgstr "放在排列区的空位上"
 
-#: ../games/golf.scm.h:1 ../games/hopscotch.scm.h:1 ../games/jumbo.scm.h:1
-#: ../games/kansas.scm.h:6 ../games/sir_tommy.scm.h:1
-#: ../games/whitehead.scm.h:1
-msgid "Deal another card"
-msgstr "发另一张牌"
-
-#: ../games/golf.scm.h:2 ../games/osmosis.scm.h:4 ../games/spider.scm.h:6
+#: ../games/golf.scm:67 ../games/osmosis.scm:68 ../games/spider.scm:88
+#, scheme-format
 msgid "Stock left: ~a"
 msgstr "发牌区中还剩下：~a 张牌"
 
-#: ../games/gypsy.scm.h:1
-msgid "Deal another hand"
-msgstr "发另一手牌"
+#: ../games/golf.scm:139 ../games/hopscotch.scm:132 ../games/jumbo.scm:298
+#: ../games/kansas.scm:219 ../games/sir-tommy.scm:134
+#: ../games/whitehead.scm:252
+msgid "Deal another card"
+msgstr "发另一张牌"
 
-#: ../games/gypsy.scm.h:2
+#: ../games/gypsy.scm:216
 msgid "Move a card or build of cards on to the empty slot"
 msgstr "把一张牌或是牌的组堆移到空位上"
 
-#: ../games/hopscotch.scm.h:2
+#: ../games/gypsy.scm:339
+msgid "Deal another hand"
+msgstr "发另一手牌"
+
+#: ../games/helsinki.scm:116 ../games/neighbor.scm:142
+#: ../games/thirteen.scm:391 ../games/treize.scm:285 ../games/yield.scm:301
+msgid "itself"
+msgstr "它自己"
+
+#: ../games/hopscotch.scm:128
 msgid "Move card from waste"
 msgstr "将牌放到废牌堆"
 
-#: ../games/jumbo.scm.h:2
+#: ../games/jumbo.scm:301
 msgid "Move waste to stock"
 msgstr "将牌从废牌堆放回发牌区"
 
-#: ../games/jumbo.scm.h:7 ../games/kansas.scm.h:10
-#: ../games/king_albert.scm.h:3 ../games/lady_jane.scm.h:11
-#: ../games/straight_up.scm.h:6
+#: ../games/king-albert.scm:193 ../games/lady-jane.scm:397
+#: ../games/lady-jane.scm:409
 msgid "an empty tableau slot"
 msgstr "排列区的空位"
 
-#: ../games/kings_audience.scm.h:1
-msgid "Deal a new card"
-msgstr "发一张新牌"
-
-#: ../games/kings_audience.scm.h:2
+#: ../games/kings-audience.scm:88
+#, scheme-format
 msgid "Stock remaining: ~a"
 msgstr "发牌区中剩下：~a"
 
-#: ../games/klondike.scm.h:4
-msgid "No redeals"
-msgstr "无法重新发牌"
+#: ../games/kings-audience.scm:229
+msgid "Deal a new card"
+msgstr "发一张新牌"
 
-#: ../games/klondike.scm.h:6
-msgid "Single card deals"
-msgstr "单张发牌"
-
-#: ../games/klondike.scm.h:9
+#: ../games/klondike.scm:269
 msgid "Try moving cards down from the foundation"
 msgstr "可以尝试从收牌区取回一些牌"
 
-#: ../games/lady_jane.scm.h:1 ../games/royal_east.scm.h:1
+#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+msgid "Single card deals"
+msgstr "单张发牌"
+
+#: ../games/klondike.scm:294
+msgid "No redeals"
+msgstr "无法重新发牌"
+
+#: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "底牌："
 
-#: ../games/maze.scm.h:1
+#: ../games/lady-jane.scm:253 ../games/thumb-and-pouch.scm:197
+msgid "an empty foundation pile"
+msgstr "空的收牌区牌堆"
+
+#: ../games/maze.scm:147
 msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
 msgstr "尝试依当前布局将牌按最合适的顺序排列。"
 
-#: ../games/osmosis.scm.h:2
-msgid "Deal new cards from the deck"
-msgstr "从牌垛中发新牌"
+#: ../games/napoleons-tomb.scm:373
+msgid "Autoplay"
+msgstr ""
 
-#: ../games/osmosis.scm.h:3
+#: ../games/osmosis.scm:74
+#, scheme-format
 msgid "Redeals left: ~a"
 msgstr "剩余可重发次数：~a"
 
-#: ../games/pileon.scm.h:2 ../games/terrace.scm.h:25
+#: ../games/osmosis.scm:214
+msgid "Deal new cards from the deck"
+msgstr "从牌垛中发新牌"
+
+#: ../games/pileon.scm:158 ../games/pileon.scm:160 ../games/terrace.scm:286
 msgid "something"
 msgstr "一些牌"
 
-#: ../games/plait.scm.h:8
-msgid "Move ~a from the stock to an empty edge or tableau slot"
-msgstr "将 ~a 从发牌区移至边沿的空位或是排列区槽内"
-
-#: ../games/plait.scm.h:9
-msgid "Move ~a to an empty field"
-msgstr "移动 ~a 到空位"
-
-#: ../games/poker.scm.h:1
+#: ../games/poker.scm:297
 msgid "Place cards on to the Tableau to form poker hands"
 msgstr "将牌放置到排列区以组成一手牌"
 
-#: ../games/poker.scm.h:2
+#: ../games/poker.scm:300
 msgid "Shuffle mode"
 msgstr "乱序模式"
 
-#: ../games/royal_east.scm.h:9 ../games/thumb_and_pouch.scm.h:6
-#: ../games/westhaven.scm.h:4
-msgid "an empty tableau pile"
-msgstr "空的排列区牌堆"
-
-#: ../games/scorpion.scm.h:1
+#: ../games/scorpion.scm:144
 msgid "Deal the cards"
 msgstr "发牌"
 
-#: ../games/scuffle.scm.h:3
+#: ../games/scuffle.scm:142
 msgid "Reshuffle cards"
 msgstr "重新洗牌"
 
-#: ../games/sir_tommy.scm.h:2
+#: ../games/sir-tommy.scm:130
 msgid "Move waste on to a reserve slot"
 msgstr "将废牌放至保留区"
 
-#: ../games/sir_tommy.scm.h:4
-msgid "empty foundation"
-msgstr "空的收牌区"
-
-#: ../games/sol.scm.h:1
-msgid "Unknown color"
-msgstr "未知颜色"
-
-#: ../games/sol.scm.h:2
-msgid "Unknown suit"
-msgstr "未知花色"
-
-#: ../games/sol.scm.h:3
-msgid "Unknown value"
-msgstr "未知的值"
-
-#: ../games/sol.scm.h:4
-msgid "ace"
-msgstr "A"
-
-#: ../games/sol.scm.h:6
-msgid "clubs"
-msgstr "梅花"
-
-#: ../games/sol.scm.h:7
-msgid "diamonds"
-msgstr "方片"
-
-#: ../games/sol.scm.h:8
-msgid "eight"
-msgstr "8"
-
-#: ../games/sol.scm.h:9
-msgid "five"
-msgstr "5"
-
-#: ../games/sol.scm.h:10
-msgid "four"
-msgstr "4"
-
-#: ../games/sol.scm.h:11
-msgid "hearts"
-msgstr "红桃"
-
-#: ../games/sol.scm.h:12
-msgid "jack"
-msgstr "J"
-
-#: ../games/sol.scm.h:13
-msgid "king"
-msgstr "K"
-
-#: ../games/sol.scm.h:14
-msgid "nine"
-msgstr "9"
-
-#: ../games/sol.scm.h:15
-msgid "queen"
-msgstr "Q"
-
-#: ../games/sol.scm.h:17
-msgid "seven"
-msgstr "7"
-
-#: ../games/sol.scm.h:18
-msgid "six"
-msgstr "6"
-
-#: ../games/sol.scm.h:19
-msgid "spades"
-msgstr "黑桃"
-
-#: ../games/sol.scm.h:20
-msgid "ten"
-msgstr "10"
-
-#: ../games/sol.scm.h:21
-msgid "the ace of clubs"
-msgstr "梅花 A"
-
-#: ../games/sol.scm.h:22
-msgid "the ace of diamonds"
-msgstr "方片 A"
-
-#: ../games/sol.scm.h:23
-msgid "the ace of hearts"
-msgstr "红桃 A"
-
-#: ../games/sol.scm.h:24
-msgid "the ace of spades"
-msgstr "黑桃 A"
-
-#: ../games/sol.scm.h:25
-msgid "the eight of clubs"
-msgstr "梅花 8"
-
-#: ../games/sol.scm.h:26
-msgid "the eight of diamonds"
-msgstr "方片 8"
-
-#: ../games/sol.scm.h:27
-msgid "the eight of hearts"
-msgstr "红桃 8"
-
-#: ../games/sol.scm.h:28
-msgid "the eight of spades"
-msgstr "黑桃 8"
-
-#: ../games/sol.scm.h:29
-msgid "the five of clubs"
-msgstr "梅花 5"
-
-#: ../games/sol.scm.h:30
-msgid "the five of diamonds"
-msgstr "方片 5"
-
-#: ../games/sol.scm.h:31
-msgid "the five of hearts"
-msgstr "红桃 5"
-
-#: ../games/sol.scm.h:32
-msgid "the five of spades"
-msgstr "黑桃 5"
-
-#: ../games/sol.scm.h:33
-msgid "the four of clubs"
-msgstr "梅花 4"
-
-#: ../games/sol.scm.h:34
-msgid "the four of diamonds"
-msgstr "方片 4"
-
-#: ../games/sol.scm.h:35
-msgid "the four of hearts"
-msgstr "红桃 4"
-
-#: ../games/sol.scm.h:36
-msgid "the four of spades"
-msgstr "黑桃 4"
-
-#: ../games/sol.scm.h:37
-msgid "the jack of clubs"
-msgstr "梅花 J"
-
-#: ../games/sol.scm.h:38
-msgid "the jack of diamonds"
-msgstr "方片 J"
-
-#: ../games/sol.scm.h:39
-msgid "the jack of hearts"
-msgstr "红桃 J"
-
-#: ../games/sol.scm.h:40
-msgid "the jack of spades"
-msgstr "黑桃 J"
-
-#: ../games/sol.scm.h:41
-msgid "the king of clubs"
-msgstr "梅花 K"
-
-#: ../games/sol.scm.h:42
-msgid "the king of diamonds"
-msgstr "方片 K"
-
-#: ../games/sol.scm.h:43
-msgid "the king of hearts"
-msgstr "红桃 K"
-
-#: ../games/sol.scm.h:44
-msgid "the king of spades"
-msgstr "黑桃 K"
-
-#: ../games/sol.scm.h:45
-msgid "the nine of clubs"
-msgstr "梅花 9"
-
-#: ../games/sol.scm.h:46
-msgid "the nine of diamonds"
-msgstr "方片 9"
-
-#: ../games/sol.scm.h:47
-msgid "the nine of hearts"
-msgstr "红桃 9"
-
-#: ../games/sol.scm.h:48
-msgid "the nine of spades"
-msgstr "黑桃 9"
-
-#: ../games/sol.scm.h:49
-msgid "the queen of clubs"
-msgstr "梅花 Q"
-
-#: ../games/sol.scm.h:50
-msgid "the queen of diamonds"
-msgstr "方片 Q"
-
-#: ../games/sol.scm.h:51
-msgid "the queen of hearts"
-msgstr "红桃 Q"
-
-#: ../games/sol.scm.h:52
-msgid "the queen of spades"
-msgstr "黑桃 Q"
-
-#: ../games/sol.scm.h:53
-msgid "the seven of clubs"
-msgstr "梅花 7"
-
-#: ../games/sol.scm.h:54
-msgid "the seven of diamonds"
-msgstr "方片 7"
-
-#: ../games/sol.scm.h:55
-msgid "the seven of hearts"
-msgstr "红桃 7"
-
-#: ../games/sol.scm.h:56
-msgid "the seven of spades"
-msgstr "黑桃 7"
-
-#: ../games/sol.scm.h:57
-msgid "the six of clubs"
-msgstr "梅花 6"
-
-#: ../games/sol.scm.h:58
-msgid "the six of diamonds"
-msgstr "方片 6"
-
-#: ../games/sol.scm.h:59
-msgid "the six of hearts"
-msgstr "红桃 6"
-
-#: ../games/sol.scm.h:60
-msgid "the six of spades"
-msgstr "黑桃 6"
-
-#: ../games/sol.scm.h:61
-msgid "the ten of clubs"
-msgstr "梅花 10"
-
-#: ../games/sol.scm.h:62
-msgid "the ten of diamonds"
-msgstr "方片 10"
-
-#: ../games/sol.scm.h:63
-msgid "the ten of hearts"
-msgstr "红桃 10"
-
-#: ../games/sol.scm.h:64
-msgid "the ten of spades"
-msgstr "黑桃 10"
-
-#: ../games/sol.scm.h:65
-msgid "the three of clubs"
-msgstr "梅花 3"
-
-#: ../games/sol.scm.h:66
-msgid "the three of diamonds"
-msgstr "方片 3"
-
-#: ../games/sol.scm.h:67
-msgid "the three of hearts"
-msgstr "红桃 3"
-
-#: ../games/sol.scm.h:68
-msgid "the three of spades"
-msgstr "黑桃 3"
-
-#: ../games/sol.scm.h:69
-msgid "the two of clubs"
-msgstr "梅花 2"
-
-#: ../games/sol.scm.h:70
-msgid "the two of diamonds"
-msgstr "方片 2"
-
-#: ../games/sol.scm.h:71
-msgid "the two of hearts"
-msgstr "红桃 2"
-
-#: ../games/sol.scm.h:72
-msgid "the two of spades"
-msgstr "黑桃 2"
-
-#: ../games/sol.scm.h:73
-msgid "the unknown card"
-msgstr "未知牌面"
-
-#: ../games/sol.scm.h:74
-msgid "three"
-msgstr "3"
-
-#: ../games/sol.scm.h:75
-msgid "two"
-msgstr "2"
-
-#: ../games/spider.scm.h:2
-msgid "Four Suits"
-msgstr "全花色"
-
-#: ../games/spider.scm.h:3
-msgid "One Suit"
-msgstr "单花色"
-
-#: ../games/spider.scm.h:4
-msgid "Place something on empty slot"
-msgstr "将某物置于空位中"
-
-#: ../games/spider.scm.h:5
-msgid "Please fill in empty pile first."
-msgstr "请首先填满空位。"
-
-#: ../games/spider.scm.h:8
-msgid "Two Suits"
-msgstr "双花色"
-
-#: ../games/spider.scm.h:9
+#: ../games/spider.scm:184 ../games/spider.scm:292
 msgid "Undo until there are enough cards to fill all tableau piles"
 msgstr "撤消，直到有足够的牌填满排列区牌堆"
 
-#: ../games/ten_across.scm.h:1
-msgid "Allow temporary spots use"
-msgstr "允许使用临时置牌点"
+#: ../games/spider.scm:185
+msgid "Please fill in empty pile first."
+msgstr "请首先填满空位。"
 
-#: ../games/ten_across.scm.h:2
+#: ../games/spider.scm:277
+msgid "Place something on empty slot"
+msgstr "将某物置于空位中"
+
+#: ../games/spider.scm:305
+msgid "Four Suits"
+msgstr "全花色"
+
+#: ../games/spider.scm:306
+msgid "Two Suits"
+msgstr "双花色"
+
+#: ../games/spider.scm:307
+msgid "One Suit"
+msgstr "单花色"
+
+#: ../games/ten-across.scm:251
 msgid "Move a card to an empty temporary slot"
 msgstr "把牌移动到一个空的临时置牌点上"
 
-#: ../games/ten_across.scm.h:3
+#: ../games/ten-across.scm:252
 msgid "No hint available"
 msgstr "没有可用的提示"
 
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:7
-msgid "Blondes and Brunettes"
-msgstr "金发与黑发"
+#: ../games/ten-across.scm:288
+msgid "Allow temporary spots use"
+msgstr "允许使用临时置牌点"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:10
-msgid "Falling Stars"
-msgstr "星辰"
-
-#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:12
+#: ../games/terrace.scm:41
 msgid "General's Patience"
 msgstr "一般的耐心"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:15
-msgid "Redheads"
-msgstr "红发"
+#: ../games/terrace.scm:43
+msgid "Falling Stars"
+msgstr "星辰"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:17
+#: ../games/terrace.scm:45
 msgid "Signora"
 msgstr "贵妇人"
 
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-#: ../games/terrace.scm.h:22
+#: ../games/terrace.scm:47
+msgid "Redheads"
+msgstr "红发"
+
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../games/terrace.scm:49
+msgid "Blondes and Brunettes"
+msgstr "金发与黑发"
+
+#. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
+#: ../games/terrace.scm:51
 msgid "Wood"
 msgstr "木头"
 
-#: ../games/thieves.scm.h:1
+#: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "从牌垛中发一张牌"
 
-#: ../games/thirteen.scm.h:2
+#: ../games/thirteen.scm:381
 msgid "Match the top two cards of the waste."
 msgstr "对废牌区顶部的两张牌进行配对"
 
-#: ../games/triple_peaks.scm.h:2
-msgid "Multiplier Scoring"
-msgstr "积分翻倍"
+#: ../games/thumb-and-pouch.scm:165 ../games/thumb-and-pouch.scm:177
+msgid "an empty tableau pile"
+msgstr "空的排列区牌堆"
 
-#: ../games/triple_peaks.scm.h:3
+#: ../games/triple-peaks.scm:351
 msgid "Progressive Rounds"
 msgstr "本回合积分累积到下一回合"
 
-#: ../games/union_square.scm.h:4
-msgid "appropriate foundation pile"
-msgstr "适当的收牌区牌堆"
+#: ../games/triple-peaks.scm:352
+msgid "Multiplier Scoring"
+msgstr "积分翻倍"
 
-#: ../games/whitehead.scm.h:2
+#: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "把组牌移动到排列区的空位上"
 
-#: ../games/zebra.scm.h:5
+#: ../games/zebra.scm:182
 msgid "the appropriate Foundation pile"
 msgstr "适当的收牌区牌堆"
+
+#~ msgctxt "score"
+#~ msgid "%6d"
+#~ msgstr "%6d"
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with %s; if not, write to the Free Software Foundation, Inc., 51 Franklin "
+#~ "Street, Fifth Floor, Boston, MA  02110-1301  USA"
+#~ msgstr ""
+#~ "您应该在收到 %s 的同时收到了 GNU GPL 协议的副本；如果您没有收到的话，请给"
+#~ "自由软件基金会写信，地址是 51 Franklin Street, Fifth Floor, Boston, MA  "
+#~ "02110-1301  USA"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "文件不是一个合法的 .desktop 文件"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "未识别的桌面文件版本“%s”"
+
+#~ msgid "Starting %s"
+#~ msgstr "启动 %s 中"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "应用程序在命令行下不接受文件"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "未识别的启动选项：%d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr "无法传递文档 URI 到一个“Type=Link”桌面项"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "不是一个可启动的项"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "禁用到会话管理器的连接"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "指定含有已保存的配置的文件"
+
+#~ msgid "FILE"
+#~ msgstr "文件"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "指定会话管理编号"
+
+#~ msgid "ID"
+#~ msgstr "编号"
+
+#~ msgid "Session management options:"
+#~ msgstr "会话管理选项："
+
+#~ msgid "Show session management options"
+#~ msgstr "显示会话管理选项"
+
+#~ msgid "an empty corner slot"
+#~ msgstr "角落空位"
+
+#~ msgid "an empty left slot"
+#~ msgstr "左侧空位"
+
+#~ msgid "an empty right slot"
+#~ msgstr "右侧空位"
+
+#~ msgid "an empty top slot"
+#~ msgstr "上方空位"
+
+#~ msgid "Bug! make-hint called on false move."
+#~ msgstr "出错了！make-hint 调用了错误的走法。"
+
+#~ msgid "an empty space"
+#~ msgstr "一个空位"
+
+#~ msgid "Move ~a from the stock to an empty edge or tableau slot"
+#~ msgstr "将 ~a 从发牌区移至边沿的空位或是排列区槽内"
+
+#~ msgid "empty foundation"
+#~ msgstr "空的收牌区"
+
+#~ msgid "Unknown suit"
+#~ msgstr "未知花色"
+
+#~ msgid "ace"
+#~ msgstr "A"
+
+#~ msgid "clubs"
+#~ msgstr "梅花"
+
+#~ msgid "diamonds"
+#~ msgstr "方片"
+
+#~ msgid "eight"
+#~ msgstr "8"
+
+#~ msgid "five"
+#~ msgstr "5"
+
+#~ msgid "four"
+#~ msgstr "4"
+
+#~ msgid "hearts"
+#~ msgstr "红桃"
+
+#~ msgid "jack"
+#~ msgstr "J"
+
+#~ msgid "king"
+#~ msgstr "K"
+
+#~ msgid "nine"
+#~ msgstr "9"
+
+#~ msgid "queen"
+#~ msgstr "Q"
+
+#~ msgid "seven"
+#~ msgstr "7"
+
+#~ msgid "six"
+#~ msgstr "6"
+
+#~ msgid "spades"
+#~ msgstr "黑桃"
+
+#~ msgid "ten"
+#~ msgstr "10"
+
+#~ msgid "three"
+#~ msgstr "3"
+
+#~ msgid "two"
+#~ msgstr "2"
+
+#~ msgid "appropriate foundation pile"
+#~ msgstr "适当的收牌区牌堆"
 
 #~ msgid ""
 #~ "Aisleriot cannot load the file “%s”. Please check your Aisleriot "
@@ -7910,15 +8240,15 @@ msgstr "适当的收牌区牌堆"
 #~ "%(move)s White %(piece)s at %1$s takes the black %(victim_piece)s at %2$s "
 #~ "(%(result)s)"
 #~ msgstr ""
-#~ "%(move)s 白棋在 %1$s 的 %(piece)s 吃掉黑棋在 %2$s 的 %(victim_piece)s  "
-#~ "(%(result)s)"
+#~ "%(move)s 白棋在 %1$s 的 %(piece)s 吃掉黑棋在 %2$s 的 %(victim_piece)s  (%"
+#~ "(result)s)"
 
 #~ msgid ""
 #~ "%(move)s Black %(piece)s at %1$s takes the white %(victim_piece)s at %2$s "
 #~ "(%(result)s)"
 #~ msgstr ""
-#~ "%(move)s 黑棋在 %1$s 的 %(piece)s 吃掉白棋在 %2$s 的 %(victim_piece)s  "
-#~ "(%(result)s)"
+#~ "%(move)s 黑棋在 %1$s 的 %(piece)s 吃掉白棋在 %2$s 的 %(victim_piece)s  (%"
+#~ "(result)s)"
 
 #~ msgid "%(move)s White %(piece)s moves from %1$s to %2$s (%(result)s)"
 #~ msgstr "%(move)s 白棋的 %(piece)s 从 %1$s 移动到 %2$s (%(result)s)"
