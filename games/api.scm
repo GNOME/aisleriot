@@ -545,7 +545,7 @@
   (add-cards! end-slot cards))
 
 (define-public (remove-n-cards slot-id n)
-  (set-cards! slot-id (list-tail n (get-cards slot-id))))
+  (set-cards! slot-id (list-tail (get-cards slot-id) n)))
 
 (define-public (deal-cards-from-deck deck slot-list)
   (if (not (null? slot-list))
