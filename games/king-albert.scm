@@ -16,6 +16,10 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
+(define foundation '(0 1 2 3))
+(define tableau '(4 5 6 7 8 9 10 11 12))
+(define reserve '(13 14 15 16 17 18 19))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
@@ -23,24 +27,24 @@
   (shuffle-deck)
 
   (add-blank-slot)
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'foundation)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (set! HORIZPOS 0)
   (set! VERTPOS 0)
@@ -49,13 +53,13 @@
 
   (set! VERTPOS (+ VERTPOS 0.5))
   (set! HORIZPOS (+ HORIZPOS 9))
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 9))
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 9))
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 9))
 
@@ -66,19 +70,19 @@
 
   (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 9))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
 
   (deal-cards 0 '(4 5 6 7 8 9 10 11 12 4 5 6 7 8 9 10 11 4 5 6 7 8 9
 		    10 4 5 6 7 8 9 4 5 6 7 8 4 5 6 7 4 5 6 4 5 4 13 14
@@ -169,6 +173,12 @@
       (car card-list)
       (strip (cdr card-list))))
 
+(define (strip-size card-list n)
+  (if (or (= (length card-list) 1)
+	  (not (is-visible? (cadr card-list))))
+      (+ n 1)
+      (strip-size (cdr card-list) (+ n 1))))
+
 (define (check-plop card t-slot)
   (cond ((= t-slot 13)
 	 #f)
@@ -187,14 +197,7 @@
 	 #f)
 	((and (not (empty-slot? t-slot))
 	      (check-plop (strip (get-cards t-slot)) 4))
-	 (if (empty-slot? (check-plop (strip (get-cards t-slot)) 4))
-	     (list 2 
-		   (get-name (strip (get-cards t-slot)))
-		   (_"an empty tableau slot"))
-	     (list 1 
-		   (get-name (strip (get-cards t-slot)))
-		   (get-name (get-top-card (check-plop (strip (get-cards t-slot)) 
-						       4))))))
+	 (hint-move t-slot (strip-size (get-cards t-slot) 0) (check-plop (strip (get-cards t-slot)) 4)))
 	((and (not (empty-slot? t-slot))
 	      (> (length (get-cards t-slot)) 1)
 	      (not (is-visible? (cadr (get-cards t-slot))))
@@ -211,9 +214,7 @@
 	      (= (+ 1 (get-value card))
 		 (get-value (get-top-card f-slot)))
 	      (check-plop (get-top-card f-slot) 4))
-	 (list 1 
-	       (get-name (get-top-card f-slot))
-	       (get-name (get-top-card (check-plop (get-top-card f-slot) 4)))))
+	 (hint-move f-slot 1 (check-plop (get-top-card f-slot) 4)))
 	(#t (check-a-foundation-for-uncover card (+ 1 f-slot)))))
 
 (define (check-foundation-for-uncover t-slot)
@@ -233,10 +234,7 @@
 	      (check-plop (car (reverse (get-cards t-slot))) 4))
 	 (if (empty-slot? (check-plop (car (reverse (get-cards t-slot))) 4))
 	     (check-empty-tslot (+ 1 t-slot))
-	     (list 1
-		   (get-name (car (reverse (get-cards t-slot))))
-		   (get-name (get-top-card (check-plop (car (reverse (get-cards t-slot)))
-						       4))))))
+	     (hint-move t-slot (length (get-cards t-slot)) (check-plop (car (reverse (get-cards t-slot))) 4))))
 	(#t (check-empty-tslot (+ 1 t-slot)))))
 
 (define (check-to-foundations slot f-slot)
@@ -253,17 +251,13 @@
 	 #f)
 	((= (get-value (get-top-card slot))
 	    ace)
-	 (list 2
-	       (get-name (get-top-card slot))
-	       (_"an empty foundation")))
+	 (hint-move slot 1 (find-empty-slot foundation)))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card slot))
 		 (get-suit (get-top-card f-slot)))
 	      (= (get-value (get-top-card slot))
 		 (+ 1 (get-value (get-top-card f-slot)))))
-	 (list 1
-	       (get-name (get-top-card slot))
-	       (get-name (get-top-card f-slot))))
+	 (hint-move slot 1 f-slot))
 	(#t (check-a-slot-to-foundations slot (+ 1 f-slot)))))
 	
 (define (check-simple-foundation slot happynum)
