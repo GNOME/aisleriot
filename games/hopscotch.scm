@@ -116,9 +116,7 @@
 				(get-value (get-top-card foundation-id)))
 			     13))))
 	 (check-to-foundation slot-id (+ 1 foundation-id)))
-	(#t (list 1 
-		  (get-name (get-top-card slot-id))
-		  (get-name (get-top-card foundation-id))))))
+	(#t (hint-move slot-id 1 foundation-id ))))
 
 (define (check-waste)
   (cond ((empty-slot? 1)
