@@ -17,6 +17,8 @@
 (use-modules (aisleriot interface) (aisleriot api))
 ; winning game seed: 2036201447
 
+(define tableau '(1 2 3 4 5 6 7))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
@@ -143,7 +145,7 @@
   (and (not (empty-slot? 0))
        (list 0 (_"Deal the cards"))))
 
-(define (check-slot-cards card card-list)
+(define (check-slot-cards slot1 slot2 count card card-list)
   (cond ((or (= (length card-list) 0)
 	     (not (is-visible? (car card-list))))
 	 #f)
@@ -151,16 +153,16 @@
 		   (get-suit (car card-list)))
 	      (= (get-value card)
 		 (+ 1 (get-value (car card-list)))))
-	 #t)
-	(#t (check-slot-cards card (cdr card-list)))))
+	 (hint-move slot2 count slot1))
+	(#t (check-slot-cards slot1 slot2 (+ count 1) card (cdr card-list)))))
 
 (define (check-a-slot slot1 slot2)
   (cond ((= slot2 8)
 	 #f)
 	((and (not (= slot1 slot2))
 	      (not (empty-slot? slot2))
-	      (check-slot-cards (get-top-card slot1) (get-cards slot2)))
-	 #t)
+	      (check-slot-cards slot1 slot2 1 (get-top-card slot1) (get-cards slot2)))
+	 (check-slot-cards slot1 slot2 1 (get-top-card slot1) (get-cards slot2)))
 	(#t (check-a-slot slot1 (+ 1 slot2)))))
 
 (define (check-slot slot-id)
@@ -168,27 +170,24 @@
 	 #f)
 	((and (not (empty-slot? slot-id))
 	      (check-a-slot slot-id 1))
-	 (list 1 
-	       (get-name (make-card (- (get-value (get-top-card slot-id)) 1)
-				    (get-suit (get-top-card slot-id))))
-	       (get-name (get-top-card slot-id))))
+	 (check-a-slot slot-id 1))
 	(#t (check-slot (+ 1 slot-id)))))
 
-(define (here-kingy-kingy card-list)
+(define (here-kingy-kingy slot-id count card-list)
   (cond ((or (= (length card-list) 0)
 	     (= (length card-list) 1)
 	     (not (is-visible? (car card-list))))
 	 #f)
 	((= (get-value (car card-list)) king)
-	 (list 2 (get-name (car card-list)) (_"an empty slot")))
-	(#t (here-kingy-kingy (cdr card-list)))))
+	 (hint-move slot-id count (find-empty-slot tableau)))
+	(#t (here-kingy-kingy slot-id (+ count 1) (cdr card-list)))))
 
 (define (king-avail? slot-id)
   (cond ((= slot-id 8)
 	 #f)
 	((and (not (empty-slot? slot-id))
-	      (here-kingy-kingy (get-cards slot-id)))
-	 (here-kingy-kingy (get-cards slot-id)))
+	      (here-kingy-kingy slot-id 1 (get-cards slot-id)))
+	 (here-kingy-kingy slot-id 1 (get-cards slot-id)))
 	(#t (king-avail? (+ 1 slot-id)))))
 
 (define (check-for-empty)
