@@ -145,12 +145,6 @@
 ;;  (newline)
   #f)
 
-;; three things to test for
-;; 1) empty slot and a king not currently in an empty slot
-;; 2) a visible card that will fit on the end of a current row
-;; 3) a single card at the top of a stack either of non-visible cards
-;;    or non-connected cards and an empty temporary spot.
-
 ;;----------------------------------------------------------------------
 (define (have-empty-slot? slot-list)
   (or-map (lambda (item) (= 0 (length (get-cards item)))) slot-list))
@@ -158,53 +152,49 @@
 (define (king? card)
   (= (get-value card) king))
 
-(define (get-good-king-for-empty-move slot-list)
-  (or-map (lambda (item)
-            (let ((cards1 (get-cards item)))
-                   ;; cut out the last card because if it's a king we
-                   ;; don't want to move it
-              (if (> (length cards1) 0)
-                  (or-map (lambda (item) (if (and (is-visible? item)
-                                              (king? item))
-                                             item
-                                         #f))
-                      (list-head cards1 (- (length cards1) 1)))
-                  #f)))
-          slot-list))
-
-;; ** 3 **
-(define (test-king-move slot-list)
-  (if (have-empty-slot? slot-list)
-      (let ((good-king (get-good-king-for-empty-move slot-list)))
-        (if (list? good-king)
-            (list 2 (get-name good-king) (_"an empty slot"))
-            #f))
-      #f))
+(define (find-king-move slot card-list count to-slot)
+  (cond ((null? card-list)
+         #f)
+        ((and (= (length card-list) 1)
+              (= (get-value (car card-list)) king)
+              (member slot tableau))
+         ; Top card in this tableau pile is a king; don't bother moving it to another empty slot.
+         #f)
+        ((or (not (is-visible? (car card-list)))
+             (not (= (get-value (car card-list)) king)))
+         (find-king-move slot (cdr card-list) (+ count 1) to-slot))
+        (#t
+         (hint-move slot count to-slot))))
 
 ;;----------------------------------------------------------------------
-(define (find-card-for item slot-num slot-list)
-  (or-map (lambda (slot)
-            (or-map (lambda (card)
-                      (if (and (not (= slot-num slot))
-                               (is-visible? card)
-                               (is-ok-to-place card item))
-                          (list card item)
-                          #f))
-                      (get-cards slot)))
-          slot-list))
+(define (find-placeable-card card-list dest-card count)
+  (cond ((null? card-list)
+         #f)
+        ((not (is-visible? (car card-list)))
+         #f)
+        ((is-ok-to-place (car card-list) dest-card)
+         count)
+        (#t
+         (find-placeable-card (cdr card-list) dest-card (+ count 1)))))
 
-;; ** 2 **
-(define (test-stack-move slot-list tmp-list)
-  (let ((cards (or-map
-                (lambda (slot)
-                  (let ((card-list (get-cards slot)))
-                    (if (not (null? card-list))
-                        (find-card-for (car card-list) slot slot-list)
-                        #f)))
-                slot-list)))
-        (if (list? cards)
-            (list 2 (get-name (car cards)) (get-name (cadr cards)))
-            #f)))
+(define (find-stack-move from-slot slot-list)
+  (cond ((null? slot-list)
+         #f)
+        ((= from-slot (car slot-list))
+         (find-stack-move from-slot (cdr slot-list)))
+        ((empty-slot? (car slot-list))
+         (or (find-king-move from-slot (get-cards from-slot) 1 (car slot-list))
+             (find-stack-move from-slot (cdr slot-list))))
+        ((find-placeable-card (get-cards from-slot) (get-top-card (car slot-list)) 1)
+         (hint-move from-slot (find-placeable-card (get-cards from-slot) (get-top-card (car slot-list)) 1) (car slot-list)))
+        (#t
+         (find-stack-move from-slot (cdr slot-list)))))
+
+(define (test-stack-move slot-list)
+  (if (null? slot-list)
+      #f
+      (or (find-stack-move (car slot-list) tableau)
+          (test-stack-move (cdr slot-list)))))
 
 ;;----------------------------------------------------------------------
 (define (get-top-cards slot-list)
@@ -215,37 +205,10 @@
                (car cards))))
        slot-list))
 
-;; ** 1 **
-(define (test-for-tmp-move-down slot-list tmp-list)
-  (let* ((move-to-cards (get-top-cards slot-list))
-         (move-from-cards (get-top-cards tmp-list))
-         (cards (or-map (lambda (card1)
-                          (or-map (lambda (card2)
-                                    (cond ((and (null? card2)
-                                                (not (null? card1))
-                                                (king? card1))
-                                           (list card1 (_"an empty slot")))
-                                          ((and (not (null? card1))
-                                                (not (null? card2))
-                                                (is-ok-to-place card1 card2))
-                                           (list card1 card2))
-                                          (#t #f)))
-                                  move-to-cards))
-                        move-from-cards)))
-    (if (list? cards)
-        (list 1
-              (get-name (car cards))
-              (if (list? (cadr cards))
-                  (get-name (cadr cards))
-                  (cadr cards)))
-        #f)))
-
 ;;----------------------------------------------------------------------
 (define (get-hint)
   (or
-   (test-for-tmp-move-down tableau tmp-spots)
-   (test-stack-move tableau tmp-spots) 
-   (test-king-move tableau) 
+   (test-stack-move (append tmp-spots tableau))
    (and allow-two-spot-use
         (have-empty-slot? tmp-spots)
         (list 0 (_"Move a card to an empty temporary slot")))
