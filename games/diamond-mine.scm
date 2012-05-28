@@ -16,6 +16,9 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
+(define foundation 0)
+(define tableau '(1 2 3 4 5 6 7 8 9 10 11 12 13))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
@@ -29,22 +32,22 @@
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'foundation)
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(1 2 3 4 5 6 7 8 9 10 11 12 13 1 2 3 4 5 6 7 8 9 10
 		    11 12 13 1 2 3 4 5 6 7 8 9 10 11 12 13))
@@ -147,9 +150,7 @@
 		     (+ 1 (get-value (get-top-card 0))))
 		  (and (= (get-value (get-top-card slot)) ace)
 		       (= (get-value (get-top-card 0)) king))))
-	 (list 1
-	       (get-name (get-top-card slot))
-	       (get-name (get-top-card 0))))
+	 (hint-move slot 1 0))
 	(#t (check-to-foundation (+ 1 slot)))))
 
 (define (stripped card-list card)
@@ -164,7 +165,20 @@
 	((is-visible? (cadr card-list))
 	 (stripped (cdr card-list) card))
 	(#t (car card-list))))
-	      
+
+(define (stripped-size card-list card size)
+  (cond ((>= (get-value (car card-list))
+	     (get-value card))
+	 size)
+	((< (length card-list) 2)
+	 size)
+	((= (+ 1 (get-value (car card-list)))
+	    (get-value card))
+	 size)
+	((is-visible? (cadr card-list))
+	 (stripped-size (cdr card-list) card (+ size 1)))
+	(#t size)))
+
 
 (define (check-same-suit-build slot1 slot2)
   (cond ((= slot1 14)
@@ -183,10 +197,7 @@
 	      (= (+ 1 (get-value (stripped (get-cards slot1) 
 					   (get-top-card slot2))))
 		 (get-value (get-top-card slot2))))
-	 (list 1 
-	       (get-name (stripped (get-cards slot1) 
-				   (get-top-card slot2)))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (stripped-size (get-cards slot1) (get-top-card slot2) 1) slot2))
 	(#t 
 	 (check-same-suit-build slot1 (+ 1 slot2)))))
 
@@ -215,34 +226,30 @@
 	      (uncover? (get-cards slot1) 
 			(stripped (get-cards slot1)
 				  (get-top-card slot2))))
-	 (list 1 
-	       (get-name (stripped (get-cards slot1) 
-				   (get-top-card slot2)))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (stripped-size (get-cards slot1) (get-top-card slot2) 1) slot2))
 	(#t 
 	 (check-diff-suit-build slot1 (+ 1 slot2)))))
 
 (define (simple-strip card-list)
   (if (not (is-visible? (car (reverse card-list))))
       (simple-strip (reverse (cdr (reverse card-list))))
-      (car (reverse card-list))))
+      (length card-list)))
 
-(define (possible-move-off? slot)
+(define (possible-move-off? slot dest-slot)
   (cond ((= slot 14)
 	 #f)
 	((and (not (empty-slot? slot))
 	      (not (is-visible? (car (reverse (get-cards slot)))))
 	      (not (= (get-suit (get-top-card slot)) diamond)))
-	 (simple-strip (get-cards slot)))
-	(#t (possible-move-off? (+ 1 slot)))))
+	 (hint-move slot (simple-strip (get-cards slot)) dest-slot))
+	(#t (possible-move-off? (+ 1 slot) dest-slot))))
 
 (define (check-for-empties slot)
-  (cond ((= slot 14)
-	 #f)
-	((and (empty-slot? slot)
-	      (possible-move-off? 0))
-	 (list 2 (get-name (possible-move-off? 0)) (_"an empty slot")))
-	(#t (check-for-empties (+ 1 slot)))))
+  (if (= slot 14)
+      #f
+      (or (and (empty-slot? slot)
+	       (possible-move-off? 0 slot))
+          (check-for-empties (+ 1 slot)))))
 
 (define (start-foundation slot)
   (cond ((or (not (empty-slot? 0))
@@ -250,7 +257,7 @@
 	 #f)
 	((and (not (empty-slot? slot))
 	      (= (get-suit (get-top-card slot)) diamond))
-	 (list 2 (get-name (get-top-card slot)) (_"the foundation pile")))
+	 (hint-move slot 1 0))
 	(#t (start-foundation (+ 1 slot)))))
 
 (define (any-empty? slot)
@@ -276,7 +283,7 @@
 	 #t)
 	(#t (find-card card-suit card-rank (+ 1 slot)))))
 
-(define (check-a-tab-slot card-list)
+(define (check-a-tab-slot card-list size)
   (cond ((or (< (length card-list) 2)
 	     (not (is-visible? (cadr card-list))))
 	 #f)
@@ -284,16 +291,16 @@
 	      (not (= (get-suit (car card-list))
 		      (get-suit (cadr card-list))))
 	      (find-card (get-suit (car card-list)) (+ 1 (get-value (car card-list))) 1))
-	 (car card-list))
-	(#t (check-a-tab-slot (cdr card-list)))))
+	 size)
+	(#t (check-a-tab-slot (cdr card-list) (+ size 1)))))
 
 (define (check-tableau-suit-changes slot)
   (cond ((or (= slot 14)
 	     (not (any-empty? 1)))
 	 #f)
 	((and (not (empty-slot? slot))
-	      (check-a-tab-slot (get-cards slot)))
-	 (list 2 (get-name (check-a-tab-slot (get-cards slot))) (_"an empty slot")))
+	      (check-a-tab-slot (get-cards slot) 1))
+	 (hint-move slot (check-a-tab-slot (get-cards slot) 1) (find-empty-slot tableau)))
 	(#t (check-tableau-suit-changes (+ 1 slot)))))
 
 (define (get-hint)
