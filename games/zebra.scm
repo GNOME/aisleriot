@@ -166,7 +166,7 @@
 			(is-red? (get-top-card foundation-id))))
 	      (= (+ 1 (get-value (get-top-card foundation-id)))
 		 (get-value (get-top-card slot-id))))
-	 #t)
+	 (hint-move slot-id 1 foundation-id))
 	(#t
 	 (check-a-foundation slot-id (+ 1 foundation-id)))))
 
@@ -175,15 +175,12 @@
 	 #f)
 	((= slot-id 2)
 	 (check-to-foundations 10))
-	((and (not (empty-slot? slot-id))
-	      (check-a-foundation slot-id 2))
-	 (list 2 
-	       (get-name (get-top-card slot-id)) 
-	       (_"the appropriate Foundation pile")))
 	(#t
-	 (check-to-foundations (+ 1 slot-id)))))
+	 (or (and (not (empty-slot? slot-id))
+	          (check-a-foundation slot-id 2))
+	     (check-to-foundations (+ 1 slot-id))))))
 
-(define (check-a-tableau slot1 card-list slot2)
+(define (check-a-tableau slot1 card-list slot2 size)
   (cond ((= slot2 18)
 	 #f)
 	((and (not (= slot1 slot2))
@@ -193,12 +190,10 @@
 		 (get-value (get-top-card slot2)))
 	      (or (= slot1 1)
 		  (= (length card-list) 1)
-		  (check-a-tableau slot1 (cdr card-list) 10)))
-	 (list 1
-	       (get-name (car card-list))
-	       (get-name (get-top-card slot2))))
+		  (check-a-tableau slot1 (cdr card-list) 10 (+ size 1))))
+	 (hint-move slot1 size slot2))
 	(#t 
-	 (check-a-tableau slot1 card-list (+ 1 slot2)))))
+	 (check-a-tableau slot1 card-list (+ 1 slot2) 1))))
 
 (define (check-to-tableaus slot-id)
   (cond ((= slot-id 18)
@@ -206,8 +201,8 @@
 	((= slot-id 2)
 	 (check-to-tableaus 10))
 	((and (not (empty-slot? slot-id))
-	      (check-a-tableau slot-id (get-cards slot-id) 10))
-	 (check-a-tableau slot-id (get-cards slot-id) 10))
+	      (check-a-tableau slot-id (get-cards slot-id) 10 1))
+	 (check-a-tableau slot-id (get-cards slot-id) 10 1))
 	(#t (check-to-tableaus (+ 1 slot-id)))))
 
 (define (get-hint)
