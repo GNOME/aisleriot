@@ -107,9 +107,7 @@
 	((and (not (empty-slot? slot2))
 	      (= (get-value (get-top-card slot1))
 		 (get-value (get-top-card slot2))))
-	 (list 1 
-	       (get-name (get-top-card slot1)) 
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 1 slot2))
 	(#t (avail-pair? slot1 (+ 1 slot2)))))
 
 (define (get-hint)
