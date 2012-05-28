@@ -22,24 +22,24 @@
   (make-standard-deck)
   (shuffle-deck)
   
-  (add-normal-slot DECK) 
+  (add-normal-slot DECK 'stock) 
   (add-blank-slot)
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(5 6 7 8 9 10 11 5 6 7 8 9 10 11))
 
@@ -111,12 +111,21 @@
 	  (car (reverse card-list))
 	  (stripped (reverse (cdr (reverse card-list)))))))
 
+(define (stripped-size card-list)
+  (if (= (length card-list) 1)
+      1
+      (if (and (is-visible? (car (reverse card-list)))
+	       (check-straight-descending-list card-list)
+	       (check-alternating-color-list card-list))
+	  (length card-list)
+	  (stripped-size (reverse (cdr (reverse card-list)))))))
+
 (define (kings-avail slot)
   (cond ((= slot 12)
 	 #f)
 	((and (not (empty-slot? slot))
-	      (not (is-visible? (car (reverse (get-cards slot)))))
-	      (= (get-value (stripped (get-cards slot))) king))
+	      (= (get-value (stripped (get-cards slot))) king)
+	      (not (equal? (stripped (get-cards slot)) (car (reverse (get-cards slot))))))
 	 slot)
 	(#t (kings-avail (+ 1 slot)))))
 
@@ -183,17 +192,13 @@
 	 (to-foundations? (+ 1 slot) 1))
 	((and (empty-slot? f-slot)
 	      (= (get-value (get-top-card slot)) ace))
-	 (list 2
-	       (get-name (get-top-card slot))
-	       (_"an empty foundation")))
+	 (hint-move slot 1 f-slot))
 	((and (not (empty-slot? f-slot))
 	      (= (get-suit (get-top-card f-slot))
 		 (get-suit (get-top-card slot)))
 	      (= (+ 1 (get-value (get-top-card f-slot)))
 		 (get-value (get-top-card slot))))
-	 (list 1
-	       (get-name (get-top-card slot))
-	       (get-name (get-top-card f-slot))))
+	 (hint-move slot 1 f-slot))
 	(#t (to-foundations? slot (+ 1 f-slot)))))
 
 (define (check-a-tab-slot card slot2)
@@ -211,9 +216,7 @@
 	((and (not (= slot1 slot2))
 	      (not (empty-slot? slot2))
 	      (check-a-tab-slot (stripped (get-cards slot1)) slot2))
-	 (list 1
-	       (get-name (stripped (get-cards slot1)))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 (stripped-size (get-cards slot1)) slot2))
 	(#t (check-tableau slot1 (+ 1 slot2)))))
 
 (define (fill-empties slot)
@@ -221,7 +224,7 @@
 	 #f)
 	((and (empty-slot? slot)
 	      (kings-avail 5))
-	 (list 0 (_"Move a King on to the empty tableau slot")))
+	 (list 0 (_"Move a king onto an empty tableau slot.")))
 	(#t (fill-empties (+ 1 slot)))))
 
 (define (dealable?)
