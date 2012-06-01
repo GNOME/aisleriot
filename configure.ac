@@ -187,7 +187,7 @@ AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_PYSOL],[test "$enable_card_theme_format
 # Card theme paths
 
 if test -f /etc/os-release; then
-  DISTRO="$(source /etc/os-release && echo $ID$VERSION_ID)"
+  DISTRO="$(source /etc/os-release && echo $ID)"
 else
   DISTRO="unknown"
 fi
@@ -197,7 +197,7 @@ if test "$enable_card_theme_format_kde" = "yes"; then
   AC_ARG_WITH([kde-card-theme-path],
     [AS_HELP_STRING([--with-kde-card-theme-path],[The base path to the KDE card themes])],
     [],[case "$DISTRO" in
-          *debian*|*fedora*|*rhel*|*centos*|*suse*|*ubuntu*) with_kde_card_theme_path="/usr/share/kde4/apps/carddecks" ;;
+          debian|fedora|rhel|centos|suse|ubuntu) with_kde_card_theme_path="/usr/share/kde4/apps/carddecks" ;;
           *) AC_MSG_ERROR([When enabling the KDE card theme format, you must specify the KDE card themes base path.]) ;;
         esac])
   AC_MSG_RESULT([$with_kde_card_theme_path])
@@ -210,9 +210,9 @@ if test "$enable_card_theme_format_pysol" = "yes"; then
   AC_ARG_WITH([pysol-card-theme-path],
     [AS_HELP_STRING([--with-pysol-card-theme-path],[The base path to the PySol card themes])],
     [],[case "$DISTRO" in
-          *debian*|*ubuntu*) with_pysol_card_theme_path="/usr/share/games/pysol" ;;
-          *fedora*|*rhel*|*centos*) with_pysol_card_theme_path="/usr/share/PySolFC" ;;
-          *suse*) with_pysol_card_theme_path="/usr/share/games/pysol/data" ;;
+          debian|ubuntu) with_pysol_card_theme_path="/usr/share/games/pysol" ;;
+          fedora|rhel|centos) with_pysol_card_theme_path="/usr/share/PySolFC" ;;
+          suse) with_pysol_card_theme_path="/usr/share/games/pysol/data" ;;
           *) AC_MSG_ERROR([When enabling the PySol card theme format, you must specify the PySol card themes base path.]) ;;
         esac])
   AC_MSG_RESULT([$with_pysol_card_theme_path])
