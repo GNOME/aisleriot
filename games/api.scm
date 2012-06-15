@@ -72,6 +72,7 @@
   (set! HISTORY '())
   (set! FOUNDATION-SLOTS '())
   (set! TABLEAU-SLOTS '())
+  (set! RESERVE-SLOTS '())
   (set! EDGE-SLOTS '())
   (set! CORNER-SLOTS '())
   (set! TOP-SLOTS '())
@@ -319,6 +320,14 @@
 (define-public (find-card slot card)
   (find-card-helper card (get-cards slot) 1))
 
+(define (find-card-slot-helper slot card)
+  (if (equal? #f (find-card slot card))
+      (find-card-slot-helper (+ 1 slot) card)
+      slot))
+
+(define-public (find-card-slot card)
+  (find-card-slot-helper 0 card))
+
 ; Get the nth card from a slot. Returns #f if n is out of range.
 (define-public (get-nth-card slot-id n)
   (let ((cards (get-cards slot-id)))
@@ -463,6 +472,7 @@
   (if (empty-slot? to-slot)
       (cond ((member to-slot FOUNDATION-SLOTS) (if (= (length FOUNDATION-SLOTS) 1) (_"Move ~a onto the foundation.") (_"Move ~a onto an empty foundation slot.")))
             ((member to-slot TABLEAU-SLOTS) (if (= (length TABLEAU-SLOTS) 1) (_"Move ~a onto the tableau.") (_"Move ~a onto an empty tableau slot.")))
+            ((member to-slot RESERVE-SLOTS) (if (= (length RESERVE-SLOTS) 1) (_"Move ~a onto the reserve.") (_"Move ~a onto an empty reserve slot.")))
             ((member to-slot EDGE-SLOTS) (_"Move ~a onto an empty edge slot."))
             ((member to-slot CORNER-SLOTS) (_"Move ~a onto an empty corner slot."))
             ((member to-slot TOP-SLOTS) (_"Move ~a onto an empty top slot."))
@@ -598,6 +608,7 @@
 (define-public (set-tag! slot)
   (case (cadddr slot)
     ((tableau) (set! TABLEAU-SLOTS (cons SLOTS TABLEAU-SLOTS)))
+    ((reserve) (set! RESERVE-SLOTS (cons SLOTS RESERVE-SLOTS)))
     ((edge) (set! EDGE-SLOTS (cons SLOTS EDGE-SLOTS)))
     ((corner) (set! CORNER-SLOTS (cons SLOTS CORNER-SLOTS)))
     ((top) (set! TOP-SLOTS (cons SLOTS TOP-SLOTS)))
@@ -646,6 +657,7 @@
 (define-public IN-GAME #f)
 (define-public FOUNDATION-SLOTS '())
 (define-public TABLEAU-SLOTS '())
+(define-public RESERVE-SLOTS '())
 (define-public EDGE-SLOTS '())
 (define-public CORNER-SLOTS '())
 (define-public TOP-SLOTS '())

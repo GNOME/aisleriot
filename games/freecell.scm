@@ -629,11 +629,14 @@
 	   (to-stack  (vector-ref board to-slot)))
       (if (eq? (vector-ref (cdar best-move) index-outcome) outcome-lose)
 	(list 0 (_"The game has no solution. Undo or start again."))
-	(list 1 (get-name from-card)
-	      (cond ((freecell? to-slot)  (_"an empty reserve"))
-		    ((homecell? to-slot)  (_"the foundation"))
-		    ((null? to-stack)     (_"an open tableau"))
-		    (else (get-name (car to-stack)))))))))
+	(hint-move (find-card-slot from-card) (find-card (find-card-slot from-card) from-card)
+	      (cond ((freecell? to-slot) (find-empty-slot freecells))
+		    ((homecell? to-slot)
+		     (if (equal? 0 to-stack)
+		         (find-empty-slot homecells)
+		         (find-card-slot (list to-stack (get-suit from-card) #t))))
+		    ((null? to-stack) (find-empty-slot fields))
+		    (else (find-card-slot (car to-stack)))))))))
 
 ; Returns a vector copy of the master board for use as the initial
 ; node in the search.
