@@ -275,6 +275,12 @@
        (empty-slot? 1)
        (empty-slot? 0)))
 
+(define (hint-remove-king suit)
+  (cond ((eq? suit club) (_"Remove the king of clubs."))
+        ((eq? suit diamond) (_"Remove the king of diamonds."))
+        ((eq? suit heart) (_"Remove the king of hearts."))
+        ((eq? suit spade) (_"Remove the king of spades."))))
+
 (define (check-move slot1 slot2)
   (if (or (empty-slot? slot1)
 	  (not (available? slot1 0)))
@@ -282,7 +288,7 @@
 	  (check-move (+ 1 slot1) (+ 2 slot1))
 	  #f)
       (if (= king (get-value (get-top-card slot1)))
-	  (list 2 (get-name (get-top-card slot1)) (_"itself"))
+	  (hint-click slot1 (hint-remove-king (get-suit (get-top-card slot1))))
 	  (if (or (empty-slot? slot2)
 		  (not (available? slot2 0))
 		  (not (= 13 (+ (get-value (get-top-card slot1))
@@ -292,9 +298,7 @@
 		  (if (< slot1 29)
 		      (check-move (+ 1 slot1) (+ 2 slot1))
 		      #f))
-	      (list 1 
-		    (get-name (get-top-card slot1)) 
-		    (get-name (get-top-card slot2)))))))
+	      (hint-move slot1 1 slot2)))))
 
 (define (dealable?)
   (if (not (empty-slot? 0))
@@ -306,9 +310,7 @@
        (> (length (get-cards 2)) 1)
        (= 13 (+ (get-value (get-top-card 2))
 		(get-value (cadr (get-cards 2)))))
-       (list 1
-	     (get-name (get-top-card 2))
-	     (get-name (cadr (get-cards 2))))))
+       (hint-move 2 1 2)))
 
 (define (get-hint)
   (or (check-move 1 2)  
