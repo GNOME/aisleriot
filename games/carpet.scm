@@ -159,9 +159,7 @@
           (empty-slot? start-slot))
       #f
       (if (droppable? start-slot (list (get-top-card start-slot)) (car end-slots))
-          (list 1
-            (get-name (get-top-card start-slot))
-            (get-name (get-top-card (car end-slots))))
+          (hint-move start-slot 1 (car end-slots))
           (hint-to-foundation start-slot (cdr end-slots)))))
 
 (define (hint-tableau-to-foundation start-slot)
