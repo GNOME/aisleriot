@@ -72,20 +72,20 @@
   (make-standard-double-deck)
   (shuffle-deck)
   
-  (add-normal-slot (reverse DECK))
-  (add-normal-slot '())
+  (add-normal-slot (reverse DECK) 'stock)
+  (add-normal-slot '() 'waste)
   (add-blank-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'reserve)
   (add-carriage-return-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
 
   (set! tableau '())
@@ -103,7 +103,7 @@
 
   (do-auto-deal)
   (give-status-message)
-  (update-score)
+  (calculate-score)
 
   (list 8 4.1)
 )
@@ -111,7 +111,7 @@
 (define (build-tableau-slots count)
   (and (not (= count 0))
        (set! tableau (cons SLOTS tableau))
-       (add-extended-slot '() down)
+       (add-extended-slot '() down 'tableau)
        (set! HORIZPOS (+ HORIZPOS (- 1 (/ tableau-size 8))))
        (build-tableau-slots (- count 1))))
 
@@ -164,13 +164,13 @@
        (and (= a ace)
             (= b king))))
 
-(define (calculate-score slots acc)
+(define (calculate-score-helper slots acc)
   (if (null? slots)
       acc
-      (calculate-score (cdr slots) (+ acc (length (get-cards (car slots)))))))
+      (calculate-score-helper (cdr slots) (+ acc (length (get-cards (car slots)))))))
 
-(define (update-score)
-  (set-score! (calculate-score foundation 0)))
+(define (calculate-score)
+  (set-score! (calculate-score-helper foundation 0)))
 
 (define (do-auto-fill-tableau slots)
   (if (null? slots)
@@ -289,9 +289,7 @@
   (and (not (null? end-slots))
        (not (empty-slot? start-slot))
        (if (droppable? start-slot (list (get-top-card start-slot)) (car end-slots))
-           (if (empty-slot? (car end-slots))
-               (list 2 (get-name (get-top-card start-slot)) (_"an empty slot on the foundation"))
-               (list 1 (get-name (get-top-card start-slot)) (get-name (get-top-card (car end-slots)))))
+           (hint-move start-slot 1 (car end-slots))
            (hint-slot-to-foundation start-slot (cdr end-slots)))))
 
 (define (hint-slots-to-foundation start-slots)
@@ -311,7 +309,7 @@
 
 ; We need to check recursively for builds because it might be possible to free
 ; a space in the tableau by moving multiple single cards in a row.
-(define (buildable-on-tableau start-slot cards acc)
+(define (buildable-on-tableau start-slot num-cards cards acc)
   (or (and (null? cards)
            acc)
       ; If the foundation is building in suit, it's possible that moving cards
@@ -322,8 +320,9 @@
            (and target-slot
                 (buildable-on-tableau
                      start-slot
+                     (+ num-cards 1)
                      (cdr cards)
-                     (or acc (list (get-rank (get-value (car cards))) 1 (get-name (car cards)) (get-name (get-top-card target-slot)))))))))
+                     (or acc (cons (get-rank (get-value (car cards))) (hint-move start-slot num-cards target-slot))))))))
 (define (buildable-on-tableau-helper start-slot card end-slots)
   (and (not (null? end-slots))
        (or (and (not (empty-slot? (car end-slots)))
@@ -345,15 +344,13 @@
             
 (define (hint-tableau-build-helper start-slot)
   (and (not (empty-slot? start-slot))
-       (buildable-on-tableau start-slot (get-cards start-slot) #f)))
+       (buildable-on-tableau start-slot 1 (get-cards start-slot) #f)))
 
 (define (hint-waste-to-tableau end-slots)
   (and (not (null? end-slots))
        (not (empty-slot? waste))
        (if (droppable? waste (list (get-top-card waste)) (car end-slots))
-           (if (empty-slot? (car end-slots))
-               (list 2 (get-name (get-top-card waste)) (_"an empty slot on the tableau"))
-               (list 1 (get-name (get-top-card waste)) (get-name (get-top-card (car end-slots)))))
+           (hint-move waste 1 (car end-slots))
            (hint-waste-to-tableau (cdr end-slots)))))
 
 (define (hint-deal)
@@ -374,7 +371,7 @@
 
 (define (game-continuable)
   (give-status-message)
-  (update-score)
+  (calculate-score)
   (and (not (game-won))
        (get-hint)))
 
