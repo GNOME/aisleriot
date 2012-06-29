@@ -26,23 +26,23 @@
   (make-standard-deck)
   (shuffle-deck)
   
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'stock)
 
-  (add-normal-slot '())
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (deal-cards 0 '(6 7 8 9 10 11 12 7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12 11 12 12))
 
@@ -162,19 +162,19 @@
 
 (define (check-waste-to-empty)
   (and (not (empty-slot? 1))
-       (list 2 (get-name (get-top-card 1)) (_"an empty tableau pile"))))
+       (hint-move 1 1 (find-empty-slot tableau))))
 
-(define (stripped card-list)
+(define (stripped-len card-list acc)
   (if (not (is-visible? (cadr card-list)))
-      (car card-list)
-      (stripped (cdr card-list))))
+      acc
+      (stripped-len (cdr card-list) (+ 1 acc))))
 
 (define (check-tableau-to-empty slot-id)
   (cond ((= slot-id 13)
 	 #f)
 	((and (not (empty-slot? slot-id))
 	      (not (is-visible? (car (reverse (get-cards slot-id))))))
-	 (list 2 (get-name (stripped (get-cards slot-id))) (_"an empty tableau pile")))
+	 (hint-move slot-id (stripped-len (get-cards slot-id) 1) (find-empty-slot tableau)))
 	(#t (check-tableau-to-empty (+ 1 slot-id)))))
 
 
@@ -192,9 +192,7 @@
 	      (= (get-value card) ace))
 	 (if (< slot-id 0)
 	     #t
-	     (list 2
-		   (get-name (get-top-card slot-id)) 
-		   (_"an empty foundation pile"))))
+	     (hint-move slot-id 1 f-slot)))
 	((and (not (empty-slot? f-slot))
 	      (eq? (get-suit (get-top-card f-slot))
 		   (get-suit card))
@@ -202,9 +200,7 @@
 		 (+ 1 (get-value (get-top-card f-slot)))))
 	 (if (< slot-id 0)
 	     #t
-	     (list 1
-		   (get-name (get-top-card slot-id))
-		   (get-name (get-top-card f-slot)))))
+	     (hint-move slot-id 1 f-slot)))
 	(#t
 	 (check-a-foundation slot-id card (+ 1 f-slot)))))
 
@@ -217,7 +213,7 @@
 	 (or (check-a-foundation slot-id (get-top-card slot-id) 2)
 	     (check-to-foundations (+ 1 slot-id))))))
 
-(define (check-a-tslot card card-list)
+(define (check-a-tslot from-slot to-slot num-cards card card-list)
   (and (not (or (= (length card-list) 0)
 		(not (is-visible? (car card-list)))
 		(>= (get-value (car card-list)) (get-value card))))
@@ -228,8 +224,8 @@
 		(or (= (length card-list) 1)
 		    (not (is-visible? (cadr card-list)))
 		    (check-a-foundation -1 (cadr card-list) 2))
-		(list 1 (get-name (car card-list)) (get-name card)))
-	   (check-a-tslot card (cdr card-list)))))
+		(hint-move from-slot num-cards to-slot))
+	   (check-a-tslot from-slot to-slot (+ 1 num-cards) card (cdr card-list)))))
 
 (define (check-tslot to-slot from-slot)
   (cond ((> from-slot 12)
@@ -241,9 +237,11 @@
 	(#t 
 	 (or (and (= from-slot 1)
 		  (not (empty-slot? 1))
-		  (check-a-tslot (get-top-card to-slot)
+		  (check-a-tslot from-slot to-slot 1
+		                 (get-top-card to-slot)
 				 (list (get-top-card from-slot))))
-	     (check-a-tslot (get-top-card to-slot)
+	     (check-a-tslot from-slot to-slot 1
+	                    (get-top-card to-slot)
 			    (get-cards from-slot))
 	     (check-tslot to-slot (+ 1 from-slot))))))
 
