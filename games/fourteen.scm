@@ -105,9 +105,7 @@
 	      (if (< slot1 10)
 		  (check-slot (+ 1 slot1) (+ 2 slot1))
 		  #f))
-	  (list 1 
-		(get-name (get-top-card slot1)) 
-		(get-name (get-top-card slot2))))))
+	  (hint-move slot1 1 slot2))))
 		  
 (define (get-hint)
   (check-slot 0 1))
