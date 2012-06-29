@@ -468,8 +468,8 @@
                      (#t (_"the unknown card"))))
               (#t (_"the unknown card"))))))
 
-(define-public (hint-get-dest-format to-slot)
-  (if (empty-slot? to-slot)
+(define (hint-get-dest-format to-slot cards)
+  (if (null? cards)
       (cond ((member to-slot FOUNDATION-SLOTS) (if (= (length FOUNDATION-SLOTS) 1) (_"Move ~a onto the foundation.") (_"Move ~a onto an empty foundation slot.")))
             ((member to-slot TABLEAU-SLOTS) (if (= (length TABLEAU-SLOTS) 1) (_"Move ~a onto the tableau.") (_"Move ~a onto an empty tableau slot.")))
             ((member to-slot RESERVE-SLOTS) (if (= (length RESERVE-SLOTS) 1) (_"Move ~a onto the reserve.") (_"Move ~a onto an empty reserve slot.")))
@@ -480,7 +480,7 @@
             ((member to-slot LEFT-SLOTS) (_"Move ~a onto an empty left slot."))
             ((member to-slot RIGHT-SLOTS) (_"Move ~a onto an empty right slot."))
             (else (_"Move ~a onto an empty slot.")))
-      (let* ((card (get-top-card to-slot)) (value (get-value card)) (suit (get-suit card)))
+      (let* ((card (car cards)) (value (get-value card)) (suit (get-suit card)))
              (cond ((is-joker? card)
                     (if (is-black? card) (_"Move ~a onto the black joker.") (_"Move ~a onto the red joker.")))
                    ((eq? suit club) 
@@ -546,7 +546,9 @@
                    (#t (_"Move ~a onto the unknown card."))))))
 
 (define-public (hint-move from-slot from-slot-count to-slot)
-  (list 0 (format #f (hint-get-dest-format to-slot) (get-name (get-nth-card from-slot from-slot-count)))))
+  (if (= from-slot to-slot)
+      (list 0 (format #f (hint-get-dest-format to-slot (list-tail (get-cards to-slot) from-slot-count)) (get-name (get-nth-card from-slot from-slot-count))))
+      (list 0 (format #f (hint-get-dest-format to-slot (get-cards to-slot)) (get-name (get-nth-card from-slot from-slot-count))))))
 
 (define-public (hint-click slot-id hint-string)
   (list 0 hint-string))
