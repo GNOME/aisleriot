@@ -1,7 +1,9 @@
 #! /usr/bin/guile -s
 !#
-; Usage: guile -s card-monkey.scm [game.scm] [number of moves] [timeout in seconds]
+; Usage: guile -s card-monkey.scm [game.scm] [number of moves] [timeout in seconds] [-v] [-d]
 ; example: card-monkey.scm klondike.scm 100 60
+; -v - Display the game state after each move.
+; -d - Deterministic mode - do not seed the PRNG.
 
 (define-module (aisleriot interface))
 
@@ -410,10 +412,13 @@
     (if (string=? (cadr args) "rules/clock.scm")
         (set! skip-obscure-drop-check #t))
     (log-status (list "testing" args "\n"))
-    (let ((time (gettimeofday)))
-      (set! *random-state*
-            (seed->random-state (+ (car time)
-                                   (cdr time)))))
+    (if (member "-v" args)
+        (set! _verbose #t))
+    (if (not (member "-d" args))
+        (let ((time (gettimeofday)))
+          (set! *random-state*
+                (seed->random-state (+ (car time)
+                                       (cdr time))))))
     (load (cadr args))
     (_start-game)
     ;(set! skip-drop-fail-checks (> SLOTS 40))
