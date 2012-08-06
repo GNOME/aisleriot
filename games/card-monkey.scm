@@ -193,7 +193,8 @@
 (define (_changed-game-state?)
     (not (equal? _state (_get-game-state))))
 (define (_revert-game-state)
-    (eval-move _state))
+    (eval-move _state)
+    (_store-game-state))
 
 
 
