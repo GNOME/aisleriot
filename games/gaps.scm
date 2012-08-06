@@ -266,6 +266,10 @@
                                        )
     )
   )
+  (check-sequence 0)
+  (check-sequence 13)
+  (check-sequence 26)
+  (check-sequence 39)
   #t
 )
 
