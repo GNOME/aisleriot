@@ -153,9 +153,7 @@
 	((and (not (empty-slot? (+ slot2 buffer)))
 	      (= 14 (+ (get-value (get-top-card (+ slot1 buffer)))
 		       (get-value (get-top-card (+ slot2 buffer))))))
-	 (list 1 
-	       (get-name (get-top-card (+ slot1 buffer)))
-	       (get-name (get-top-card (+ slot2 buffer)))))
+	 (hint-move (+ slot1 buffer) 1 (+ slot2 buffer)))
 	(#t (check-row slot1 (+ 1 slot2) buffer))))
 
 (define (check-horiz)
@@ -174,9 +172,7 @@
 	((and (not (empty-slot? (+ slot2 buffer)))
 	      (= 14 (+ (get-value (get-top-card (+ slot1 buffer)))
 		       (get-value (get-top-card (+ slot2 buffer))))))
-	 (list 1 
-	       (get-name (get-top-card (+ slot1 buffer)))
-	       (get-name (get-top-card (+ slot2 buffer)))))
+	 (hint-move (+ slot1 buffer) 1 (+ slot2 buffer)))
 	(#t (check-col slot1 (+ 5 slot2) buffer))))
 
 (define (check-vert)
