@@ -21,26 +21,28 @@
 ;set up the deck
 (set-ace-low)
 
+(define foundation '(0 8 9 10))
+(define tableau '(1 2 3 4 5 6 7))
 
 (define (new-game) 
   (initialize-playing-area)
   (make-standard-deck)
   (shuffle-deck)
   
-  (add-normal-slot DECK)			;Slot 0
-  (add-extended-slot '() down)		;Slot 1
-  (add-extended-slot '() down)		;Slot 2
-  (add-extended-slot '() down)		;Slot 3
-  (add-extended-slot '() down)		;Slot 4
-  (add-extended-slot '() down)		;Slot 5
-  (add-extended-slot '() down)		;Slot 6
-  (add-extended-slot '() down)		;Slot 7
+  (add-normal-slot DECK 'foundation)			;Slot 0
+  (add-extended-slot '() down 'tableau)		;Slot 1
+  (add-extended-slot '() down 'tableau)		;Slot 2
+  (add-extended-slot '() down 'tableau)		;Slot 3
+  (add-extended-slot '() down 'tableau)		;Slot 4
+  (add-extended-slot '() down 'tableau)		;Slot 5
+  (add-extended-slot '() down 'tableau)		;Slot 6
+  (add-extended-slot '() down 'tableau)		;Slot 7
   (add-carriage-return-slot)
-  (add-normal-slot '())			;Slot 8
+  (add-normal-slot '() 'foundation)			;Slot 8
   (add-carriage-return-slot)
-  (add-normal-slot '())			;Slot 9
+  (add-normal-slot '() 'foundation)			;Slot 9
   (add-carriage-return-slot)
-  (add-normal-slot '())			;Slot 10
+  (add-normal-slot '() 'foundation)			;Slot 10
   
   (deal-cards 0 '(1 2 3 4 5 6 7 1 2 3 4 5 6 7  1 2 3 4 5 6 7 ))
   (deal-cards-face-up 0 '(1 2 3 4 5 6 7 1 2 3 4 5 6 7  1 2 3 4 5 6 7 2 3 4 5 6 2 3 4 5 6))
@@ -175,48 +177,51 @@
 	  (move-to-foundations? slot 0))
       #f))
 
-(define (is-ploppable card value suit)
+(define (is-ploppable card value suit slot-id)
   (or (and (= ace (get-value card))
-	   (list 2 (get-name card) (_"an empty slot") ))
-      (and (or (and (not (empty-slot? 0))
-		    (= value (get-value (get-top-card 0)))
-		    (= suit (get-suit (get-top-card 0))))
-	       (and (not (empty-slot? 8))
-		    (= value (get-value (get-top-card 8)))
-		    (= suit (get-suit (get-top-card 8))))
-	       (and (not (empty-slot? 9))
-		    (= value (get-value (get-top-card 9)))
-		    (= suit (get-suit (get-top-card 9))))
-	       (and (not (empty-slot? 10))
-		    (= value (get-value (get-top-card 10)))
-		    (= suit (get-suit (get-top-card 10)))))
-	   (list 1 (get-name card) (get-name (make-card value suit))))))
+	   (hint-move slot-id 1 (find-empty-slot foundation)))
+      (and (not (empty-slot? 0))
+           (= value (get-value (get-top-card 0)))
+           (= suit (get-suit (get-top-card 0)))
+           (hint-move slot-id 1 0))
+      (and (not (empty-slot? 8))
+           (= value (get-value (get-top-card 8)))
+           (= suit (get-suit (get-top-card 8)))
+           (hint-move slot-id 1 8))
+      (and (not (empty-slot? 9))
+           (= value (get-value (get-top-card 9)))
+           (= suit (get-suit (get-top-card 9)))
+           (hint-move slot-id 1 9))
+      (and (not (empty-slot? 10))
+           (= value (get-value (get-top-card 10)))
+           (= suit (get-suit (get-top-card 10)))
+           (hint-move slot-id 1 10))))
 
-(define (is-visible-card cards card value suit)
+(define (is-visible-card slot-id2 slot-id cards card value suit num-cards)
   (and (not (null? cards))
        (if (and (= (get-value (car cards)) value)
 		(= (get-suit (car cards)) suit))
 	   (and (is-visible? (car cards))
-		(list 1 (get-name (make-card value suit)) (get-name card)))
-	   (is-visible-card (cdr cards) card value suit))))
+		(hint-move slot-id2 num-cards slot-id))
+	   (is-visible-card slot-id2 slot-id (cdr cards) card value suit (+ 1 num-cards)))))
 
 (define (is-extendable slot-id2 slot-id card value suit)
   (and (< slot-id2 8)
        (or (and (not (= slot-id2 slot-id))
-		(is-visible-card (get-cards slot-id2) card value suit))
+		(is-visible-card slot-id2 slot-id (get-cards slot-id2) card value suit 1))
 	   (is-extendable (+ 1 slot-id2) slot-id card value suit))))
 
-(define (is-visible-king cards)
+(define (is-visible-king cards slot-id num-cards)
   (and (not (null? cards))
        (or (and (= (get-value (car cards)) king)
 		(is-visible? (car cards))
 		(not (null? (cdr cards)))
-		(list 2 (get-name (car cards)) (_"an empty slot")))
-	   (is-visible-king (cdr cards)))))
+		(hint-move slot-id num-cards (find-empty-slot tableau)))
+	   (is-visible-king (cdr cards) slot-id (+ 1 num-cards)))))
 
 (define (find-king slot-id)
   (and (< slot-id 8)
-       (or (is-visible-king (get-cards slot-id))
+       (or (is-visible-king (get-cards slot-id) slot-id 1)
 	   (find-king (+ 1 slot-id)))))
 
 ; Checks to see if any moves can be made in the tableau
@@ -239,7 +244,7 @@
 	(#t (or (let* ((card (get-top-card slot-id))
 		       (suit (get-suit card))
 		       (value (- (get-value card) 1)))
-		  (is-ploppable card value suit))
+		  (is-ploppable card value suit slot-id))
 		(check-game-over-foundation (+ 1 slot-id) check-kings)))))
 
 ; We want to always check to see if moves can be moved among the
