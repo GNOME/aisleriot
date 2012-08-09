@@ -223,9 +223,7 @@
                    (check-moves (append (list waste) reserves) reserves))
   )
   (if move
-      (list 1 (get-name(get-top-card(car move)))
-              (get-name(get-top-card(cadr move)))
-      )
+      (hint-move (car move) 1 (cadr move))
       (and (not (empty-slot? stock)) (list 0 (_"Deal a new card")))
   )
 )
