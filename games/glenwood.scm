@@ -18,40 +18,43 @@
 
 (def-save-var BASE-VAL 0)
 
+(define foundation '(2 3 4 5))
+(define tableau '(7 8 9 10))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
 
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'reserve)
 
   (add-blank-slot)
   (add-blank-slot)
   
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (add-carriage-return-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'reserve)
   (add-carriage-return-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'reserve)
   (add-carriage-return-slot)
-  (add-extended-slot '() right)
+  (add-extended-slot '() right 'reserve)
 
   (deal-cards-face-up 0 '(6 11 12 13 6 11 12 13 6 11 12 13 7 8 9 10))
 
@@ -272,6 +275,12 @@
 		     king))))
 	(#t (check-a-foundation slot-id (+ 1 foundation-id)))))	
 
+(define (find-foundation suit foundations)
+  (if (and (not (empty-slot? (car foundations)))
+           (= suit (get-suit (get-top-card (car foundations)))))
+      (car foundations)
+      (find-foundation suit (cdr foundations))))
+
 (define (to-foundations slot-id)
   (cond ((= slot-id 14)
 	 #f)
@@ -280,19 +289,10 @@
 	((and (not (empty-slot? slot-id))
 	      (= (get-value (get-top-card slot-id))
 		 BASE-VAL))
-	 (list 1 (get-name (get-top-card slot-id)) (_"empty slot on foundation")))
+	 (hint-move slot-id 1 (find-empty-slot foundation)))
 	((and (not (empty-slot? slot-id))
 	      (check-a-foundation slot-id 2))
-	 (if (= (get-value (get-top-card slot-id)) ace)
-	     (list 1 
-		   (get-name (get-top-card slot-id))
-		   (get-name (make-card king
-					(get-suit (get-top-card slot-id)))))
-	     (list 1 
-		   (get-name (get-top-card slot-id))
-		   (get-name (make-card (- (get-value (get-top-card slot-id))
-					   1)
-					(get-suit (get-top-card slot-id)))))))
+	 (hint-move slot-id 1 (find-foundation (get-suit (get-top-card slot-id)) foundation)))
 	(#t
 	 (to-foundations (+ 1 slot-id)))))
 
@@ -306,9 +306,7 @@
 		     (get-value (get-top-card tab-id)))
 		  (and (= (get-value (get-top-card slot-id)) king)
 		       (= (get-value (get-top-card tab-id)) ace))))
-	 (list 1 
-	       (get-name (get-top-card slot-id)) 
-	       (get-name (get-top-card tab-id))))
+	 (hint-move slot-id 1 tab-id))
 	(#t (check-a-tableau-with-single slot-id (+ 1 tab-id)))))
 
 (define (check-a-tableau-pile slot-id tab-id)
@@ -322,9 +320,7 @@
 		     (get-value (get-top-card tab-id)))
 		  (and (= (get-value (car (reverse (get-cards slot-id)))) king)
 		       (= (get-value (get-top-card tab-id)) ace))))
-	 (list 1 
-	       (get-name (car (reverse (get-cards slot-id))))
-	       (get-name (get-top-card tab-id))))
+	 (hint-move slot-id (length (get-cards slot-id)) tab-id))
 	(#t (check-a-tableau-pile slot-id (+ 1 tab-id)))))
 
 
@@ -356,9 +352,9 @@
 		 (not (empty-slot? 11))
 		 (not (empty-slot? 12))
 		 (not (empty-slot? 13)))
-	     (list 0 (_"Move a card from the reserve on to the empty tableau slot")))
+	     (list 0 (_"Move a card from the reserve onto the empty tableau slot")))
 	    ((not (empty-slot? 1))
-	     (list 1 (get-name (get-top-card 1)) (_"on to the empty tableau slot")))
+	     (hint-move 1 1 (find-empty-slot tableau)))
 	    (#t #f))
       #f))
 
