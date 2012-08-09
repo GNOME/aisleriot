@@ -235,6 +235,16 @@
       (depth-card (cdr card-list))
       card-list))
 
+(define (depth-card-pos card-list acc)
+  (if (and (> (length card-list) 1)
+	   (is-visible? (cadr card-list))
+	   (eq? (get-suit (car card-list))
+		(get-suit (cadr card-list)))
+	   (eq? (+ 1 (get-value (car card-list)))
+		(get-value (cadr card-list))))
+      (depth-card-pos (cdr card-list) (+ acc 1))
+      acc))
+
 (define (check-a-slot source card-to-move targets same-suit?)
   (if (eq? targets '())
       #f
@@ -245,9 +255,7 @@
 			 (get-suit (get-top-card (car targets)))))
 	       (= (+ 1 (get-value card-to-move))
 		  (get-value (get-top-card (car targets)))))
-	  (list 1
-		(get-name card-to-move)
-		(get-name (get-top-card (car targets))))
+	  (hint-move source (depth-card-pos (get-cards source) 1) (car targets))
 	  (check-a-slot source card-to-move (cdr targets) same-suit?))))
 
 (define (same-suit-check slots)
