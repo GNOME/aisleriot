@@ -127,9 +127,7 @@
 		 (get-suit (get-top-card slot2)))
 	      (= (+ 1 (get-value (get-top-card slot1)))
 		 (get-value (get-top-card slot2))))
-	 (list 1 
-	       (get-name (get-top-card slot1))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 1 slot2))
 	(#t (tableau-move? slot1 (+ 1 slot2)))))
 
 
