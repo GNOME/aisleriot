@@ -195,9 +195,7 @@
 
 (define (make-hint possible-move)
     (if (car possible-move)
-           (list 2 (get-name (get-top-card (car possible-move)))
-                   (get-name (get-top-card (car (cdr possible-move)))) 
-           ) 
+           (hint-move (car possible-move) 1 (cadr possible-move)) 
            #f
     )
 )
