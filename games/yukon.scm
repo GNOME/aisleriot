@@ -15,6 +15,9 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
+(define foundation '(0 8 9 10))
+(define tableau '(1 2 3 4 5 6 7))
+
 (define (new-game)
   (initialize-playing-area)
 
@@ -23,21 +26,21 @@
   (shuffle-deck)
   
 					;set up the board
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'foundation)
   (add-blank-slot)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
   (add-carriage-return-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
 
 
   (deal-cards 0 '(1 2 3 4 5 6 7 2 3 4 5 6 7 3 4 5 6 7 4 5 6 7 5 6 7 6 7 7))
@@ -195,31 +198,25 @@
       #t
       #f))
 
-(define (here-kingy-kingy card-list)
+(define (here-kingy-kingy slot num-cards card-list)
   (cond ((or (= (length card-list) 0)
 	     (= (length card-list) 1)
 	     (not (is-visible? (car card-list))))
 	 #f)
 	((= (get-value (car card-list)) king)
-	 (list 2 (get-name (car card-list)) (_"an empty slot")))
-	(#t (here-kingy-kingy (cdr card-list)))))
+	 (hint-move slot num-cards (find-empty-slot tableau)))
+	(#t (here-kingy-kingy slot (+ num-cards 1) (cdr card-list)))))
 
 (define (king-avail? slot-id)
   (cond ((= slot-id 8)
 	 #f)
 	((and (not (empty-slot? slot-id))
-	      (here-kingy-kingy (get-cards slot-id)))
-	 (here-kingy-kingy (get-cards slot-id)))
+	      (here-kingy-kingy slot-id 1 (get-cards slot-id)))
+	 (here-kingy-kingy slot-id 1 (get-cards slot-id)))
 	(#t (king-avail? (+ 1 slot-id)))))
 
 (define (check-for-empty)
-  (and (or (empty-slot? 1)
-	   (empty-slot? 2)
-	   (empty-slot? 3)
-	   (empty-slot? 4)
-	   (empty-slot? 5)
-	   (empty-slot? 6)
-	   (empty-slot? 7))
+  (and (find-empty-slot tableau)
        (king-avail? 1)))
 
 (define (check-a-foundation card slot-id)
@@ -235,18 +232,21 @@
 	 #t)
 	(#t (check-a-foundation card (+ 1 slot-id)))))
 
+(define (find-suit suit slots)
+  (if (and (not (empty-slot? (car slots)))
+           (= (get-suit (get-top-card (car slots))) suit))
+      (car slots)
+      (find-suit suit (cdr slots))))
+
 (define (check-to-foundations? slot-id)
   (cond ((= slot-id 8)
 	 #f)
 	((empty-slot? slot-id)
 	 (check-to-foundations? (+ 1 slot-id)))
 	((= (get-value (get-top-card slot-id)) ace)
-	 (list 2 (get-name (get-top-card slot-id)) (_"an empty foundation")))
+	 (hint-move slot-id 1 (find-empty-slot foundation)))
 	((check-a-foundation (get-top-card slot-id) 0)
-	 (list 1 
-	       (get-name (get-top-card slot-id))
-	       (get-name (make-card (- (get-value (get-top-card slot-id)) 1)
-				    (get-suit (get-top-card slot-id))))))
+	 (hint-move slot-id 1 (find-suit (get-suit (get-top-card slot-id)) foundation)))
 	(#t (check-to-foundations? (+ 1 slot-id)))))
 
 (define (stripped card-list card)
@@ -258,7 +258,7 @@
 	      '()
 	      (stripped (cdr card-list) card)))))
 
-(define (check-a-tableau card slot1 card-list slot2)
+(define (check-a-tableau card slot1 card-list slot2 num-cards)
   (cond ((or (= (length card-list) 0)
 	     (not (is-visible? (car card-list))))
 	 #f)
@@ -276,22 +276,26 @@
 		  (check-a-tableau (get-top-card slot2)
 				   slot1	
 				   (cdr card-list)
-				   slot2)
+				   slot2
+				   1)
 		  (check-a-tableau (cadr card-list)
 				   slot2
 				   (get-cards slot1)
-				   slot1)
+				   slot1
+				   1)
 		  (check-a-tableau (cadr card-list)
 				   slot2
 				   (stripped (get-cards slot2)
 					     (car card-list))
-				   slot2))
-	     (list 1 (get-name (car card-list)) (get-name card))
+				   slot2
+				   1))
+	     (hint-move slot2 num-cards slot1)
 	     (check-a-tableau card 
 			      slot1 
 			      (cdr card-list) 
-			      slot2)))
-	(#t (check-a-tableau card slot1 (cdr card-list) slot2))))
+			      slot2
+			      (+ num-cards 1))))
+	(#t (check-a-tableau card slot1 (cdr card-list) slot2 (+ num-cards 1)))))
 
 (define (check-to-tableau? slot1 slot2)
   (cond ((= slot1 8)
@@ -303,11 +307,13 @@
 	      (check-a-tableau (get-top-card slot1) 
 			       slot1 
 			       (get-cards slot2) 
-			       slot2))
+			       slot2
+			       1))
 	 (check-a-tableau (get-top-card slot1) 
 			  slot1 
 			  (get-cards slot2) 
-			  slot2))
+			  slot2
+			  1))
 	(#t (check-to-tableau? slot1 (+ 1 slot2)))))
 
 (define (get-hint)
