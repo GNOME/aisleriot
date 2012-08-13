@@ -16,7 +16,6 @@ pkcatalog_DATA = aisleriot.catalog
 
 desktop_in_files = \
 	sol.desktop.in.in \
-	freecell.desktop.in.in \
 	$(NULL)
 
 desktopdir = $(datadir)/applications

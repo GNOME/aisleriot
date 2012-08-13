@@ -594,7 +594,6 @@ data/aisleriot.catalog
 data/icons/Makefile
 data/sounds/Makefile
 data/sol.desktop.in
-data/freecell.desktop.in
 games/Makefile
 help/Makefile
 po/Makefile.in
