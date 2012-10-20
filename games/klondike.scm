@@ -16,9 +16,10 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
-(define deal-one #t)    ;deal one card at a time from stock to waste
+(define deal-one #t)    ;deal one card at a time from stock to waste, 2 redeals
 (define deal-three #f)  ;deal three cards at a time from stock to waste
-(define no-redeal #f)   ;stock deals a card face-up to each pile in the tableau instead of to waste
+(define no-redeal #f)   ;deal one card at a time from stock to waste, no redeals
+(define unl-redeal #f)  ;deal one card at a time from stock to waste, unlimited redeals
 (define kings-only #t)  ;only allow kings to be moved to empty slots
 
 (define max-redeal 2)   ;number of redeals, -1 for unlimited
@@ -292,12 +293,14 @@
 	(list (_"Three card deals") deal-three)
 	(list (_"Single card deals") deal-one)
 	(list (_"No redeals") no-redeal)
+	(list (_"Unlimited redeals") unl-redeal)
 	'end-exclusive))
 
 (define (apply-options options)
   (set! deal-three (cadr (list-ref options 1)))
   (set! deal-one (cadr (list-ref options 2)))
   (set! no-redeal (cadr (list-ref options 3)))
+  (set! unl-redeal (cadr (list-ref options 4)))
   (set! max-redeal (cond (no-redeal 0)
 			 (deal-one 2)
 			 (#t -1))))
