@@ -47,6 +47,11 @@ GType aisleriot_window_get_type (void);
 
 GtkWidget *aisleriot_window_new (gboolean freecell_mode);
 
+GtkUIManager *aisleriot_window_get_ui_manager (AisleriotWindow *window);
+
+GtkAction *aisleriot_window_get_action (AisleriotWindow *window,
+                                        const char *action_name);
+
 void aisleriot_window_set_game_module (AisleriotWindow * window,
                                        const char *game_module,
                                        GRand *rand);

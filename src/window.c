@@ -2592,6 +2592,31 @@ aisleriot_window_new (gboolean freecell_mode)
                        NULL);
 }
 
+/**
+ * aisleriot_window_get_ui_manager:
+ * @window:
+ *
+ * Returns: (transfer none): the window's #GtkUIManager
+ */
+GtkUIManager *
+aisleriot_window_get_ui_manager (AisleriotWindow *window)
+{
+  return window->priv->ui_manager;
+}
+
+/**
+ * aisleriot_window_get_ui_manager:
+ * @window:
+ *
+ * Returns: (transfer none): the window's #GtkUIManager
+ */
+GtkAction *
+aisleriot_window_get_action (AisleriotWindow *window,
+                             const char *action_name)
+{
+  return gtk_action_group_get_action (window->priv->action_group, action_name);
+}
+
 typedef struct {
   AisleriotWindow *window;
   char *game_module;
