@@ -1,3 +1,4 @@
+/* -*- Mode: C; indent-tabs-mode: nil; c-basic-offset: 2; tab-width: 2 -*- */
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  * Copyright © 2003 Callum McKenzie <callum@physics.otago.ac.nz>
@@ -939,12 +940,11 @@ clickmove_toggle_cb (GtkToggleAction *action,
   ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
 }
 
-#ifdef ENABLE_SOUND
-
 static void
 sound_toggle_cb (GtkToggleAction *action,
                  AisleriotWindow *window)
 {
+#ifdef ENABLE_SOUND
   gboolean sound_enabled;
 
   sound_enabled = gtk_toggle_action_get_active (action);
@@ -952,16 +952,14 @@ sound_toggle_cb (GtkToggleAction *action,
   ar_sound_enable (sound_enabled);
   
   ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
-}
-
 #endif /* ENABLE_SOUND */
-
-#ifdef HAVE_CLUTTER
+}
 
 static void
 animations_toggle_cb (GtkToggleAction *action,
                       AisleriotWindow *window)
 {
+#ifdef HAVE_CLUTTER
   AisleriotWindowPrivate *priv = window->priv;
   gboolean enabled;
 
@@ -970,9 +968,8 @@ animations_toggle_cb (GtkToggleAction *action,
   ar_style_set_enable_animations (priv->board_style, enabled);
   
   ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
-}
-
 #endif /* HAVE_CLUTTER */
+}
 
 static void
 show_hint_cb (GtkAction *action,
@@ -1771,13 +1768,12 @@ game_exception_cb (AisleriotGame *game,
   gtk_widget_show (dialog);
 }
 
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
-
 static void
 settings_changed_cb (GtkSettings *settings,
                      GParamSpec *pspec,
                      AisleriotWindow *window)
 {
+#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
   AisleriotWindowPrivate *priv = window->priv;
   GtkAction *action;
   gboolean enabled;
@@ -1789,22 +1785,25 @@ settings_changed_cb (GtkSettings *settings,
     name = NULL;
 
 #ifdef HAVE_CLUTTER
-  if (name == NULL || strcmp (name, "gtk-enable-animations") == 0) {
+  if (name == NULL || strcmp (name, "gtk-enable-animations") == 0)
     g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
-
-    action = gtk_action_group_get_action (priv->action_group, "Animations");
-    gtk_action_set_visible (action, enabled);
-  }
+  else
 #endif /* HAVE_CLUTTER */
+    enabled = FALSE;
 
-#if defined(ENABLE_SOUND)
-  if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0) {
+  action = gtk_action_group_get_action (priv->action_group, "Animations");
+  gtk_action_set_visible (action, enabled);
+
+#ifdef ENABLE_SOUND
+  if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0)
     g_object_get (settings, "gtk-enable-event-sounds", &enabled, NULL);
-
-    action = gtk_action_group_get_action (priv->action_group, "Sound");
-    gtk_action_set_visible (action, enabled);
-  }
+  else
 #endif /* ENABLE_SOUND */
+    enabled = FALSE;
+
+  action = gtk_action_group_get_action (priv->action_group, "Sound");
+  gtk_action_set_visible (action, enabled);
+#endif /* HAVE_CLUTTER || ENABLE_SOUND */
 }
 
 static void
@@ -1812,6 +1811,7 @@ screen_changed_cb (GtkWidget *widget,
                    GdkScreen *previous_screen,
                    AisleriotWindow *window)
 {
+#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
   GdkScreen *screen;
   GtkSettings *settings;
 
@@ -1828,7 +1828,9 @@ screen_changed_cb (GtkWidget *widget,
   if (screen == NULL)
     return;
 
+#ifdef ENABLE_SOUND
   ar_sound_init (screen);
+#endif
 
   settings = gtk_widget_get_settings (widget);
   settings_changed_cb (settings, NULL, window);
@@ -1836,13 +1838,12 @@ screen_changed_cb (GtkWidget *widget,
   g_signal_connect (settings, "notify::gtk-enable-animations",
                     G_CALLBACK (settings_changed_cb), window);
 #endif
-#if defined (ENABLE_SOUND)
+#ifdef ENABLE_SOUND
   g_signal_connect (settings, "notify::gtk-enable-event-sounds",
                     G_CALLBACK (settings_changed_cb), window);
 #endif
-}
-
 #endif /* HAVE_CLUTTER || ENABLE_SOUND */
+}
 
 /*
  * aisleriot_window_set_freecell_mode:
@@ -2089,18 +2090,14 @@ aisleriot_window_init (AisleriotWindow *window)
       N_("Pick up and drop cards by clicking"),
       G_CALLBACK (clickmove_toggle_cb),
       FALSE /* not active by default */ },
-#ifdef ENABLE_SOUND
    { "Sound", NULL, N_("_Sound"), NULL,
       N_("Whether or not to play event sounds"),
       G_CALLBACK (sound_toggle_cb),
       FALSE /* not active by default */ },
-#endif /* ENABLE_SOUND */
-#ifdef HAVE_CLUTTER
    { "Animations", NULL, N_("_Animations"), NULL,
       N_("Whether or not to animate card moves"),
       G_CALLBACK (animations_toggle_cb),
       FALSE /* not active by default */ },
-#endif /* HAVE_CLUTTER */
   };
 
   static const char names[][16] = {
@@ -2145,12 +2142,8 @@ aisleriot_window_init (AisleriotWindow *window)
           "<menuitem action='Hint'/>"
           "<separator/>"
           "<menuitem action='ClickToMove'/>"
-#ifdef ENABLE_SOUND
           "<menuitem action='Sound'/>"
-#endif
-#ifdef HAVE_CLUTTER
           "<menuitem action='Animations'/>"
-#endif
         "</menu>"
         "<menu action='OptionsMenu'/>"
         "<menu action='HelpMenu'>"
