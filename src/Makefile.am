@@ -161,6 +161,8 @@ EXTRA_DIST = \
 	$(icon_DATA)		\
 	$(allicons)		\
 	$(schema_in_files)	\
+	aisleriot-ui.xml	\
+	aisleriot-debug-ui.xml	\
 	game-names.h
 
 CLEANFILES = \

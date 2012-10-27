@@ -2112,84 +2112,6 @@ aisleriot_window_init (AisleriotWindow *window)
     "LeaveFullscreen",
   };
 
-  static const char ui_description[] =
-    "<ui>"
-      "<menubar name='MainMenu'>"
-        "<menu action='GameMenu'>"
-          "<menuitem action='NewGame'/>"
-          "<menuitem action='RestartGame'/>"
-          "<menuitem action='Statistics'/>"
-          "<menuitem action='Select'/>"
-          "<menu action='RecentMenu'/>"
-          "<separator/>"
-          "<menuitem action='CloseWindow'/>"
-        "</menu>"
-        "<menu action='ViewMenu'>"
-          "<menuitem action='Fullscreen'/>"
-          "<menuitem action='Toolbar'/>"
-          "<menuitem action='Statusbar'/>"
-          "<separator/>"
-          "<menu action='ThemeMenu'>"
-            "<placeholder name='ThemesPH'/>"
-            "<separator/>"
-            "<menuitem action='InstallThemes'/>"
-          "</menu>"
-        "</menu>"
-        "<menu action='ControlMenu'>"
-          "<menuitem action='UndoMove'/>"
-          "<menuitem action='RedoMove'/>"
-          "<menuitem action='Deal'/>"
-          "<menuitem action='Hint'/>"
-          "<separator/>"
-          "<menuitem action='ClickToMove'/>"
-          "<menuitem action='Sound'/>"
-          "<menuitem action='Animations'/>"
-        "</menu>"
-        "<menu action='OptionsMenu'/>"
-        "<menu action='HelpMenu'>"
-          "<menuitem action='Contents'/>"
-          "<menuitem action='HelpGame'/>"
-          "<menuitem action='About'/>"
-        "</menu>"
-#ifdef ENABLE_DEBUG_UI
-        "<menu action='DebugMenu'>"
-          "<menuitem action='DebugTweakStyle'/>"
-          "<menuitem action='DebugTweakSettings'/>"
-          "<separator/>"
-          "<menuitem action='DebugChooseSeed'/>"
-          "<menuitem action='DebugMoveNextScreen'/>"
-          "<menuitem action='DebugDelayedMoveNextScreen'/>"
-          "<menuitem action='DebugException'/>"
-          "<separator/>"
-          "<menuitem action='DebugCycle'/>"
-          "<separator/>"
-          "<menuitem action='DebugGameFirst'/>"
-          "<menuitem action='DebugGamePrev'/>"
-          "<menuitem action='DebugGameNext'/>"
-          "<menuitem action='DebugGameLast'/>"
-        "</menu>"
-#endif /* ENABLE_DEBUG_UI */
-      "</menubar>"
-      "<toolbar name='Toolbar'>"
-        "<toolitem action='NewGame'/>"
-        "<toolitem action='RestartGame'/>"
-        "<toolitem action='Select'/>"
-        "<separator/>"
-        "<toolitem action='UndoMove'/>"
-        "<toolitem action='RedoMove'/>"
-        "<toolitem action='Deal'/>"
-        "<toolitem action='Hint'/>"
-        "<separator name='LeaveFullscreenSep' expand='true'/>"
-        "<toolitem action='LeaveFullscreen'/>"
-#ifdef ENABLE_DEBUG_UI
-        "<toolitem action='DebugGameFirst'/>"
-        "<toolitem action='DebugGamePrev'/>"
-        "<toolitem action='DebugGameNext'/>"
-        "<toolitem action='DebugGameLast'/>"
-#endif
-      "</toolbar>"
-    "</ui>";
-
   AisleriotWindowPrivate *priv;
   GtkWidget *main_vbox;
   GtkAccelGroup *accel_group;
@@ -2199,6 +2121,7 @@ aisleriot_window_init (AisleriotWindow *window)
   guint i;
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *label, *time_box;
+  GError *error = NULL;
 #ifdef HAVE_CLUTTER
   ClutterContainer *stage;
 #endif
@@ -2333,8 +2256,12 @@ aisleriot_window_init (AisleriotWindow *window)
   /* Load the UI after we've connected the statusbar,
    * otherwise not all actions will have statusbar help.
    */
-  gtk_ui_manager_add_ui_from_string (priv->ui_manager, ui_description,
-                                     strlen (ui_description), NULL);
+  gtk_ui_manager_add_ui_from_resource (priv->ui_manager, "/org/gnome/aisleriot/ui/menus.xml", &error);
+  g_assert_no_error (error);
+#ifdef ENABLE_DEBUG_UI
+  gtk_ui_manager_add_ui_from_resource (priv->ui_manager, "/org/gnome/aisleriot/ui/debug-menus.xml", &error);
+  g_assert_no_error (error);
+#endif /* ENABLE_DEBUG_UI */
 
   priv->main_menu = gtk_ui_manager_get_widget (priv->ui_manager, MAIN_MENU_UI_PATH);
   priv->toolbar = gtk_ui_manager_get_widget (priv->ui_manager, TOOLBAR_UI_PATH);
