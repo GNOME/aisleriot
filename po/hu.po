@@ -9,21 +9,22 @@
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Szabolcs Varga <shirokuma at shirokuma dot hu>, 2005.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+# Balázs Úr <urbalazs at gmail dot com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aislerio"
-"t&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-13 21:29+0000\n"
-"PO-Revision-Date: 2012-09-04 01:11+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=aisleriot&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-12-29 19:50+0000\n"
+"PO-Revision-Date: 2013-01-13 11:54+0100\n"
+"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
@@ -32,6 +33,10 @@ msgstr "AisleRiot pasziánsz"
 #: ../data/sol.desktop.in.in.h:2
 msgid "Play many different solitaire games"
 msgstr "Sok különféle pasziánszjáték"
+
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "pasziánsz;kártyák;klondike;pók;freecell;türelem;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -1825,7 +1830,7 @@ msgstr "Kiinduló kártya: Király"
 #: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
 #: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
 #: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
@@ -2104,13 +2109,11 @@ msgstr "Rakja a(z) ~a lapot egy üres tabló helyre."
 
 #: ../games/api.scm:475
 #, scheme-format
-#| msgid "Move ~a onto the red joker."
 msgid "Move ~a onto the reserve."
 msgstr "Rakja a(z) ~a lapot a tartalékra."
 
 #: ../games/api.scm:475
 #, scheme-format
-#| msgid "Move ~a onto an empty corner slot."
 msgid "Move ~a onto an empty reserve slot."
 msgstr "Rakja a(z) ~a lapot egy üres tartalék helyre."
 
@@ -2425,7 +2428,7 @@ msgstr "Rakja a(z) ~a lapot a káró dámára."
 msgid "Move ~a onto the king of diamonds."
 msgstr "Rakja a(z) ~a lapot a káró királyra."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/athena.scm:80 ../games/klondike.scm:293
 #: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
@@ -2440,7 +2443,7 @@ msgstr "Osszon következő kört"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
 #: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
@@ -2458,7 +2461,7 @@ msgstr "egy üres hely az alapon"
 
 #: ../games/backbone.scm:293 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:339
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2645,11 +2648,10 @@ msgid "Deal a card"
 msgstr "Osszon egy kártyát"
 
 #: ../games/easthaven.scm:227
-#| msgid "Move ~a onto an empty tableau slot."
 msgid "Move a king onto an empty tableau slot."
 msgstr "Rakjon egy királyt egy üres tabló helyre."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Nincs javaslat"
@@ -2739,7 +2741,6 @@ msgid "Return cards to stock"
 msgstr "Kártyákat vissza a pakliba"
 
 #: ../games/fortress.scm:212
-#| msgid "Move something into the empty Tableau slot"
 msgid "Move something onto an empty tableau slot."
 msgstr "Rakjon valamit egy üres tablóhelyre."
 
@@ -2748,7 +2749,7 @@ msgstr "Rakjon valamit egy üres tablóhelyre."
 msgid "Move ~a off the board"
 msgstr "Rakja le a(z) ~a lapot a tábláról"
 
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:158 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "Próbáljon meg valamit egy üres helyre mozgatni"
 
@@ -2783,242 +2784,194 @@ msgid "Add to the sequence in row ~a."
 msgstr "A következő sorban lévő sorozathoz adás: ~a."
 
 #: ../games/gaps.scm:311
-#| msgid "Move ~a onto the ace of clubs."
 msgid "Place the two of clubs next to the ace of clubs."
 msgstr "Rakja a treff kettest a treff ász mellé."
 
 #: ../games/gaps.scm:312
-#| msgid "Move ~a onto the two of clubs."
 msgid "Place the three of clubs next to the two of clubs."
 msgstr "Rakja a treff hármast a treff kettes mellé."
 
 #: ../games/gaps.scm:313
-#| msgid "Move ~a onto the three of clubs."
 msgid "Place the four of clubs next to the three of clubs."
 msgstr "Rakja a treff négyest a treff hármas mellé."
 
 #: ../games/gaps.scm:314
-#| msgid "Move ~a onto the four of clubs."
 msgid "Place the five of clubs next to the four of clubs."
 msgstr "Rakja a treff ötöst a treff négyes mellé."
 
 #: ../games/gaps.scm:315
-#| msgid "Move ~a onto the five of clubs."
 msgid "Place the six of clubs next to the five of clubs."
 msgstr "Rakja a treff hatost a treff ötös mellé."
 
 #: ../games/gaps.scm:316
-#| msgid "Move ~a onto the six of clubs."
 msgid "Place the seven of clubs next to the six of clubs."
 msgstr "Rakja a treff hetest a treff hatos mellé."
 
 #: ../games/gaps.scm:317
-#| msgid "Move ~a onto the seven of clubs."
 msgid "Place the eight of clubs next to the seven of clubs."
 msgstr "Rakja a treff nyolcast a treff hetes mellé."
 
 #: ../games/gaps.scm:318
-#| msgid "Move ~a onto the eight of clubs."
 msgid "Place the nine of clubs next to the eight of clubs."
 msgstr "Rakja a treff kilencest a treff nyolcas mellé."
 
 #: ../games/gaps.scm:319
-#| msgid "Move ~a onto the nine of clubs."
 msgid "Place the ten of clubs next to the nine of clubs."
 msgstr "Rakja a treff tízest a treff kilences mellé."
 
 #: ../games/gaps.scm:320
-#| msgid "Move ~a onto the ten of clubs."
 msgid "Place the jack of clubs next to the ten of clubs."
 msgstr "Rakja a treff bubit a treff tízes mellé."
 
 #: ../games/gaps.scm:321
-#| msgid "Move ~a onto the jack of clubs."
 msgid "Place the queen of clubs next to the jack of clubs."
 msgstr "Rakja a treff dámát a treff bubi mellé."
 
 #: ../games/gaps.scm:322
-#| msgid "Move ~a onto the queen of clubs."
 msgid "Place the king of clubs next to the queen of clubs."
 msgstr "Rakja a treff királyt a treff dáma mellé."
 
 #: ../games/gaps.scm:325
-#| msgid "Move ~a onto the ace of spades."
 msgid "Place the two of spades next to the ace of spades."
 msgstr "Rakja a pikk kettest a pikk ász mellé."
 
 #: ../games/gaps.scm:326
-#| msgid "Move ~a onto the two of spades."
 msgid "Place the three of spades next to the two of spades."
 msgstr "Rakja a pikk hármast a pikk kettes mellé."
 
 #: ../games/gaps.scm:327
-#| msgid "Move ~a onto the three of spades."
 msgid "Place the four of spades next to the three of spades."
 msgstr "Rakja a pikk négyest a pikk hármas mellé."
 
 #: ../games/gaps.scm:328
-#| msgid "Move ~a onto the four of spades."
 msgid "Place the five of spades next to the four of spades."
 msgstr "Rakja a pikk ötöst a pikk négyes mellé."
 
 #: ../games/gaps.scm:329
-#| msgid "Move ~a onto the five of spades."
 msgid "Place the six of spades next to the five of spades."
 msgstr "Rakja a pikk hatost a pikk ötös mellé."
 
 #: ../games/gaps.scm:330
-#| msgid "Move ~a onto the six of spades."
 msgid "Place the seven of spades next to the six of spades."
 msgstr "Rakja a pikk hetest a pikk hatos mellé."
 
 #: ../games/gaps.scm:331
-#| msgid "Move ~a onto the seven of spades."
 msgid "Place the eight of spades next to the seven of spades."
 msgstr "Rakja a pikk nyolcast a pikk hetes mellé."
 
 #: ../games/gaps.scm:332
-#| msgid "Move ~a onto the eight of spades."
 msgid "Place the nine of spades next to the eight of spades."
 msgstr "Rakja a pikk kilencest a pikk nyolcas mellé."
 
 #: ../games/gaps.scm:333
-#| msgid "Move ~a onto the nine of spades."
 msgid "Place the ten of spades next to the nine of spades."
 msgstr "Rakja a pikk tízest a pikk kilences mellé."
 
 #: ../games/gaps.scm:334
-#| msgid "Move ~a onto the ten of spades."
 msgid "Place the jack of spades next to the ten of spades."
 msgstr "Rakja a pikk bubit a pikk tízes mellé."
 
 #: ../games/gaps.scm:335
-#| msgid "Move ~a onto the jack of spades."
 msgid "Place the queen of spades next to the jack of spades."
 msgstr "Rakja a pikk dámát a pikk bubi mellé."
 
 #: ../games/gaps.scm:336
-#| msgid "Move ~a onto the queen of spades."
 msgid "Place the king of spades next to the queen of spades."
 msgstr "Rakja a pikk királyt a pikk dáma mellé."
 
 #: ../games/gaps.scm:339
-#| msgid "Move ~a onto the ace of hearts."
 msgid "Place the two of hearts next to the ace of hearts."
 msgstr "Rakja a kőr kettest a kőr ász mellé."
 
 #: ../games/gaps.scm:340
-#| msgid "Move ~a onto the two of hearts."
 msgid "Place the three of hearts next to the two of hearts."
 msgstr "Rakja a kőr hármast a kőr kettes mellé."
 
 #: ../games/gaps.scm:341
-#| msgid "Move ~a onto the three of hearts."
 msgid "Place the four of hearts next to the three of hearts."
 msgstr "Rakja a kőr négyest a kőr hármas mellé."
 
 #: ../games/gaps.scm:342
-#| msgid "Move ~a onto the four of hearts."
 msgid "Place the five of hearts next to the four of hearts."
 msgstr "Rakja a kőr ötöst a kőr négyes mellé."
 
 #: ../games/gaps.scm:343
-#| msgid "Move ~a onto the five of hearts."
 msgid "Place the six of hearts next to the five of hearts."
 msgstr "Rakja a kőr hatost a kőr ötös mellé."
 
 #: ../games/gaps.scm:344
-#| msgid "Move ~a onto the six of hearts."
 msgid "Place the seven of hearts next to the six of hearts."
 msgstr "Rakja a kőr hetest a kőr hatos mellé."
 
 #: ../games/gaps.scm:345
-#| msgid "Move ~a onto the seven of hearts."
 msgid "Place the eight of hearts next to the seven of hearts."
 msgstr "Rakja a kőr nyolcast a kőr hetes mellé."
 
 #: ../games/gaps.scm:346
-#| msgid "Move ~a onto the eight of hearts."
 msgid "Place the nine of hearts next to the eight of hearts."
 msgstr "Rakja a kőr kilencest a kőr nyolcas mellé."
 
 #: ../games/gaps.scm:347
-#| msgid "Move ~a onto the nine of hearts."
 msgid "Place the ten of hearts next to the nine of hearts."
 msgstr "Rakja a kőr tízest a kőr kilences mellé."
 
 #: ../games/gaps.scm:348
-#| msgid "Move ~a onto the ten of hearts."
 msgid "Place the jack of hearts next to the ten of hearts."
 msgstr "Rakja a kőr bubit a kőr tízes mellé."
 
 #: ../games/gaps.scm:349
-#| msgid "Move ~a onto the jack of hearts."
 msgid "Place the queen of hearts next to the jack of hearts."
 msgstr "Rakja a kőr dámát a kőr bubi mellé."
 
 #: ../games/gaps.scm:350
-#| msgid "Move ~a onto the queen of hearts."
 msgid "Place the king of hearts next to the queen of hearts."
 msgstr "Rakja a kőr királyt a kőr dáma mellé."
 
 #: ../games/gaps.scm:353
-#| msgid "Move ~a onto the ace of diamonds."
 msgid "Place the two of diamonds next to the ace of diamonds."
 msgstr "Rakja a káró kettest a káró ász mellé."
 
 #: ../games/gaps.scm:354
-#| msgid "Move ~a onto the two of diamonds."
 msgid "Place the three of diamonds next to the two of diamonds."
 msgstr "Rakja a káró hármast a káró kettes mellé."
 
 #: ../games/gaps.scm:355
-#| msgid "Move ~a onto the three of diamonds."
 msgid "Place the four of diamonds next to the three of diamonds."
 msgstr "Rakja a káró négyest a káró hármas mellé."
 
 #: ../games/gaps.scm:356
-#| msgid "Move ~a onto the four of diamonds."
 msgid "Place the five of diamonds next to the four of diamonds."
 msgstr "Rakja a káró ötöst a káró négyes mellé."
 
 #: ../games/gaps.scm:357
-#| msgid "Move ~a onto the five of diamonds."
 msgid "Place the six of diamonds next to the five of diamonds."
 msgstr "Rakja a káró hatost a káró ötös mellé."
 
 #: ../games/gaps.scm:358
-#| msgid "Move ~a onto the six of diamonds."
 msgid "Place the seven of diamonds next to the six of diamonds."
 msgstr "Rakja a káró hetest a káró hatos mellé."
 
 #: ../games/gaps.scm:359
-#| msgid "Move ~a onto the seven of diamonds."
 msgid "Place the eight of diamonds next to the seven of diamonds."
 msgstr "Rakja a káró nyolcast a káró hetes mellé."
 
 #: ../games/gaps.scm:360
-#| msgid "Move ~a onto the eight of diamonds."
 msgid "Place the nine of diamonds next to the eight of diamonds."
 msgstr "Rakja a káró kilencest a káró nyolcas mellé."
 
 #: ../games/gaps.scm:361
-#| msgid "Move ~a onto the nine of diamonds."
 msgid "Place the ten of diamonds next to the nine of diamonds."
 msgstr "Rakja a káró tízest a káró kilences mellé."
 
 #: ../games/gaps.scm:362
-#| msgid "Move ~a onto the ten of diamonds."
 msgid "Place the jack of diamonds next to the ten of diamonds."
 msgstr "Rakja a káró bubit a káró tízes mellé."
 
 #: ../games/gaps.scm:363
-#| msgid "Move ~a onto the jack of diamonds."
 msgid "Place the queen of diamonds next to the jack of diamonds."
 msgstr "Rakja a káró dámát a káró bubi mellé."
 
 #: ../games/gaps.scm:364
-#| msgid "Move ~a onto the queen of diamonds."
 msgid "Place the king of diamonds next to the queen of diamonds."
 msgstr "Rakja a káró királyt a káró dáma mellé."
 
@@ -3069,7 +3022,6 @@ msgid "Select a card from the reserve for first foundation pile"
 msgstr "Válasszon ki egy kártyát a tartalékból az első alap oszlopba"
 
 #: ../games/glenwood.scm:355
-#| msgid "Move a card from the reserve on to the empty tableau slot"
 msgid "Move a card from the reserve onto the empty tableau slot"
 msgstr "Helyezzen át egy kártyát a tartalékból az üres tablóhelyre"
 
@@ -3094,25 +3046,21 @@ msgstr "Osszon másik lapot"
 
 #: ../games/helsinki.scm:109 ../games/neighbor.scm:141 ../games/treize.scm:279
 #: ../games/yield.scm:295
-#| msgid "Remove the ten of clubs."
 msgid "Remove the king of clubs."
 msgstr "Távolítsa el a treff királyt."
 
 #: ../games/helsinki.scm:110 ../games/neighbor.scm:142 ../games/treize.scm:280
 #: ../games/yield.scm:296
-#| msgid "Remove the ten of diamonds."
 msgid "Remove the king of diamonds."
 msgstr "Távolítsa el a káró királyt."
 
 #: ../games/helsinki.scm:111 ../games/neighbor.scm:143 ../games/treize.scm:281
 #: ../games/yield.scm:297
-#| msgid "Remove the ten of hearts."
 msgid "Remove the king of hearts."
 msgstr "Távolítsa el a kőr királyt."
 
 #: ../games/helsinki.scm:112 ../games/neighbor.scm:144 ../games/treize.scm:282
 #: ../games/yield.scm:298
-#| msgid "Remove the ten of spades."
 msgid "Remove the king of spades."
 msgstr "Távolítsa el a pikk királyt."
 
@@ -3133,17 +3081,21 @@ msgstr "Hátralévő lap: ~a"
 msgid "Deal a new card"
 msgstr "Új kártya osztása"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "Próbáljon levenni kártyákat az alapról"
 
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "Egyesével oszt"
 
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "Nincs újraosztás"
+
+#: ../games/klondike.scm:296
+msgid "Unlimited redeals"
+msgstr "Korlátlan újraosztás"
 
 #: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
@@ -3492,4 +3444,3 @@ msgstr "Mozgasson át egy kártya-összeállítást egy üres Tabló helyre"
 
 #~ msgid "NUMBER"
 #~ msgstr "SZÁM"
-
