@@ -2459,6 +2459,7 @@ aisleriot_window_new (GtkApplication *application)
 {
   return g_object_new (AISLERIOT_TYPE_WINDOW,
                        "application", application,
+                       "show-menubar", FALSE,
                        NULL);
 }
 
