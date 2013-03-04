@@ -312,25 +312,6 @@ ar_application_startup (GApplication *application)
   self->priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
 }
 
-static GObject *
-ar_application_constructor (GType type,
-                            guint n_construct_params,
-                            GObjectConstructParam *construct_params)
-{
-  static GObject *self = NULL;
-
-  if (self == NULL)
-    {
-      self = G_OBJECT_CLASS (ar_application_parent_class)->constructor (type,
-                                                                        n_construct_params,
-                                                                        construct_params);
-      g_object_add_weak_pointer (self, (gpointer) &self);
-      return self;
-    }
-  
-  return g_object_ref (self);
-}
-
 static void
 ar_application_dispose (GObject *object)
 {
@@ -356,7 +337,6 @@ ar_application_class_init (ArApplicationClass *class)
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GApplicationClass *application_class = G_APPLICATION_CLASS (class);
 
-  object_class->constructor = ar_application_constructor;
   object_class->dispose = ar_application_dispose;
 
   application_class->activate = ar_application_activate;
