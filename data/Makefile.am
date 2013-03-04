@@ -8,6 +8,7 @@ endif
 
 dist_noinst_DATA = \
 	baize.png \
+	baize.xcf \
 	slot.svg \
 	$(NULL)
 
