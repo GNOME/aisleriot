@@ -225,8 +225,8 @@ fi
 
 AC_MSG_CHECKING([which card theme to use by default])
 AC_ARG_WITH([default-card-theme],
-  [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: bonded.svg)])],
-  [],[with_default_card_theme="bonded.svg"])
+  [AS_HELP_STRING([--with-default-card-theme=NAME],[Which card theme to use by default (default: gnomangelo_bitmap.svgz)])],
+  [],[with_default_card_theme="gnomangelo_bitmap.svgz"])
 AC_MSG_RESULT([$with_default_card_theme])
 
 AC_DEFINE_UNQUOTED([AR_CARD_THEME_DEFAULT],["$with_default_card_theme"],[The default card theme])
