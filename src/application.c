@@ -1,0 +1,314 @@
+/*
+ * Copyright © 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
+ * Copyright © 2007 Christian Persch
+ * Copyright © 2007 Andreas Røsdal <andreasr@gnome.org>
+ * Copyright © 2013 William Jon McCann
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "config.h"
+
+#include <stdlib.h>
+
+#include <glib.h>
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
+
+#ifdef HAVE_CLUTTER
+#include <cogl/cogl.h>
+#include <clutter/clutter.h>
+#include <clutter-gtk/clutter-gtk.h>
+#endif
+
+#include "ar-debug.h"
+#include "ar-stock.h"
+#include "ar-sound.h"
+#include "ar-string-utils.h"
+
+#include "conf.h"
+#include "window.h"
+#include "game.h"
+#include "util.h"
+
+#include "application.h"
+
+struct _AisleriotApplicationPrivate
+{
+  AisleriotWindow *window;
+  char *variation;
+  gint seed; /* unused */
+  gboolean freecell; /* unused */
+};
+
+G_DEFINE_TYPE (AisleriotApplication, aisleriot_application, GTK_TYPE_APPLICATION)
+
+static void
+add_main_options (AisleriotApplication *self,
+                  GOptionContext *context)
+{
+  const GOptionEntry aisleriot_options[] = {
+    { "variation", 'v', 0, G_OPTION_ARG_STRING, &self->priv->variation,
+      N_("Select the game type to play"), N_("NAME") },
+
+    /* Ignored option, for backward compat with saved session */
+    { "freecell", 0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &self->priv->freecell,
+      NULL, NULL },
+    { "seed", 's', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &self->priv->seed,
+      NULL, NULL },
+
+    { NULL }
+  };
+
+  g_option_context_add_main_entries (context,
+                                     aisleriot_options,
+                                     GETTEXT_PACKAGE);
+}
+
+static void
+about_activated (GSimpleAction *action,
+                 GVariant      *parameter,
+                 gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+
+  window = gtk_application_get_active_window (application);
+  aisleriot_window_show_about_dialog (AISLERIOT_WINDOW (window));
+}
+
+static void
+help_activated (GSimpleAction *action,
+                GVariant      *parameter,
+                gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+  const char *game_module;
+
+  window = gtk_application_get_active_window (application);
+  game_module = aisleriot_window_get_game_module (AISLERIOT_WINDOW (window));
+  aisleriot_show_help (GTK_WIDGET (window), game_module);
+}
+
+static void
+aisleriot_application_quit (GSimpleAction *simple,
+                            GVariant *parameter,
+                            gpointer user_data)
+{
+  AisleriotApplication *self = AISLERIOT_APPLICATION (user_data);
+
+  gtk_widget_destroy (GTK_WIDGET (self->priv->window));
+}
+
+static int
+aisleriot_application_command_line (GApplication *application,
+                                    GApplicationCommandLine *command_line)
+{
+  AisleriotApplication *self = AISLERIOT_APPLICATION (application);
+  int argc;
+  char **argv;
+  int retval = 0;
+  GOptionContext *context;
+  GError *error = NULL;
+
+  argv = g_application_command_line_get_arguments (command_line, &argc);
+
+  context = g_option_context_new (NULL);
+
+  add_main_options (self, context);
+
+  g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
+  g_option_context_add_group (context, gtk_get_option_group (TRUE));
+
+#ifdef HAVE_CLUTTER
+  g_option_context_add_group (context, cogl_get_option_group ());
+  g_option_context_add_group (context, clutter_get_option_group_without_init ());
+  g_option_context_add_group (context, gtk_clutter_get_option_group ());
+#endif /* HAVE_CLUTTER */
+
+  retval = g_option_context_parse (context, &argc, &argv, &error);
+  g_option_context_free (context);
+
+  if (!retval)
+    {
+      g_print (_("%s\nRun '%s --help' to see a full list of available command line options.\n"),
+               error->message, argv[0]);
+      g_error_free (error);
+      return retval;
+    }
+
+  g_strfreev (argv);
+
+  /* If we are asked for a specific game, check that it is valid. */
+  if (self->priv->variation != NULL) {
+    char *game_module = NULL;
+
+    if (self->priv->variation[0] != '\0') {
+      game_module = ar_filename_to_game_module (self->priv->variation);
+    }
+
+    g_free (self->priv->variation);
+    self->priv->variation = game_module;
+  }
+
+  if (self->priv->variation == NULL) {
+    char *pref;
+
+    pref = ar_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
+    self->priv->variation = ar_filename_to_game_module (pref);
+    g_free (pref);
+  }
+
+  g_assert (self->priv->variation != NULL);
+
+
+  aisleriot_window_set_game_module (self->priv->window, self->priv->variation, NULL);
+
+  gtk_widget_show (GTK_WIDGET (self->priv->window));
+
+  return retval;
+}
+
+
+static void
+aisleriot_application_activate (GApplication *application)
+{
+  AisleriotApplication *self = AISLERIOT_APPLICATION (application);
+
+  gtk_window_present (GTK_WINDOW (self->priv->window));
+}
+
+static void
+aisleriot_application_startup (GApplication *application)
+{
+  AisleriotApplication *self = AISLERIOT_APPLICATION (application);
+  GMenu *menu;
+  GMenu *section;
+  GSimpleAction *action;
+
+  G_APPLICATION_CLASS (aisleriot_application_parent_class)->startup (application);
+
+  aisleriot_conf_init ();
+  ar_sound_enable (FALSE);
+  ar_stock_init ();
+
+  action = g_simple_action_new ("help", NULL);
+  g_action_map_add_action (G_ACTION_MAP (application), G_ACTION (action));
+  g_signal_connect (action, "activate", G_CALLBACK (help_activated), self);
+  g_object_unref (action);
+
+  action = g_simple_action_new ("about", NULL);
+  g_action_map_add_action (G_ACTION_MAP (application), G_ACTION (action));
+  g_signal_connect (action, "activate", G_CALLBACK (about_activated), self);
+  g_object_unref (action);
+
+  action = g_simple_action_new ("quit", NULL);
+  g_action_map_add_action (G_ACTION_MAP (application), G_ACTION (action));
+  g_signal_connect (action, "activate", G_CALLBACK (aisleriot_application_quit), self);
+  g_object_unref (action);
+
+  menu = g_menu_new ();
+
+  section = g_menu_new ();
+  g_menu_append (section, _("Help"), "app.help");
+  g_menu_append (section, _("About"), "app.about");
+  g_menu_append (section, _("Quit"), "app.quit");
+
+  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+
+  gtk_application_set_app_menu (GTK_APPLICATION (application),
+                                G_MENU_MODEL (menu));
+
+  gtk_application_add_accelerator (GTK_APPLICATION (application),
+                                   "F1", "app.help", NULL);
+
+  gtk_window_set_default_icon_name ("gnome-aisleriot");
+
+  self->priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
+}
+
+static void
+aisleriot_application_shutdown (GApplication *application)
+{
+  g_settings_sync ();
+
+  G_APPLICATION_CLASS (aisleriot_application_parent_class)->shutdown (application);
+}
+
+static GObject *
+aisleriot_application_constructor (GType type,
+                                   guint n_construct_params,
+                                   GObjectConstructParam *construct_params)
+{
+  static GObject *self = NULL;
+
+  if (self == NULL)
+    {
+      self = G_OBJECT_CLASS (aisleriot_application_parent_class)->constructor (type,
+                                                                        n_construct_params,
+                                                                        construct_params);
+      g_object_add_weak_pointer (self, (gpointer) &self);
+      return self;
+    }
+
+  return g_object_ref (self);
+}
+
+
+static void
+aisleriot_application_dispose (GObject *object)
+{
+  AisleriotApplication *self = AISLERIOT_APPLICATION (object);
+
+  G_OBJECT_CLASS (aisleriot_application_parent_class)->dispose (object);
+
+  g_free (self->priv->variation);
+  self->priv->variation = NULL;
+}
+
+
+static void
+aisleriot_application_init (AisleriotApplication *self)
+{
+  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
+                                            AISLERIOT_TYPE_APPLICATION,
+                                            AisleriotApplicationPrivate);
+}
+
+
+static void
+aisleriot_application_class_init (AisleriotApplicationClass *class)
+{
+  GObjectClass *object_class = G_OBJECT_CLASS (class);
+  GApplicationClass *application_class = G_APPLICATION_CLASS (class);
+
+  object_class->constructor = aisleriot_application_constructor;
+  object_class->dispose = aisleriot_application_dispose;
+  application_class->activate = aisleriot_application_activate;
+  application_class->startup = aisleriot_application_startup;
+  application_class->shutdown = aisleriot_application_shutdown;
+  application_class->command_line = aisleriot_application_command_line;
+
+  g_type_class_add_private (class, sizeof (AisleriotApplicationPrivate));
+}
+
+GtkApplication *
+aisleriot_application_new (void)
+{
+  return g_object_new (AISLERIOT_TYPE_APPLICATION,
+                       "application-id", "org.gnome.Aisleriot",
+                       "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
+                       NULL);
+}

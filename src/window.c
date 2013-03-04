@@ -143,7 +143,6 @@ struct _AisleriotWindowPrivate
   guint load_idle_id;
 
   guint changing_game_type : 1;
-  guint freecell_mode : 1;
   guint toolbar_visible : 1;
   guint statusbar_visible : 1;
   guint fullscreen : 1;
@@ -152,11 +151,6 @@ struct _AisleriotWindowPrivate
 enum {
   OPTION_CHECKMENU,
   OPTION_RADIOMENU
-};
-
-enum {
-  PROP_0,
-  PROP_FREECELL_MODE
 };
 
 /* Game Over dialogue */
@@ -357,11 +351,9 @@ redo_cb (GtkAction *action,
   aisleriot_game_redo_move (priv->game);
 }
 
-static void
-help_about_cb (GtkAction *action,
-               AisleriotWindow *window)
+void
+aisleriot_window_show_about_dialog (AisleriotWindow * window)
 {
-  AisleriotWindowPrivate *priv = window->priv;
   const char *authors[] = {
     _("Main game:"),
     "Jonathan Blandford <jrb@redhat.com>",
@@ -407,21 +399,17 @@ help_about_cb (GtkAction *action,
 
   char *licence;
 
-  licence = ar_get_licence (priv->freecell_mode ? _("FreeCell Solitaire") : ("AisleRiot"));
+  licence = ar_get_licence ("AisleRiot");
 
   gtk_show_about_dialog (GTK_WINDOW (window),
                          "program-name",
-                            priv->freecell_mode ? _("FreeCell Solitaire")
-                                                : _("AisleRiot"),
+                         _("AisleRiot"),
                          "version", VERSION,
-                         "title", priv->freecell_mode ? _("About FreeCell Solitaire")
-                                                      : _("About AisleRiot"),
+                         "title", _("About AisleRiot"),
                          "comments",
-                         priv->freecell_mode ?
-                           NULL :
-                           _("AisleRiot provides a rule-based solitaire "
-                             "card engine that allows many different "
-                             "games to be played."),
+                         _("AisleRiot provides a rule-based solitaire "
+                           "card engine that allows many different "
+                           "games to be played."),
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
                                       "Copyright © 2007, 2008, 2009, 2010, 2011, 2012 Christian Persch",
                          "license", licence,
@@ -429,13 +417,19 @@ help_about_cb (GtkAction *action,
                          "artists", artists,
                          "documenters", documenters,
                          "translator-credits", _("translator-credits"),
-                         "logo-icon-name", priv->freecell_mode ? "gnome-freecell"
-                                                               : "gnome-aisleriot",
+                         "logo-icon-name", "gnome-aisleriot",
                          "website", "http://www.gnome.org/projects/gnome-games/",
                          "website-label", _("GNOME Games web site"),
                          "wrap-license", TRUE,
                         NULL);
   g_free (licence);
+}
+
+static void
+help_about_cb (GtkAction *action,
+               AisleriotWindow *window)
+{
+  aisleriot_window_show_about_dialog (window);
 }
 
 static void
@@ -1194,15 +1188,10 @@ static void
 add_recently_played_game (AisleriotWindow *window,
                           const char *game_module)
 {
-  AisleriotWindowPrivate *priv = window->priv;
   char **recent_games, **new_recent;
   gsize i, n_recent = 0, n_new_recent = 0;
 
   if (!game_module)
-    return;
-
-  /* Don't store the game type in freecell mode */
-  if (priv->freecell_mode)
     return;
 
   recent_games = ar_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
@@ -1600,10 +1589,7 @@ game_type_changed_cb (AisleriotGame *game,
   g_object_set (priv->action[ACTION_HELP_GAME], "label", game_name, NULL);
   g_object_set (priv->action[ACTION_OPTIONS_MENU], "label", game_name, NULL);
 
-  /* In freecell mode, we've already set the title to something different */
-  if (!priv->freecell_mode) {
-    gtk_window_set_title (GTK_WINDOW (window), game_name);
-  }
+  gtk_window_set_title (GTK_WINDOW (window), game_name);
 
   g_free (game_name);
 
@@ -1845,36 +1831,6 @@ screen_changed_cb (GtkWidget *widget,
 #endif /* HAVE_CLUTTER || ENABLE_SOUND */
 }
 
-/*
- * aisleriot_window_set_freecell_mode:
- * @window:
- *
- * Sets @window to FreeCell mode. In FreeCell mode,
- * the window is using the FreeCell variation, and doesn't allow
- * changing the game type.
- */
-static void
-aisleriot_window_set_freecell_mode (AisleriotWindow *window,
-                                    gboolean freecell_mode)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  GtkAction *action;
-
-  priv->freecell_mode = freecell_mode != FALSE;
-
-  if (freecell_mode) {
-    /* Inhibit game changing */
-    action = gtk_action_group_get_action (priv->action_group, "Select");
-    gtk_action_set_visible (action, FALSE);
-    action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
-    gtk_action_set_visible (action, FALSE);
-
-    gtk_window_set_title (GTK_WINDOW (window), _("Freecell Solitaire"));
-  } else {
-    gtk_window_set_title (GTK_WINDOW (window), _("AisleRiot"));
-  }
-}
-
 static void
 board_status_message_cb (AisleriotBoard *board,
                          const char *status_message,
@@ -1920,7 +1876,7 @@ embed_size_allocate_cb (ArClutterEmbed *embed,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_WINDOW)
+G_DEFINE_TYPE (AisleriotWindow, aisleriot_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
 aisleriot_window_style_set (GtkWidget *widget,
@@ -2451,23 +2407,6 @@ aisleriot_window_finalize (GObject *object)
 }
 
 static void
-aisleriot_window_set_property (GObject      *object,
-                               guint         property_id,
-                               const GValue *value,
-                               GParamSpec   *pspec)
-{
-  AisleriotWindow *window = AISLERIOT_WINDOW (object);
-
-  switch (property_id) {
-    case PROP_FREECELL_MODE:
-      aisleriot_window_set_freecell_mode (window, g_value_get_boolean (value));
-      break;
-
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-  }
-}
-static void
 aisleriot_window_class_init (AisleriotWindowClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
@@ -2475,26 +2414,11 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
 
   gobject_class->dispose = aisleriot_window_dispose;
   gobject_class->finalize = aisleriot_window_finalize;
-  gobject_class->set_property = aisleriot_window_set_property;
 
   widget_class->window_state_event = aisleriot_window_state_event;
   widget_class->style_set = aisleriot_window_style_set;
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotWindowPrivate));
-
-  /**
-   * AisleriotWindow:freecell-mode:
-   *
-   * Whether the window is in freecell mode.
-   */
-  g_object_class_install_property
-    (gobject_class,
-     PROP_FREECELL_MODE,
-     g_param_spec_boolean ("freecell-mode", NULL, NULL,
-                           FALSE,
-                           G_PARAM_WRITABLE |
-                           G_PARAM_CONSTRUCT_ONLY |
-                           G_PARAM_STATIC_STRINGS));
 }
 
 /* public API */
@@ -2505,10 +2429,10 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
  * Returns: a new #AisleriotWindow
  */
 GtkWidget *
-aisleriot_window_new (gboolean freecell_mode)
+aisleriot_window_new (GtkApplication *application)
 {
   return g_object_new (AISLERIOT_TYPE_WINDOW,
-                       "freecell-mode", freecell_mode,
+                       "application", application,
                        NULL);
 }
 
@@ -2560,6 +2484,7 @@ load_idle_cb (LoadIdleData *data)
   AisleriotWindowPrivate *priv = data->window->priv;
   GError *error = NULL;
   GRand *rand;
+  char *pref;
 
   if (!aisleriot_game_load_game (priv->game, data->game_module, &error)) {
     GtkWidget *dialog;
@@ -2575,26 +2500,19 @@ load_idle_cb (LoadIdleData *data)
                                      name);
     g_free (name);
 
-    if (priv->freecell_mode ||
-        strcmp (data->game_module, DEFAULT_VARIATION) == 0) {
-      /* Loading freecell/the fallback game failed; all we can do is exit */
-      g_signal_connect_swapped (dialog, "response",
-                                G_CALLBACK (gtk_widget_destroy), data->window);
-    } else {
-      gtk_message_dialog_format_secondary_text
-        (GTK_MESSAGE_DIALOG (dialog),
-         "%s\n\n%s",
-         _("Aisleriot cannot find the last game you played."),
-         _("This usually occurs when you run an older version of Aisleriot "
-           "which does not have the game you last played. "
-           "The default game, Klondike, is being started instead."));
+    gtk_message_dialog_format_secondary_text
+      (GTK_MESSAGE_DIALOG (dialog),
+       "%s\n\n%s",
+       _("Aisleriot cannot find the last game you played."),
+       _("This usually occurs when you run an older version of Aisleriot "
+         "which does not have the game you last played. "
+         "The default game, Klondike, is being started instead."));
 
-      /* FIXME: add @error->message to a textview in a Detailed… expander */
-      g_printerr ("Scheme exception:\n-- 8< --\n%s\n-- >8 --\n", error->message);
+    /* FIXME: add @error->message to a textview in a Detailed… expander */
+    g_printerr ("Scheme exception:\n-- 8< --\n%s\n-- >8 --\n", error->message);
 
-      g_signal_connect (dialog, "response",
-                        G_CALLBACK (load_error_response_cb), data->window);
-    }
+    g_signal_connect (dialog, "response",
+                      G_CALLBACK (load_error_response_cb), data->window);
 
     g_error_free (error);
 
@@ -2604,15 +2522,11 @@ load_idle_cb (LoadIdleData *data)
   }
 
   /* Now that we know we can successfully load this variation,
-   * store it in conf, except when we're running in freecell mode.
+   * store it in conf
    */
-  if (!priv->freecell_mode) {
-    char *pref;
-
-    pref = g_strconcat (data->game_module, ".scm", NULL);
-    ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), pref);
-    g_free (pref);
-  }
+  pref = g_strconcat (data->game_module, ".scm", NULL);
+  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), pref);
+  g_free (pref);
 
   rand = data->rand;
   data->rand = NULL;

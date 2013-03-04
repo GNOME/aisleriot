@@ -33,19 +33,22 @@ G_BEGIN_DECLS
 
 typedef struct _AisleriotWindow	        AisleriotWindow;
 typedef struct _AisleriotWindowPrivate  AisleriotWindowPrivate;
+typedef struct _AisleriotWindowClass    AisleriotWindowClass;
 
 struct _AisleriotWindow {
-  GtkWindow parent_instance;
+  GtkApplicationWindow parent_instance;
 
   /*< private >*/
   AisleriotWindowPrivate *priv;
 };
 
-typedef GtkWindowClass AisleriotWindowClass;
+struct _AisleriotWindowClass {
+  GtkApplicationWindowClass base_class;
+};
 
 GType aisleriot_window_get_type (void);
 
-GtkWidget *aisleriot_window_new (gboolean freecell_mode);
+GtkWidget *aisleriot_window_new (GtkApplication *application);
 
 GtkUIManager *aisleriot_window_get_ui_manager (AisleriotWindow *window);
 
@@ -57,6 +60,8 @@ void aisleriot_window_set_game_module (AisleriotWindow * window,
                                        GRand *rand);
 
 const char *aisleriot_window_get_game_module (AisleriotWindow *window);
+
+void aisleriot_window_show_about_dialog (AisleriotWindow * window);
 
 G_END_DECLS
 

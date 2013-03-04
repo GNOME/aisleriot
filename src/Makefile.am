@@ -8,6 +8,8 @@ DOC_MODULE = aisleriot
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
+	application.c \
+	application.h \
 	ar-clock.c \
 	ar-clock.h \
 	ar-cursor.c	\
