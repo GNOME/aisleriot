@@ -380,6 +380,7 @@ ar_application_new (void)
 {
   return g_object_new (AR_TYPE_APPLICATION,
                        "application-id", "org.gnome.Aisleriot",
-                       "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
+                       "flags", G_APPLICATION_NON_UNIQUE |
+                                G_APPLICATION_HANDLES_COMMAND_LINE,
                        NULL);
 }
