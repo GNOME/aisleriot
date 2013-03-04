@@ -20,6 +20,8 @@
 
 #include "config.h"
 
+#include "ar-application.h"
+
 #include <stdlib.h>
 
 #include <glib.h>
@@ -42,9 +44,18 @@
 #include "game.h"
 #include "util.h"
 
-#include "application.h"
+struct _ArApplicationClass {
+  GtkApplicationClass parent_class;
+};
 
-struct _AisleriotApplicationPrivate
+struct _ArApplication {
+  GtkApplication parent_instance;
+
+  /*< private >*/
+  ArApplicationPrivate *priv;
+};
+
+struct _ArApplicationPrivate
 {
   AisleriotWindow *window;
   char *variation;
@@ -52,10 +63,10 @@ struct _AisleriotApplicationPrivate
   gboolean freecell; /* unused */
 };
 
-G_DEFINE_TYPE (AisleriotApplication, aisleriot_application, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE (ArApplication, ar_application, GTK_TYPE_APPLICATION)
 
 static void
-add_main_options (AisleriotApplication *self,
+add_main_options (ArApplication *self,
                   GOptionContext *context)
 {
   const GOptionEntry aisleriot_options[] = {
@@ -160,16 +171,16 @@ action_quit (GSimpleAction *simple,
              GVariant *parameter,
              gpointer user_data)
 {
-  AisleriotApplication *self = AISLERIOT_APPLICATION (user_data);
+  ArApplication *self = AR_APPLICATION (user_data);
 
   gtk_widget_destroy (GTK_WIDGET (self->priv->window));
 }
 
 static int
-aisleriot_application_command_line (GApplication *application,
-                                    GApplicationCommandLine *command_line)
+ar_application_command_line (GApplication *application,
+                             GApplicationCommandLine *command_line)
 {
-  AisleriotApplication *self = AISLERIOT_APPLICATION (application);
+  ArApplication *self = AR_APPLICATION (application);
   int argc;
   char **argv;
   int retval = 0;
@@ -235,31 +246,31 @@ aisleriot_application_command_line (GApplication *application,
 }
 
 static void
-aisleriot_application_activate (GApplication *application)
+ar_application_activate (GApplication *application)
 {
-  AisleriotApplication *self = AISLERIOT_APPLICATION (application);
+  ArApplication *self = AR_APPLICATION (application);
 
   gtk_window_present (GTK_WINDOW (self->priv->window));
 }
 
 static GActionEntry app_entries[] = {
-        { "new-game", action_new_game, NULL, NULL, NULL },
-        { "change-game", action_change_game, NULL, NULL, NULL },
-        { "statistics", action_statistics, NULL, NULL, NULL },
-        { "fullscreen", action_fullscreen, NULL, NULL, NULL },
-        { "about", action_about, NULL, NULL, NULL },
-        { "help", action_help, NULL, NULL, NULL },
-        { "quit", action_quit, NULL, NULL, NULL },
+  { "new-game", action_new_game, NULL, NULL, NULL },
+  { "change-game", action_change_game, NULL, NULL, NULL },
+  { "statistics", action_statistics, NULL, NULL, NULL },
+  { "fullscreen", action_fullscreen, NULL, NULL, NULL },
+  { "about", action_about, NULL, NULL, NULL },
+  { "help", action_help, NULL, NULL, NULL },
+  { "quit", action_quit, NULL, NULL, NULL },
 };
 
 static void
-aisleriot_application_startup (GApplication *application)
+ar_application_startup (GApplication *application)
 {
-  AisleriotApplication *self = AISLERIOT_APPLICATION (application);
+  ArApplication *self = AR_APPLICATION (application);
   GMenu *menu;
   GMenu *section;
 
-  G_APPLICATION_CLASS (aisleriot_application_parent_class)->startup (application);
+  G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
   aisleriot_conf_init ();
   ar_sound_enable (FALSE);
@@ -302,74 +313,72 @@ aisleriot_application_startup (GApplication *application)
 }
 
 static void
-aisleriot_application_shutdown (GApplication *application)
+ar_application_shutdown (GApplication *application)
 {
   g_settings_sync ();
 
-  G_APPLICATION_CLASS (aisleriot_application_parent_class)->shutdown (application);
+  G_APPLICATION_CLASS (ar_application_parent_class)->shutdown (application);
 }
 
 static GObject *
-aisleriot_application_constructor (GType type,
-                                   guint n_construct_params,
-                                   GObjectConstructParam *construct_params)
+ar_application_constructor (GType type,
+                            guint n_construct_params,
+                            GObjectConstructParam *construct_params)
 {
   static GObject *self = NULL;
 
   if (self == NULL)
     {
-      self = G_OBJECT_CLASS (aisleriot_application_parent_class)->constructor (type,
+      self = G_OBJECT_CLASS (ar_application_parent_class)->constructor (type,
                                                                         n_construct_params,
                                                                         construct_params);
       g_object_add_weak_pointer (self, (gpointer) &self);
       return self;
     }
-
+  
   return g_object_ref (self);
 }
 
-
 static void
-aisleriot_application_dispose (GObject *object)
+ar_application_dispose (GObject *object)
 {
-  AisleriotApplication *self = AISLERIOT_APPLICATION (object);
+  ArApplication *self = AR_APPLICATION (object);
 
-  G_OBJECT_CLASS (aisleriot_application_parent_class)->dispose (object);
+  G_OBJECT_CLASS (ar_application_parent_class)->dispose (object);
 
   g_free (self->priv->variation);
   self->priv->variation = NULL;
 }
 
-
 static void
-aisleriot_application_init (AisleriotApplication *self)
+ar_application_init (ArApplication *self)
 {
   self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
-                                            AISLERIOT_TYPE_APPLICATION,
-                                            AisleriotApplicationPrivate);
+                                            AR_TYPE_APPLICATION,
+                                            ArApplicationPrivate);
 }
 
-
 static void
-aisleriot_application_class_init (AisleriotApplicationClass *class)
+ar_application_class_init (ArApplicationClass *class)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (class);
   GApplicationClass *application_class = G_APPLICATION_CLASS (class);
 
-  object_class->constructor = aisleriot_application_constructor;
-  object_class->dispose = aisleriot_application_dispose;
-  application_class->activate = aisleriot_application_activate;
-  application_class->startup = aisleriot_application_startup;
-  application_class->shutdown = aisleriot_application_shutdown;
-  application_class->command_line = aisleriot_application_command_line;
+  object_class->constructor = ar_application_constructor;
+  object_class->dispose = ar_application_dispose;
 
-  g_type_class_add_private (class, sizeof (AisleriotApplicationPrivate));
+  application_class->activate = ar_application_activate;
+  application_class->startup = ar_application_startup;
+  application_class->shutdown = ar_application_shutdown;
+  application_class->command_line = ar_application_command_line;
+
+  g_type_class_add_private (class, sizeof (ArApplicationPrivate));
 }
 
 GtkApplication *
-aisleriot_application_new (void)
+ar_application_new (void)
 {
-  return g_object_new (AISLERIOT_TYPE_APPLICATION,
+  return g_object_new (AR_TYPE_APPLICATION,
                        "application-id", "org.gnome.Aisleriot",
                        "flags", G_APPLICATION_HANDLES_COMMAND_LINE,
                        NULL);

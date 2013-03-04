@@ -25,8 +25,7 @@
 #include <glib/gi18n.h>
 
 #include "ar-runtime.h"
-
-#include "application.h"
+#include "ar-application.h"
 
 static void
 main_prog (void *closure, int argc, char *argv[])
@@ -34,7 +33,7 @@ main_prog (void *closure, int argc, char *argv[])
   GtkApplication *application;
   int status;
 
-  application = aisleriot_application_new ();
+  application = ar_application_new ();
   status = g_application_run (G_APPLICATION (application), argc, argv);
   g_object_unref (application);
 }

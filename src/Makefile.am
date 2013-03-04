@@ -8,8 +8,8 @@ DOC_MODULE = aisleriot
 bin_PROGRAMS = sol
 
 sol_SOURCES = \
-	application.c \
-	application.h \
+	ar-application.c \
+	ar-application.h \
 	ar-clock.c \
 	ar-clock.h \
 	ar-cursor.c	\
@@ -75,6 +75,8 @@ if HAVE_CLUTTER
 noinst_PROGRAMS = sol-clutter
 
 sol_clutter_SOURCES = \
+	ar-application.c \
+	ar-application.h \
 	ar-clock.c	\
 	ar-clock.h	\
 	ar-clutter-embed.c \
