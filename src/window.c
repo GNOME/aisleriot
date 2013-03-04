@@ -307,11 +307,10 @@ stats_dialog_response_cb (GtkWidget *widget,
   gtk_widget_destroy (widget);
 }
 
-/* action callbacks */
+/* action methods */
 
-static void
-new_game_cb (GtkAction *action,
-             AisleriotWindow *window)
+void
+aisleriot_window_new_game (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
 
@@ -320,35 +319,48 @@ new_game_cb (GtkAction *action,
   gtk_widget_grab_focus (GTK_WIDGET (priv->board));
 }
 
-static void
-undo_cb (GtkAction *action,
-         AisleriotWindow *window)
+void
+aisleriot_window_change_game (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-  /* If a move is in progress, cancel it before changing the game! */
-#ifdef HAVE_CLUTTER
-  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
-#else
-  aisleriot_board_abort_move (priv->board);
-#endif
+  if (priv->game_choice_dialog) {
+    gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
+    return;
+  }
 
-  aisleriot_game_undo_move (priv->game);
+  priv->game_choice_dialog = ar_game_chooser_new (window);
+  g_signal_connect (priv->game_choice_dialog, "destroy",
+                    G_CALLBACK (gtk_widget_destroyed), &priv->game_choice_dialog);
+
+  gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
 }
 
-static void
-redo_cb (GtkAction *action,
-         AisleriotWindow *window)
+void
+aisleriot_window_show_set_fullscreen (AisleriotWindow *window,
+                                      gboolean         active)
+{
+}
+
+void
+aisleriot_window_show_statistics_dialog (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-#ifdef HAVE_CLUTTER
-  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
-#else
-  aisleriot_board_abort_move (priv->board);
-#endif
+  if (!priv->stats_dialog) {
+    priv->stats_dialog = aisleriot_stats_dialog_new ();
+    gtk_window_set_transient_for (GTK_WINDOW (priv->stats_dialog),
+                                  GTK_WINDOW (window));
 
-  aisleriot_game_redo_move (priv->game);
+    g_signal_connect (priv->stats_dialog, "response",
+                      G_CALLBACK (stats_dialog_response_cb), window);
+    g_signal_connect (priv->stats_dialog, "destroy",
+                      G_CALLBACK (gtk_widget_destroyed), &priv->stats_dialog);
+  }
+
+  update_statistics_display (window);
+
+  gtk_window_present (GTK_WINDOW (priv->stats_dialog));
 }
 
 void
@@ -425,6 +437,46 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
   g_free (licence);
 }
 
+/* action callbacks */
+
+static void
+new_game_cb (GtkAction *action,
+             AisleriotWindow *window)
+{
+  aisleriot_window_new_game (window);
+}
+
+static void
+undo_cb (GtkAction *action,
+         AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  /* If a move is in progress, cancel it before changing the game! */
+#ifdef HAVE_CLUTTER
+  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
+#else
+  aisleriot_board_abort_move (priv->board);
+#endif
+
+  aisleriot_game_undo_move (priv->game);
+}
+
+static void
+redo_cb (GtkAction *action,
+         AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+#ifdef HAVE_CLUTTER
+  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
+#else
+  aisleriot_board_abort_move (priv->board);
+#endif
+
+  aisleriot_game_redo_move (priv->game);
+}
+
 static void
 help_about_cb (GtkAction *action,
                AisleriotWindow *window)
@@ -445,18 +497,7 @@ static void
 select_game_cb (GtkAction *action,
                 AisleriotWindow *window)
 {
-  AisleriotWindowPrivate *priv = window->priv;
-
-  if (priv->game_choice_dialog) {
-    gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
-    return;
-  }
-
-  priv->game_choice_dialog = ar_game_chooser_new (window);
-  g_signal_connect (priv->game_choice_dialog, "destroy",
-                    G_CALLBACK (gtk_widget_destroyed), &priv->game_choice_dialog);
-
-  gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
+  aisleriot_window_change_game (window);
 }
 
 static void
@@ -488,22 +529,7 @@ static void
 statistics_cb (GtkAction *action,
                AisleriotWindow *window)
 {
-  AisleriotWindowPrivate *priv = window->priv;
-
-  if (!priv->stats_dialog) {
-    priv->stats_dialog = aisleriot_stats_dialog_new ();
-    gtk_window_set_transient_for (GTK_WINDOW (priv->stats_dialog),
-                                  GTK_WINDOW (window));
-
-    g_signal_connect (priv->stats_dialog, "response",
-                      G_CALLBACK (stats_dialog_response_cb), window);
-    g_signal_connect (priv->stats_dialog, "destroy",
-                      G_CALLBACK (gtk_widget_destroyed), &priv->stats_dialog);
-  }
-
-  update_statistics_display (window);
-
-  gtk_window_present (GTK_WINDOW (priv->stats_dialog));
+  aisleriot_window_show_statistics_dialog (window);
 }
 
 static void

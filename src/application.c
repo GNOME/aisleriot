@@ -77,9 +77,62 @@ add_main_options (AisleriotApplication *self,
 }
 
 static void
-about_activated (GSimpleAction *action,
+action_new_game (GSimpleAction *action,
                  GVariant      *parameter,
                  gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+
+  window = gtk_application_get_active_window (application);
+  aisleriot_window_new_game (AISLERIOT_WINDOW (window));
+}
+
+static void
+action_change_game (GSimpleAction *action,
+                    GVariant      *parameter,
+                    gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+
+  window = gtk_application_get_active_window (application);
+  aisleriot_window_change_game (AISLERIOT_WINDOW (window));
+}
+
+static void
+action_fullscreen (GSimpleAction *action,
+                   GVariant      *parameter,
+                   gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+  GdkWindowState state;
+
+  window = gtk_application_get_active_window (application);
+  state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
+  if (state & GDK_WINDOW_STATE_FULLSCREEN)
+    gtk_window_unfullscreen (window);
+  else
+    gtk_window_fullscreen (window);
+}
+
+static void
+action_statistics (GSimpleAction *action,
+                   GVariant      *parameter,
+                   gpointer       user_data)
+{
+  GtkApplication *application = user_data;
+  GtkWindow *window;
+
+  window = gtk_application_get_active_window (application);
+  aisleriot_window_show_statistics_dialog (AISLERIOT_WINDOW (window));
+}
+
+static void
+action_about (GSimpleAction *action,
+              GVariant      *parameter,
+              gpointer       user_data)
 {
   GtkApplication *application = user_data;
   GtkWindow *window;
@@ -89,9 +142,9 @@ about_activated (GSimpleAction *action,
 }
 
 static void
-help_activated (GSimpleAction *action,
-                GVariant      *parameter,
-                gpointer       user_data)
+action_help (GSimpleAction *action,
+             GVariant      *parameter,
+             gpointer       user_data)
 {
   GtkApplication *application = user_data;
   GtkWindow *window;
@@ -103,9 +156,9 @@ help_activated (GSimpleAction *action,
 }
 
 static void
-aisleriot_application_quit (GSimpleAction *simple,
-                            GVariant *parameter,
-                            gpointer user_data)
+action_quit (GSimpleAction *simple,
+             GVariant *parameter,
+             gpointer user_data)
 {
   AisleriotApplication *self = AISLERIOT_APPLICATION (user_data);
 
@@ -181,7 +234,6 @@ aisleriot_application_command_line (GApplication *application,
   return retval;
 }
 
-
 static void
 aisleriot_application_activate (GApplication *application)
 {
@@ -190,13 +242,22 @@ aisleriot_application_activate (GApplication *application)
   gtk_window_present (GTK_WINDOW (self->priv->window));
 }
 
+static GActionEntry app_entries[] = {
+        { "new-game", action_new_game, NULL, NULL, NULL },
+        { "change-game", action_change_game, NULL, NULL, NULL },
+        { "statistics", action_statistics, NULL, NULL, NULL },
+        { "fullscreen", action_fullscreen, NULL, NULL, NULL },
+        { "about", action_about, NULL, NULL, NULL },
+        { "help", action_help, NULL, NULL, NULL },
+        { "quit", action_quit, NULL, NULL, NULL },
+};
+
 static void
 aisleriot_application_startup (GApplication *application)
 {
   AisleriotApplication *self = AISLERIOT_APPLICATION (application);
   GMenu *menu;
   GMenu *section;
-  GSimpleAction *action;
 
   G_APPLICATION_CLASS (aisleriot_application_parent_class)->startup (application);
 
@@ -204,26 +265,25 @@ aisleriot_application_startup (GApplication *application)
   ar_sound_enable (FALSE);
   ar_stock_init ();
 
-  action = g_simple_action_new ("help", NULL);
-  g_action_map_add_action (G_ACTION_MAP (application), G_ACTION (action));
-  g_signal_connect (action, "activate", G_CALLBACK (help_activated), self);
-  g_object_unref (action);
-
-  action = g_simple_action_new ("about", NULL);
-  g_action_map_add_action (G_ACTION_MAP (application), G_ACTION (action));
-  g_signal_connect (action, "activate", G_CALLBACK (about_activated), self);
-  g_object_unref (action);
-
-  action = g_simple_action_new ("quit", NULL);
-  g_action_map_add_action (G_ACTION_MAP (application), G_ACTION (action));
-  g_signal_connect (action, "activate", G_CALLBACK (aisleriot_application_quit), self);
-  g_object_unref (action);
+  g_action_map_add_action_entries (G_ACTION_MAP (self),
+                                   app_entries, G_N_ELEMENTS (app_entries),
+                                   self);
 
   menu = g_menu_new ();
 
   section = g_menu_new ();
+  g_menu_append (section, _("New Game"), "app.new-game");
+  g_menu_append (section, _("Change Game"), "app.change-game");
+  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+
+  section = g_menu_new ();
+  g_menu_append (section, _("Statistics"), "app.statistics");
+  g_menu_append (section, _("Fullscreen"), "app.fullscreen");
+  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+
+  section = g_menu_new ();
   g_menu_append (section, _("Help"), "app.help");
-  g_menu_append (section, _("About"), "app.about");
+  g_menu_append (section, _("About Aisleriot"), "app.about");
   g_menu_append (section, _("Quit"), "app.quit");
 
   g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
@@ -231,6 +291,8 @@ aisleriot_application_startup (GApplication *application)
   gtk_application_set_app_menu (GTK_APPLICATION (application),
                                 G_MENU_MODEL (menu));
 
+  gtk_application_add_accelerator (GTK_APPLICATION (application),
+                                   "F11", "app.fullscreen", NULL);
   gtk_application_add_accelerator (GTK_APPLICATION (application),
                                    "F1", "app.help", NULL);
 

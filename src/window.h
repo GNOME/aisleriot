@@ -61,7 +61,11 @@ void aisleriot_window_set_game_module (AisleriotWindow * window,
 
 const char *aisleriot_window_get_game_module (AisleriotWindow *window);
 
+void aisleriot_window_new_game (AisleriotWindow * window);
+void aisleriot_window_change_game (AisleriotWindow * window);
+void aisleriot_window_show_statistics_dialog (AisleriotWindow * window);
 void aisleriot_window_show_about_dialog (AisleriotWindow * window);
+
 
 G_END_DECLS
 
