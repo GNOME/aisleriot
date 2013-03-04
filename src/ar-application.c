@@ -312,14 +312,6 @@ ar_application_startup (GApplication *application)
   self->priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
 }
 
-static void
-ar_application_shutdown (GApplication *application)
-{
-  g_settings_sync ();
-
-  G_APPLICATION_CLASS (ar_application_parent_class)->shutdown (application);
-}
-
 static GObject *
 ar_application_constructor (GType type,
                             guint n_construct_params,
@@ -369,7 +361,6 @@ ar_application_class_init (ArApplicationClass *class)
 
   application_class->activate = ar_application_activate;
   application_class->startup = ar_application_startup;
-  application_class->shutdown = ar_application_shutdown;
   application_class->command_line = ar_application_command_line;
 
   g_type_class_add_private (class, sizeof (ArApplicationPrivate));
