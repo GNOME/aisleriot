@@ -57,6 +57,7 @@ enum {
   COL_GAME_MODULE
 };
 
+#define SELECT_GAME_DIALOG_MIN_WIDTH (300)
 #define SELECT_GAME_DIALOG_MIN_HEIGHT (256)
 #define SELECTED_PATH_DATA_KEY "selected-path"
 
@@ -240,7 +241,9 @@ ar_game_chooser_constructor (GType type,
 
   gtk_widget_show_all (hbox);
 
-  gtk_widget_set_size_request (scrolled_window, -1, SELECT_GAME_DIALOG_MIN_HEIGHT);
+  gtk_widget_set_size_request (scrolled_window,
+                               SELECT_GAME_DIALOG_MIN_WIDTH,
+                               SELECT_GAME_DIALOG_MIN_HEIGHT);
 
   /* Select the row corresponding to the currently loaded game,
    * and scroll to it.
