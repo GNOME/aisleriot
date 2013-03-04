@@ -35,7 +35,8 @@ typedef struct _ArApplicationClass   ArApplicationClass;
 
 GType ar_application_get_type (void);
 
-GtkApplication *ar_application_new (void);
+GtkApplication *ar_application_new (const char *variation,
+                                    gboolean freecell);
 
 G_END_DECLS
 

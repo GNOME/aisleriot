@@ -66,28 +66,6 @@ struct _ArApplicationPrivate
 G_DEFINE_TYPE (ArApplication, ar_application, GTK_TYPE_APPLICATION)
 
 static void
-add_main_options (ArApplication *self,
-                  GOptionContext *context)
-{
-  const GOptionEntry aisleriot_options[] = {
-    { "variation", 'v', 0, G_OPTION_ARG_STRING, &self->priv->variation,
-      N_("Select the game type to play"), N_("NAME") },
-
-    /* Ignored option, for backward compat with saved session */
-    { "freecell", 0, G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_NONE, &self->priv->freecell,
-      NULL, NULL },
-    { "seed", 's', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &self->priv->seed,
-      NULL, NULL },
-
-    { NULL }
-  };
-
-  g_option_context_add_main_entries (context,
-                                     aisleriot_options,
-                                     GETTEXT_PACKAGE);
-}
-
-static void
 action_new_game (GSimpleAction *action,
                  GVariant      *parameter,
                  gpointer       user_data)
@@ -176,75 +154,6 @@ action_quit (GSimpleAction *simple,
   gtk_widget_destroy (GTK_WIDGET (self->priv->window));
 }
 
-static int
-ar_application_command_line (GApplication *application,
-                             GApplicationCommandLine *command_line)
-{
-  ArApplication *self = AR_APPLICATION (application);
-  int argc;
-  char **argv;
-  int retval = 0;
-  GOptionContext *context;
-  GError *error = NULL;
-
-  argv = g_application_command_line_get_arguments (command_line, &argc);
-
-  context = g_option_context_new (NULL);
-
-  add_main_options (self, context);
-
-  g_option_context_set_translation_domain (context, GETTEXT_PACKAGE);
-  g_option_context_add_group (context, gtk_get_option_group (TRUE));
-
-#ifdef HAVE_CLUTTER
-  g_option_context_add_group (context, cogl_get_option_group ());
-  g_option_context_add_group (context, clutter_get_option_group_without_init ());
-  g_option_context_add_group (context, gtk_clutter_get_option_group ());
-#endif /* HAVE_CLUTTER */
-
-  retval = g_option_context_parse (context, &argc, &argv, &error);
-  g_option_context_free (context);
-
-  if (!retval)
-    {
-      g_print (_("%s\nRun '%s --help' to see a full list of available command line options.\n"),
-               error->message, argv[0]);
-      g_error_free (error);
-      return retval;
-    }
-
-  g_strfreev (argv);
-
-  /* If we are asked for a specific game, check that it is valid. */
-  if (self->priv->variation != NULL) {
-    char *game_module = NULL;
-
-    if (self->priv->variation[0] != '\0') {
-      game_module = ar_filename_to_game_module (self->priv->variation);
-    }
-
-    g_free (self->priv->variation);
-    self->priv->variation = game_module;
-  }
-
-  if (self->priv->variation == NULL) {
-    char *pref;
-
-    pref = ar_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
-    self->priv->variation = ar_filename_to_game_module (pref);
-    g_free (pref);
-  }
-
-  g_assert (self->priv->variation != NULL);
-
-
-  aisleriot_window_set_game_module (self->priv->window, self->priv->variation, NULL);
-
-  gtk_widget_show (GTK_WIDGET (self->priv->window));
-
-  return retval;
-}
-
 static void
 ar_application_activate (GApplication *application)
 {
@@ -267,14 +176,16 @@ static void
 ar_application_startup (GApplication *application)
 {
   ArApplication *self = AR_APPLICATION (application);
+  ArApplicationPrivate *priv = self->priv;
   GMenu *menu;
   GMenu *section;
 
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
-  aisleriot_conf_init ();
   ar_sound_enable (FALSE);
   ar_stock_init ();
+
+  gtk_window_set_default_icon_name (priv->freecell ? "gnome-freecell" : "gnome-aisleriot");
 
   g_action_map_add_action_entries (G_ACTION_MAP (self),
                                    app_entries, G_N_ELEMENTS (app_entries),
@@ -309,7 +220,13 @@ ar_application_startup (GApplication *application)
 
   gtk_window_set_default_icon_name ("gnome-aisleriot");
 
-  self->priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
+  priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
+
+  if (priv->freecell) {
+    aisleriot_window_set_game_module (priv->window, FREECELL_VARIATION, NULL);
+  } else {
+    aisleriot_window_set_game_module (priv->window, priv->variation, NULL);
+  }
 }
 
 static void
@@ -341,17 +258,22 @@ ar_application_class_init (ArApplicationClass *class)
 
   application_class->activate = ar_application_activate;
   application_class->startup = ar_application_startup;
-  application_class->command_line = ar_application_command_line;
 
   g_type_class_add_private (class, sizeof (ArApplicationPrivate));
 }
 
 GtkApplication *
-ar_application_new (void)
+ar_application_new (const char *variation,
+                    gboolean freecell)
 {
-  return g_object_new (AR_TYPE_APPLICATION,
-                       "application-id", "org.gnome.Aisleriot",
-                       "flags", G_APPLICATION_NON_UNIQUE |
-                                G_APPLICATION_HANDLES_COMMAND_LINE,
-                       NULL);
+  ArApplication *app;
+
+  app = g_object_new (AR_TYPE_APPLICATION,
+                      "application-id", "org.gnome.Aisleriot",
+                      "flags", G_APPLICATION_NON_UNIQUE,
+                      NULL);
+  app->priv->variation = g_strdup (variation);
+  app->priv->freecell = freecell != FALSE;
+
+  return GTK_APPLICATION (app);
 }
