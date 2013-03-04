@@ -64,8 +64,8 @@
 
 #define AISLERIOT_WINDOW_GET_PRIVATE(window)(G_TYPE_INSTANCE_GET_PRIVATE ((window), AISLERIOT_TYPE_WINDOW, AisleriotWindowPrivate))
 
-#define MIN_WIDTH 600
-#define MIN_HEIGHT 400
+#define MIN_WIDTH 800
+#define MIN_HEIGHT 600
 
 #define MAIN_MENU_UI_PATH       "/MainMenu"
 #define RECENT_GAMES_MENU_PATH  MAIN_MENU_UI_PATH "/GameMenu/RecentMenu"
