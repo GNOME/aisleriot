@@ -74,6 +74,9 @@ action_new_game (GSimpleAction *action,
   GtkWindow *window;
 
   window = gtk_application_get_active_window (application);
+  if (!AISLERIOT_IS_WINDOW (window))
+    return;
+
   aisleriot_window_new_game (AISLERIOT_WINDOW (window));
 }
 
@@ -86,6 +89,9 @@ action_change_game (GSimpleAction *action,
   GtkWindow *window;
 
   window = gtk_application_get_active_window (application);
+  if (!AISLERIOT_IS_WINDOW (window))
+    return;
+
   aisleriot_window_change_game (AISLERIOT_WINDOW (window));
 }
 
@@ -99,6 +105,9 @@ action_fullscreen (GSimpleAction *action,
   GdkWindowState state;
 
   window = gtk_application_get_active_window (application);
+  if (!AISLERIOT_IS_WINDOW (window))
+    return;
+
   state = gdk_window_get_state (gtk_widget_get_window (GTK_WIDGET (window)));
   if (state & GDK_WINDOW_STATE_FULLSCREEN)
     gtk_window_unfullscreen (window);
@@ -115,6 +124,9 @@ action_statistics (GSimpleAction *action,
   GtkWindow *window;
 
   window = gtk_application_get_active_window (application);
+  if (!AISLERIOT_IS_WINDOW (window))
+    return;
+
   aisleriot_window_show_statistics_dialog (AISLERIOT_WINDOW (window));
 }
 
@@ -140,6 +152,9 @@ action_help (GSimpleAction *action,
   const char *game_module;
 
   window = gtk_application_get_active_window (application);
+  if (!AISLERIOT_IS_WINDOW (window))
+    return;
+
   game_module = aisleriot_window_get_game_module (AISLERIOT_WINDOW (window));
   aisleriot_show_help (GTK_WIDGET (window), game_module);
 }
