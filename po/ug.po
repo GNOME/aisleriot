@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-27 04:25+0000\n"
-"PO-Revision-Date: 2013-02-22 21:50+0900\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-03-07 20:34+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: \n"
@@ -34,7 +34,7 @@ msgstr "ئۆرنەك ھۆججىتى ئاتى"
 
 #: ../src/aisleriot.schemas.in.h:2
 msgid "The name of the file with the graphics for the cards."
-msgstr "قارتقا ئىشلەتكەن گرافىكنىڭ ھۆججەت ئاتى."
+msgstr "قارتاغا ئىشلەتكەن گرافىكنىڭ ھۆججەت ئاتى."
 
 #: ../src/aisleriot.schemas.in.h:3
 msgid "Whether or not to show the toolbar"
@@ -52,7 +52,7 @@ msgstr "تىزگىننىڭ ئۇسلۇبىنى تاللاش"
 msgid ""
 "Select whether to drag the cards or to click on the source then the "
 "destination."
-msgstr "قارت يۆتكەش سۆرەش ئارقىلىق يۆتكىلەمدۇ ياكى باشلىنىش ۋە ئاخىرلىشىشنى چېكىش ئارقىلىق يۆتكىلەمدۇ تاللاڭ."
+msgstr "قارتا يۆتكەش سۆرەش ئارقىلىق يۆتكىلەمدۇ ياكى باشلىنىش ۋە ئاخىرلىشىشنى چېكىش ئارقىلىق يۆتكىلەمدۇ تاللاڭ."
 
 #: ../src/aisleriot.schemas.in.h:7
 msgid "Sound"
@@ -68,7 +68,7 @@ msgstr "جانلاندۇرۇملار"
 
 #: ../src/aisleriot.schemas.in.h:10
 msgid "Whether or not to animate card moves."
-msgstr "قارت يۆتكەلگەندە جانلاندۇرۇم بارمۇ يوق."
+msgstr "قارتا يۆتكەلگەندە جانلاندۇرۇم بارمۇ يوق."
 
 #: ../src/aisleriot.schemas.in.h:11
 msgid "The game file to use"
@@ -76,7 +76,7 @@ msgstr "ئىشلىتىدىغان ئويۇن ھۆججىتى"
 
 #: ../src/aisleriot.schemas.in.h:12
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "ئوينايدىغان قارت ئويۇنىنىڭ ئۆرنەك ھۆججىتىنىڭ ئاتى."
+msgstr "ئوينايدىغان قارتا ئويۇنىنىڭ ئۆرنەك ھۆججىتىنىڭ ئاتى."
 
 #: ../src/aisleriot.schemas.in.h:13
 msgid "Statistics of games played"
@@ -97,12 +97,45 @@ msgstr "يېقىندا ئوينىغان ئويۇنلار"
 msgid "A list of recently played games."
 msgstr "يېقىندا ئوينىغان ئويۇنلار تىزىمى."
 
+#: ../src/ar-application.c:212
+#| msgid "_New Game"
+msgid "New Game"
+msgstr "يېڭى ئويۇن"
+
+#: ../src/ar-application.c:213
+#| msgid "Bakers Game"
+msgid "Change Game"
+msgstr "ئويۇننى ئۆزگەرتىش"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "ستاتىستىكا"
+
+#: ../src/ar-application.c:218
+#| msgid "_Fullscreen"
+msgid "Fullscreen"
+msgstr "پۈتۈن ئېكران"
+
+#: ../src/ar-application.c:222
+#| msgid "_Help"
+msgid "Help"
+msgstr "ياردەم"
+
+#: ../src/ar-application.c:223
+#| msgid "About AisleRiot"
+msgid "About Aisleriot"
+msgstr "AisleRiot ھەققىدە"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "ئاخىرلاشتۇر"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "ئويۇن تاللاڭ"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "تاللا(_S)"
 
@@ -211,14 +244,14 @@ msgstr "tableau"
 #: ../src/game.c:1453
 msgctxt "slot type"
 msgid "waste"
-msgstr "كېرەكسىز قارت"
+msgstr "كېرەكسىز قارتا"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
 #: ../src/game.c:1485
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
-msgstr "قارت رايونىدىكى %s"
+msgstr "قارتا رايونىدىكى %s"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
 #: ../src/game.c:1489
@@ -246,7 +279,7 @@ msgstr "بوش ئورۇندىكى %s"
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
-msgstr "كېرەكسىز قارتتىكى %s"
+msgstr "كېرەكسىز قارتادىكى %s"
 
 #: ../src/game.c:2168
 msgid "This game does not have hint support yet."
@@ -259,7 +292,7 @@ msgstr "بۇ ئويۇن ئەسكەرتىش ئىقتىدارىنى قوللىما
 #: ../src/game.c:2203 ../src/game.c:2229
 #, c-format
 msgid "Move %s onto %s."
-msgstr "%s نى %s غا يۆتكەيدۇ."
+msgstr "%s نى %s غا يۆتكەڭ."
 
 #: ../src/game.c:2249
 msgid "This game is unable to provide a hint."
@@ -1212,15 +1245,15 @@ msgstr "چىتتىرنىڭ ئونلۇقى"
 
 #: ../src/lib/ar-card.c:309
 msgid "jack of clubs"
-msgstr "چىتتىرنىڭ ئون بىرلىكى"
+msgstr "چىتتىرنىڭ ساللاتى"
 
 #: ../src/lib/ar-card.c:310
 msgid "queen of clubs"
-msgstr "چىتتىرنىڭ ئون ئىككىلىكى"
+msgstr "چىتتىرنىڭ ماتكىسى"
 
 #: ../src/lib/ar-card.c:311
 msgid "king of clubs"
-msgstr "چىتتىرنىڭ ئون ئۈچلۈكى"
+msgstr "چىتتىرنىڭ كارولى"
 
 #: ../src/lib/ar-card.c:312
 msgid "ace of diamonds"
@@ -1380,7 +1413,7 @@ msgstr "قاغىنىڭ كارولى"
 
 #: ../src/lib/ar-card.c:367
 msgid "face-down card"
-msgstr "دۈم قارت"
+msgstr "دۈم قارتا"
 
 #. A black joker.
 #: ../src/lib/ar-card.c:378
@@ -1420,15 +1453,15 @@ msgid "Window height"
 msgstr "كۆزنەك ئېگىزلىكى"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "گىنوم Solitaire"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Solitaire ھەققىدە"
 
@@ -1440,11 +1473,11 @@ msgstr "ئوينايدىغان ئويۇننى تاللاڭ"
 msgid "NAME"
 msgstr "NAME"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "FreeCell Solitaire"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1487,10 +1520,6 @@ msgstr "ئەڭ ناچار:"
 msgid "Time"
 msgstr "ۋاقىت"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "ستاتىستىكا"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1524,41 +1553,37 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "مۇبارەك بولسۇن، ئۇتتىڭىز!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "يەنە ماڭغىلى بولمايدۇ"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "ئاساسىي ئويۇن:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "قارتا ئويۇنلىرى:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "قارتا ئۆرنەكلىرى:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "FreeCell Solitaire ھەققىدە"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "AisleRiot ھەققىدە"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr ""
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
 "Sahran<sahran@live.com>\n"
@@ -1568,183 +1593,181 @@ msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
 msgid "GNOME Games web site"
 msgstr "گىنوم ئويۇنلىرى تورتۇراسى"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "«%s» نى ئويناش"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
-msgstr "قارتىلارنى «%s» ئۆرنەك بىلەن كۆرسىتىش"
+msgstr "قارتالارنى «%s» ئۆرنەك بىلەن كۆرسىتىش"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "لايىھىلەنمىگەن (كۈتۈلمىگەن) ئەھۋال كۆرۈلدى"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "ئىجادىيەتچىگە بۇ كەمتۈكنى مەلۇم قىلىڭ."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "مەلۇم قىلماق(_S)"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "مەلۇم قىل(_R)"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell Solitaire"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "ئويۇن(_G)"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "كۆرۈنۈش(_V)"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "تىزگىن(_C)"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "ياردەم(_H)"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "يېڭى ئويۇندىن بىرنى باشلا"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "بۇ ئويۇننى قايتا قوزغات"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "ئويۇن تاللا(_S)…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "ئوخشىمىغان ئويۇننى ئويناش"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "يېقىندا ئوينالغانلىرى(_R)"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "ستاتىستىكا(_T)"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "ئويناش ستاتىستىكىسىنى كۆرسىتىش"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "بۇ كۆزنەكنى ياپىدۇ"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "ئاخىرقى يۆتكەشتىن يېنىۋال"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "يېنىۋالغان يۆتكەشنى تەكرارلا"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
-msgstr "كېيىنكى قارتا ياكى قارتىلارنى شىيلاش"
+msgstr "كېيىنكى قارتا ياكى قارتالارنى شىيلاش"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "كېيىنكى يۆتكىشىڭىزنىڭ ئەسكەرتىشىگە ئېرىشىڭ"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Aisleriot ياردىمىنى كۆرۈش"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "مەزكۇر ئويۇننىڭ ياردىمىنى كۆرۈش"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "بۇ ئويۇن ھەققىدە"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "قارتا ئۆرنەكلىرىنى ئورنىتىش…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "بوغچا (تارقىتىش) خەزىنىسىدىن يېڭى قارتا ئۆرنىكى ئورنىتىڭ"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "قارتا ئۇسلۇبى(_C)"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "قورال بالداق(_T)"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "قورال ئىستونىنى كۆرسەت ياكى يوشۇر"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "ھالەت بالداق(_S)"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "ھالەت بالدىقىنى كۆرسىتىدۇ ياكى يوشۇرىدۇ"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "چەكسە ماڭىدۇ(_C)"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "چېكىش ئارقىلىق قارتا ئېلىڭ ۋە قويۇڭ"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "ئاۋاز(_S)"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "ھادىسە ئاۋازىنى قويامدۇ يوق"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "جانلاندۇرۇملار(_A)"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
-msgstr "قارت يۆتكەلگەندە جانلاندۇرۇم بارمۇ يوق."
+msgstr "قارتا يۆتكەلگەندە جانلاندۇرۇم بارمۇ يوق."
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "نومۇر:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "ۋاقتى:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "ئويۇن «%s» نى باشلىغىلى بولمىدى"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot سىز ئوينىغان ئەڭ ئاخىرقى ئويۇننى تاپالمىدى."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1754,35 +1777,35 @@ msgstr "سىز ئاخىرقى قېتىم ئوينىغان ئويۇن يوق بو
 #: ../games/agnes.scm:72 ../games/terrace.scm:139
 #, scheme-format
 msgid "Base Card: ~a"
-msgstr "ئاساسىي قارت: ~a"
+msgstr "ئاساسىي قارتا: ~a"
 
 #: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
 #: ../games/chessboard.scm:94 ../games/eagle-wing.scm:104
 #: ../games/glenwood.scm:87 ../games/kansas.scm:88 ../games/lady-jane.scm:105
 #: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
 msgid "Base Card: Ace"
-msgstr "ئاساسىي قارت: چىتتىر"
+msgstr "ئاساسىي قارتا: چىتتىر"
 
 #: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
 #: ../games/chessboard.scm:96 ../games/eagle-wing.scm:106
 #: ../games/glenwood.scm:89 ../games/kansas.scm:90 ../games/lady-jane.scm:107
 #: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
 msgid "Base Card: Jack"
-msgstr "ئاساسى قارت: ساللات"
+msgstr "ئاساسى قارتا: ساللات"
 
 #: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
 #: ../games/chessboard.scm:98 ../games/eagle-wing.scm:108
 #: ../games/glenwood.scm:91 ../games/kansas.scm:92 ../games/lady-jane.scm:109
 #: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
 msgid "Base Card: Queen"
-msgstr "ئاساسى قارت: ماتكا"
+msgstr "ئاساسى قارتا: ماتكا"
 
 #: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
 #: ../games/chessboard.scm:100 ../games/eagle-wing.scm:110
 #: ../games/glenwood.scm:93 ../games/kansas.scm:94 ../games/lady-jane.scm:111
 #: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
 msgid "Base Card: King"
-msgstr "ئاساسى قارت: كارول"
+msgstr "ئاساسى قارتا: كارول"
 
 #: ../games/agnes.scm:85 ../games/auld-lang-syne.scm:53
 #: ../games/backbone.scm:131 ../games/block-ten.scm:54 ../games/bristol.scm:78
@@ -1815,7 +1838,7 @@ msgstr "ئامباردا قالغىنى: 0"
 #: ../games/labyrinth.scm:189 ../games/monte-carlo.scm:196
 #: ../games/monte-carlo.scm:201 ../games/valentine.scm:136
 msgid "Deal more cards"
-msgstr "تېخىمۇ كۆپ قارت شىيلاش"
+msgstr "تېخىمۇ كۆپ قارتا شىيلاش"
 
 #: ../games/agnes.scm:270 ../games/backbone.scm:295
 #: ../games/bakers-dozen.scm:194 ../games/beleaguered-castle.scm:171
@@ -1823,7 +1846,7 @@ msgstr "تېخىمۇ كۆپ قارت شىيلاش"
 #: ../games/king-albert.scm:286 ../games/lady-jane.scm:428
 #: ../games/streets-and-alleys.scm:180
 msgid "Try rearranging the cards"
-msgstr "قارتىلارنى قايتا رەتلەپ بېقىش"
+msgstr "قارتالارنى قايتا رەتلەپ بېقىش"
 
 #: ../games/api.scm:285
 msgid "Unknown color"
@@ -2118,284 +2141,284 @@ msgstr ""
 #: ../games/api.scm:485
 #, scheme-format
 msgid "Move ~a onto the black joker."
-msgstr ""
+msgstr "~a نى قارا ھەييارنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:485
 #, scheme-format
 msgid "Move ~a onto the red joker."
-msgstr ""
+msgstr "~a نى قىزىل ھەييارنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:487
 #, scheme-format
 msgid "Move ~a onto the ace of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ تۇزىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:488
 #, scheme-format
 msgid "Move ~a onto the two of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ ئىككىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:489
 #, scheme-format
 msgid "Move ~a onto the three of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ ئۈچلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:490
 #, scheme-format
 msgid "Move ~a onto the four of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ تۆتلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:491
 #, scheme-format
 msgid "Move ~a onto the five of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ بەشلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:492
 #, scheme-format
 msgid "Move ~a onto the six of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ ئالتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:493
 #, scheme-format
 msgid "Move ~a onto the seven of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ يەتتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:494
 #, scheme-format
 msgid "Move ~a onto the eight of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ سەككىزلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:495
 #, scheme-format
 msgid "Move ~a onto the nine of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ توققۇزلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:496
 #, scheme-format
 msgid "Move ~a onto the ten of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ ئونلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:497
 #, scheme-format
 msgid "Move ~a onto the jack of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ ساللاتىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:498
 #, scheme-format
 msgid "Move ~a onto the queen of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ ماتكىسىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:499
 #, scheme-format
 msgid "Move ~a onto the king of clubs."
-msgstr ""
+msgstr "~a نى چىتتىرنىڭ كارولىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:500 ../games/api.scm:515 ../games/api.scm:530
 #: ../games/api.scm:545 ../games/api.scm:546
 #, scheme-format
 msgid "Move ~a onto the unknown card."
-msgstr ""
+msgstr "~a نى نامەلۇم قارتا ئۈستىگە قويغىن."
 
 #: ../games/api.scm:502
 #, scheme-format
 msgid "Move ~a onto the ace of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ تۇزىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:503
 #, scheme-format
 msgid "Move ~a onto the two of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ ئىككىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:504
 #, scheme-format
 msgid "Move ~a onto the three of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ ئۈچلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:505
 #, scheme-format
 msgid "Move ~a onto the four of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ تۆتلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:506
 #, scheme-format
 msgid "Move ~a onto the five of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ بەشلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:507
 #, scheme-format
 msgid "Move ~a onto the six of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ ئالتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:508
 #, scheme-format
 msgid "Move ~a onto the seven of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ يەتتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:509
 #, scheme-format
 msgid "Move ~a onto the eight of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ سەككىزلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:510
 #, scheme-format
 msgid "Move ~a onto the nine of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ توققۇزلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:511
 #, scheme-format
 msgid "Move ~a onto the ten of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ ئونلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:512
 #, scheme-format
 msgid "Move ~a onto the jack of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ ساللاتىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:513
 #, scheme-format
 msgid "Move ~a onto the queen of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ ماتكىسىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:514
 #, scheme-format
 msgid "Move ~a onto the king of spades."
-msgstr ""
+msgstr "~a نى قاغىنىڭ كارولىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:517
 #, scheme-format
 msgid "Move ~a onto the ace of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ تۇزىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:518
 #, scheme-format
 msgid "Move ~a onto the two of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ ئىككىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:519
 #, scheme-format
 msgid "Move ~a onto the three of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ ئۈچلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:520
 #, scheme-format
 msgid "Move ~a onto the four of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ تۆتلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:521
 #, scheme-format
 msgid "Move ~a onto the five of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ بەشلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:522
 #, scheme-format
 msgid "Move ~a onto the six of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ ئالتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:523
 #, scheme-format
 msgid "Move ~a onto the seven of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ يەتتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:524
 #, scheme-format
 msgid "Move ~a onto the eight of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ سەككىزلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:525
 #, scheme-format
 msgid "Move ~a onto the nine of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ توققۇزلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:526
 #, scheme-format
 msgid "Move ~a onto the ten of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ ئونلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:527
 #, scheme-format
 msgid "Move ~a onto the jack of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ ساللاتىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:528
 #, scheme-format
 msgid "Move ~a onto the queen of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ ماتكىسىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:529
 #, scheme-format
 msgid "Move ~a onto the king of hearts."
-msgstr ""
+msgstr "~a نى تاپاننىڭ كارولىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:532
 #, scheme-format
 msgid "Move ~a onto the ace of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ تۇزىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:533
 #, scheme-format
 msgid "Move ~a onto the two of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ ئىككىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:534
 #, scheme-format
 msgid "Move ~a onto the three of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ ئۈچلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:535
 #, scheme-format
 msgid "Move ~a onto the four of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ تۆتلۈكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:536
 #, scheme-format
 msgid "Move ~a onto the five of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ بەشلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:537
 #, scheme-format
 msgid "Move ~a onto the six of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ ئالتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:538
 #, scheme-format
 msgid "Move ~a onto the seven of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ يەتتىلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:539
 #, scheme-format
 msgid "Move ~a onto the eight of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ سەككىزلىكىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:540
 #, scheme-format
 msgid "Move ~a onto the nine of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ توققۇزلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:541
 #, scheme-format
 msgid "Move ~a onto the ten of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ ئونلۇقىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:542
 #, scheme-format
 msgid "Move ~a onto the jack of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ ساللاتىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:543
 #, scheme-format
 msgid "Move ~a onto the queen of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ ماتكىسىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/api.scm:544
 #, scheme-format
 msgid "Move ~a onto the king of diamonds."
-msgstr ""
+msgstr "~a نى غىچنىڭ كارولىنىڭ ئۈستىگە قويغىن."
 
 #: ../games/athena.scm:80 ../games/klondike.scm:293
 #: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
-msgstr ""
+msgstr "ئۈچتىن شىيلاش"
 
 #: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
 #: ../games/first-law.scm:127 ../games/fortunes.scm:161
@@ -2428,7 +2451,7 @@ msgstr ""
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
-msgstr ""
+msgstr "ئۈستەلدىن يېڭى قارتا شىيلىغىن"
 
 #: ../games/bear-river.scm:88 ../games/canfield.scm:79
 #: ../games/chessboard.scm:92 ../games/eagle-wing.scm:102
@@ -2588,7 +2611,7 @@ msgstr "ئونلۇقنى ئىزدەۋاتىسىز."
 
 #: ../games/doublets.scm:167
 msgid "You are searching for a jack."
-msgstr "سالاتنى ئىزدەۋاتىسىز."
+msgstr "ساللاتنى ئىزدەۋاتىسىز."
 
 #: ../games/doublets.scm:168
 msgid "You are searching for a queen."
@@ -2653,7 +2676,7 @@ msgstr "ئىككىلىكلەرنى چىقىرىۋېتىش"
 
 #: ../games/first-law.scm:143
 msgid "Remove the threes"
-msgstr "ئۈچلۇكلەرنى چىقىرىۋېتىش"
+msgstr "ئۈچلۈكلەرنى چىقىرىۋېتىش"
 
 #: ../games/first-law.scm:145
 msgid "Remove the fours"
@@ -2685,7 +2708,7 @@ msgstr "ئونلۇقلارنى چىقىرىۋېتىش"
 
 #: ../games/first-law.scm:159
 msgid "Remove the jacks"
-msgstr "سالاتلارنى چىقىرىۋېتىش"
+msgstr "سالداتلارنى چىقىرىۋېتىش"
 
 #: ../games/first-law.scm:161
 msgid "Remove the queens"
@@ -2710,7 +2733,7 @@ msgstr ""
 #: ../games/fortunes.scm:135 ../games/fortunes.scm:138
 #, scheme-format
 msgid "Move ~a off the board"
-msgstr ""
+msgstr "~a نى تاختايدىن ئېلىۋەتكىن"
 
 #: ../games/fortunes.scm:158 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
@@ -2730,7 +2753,7 @@ msgstr "ئويۇننىڭ نەتىجىسى چىقمىدى. يېنىۋېلىڭ ي�
 
 #: ../games/gaps.scm:280
 msgid "Double click any card to redeal."
-msgstr "خالىغان قارتنى قوش چېكىپ يېڭىدىن شىيلاڭ"
+msgstr "خالىغان قارتانى قوش چېكىپ يېڭىدىن شىيلاڭ"
 
 #: ../games/gaps.scm:286
 msgid "No hint available."
@@ -3005,7 +3028,7 @@ msgstr ""
 
 #: ../games/gypsy.scm:339
 msgid "Deal another hand"
-msgstr ""
+msgstr "يەنە بىر قول شىيلىغىن"
 
 #: ../games/helsinki.scm:109 ../games/neighbor.scm:141 ../games/treize.scm:279
 #: ../games/yield.scm:295
@@ -3117,7 +3140,7 @@ msgstr "قارتا شىيلاش"
 
 #: ../games/scuffle.scm:142
 msgid "Reshuffle cards"
-msgstr ""
+msgstr "قارتالارنى تەرتىپسىز شىيلا"
 
 #: ../games/seahaven.scm:245
 msgid "an empty foundation"
@@ -3195,11 +3218,11 @@ msgstr "Blondes and Brunettes"
 #. Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
 #: ../games/terrace.scm:51
 msgid "Wood"
-msgstr "ياغاچ"
+msgstr "Wood"
 
 #: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
-msgstr ""
+msgstr "ئۈستەلدىن قارتا شىيلىغىن"
 
 #: ../games/thirteen.scm:381
 msgid "Match the top two cards of the waste."
@@ -3220,3 +3243,9 @@ msgstr ""
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr ""
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "FreeCell Solitaire ھەققىدە"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Freecell Solitaire"
