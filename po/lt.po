@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-29 19:50+0000\n"
-"PO-Revision-Date: 2013-01-23 21:50+0200\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-03-09 17:06+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -113,12 +113,45 @@ msgstr "Paskutinieji žaisti žaidimai"
 msgid "A list of recently played games."
 msgstr "Paskutiniųjų žaistų žaidimų sąrašas."
 
+#: ../src/ar-application.c:212
+#| msgid "_New Game"
+msgid "New Game"
+msgstr "Naujas žaidimas"
+
+#: ../src/ar-application.c:213
+#| msgid "Bakers Game"
+msgid "Change Game"
+msgstr "Keisti žaidimą"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistika"
+
+#: ../src/ar-application.c:218
+#| msgid "_Fullscreen"
+msgid "Fullscreen"
+msgstr "Visame ekrane"
+
+#: ../src/ar-application.c:222
+#| msgid "_Help"
+msgid "Help"
+msgstr "Žinynas"
+
+#: ../src/ar-application.c:223
+#| msgid "About AisleRiot"
+msgid "About Aisleriot"
+msgstr "Apie Aisleriot"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Išeiti"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Pasirinkite žaidimą"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_Pasirinkti"
 
@@ -1445,15 +1478,15 @@ msgid "Window height"
 msgstr "Lango aukštis"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Pasjansas"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME pasjansas"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Apie pasjansą"
 
@@ -1465,11 +1498,11 @@ msgstr "Pasirinkite žaidimo tipą"
 msgid "NAME"
 msgstr "VARDAS"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "FreeCell pasjansas"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1512,10 +1545,6 @@ msgstr "Blogiausias:"
 msgid "Time"
 msgstr "Laikas"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistika"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1549,35 +1578,31 @@ msgstr "nėra"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Sveikiname, Jūs laimėjote!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Nebėra galimų ėjimų."
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Pagrindinis žaidimas:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Kortų žaidimai:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Kortų nugarėlės:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Apie FreeCell pasjansą"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "Apie AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1585,7 +1610,7 @@ msgstr ""
 "AisleRiot pateikia taisyklėmis paremtą pasjanso kortų variklį, kuriuo galima "
 "žaisti daug skirtingų žaidimų."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "Paskutinieji vertėjai:\n"
@@ -1600,183 +1625,181 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "GNOME Games tinklalapis"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "Žaisti „%s“"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Parodyti kortas su „%s“ nugarėlėmis"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Schemos klaida"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Prašome pranešti apie riktą kūrėjams."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Nepranešti"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "_Pranešti"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "FreeCell pasjansas"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "Ž_aidimas"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "R_odymas"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "V_aldymas"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Pradėti naują žaidimą"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "Perkrauti žaidimą"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "_Pasirinkite žaidimą..."
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Žaisti kitokį žaidimą"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "Paskutinieji ž_aisti"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "S_tatistika"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Rodyti žaidimo statistiką"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "Užverti šį langą"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Atšaukti paskutinį ėjimą"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "Atšaukti paskutinį ėjimą"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Išdalinti daugiau kortų"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Gauti kito ėjimo patarimą"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Rodyti Aisleriot žinyną"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Rodyti šio žaidimo žinyną"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "Apie šį žaidimą"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Įdiegiamos kortų temos..."
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Įdiegti naujas kortų temas iš distributyvo paketų saugyklos"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "_Kortų stilius"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "Įrankių _juosta"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Rodyti arba paslėpti įrankių juostą"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "_Būsenos juosta"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Rodyti arba paslėpti būsenos juostą"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "_Norint perkelti reikia spragtelti"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Paimti ir mesti kortą spragtelėjimu"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "Gar_sas"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Ar groti įvykių garsus"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Animacijos"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "Ar naudoti animaciją kortų ėjimams"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Taškai:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Laikas:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Nepavyko pradėti žaidimo „%s“"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot neranda paskutinio Jūsų žaisto žaidimo."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3260,5 +3283,3 @@ msgstr "Multiplier Scoring"
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Perkelkite kortų rinkinį į tuščią stalo skylę"
 
-#~ msgid "Play the popular FreeCell card game"
-#~ msgstr "Žaiskite populiarųjį FreeCell kortų žaidimą"
