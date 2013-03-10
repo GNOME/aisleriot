@@ -33,8 +33,8 @@ msgstr ""
 "Project-Id-Version: aisleriot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-29 19:50+0000\n"
-"PO-Revision-Date: 2013-02-26 21:12+0100\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-03-10 12:56+0100\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: \n"
@@ -133,12 +133,40 @@ msgstr "Zuletzt gespielte Spiele"
 msgid "A list of recently played games."
 msgstr "Eine Liste der zuletzt gespielten Spiele."
 
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr "Neues Spiel"
+
+#: ../src/ar-application.c:213
+msgid "Change Game"
+msgstr "Spiel wechseln"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistik"
+
+#: ../src/ar-application.c:218
+msgid "Fullscreen"
+msgstr "Vollbild"
+
+#: ../src/ar-application.c:222
+msgid "Help"
+msgstr "Hilfe"
+
+#: ../src/ar-application.c:223
+msgid "About Aisleriot"
+msgstr "Info zu Aisleriot"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Beenden"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Spiel wählen"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "Au_swählen"
 
@@ -1471,15 +1499,15 @@ msgid "Window height"
 msgstr "Fensterhöhe"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME Solitaire"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Info zu Solitaire"
 
@@ -1491,11 +1519,11 @@ msgstr "Spieltyp wählen"
 msgid "NAME"
 msgstr "NAME"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "FreeCell Solitaire"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1538,10 +1566,6 @@ msgstr "Schlechteste:"
 msgid "Time"
 msgstr "Zeit"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistik"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1575,35 +1599,31 @@ msgstr "N.v."
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Glückwunsch, Sie haben gewonnen!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Es gibt keine gültigen Züge mehr."
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Hauptspiel:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Kartenspiele:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Kartenmotive:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Info zu FreeCell Solitaire"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "Info zu AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1611,7 +1631,7 @@ msgstr ""
 "AisleRiot bietet eine regelbasierte Patience-Maschine mit vielen "
 "Spielvarianten."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "Karl Eichwalder <ke@suse.de>\n"
@@ -1633,184 +1653,182 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "GNOME Games-Website"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "»%s« spielen"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Die Karten mit dem Motiv »%s« anzeigen"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Ein Schema-Ausnahmefehler ist aufgetreten"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Bitte melden Sie diesen Fehler an die Entwickler."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Nicht melden"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "_Melden"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell Solitaire"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_Spiel"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_Ansicht"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "S_teuerung"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Eine neue Spielpartie beginnen"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "Dieses Spiel neu starten"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "_Spiel wählen …"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Ein anderes Spiel wählen"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "_Zuletzt gespielt"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "S_tatistik"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Spielstatistik anzeigen"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "Dieses Fenster schließen"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Den letzten Zug zurücknehmen"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "Den zuletzt zurückgenommenen Zug wiederholen"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Weitere Karten geben"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Einen Tipp für Ihren nächsten Zug bekommen"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Hilfe zu Aisleriot anzeigen"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Hilfe für dieses Spiel anzeigen"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "Info zu diesem Spiel"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Neue Kartenmotive installieren …"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Neue Kartenmotive aus dem Softwarebestand Ihrer Distribution installieren"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "_Kartenstil"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "_Werkzeugleiste"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Die Werkzeugleiste anzeigen/verbergen"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "_Statusleiste"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Die Statusleiste anzeigen/verbergen"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "Legen per _Klick"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Karten durch Klicken aufnehmen bzw. ablegen"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_Ton"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Legt fest, ob bei Ereignissen Klänge abgespielt werden"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Animationen"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "Legt fest, ob das Bewegen von Karten animiert wird"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Punkte:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Zeit:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Das Spiel »%s« kann nicht gestartet werden"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot konnte das zuletzt von Ihnen gespielte Spiel nicht finden."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does not "
 "have the game you last played. The default game, Klondike, is being started "
@@ -3305,6 +3323,12 @@ msgstr "Spielergebnismultiplikator"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Legen Sie mehrere Karten auf den leeren Spieltischplatz"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "Info zu FreeCell Solitaire"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Freecell Solitaire"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "Das populäre Kartenspiel FreeCell spielen"
