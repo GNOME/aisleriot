@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: aisleriot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-29 19:50+0000\n"
-"PO-Revision-Date: 2013-01-13 11:54+0100\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-03-11 22:12+0100\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -112,12 +112,45 @@ msgstr "Legutóbb játszott játékok"
 msgid "A list of recently played games."
 msgstr "Legutóbb játszott játékok listája."
 
+#: ../src/ar-application.c:212
+#| msgid "_New Game"
+msgid "New Game"
+msgstr "Új játék"
+
+#: ../src/ar-application.c:213
+#| msgid "Bakers Game"
+msgid "Change Game"
+msgstr "Játék változtatása"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statisztika"
+
+#: ../src/ar-application.c:218
+#| msgid "_Fullscreen"
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
+
+#: ../src/ar-application.c:222
+#| msgid "_Help"
+msgid "Help"
+msgstr "Súgó"
+
+#: ../src/ar-application.c:223
+#| msgid "About AisleRiot"
+msgid "About Aisleriot"
+msgstr "Az AisleRiot névjegye"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Kilépés"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Játék kiválasztása"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_Kiválasztás"
 
@@ -1446,15 +1479,15 @@ msgid "Window height"
 msgstr "Ablak magassága"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Pasziánsz"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME pasziánsz"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "A Pasziánsz névjegye"
 
@@ -1466,11 +1499,11 @@ msgstr "A játéktípus kiválasztása"
 msgid "NAME"
 msgstr "NÉV"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "FreeCell pasziánsz"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1513,10 +1546,6 @@ msgstr "Legrosszabb:"
 msgid "Time"
 msgstr "Idő"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statisztika"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1550,35 +1579,31 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d.%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Gratulálok, Ön nyert!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Nincs több lépés"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Fő játék:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Kártyajátékok:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Kártyatémák:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "A FreeCell pasziánsz névjegye"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "Az AisleRiot névjegye"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1586,7 +1611,7 @@ msgstr ""
 "Az AisleRiot egy meghatározott szabályokon alapuló pasziánszmotor, amely sok "
 "különböző játékra ad lehetőséget."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "Bán Szabolcs <shooby at gnome dot hu>\n"
@@ -1601,184 +1626,182 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "A GNOME játékok weboldala"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "„%s” játék"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "A kártyák megjelenítése „%s” kártyatémával"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Scheme kivétel történt"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Jelentse ezt a hibát (angolul) a fejlesztőknek."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Nem jelentem"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "_Jelentem"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell pasziánsz"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_Játék"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_Nézet"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "_Vezérlés"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Súgó"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Új játék indítása"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "A játék újraindítása"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "_Játék kiválasztása…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Másik játék indítása"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "_Legutóbb játszott"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "_Statisztika"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Játékstatisztikák megjelenítése"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "A jelenlegi ablak bezárása"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Az utolsó lépés visszavonása"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "A visszavont lépés végrehajtása mégis"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Következő kártyák osztása"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Javaslat a következő lépéshez"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Az Aisleriot súgójának megjelenítése"
 
 # aisleriot/menu.c:125
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Súgó megjelenítése ehhez a játékhoz"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "A játék névjegye"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Kártyatémák telepítése…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Új kártyatémák telepítése a disztribúció csomagtárolóiból"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "_Kártyastílus"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "Eszköz_tár"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Eszköztár megjelenítése vagy elrejtése"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "Á_llapotsor"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Az állapotsor megjelenítése vagy elrejtése"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "_Kattintás a lépéshez"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Kattintással vegyen fel és dobjon el kártyákat"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_Hang"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Legyen-e az eseményeknek hangjuk"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Animációk"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "A lapmozgások animációja"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Pont:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Idő:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "A(z) „%s” játék nem indítható"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Az Aisleriot nem találja az utoljára játszott játékot."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3259,6 +3282,12 @@ msgstr "Több játékos pontozása"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Mozgasson át egy kártya-összeállítást egy üres Tabló helyre"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "A FreeCell pasziánsz névjegye"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Freecell pasziánsz"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "A népszerű FreeCell kártyajáték"
