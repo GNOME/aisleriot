@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-games\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-18 08:30+0000\n"
-"PO-Revision-Date: 2013-01-18 21:35+0100\n"
+"POT-Creation-Date: 2013-03-11 09:47+0000\n"
+"PO-Revision-Date: 2013-03-11 18:55+0100\n"
 "Last-Translator: Ján Kyselica <kyselica.jan@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -108,12 +108,40 @@ msgstr "Naposledy hrané hry"
 msgid "A list of recently played games."
 msgstr "Zoznam naposledy hraných hier."
 
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr "Nová hra"
+
+#: ../src/ar-application.c:213
+msgid "Change Game"
+msgstr "Zmeniť hru"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Štatistiky"
+
+#: ../src/ar-application.c:218
+msgid "Fullscreen"
+msgstr "Celoobrazovkový režim"
+
+#: ../src/ar-application.c:222
+msgid "Help"
+msgstr "Pomocník"
+
+#: ../src/ar-application.c:223
+msgid "About Aisleriot"
+msgstr "O programe Aisleriot"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Ukončiť"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Vybrať hru"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_Vybrať"
 
@@ -1447,15 +1475,15 @@ msgid "Window height"
 msgstr "Výška okna"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Solitér"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME Solitér"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "O programe Solitér"
 
@@ -1469,11 +1497,11 @@ msgstr "Vybrať hru, ktorá sa bude hrať"
 msgid "NAME"
 msgstr "NÁZOV"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "Solitér FreeCell"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1516,10 +1544,6 @@ msgstr "Najhorší:"
 msgid "Time"
 msgstr "Čas"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Štatistiky"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1553,35 +1577,31 @@ msgstr "Nie je k dispozícii"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Gratulujem, vyhrali ste!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Žiadne platné ťahy už nie sú k dispozícii"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Hlavná hra:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Kartové hry:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Motívy kariet:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "O hre Solitér FreeCell"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "O programe AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1589,7 +1609,7 @@ msgstr ""
 "AisleRiot poskytuje stroj pre kartové hry typu solitér, ktorý umožňuje "
 "hranie veľkého množstva rôznych hier."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "Stanislav Višňovský (visnovsky@nenya.ms.mff.cuni.cz)\n"
@@ -1601,184 +1621,182 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "Webové stránky Hier GNOME"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "Hrať „%s“"
 
 # tooltip
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Zobrazí karty s motívom „%s“"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Nastal problém so schémou"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Nahláste, prosím, túto chybu vývojárom."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Nenahlásiť"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "Na_hlásiť"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "FreeCell - solitér"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_Hra"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_Zobraziť"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "_Ovládanie"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Začne novú hru"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "Začne hru odznova"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "Vy_brať hru…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Spustí inú hru"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "Naposledy _hrané"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "Š_tatistiky"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Zobrazí štatistiky o hranej hre"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "Zavrie toto okno"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Vráti posledný ťah"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "Zopakuje vrátený ťah"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Zoberie ďalšiu kartu alebo viac kariet"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Zobrazí radu pre ďalší ťah"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Zobrazí pomocníka pre Aisleriot"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Zobrazí pomocníka pre túto hru"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "O tejto hre"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Nainštalovať motívy kariet…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Nainštaluje nové motívy kariet z repozitára balíkov distribúcie"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "Štýl _kariet"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "Lišta _nástrojov"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Zobrazí alebo skryje lištu nástrojov"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "_Stavová lišta"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Zobrazí alebo skryje stavovú lištu"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "_Presúvať klikaním"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Zodvihnúť a pokladať karty klikaním"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_Zvuk"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Určuje, či sa majú alebo nemajú prehrať zvuky udalostí"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Animácie"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "Určuje,či sa má alebo nemá animovať pohyb kariet"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Skóre:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Čas:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Nepodarilo sa spustiť hru „%s“"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Program Aisleriot nedokáže nájsť naposledy hranú hru."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3272,6 +3290,12 @@ msgstr "Násobené skórovanie"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Presuňte sled kariet na prázdne úložisko na stole"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "O hre Solitér FreeCell"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "FreeCell - solitér"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "Hrať populárnu kartovú hru FreeCell"
