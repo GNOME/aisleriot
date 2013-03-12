@@ -135,7 +135,7 @@ AC_ARG_WITH([card-theme-formats],
   [],[with_card_theme_formats=default])
 
 case "$with_card_theme_formats" in
-  default) with_card_theme_formats="svg" ;;
+  default) with_card_theme_formats="svg,pysol" ;;
   all) with_card_theme_formats="svg,kde,fixed,sliced,pysol" ;;
 esac
 
