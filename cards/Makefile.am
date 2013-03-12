@@ -11,6 +11,7 @@ SVGS = \
 	dondorf.svg \
 	gnomangelo.svg \
 	gnomangelo_bitmap.svg \
+	guyenne-classic.svg \
 	ornamental.svg \
 	paris.svg \
 	tango.svg \
