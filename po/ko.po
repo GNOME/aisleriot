@@ -8,22 +8,28 @@
 #
 # (aisleriot package)
 #
-# Changwoo Ryu <cwryu@debian.org>, 2011
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2012
+# Changwoo Ryu <cwryu@debian.org>, 2011, 2013
+#
 #
 # 새로 번역하신 분은 아래 "translator-credits"에 추가하세요.
 #
-# - 음역할 프로그램 이름
-#   - Aisleriot -> 아일라이어트
+# 주의:
+# - 게임에서 어떻게 나타나는지 모르면 오역이 일어나기 굉장히 쉽습니다.
+# 단어만 보고 번역하지 마시고 시간을 두고 확인하십시오.
+# - 게임 이름은 음역하십시오. 토시만 번역하는 건 번역이 아닙니다.
+#
+#
+# 용어:
+# - 이 프로그램 이름인 Aisleriot는 "아일라이어트"로 음역
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-08 08:41+0000\n"
-"PO-Revision-Date: 2012-09-15 15:20+0900\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-03-18 02:39+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
 "MIME-Version: 1.0\n"
@@ -39,13 +45,17 @@ msgstr "아일라이어트 솔리테어"
 msgid "Play many different solitaire games"
 msgstr "여러가지 솔리테어 게임을 플레이합니다"
 
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "solitaire;솔리테어;cards;카드;klondike;클론다이크;spider;스파이더;freecell;프리셀;patience;페이션스;"
+
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
 msgstr "테마 파일 이름"
 
 #: ../src/aisleriot.schemas.in.h:2
 msgid "The name of the file with the graphics for the cards."
-msgstr "카드의 그래픽이 들어 있는 파일의 이름입니다."
+msgstr "카드의 그래픽이 들어 있는 파일의 이름."
 
 #: ../src/aisleriot.schemas.in.h:3
 msgid "Whether or not to show the toolbar"
@@ -88,7 +98,7 @@ msgstr "사용할 게임 파일"
 
 #: ../src/aisleriot.schemas.in.h:12
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "플레이할 솔리테어 게임이 들어 있는 Scheme 파일의 이름입니다."
+msgstr "플레이할 솔리테어 게임이 들어 있는 Scheme 파일의 이름."
 
 #: ../src/aisleriot.schemas.in.h:13
 msgid "Statistics of games played"
@@ -110,14 +120,42 @@ msgstr "최근 플레이한 게임"
 
 #: ../src/aisleriot.schemas.in.h:16
 msgid "A list of recently played games."
-msgstr "최근 플레이한 게임의 목록입니다."
+msgstr "최근 플레이한 게임의 목록."
+
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr "새 게임"
+
+#: ../src/ar-application.c:213
+msgid "Change Game"
+msgstr "게임 바꾸기"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "통계"
+
+#: ../src/ar-application.c:218
+msgid "Fullscreen"
+msgstr "전체 화면"
+
+#: ../src/ar-application.c:222
+msgid "Help"
+msgstr "도움말"
+
+#: ../src/ar-application.c:223
+msgid "About Aisleriot"
+msgstr "아일라이어트 정보"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "끝내기"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "게임 선택"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "선택(_S)"
 
@@ -181,10 +219,7 @@ msgid ""
 "terms of the GNU General Public License as published by the Free Software "
 "Foundation; either version %d of the License, or (at your option) any later "
 "version."
-msgstr ""
-"%s은(는) 자유 소프트웨어 입니다. 자유 소프트웨어가 공표한 버전 GNU 일반 공중 "
-"사용허가서 버전 %d 또는 (여러분의 선택에 따라) 이후 버전의 조항에 따라 재배"
-"포 또는 수정할 수 있습니다."
+msgstr "%s은(는) 자유 소프트웨어 입니다. 자유 소프트웨어가 공표한 버전 GNU 일반 공중 사용허가서 버전 %d 또는(선택에 따라) 이후 버전의 조항에 따라 재배포 또는 수정할 수 있습니다."
 
 #: ../src/ar-stock.c:272
 #, c-format
@@ -193,10 +228,7 @@ msgid ""
 "WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
 "FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
 "details."
-msgstr ""
-"%s은(는) 유용해지길 바라며 배포하지만 그 어떤 보증도 하지 않으며 심지어는 상"
-"업성, 특정 목적의 적합성에 대한 암묵적 보증도 하지 않습니다. 자세한 내용은 "
-"GNU 일반 공중 사용허가서를 참조하시기 바랍니다."
+msgstr "%s은(는) 유용해지길 바라며 배포하지만 그 어떤 보증도 하지 않으며 심지어는 상업성, 특정 목적의 적합성에 대한 암묵적 보증도 하지 않습니다. 자세한 내용은 GNU 일반 공중 사용허가서를 참조하십시오."
 
 #: ../src/ar-stock.c:277
 msgid ""
@@ -1443,15 +1475,15 @@ msgid "Window height"
 msgstr "창 높이"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "솔리테어"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "그놈 솔리테어"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "솔리테어 정보"
 
@@ -1463,11 +1495,11 @@ msgstr "플레이할 게임 종류를 선택하십시오"
 msgid "NAME"
 msgstr "<이름>"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "프리셀 솔리테어"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "아일라이어트"
 
@@ -1510,10 +1542,6 @@ msgstr "최저:"
 msgid "Time"
 msgstr "시간"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "통계"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1547,35 +1575,31 @@ msgstr "해당 없음"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "축하합니다. 이겼습니다!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "더 이상 움직일 수 없습니다"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "주 게임:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "카드 게임:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "카드 테마:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "프리셀 솔리테어 정보"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "아일라이어트 정보"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1583,7 +1607,7 @@ msgstr ""
 "아일라이어트는 규칙을 기초로 한 솔리테어 카드게임 엔진을 제공하여 다양한 종류"
 "의 게임을 플레이할 수 있습니다."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "류창우 <cwryu@debian.org>\n"
@@ -1593,183 +1617,181 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "그놈 게임 웹사이트"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "“%s” 플레이"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "“%s” 카드 테마로 카드를 표시합니다"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "스킴 예외가 발생했습니다"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "이 버그를 개발자에게 보고해 주십시오."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "보고하지 않기(_D)"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "보고(_R)"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "프리셀 솔리테어"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "게임(_G)"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "보기(_V)"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "컨트롤(_C)"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "새 게임을 시작합니다"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "게임을 다시 시작합니다"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "게임 선택(_S)…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "다른 게임을 플레이합니다"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "최근 플레이(_R)"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "통계(_T)"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "게임 플레이 통계 보기"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "이 창을 닫습니다"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "마지막 움직임을 취소합니다"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "마지막 움직임을 되돌립니다"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "다음 카드를 돌립니다"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "다음 움직임에 대한 힌트를 얻습니다"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "아일라이어트 도움말 보기"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "이 게임의 도움말을 봅니다"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "이 게임 정보"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "새 카드 테마 설치…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "배포판의 패키지 저장소에서 새 카드 테마를 설치합니다"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "카드 모양새(_C)"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "도구 모음(_T)"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "도구 모음 보이기 혹은 감추기"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "상태 표시줄(_S)"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "상태 표시줄 보이기 혹은 감추기"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "누르면 움직임(_C)"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "카드를 눌러서 집어들거나 놓기"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "소리(_S)"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "이벤트 사운드를 재생합니다"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "애니메이션(_A)"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "카드 움직임에 애니메이션을 사용합니다"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "점수:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "시간:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "“%s” 게임을 시작할 수 없습니다"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "아일라이어트에서 플레이한 마지막 게임을 찾지 못했습니다."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1820,7 +1842,7 @@ msgstr "베이스 카드: 킹"
 #: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
 #: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
 #: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
@@ -2418,7 +2440,7 @@ msgstr "다이아몬드 퀸 위로 ~a 카드를 옮기십시오."
 msgid "Move ~a onto the king of diamonds."
 msgstr "다이아몬드 킹 위로 ~a 카드를 옮기십시오."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/athena.scm:80 ../games/klondike.scm:293
 #: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
@@ -2433,7 +2455,7 @@ msgstr "다른 라운드를 돌리십시오"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
 #: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
@@ -2451,7 +2473,7 @@ msgstr "파운데이션에서 비어 있는 슬롯"
 
 #: ../games/backbone.scm:293 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:339
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2524,7 +2546,7 @@ msgstr "도움말 파일을 읽어 보셨습니까?"
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:179
 msgid "Odessa is a better game.  Really."
-msgstr "Odessa가 더 좋은 게임입니다. 정말로."
+msgstr "오데사가 더 좋은 게임입니다. 정말로."
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:181
@@ -2552,20 +2574,23 @@ msgstr "계속 잃고 숲속에 홀로 남았다면 나무에 메달리십시오
 msgid "Fishing wire makes bad dental floss"
 msgstr "낚시줄은 나쁜 이쑤시개 실을 만듭니다"
 
+# 이건 유머입니다. 그대로 번역할 필요 없음.
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:191
 msgid "Consistency is key"
-msgstr "일관성이 핵심입니다"
+msgstr "일관성이 중요합니다"
 
+# 이건 유머입니다. 그대로 번역할 필요 없음.
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:193
 msgid "When without a stapler, a staple and a ruler will work"
-msgstr "호치키스가 없을 때는 꺾쇠하고 자로 작업합니다"
+msgstr "노루발못뽑이가 없으면, 노루와 발을 쓰면 됩니다."
 
+# 이건 유머입니다. 그대로 번역할 필요 없음.
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:195
 msgid "Never blow in a dog's ear"
-msgstr "절대로 개의 귀에 바람을 불지 마세요"
+msgstr "개의 귀에 바람을 불지 마세요"
 
 #: ../games/cruel.scm:157
 #, scheme-format
@@ -2644,7 +2669,7 @@ msgstr "카드를 돌리십시오"
 msgid "Move a king onto an empty tableau slot."
 msgstr "빈 타블로 슬롯으로 킹 카드를 옮기십시오."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "현재 사용할 수 있는 힌트가 없습니다"
@@ -2742,7 +2767,7 @@ msgstr "빈 타블로 슬롯에 무엇이든 옮기십시오."
 msgid "Move ~a off the board"
 msgstr "판에서 ~a 카드를 치우십시오"
 
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:158 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "무엇을 비어 있는 자리에 옮길지 생각해 보십시오"
 
@@ -3074,17 +3099,21 @@ msgstr "남은 스톡: ~a"
 msgid "Deal a new card"
 msgstr "새 카드 돌리기"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "파운데이션에서 카드를 줄이십시오"
 
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "카드 한 장 돌리기"
 
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "다시 돌리기 없음"
+
+#: ../games/klondike.scm:296
+msgid "Unlimited redeals"
+msgstr "무제한 패 돌리기"
 
 #: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
@@ -3102,7 +3131,7 @@ msgstr "빈 타블로 슬롯"
 msgid ""
 "Aim to place the suits in the order which fits the current layout most "
 "naturally."
-msgstr "현재 배치에 가장 자연스럽게 카드들을 놓는 것이 목적입니다."
+msgstr "현재 배치에 가장 자연스럽게 카드를 놓는 것이 목적입니다."
 
 #: ../games/napoleons-tomb.scm:338 ../games/terrace.scm:286
 msgid "the foundation"
@@ -3246,45 +3275,3 @@ msgstr "배수 점수"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "카드 뭉치를 빈 타블로 슬롯으로 옮기십시오"
-
-#~ msgid "Play the popular FreeCell card game"
-#~ msgstr "유명한 프리셀 카드 게임"
-
-#~ msgid "an empty foundation slot"
-#~ msgstr "빈 파운데이션 슬롯"
-
-#~ msgid "empty slot on foundation"
-#~ msgstr "파운데이션에서 비어 있는 슬롯"
-
-#~ msgid "empty space on tableau"
-#~ msgstr "타블로에서 비어 있는 공간"
-
-#~ msgid "the foundation pile"
-#~ msgstr "파운데이션 더미"
-
-#~ msgid "Move ~a to an empty foundation"
-#~ msgstr "비어 있는 파운데이션으로 ~a 카드를 옮기십시오"
-
-#~ msgid "an empty slot on tableau"
-#~ msgstr "타블로에서 비어 있는 슬롯"
-
-#~ msgid "Move a King on to the empty tableau slot"
-#~ msgstr "빈 타블로 슬롯으로 킹을 옮기십시오"
-
-#~ msgid "an empty reserve"
-#~ msgstr "빈 예비 슬롯"
-
-#~ msgid "an open tableau"
-#~ msgstr "열린 타블로"
-
-#~ msgid "Place the ~a next to ~a."
-#~ msgstr "~a을(를) ~a 다음에 놓으십시오."
-
-#~ msgid "on to the empty tableau slot"
-#~ msgstr "빈 타블로 슬롯에"
-
-#~ msgid "an empty tableau pile"
-#~ msgstr "빈 타블로 더미"
-
-#~ msgid "the appropriate Foundation pile"
-#~ msgstr "적당한 파운데이션 더미"
