@@ -14,6 +14,7 @@ SVGS = \
 	guyenne-classic.svg \
 	ornamental.svg \
 	paris.svg \
+	swiss-xvii.svg \
 	tango.svg \
 	$(NULL)
 
