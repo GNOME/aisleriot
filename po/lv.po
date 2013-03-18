@@ -6,13 +6,14 @@
 # Peteris Krisjanis <peteris.krisjanis@os.lv>, 2002.
 # Raivis Dejus <orvils@gmail.com>, 2006, 2007.
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011, 2012.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-10 20:14+0300\n"
-"PO-Revision-Date: 2012-09-10 23:53+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=aisleriot&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-03-18 14:16+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -32,6 +33,10 @@ msgstr "AisleRiot Solitaire"
 #: ../data/sol.desktop.in.in.h:2
 msgid "Play many different solitaire games"
 msgstr "Spēlē daudz dažādas solitaire spēles"
+
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "pasjans;kārtis;klondaika;zirneklis;spider;freecell;pacietība;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -107,12 +112,44 @@ msgstr "Nesen spēlētās spēles"
 msgid "A list of recently played games."
 msgstr "Nesen spēlēto spēļu saraksts."
 
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr "Jauna spēle"
+
+#: ../src/ar-application.c:213
+#| msgid "Challenge Pack"
+msgid "Change Game"
+msgstr "Mainīt spēli"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistika"
+
+#: ../src/ar-application.c:218
+#| msgid "_Fullscreen"
+msgid "Fullscreen"
+msgstr "Pilnekrāns"
+
+#: ../src/ar-application.c:222
+#| msgid "_Help"
+msgid "Help"
+msgstr "Palīdzība"
+
+#: ../src/ar-application.c:223
+#| msgid "About AisleRiot"
+msgid "About Aisleriot"
+msgstr "Par Aisleriot"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Iziet"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Izvēlieties spēli"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "Izvēlētie_s"
 
@@ -1437,15 +1474,15 @@ msgid "Window height"
 msgstr "Loga augstums"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME Solitaire"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Par Solitaire"
 
@@ -1457,11 +1494,11 @@ msgstr "Izvēlieties spēli, ko spēlēt"
 msgid "NAME"
 msgstr "VĀRDS"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "FreeCell Solitaire"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1504,10 +1541,6 @@ msgstr "Sliktākais:"
 msgid "Time"
 msgstr "Laiks"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistika"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1541,35 +1574,31 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Apsveicam, jūs uzvarējāt!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Vairs nav gājienu"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Galvenā spēle:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Kāršu spēles:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Kāršu motīvi:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Par FreeCell Solitaire"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "Par AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1577,7 +1606,7 @@ msgstr ""
 "AisleRiot piedāvā uz noteikumiem bāzētu solitaire kāršu spēļu dzini, kas "
 "ļauj spēlēt daudzas dažādas spēles."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "Raivis Dejus <orvils@gmail.com>\n"
@@ -1588,183 +1617,181 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "GNOME Games tīmekļa vietne"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "Spēlēt “%s”"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Attēlot kārtis ar “%s” kāršu motīvu"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Notika shēmas izņēmums"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Lūdzu, ziņojiet par šo kļūdu izstrādātājiem."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Neziņot"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "_Ziņot"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell Solitaire"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_Spēle"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_Skats"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "_Vadība"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Palīdzība"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Sākt jaunu spēli"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "Pārstartēt spēli"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "Izvēlieties _spēli…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Spēlēt citu spēli"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "Nesen s_pēlētās"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "S_tatistika"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Rādīt spēļu statistiku"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "Aizvērt šo logu"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Atsaukt pēdējo gājienu"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "Atsaukt gājiena atsaukšanu"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Izdalīt nākamo kārti vai kārtis"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Saņemt padomu par nākamo gājienu"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Skatīt Aisleriot palīdzību"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Skatīt šīs spēles palīdzību"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "Par šo spēli"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Instalēt kāršu motīvus…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Instalēt jaunos kāršu motīvus no distribūcijas pakotņu krātuves"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "_Kāršu stils"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "_Rīkjosla"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Parādīt vai paslēpt rīkjoslu"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "_Statusa josla"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Rādīt vai slēpt statusa joslu"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "_Klikšķināt, lai pārvietotu"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Pacelt vai nolikt kārtis klikšķinot"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_Skaņa"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Vai atskaņot notikumu skaņas"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Animācijas"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "Vai attēlot kāršu kustību"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Rezultāts:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Laiks:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Nevar palaist spēli “%s”"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot nevar atrast pēdējo jūsu spēlēto spēli."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1816,7 +1843,7 @@ msgstr "Pamatkārts: kungs"
 #: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
 #: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
 #: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
@@ -2414,7 +2441,7 @@ msgstr "Pārvietot “~a” uz kārava dāmu."
 msgid "Move ~a onto the king of diamonds."
 msgstr "Pārvietot “~a” uz kārava kungu."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/athena.scm:80 ../games/klondike.scm:293
 #: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
@@ -2429,7 +2456,7 @@ msgstr "Izdalīt vēlreiz"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
 #: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
@@ -2447,7 +2474,7 @@ msgstr "tukšs lauks uz pamata"
 
 #: ../games/backbone.scm:293 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:339
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2639,7 +2666,7 @@ msgstr "Izdalīt kārti"
 msgid "Move a king onto an empty tableau slot."
 msgstr "Pārvietot karali uz tukšu galda vietu."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Patlaban nav pieejams neviens padoms"
@@ -2737,7 +2764,7 @@ msgstr "Novieto kaut ko tukšajā galda laukā."
 msgid "Move ~a off the board"
 msgstr "Noņemt “~a” no galda"
 
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:158 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "Lūdzu, novieto kaut ko tukšajā laukā"
 
@@ -3069,17 +3096,21 @@ msgstr "Krāvumā atlicis: ~a"
 msgid "Deal a new card"
 msgstr "Izdalīt jaunu kārti"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "Mēģiniet pārvietot kārtis lejup no pamata"
 
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "Vienas kārts izdalīšana"
 
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "Bez pārdales"
+
+#: ../games/klondike.scm:296
+msgid "Unlimited redeals"
+msgstr "Neierobežota pārdalīšana"
 
 #: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
@@ -3244,6 +3275,12 @@ msgstr "Vairāku spēlētāju rezultāti"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Pārvietot kāršu krāvumu uz tukšu lauku uz galda"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "Par FreeCell Solitaire"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Freecell Solitaire"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "Spēlēt populāro FreeCell kāršu spēli"
@@ -3595,9 +3632,6 @@ msgstr "Pārvietot kāršu krāvumu uz tukšu lauku uz galda"
 
 #~ msgid "Claim _Draw"
 #~ msgstr "_Pieteikt neizšķiru"
-
-#~ msgid "New Game"
-#~ msgstr "Jauna spēle"
 
 #~ msgid "Resign"
 #~ msgstr "Padoties"
@@ -5979,9 +6013,6 @@ msgstr "Pārvietot kāršu krāvumu uz tukšu lauku uz galda"
 
 #~ msgid "HuaRong Trail"
 #~ msgstr "HuaRong taka"
-
-#~ msgid "Challenge Pack"
-#~ msgstr "Izaicinājuma paka"
 
 #~ msgid "Skill Pack"
 #~ msgstr "Iemaņu paka"
