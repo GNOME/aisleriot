@@ -378,6 +378,12 @@ if test -z "$XMLLINT"; then
   AC_MSG_ERROR([xmllint not found])
 fi
 
+AC_ARG_VAR([DESKTOP_FILE_VALIDATE],[the desktop-file-validate programme])
+AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
+if test -z "$DESKTOP_FILE_VALIDATE"; then
+  AC_MSG_ERROR([desktop-file-validate not found])
+fi
+
 if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
   AC_CHECK_TOOL([WINDRES],[windres],[no])
   if test "$WINDRES" = "no"; then
