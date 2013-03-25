@@ -22,6 +22,14 @@ desktop_in_files = \
 desktopdir = $(datadir)/applications
 desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
+desktop-file-validate: $(desktop_DATA)
+	for f in $^; do \
+		$(DESKTOP_FILE_VALIDATE) $$f; \
+	done
+
+check-local: desktop-file-validate
+
+
 dist_valgrind_DATA = \
 	aisleriot.supp \
 	$(NULL)
