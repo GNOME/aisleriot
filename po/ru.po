@@ -12,15 +12,15 @@
 # Dmitry Dzhus <dima@sphinx.net.ru>, 2008.
 # Andrew Grigorev <andrew@ei-grad.ru>, 2009.
 # Yuri Kozlov <yuray@komyakino.ru>, 2010, 2012.
-# Yuri Myasoedov <omerta13@yandex.ru>, 2012.
+# Yuri Myasoedov <omerta13@yandex.ru>, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games trunk\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-13 21:29+0000\n"
-"PO-Revision-Date: 2012-09-08 12:36+0400\n"
+"POT-Creation-Date: 2013-03-24 18:05+0000\n"
+"PO-Revision-Date: 2013-03-31 19:02+0400\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
@@ -37,7 +37,11 @@ msgstr "Пасьянс Айслериот"
 
 #: ../data/sol.desktop.in.in.h:2
 msgid "Play many different solitaire games"
-msgstr "Позволяет играть во много разных пасьянсов"
+msgstr "Позволяет играть во множество различных пасьянсов"
+
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "солитер;карты;клондайк;свободная ячейка;пасьянс;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -113,12 +117,40 @@ msgstr "Недавние пасьянсы"
 msgid "A list of recently played games."
 msgstr "Список недавно сыгранных пасьянсов."
 
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr "Новая игра"
+
+#: ../src/ar-application.c:213
+msgid "Change Game"
+msgstr "Изменить игру"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Статистика"
+
+#: ../src/ar-application.c:218
+msgid "Fullscreen"
+msgstr "На весь экран"
+
+#: ../src/ar-application.c:222
+msgid "Help"
+msgstr "Справка"
+
+#: ../src/ar-application.c:223
+msgid "About Aisleriot"
+msgstr "О программе"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Закончить"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Выбор игры"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "В_ыбрать"
 
@@ -1447,15 +1479,15 @@ msgid "Window height"
 msgstr "Высота окна"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Пасьянс"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "Пасьянс GNOME"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "О пасьянсе"
 
@@ -1467,11 +1499,11 @@ msgstr "Выберите игру"
 msgid "NAME"
 msgstr "ИМЯ"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "Пасьянс Свободная ячейка"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "Айслериот"
 
@@ -1514,10 +1546,6 @@ msgstr "Худшая:"
 msgid "Time"
 msgstr "Время"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Статистика"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1551,35 +1579,31 @@ msgstr "Н/Д"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Поздравляем, вы выиграли!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Больше нет вариантов ходов"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Основная игра:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Карточные игры:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Стиль карт:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "О пасьянсе Свободная ячейка"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "О Айслериот"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1587,7 +1611,7 @@ msgstr ""
 "Айслериот представляет из себя движок пасьянсов, в котором реализовано много "
 "разнообразных игр."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "Валек Филиппов aka frob\n"
@@ -1600,183 +1624,181 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "Веб-сайт GNOME Games"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "Играть в «%s»"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Использовать тему карт «%s»"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Возникло исключение scheme"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Пожалуйста, сообщите об этом разработчикам."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Не сообщать"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "_Сообщить"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Пасьянс Свободная ячейка"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_Игра"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_Вид"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "_Управление"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Справка"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Начать новую игру"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "Начать игру заново"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "_Выбрать игру…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Начать другой пасьянс"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "Недавние п_асьянсы"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "_Статистика"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Показать статистику игры"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "Закрыть это окно"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Отменить последний ход"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "Вернуть отменённый ход"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Раздать ещё карту"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Подсказать следующий ход"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Показать справку по Aisleriot"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Показать справку по игре"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "Об игре"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Установить карточную тему…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Установить новые карточные темы из репозитория пакетов дистрибутива"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "Стиль _карт"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "Панель _инструментов"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Показать или скрыть панель инструментов"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "Строка _состояния"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Показать или скрыть строку состояния"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "_Перенос карт"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Брать и опускать карты по щелчку"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_Звук"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Воспроизводить ли звуки событий"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Анимации"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "Использовать ли анимацию карточных перемещений"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Счёт:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Время:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Не удалось начать игру «%s»"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Не удалось найти последнюю сыгранную игру."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1828,7 +1850,7 @@ msgstr "Основная карта: Король"
 #: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
 #: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
 #: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
@@ -2107,13 +2129,11 @@ msgstr "Положите ~a на пустое игровое поле."
 
 #: ../games/api.scm:475
 #, scheme-format
-#| msgid "Move ~a onto the red joker."
 msgid "Move ~a onto the reserve."
 msgstr "Положите ~a в резерв."
 
 #: ../games/api.scm:475
 #, scheme-format
-#| msgid "Move ~a onto an empty corner slot."
 msgid "Move ~a onto an empty reserve slot."
 msgstr "Положите ~a на пустое резервное поле."
 
@@ -2428,7 +2448,7 @@ msgstr ".Положите ~a на даму бубен."
 msgid "Move ~a onto the king of diamonds."
 msgstr "Положите ~a на короля бубен."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/athena.scm:80 ../games/klondike.scm:293
 #: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
@@ -2443,7 +2463,7 @@ msgstr "Сдать карты ещё раз"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
 #: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
@@ -2461,7 +2481,7 @@ msgstr "пустое поле в основании"
 
 #: ../games/backbone.scm:293 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:339
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2657,7 +2677,7 @@ msgstr "Сдать карту"
 msgid "Move a king onto an empty tableau slot."
 msgstr "Положите короля на пустое игровое поле."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Сейчас подсказок нет"
@@ -2755,7 +2775,7 @@ msgstr "Положите что-нибудь на пустое поле."
 msgid "Move ~a off the board"
 msgstr "Положите ~a на край стола"
 
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:158 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "Попробуйте положить что-нибудь на пустое поле"
 
@@ -2790,242 +2810,194 @@ msgid "Add to the sequence in row ~a."
 msgstr "Добавьте в стопку в строке ~a."
 
 #: ../games/gaps.scm:311
-#| msgid "Move ~a onto the ace of clubs."
 msgid "Place the two of clubs next to the ace of clubs."
 msgstr "Положите двойку треф рядом с тузом треф."
 
 #: ../games/gaps.scm:312
-#| msgid "Move ~a onto the two of clubs."
 msgid "Place the three of clubs next to the two of clubs."
 msgstr "Положите тройку треф рядом с двойкой треф."
 
 #: ../games/gaps.scm:313
-#| msgid "Move ~a onto the three of clubs."
 msgid "Place the four of clubs next to the three of clubs."
 msgstr "Положите четвёрку треф рядом с тройкой треф."
 
 #: ../games/gaps.scm:314
-#| msgid "Move ~a onto the four of clubs."
 msgid "Place the five of clubs next to the four of clubs."
 msgstr "Положите пятёрку треф рядом с четвёркой треф."
 
 #: ../games/gaps.scm:315
-#| msgid "Move ~a onto the five of clubs."
 msgid "Place the six of clubs next to the five of clubs."
 msgstr "Положите семёрку треф рядом с шестёркой треф."
 
 #: ../games/gaps.scm:316
-#| msgid "Move ~a onto the six of clubs."
 msgid "Place the seven of clubs next to the six of clubs."
 msgstr "Положите семёрку треф рядом с шестёркой треф."
 
 #: ../games/gaps.scm:317
-#| msgid "Move ~a onto the seven of clubs."
 msgid "Place the eight of clubs next to the seven of clubs."
 msgstr "Положите восьмёрку треф рядом с семёркой треф."
 
 #: ../games/gaps.scm:318
-#| msgid "Move ~a onto the eight of clubs."
 msgid "Place the nine of clubs next to the eight of clubs."
 msgstr "Положите девятку треф рядом с восьмёркой треф."
 
 #: ../games/gaps.scm:319
-#| msgid "Move ~a onto the nine of clubs."
 msgid "Place the ten of clubs next to the nine of clubs."
 msgstr "Положите десятку треф рядом с девяткой треф."
 
 #: ../games/gaps.scm:320
-#| msgid "Move ~a onto the ten of clubs."
 msgid "Place the jack of clubs next to the ten of clubs."
 msgstr "Положите валета треф рядом с десяткой треф."
 
 #: ../games/gaps.scm:321
-#| msgid "Move ~a onto the jack of clubs."
 msgid "Place the queen of clubs next to the jack of clubs."
 msgstr "Положите даму треф рядом с валетом треф."
 
 #: ../games/gaps.scm:322
-#| msgid "Move ~a onto the queen of clubs."
 msgid "Place the king of clubs next to the queen of clubs."
 msgstr "Положите короля треф рядом с дамой треф."
 
 #: ../games/gaps.scm:325
-#| msgid "Move ~a onto the ace of spades."
 msgid "Place the two of spades next to the ace of spades."
 msgstr "Положите двойку пик рядом с тузом пик."
 
 #: ../games/gaps.scm:326
-#| msgid "Move ~a onto the two of spades."
 msgid "Place the three of spades next to the two of spades."
 msgstr "Положите тройку пик рядом с двойкой пик."
 
 #: ../games/gaps.scm:327
-#| msgid "Move ~a onto the three of spades."
 msgid "Place the four of spades next to the three of spades."
 msgstr "Положите четвёрку пик рядом с тройкой пик."
 
 #: ../games/gaps.scm:328
-#| msgid "Move ~a onto the four of spades."
 msgid "Place the five of spades next to the four of spades."
 msgstr "Положите пятёрку пик рядом с четвёркой пик."
 
 #: ../games/gaps.scm:329
-#| msgid "Move ~a onto the five of spades."
 msgid "Place the six of spades next to the five of spades."
 msgstr "Положите шестёрку пик рядом с пятёркой пик."
 
 #: ../games/gaps.scm:330
-#| msgid "Move ~a onto the six of spades."
 msgid "Place the seven of spades next to the six of spades."
 msgstr "Положите семёрку пик рядом с шестёркой пик."
 
 #: ../games/gaps.scm:331
-#| msgid "Move ~a onto the seven of spades."
 msgid "Place the eight of spades next to the seven of spades."
 msgstr "Положите восьмёрку пик рядом с семёркой пик."
 
 #: ../games/gaps.scm:332
-#| msgid "Move ~a onto the eight of spades."
 msgid "Place the nine of spades next to the eight of spades."
 msgstr "Положите девятку пик рядом с восьмёркой пик."
 
 #: ../games/gaps.scm:333
-#| msgid "Move ~a onto the nine of spades."
 msgid "Place the ten of spades next to the nine of spades."
 msgstr "Положите десятку пик рядом с девяткой пик."
 
 #: ../games/gaps.scm:334
-#| msgid "Move ~a onto the ten of spades."
 msgid "Place the jack of spades next to the ten of spades."
 msgstr "Положите валета пик рядом с десяткой пик."
 
 #: ../games/gaps.scm:335
-#| msgid "Move ~a onto the jack of spades."
 msgid "Place the queen of spades next to the jack of spades."
 msgstr "Положите даму пик рядом с валетом пик."
 
 #: ../games/gaps.scm:336
-#| msgid "Move ~a onto the queen of spades."
 msgid "Place the king of spades next to the queen of spades."
 msgstr "Положите короля пик рядом с дамой пик."
 
 #: ../games/gaps.scm:339
-#| msgid "Move ~a onto the ace of hearts."
 msgid "Place the two of hearts next to the ace of hearts."
 msgstr "Положите двойку червей рядом с тузом червей."
 
 #: ../games/gaps.scm:340
-#| msgid "Move ~a onto the two of hearts."
 msgid "Place the three of hearts next to the two of hearts."
 msgstr "Положите тройку червей рядом с двойкой червей."
 
 #: ../games/gaps.scm:341
-#| msgid "Move ~a onto the three of hearts."
 msgid "Place the four of hearts next to the three of hearts."
 msgstr "Положите четвёрку червей рядом с тройкой червей."
 
 #: ../games/gaps.scm:342
-#| msgid "Move ~a onto the four of hearts."
 msgid "Place the five of hearts next to the four of hearts."
 msgstr "Положите пятёрку червей рядом с четвёркой червей."
 
 #: ../games/gaps.scm:343
-#| msgid "Move ~a onto the five of hearts."
 msgid "Place the six of hearts next to the five of hearts."
 msgstr "Положите шестёрку червей рядом с пятёркой червей."
 
 #: ../games/gaps.scm:344
-#| msgid "Move ~a onto the six of hearts."
 msgid "Place the seven of hearts next to the six of hearts."
 msgstr "Положите семёрку червей рядом с шестёркой червей."
 
 #: ../games/gaps.scm:345
-#| msgid "Move ~a onto the seven of hearts."
 msgid "Place the eight of hearts next to the seven of hearts."
 msgstr "Положите восьмёрку червей рядом с семёркой червей."
 
 #: ../games/gaps.scm:346
-#| msgid "Move ~a onto the eight of hearts."
 msgid "Place the nine of hearts next to the eight of hearts."
 msgstr "Положите девятку червей рядом с восьмёркой червей."
 
 #: ../games/gaps.scm:347
-#| msgid "Move ~a onto the nine of hearts."
 msgid "Place the ten of hearts next to the nine of hearts."
 msgstr "Положите десятку червей рядом с девяткой червей."
 
 #: ../games/gaps.scm:348
-#| msgid "Move ~a onto the ten of hearts."
 msgid "Place the jack of hearts next to the ten of hearts."
 msgstr "Положите валета червей рядом с десяткой червей."
 
 #: ../games/gaps.scm:349
-#| msgid "Move ~a onto the jack of hearts."
 msgid "Place the queen of hearts next to the jack of hearts."
 msgstr "Положите даму червей рядом с валетом червей."
 
 #: ../games/gaps.scm:350
-#| msgid "Move ~a onto the queen of hearts."
 msgid "Place the king of hearts next to the queen of hearts."
 msgstr "Положите короля червей рядом с дамой червей."
 
 #: ../games/gaps.scm:353
-#| msgid "Move ~a onto the ace of diamonds."
 msgid "Place the two of diamonds next to the ace of diamonds."
 msgstr "Положите двойку червей рядом с тузом червей."
 
 #: ../games/gaps.scm:354
-#| msgid "Move ~a onto the two of diamonds."
 msgid "Place the three of diamonds next to the two of diamonds."
 msgstr "Положите тройку бубен рядом с двойкой бубен."
 
 #: ../games/gaps.scm:355
-#| msgid "Move ~a onto the three of diamonds."
 msgid "Place the four of diamonds next to the three of diamonds."
 msgstr "Положите четвёрку бубен рядом с тройкой бубен."
 
 #: ../games/gaps.scm:356
-#| msgid "Move ~a onto the four of diamonds."
 msgid "Place the five of diamonds next to the four of diamonds."
 msgstr "Положите пятёрку бубен рядом с четвёркой бубен."
 
 #: ../games/gaps.scm:357
-#| msgid "Move ~a onto the five of diamonds."
 msgid "Place the six of diamonds next to the five of diamonds."
 msgstr "Положите шестёрку бубен рядом с пятёркой бубен."
 
 #: ../games/gaps.scm:358
-#| msgid "Move ~a onto the six of diamonds."
 msgid "Place the seven of diamonds next to the six of diamonds."
 msgstr "Положите семёрку бубен рядом с шестёркой бубен."
 
 #: ../games/gaps.scm:359
-#| msgid "Move ~a onto the seven of diamonds."
 msgid "Place the eight of diamonds next to the seven of diamonds."
 msgstr "Положите восьмёрку бубен рядом с семёркой бубен."
 
 #: ../games/gaps.scm:360
-#| msgid "Move ~a onto the eight of diamonds."
 msgid "Place the nine of diamonds next to the eight of diamonds."
 msgstr "Положите девятку бубен рядом с восьмёркой бубен."
 
 #: ../games/gaps.scm:361
-#| msgid "Move ~a onto the nine of diamonds."
 msgid "Place the ten of diamonds next to the nine of diamonds."
 msgstr "Положите десятку бубен рядом с девяткой бубен."
 
 #: ../games/gaps.scm:362
-#| msgid "Move ~a onto the ten of diamonds."
 msgid "Place the jack of diamonds next to the ten of diamonds."
 msgstr "Положите валета бубен рядом с десяткой бубен."
 
 #: ../games/gaps.scm:363
-#| msgid "Move ~a onto the jack of diamonds."
 msgid "Place the queen of diamonds next to the jack of diamonds."
 msgstr "Положите даму бубен рядом с валетом бубен."
 
 #: ../games/gaps.scm:364
-#| msgid "Move ~a onto the queen of diamonds."
 msgid "Place the king of diamonds next to the queen of diamonds."
 msgstr "Положите короля бубен рядом с дамой бубен."
 
@@ -3076,7 +3048,6 @@ msgid "Select a card from the reserve for first foundation pile"
 msgstr "Выберите карту из резерва в качестве основы для первого столбца"
 
 #: ../games/glenwood.scm:355
-#| msgid "Move a card from the reserve on to the empty tableau slot"
 msgid "Move a card from the reserve onto the empty tableau slot"
 msgstr "Переложите карты из резерва на пустое поле"
 
@@ -3136,17 +3107,21 @@ msgstr "Осталось в колоде: ~a"
 msgid "Deal a new card"
 msgstr "Сдать новую карту"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "Попробуйте переместить карты из основания"
 
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "Сдавать по одной карте"
 
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "Без пересдач"
+
+#: ../games/klondike.scm:296
+msgid "Unlimited redeals"
+msgstr "Пересдачи без ограничений"
 
 #: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
@@ -3310,6 +3285,12 @@ msgstr "Увеличивающиеся очки"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Переложите группу карт на пустое поле"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "О пасьянсе Свободная ячейка"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Пасьянс Свободная ячейка"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "Сыграйте в популярный карточный пасьянс Свободная ячейка"
