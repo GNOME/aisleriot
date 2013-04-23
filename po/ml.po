@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-games.master.ml\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-04 21:22+0000\n"
-"PO-Revision-Date: 2013-02-06 21:02+0530\n"
+"POT-Creation-Date: 2013-04-06 09:09+0000\n"
+"PO-Revision-Date: 2013-04-22 00:31+0530\n"
 "Last-Translator: Razee Marikar <razeetg@yahoo.co.uk>\n"
 "Language-Team: Swatantra Malayalam Computing\n"
 "Language: ml\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.5.3\n"
 "X-DamnedLies-Scope: partial\n"
 
 #: ../data/sol.desktop.in.in.h:1
@@ -34,9 +34,8 @@ msgid "Play many different solitaire games"
 msgstr "പലതരം സോളിറ്റെയര്‍ കളികള്‍ കളിക്കുക"
 
 #: ../data/sol.desktop.in.in.h:3
-#, fuzzy
 msgid "solitaire;cards;klondike;spider;freecell;patience;"
-msgstr "സോളിറ്റെയര്‍;ചീട്ടുകള്‍;ക്ലോണ്ടൈക്ക്‌;എട്ടുകാലി;ഫ്രീസെല്‍;പെശ്യെന്‍സ്‌"
+msgstr "സോളിറ്റെയര്‍;ചീട്ട്;ക്ലോണ്ടൈക്ക്‌;എട്ടുകാലി;ഫ്രീസെല്‍;പേഷ്യന്‍സ്"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -112,12 +111,40 @@ msgstr "ഏറ്റവും ഒടുവില്‍ കളിച്ച കള
 msgid "A list of recently played games."
 msgstr "ഏറ്റവും ഒടുവില്‍ കളിച്ച കളികളുടെ പട്ടിക."
 
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr " പുതിയ കളി"
+
+#: ../src/ar-application.c:213
+msgid "Change Game"
+msgstr "കളി മാറ്റുക"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "സ്ഥിതിവിവരങ്ങള്‍"
+
+#: ../src/ar-application.c:218
+msgid "Fullscreen"
+msgstr "സ്ക്രീന്‍ പരമാവധി വലുപ്പത്തില്‍"
+
+#: ../src/ar-application.c:222
+msgid "Help"
+msgstr "സഹായം "
+
+#: ../src/ar-application.c:223
+msgid "About Aisleriot"
+msgstr "അയില്‍റയട്ടിനെ പറ്റി"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "പുറത്ത് കടക്കുക"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "കളി തെരഞ്ഞെടുക്കുക"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_തെരഞ്ഞെടുക്കുക"
 
@@ -1445,15 +1472,15 @@ msgid "Window height"
 msgstr "ജാലകത്തിന്റെ ഉയരം"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "സോളിറ്റെയര്‍"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "ഗ്നോം സോളിറ്റെയര്‍"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "സോളിറ്റെയര്‍ സംബന്ധിച്ച്"
 
@@ -1465,11 +1492,11 @@ msgstr "ഏത് തരം കളി വേണമെന്ന് തിരഞ�
 msgid "NAME"
 msgstr "പേര്‌"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "ഫ്രീസെല്‍ സോളിറ്റെയര്‍"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "അയില്‍റയട്ട്‌ (ചീട്ട്‌ കളി)"
 
@@ -1512,10 +1539,6 @@ msgstr "ഏറ്റവും കുറഞ്ഞ സ്കോര്‍:"
 msgid "Time"
 msgstr " സമയം"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "സ്ഥിതിവിവരങ്ങള്‍"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1549,35 +1572,31 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "അഭിനന്ദങ്ങള്‍, നിങ്ങള്‍ ജയിച്ചിരിക്കുന്നു!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "ഇനി നീക്കങ്ങള്‍ ഇല്ല"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "പ്രധാന കളി:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "ചീട്ട് കളികള്‍:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "കാര്‍ഡിന്റെ പ്രമേയം: "
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "ഫ്രീസെല്‍ സോളിറ്റെയര്‍ സംബന്ധിച്ച്"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "അയില്‍റയട്ട്‌ സംബന്ധിച്ചുള്ള"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1585,7 +1604,7 @@ msgstr ""
 "അയില്‍റയട്ട് വിവിധ തര കളികള്‍ കളിക്കാന്‍ പറ്റുന്ന ഒരു നിയമാനുസരണ ഒറ്റയ്ക്ക് കളിക്കാവുന്ന ചീട്ടു കളി "
 "എന്‍ജിന്‍ ആണ്."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
 "എഫ്.എസ്.എഫ് - ഇന്ത്യ <gnu@gnu.org.in>\n"
@@ -1596,183 +1615,181 @@ msgstr ""
 msgid "GNOME Games web site"
 msgstr "ഗ്നോ കളികളുടെ വെബ് സൈറ്റ്"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "“%s” കളിക്കുക"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "“%s” പ്രമേയമുള്ള ചീട്ടുകള്‍ കാണിക്കുക"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "ഒരു സ്കീം എക്സെപ്ഷന്‍ ഉണ്ടായിരിക്കുന്നു"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "ദയവായി ഈ ബഗ് ഡവലപ്പര്‍മാരെ അറിയിക്കുക."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_അറിയിക്കേണ്ട"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "അ_റിയിക്കണം"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "ഫ്രീസെല്‍ സോളിറ്റെയര്‍"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_കളി"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_കാഴ്ച"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "_നിയന്ത്രണം"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_സഹായം"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "ഒരു പുതിയ കളി തുടങ്ങൂ"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "കളി ആദ്യം മുതല്‍ തുടങ്ങുക"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "_കളി തെരഞ്ഞെടുക്കുക…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "മറ്റൊരു കളി തെരഞ്ഞെടുക്കുക "
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "ഏറ്റവും _ഒടുവില്‍ കളിച്ചത്"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "_സ്ഥിതിവിവരണം"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "കളിയുടെ സ്ഥിതിവിവരണം കാണിക്കുക"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "ഈ ജാലകം അടയ്ക്കുക"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "കഴിഞ്ഞ നീക്കം ഉപേക്ഷിച്ചു പൂര്‍വ്വസ്ഥിതിയിലേക്കു തിരിച്ചു പോകുക"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "ഉപേക്ഷിച്ച നീക്കം വീണ്ടും നടത്തുക "
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "അടുത്ത ചീട്ട് അല്ലെങ്കില്‍ ചീട്ടുകള്‍ ഡീല്‍ ചെയ്യുക"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "അടുത്ത നീക്കത്തിനായി ഒരു സൂചന നല്‍കുക"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "അയില്‍റയിട്ടിനുള്ള സഹായം കാണുക"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "ഈ കളിയ്ക്കുള്ള സഹായം കാണുക"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "ഈ കളിയെ കുറിച്ച്"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "കാര്‍ഡിനുള്ള പ്രമേയങ്ങള്‍ ഇന്‍സ്റ്റോള്‍ ചെയ്യുക"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "വിതരണ പാക്കേജ് റിപ്പോസിറ്ററികളില്‍ നിന്നും പുതിയ കാര്‍ഡ് പ്രമേയങ്ങള്‍ ഇന്‍സ്റ്റോള്‍ ചെയ്യുക"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "_ചീട്ടിന്റെ രീതി"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "_ഉപകരണനിര"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "ഉപകരണനിര കാണിക്കുകയോ മറയ്ക്കുകയോ ചെയ്യുക"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "_സ്ഥിതിപട്ട"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "അവസ്ഥാപട്ട കാണിക്കുകയോ മറയ്ക്കുകയോ ചെയ്യുക"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "നീക്കുന്നതിനായി _ക്ലിക്ക് ചെയ്യുക"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "ക്ലിക്ക് ചെയ്ത് ചീട്ടെടുത്ത ഇടുക"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_ശബ്ദം"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "ശബ്ദം കേള്‍പ്പിക്കണമോ വേണ്ടയോ എന്ന്."
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_സചേതനം"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "ആനിമേഷന്‍ ഉപയോഗിക്കണമോ വേണ്ടയോ എന്ന്."
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "സ്കോര്‍:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr " സമയം:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "“%s” എന്ന കളി തുടങ്ങുവാന്‍ സാധ്യമാകുന്നില്ല"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "നിങ്ങള്‍ ഏറ്റവും ഒടുവില്‍ കളിച്ച കളി അയില്‍റയട്ടില്‍ ലഭ്യമല്ല."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3252,6 +3269,12 @@ msgstr "ഗുനിക്കപെട്ട സ്കോറിംഗ്"
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "ഒഴിഞ്ഞ കളത്തിലേക്ക്‌ കാര്‍ടുകളുടെ ഒരു നിര നീക്കുക"
 
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "ഫ്രീസെല്‍ സോളിറ്റെയര്‍ സംബന്ധിച്ച്"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "ഫ്രീസെല്‍ സോളിറ്റെയര്‍"
+
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "പ്രസിദ്ധമായ ഫ്രീസെല്‍ ചീട്ട് കളി കളിക്കുക"
 
@@ -4471,9 +4494,6 @@ msgstr "ഒഴിഞ്ഞ കളത്തിലേക്ക്‌ കാര്�
 #~ msgid "Disconnect"
 #~ msgstr "വിഛേദിക്കുക"
 
-#~ msgid "Quit"
-#~ msgstr "പുറത്ത് കടക്കുക"
-
 #~ msgid "Watch"
 #~ msgstr "കാത്തിരിക്കുക"
 
@@ -4501,9 +4521,6 @@ msgstr "ഒഴിഞ്ഞ കളത്തിലേക്ക്‌ കാര്�
 #~ msgid "MOTD"
 #~ msgstr "MOTD"
 
-#~ msgid "Help"
-#~ msgstr "സഹായം "
-
 #~ msgid "Contents"
 #~ msgstr "ഉള്ളടക്കം"
 
@@ -4524,9 +4541,6 @@ msgstr "ഒഴിഞ്ഞ കളത്തിലേക്ക്‌ കാര്�
 
 #~ msgid "Chat Font:"
 #~ msgstr "ചാറ്റിനുള്ള ലിപി:"
-
-#~ msgid "Change"
-#~ msgstr "മാറ്റുക"
 
 #~ msgid "Play Sounds"
 #~ msgstr "ശബ്ദം പ്രവര്‍ത്തിപ്പിക്കുക"
@@ -4716,9 +4730,6 @@ msgstr "ഒഴിഞ്ഞ കളത്തിലേക്ക്‌ കാര്�
 
 #~ msgid "Logs"
 #~ msgstr "ലോഗുകള്‍"
-
-#~ msgid "New Game"
-#~ msgstr " പുതിയ കളി"
 
 #~ msgid "Resign"
 #~ msgstr "അവസാനിപ്പിക്കുക"
