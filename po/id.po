@@ -1,17 +1,19 @@
-# Indonesian translation for gnome-games
-# Copyright (c) 2010 gnome-games' COPYRIGHT HOLDER
+# Indonesian translation for aisleriot
+# Copyright (c) 2010 aislariot's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-games package.
 #
-# Andika Triwidada <andika@gmail.com>, 2010, 2012.
+# Mohammad DAMT <mdamt@bisnisweb.com>, 2003, 2004.
+# Ahmad Riza H Nst  <rizahnst@gnome.org>, 2006.
+# Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013.
 # Bonaventura Aditya <bonaditya@about.me>, 2012.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-games master\n"
+"Project-Id-Version: aisleriot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-04 10:20+0000\n"
-"PO-Revision-Date: 2012-09-06 00:32+0700\n"
+"POT-Creation-Date: 2013-03-04 21:42+0000\n"
+"PO-Revision-Date: 2013-04-27 09:25+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: Indonesian\n"
@@ -20,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Rosetta-Export-Date: 2007-04-23 05:58:10+0000\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
@@ -29,6 +31,10 @@ msgstr "AisleRiot Solitaire"
 #: ../data/sol.desktop.in.in.h:2
 msgid "Play many different solitaire games"
 msgstr "Mainkan bermacam permainan solitaire yang berbeda"
+
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "solitaire;kartu;klondike;spider;freecell;kesabaran;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -104,12 +110,40 @@ msgstr "Yang baru-baru ini dimainkan"
 msgid "A list of recently played games."
 msgstr "Daftar permainan yang terakhir dimainkan."
 
+#: ../src/ar-application.c:212
+msgid "New Game"
+msgstr "Permainan Baru"
+
+#: ../src/ar-application.c:213
+msgid "Change Game"
+msgstr "Ubah Permainan"
+
+#: ../src/ar-application.c:217 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistik"
+
+#: ../src/ar-application.c:218
+msgid "Fullscreen"
+msgstr "Layar Penuh"
+
+#: ../src/ar-application.c:222
+msgid "Help"
+msgstr "Bantuan"
+
+#: ../src/ar-application.c:223
+msgid "About Aisleriot"
+msgstr "Tentang Aisleriot"
+
+#: ../src/ar-application.c:224
+msgid "Quit"
+msgstr "Keluar"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2192
 msgid "Select Game"
 msgstr "Pilih Permainan"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_Pilih"
 
@@ -1437,15 +1471,15 @@ msgid "Window height"
 msgstr "Tinggi jendela"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME Solitaire"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Tentang Solitaire"
 
@@ -1457,11 +1491,11 @@ msgstr "Pilih permainan yang diinginkan"
 msgid "NAME"
 msgstr "NAMA"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "FreeCell Solitaire"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:418
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1504,10 +1538,6 @@ msgstr "Terburuk:"
 msgid "Time"
 msgstr "Waktu"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistik"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1541,35 +1571,31 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Selamat, Anda menang!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Tidak ada jalan lagi"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Permainan utama:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Permainan kartu:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Tema kartu:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Tentang FreeCell Solitaire"
-
-#: ../src/window.c:417
+#: ../src/window.c:420
 msgid "About AisleRiot"
 msgstr "Tentang AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:422
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1577,194 +1603,194 @@ msgstr ""
 "AisleRiot menyediakan mesin kartu solitaire berbasis aturan yang "
 "memungkinkan beragam permainan berbeda untuk dimainkan."
 
-#: ../src/window.c:430
+#: ../src/window.c:431
 msgid "translator-credits"
 msgstr ""
-"Mohammad DAMT <mdamt@bisnisweb.com>\n"
-"Ahmad Riza H Nst  <rizahnst@gnome.org>\n"
-"Andika Triwidada <andika@gmail.com>, 2010, 2012"
+"Mohammad DAMT <mdamt@bisnisweb.com>, 2003, 2004\n"
+"Ahmad Riza H Nst  <rizahnst@gnome.org>, 2006\n"
+"Bonaventura Aditya <bonaditya@about.me>, 2012.\n"
+"Dirgita <dirgitadevina@yahoo.co.id>, 2012.\n"
+"Andika Triwidada <andika@gmail.com>, 2010, 2012, 2013"
 
 #: ../src/window.c:434
 msgid "GNOME Games web site"
 msgstr "Situa web Permainan GNOME"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1300
 #, c-format
 msgid "Play “%s”"
 msgstr "Mainkan \"%s\""
 
-#: ../src/window.c:1450
+#: ../src/window.c:1462
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Tampilkan kartu dengan tema kartu \"%s\""
 
-#: ../src/window.c:1747
+#: ../src/window.c:1756
 msgid "A scheme exception occurred"
 msgstr "Terjadi eksepsi skema"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1759
 msgid "Please report this bug to the developers."
 msgstr "Mohon laporkan bug ini ke para pengembang."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1765
 msgid "_Don't report"
 msgstr "_Jangan Lapor"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1766
 msgid "_Report"
 msgstr "Lapo_rkan"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell Solitaire"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1973
 msgid "_Game"
 msgstr "_Permainan"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1974
 msgid "_View"
 msgstr "_Tampil"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1975
 msgid "_Control"
 msgstr "_Kendali"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1977
 msgid "_Help"
 msgstr "_Bantuan"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1982
 msgid "Start a new game"
 msgstr "Mulai permainan baru"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1985
 msgid "Restart the game"
 msgstr "Ulangi permainan"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1987
 msgid "_Select Game…"
 msgstr "_Pilih Permainan…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1989
 msgid "Play a different game"
 msgstr "Mainkan yang lain"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1991
 msgid "_Recently Played"
 msgstr "Te_rakhir Dimainkan"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1992
 msgid "S_tatistics"
 msgstr "S_tatistik"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1993
 msgid "Show gameplay statistics"
 msgstr "Tampilkan statistik permainan"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1996
 msgid "Close this window"
 msgstr "Tutup jendela ini"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1999
 msgid "Undo the last move"
 msgstr "Batalkan langkah terakhir"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2002
 msgid "Redo the undone move"
 msgstr "Jadikan lagi langkah terakhir"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2005
 msgid "Deal next card or cards"
 msgstr "Bagikan kartu berikutnya"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2008
 msgid "Get a hint for your next move"
 msgstr "Petunjuk untuk langkah berikutnya"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2011
 msgid "View help for Aisleriot"
 msgstr "Tampilkan bantuan untuk Aisleriot"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2015
 msgid "View help for this game"
 msgstr "Tampilkan bantuan untuk permainan ini"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2018
 msgid "About this game"
 msgstr "Tentang permainan ini"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2020
 msgid "Install card themes…"
 msgstr "Pasang tema kartu…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2021
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Pasang tema kartu baru dari repositori paket distribusi"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2027
 msgid "_Card Style"
 msgstr "Gaya _Kartu"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2061
 msgid "_Toolbar"
 msgstr "Bilah Ala_t"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2062
 msgid "Show or hide the toolbar"
 msgstr "Tampilkan atau sembunyikan batang alat"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2066
 msgid "_Statusbar"
 msgstr "Bilah _Status"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2067
 msgid "Show or hide statusbar"
 msgstr "Tampilkan atau sembunyikan bilah status"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2071
 msgid "_Click to Move"
 msgstr "_Klik untuk Bergerak"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2072
 msgid "Pick up and drop cards by clicking"
 msgstr "Pungut atau jatuhkan kartu dengan mengklik"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2075
 msgid "_Sound"
 msgstr "_Suara"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2076
 msgid "Whether or not to play event sounds"
 msgstr "Bunyikan suara atau tidak"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2079
 msgid "_Animations"
 msgstr "_Animasi"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2080
 msgid "Whether or not to animate card moves"
 msgstr "Apakah menampilkan animasi kartu bergerak"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2216
 msgid "Score:"
 msgstr "Nilai:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2228
 msgid "Time:"
 msgstr "Waktu:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2526
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Tak bisa memulai permainan \"%s\""
 
-#: ../src/window.c:2642
+#: ../src/window.c:2533
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot tidak menemukan permainan terakhir yang Anda mainkan."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2534
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1816,7 +1842,7 @@ msgstr "Kartu Dasar: Raja"
 #: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
 #: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
 #: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
@@ -2414,7 +2440,7 @@ msgstr "Pindahkan ~a ke atas ratu wajik."
 msgid "Move ~a onto the king of diamonds."
 msgstr "Pindahkan ~a ke atas raja wajik."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
+#: ../games/athena.scm:80 ../games/klondike.scm:293
 #: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
@@ -2429,7 +2455,7 @@ msgstr "Buka kartu lagi"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
 #: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
@@ -2447,7 +2473,7 @@ msgstr "slot kosong pada foundation"
 
 #: ../games/backbone.scm:293 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:339
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2641,7 +2667,7 @@ msgstr "Membuka kartu"
 msgid "Move a king onto an empty tableau slot."
 msgstr "Pindahkan raja ke slot tablo yang kosong."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Tidak ada petunjuk saat ini"
@@ -2739,7 +2765,7 @@ msgstr "Pindahkan sesuatu ke slot tableau yang kosong."
 msgid "Move ~a off the board"
 msgstr "Pindahkan ~a keluar papan"
 
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:158 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "Pertimbangkan untuk memindah sesuatu ke slot yang kosong"
 
@@ -3071,17 +3097,21 @@ msgstr "Stok tersisa: ~a"
 msgid "Deal a new card"
 msgstr "Tawar sebuah kartu baru"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "Mencoba memindahkan kartu tersebut dari fondasi"
 
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:371
 msgid "Single card deals"
 msgstr "Tawar kartu tunggal"
 
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "Tidak ada tawar-ulang"
+
+#: ../games/klondike.scm:296
+msgid "Unlimited redeals"
+msgstr "Tawar-ulang tak terbatas"
 
 #: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
 msgid "Base Card:"
