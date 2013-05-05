@@ -335,9 +335,7 @@
        (or (check-move (+ 1 slot-id))
 	   (and (available? slot-id)
 		(movable? (get-top-card slot-id))
-		(list 1
-		      (get-name (get-top-card slot-id))
-		      (get-name (get-top-card 2)))))))
+		(hint-move slot-id 1 2)))))
 
 (define (dealable?)
   (and (not (empty-slot? 0))
