@@ -381,6 +381,12 @@
       (list 0 (_"Match the top two cards of the waste."))
       #f))
 
+(define (hint-remove-king suit)
+  (cond ((eq? suit club) (_"Remove the king of clubs."))
+        ((eq? suit diamond) (_"Remove the king of diamonds."))
+        ((eq? suit heart) (_"Remove the king of hearts."))
+        ((eq? suit spade) (_"Remove the king of spades."))))
+
 (define (check-move slot1 slot2)
   (if (or (empty-slot? slot1)
 	  (not (is-visible? (get-top-card slot1))))
@@ -388,7 +394,7 @@
 	  (check-move (+ 1 slot1) (+ 2 slot1))
 	  #f)
       (if (= king (get-value (get-top-card slot1)))
-	  (list 2 (get-name (get-top-card slot1)) (_"itself"))
+	  (list 0 (hint-remove-king (get-suit (get-top-card slot1))))
 	  (if (or (empty-slot? slot2)
 		  (not (is-visible? (get-top-card slot2)))
 		  (not (= magic-total (+ (get-value (get-top-card slot1))
@@ -398,9 +404,7 @@
 		  (if (< slot1 28)
 		      (check-move (+ 1 slot1) (+ 2 slot1))
 		      #f))
-	      (list 1 
-		    (get-name (get-top-card slot1)) 
-		    (get-name (get-top-card slot2)))))))
+	      (hint-move slot1 1 slot2)))))
 
 (define (dealable?)
   (not (empty-slot? 0)))
