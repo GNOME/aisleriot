@@ -39,27 +39,27 @@
   (shuffle-deck)
 
   ;set up the board
-  (add-normal-slot DECK)
+  (add-normal-slot DECK 'stock)
   (add-blank-slot)
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   (add-carriage-return-slot)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
 
   (deal-cards-face-up stock-slot tableau)
 
@@ -253,17 +253,6 @@
       #f))
 
 
-(define (my-get-card-name slot)
-    (if (empty-slot? slot)
-        (if  (member slot foundation)
-             (_"an empty foundation place")
-             (_"an empty tableau place"))
-        (get-name (get-top-card slot))
-    )
-)
-
-
-
 
 ; This is the hint function
 ; 1) Suggest a move to a foundation.
@@ -279,11 +268,11 @@
         (t-result2   (find-any-to-tableau  (append tableau (list reserve-slot)) #t )))
      (cond
            ( find-result
-            (list 2 (my-get-card-name (car find-result)) (my-get-card-name (cadr find-result))))
+            (hint-move (car find-result) 1 (cadr find-result)))
            ( t-result1
-            (list 2 (my-get-card-name (car t-result1)) (my-get-card-name (cadr t-result1))))
+            (hint-move (car t-result1) 1 (cadr t-result1)))
            ( t-result2
-            (list 2 (my-get-card-name (car t-result2)) (my-get-card-name (cadr t-result2))))
+            (hint-move (car t-result2) 1 (cadr t-result2)))
            ( (empty-slot? reserve-slot) (list 0 (_"Try moving a card to the reserve")))
            ( (dealable?) (list 0 (_"Try dealing a row of cards")))
 ; this isn't great, but it will get around the premature end-of-game call
