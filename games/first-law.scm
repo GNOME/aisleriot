@@ -173,8 +173,7 @@
 	      (not (empty-slot? slot2))
 	      (= (get-value (get-top-card slot1))
 		 (get-value (get-top-card slot2))))
-	 (list 1 (get-name (get-top-card slot2))
-	       (get-name (get-top-card slot1))))
+	 (hint-move slot2 1 slot1))
 	(#t
 	 (move-leftable? slot1 (+ 1 slot2)))))
 
