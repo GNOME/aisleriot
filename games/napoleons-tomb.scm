@@ -69,30 +69,30 @@
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)      ;; SLOT 0 - deck
+  (add-normal-slot DECK 'stock)      ;; SLOT 0 - deck
   ;; SLOT 1 - turned deck
   (if deal-three
       (add-partially-extended-slot '() right 3)
-      (add-normal-slot '()))
+      (add-normal-slot '() 'waste))
   (add-blank-slot)
 
-  (add-normal-slot '())       ;; SLOT 2 - upper left
-  (add-normal-slot '())       ;; SLOT 3 - top
-  (add-normal-slot '())       ;; SLOT 4 - upper-right
+  (add-normal-slot '() 'foundation)       ;; SLOT 2 - upper left
+  (add-normal-slot '() 'reserve)       ;; SLOT 3 - top
+  (add-normal-slot '() 'foundation)       ;; SLOT 4 - upper-right
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())       ;; SLOT 5 - left
-  (add-normal-slot '())       ;; SLOT 6 - center
-  (add-normal-slot '())       ;; SLOT 7 - right
+  (add-normal-slot '() 'reserve)       ;; SLOT 5 - left
+  (add-normal-slot '() 'foundation)       ;; SLOT 6 - center
+  (add-normal-slot '() 'reserve)       ;; SLOT 7 - right
   (add-carriage-return-slot)
   (add-blank-slot)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())       ;; SLOT 8 - lower left
-  (add-normal-slot '())       ;; SLOT 9 - bottom
-  (add-normal-slot '())       ;; SLOT 10 - lower right
+  (add-normal-slot '() 'foundation)       ;; SLOT 8 - lower left
+  (add-normal-slot '() 'reserve)       ;; SLOT 9 - bottom
+  (add-normal-slot '() 'foundation)       ;; SLOT 10 - lower right
 
   (give-status-message)
   
@@ -299,33 +299,19 @@
        (empty-slot? 9)))
 
 
-;;;;
-;; Returns the id of a slot that has a top card that 
-;; can be moved to a foundation pile, or zero if no such slot found.
-;;
-;; Returns: slot id
-;;;;
-(define (get-reserve-with-possible-move)
-  ;; Checks if a card at the top of the given slot can be 
-  ;; moved to a foundation pile.
-  (define (possible-move? slot-id)
-    (if (empty-slot? slot-id) #f
-	(let ((c (get-top-card slot-id)))
-	  (or (valid-card? slot-id c 2)
-	      (valid-card? slot-id c 4)
-	      (valid-card? slot-id c 6)
-	      (valid-card? slot-id c 8)
-	      (valid-card? slot-id c 10)))))
-  ;; Returns zero or the id of a slot in the given list of slots
-  ;; that has a top card that can be moved to a foundation pile
-  (define (inner-loop slot-list)
-    (if (null? slot-list) 0
-	(let ((slot-id (car slot-list)))
-	  (if (possible-move? slot-id) slot-id
-	      (inner-loop (cdr slot-list))))))
-  ;;
-  (inner-loop (append reserve-slots (list waste))))
+(define (get-reserve-hint-from from-slot to-slots)
+  (cond
+   ((null? to-slots) #f)
+   ((empty-slot? from-slot) #f)
+   ((valid-card? from-slot (get-top-card from-slot) (car to-slots))
+    (hint-move from-slot 1 (car to-slots)))
+   (#t (get-reserve-hint-from from-slot (cdr to-slots)))))
 
+(define (get-reserve-hint from-slots to-slots)
+  (if (null? from-slots)
+      #f
+      (or (get-reserve-hint-from (car from-slots) to-slots)
+          (get-reserve-hint (cdr from-slots) to-slots))))
 
 ;;;;
 ;; Returns a hint for the current situation.
@@ -333,10 +319,8 @@
 ;; Returns: list with zero and a hint string
 ;;;;
 (define (get-hint)
-  (let ((slot-id (get-reserve-with-possible-move)))
-    (if (< 0 slot-id)
-	(list 2 (get-name (get-top-card slot-id)) (_"the foundation"))
-	(list 0 (_"Deal a new card from the deck")))))
+  (or (get-reserve-hint (cons waste reserve-slots) (cons center-slot corner-slots))
+     	(list 0 (_"Deal a new card from the deck"))))
 
 
 ;;;;
