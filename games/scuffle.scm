@@ -130,9 +130,7 @@
 	  (movable? (+ 1 slot1) 1)
 	  (if (= (get-value (get-top-card slot1))
 		 (+ 1 (get-value (get-top-card slot2))))
-	      (list 1
-		    (get-name (get-top-card slot1)) 
-		    (get-name (get-top-card slot2)))
+	      (hint-move slot1 1 slot2)
 	      (movable? slot1 (+ 1 slot2))))))
 
 (define (dealable?)
