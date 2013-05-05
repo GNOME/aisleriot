@@ -39,7 +39,7 @@
       (padded-list (- n 1) (cons '() tail))))
 
 (define (make-backbone n)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (set! HORIZPOS (- HORIZPOS 1))
   (set! VERTPOS (+ VERTPOS (/ 1 3)))
   (set-car! (list-tail obscured n) (list (+ n 1)))
@@ -64,39 +64,39 @@
   (make-standard-double-deck)
   (shuffle-deck)
   
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   
   (add-carriage-return-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
   
   (add-carriage-return-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
   (add-blank-slot)
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
 
   (add-carriage-return-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
   (add-blank-slot)
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'tableau)
 
   (deal-cards-face-up stock tableau)
 
@@ -109,7 +109,7 @@
   (make-backbone 27)
   
   (set! HORIZPOS 1.5)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   
   (deal-cards-face-up-to-reserve)
 
@@ -228,13 +228,6 @@
               result))))
   (empty-piles piles '()))
 
-(define (describe-pile pile)
-   (if (empty-slot? pile)
-       (cond
-         ((member pile tableau) (_"an empty slot on the tableau"))
-         ((member pile foundation) (_"an empty slot on the foundation")))
-       (get-name (car (get-cards pile)))))
-
 (define (get-legal-move-from-source source targets)
   (if (eq? targets '())
       #f
@@ -285,7 +278,7 @@
                      waste
                      (empty-piles tableau)))))
         (if move
-            (list 1 (describe-pile (car move)) (describe-pile (cadr move)))
+            (hint-move (car move) 1 (cadr move))
             #f))
     (and (or (not (empty-slot? stock))
              (and (< FLIP-COUNTER 1)
