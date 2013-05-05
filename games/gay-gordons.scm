@@ -221,9 +221,7 @@
 	 (check-for-pairs (+ 1 slot1) (+ 2 slot1)))
 	((and (not (empty-slot? slot2))
 	      (is-pair? (get-top-card slot1) (get-top-card slot2)))
-	 (list 1
-	       (get-name (get-top-card slot1))
-	       (get-name (get-top-card slot2))))
+	 (hint-move slot1 1 slot2))
 	(#t (check-for-pairs slot1 (+ 1 slot2)))))
 
 (define (get-hint)
