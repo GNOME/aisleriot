@@ -83,7 +83,7 @@
 	 (check-suits (+ 1 slot1) (+ 2 slot1)))
 	((= (get-suit (get-top-card slot1))
 	    (get-suit (get-top-card slot2)))
-	 (list 1 (get-name (get-top-card slot1)) (get-name (get-top-card slot2))))
+	 (hint-move slot1 1 slot2))
 	(#t (check-suits slot1 (+ 1 slot2)))))
 
 (define (get-hint)
