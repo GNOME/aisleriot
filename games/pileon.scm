@@ -167,8 +167,7 @@
 				   (- number-to-move 
 				      (- 4 (length (get-cards to-slot))))
 				   (+ 1 to-slot))
-		     (list 2 (get-name (get-top-card slot-id))
-			   (get-name (get-top-card to-slot)))))
+		     (hint-move slot-id 1 to-slot)))
 		(#t (check-a-slot slot-id number-to-move (+ 1 to-slot)))))))
 
 (define (check-slots slot-id to-slot)
