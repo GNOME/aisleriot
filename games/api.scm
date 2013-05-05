@@ -400,7 +400,7 @@
 (define-public (get-joker-name card) 
   (if (is-black? card) (_"the black joker") (_"the red joker")))
 
-(define-public (get-name card)
+(define (get-name card)
   ; Do not use this function directly. To create a hint for moving a card or
   ; stack of cards, use (hint-move).
   (let ((value (get-value card)) (suit (get-suit card)))
