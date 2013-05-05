@@ -214,9 +214,7 @@
 			(= ace (get-value (get-top-card check-slot))))
 		   (and (= ace (get-value (get-top-card 1)))
 			(= king (get-value (get-top-card check-slot)))0)))
-	  (list 1 
-		(get-name (get-top-card check-slot))
-		(get-name (get-top-card 1)))
+	  (hint-move check-slot 1 1)
 	  (playable? (+ 1 check-slot)))))
 
 (define (dealable?)
