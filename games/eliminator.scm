@@ -191,7 +191,7 @@
 (define (get-hint)
 	(let ((x (find-possible-move)))
 		(if (list? x)
-			(list 1 (get-name (get-top-card (car x))) (get-name (get-top-card (cadr x))))
+			(hint-move (car x) 1 (cadr x))
 			(if x
 				(list 0 (_"Play a card to foundation."))
 				(list 0 (_"No moves."))
