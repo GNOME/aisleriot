@@ -18,44 +18,50 @@
 
 (define BASE-VAL 0)
 
+(define stock 0)
+(define waste 1)
+(define foundation '(2 3 4 5))
+(define tableau '(6 7 8 9 10 11 12))
+(define reserve '(13 14 15 16 17 18 19))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
   (make-standard-deck)
   (shuffle-deck)
 
-  (add-normal-slot DECK)
-  (add-normal-slot '())
+  (add-normal-slot DECK 'stock)
+  (add-normal-slot '() 'waste)
   
   (add-blank-slot)
 
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
-  (add-normal-slot '())
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
+  (add-normal-slot '() 'foundation)
 
   (add-carriage-return-slot)
  
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
-  (add-extended-slot '() down)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau)
 
   (set! HORIZPOS 0)
   (set! VERTPOS 0)
 
   (set! VERTPOS (+ VERTPOS 0.5))
   (set! HORIZPOS (+ HORIZPOS 7))
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 7))
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 7))
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 7))
 
@@ -65,19 +71,19 @@
 
   (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
   (add-carriage-return-slot)
   (set! HORIZPOS (+ HORIZPOS 7))
   (add-blank-slot)
-  (add-normal-slot '())
+  (add-normal-slot '() 'reserve)
 
   (deal-cards 0 '(7 8 9 10 11 12 8 9 10 11 12 9 10 11 12 10 11 12
 		    11 12 12))
@@ -233,10 +239,10 @@
        (list 0 (_"Deal another round"))))
 
 (define (check-a-foundation slot1 slot2)
-  (if (< slot2 6)
-      (or (to-foundation? (get-top-card slot1) slot2)
-	  (check-a-foundation slot1 (+ 1 slot2)))
-      #f))
+  (and (< slot2 6)
+       (if (to-foundation? (get-top-card slot1) slot2)
+           (hint-move slot1 1 slot2)
+           (check-a-foundation slot1 (+ 1 slot2)))))
 
 (define (check-to-foundations slot-id)
   (cond ((> slot-id 19)
@@ -246,22 +252,9 @@
 	((or (empty-slot? slot-id)
 	     (not (is-visible? (get-top-card slot-id))))
 	 (check-to-foundations (+ 1 slot-id)))
-	((check-a-foundation slot-id 2)
-	 (or (and (= (get-value (get-top-card slot-id)) BASE-VAL)
-		  (list 2 
-			(get-name (get-top-card slot-id)) 
-			(_"an empty foundation pile")))
-	     (list 1 
-		   (get-name (get-top-card slot-id))
-		   (get-name 
-		    (make-card (if (= ace 
-				      (get-value (get-top-card slot-id)))
-				   king
-				   (- (get-value (get-top-card slot-id))
-				      1))
-			       (get-suit (get-top-card slot-id)))))))
 	(#t
-	 (check-to-foundations (+ 1 slot-id)))))
+	 (or (check-a-foundation slot-id 2)
+	     (check-to-foundations (+ 1 slot-id))))))
 
 (define (check-a-foundation2 card slot2)
   (if (< slot2 6)
@@ -318,7 +311,9 @@
 						       (car card-list))
 					     slot2
 					     #t))
-	     (list 1 (get-name (car card-list)) (get-name card))
+	     (if imbedded?
+	         #t
+	         (hint-move slot2 (- (+ 1 (length (get-cards slot2))) (length card-list)) slot1))
 	     (and (not imbedded?)
 		  (check-a-tableau-with-pile card 
 					     slot1 
@@ -337,9 +332,7 @@
 		       king)
 		    (= (get-value (get-top-card t-slot))
 		       ace))))
-      (list 1
-	    (get-name (get-top-card r-slot))
-	    (get-name (get-top-card t-slot)))
+      (hint-move r-slot 1 t-slot)
       #f))
 
 (define (check-to-tableau? slot1 slot2)
@@ -377,6 +370,11 @@
       (car card-list)
       (get-top-visible-card (cdr card-list))))
 
+(define (visible-card-count card-list acc)
+  (if (not (is-visible? (cadr card-list)))
+      acc
+      (visible-card-count (cdr card-list) (+ 1 acc))))
+
 (define (find-high-value slot)
   (cond ((= slot 20)
 	 #f)
@@ -392,9 +390,7 @@
 		  (and (= (get-value (get-top-visible-card (get-cards slot)))
 			  king)
 		       (= BASE-VAL ace))))
-	 (list 2
-	       (get-name (get-top-visible-card (get-cards slot)))
-	       (_"an empty tableau slot")))
+	 (hint-move slot (visible-card-count (get-cards slot) 1) (find-empty-slot tableau)))
 	((and (not (empty-slot? slot))
 	      (or (> slot 12)
 		  (< slot 2))
@@ -404,9 +400,7 @@
 		  (and (= (get-value (get-top-card slot))
 			  king)
 		       (= BASE-VAL ace))))
-	 (list 2
-	       (get-name (get-top-card slot))
-	       (_"an empty tableau slot")))
+	 (hint-move slot 1 (find-empty-slot tableau)))
 	(#t (find-high-value (+ 1 slot)))))
 
 (define (empty-tableau?)
