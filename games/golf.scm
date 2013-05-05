@@ -130,8 +130,7 @@
 			 (+ 1 waste-value))
 		      (= (+ 1 (get-value (get-top-card slot)))
 			 waste-value))))
-	     (list 1 (get-name (get-top-card slot)) 
-		   (get-name (get-top-card waste))))
+	     (hint-move slot 1 waste))
 	    (#t (check-slots (+ 1 slot)))))
 
 (define (dealable?)
