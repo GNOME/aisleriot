@@ -401,7 +401,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     "Richard Hoelscher http://www.rahga.com/svg",
     /* Anglo-American cards */
     "Aike Reyer",
-    /* Guyenne Classic cards */
+    /* Guyenne Classic and Swiss cards */
     "Mario Frasca <mariotomo@gmail.com>",
     /* FIXMEchpe: who did the Bonded cards? */
     NULL
