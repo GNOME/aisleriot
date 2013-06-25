@@ -1,6 +1,6 @@
 /*
  * Copyright © 1998, 2001, 2003, 2006 Jonathan Blandford <jrb@alum.mit.edu>
- * Copyright © 2007 Christian Persch
+ * Copyright © 2007, 2013 Christian Persch
  * Copyright © 2007 Andreas Røsdal <andreasr@gnome.org>
  * Copyright © 2013 William Jon McCann
  *
@@ -19,13 +19,19 @@
  */
 
 #include "config.h"
+#define G_SETTINGS_ENABLE_BACKEND
 
 #include "ar-application.h"
+#include "ar-defines.h"
+#include "ar-runtime.h"
 
+#include <errno.h>
 #include <stdlib.h>
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <gio/gio.h>
+#include <gio/gsettingsbackend.h>
 #include <gtk/gtk.h>
 
 #ifdef HAVE_CLUTTER
@@ -39,7 +45,6 @@
 #include "ar-sound.h"
 #include "ar-string-utils.h"
 
-#include "conf.h"
 #include "window.h"
 #include "game.h"
 #include "util.h"
@@ -61,6 +66,9 @@ struct _ArApplicationPrivate
   char *variation;
   gint seed; /* unused */
   gboolean freecell; /* unused */
+
+  GSettingsBackend *state_keyfile_backend;
+  GSettingsBackend *scores_keyfile_backend;
 };
 
 #if !GTK_CHECK_VERSION (3, 6, 0)
@@ -198,11 +206,27 @@ ar_application_startup (GApplication *application)
   ArApplicationPrivate *priv = self->priv;
   GMenu *menu;
   GMenu *section;
+  char *path;
 
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
   ar_sound_enable (FALSE);
   ar_stock_init ();
+
+  path = g_build_filename (g_get_user_config_dir (), "aisleriot", NULL);
+  if (g_mkdir_with_parents (path, 0700 /* as per XDG base dir spec */) < 0 && errno != EEXIST)
+    g_printerr ("Failed to create config directory \"%s\": %s\n", path, g_strerror (errno));
+  g_free (path);
+
+  path = g_build_filename (g_get_user_config_dir (), "aisleriot", "state.ini", NULL);
+  priv->state_keyfile_backend = g_keyfile_settings_backend_new (path,
+                                                                "/org/gnome/aisleriot/",
+                                                                NULL);
+
+  path = g_build_filename (g_get_user_config_dir (), "aisleriot", "scores.ini", NULL);
+  priv->scores_keyfile_backend = g_keyfile_settings_backend_new (path,
+                                                                 "/org/gnome/aisleriot/scores/",
+                                                                 NULL);
 
   gtk_window_set_default_icon_name (priv->freecell ? "gnome-freecell" : "gnome-aisleriot");
 
@@ -252,11 +276,15 @@ static void
 ar_application_dispose (GObject *object)
 {
   ArApplication *self = AR_APPLICATION (object);
-
-  G_OBJECT_CLASS (ar_application_parent_class)->dispose (object);
+  ArApplicationPrivate *priv = self->priv;
 
   g_free (self->priv->variation);
   self->priv->variation = NULL;
+
+  g_clear_object (&priv->state_keyfile_backend);
+  g_clear_object (&priv->scores_keyfile_backend);
+
+  G_OBJECT_CLASS (ar_application_parent_class)->dispose (object);
 }
 
 static void
@@ -295,4 +323,53 @@ ar_application_new (const char *variation,
   app->priv->freecell = freecell != FALSE;
 
   return GTK_APPLICATION (app);
+}
+
+GSettings *
+ar_application_state_settings_new (ArApplication *application,
+                                   const char *schema)
+{
+  g_return_val_if_fail (AR_IS_APPLICATION (application), NULL);
+  g_return_val_if_fail (schema != NULL, NULL);
+
+  return g_settings_new_with_backend (schema,
+                                      application->priv->state_keyfile_backend);
+}
+
+GSettings *
+ar_application_scores_settings_new (ArApplication *application,
+                                    const char *game)
+{
+  char *path;
+  GSettings *settings;
+
+  g_return_val_if_fail (AR_IS_APPLICATION (application), NULL);
+  g_return_val_if_fail (game != NULL, NULL);
+
+  path = g_strdup_printf ("/org/gnome/aisleriot/scores/%s/", game);
+  settings = g_settings_new_with_backend_and_path (AR_SCORES_SCHEMA,
+                                                   application->priv->scores_keyfile_backend,
+                                                   path);
+  g_free (path);
+
+  return settings;
+}
+
+GSettings *
+ar_application_options_settings_new (ArApplication *application,
+                                     const char *game)
+{
+  char *path;
+  GSettings *settings;
+
+  g_return_val_if_fail (AR_IS_APPLICATION (application), NULL);
+  g_return_val_if_fail (game != NULL, NULL);
+
+  path = g_strdup_printf ("/org/gnome/aisleriot/options/%s/", game);
+  settings = g_settings_new_with_backend_and_path (AR_OPTIONS_SCHEMA,
+                                                   application->priv->state_keyfile_backend,
+                                                   path);
+  g_free (path);
+
+  return settings;
 }

@@ -1,6 +1,6 @@
 /*
  * Copyright © 2003 Callum McKenzie <callum@physics.otago.ac.nz>
- * Copyright © 2007 Christian Persch
+ * Copyright © 2007, 2013 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <glib/gi18n.h>
 
@@ -25,9 +25,7 @@
 #include "util.h"
 
 #include "ar-stock.h"
-
-#include "conf.h"
-#include "util.h"
+#include "ar-defines.h"
 
 #include "stats-dialog.h"
 
@@ -202,24 +200,30 @@ aisleriot_stats_dialog_new (void)
 
 void
 aisleriot_stats_dialog_update (AisleriotStatsDialog *dialog,
-                               AisleriotStatistic *current_stats)
+                               GSettings *stats_settings)
 {
   AisleriotStatsDialogPrivate *priv = dialog->priv;
   char text[128];
+  guint32 wins, total, best_time, worst_time;
+
+  wins = g_settings_get_uint (stats_settings, AR_SCORES_WINS_KEY);
+  total = g_settings_get_uint (stats_settings, AR_SCORES_TOTAL_KEY);
+  best_time = g_settings_get_uint (stats_settings, AR_SCORES_BEST_TIME_KEY);
+  worst_time = g_settings_get_uint (stats_settings, AR_SCORES_WORST_TIME_KEY);
 
   /* Translators: Translate this to "%Id" if you want to use localised digits,
    * and to "%d" otherwise. Do not translate it to anything else!
    */
-  g_snprintf (text, sizeof (text), _("%d"), current_stats->wins);
+  g_snprintf (text, sizeof (text), _("%d"), wins);
   gtk_label_set_text (priv->wins_label, text);
 
   /* Translators: Translate this to "%Id" if you want to use localised digits,
    * and to "%d" otherwise. Do not translate it to anything else!
    */
-  g_snprintf (text, sizeof (text), _("%d"), current_stats->total);
+  g_snprintf (text, sizeof (text), _("%d"), total);
   gtk_label_set_text (priv->total_label, text);
 
-  if (current_stats->total != 0) {
+  if (total != 0) {
     /* Translators: Translate the "%d" in this string this to "%Id" if you
      * want to use localised digits, and to "%d" otherwise.
      * Do not translate the "%d" part to anything else!
@@ -228,26 +232,24 @@ aisleriot_stats_dialog_update (AisleriotStatsDialog *dialog,
      * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
      */
     g_snprintf (text, sizeof (text), _("%d%%"),
-                (int) (100.0 * ((double) current_stats->wins) / ((double) current_stats->total) + 0.5));
+                (int) (100.0 * ((double) wins) / ((double) total) + 0.5));
     gtk_label_set_text (priv->percentage_label, text);
   } else
     /* For translators: N/A means "Not Applicable", use whatever
      * abbreviation you have for a value that has no meaning. */
     gtk_label_set_text (priv->percentage_label, _("N/A"));
 
-  if (current_stats->best != 0) {
+  if (best_time != 0) {
     /* Translators: this represents minutes:seconds. */
     g_snprintf (text, sizeof (text), _("%d:%02d"),
-                current_stats->best / 60,
-                current_stats->best % 60);
+                best_time / 60, best_time % 60);
     gtk_label_set_text (priv->best_label, text);
   } else
     gtk_label_set_text (priv->best_label, _("N/A"));
 
-  if (current_stats->worst != 0) {
+  if (worst_time != 0) {
     g_snprintf (text, sizeof (text), _("%d:%02d"),
-                current_stats->worst / 60,
-                current_stats->worst % 60);
+                worst_time / 60, worst_time % 60);
     gtk_label_set_text (priv->worst_label, text);
   } else
     gtk_label_set_text (priv->worst_label, _("N/A"));

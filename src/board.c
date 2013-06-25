@@ -34,8 +34,6 @@
 #include "ar-marshal.h"
 #include "ar-sound.h"
 
-#include "conf.h"
-
 #include "game.h"
 #include "card.h"
 #include "slot-renderer.h"

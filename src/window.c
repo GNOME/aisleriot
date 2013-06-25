@@ -2,7 +2,7 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
  * Copyright © 2003 Callum McKenzie <callum@physics.otago.ac.nz>
- * Copyright © 2007, 2008, 2009, 2010 Christian Persch
+ * Copyright © 2007, 2008, 2009, 2010, 2013 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 
+#include "ar-application.h"
 #include "ar-clock.h"
 #include "ar-debug.h"
 #include "ar-stock.h"
@@ -48,9 +49,9 @@
 #include "board-noclutter.h"
 #endif
 
+#include "ar-defines.h"
 #include "ar-card-theme.h"
 #include "ar-card-themes.h"
-#include "conf.h"
 #include "game.h"
 #include "stats-dialog.h"
 #include "util.h"
@@ -95,6 +96,10 @@ enum
 
 struct _AisleriotWindowPrivate
 {
+  GSettings *settings;
+  GSettings *state_settings;
+  GSettings *game_options_settings;
+
   AisleriotGame *game;
   ArStyle *board_style;
 #ifdef HAVE_CLUTTER
@@ -271,7 +276,6 @@ static void
 update_statistics_display (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  AisleriotStatistic current_stats;
   char *game_name;
 
   if (!priv->stats_dialog)
@@ -281,10 +285,8 @@ update_statistics_display (AisleriotWindow *window)
   aisleriot_stats_dialog_set_name (priv->stats_dialog, game_name);
   g_free (game_name);
 
-  aisleriot_conf_get_statistic (aisleriot_game_get_game_module (priv->game),
-                                &current_stats);
-
-  aisleriot_stats_dialog_update (priv->stats_dialog, &current_stats);
+  aisleriot_stats_dialog_update (priv->stats_dialog,
+                                 aisleriot_game_get_scores_settings (priv->game));
 }
 
 static void
@@ -295,11 +297,15 @@ stats_dialog_response_cb (GtkWidget *widget,
   AisleriotWindowPrivate *priv = window->priv;
 
   if (response == GTK_RESPONSE_REJECT) {
-    AisleriotStatistic current_stats = { 0, 0, 0, 0 };
+    GSettings *stats_settings;
 
-    aisleriot_conf_set_statistic (aisleriot_game_get_game_module (priv->game),
-                                  &current_stats);
-    aisleriot_stats_dialog_update (priv->stats_dialog, &current_stats);
+    stats_settings = aisleriot_game_get_scores_settings (priv->game);
+    g_settings_set_uint (stats_settings, AR_SCORES_WINS_KEY, 0);
+    g_settings_set_uint (stats_settings, AR_SCORES_TOTAL_KEY, 0);
+    g_settings_set_uint (stats_settings, AR_SCORES_BEST_TIME_KEY, 0);
+    g_settings_set_uint (stats_settings, AR_SCORES_WORST_TIME_KEY, 0);
+
+    aisleriot_stats_dialog_update (priv->stats_dialog, stats_settings);
 
     return;
   }
@@ -334,12 +340,6 @@ aisleriot_window_change_game (AisleriotWindow *window)
                     G_CALLBACK (gtk_widget_destroyed), &priv->game_choice_dialog);
 
   gtk_window_present (GTK_WINDOW (priv->game_choice_dialog));
-}
-
-void
-aisleriot_window_show_set_fullscreen (AisleriotWindow *window,
-                                      gboolean         active)
-{
 }
 
 void
@@ -880,7 +880,7 @@ toolbar_toggled_cb (GtkToggleAction *action,
 
   priv->toolbar_visible = state != FALSE;
 
-  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), state);
+  g_settings_set_boolean (priv->settings, AR_SETTINGS_SHOW_TOOLBAR_KEY, state);
 
   set_fullscreen_button_active (window);
 }
@@ -901,7 +901,7 @@ statusbar_toggled_cb (GtkToggleAction *action,
 
   priv->statusbar_visible = state != FALSE;
 
-  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), state);
+  g_settings_set_boolean (priv->settings, AR_SETTINGS_SHOW_STATUSBAR_KEY, state);
 }
 
 static void
@@ -958,8 +958,8 @@ clickmove_toggle_cb (GtkToggleAction *action,
 
   aisleriot_game_set_click_to_move (priv->game, click_to_move);
   ar_style_set_click_to_move (priv->board_style, click_to_move);
-  
-  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), click_to_move);
+
+  g_settings_set_boolean (priv->settings, AR_SETTINGS_CLICK_TO_MOVE_KEY, click_to_move);
 }
 
 static void
@@ -967,13 +967,14 @@ sound_toggle_cb (GtkToggleAction *action,
                  AisleriotWindow *window)
 {
 #ifdef ENABLE_SOUND
+  AisleriotWindowPrivate *priv = window->priv;
   gboolean sound_enabled;
 
   sound_enabled = gtk_toggle_action_get_active (action);
 
   ar_sound_enable (sound_enabled);
-  
-  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), sound_enabled);
+
+  g_settings_set_boolean (priv->settings, AR_SETTINGS_ENABLE_SOUND_KEY, sound_enabled);
 #endif /* ENABLE_SOUND */
 }
 
@@ -989,7 +990,7 @@ animations_toggle_cb (GtkToggleAction *action,
 
   ar_style_set_enable_animations (priv->board_style, enabled);
   
-  ar_conf_set_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), enabled);
+  g_settings_set (priv->settings, AR_SETTINGS_ENABLE_ANIMATIONS_KEY, sound_enabled);
 #endif /* HAVE_CLUTTER */
 }
 
@@ -1110,7 +1111,7 @@ option_cb (GtkToggleAction *action,
 
   value = aisleriot_game_change_options (priv->game, changed_mask, changed_value);
 
-  aisleriot_conf_set_options (aisleriot_game_get_game_module (priv->game), (int) value);
+  g_settings_set_uint (priv->game_options_settings, AR_OPTIONS_KEY, value);
 
   /* Now re-deal, so the option is applied */
   aisleriot_game_new_game (priv->game);
@@ -1141,9 +1142,8 @@ install_options_menu (AisleriotWindow *window)
   /* Only apply the options if they exist. Otherwise the options in the menu
    * and the real game options are out of sync until first changed by the user.
    */
-  if (aisleriot_conf_get_options (aisleriot_game_get_game_module (priv->game), &options_value)) {
-    aisleriot_game_change_options (priv->game, AISLERIOT_GAME_OPTIONS_MAX, options_value);
-  }
+  options_value = g_settings_get_uint (priv->game_options_settings, AR_OPTIONS_KEY);
+  aisleriot_game_change_options (priv->game, AISLERIOT_GAME_OPTIONS_MAX, options_value);
 
   /* To get radio buttons in the menu insert an atom into the option list
    * in your scheme code. To get back out of radio-button mode insert 
@@ -1216,13 +1216,14 @@ static void
 add_recently_played_game (AisleriotWindow *window,
                           const char *game_module)
 {
+  AisleriotWindowPrivate *priv = window->priv;
   char **recent_games, **new_recent;
   gsize i, n_recent = 0, n_new_recent = 0;
 
   if (!game_module)
     return;
 
-  recent_games = ar_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
+  g_settings_get (priv->state_settings, AR_STATE_RECENT_GAMES_KEY, "^as", &recent_games);
 
   if (recent_games == NULL) {
     new_recent = g_new (char *, 2);
@@ -1230,6 +1231,7 @@ add_recently_played_game (AisleriotWindow *window,
     new_recent[1] = NULL;
     n_new_recent = 1;
   } else {
+    n_recent = g_strv_length (recent_games);
     new_recent = g_new (char *, MIN (n_recent + 1, MAX_RECENT) + 1);
     n_new_recent = 0;
 
@@ -1247,8 +1249,8 @@ add_recently_played_game (AisleriotWindow *window,
     g_strfreev (recent_games);
   }
 
-  ar_conf_set_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES),
-                              (const char * const *) new_recent, n_new_recent);
+  g_settings_set_strv (priv->state_settings, AR_STATE_RECENT_GAMES_KEY,
+                       (const char * const *) new_recent);
   g_strfreev (new_recent);
 }
 
@@ -1256,6 +1258,7 @@ static void
 recent_game_cb (GtkAction *action,
                 AisleriotWindow *window)
 {
+  AisleriotWindowPrivate *priv = window->priv;
   const char *game_module;
 
   game_module = g_object_get_data (G_OBJECT (action), "game");
@@ -1263,7 +1266,7 @@ recent_game_cb (GtkAction *action,
 
   aisleriot_window_set_game_module (window, game_module, NULL);
 
-  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), game_module);
+  g_settings_set_string (priv->state_settings, AR_STATE_LAST_GAME_KEY, game_module);
 }
 
 static void
@@ -1290,9 +1293,9 @@ install_recently_played_menu (AisleriotWindow *window)
 
   priv->recent_games_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
 
-  recent_games = ar_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
+  g_settings_get (priv->state_settings, AR_STATE_RECENT_GAMES_KEY, "^as", &recent_games);
 
-  for (i = 0; i < n_recent; ++i) {
+  for (i = 0; recent_games[i]; ++i) {
     GtkAction *action;
     char actionname[32];
     char *game_name, *tooltip;
@@ -1405,7 +1408,7 @@ card_theme_changed_cb (GtkToggleAction *action,
   aisleriot_window_take_card_theme (window, theme);
 
   theme_name = ar_card_theme_info_get_persistent_name (new_theme_info);
-  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_THEME), theme_name);
+  g_settings_set_string (priv->settings, AR_SETTINGS_CARD_THEME_KEY, theme_name);
 }
 
 static void
@@ -1606,6 +1609,7 @@ game_type_changed_cb (AisleriotGame *game,
 {
   AisleriotWindowPrivate *priv = window->priv;
   char *game_name;
+  const char *game_module;
   guint features;
   gboolean dealable;
   gboolean show_scores;
@@ -1621,9 +1625,14 @@ game_type_changed_cb (AisleriotGame *game,
 
   g_free (game_name);
 
-  add_recently_played_game (window, aisleriot_game_get_game_module (game));
+  game_module = aisleriot_game_get_game_module (game);
+  add_recently_played_game (window, game_module);
 
   install_recently_played_menu (window);
+
+  g_clear_object (&priv->game_options_settings);
+  priv->game_options_settings = ar_application_options_settings_new (AR_APPLICATION (g_application_get_default ()),
+                                                                     game_module);
 
   install_options_menu (window);
 
@@ -2100,7 +2109,7 @@ aisleriot_window_init (AisleriotWindow *window)
   GtkWidget *main_vbox;
   GtkAccelGroup *accel_group;
   GtkAction *action;
-  char *theme_name;
+  const char *theme_name;
   ArCardTheme *theme;
   guint i;
   GtkStatusbar *statusbar;
@@ -2113,6 +2122,10 @@ aisleriot_window_init (AisleriotWindow *window)
   g_assert (G_N_ELEMENTS (names) == LAST_ACTION);
 
   priv = window->priv = AISLERIOT_WINDOW_GET_PRIVATE (window);
+
+  priv->settings = g_settings_new (AR_SETTINGS_SCHEMA);
+  priv->state_settings = ar_application_state_settings_new (AR_APPLICATION (g_application_get_default ()),
+                                                            AR_STATE_SCHEMA);
 
   priv->fullscreen = FALSE;
 
@@ -2151,9 +2164,8 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->board_style, priv->game));
 #endif /* HAVE_CLUTTER */
 
-  theme_name = ar_conf_get_string (NULL, aisleriot_conf_get_key (CONF_THEME), NULL);
+  g_settings_get (priv->settings, AR_SETTINGS_CARD_THEME_KEY, "&s", &theme_name);
   theme = ar_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
-  g_free (theme_name);
   if (!theme) {
     /* Last-ditch fallback: try getting *any* theme */
     theme = ar_card_themes_get_theme_any (priv->theme_manager);
@@ -2279,12 +2291,12 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_window_add_accel_group (GTK_WINDOW (window), accel_group);
 
   action = gtk_action_group_get_action (priv->action_group, "Toolbar");
-  priv->toolbar_visible = ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_TOOLBAR), NULL) != FALSE;
+  priv->toolbar_visible = g_settings_get_boolean (priv->settings, AR_SETTINGS_SHOW_TOOLBAR_KEY);
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->toolbar_visible);
   action = gtk_action_group_get_action (priv->action_group, "ClickToMove");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_CLICK_TO_MOVE), NULL));
+                                g_settings_get_boolean (priv->settings, AR_SETTINGS_CLICK_TO_MOVE_KEY));
 
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
@@ -2292,12 +2304,12 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef ENABLE_SOUND
   action = gtk_action_group_get_action (priv->action_group, "Sound");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SOUND), NULL));
+                                g_settings_get_boolean (priv->settings, AR_SETTINGS_ENABLE_SOUND_KEY));
   gtk_action_set_visible (action, ar_sound_is_available ());
 #endif /* ENABLE_SOUND */
 
   action = gtk_action_group_get_action (priv->action_group, "Statusbar");
-  priv->statusbar_visible = ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_SHOW_STATUSBAR), NULL) != FALSE;
+  priv->statusbar_visible = g_settings_get_boolean (priv->settings, AR_SETTINGS_SHOW_STATUSBAR_KEY);
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
                                 priv->statusbar_visible);
 
@@ -2306,7 +2318,7 @@ aisleriot_window_init (AisleriotWindow *window)
 #ifdef HAVE_CLUTTER
   action = gtk_action_group_get_action (priv->action_group, "Animations");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action),
-                                ar_conf_get_boolean (NULL, aisleriot_conf_get_key (CONF_ANIMATIONS), NULL));
+                                g_settings_get_boolean (priv->settings, AR_SETTINGS_ENABLE_ANIMATIONS_KEY));
 
 #endif /* HAVE_CLUTTER */
 
@@ -2406,6 +2418,10 @@ aisleriot_window_dispose (GObject *object)
     g_source_remove (priv->load_idle_id);
     priv->load_idle_id = 0;
   }
+
+  g_clear_object (&priv->settings);
+  g_clear_object (&priv->state_settings);
+  g_clear_object (&priv->game_options_settings);
 
   G_OBJECT_CLASS (aisleriot_window_parent_class)->dispose (object);
 }
@@ -2513,7 +2529,6 @@ load_idle_cb (LoadIdleData *data)
   AisleriotWindowPrivate *priv = data->window->priv;
   GError *error = NULL;
   GRand *rand;
-  char *pref;
 
   if (!aisleriot_game_load_game (priv->game, data->game_module, &error)) {
     GtkWidget *dialog;
@@ -2553,9 +2568,7 @@ load_idle_cb (LoadIdleData *data)
   /* Now that we know we can successfully load this variation,
    * store it in conf
    */
-  pref = g_strconcat (data->game_module, ".scm", NULL);
-  ar_conf_set_string (NULL, aisleriot_conf_get_key (CONF_VARIATION), pref);
-  g_free (pref);
+  g_settings_set_string (priv->state_settings, AR_STATE_LAST_GAME_KEY, data->game_module);
 
   rand = data->rand;
   data->rand = NULL;
@@ -2582,7 +2595,7 @@ free_load_idle_data (LoadIdleData *data)
 /**
  * aisleriot_window_set_game:
  * @window:
- * @game_module: a UTF-8 string
+ * @game_module: (allow-none): a UTF-8 string, or %NULL
  * @rand: (allow-none) (transfer full): a #GRand, or %NULL
  *
  * Loads the game variation defined in the @game_module file.
@@ -2604,8 +2617,17 @@ aisleriot_window_set_game_module (AisleriotWindow *window,
 
   data = g_slice_new (LoadIdleData);
   data->window = window;
-  data->game_module = g_strdup (game_module);
   data->rand = rand; /* adopted */
+
+  if (game_module) {
+    data->game_module = g_strdup (game_module);
+  } else {
+    char *pref;
+
+    pref = g_settings_get_string (priv->state_settings, AR_STATE_LAST_GAME_KEY);
+    data->game_module = ar_filename_to_game_module (pref);
+    g_free (pref);
+  }
 
   priv->load_idle_id = g_idle_add_full (G_PRIORITY_LOW,
                                         (GSourceFunc) load_idle_cb,

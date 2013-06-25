@@ -1,5 +1,5 @@
 /*  
- * Copyright © 2009 Christian Persch <chpe@gnome.org>
+ * Copyright © 2009, 2013 Christian Persch <chpe@gnome.org>
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include "ar-game-chooser.h"
 
@@ -23,10 +23,11 @@
 
 #include <glib/gi18n.h>
 
+#include "ar-application.h"
 #include "ar-debug.h"
+#include "ar-defines.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
-#include "conf.h"
 
 struct _ArGameChooser
 {
@@ -43,7 +44,7 @@ struct _ArGameChooserClass
 
 struct _ArGameChooserPrivate {
   AisleriotWindow *window;
-
+  GSettings *state_settings;
   GtkListStore *store;
   GtkTreeSelection *selection;
 };
@@ -163,14 +164,16 @@ row_separator_func (GtkTreeModel *model,
 }
 
 static char **
-get_unique_recent_modules (const char *current_module)
+get_unique_recent_modules (ArGameChooser *chooser,
+                           const char *current_module)
 {
+  ArGameChooserPrivate *priv = chooser->priv;
   char **recent_games, **new_recent;
   gsize i;
   gsize n_recent = 0;
   gsize n_new_recent = 0;
 
-  recent_games = ar_conf_get_string_list (NULL, aisleriot_conf_get_key (CONF_RECENT_GAMES), &n_recent, NULL);
+  g_settings_get (priv->state_settings, AR_STATE_RECENT_GAMES_KEY, "^as", &recent_games);
 
   if (recent_games == NULL) {
     new_recent = g_new (char *, 2);
@@ -219,7 +222,7 @@ add_recent_items (ArGameChooser *chooser)
   int i;
 
   current_game_module = aisleriot_window_get_game_module (priv->window);
-  games = get_unique_recent_modules (current_game_module);
+  games = get_unique_recent_modules (chooser, current_game_module);
 
   for (i = 0; games[i] != NULL; ++i) {
     store_add_module (priv->store, games[i], MAX_RECENT - i);
@@ -292,6 +295,9 @@ ar_game_chooser_constructor (GType type,
   priv = chooser->priv;
 
   g_assert (priv->window != NULL);
+
+  priv->state_settings = ar_application_state_settings_new (AR_APPLICATION (g_application_get_default ()),
+                                                            AR_STATE_SCHEMA);
 
   priv->store = list = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
 
@@ -401,6 +407,17 @@ ar_game_chooser_constructor (GType type,
 }
 
 static void
+ar_game_chooser_finalize (GObject *object)
+{
+  ArGameChooser *chooser = AR_GAME_CHOOSER (object);
+  ArGameChooserPrivate *priv = chooser->priv;
+
+  g_clear_object (&priv->state_settings);
+
+  G_OBJECT_CLASS (ar_game_chooser_parent_class)->finalize (object);
+}
+
+static void
 ar_game_chooser_set_property (GObject      *object,
                               guint         property_id,
                               const GValue *value,
@@ -427,6 +444,7 @@ ar_game_chooser_class_init (ArGameChooserClass *klass)
   g_type_class_add_private (klass, sizeof (ArGameChooserPrivate));
 
   object_class->constructor = ar_game_chooser_constructor;
+  object_class->finalize = ar_game_chooser_finalize;
   object_class->set_property = ar_game_chooser_set_property;
 
   /**

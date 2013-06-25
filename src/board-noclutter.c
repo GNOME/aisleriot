@@ -32,7 +32,6 @@
 #include "ar-runtime.h"
 #include "ar-sound.h"
 
-#include "conf.h"
 #include "game.h"
 #include "ar-cursor.h"
 #include "ar-card-surface-cache.h"

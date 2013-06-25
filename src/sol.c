@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <string.h>
 
@@ -40,7 +40,6 @@
 #include "ar-sound.h"
 
 #include "ar-string-utils.h"
-#include "conf.h"
 #include "window.h"
 #include "game.h"
 #include "util.h"
@@ -116,8 +115,6 @@ main_prog (void *closure, int argc, char *argv[])
 
   g_set_application_name (data.freecell ? _("FreeCell Solitaire") : _("AisleRiot"));
 
-  aisleriot_conf_init ();
-
   /* If we are asked for a specific game, check that it is valid. */
   if (!data.freecell &&
       data.variation != NULL) {
@@ -131,21 +128,9 @@ main_prog (void *closure, int argc, char *argv[])
     data.variation = game_module;
   }
 
-  if (!data.freecell && !data.variation) {
-    char *pref;
-
-    pref = ar_conf_get_string_with_default (NULL, aisleriot_conf_get_key (CONF_VARIATION), DEFAULT_VARIATION);
-    data.variation = ar_filename_to_game_module (pref);
-    g_free (pref);
-  }
-
-  g_assert (data.variation != NULL || data.freecell);
-
   application = ar_application_new (data.variation, data.freecell);
   status = g_application_run (G_APPLICATION (application), 0, NULL);
   g_object_unref (application);
-
-  aisleriot_conf_shutdown ();
 
 cleanup:
   g_free (data.variation);

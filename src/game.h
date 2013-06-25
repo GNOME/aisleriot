@@ -18,6 +18,7 @@
 #ifndef AISLERIOT_GAME_H
 #define AISLERIOT_GAME_H
 
+#include <gio/gio.h>
 #include <gdk/gdk.h>
 
 #include "ar-card.h"
@@ -244,6 +245,8 @@ void aisleriot_game_get_card_offset (ArSlot *slot,
 void aisleriot_game_reset_old_cards (ArSlot *slot);
 
 const char *aisleriot_game_get_score (AisleriotGame *game);
+
+GSettings *aisleriot_game_get_scores_settings (AisleriotGame *game);
 
 char **ar_get_game_modules (void);
 

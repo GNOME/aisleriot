@@ -53,7 +53,7 @@ GType aisleriot_stats_dialog_get_type (void);
 AisleriotStatsDialog *aisleriot_stats_dialog_new (void);
 
 void aisleriot_stats_dialog_update (AisleriotStatsDialog * dialog,
-                                    AisleriotStatistic * statistic);
+                                    GSettings *stats_settings);
 
 void aisleriot_stats_dialog_set_name (AisleriotStatsDialog * dialog,
                                       const char *game_name);

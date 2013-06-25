@@ -14,6 +14,7 @@ sol_SOURCES = \
 	ar-clock.h \
 	ar-cursor.c	\
 	ar-cursor.h	\
+	ar-defines.h \
 	ar-game-chooser.c \
 	ar-game-chooser.h \
 	ar-resources.c	\
@@ -27,8 +28,6 @@ sol_SOURCES = \
 	ar-style-gtk.h	\
 	board-noclutter.c \
 	board-noclutter.h \
-	conf.c		\
-	conf.h		\
 	game.c		\
 	game.h		\
 	sol.c		\
@@ -83,6 +82,7 @@ sol_clutter_SOURCES = \
 	ar-clutter-embed.h \
 	ar-cursor.c	\
 	ar-cursor.h	\
+	ar-defines.h \
 	ar-game-chooser.c \
 	ar-game-chooser.h \
 	ar-resources.c	\
@@ -100,8 +100,6 @@ sol_clutter_SOURCES = \
 	board.h		\
 	card.c          \
 	card.h          \
-	conf.c		\
-	conf.h		\
 	game.c		\
 	game.h		\
 	sol.c		\
@@ -137,6 +135,12 @@ BUILT_SOURCES = \
 ar-resources.h ar-resources.c: aisleriot.gresource.xml Makefile $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies aisleriot.gresource.xml)
 	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) --target $@ --sourcedir . --generate --c-name aisleriot $<
 
+gsettingsschema_in_files = \
+	org.gnome.Aisleriot.gschema.xml.in \
+	$(NULL)
+
+gsettings_SCHEMAS = $(gsettingsschema_in_files:.gschema.xml.in=.gschema.xml)
+
 schema_in_files = aisleriot.schemas.in
 if HAVE_GNOME
 schemadir = $(GCONF_SCHEMA_FILE_DIR)
@@ -165,6 +169,7 @@ EXTRA_DIST = \
 	$(icon_DATA)		\
 	$(allicons)		\
 	$(schema_in_files)	\
+	$(gsettingsschema_in_files) \
 	aisleriot-ui.xml	\
 	aisleriot-debug-ui.xml	\
 	game-names.h
@@ -179,5 +184,7 @@ DISTCLEANFILES = \
 	$(service_DATA)
 
 @INTLTOOL_SCHEMAS_RULE@
+@INTLTOOL_XML_NOMERGE_RULE@
+@GSETTINGS_RULES@
 
 -include $(top_srcdir)/git.mk

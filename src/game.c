@@ -1,6 +1,6 @@
 /*
  * Copyright © 1998, 2003 Jonathan Blandford <jrb@alum.mit.edu>
- * Copyright © 2007, 2011 Christian Persch
+ * Copyright © 2007, 2011, 2013 Christian Persch
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <string.h>
 #include <unistd.h>
@@ -31,11 +31,12 @@
 #include <clutter/clutter.h>
 #endif
 
+#include "ar-application.h"
 #include "ar-debug.h"
+#include "ar-defines.h"
 #include "ar-runtime.h"
 #include "ar-string-utils.h"
 
-#include "conf.h"
 #include "util.h"
 
 #include "game.h"
@@ -86,6 +87,8 @@ static const char lambda_names[] = {
 struct _AisleriotGame
 {
   GObject parent_instance;
+
+  GSettings *scores_settings;
 
   GPtrArray *slots;
 
@@ -217,28 +220,28 @@ set_game_dealable (AisleriotGame *game,
 static void
 update_statistics (AisleriotGame *game)
 {
-  AisleriotStatistic current_stats;
-  time_t t;
+  guint32 wins, total, best_time, worst_time, t;
 
-  aisleriot_conf_get_statistic (game->game_module, &current_stats);
-
-  current_stats.total++;
+  total = g_settings_get_uint (game->scores_settings, AR_SCORES_TOTAL_KEY);
+  g_settings_set_uint (game->scores_settings, AR_SCORES_TOTAL_KEY, total + 1);
 
   if (game->state == GAME_WON) {
-    current_stats.wins++;
+    wins = g_settings_get_uint (game->scores_settings, AR_SCORES_WINS_KEY);
+    g_settings_set_uint (game->scores_settings, AR_SCORES_WINS_KEY, wins + 1);
 
-    t = (time_t) (g_timer_elapsed (game->timer, NULL) + 0.5);
+    t = (guint32) (g_timer_elapsed (game->timer, NULL) + 0.5);
     if (t > 0) {
-      if ((current_stats.best == 0) || (t < current_stats.best)) {
-	current_stats.best = t;
+      best_time = g_settings_get_uint (game->scores_settings, AR_SCORES_BEST_TIME_KEY);
+      worst_time = g_settings_get_uint (game->scores_settings, AR_SCORES_WORST_TIME_KEY);
+
+      if ((best_time == 0) || (t < best_time)) {
+        g_settings_set_uint (game->scores_settings, AR_SCORES_BEST_TIME_KEY, t);
       }
-      if (t > current_stats.worst) {
-	current_stats.worst = t;
+      if (t > worst_time) {
+        g_settings_set_uint (game->scores_settings, AR_SCORES_WORST_TIME_KEY, t);
       }
     }
   }
-
-  aisleriot_conf_set_statistic (game->game_module, &current_stats);
 }
 
 static void
@@ -1220,6 +1223,8 @@ aisleriot_game_finalize (GObject *object)
 
   free (game->score);
 
+  g_clear_object (&game->scores_settings);
+
   app_game = NULL;
 
   G_OBJECT_CLASS (aisleriot_game_parent_class)->finalize (object);
@@ -1778,6 +1783,10 @@ aisleriot_game_load_game (AisleriotGame *game,
   }
 
   set_game_state (game, GAME_LOADED);
+
+  g_clear_object (&game->scores_settings);
+  game->scores_settings = ar_application_scores_settings_new (AR_APPLICATION (g_application_get_default ()),
+                                                              game_module);
 
   g_object_notify (object, "game-file");
 
@@ -2682,4 +2691,10 @@ ar_get_game_modules (void)
   g_ptr_array_add (array, NULL);
 
   return (char **) g_ptr_array_free (array, FALSE);
+}
+
+GSettings *
+aisleriot_game_get_scores_settings (AisleriotGame *game)
+{
+  return game->scores_settings;
 }

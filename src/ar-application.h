@@ -22,12 +22,12 @@
 
 G_BEGIN_DECLS
 
-#define AR_TYPE_APPLICATION               (ar_application_get_type ())
-#define AR_APPLICATION(o)                 (G_TYPE_CHECK_INSTANCE_CAST ((o), AR_TYPE_APPLICATION, ArApplication))
-#define AR_APPLICATION_CLASS(k)           (G_TYPE_CHECK_CLASS_CAST((k), AR_TYPE_APPLICATION, ArApplicationClass))
-#define AISLERIOT_IS_APPLICATION(o)       (G_TYPE_CHECK_INSTANCE_TYPE ((o), AR_TYPE_APPLICATION))
-#define AISLERIOT_IS_APPLICATION_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), AR_TYPE_APPLICATION))
-#define AR_APPLICATION_GET_CLASS(o)       (G_TYPE_INSTANCE_GET_CLASS ((o), AR_TYPE_APPLICATION, ArApplicationClass))
+#define AR_TYPE_APPLICATION         (ar_application_get_type ())
+#define AR_APPLICATION(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), AR_TYPE_APPLICATION, ArApplication))
+#define AR_APPLICATION_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), AR_TYPE_APPLICATION, ArApplicationClass))
+#define AR_IS_APPLICATION(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), AR_TYPE_APPLICATION))
+#define AR_IS_APPLICATION_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), AR_TYPE_APPLICATION))
+#define AR_APPLICATION_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), AR_TYPE_APPLICATION, ArApplicationClass))
 
 typedef struct _ArApplication	     ArApplication;
 typedef struct _ArApplicationPrivate ArApplicationPrivate;
@@ -37,6 +37,15 @@ GType ar_application_get_type (void);
 
 GtkApplication *ar_application_new (const char *variation,
                                     gboolean freecell);
+
+GSettings *ar_application_state_settings_new (ArApplication *application,
+                                              const char *schema);
+
+GSettings *ar_application_scores_settings_new (ArApplication *application,
+                                               const char *game);
+
+GSettings *ar_application_options_settings_new (ArApplication *application,
+                                                const char *game);
 
 G_END_DECLS
 
