@@ -15,18 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <config.h>
+#include "config.h"
 
 #include <string.h>
 #include <errno.h>
 
 #include <gtk/gtk.h>
 
-#ifdef HAVE_GNOME
-#include <gconf/gconf-client.h>
-#else
 #define ACCELMAP_EXT "accels"
-#endif
 
 #include "ar-debug.h"
 #include "ar-marshal.h"
@@ -37,15 +33,8 @@
 
 struct ArConfPrivate {
   char *game_name;
-
-#ifdef HAVE_GNOME
-  GConfClient *gconf_client;
-  char *base_path;
-  gsize base_path_len;
-#else
   GKeyFile *key_file;
   char *main_group;
-#endif
   guint need_init : 1;
   guint dirty : 1;
 };
@@ -81,17 +70,10 @@ enum {
 };
 
 static const char window_state_key_name[][12] = {
-#ifdef HAVE_GNOME
-  "maximized",
-  "fullscreen",
-  "width",
-  "height"
-#else
   "Maximised",
   "Fullscreen",
   "Width",
   "Height"
-#endif /* HAVE_GNOME */
 };
 
 typedef struct {
@@ -204,18 +186,11 @@ ar_conf_get_accel_map_path (ArConf *conf,
   char *game_name, *conf_dir;
   char *conf_file = NULL;
   const char *override;
+  char *accelmap_filename;
 
   game_name = g_ascii_strdown (priv->game_name, -1);
 
-#ifdef HAVE_GNOME
-  override = g_getenv ("GNOME22_USER_DIR");
-  if (override)
-    conf_dir = g_build_filename (override, "accels", NULL);
-  else
-    conf_dir = g_build_filename (g_get_home_dir (), ".gnome2", "accels", NULL);
-#else
   conf_dir = g_build_filename (g_get_user_config_dir (), "gnome-games", NULL);
-#endif
   if (!conf_dir)
     goto loser;
 
@@ -230,17 +205,9 @@ ar_conf_get_accel_map_path (ArConf *conf,
     }
   }
 
-#ifdef HAVE_GNOME
-  conf_file = g_build_filename (conf_dir, game_name, NULL);
-#else
-{
-  char *accelmap_filename;
-
   accelmap_filename = g_strdup_printf ("%s.%s", game_name, ACCELMAP_EXT);
   conf_file = g_build_filename (conf_dir, accelmap_filename, NULL);
   g_free (accelmap_filename);
-}
-#endif
 
 loser:
   g_free (conf_dir);
@@ -275,73 +242,6 @@ ar_conf_save_accel_map (ArConf *conf)
   g_free (conf_file);
 }
 
-#ifdef HAVE_GNOME
-
-static void
-gconf_notify_cb (GConfClient *client,
-                 guint cnxn_id,
-                 GConfEntry *gcentry,
-                 ArConf *conf)
-{
-  ArConfPrivate *priv = conf->priv;
-  char *key;
-  char **path;
-
-  if (!g_str_has_prefix (gcentry->key, priv->base_path))
-    return;
-
-  key = gcentry->key + priv->base_path_len;
-  if (*key != '/')
-    return;
-
-  path = g_strsplit (key + 1, "/", 2);
-  if (!path)
-    return;
-
-  if (path[0] && path[1])
-    g_signal_emit (conf, signals[VALUE_CHANGED], 0, path[0], path[1]);
-  else if (path[0])
-    g_signal_emit (conf, signals[VALUE_CHANGED], 0, NULL, path[0]);
-
-  g_strfreev (path);
-}
-
-static char *
-get_gconf_key_name (const char *group, const char *key)
-{
-  ArConfPrivate *priv = instance->priv;
-
-  if (!group)
-    return g_strdup_printf ("%s/%s", priv->base_path, key);
-
-  return g_strdup_printf ("%s/%s/%s", priv->base_path, group, key);
-}
-
-static GConfValueType
-get_gconf_value_type_from_schema (const char *key_name)
-{
-  ArConfPrivate *priv = instance->priv;
-  GConfSchema *schema;
-  char *schema_key;
-  GConfValueType type = GCONF_VALUE_STRING;
-
-  schema_key = g_strconcat ("/schemas", key_name, NULL);
-  schema = gconf_client_get_schema (priv->gconf_client, schema_key, NULL);
-
-  if (schema) {
-    type = gconf_schema_get_type (schema);
-    gconf_schema_free (schema);
-  }
-
-  g_free (schema_key);
-
-  return type;
-}
-
-#endif /* HAVE_GNOME */
-
-#ifndef HAVE_GNOME
-
 static void
 mark_dirty_cb (ArConf *conf)
 {
@@ -349,8 +249,6 @@ mark_dirty_cb (ArConf *conf)
 
   priv->dirty = TRUE;
 }
-
-#endif /* !HAVE_GNOME */
 
 /* Class implementation */
 
@@ -364,9 +262,7 @@ ar_conf_init (ArConf *conf)
   priv->need_init = FALSE;
   priv->dirty = FALSE;
 
-#ifndef HAVE_GNOME
   g_signal_connect (conf, "value-changed", G_CALLBACK (mark_dirty_cb), NULL);
-#endif
 }
 
 static GObject *
@@ -378,10 +274,8 @@ ar_conf_constructor (GType type,
   ArConf *conf;
   ArConfPrivate *priv;
   char *game_name;
-#ifndef HAVE_GNOME
   char *conf_file;
   GError *error = NULL;
-#endif /* HAVE_GNOME */
 
   g_assert (instance == NULL);
 
@@ -394,23 +288,6 @@ ar_conf_constructor (GType type,
   g_assert (priv->game_name);
 
   game_name = g_ascii_strdown (priv->game_name, -1);
-
-#ifdef HAVE_GNOME
-  priv->gconf_client = gconf_client_get_default ();
-
-  priv->base_path = g_strdup_printf ("/apps/%s", game_name);
-  priv->base_path_len = strlen (priv->base_path);
-
-  gconf_client_add_dir (priv->gconf_client, priv->base_path,
-                        GCONF_CLIENT_PRELOAD_NONE, NULL);
-
-  gconf_client_notify_add (priv->gconf_client,
-                           priv->base_path,
-                           (GConfClientNotifyFunc) gconf_notify_cb,
-                           conf, NULL,
-                           NULL);
-
-#else /* !HAVE_GNOME */
 
   priv->main_group = g_strdup_printf ("%s Config", priv->game_name);
 
@@ -431,8 +308,6 @@ ar_conf_constructor (GType type,
 
   g_free (conf_file);
 
-#endif /* HAVE_GNOME */
-
   ar_conf_load_accel_map (conf);
 
   g_free (game_name);
@@ -449,22 +324,10 @@ ar_conf_finalize (GObject *object)
   /* Save the accel map */
   ar_conf_save_accel_map (conf);
 
-#ifdef HAVE_GNOME
-  gconf_client_remove_dir (priv->gconf_client, priv->base_path, NULL);
-
-  g_free (priv->base_path);
-
-  g_object_unref (priv->gconf_client);
-  priv->gconf_client = NULL;
-
-#else /* !HAVE_GNOME */
-
   ar_conf_save ();
 
   g_free (priv->main_group);
   g_key_file_free (priv->key_file);
-
-#endif /* HAVE_GNOME */
 
   g_free (priv->game_name);
 
@@ -544,13 +407,6 @@ ar_conf_initialise (const char *game_name)
                            "game-name", game_name,
                            NULL);
 
-#ifdef HAVE_GNOME
-  /* GConf uses ORBit2 which needs threads (but it's too late to call
-   * g_thread_init() here). See bug #547885.
-   */
-  g_assert (g_thread_supported ());
-#endif
-
   return !instance->priv->need_init;
 }
 
@@ -592,7 +448,6 @@ ar_conf_get_default (void)
 void
 ar_conf_save (void)
 {
-#ifndef HAVE_GNOME
   ArConfPrivate *priv = instance->priv;
   char *game_name, *conf_file, *conf_dir, *data = NULL;
   gsize len = 0;
@@ -638,7 +493,6 @@ loser:
   g_free (conf_file);
   g_free (conf_dir);
   g_free (game_name);
-#endif /* !HAVE_GNOME */
 }
 
 /**
@@ -658,17 +512,7 @@ ar_conf_get_string (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name, *value;
-
-  key_name = get_gconf_key_name (group, key);
-  value = gconf_client_get_string (priv->gconf_client, key_name, NULL);
-  g_free (key_name);
-
-  return value;
-#else
   return g_key_file_get_string (priv->key_file, group ? group : priv->main_group, key, error);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -714,16 +558,8 @@ ar_conf_set_string (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  gconf_client_set_string (priv->gconf_client, key_name, value, NULL);
-  g_free (key_name);
-#else
   g_key_file_set_string (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -744,35 +580,7 @@ ar_conf_get_string_list (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-  GSList *list, *l;
-  char **values = NULL;
-  gsize n = 0;
-
-  key_name = get_gconf_key_name (group, key);
-
-  list = gconf_client_get_list (priv->gconf_client, key_name, GCONF_VALUE_STRING, NULL);
-  if (list != NULL) {
-    values = g_new (char *, g_slist_length (list) + 1);
-
-    for (l = list; l != NULL; l = l->next) {
-      values[n++] = l->data;
-    }
-
-    /* NULL termination */
-    values[n] = NULL;
-
-    g_slist_free (list); /* the strings themselves are now owned by the array */
-  }
-
-  *n_values = n;
-  
-  g_free (key_name);
-  return values;
-#else
   return g_key_file_get_string_list (priv->key_file, group ? group : priv->main_group, key, n_values, error);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -790,27 +598,8 @@ ar_conf_set_string_list (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-  GSList *list = NULL;
-  gsize i;
-
-  key_name = get_gconf_key_name (group, key);
-
-  for (i = 0; i < n_values; ++i) {
-    list = g_slist_prepend (list, (gpointer) values[i]);
-  }
-  list = g_slist_reverse (list);
-
-  gconf_client_set_list (priv->gconf_client, key_name, GCONF_VALUE_STRING, list, NULL);
-
-  g_slist_free (list);
-
-  g_free (key_name);
-#else
   g_key_file_set_string_list (priv->key_file, group ? group : priv->main_group, key, values, n_values);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -830,18 +619,7 @@ ar_conf_get_integer (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  int value;
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  value = gconf_client_get_int (priv->gconf_client, key_name, error);  
-  g_free (key_name);
-
-  return value;
-#else
   return g_key_file_get_integer (priv->key_file, group ? group : priv->main_group, key, error);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -885,16 +663,8 @@ ar_conf_set_integer (const char *group, const char *key, int value)
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  gconf_client_set_int (priv->gconf_client, key_name, value, NULL);
-  g_free (key_name);
-#else
   g_key_file_set_integer (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -915,30 +685,7 @@ ar_conf_get_integer_list (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-  GSList *list, *l;
-  int *values = NULL;
-  gsize n = 0;
-
-  key_name = get_gconf_key_name (group, key);
-
-  list = gconf_client_get_list (priv->gconf_client, key_name, GCONF_VALUE_STRING, NULL);
-  if (list != NULL) {
-    values = g_new (int, g_slist_length (list));
-
-    for (l = list; l != NULL; l = l->next) {
-      values[n++] = GPOINTER_TO_INT (l->data);
-    }
-  }
-
-  *n_values = n;
-  
-  g_free (key_name);
-  return values;
-#else
   return g_key_file_get_integer_list (priv->key_file, group ? group : priv->main_group, key, n_values, error);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -956,27 +703,8 @@ ar_conf_set_integer_list (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-  GSList *list = NULL;
-  gsize i;
-
-  key_name = get_gconf_key_name (group, key);
-
-  for (i = 0; i < n_values; ++i) {
-    list = g_slist_prepend (list, GINT_TO_POINTER (values[i]));
-  }
-  list = g_slist_reverse (list);
-
-  gconf_client_set_list (priv->gconf_client, key_name, GCONF_VALUE_INT, list, NULL);
-
-  g_slist_free (list);
-
-  g_free (key_name);
-#else
   g_key_file_set_integer_list (priv->key_file, group ? group : priv->main_group, key, values, n_values);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -996,18 +724,7 @@ ar_conf_get_boolean (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  gboolean value;
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  value = gconf_client_get_bool (priv->gconf_client, key_name, error);
-  g_free (key_name);
-
-  return value;
-#else
   return g_key_file_get_boolean (priv->key_file, group ? group : priv->main_group, key, error);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -1051,16 +768,8 @@ ar_conf_set_boolean (const char *group, const char *key,
 {
   ArConfPrivate *priv = instance->priv;
 
-#ifdef HAVE_GNOME
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  gconf_client_set_bool (priv->gconf_client, key_name, value, NULL);
-  g_free (key_name);
-#else
   g_key_file_set_boolean (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -1078,21 +787,9 @@ double
 ar_conf_get_double (const char *group, const char *key,
                        GError ** error)
 {
-#if defined(HAVE_GNOME)
-  ArConfPrivate *priv = instance->priv;
-  double value;
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  value = gconf_client_get_float (priv->gconf_client, key_name, error);
-  g_free (key_name);
-
-  return value;
-#else
   ArConfPrivate *priv = instance->priv;
 
   return g_key_file_get_double (priv->key_file, group ? group : priv->main_group, key, error);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -1106,19 +803,10 @@ ar_conf_get_double (const char *group, const char *key,
 void
 ar_conf_set_double (const char *group, const char *key, double value)
 {
-#if defined(HAVE_GNOME)
-  ArConfPrivate *priv = instance->priv;
-  char *key_name;
-
-  key_name = get_gconf_key_name (group, key);
-  gconf_client_set_float (priv->gconf_client, key_name, value, NULL);
-  g_free (key_name);
-#else
   ArConfPrivate *priv = instance->priv;
 
   g_key_file_set_double (priv->key_file, group ? group : priv->main_group, key, value);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -1137,36 +825,6 @@ ar_conf_get_keyval (const char *group, const char *key,
                        GError ** error)
 {
   ArConfPrivate *priv = instance->priv;
-
-#ifdef HAVE_GNOME
-  GConfValueType type;
-  char *key_name, *value;
-  guint keyval = GDK_KEY_VoidSymbol;
-
-  key_name = get_gconf_key_name (group, key);
-  type = get_gconf_value_type_from_schema (key_name);
-
-  /* The result could be a keycode or a key name. */
-  if (type == GCONF_VALUE_STRING) {
-    value = gconf_client_get_string (priv->gconf_client, key_name, error);
-    if (!value) {
-      keyval = GDK_KEY_VoidSymbol;
-    } else {
-      keyval = gdk_keyval_from_name (value);
-      g_free (value);
-    }
-  } else if (type == GCONF_VALUE_INT) {
-    keyval = gconf_client_get_int (priv->gconf_client, key_name, error);
-    if (*error || keyval == 0)
-      keyval = GDK_KEY_VoidSymbol;
-  } else {
-    g_warning ("Unknown value type for key %s\n", key_name);
-  }
-
-  g_free (key_name);
-
-  return keyval;
-#else
   char *value;
   guint keyval = GDK_KEY_VoidSymbol;
 
@@ -1177,7 +835,6 @@ ar_conf_get_keyval (const char *group, const char *key,
   }
 
   return keyval;
-#endif /* HAVE_GNOME */
 }
 
 /**
@@ -1193,7 +850,7 @@ ar_conf_get_keyval (const char *group, const char *key,
  */
 guint
 ar_conf_get_keyval_with_default (const char *group, const char *key,
-                                    guint default_keyval)
+                                 guint default_keyval)
 {
   GError *error = NULL;
   guint value;
@@ -1222,29 +879,6 @@ void
 ar_conf_set_keyval (const char *group, const char *key, guint value)
 {
   ArConfPrivate *priv = instance->priv;
-
-#ifdef HAVE_GNOME
-  GConfValueType type;
-  char *key_name, *name;
-
-  if (value == GDK_KEY_VoidSymbol)
-    return;
-
-  key_name = get_gconf_key_name (group, key);
-  type = get_gconf_value_type_from_schema (key_name);
-
-  /* The result could be a keycode or a key name. */
-  if (type == GCONF_VALUE_STRING) {
-    name = gdk_keyval_name (value);
-    gconf_client_set_string (priv->gconf_client, key_name, name, NULL);
-  } else if (type == GCONF_VALUE_INT) {
-    gconf_client_set_int (priv->gconf_client, key_name, (int) value, NULL);
-  } else {
-    g_warning ("Unknown value type for key %s\n", key_name);
-  }
-
-  g_free (key_name);
-#else
   char *name;
 
   if (value == GDK_KEY_VoidSymbol)
@@ -1253,7 +887,6 @@ ar_conf_set_keyval (const char *group, const char *key, guint value)
   name = gdk_keyval_name (value);
   g_key_file_set_string (priv->key_file, group, key, name);
   g_signal_emit (instance, signals[VALUE_CHANGED], 0, group, key);
-#endif /* HAVE_GNOME */
 }
 
 /**
