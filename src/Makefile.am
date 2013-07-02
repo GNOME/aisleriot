@@ -17,6 +17,8 @@ sol_SOURCES = \
 	ar-defines.h \
 	ar-game-chooser.c \
 	ar-game-chooser.h \
+	ar-prefs.c \
+	ar-prefs.h \
 	ar-resources.c	\
 	ar-resources.h	\
 	ar-stock.c	\
@@ -85,6 +87,8 @@ sol_clutter_SOURCES = \
 	ar-defines.h \
 	ar-game-chooser.c \
 	ar-game-chooser.h \
+	ar-prefs.c \
+	ar-prefs.h \
 	ar-resources.c	\
 	ar-resources.h	\
 	ar-stock.c	\

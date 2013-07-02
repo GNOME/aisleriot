@@ -39,6 +39,7 @@
 #include "ar-sound.h"
 #include "ar-string-utils.h"
 #include "ar-gsettings.h"
+#include "ar-prefs.h"
 
 #ifdef HAVE_CLUTTER
 #include "ar-clutter-embed.h"
@@ -104,6 +105,7 @@ struct _AisleriotWindowPrivate
 
   GtkWidget *game_over_dialog;
   GtkWidget *game_choice_dialog;
+  GtkWidget *prefs_dialog;
   AisleriotStatsDialog *stats_dialog;
 
   GtkWidget *hint_dialog;
@@ -483,8 +485,19 @@ action_preferences_cb (GSimpleAction *action,
                        GVariant *parameter,
                        gpointer user_data)
 {
-  //  AisleriotWindow *window = user_data;
-  //fixme
+  AisleriotWindow *window = user_data;
+  AisleriotWindowPrivate *priv = window->priv;
+
+  if (priv->prefs_dialog) {
+    gtk_window_present (GTK_WINDOW (priv->prefs_dialog));
+    return;
+  }
+
+  priv->prefs_dialog = ar_prefs_new (window);
+  g_signal_connect (priv->prefs_dialog, "destroy",
+                    G_CALLBACK (gtk_widget_destroyed), &priv->prefs_dialog);
+
+  gtk_window_present (GTK_WINDOW (priv->prefs_dialog));
 }
 
 static void
@@ -946,63 +959,49 @@ leave_fullscreen_cb (GtkAction *action,
 #endif
 
 static void
-action_click_to_move_state_cb (GSimpleAction *action,
-                               GVariant *state,
-                               gpointer user_data)
+click_to_move_changed_cb (GSettings *settings,
+                         const char *key,
+                         gpointer user_data)
 {
   AisleriotWindow *window = user_data;
   AisleriotWindowPrivate *priv = window->priv;
   gboolean click_to_move;
 
-  g_simple_action_set_state (action, state);
-
-  click_to_move = g_variant_get_boolean (state);
+  click_to_move = g_settings_get_boolean (settings, key);
 
   aisleriot_game_set_click_to_move (priv->game, click_to_move);
   ar_style_set_click_to_move (priv->board_style, click_to_move);
-
-  g_settings_set_boolean (priv->settings, AR_SETTINGS_CLICK_TO_MOVE_KEY, click_to_move);
 }
 
 static void
-action_enable_sound_state_cb (GSimpleAction *action,
-                              GVariant *state,
-                              gpointer user_data)
+enable_sound_changed_cb (GSettings *settings,
+                         const char *key,
+                         gpointer user_data)
 {
 #ifdef ENABLE_SOUND
-  AisleriotWindow *window = user_data;
-  AisleriotWindowPrivate *priv = window->priv;
-  gboolean sound_enabled;
+  gboolean enabled;
 
-  g_simple_action_set_state (action, state);
+  enabled = g_settings_get_boolean (settings, key);
 
-  sound_enabled = g_variant_get_boolean (state);
-
-  ar_sound_enable (sound_enabled);
-
-  g_settings_set_boolean (priv->settings, AR_SETTINGS_ENABLE_SOUND_KEY, sound_enabled);
+  ar_sound_enable (enabled);
 #endif /* ENABLE_SOUND */
 }
 
-static void
-action_enable_animations_state_cb (GSimpleAction *action,
-                                   GVariant *state,
-                                   gpointer user_data)
-{
 #ifdef HAVE_CLUTTER
+static void
+enable_animations_changed_cb (GSettings *settings,
+                              const char *key,
+                              gpointer user_data)
+{
   AisleriotWindow *window = user_data;
   AisleriotWindowPrivate *priv = window->priv;
   gboolean enabled;
 
-  g_simple_action_set_state (action, state);
-
-  enabled = g_variant_get_boolean (state);
+  enabled = g_settings_get_boolean (settings, key);
 
   ar_style_set_enable_animations (priv->board_style, enabled);
-  
-  g_settings_set (priv->settings, AR_SETTINGS_ENABLE_ANIMATIONS_KEY, sound_enabled);
-#endif /* HAVE_CLUTTER */
 }
+#endif /* HAVE_CLUTTER */
 
 static void
 action_hint_cb (GSimpleAction *action,
@@ -1836,82 +1835,6 @@ game_exception_cb (AisleriotGame *game,
 }
 
 static void
-settings_changed_cb (GtkSettings *settings,
-                     GParamSpec *pspec,
-                     AisleriotWindow *window)
-{
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
-  GAction *action;
-  gboolean enabled;
-  const char *name;
-
-  if (pspec)
-    name = pspec->name;
-  else
-    name = NULL;
-
-#ifdef HAVE_CLUTTER
-  if (name == NULL || strcmp (name, "gtk-enable-animations") == 0)
-    g_object_get (settings, "gtk-enable-animations", &enabled, NULL);
-  else
-#endif /* HAVE_CLUTTER */
-    enabled = FALSE;
-
-  action = g_action_map_lookup_action (G_ACTION_MAP (window), "enable-animations");
-  // fixme  set visible: g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-
-#ifdef ENABLE_SOUND
-  if (name == NULL || strcmp (name, "gtk-enable-event-sounds") == 0)
-    g_object_get (settings, "gtk-enable-event-sounds", &enabled, NULL);
-  else
-#endif /* ENABLE_SOUND */
-    enabled = FALSE;
-
-  action = g_action_map_lookup_action (G_ACTION_MAP (window), "enable-sound");
-  // fixme  set visible: g_simple_action_set_enabled (G_SIMPLE_ACTION (action), enabled);
-#endif /* HAVE_CLUTTER || ENABLE_SOUND */
-}
-
-static void
-screen_changed_cb (GtkWidget *widget,
-                   GdkScreen *previous_screen,
-                   AisleriotWindow *window)
-{
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
-  GdkScreen *screen;
-  GtkSettings *settings;
-
-  screen = gtk_widget_get_screen (widget);
-  if (screen == previous_screen)
-    return;
-
-  if (previous_screen) {
-    g_signal_handlers_disconnect_by_func (gtk_settings_get_for_screen (previous_screen),
-                                          G_CALLBACK (settings_changed_cb),
-                                          window);
-  }
-  
-  if (screen == NULL)
-    return;
-
-#ifdef ENABLE_SOUND
-  ar_sound_init (screen);
-#endif
-
-  settings = gtk_widget_get_settings (widget);
-  settings_changed_cb (settings, NULL, window);
-#ifdef HAVE_CLUTTER
-  g_signal_connect (settings, "notify::gtk-enable-animations",
-                    G_CALLBACK (settings_changed_cb), window);
-#endif
-#ifdef ENABLE_SOUND
-  g_signal_connect (settings, "notify::gtk-enable-event-sounds",
-                    G_CALLBACK (settings_changed_cb), window);
-#endif
-#endif /* HAVE_CLUTTER || ENABLE_SOUND */
-}
-
-static void
 board_status_message_cb (AisleriotBoard *board,
                          const char *status_message,
                          AisleriotWindow *window)
@@ -2039,9 +1962,6 @@ aisleriot_window_init (AisleriotWindow *window)
 
     { "show-toolbar",        action_toggle_state_cb,   NULL, "true",  action_show_toolbar_state_cb      },
     { "show-statusbar",      action_toggle_state_cb,   NULL, "true",  action_show_statusbar_state_cb    },
-    { "enable-sound",        action_toggle_state_cb,   NULL, "true",  action_enable_sound_state_cb      },
-    { "enable-animations",   action_toggle_state_cb,   NULL, "true",  action_enable_animations_state_cb },
-    { "click-to-move",       action_toggle_state_cb,   NULL, "true",  action_click_to_move_state_cb     },
     { "fullscreen",          action_toggle_state_cb,   NULL, "false", action_fullscreen_state_cb        },
   };
   AisleriotWindowPrivate *priv;
@@ -2049,7 +1969,6 @@ aisleriot_window_init (AisleriotWindow *window)
   GAction *action;
   const char *theme_name;
   ArCardTheme *theme;
-  guint i;
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *label, *time_box;
 #ifdef HAVE_CLUTTER
@@ -2059,6 +1978,7 @@ aisleriot_window_init (AisleriotWindow *window)
   priv = window->priv = AISLERIOT_WINDOW_GET_PRIVATE (window);
 
   priv->settings = g_settings_new (AR_SETTINGS_SCHEMA);
+
   priv->state_settings = ar_application_state_settings_new (AR_APPLICATION (g_application_get_default ()),
                                                             AR_STATE_SCHEMA);
 
@@ -2208,38 +2128,16 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->toolbar_visible = g_settings_get_boolean (priv->settings, AR_SETTINGS_SHOW_TOOLBAR_KEY);
   g_action_change_state (action, g_variant_new_boolean (priv->toolbar_visible));
 
-  action = g_action_map_lookup_action (G_ACTION_MAP (window), "click-to-move");
-  g_action_change_state (action, g_variant_new_boolean (g_settings_get_boolean (priv->settings, AR_SETTINGS_CLICK_TO_MOVE_KEY)));
-
 #if 0 // fixme
   action = gtk_action_group_get_action (priv->action_group, "RecentMenu");
   g_object_set (action, "hide-if-empty", FALSE, NULL);
 #endif
-
-#ifdef ENABLE_SOUND
-  action = g_action_map_lookup_action (G_ACTION_MAP (window), "enable-sound");
-  g_action_change_state (action, g_variant_new_boolean (g_settings_get_boolean (priv->settings, AR_SETTINGS_ENABLE_SOUND_KEY)));
-   // fixme  gtk_action_set_visible (action, ar_sound_is_available ());
-#endif /* ENABLE_SOUND */
 
   action = g_action_map_lookup_action (G_ACTION_MAP (window), "show-statusbar");
   priv->statusbar_visible = g_settings_get_boolean (priv->settings, AR_SETTINGS_SHOW_STATUSBAR_KEY);
   g_action_change_state (action, g_variant_new_boolean (priv->statusbar_visible));
 
   set_fullscreen_actions (window, FALSE);
-
-#ifdef HAVE_CLUTTER
-  action = g_action_map_lookup_action (G_ACTION_MAP (window), "enable-animations");
-  g_action_change_state (action, g_variant_new_boolean (g_settings_get_boolean (priv->settings, AR_SETTINGS_ENABLE_ANIMATIONS_KEY));
-
-#endif /* HAVE_CLUTTER */
-
-#if defined(HAVE_CLUTTER) || defined(ENABLE_SOUND)
-  /* Set the action visibility and listen for animation and sound mode changes */
-  screen_changed_cb (GTK_WIDGET (window), NULL, window);
-  g_signal_connect (window, "screen-changed",
-                    G_CALLBACK (screen_changed_cb), window);
-#endif /* HAVE_CLUTTER || ENABLE_SOUND */
 
   /* Now set up the widgets */
   main_vbox = gtk_vbox_new (FALSE, 0);
@@ -2282,6 +2180,21 @@ aisleriot_window_init (AisleriotWindow *window)
   /* Fallback, if there is no saved size */
   gtk_window_set_default_size (GTK_WINDOW (window), MIN_WIDTH, MIN_HEIGHT);
 
+  /* Prefs */
+  click_to_move_changed_cb (priv->settings, AR_SETTINGS_CLICK_TO_MOVE_KEY, window);
+  g_signal_connect (priv->settings, "changed::" AR_SETTINGS_CLICK_TO_MOVE_KEY,
+                    G_CALLBACK (click_to_move_changed_cb), window);
+
+  enable_sound_changed_cb (priv->settings, AR_SETTINGS_ENABLE_SOUND_KEY, window);
+  g_signal_connect (priv->settings, "changed::" AR_SETTINGS_ENABLE_SOUND_KEY,
+                    G_CALLBACK (enable_sound_changed_cb), window);
+
+#ifdef HAVE_CLUTTER
+  enable_animations_changed_cb (priv->settings, AR_SETTINGS_ENABLE_ANIMATIONSKEY, window);
+  g_signal_connect (priv->settings, "changed::" AR_SETTINGS_ENABLE_ANIMATIONS_KEY,
+                    G_CALLBACK (enable_animations_changed_cb), window);
+#endif
+
   /* Restore window state */
   ar_gsettings_bind_window_state (AR_SETTINGS_WINDOW_STATE_PATH, GTK_WINDOW (window));
 
@@ -2308,6 +2221,10 @@ aisleriot_window_dispose (GObject *object)
   if (priv->game_over_dialog) {
     gtk_widget_destroy (priv->game_over_dialog);
     g_assert (priv->game_over_dialog == NULL);
+  }
+  if (priv->prefs_dialog) {
+    gtk_widget_destroy (priv->prefs_dialog);
+    g_assert (priv->prefs_dialog == NULL);
   }
   if (priv->game_choice_dialog) {
     gtk_widget_destroy (priv->game_choice_dialog);
