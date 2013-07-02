@@ -170,6 +170,7 @@ EXTRA_DIST = \
 	$(allicons)		\
 	$(schema_in_files)	\
 	$(gsettingsschema_in_files) \
+	appmenu.ui \
 	aisleriot-ui.xml	\
 	aisleriot-debug-ui.xml	\
 	game-names.h

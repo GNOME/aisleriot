@@ -202,11 +202,35 @@ static GActionEntry app_entries[] = {
 static void
 ar_application_startup (GApplication *application)
 {
+  const struct { 
+    const char *action_name;
+    const char *accel;
+    const char *parameter_type;
+    const char *parameter_string;
+  } const accels[] = {
+#define ENTRY_FULL(n, a, pt, ps) { "win." n, a, pt, ps }
+#define ENTRY(n, a) ENTRY_FULL (n, a, NULL, NULL)
+    ENTRY ("new-game",     "<primary>N"       ),
+    ENTRY ("restart-game", "<primary>R"       ),
+    ENTRY ("select-game",  "<primary>O"       ),
+    ENTRY ("close-window", "<primary>W"       ),
+    ENTRY ("fullscreen",   "F11"              ),
+    ENTRY ("undo",         "<primary>Z"       ),
+    ENTRY ("redo",         "<primary><shift>Z"),
+    ENTRY ("hint",         "<primary>H"       ),
+    ENTRY ("deal",         "<primary>D"       ),
+    ENTRY_FULL ("help", "F1",        "s",  "'general'" ),
+    ENTRY_FULL ("help", "<shift>F1", "s",  "'general'" ),
+#undef ENTRY
+#undef ENTRY_FULL
+  };
+  GtkApplication *gtk_application = GTK_APPLICATION (application);
   ArApplication *self = AR_APPLICATION (application);
   ArApplicationPrivate *priv = self->priv;
-  GMenu *menu;
-  GMenu *section;
+  GtkBuilder *builder;
+  GError *err = NULL;
   char *path;
+  guint i;
 
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
@@ -230,38 +254,37 @@ ar_application_startup (GApplication *application)
 
   gtk_window_set_default_icon_name (priv->freecell ? "gnome-freecell" : "gnome-aisleriot");
 
+  for (i = 0; i < G_N_ELEMENTS (accels); i++) {
+    GVariant *parameter;
+
+    if (accels[i].parameter_type) {
+      parameter = g_variant_parse (G_VARIANT_TYPE (accels[i].parameter_type),
+                                   accels[i].parameter_string,
+                                   NULL, NULL, &err);
+      g_assert_no_error (err);
+    } else
+      parameter = NULL;
+
+    gtk_application_add_accelerator (gtk_application,
+                                     accels[i].accel,
+                                     accels[i].action_name,
+                                     parameter);
+
+  }
+
   g_action_map_add_action_entries (G_ACTION_MAP (self),
                                    app_entries, G_N_ELEMENTS (app_entries),
                                    self);
 
-  menu = g_menu_new ();
-
-  section = g_menu_new ();
-  g_menu_append (section, _("New Game"), "app.new-game");
-  g_menu_append (section, _("Change Game"), "app.change-game");
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-
-  section = g_menu_new ();
-  g_menu_append (section, _("Statistics"), "app.statistics");
-  g_menu_append (section, _("Fullscreen"), "app.fullscreen");
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-
-  section = g_menu_new ();
-  g_menu_append (section, _("Help"), "app.help");
-  g_menu_append (section, _("About Aisleriot"), "app.about");
-  g_menu_append (section, _("Quit"), "app.quit");
-
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
+  builder = gtk_builder_new ();
+  gtk_builder_add_from_resource (builder,
+                                 "/org/gnome/aisleriot/ui/menus.ui",
+                                 &err);
+  g_assert_no_error (err);
 
   gtk_application_set_app_menu (GTK_APPLICATION (application),
-                                G_MENU_MODEL (menu));
-
-  gtk_application_add_accelerator (GTK_APPLICATION (application),
-                                   "F11", "app.fullscreen", NULL);
-  gtk_application_add_accelerator (GTK_APPLICATION (application),
-                                   "F1", "app.help", NULL);
-
-  gtk_window_set_default_icon_name ("gnome-aisleriot");
+                                G_MENU_MODEL (gtk_builder_get_object (builder, "appmenu")));
+  g_object_unref (builder);
 
   priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
 
