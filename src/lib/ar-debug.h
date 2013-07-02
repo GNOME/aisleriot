@@ -34,12 +34,13 @@ typedef enum {
   AR_DEBUG_SCHEME        = 1 << 4,
   AR_DEBUG_SOUND         = 1 << 5,
   AR_DEBUG_WINDOW_STATE  = 1 << 6,
+  AR_DEBUG_APPMENU       = 1 << 7,
 
-  AR_DEBUG_GAME_DRAWING  = 1 << 7,
-  AR_DEBUG_GAME_EVENTS   = 1 << 8,
-  AR_DEBUG_GAME_KEYNAV   = 1 << 9,
-  AR_DEBUG_GAME_SIZING   = 1 << 10,
-  AR_DEBUG_GAME_STYLE    = 1 << 11
+  AR_DEBUG_GAME_DRAWING  = 1 << 8,
+  AR_DEBUG_GAME_EVENTS   = 1 << 9,
+  AR_DEBUG_GAME_KEYNAV   = 1 << 10,
+  AR_DEBUG_GAME_SIZING   = 1 << 11,
+  AR_DEBUG_GAME_STYLE    = 1 << 12
 } ArDebugFlags;
 
 #ifdef GNOME_ENABLE_DEBUG

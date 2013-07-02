@@ -37,6 +37,7 @@ ar_debug_init (void)
     { "scheme",       AR_DEBUG_SCHEME       },
     { "sound",        AR_DEBUG_SOUND        },
     { "window-state", AR_DEBUG_WINDOW_STATE },
+    { "appmenu",      AR_DEBUG_APPMENU      },
 
     { "game-drawing", AR_DEBUG_GAME_DRAWING },
     { "game-events",  AR_DEBUG_GAME_EVENTS  },

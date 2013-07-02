@@ -2437,7 +2437,11 @@ aisleriot_window_new (GtkApplication *application)
 {
   return g_object_new (AISLERIOT_TYPE_WINDOW,
                        "application", application,
+#ifdef GNOME_ENABLE_DEBUG
+                       "show-menubar", ar_debug_on (AR_DEBUG_APPMENU),
+#else
                        "show-menubar", FALSE,
+#endif
                        NULL);
 }
 
