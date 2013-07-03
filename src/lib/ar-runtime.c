@@ -287,9 +287,6 @@ ar_runtime_init (const char *name)
   }
 #endif /* G_OS_WIN32 */
 
-  /* This also initialises gthread */
-  g_type_init ();
-
   /* May call any glib function after this point */
 
   ar_profilestart ("ar_runtime_init");
