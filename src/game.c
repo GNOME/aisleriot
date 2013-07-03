@@ -88,6 +88,7 @@ struct _AisleriotGame
 {
   GObject parent_instance;
 
+  GSettings *options_settings;
   GSettings *scores_settings;
 
   GPtrArray *slots;
@@ -1223,6 +1224,7 @@ aisleriot_game_finalize (GObject *object)
 
   free (game->score);
 
+  g_clear_object (&game->options_settings);
   g_clear_object (&game->scores_settings);
 
   app_game = NULL;
@@ -1731,8 +1733,10 @@ aisleriot_game_load_game (AisleriotGame *game,
                           const char *game_module,
                           GError **error)
 {
+  ArApplication *app = AR_APP;
   GObject *object = G_OBJECT (game);
   GError *err = NULL;
+  guint options;
   int i;
 
   g_return_val_if_fail (game_module != NULL && game_module[0] != '\0', FALSE);
@@ -1785,8 +1789,14 @@ aisleriot_game_load_game (AisleriotGame *game,
   set_game_state (game, GAME_LOADED);
 
   g_clear_object (&game->scores_settings);
-  game->scores_settings = ar_application_scores_settings_new (AR_APPLICATION (g_application_get_default ()),
-                                                              game_module);
+  game->scores_settings = ar_application_scores_settings_new (app, game_module);
+
+  g_clear_object (&game->options_settings);
+  game->options_settings = ar_application_options_settings_new (app, game_module);
+
+  /* Restore options */
+  options = g_settings_get_uint (game->options_settings, AR_OPTIONS_KEY);
+  aisleriot_game_change_options (game, AISLERIOT_GAME_OPTIONS_MAX, options);
 
   g_object_notify (object, "game-file");
 
@@ -2402,6 +2412,10 @@ aisleriot_game_change_options (AisleriotGame *game,
   game_scm_call (game->lambdas[APPLY_OPTIONS_LAMBDA], &options_list, 1, NULL);
 
   scm_remember_upto_here_1 (options_list);
+
+  /* Remember options */
+  g_settings_set_uint (game->options_settings, AR_OPTIONS_KEY, value);
+
   return value;
 }
 

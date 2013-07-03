@@ -27,10 +27,13 @@
 #include "ar-debug.h"
 #include "ar-defines.h"
 #include "util.h"
+#include "game.h"
 
 typedef struct {
   AisleriotWindow *window;
   GSettings *settings;
+  GtkWidget *game_label;
+  GtkWidget *options_box;
   GtkWidget *click_checkbutton;
   GtkWidget *sound_checkbutton;
   GtkWidget *animations_checkbutton;
@@ -62,6 +65,74 @@ enum {
 };
 
 /* private functions */
+
+static void
+apply_option (GtkToggleButton *button,
+              guint32 *changed_mask,
+              guint32 *changed_value)
+{
+  gboolean active;
+  guint32 value;
+
+  value = GPOINTER_TO_UINT (g_object_get_data (G_OBJECT (button), "option-value"));
+
+  active = gtk_toggle_button_get_active (button);
+
+  /* g_print ("option %s changed, value=%x set=%d\n", gtk_button_get_label (GTK_BUTTON (button)), value, active); */
+
+  *changed_mask |= value;
+  if (active)
+    *changed_value |= value;
+}
+
+static void
+option_toggled_cb (GtkToggleButton *button,
+                   ArPrefs *prefs)
+{
+  ArPrefsPrivate *priv = prefs->priv;
+  AisleriotGame *game;
+  gboolean active;
+  guint32 changed_mask = 0, changed_value = 0;
+
+  /* Don't change the options if we're just installing the options menu */
+  // if (priv->changing_game_type)
+   //   return;
+
+  active = gtk_toggle_button_get_active (button);
+
+  /* If we're toggling OFF a radio button, don't redeal now,
+   * since we'll get called another time right again when the new option
+   * is toggled ON.
+   * The game options will be updated when we get the toggled signal
+   * for the newly active action in this group.
+   */
+  if (GTK_IS_RADIO_BUTTON (button) && !active)
+    return;
+
+  if (GTK_IS_RADIO_BUTTON (button)) {
+    GSList *group, *l;
+
+    /* If toggling ON a radio button, we didn't turn off the other option
+     * earlier. So we need to refresh the whole group.
+     */
+
+    group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (button));
+
+    for (l = group; l; l = l->next) {
+      apply_option (GTK_TOGGLE_BUTTON (l->data), &changed_mask, &changed_value);
+    }
+  } else {
+    apply_option (button, &changed_mask, &changed_value);
+  }
+
+  game = ar_window_get_game (priv->window);
+
+  changed_value = aisleriot_game_change_options (game, changed_mask, changed_value);
+
+  /* Now re-deal, so the option is applied */
+  aisleriot_game_new_game (game);
+}
+
 
 static void
 response_cb (GtkWidget *dialog,
@@ -151,17 +222,76 @@ G_DEFINE_TYPE (ArPrefs, ar_prefs, GTK_TYPE_DIALOG)
 static void
 ar_prefs_init (ArPrefs *prefs)
 {
-  ArApplication *application = AR_APP;
   ArPrefsPrivate *priv;
-  GList *list, *l;
-  GtkListStore *store;
-  ArCardThemes *card_themes;
 
   priv = prefs->priv = G_TYPE_INSTANCE_GET_PRIVATE (prefs, AR_TYPE_PREFS, ArPrefsPrivate);
 
   priv->settings = g_settings_new (AR_SETTINGS_SCHEMA);
 
   gtk_widget_init_template (GTK_WIDGET (prefs));
+}
+
+static void
+ar_prefs_constructed (GObject *object)
+{
+  ArPrefs *prefs = AR_PREFS (object);
+  ArPrefsPrivate *priv = prefs->priv;
+  ArApplication *application = AR_APP;
+  GList *list, *l;
+  GtkListStore *store;
+  ArCardThemes *card_themes;
+  AisleriotGame *game;
+  GtkWidget *widget, *radio_button = NULL;
+  char *game_name;
+
+  G_OBJECT_CLASS (ar_prefs_parent_class)->constructed (object);
+
+  g_assert (priv->window != NULL);
+
+  /* Populate the game options */
+  game = ar_window_get_game (priv->window);
+  game_name = aisleriot_game_get_name (game);
+  gtk_label_set_text (GTK_LABEL (priv->game_label), game_name);
+  g_free (game_name);  
+
+  /* To get radio buttons in the menu insert an atom into the option list
+   * in your scheme code. To get back out of radio-button mode insert 
+   * another atom. The exact value of the atoms is irrelevant - they merely
+   * trigger a toggle - but descriptive names like begin-exclusive and
+   * end-exclusive are probably a good idea.
+   */
+  list = aisleriot_game_get_options (game);
+  if (list == NULL) {
+    widget = gtk_label_new (_("This game has no options."));
+    gtk_box_pack_start (GTK_BOX (priv->options_box), widget, FALSE, FALSE, 0);
+    gtk_widget_show (widget);
+  } else for (l = list; l != NULL; l = l->next) {
+    AisleriotGameOption *option = (AisleriotGameOption *) l->data;
+
+    if (option->type == AISLERIOT_GAME_OPTION_CHECK) {
+      widget = gtk_check_button_new_with_label (option->display_name);
+      radio_button = NULL;
+    } else {
+      widget = gtk_radio_button_new_with_label (NULL, option->display_name);
+
+      if (radio_button)
+        gtk_radio_button_join_group (GTK_RADIO_BUTTON (widget), GTK_RADIO_BUTTON (radio_button));
+     
+      radio_button = widget;
+    }
+
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), option->set);
+    g_signal_connect (widget, "toggled",
+                      G_CALLBACK (option_toggled_cb), prefs);
+
+    gtk_box_pack_start (GTK_BOX (priv->options_box), widget, FALSE, FALSE, 0);
+    gtk_widget_show (widget);
+
+    g_object_set_data (G_OBJECT (widget), "option-value", GUINT_TO_POINTER (option->value));
+
+    aisleriot_game_option_free (option);
+  }
+  g_list_free (list); /* elements have been consumed */
 
   /* Populate the card theme combo */
   store = priv->theme_store = gtk_list_store_new (2, G_TYPE_STRING, AR_TYPE_CARD_THEME_INFO);
@@ -249,6 +379,7 @@ ar_prefs_class_init (ArPrefsClass *klass)
 
   g_type_class_add_private (klass, sizeof (ArPrefsPrivate));
 
+  object_class->constructed = ar_prefs_constructed;
   object_class->finalize = ar_prefs_finalize;
   object_class->set_property = ar_prefs_set_property;
 
@@ -267,6 +398,8 @@ ar_prefs_class_init (ArPrefsClass *klass)
                           G_PARAM_STATIC_STRINGS));
 
   gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/aisleriot/ui/prefs.ui");
+  gtk_widget_class_bind_child (widget_class, ArPrefsPrivate, game_label);
+  gtk_widget_class_bind_child (widget_class, ArPrefsPrivate, options_box);
   gtk_widget_class_bind_child (widget_class, ArPrefsPrivate, click_checkbutton);
   gtk_widget_class_bind_child (widget_class, ArPrefsPrivate, sound_checkbutton);
   gtk_widget_class_bind_child (widget_class, ArPrefsPrivate, animations_checkbutton);

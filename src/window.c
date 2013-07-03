@@ -79,7 +79,6 @@ struct _AisleriotWindowPrivate
 {
   GSettings *settings;
   GSettings *state_settings;
-  GSettings *game_options_settings;
 
   AisleriotGame *game;
   ArStyle *board_style;
@@ -1059,170 +1058,6 @@ action_deal_cb (GSimpleAction *action,
   aisleriot_game_deal_cards (priv->game);
 }
 
-/* The "Game Options" menu */
-
-#if 0
-static void
-apply_option (GtkToggleAction *action,
-              guint32 *changed_mask,
-              guint32 *changed_value)
-{
-  gboolean active;
-  const char *action_name;
-  guint32 value;
-
-  active = gtk_toggle_action_get_active (action);
-
-  action_name = gtk_action_get_name (GTK_ACTION (action));
-  value = g_ascii_strtoull (action_name + strlen ("Option"), NULL, 10);
-
-  /* g_print ("option %s changed, value=%x set=%d\n", action_name, value, active); */
-
-  *changed_mask |= value;
-  if (active)
-    *changed_value |= value;
-}
-
-static void
-option_cb (GtkToggleAction *action,
-           AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  gboolean active;
-  guint32 changed_mask = 0, changed_value = 0, value;
-
-  /* Don't change the options if we're just installing the options menu */
-  if (priv->changing_game_type)
-    return;
-
-  active = gtk_toggle_action_get_active (action);
-
-  /* If we're toggling OFF a radio action, don't redeal now,
-   * since we'll get called another time right again when the new option
-   * is toggled ON.
-   * The game options will be updated when we get the toggled signal
-   * for the newly active action in this group.
-   */
-  if (GTK_IS_RADIO_ACTION (action) &&
-      !active)
-    return;
-
-  if (GTK_IS_RADIO_ACTION (action)) {
-    GSList *group, *l;
-
-    /* If toggling ON a radio action, we didn't turn off the other option
-     * earlier. So we need to refresh the whole group.
-     */
-
-    group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
-
-    for (l = group; l; l = l->next) {
-      apply_option (GTK_TOGGLE_ACTION (l->data), &changed_mask, &changed_value);
-    }
-  } else {
-    apply_option (action, &changed_mask, &changed_value);
-  }
-
-  value = aisleriot_game_change_options (priv->game, changed_mask, changed_value);
-
-  g_settings_set_uint (priv->game_options_settings, AR_OPTIONS_KEY, value);
-
-  /* Now re-deal, so the option is applied */
-  aisleriot_game_new_game (priv->game);
-}
-
-#endif // 0
-
-static void
-install_options_menu (AisleriotWindow *window)
-{
-#if 0
-  AisleriotWindowPrivate *priv = window->priv;
-  GList *options, *l;
-  int options_value = 0;
-  GSList *radiogroup = NULL;
-  int radion = 0;
-
-  if (priv->options_merge_id != 0) {
-    gtk_ui_manager_remove_ui (priv->ui_manager, priv->options_merge_id);
-    priv->options_merge_id = 0;
-  }
-
-  if (priv->options_group) {
-    gtk_ui_manager_remove_action_group (priv->ui_manager, priv->options_group);
-    priv->options_group = NULL;
-  }
-
-  /* See gtk bug #424448 */
-  gtk_ui_manager_ensure_update (priv->ui_manager);
-
-  /* Only apply the options if they exist. Otherwise the options in the menu
-   * and the real game options are out of sync until first changed by the user.
-   */
-  options_value = g_settings_get_uint (priv->game_options_settings, AR_OPTIONS_KEY);
-  aisleriot_game_change_options (priv->game, AISLERIOT_GAME_OPTIONS_MAX, options_value);
-
-  /* To get radio buttons in the menu insert an atom into the option list
-   * in your scheme code. To get back out of radio-button mode insert 
-   * another atom. The exact value of the atoms is irrelevant - they merely
-   * trigger a toggle - but descriptive names like begin-exclusive and
-   * end-exclusive are probably a good idea.
-   */
-  options = aisleriot_game_get_options (priv->game);
-  if (!options)
-    return;
-
-  priv->options_group = gtk_action_group_new ("Options");
-  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->options_group, -1);
-  g_object_unref (priv->options_group);
-
-  priv->options_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
-
-  for (l = options; l != NULL; l = l->next) {
-    AisleriotGameOption *option = (AisleriotGameOption *) l->data;
-    GtkToggleAction *action;
-    gchar actionname[32];
-
-    g_snprintf (actionname, sizeof (actionname), "Option%u", option->value);
-
-    if (option->type == AISLERIOT_GAME_OPTION_CHECK) {
-      action = gtk_toggle_action_new (actionname,
-                                      option->display_name,
-                                      NULL,
-                                      NULL /* tooltip */);
-      radiogroup = NULL; /* make sure to start a new radio group when the next RADIO option comes */
-      radion = 0;
-    } else {
-      action = GTK_TOGGLE_ACTION (gtk_radio_action_new (actionname,
-                                                        option->display_name,
-                                                        NULL,
-                                                        NULL /* tooltip */,
-                                                        radion++));
-      gtk_radio_action_set_group (GTK_RADIO_ACTION (action),
-                                  radiogroup);
-      radiogroup = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
-    }
-
-    gtk_toggle_action_set_active (action, option->set);
-    g_signal_connect (action, "toggled",
-                      G_CALLBACK (option_cb), window);
-
-    gtk_action_group_add_action (priv->options_group, GTK_ACTION (action));
-    g_object_unref (action);
-
-    gtk_ui_manager_add_ui (priv->ui_manager,
-                           priv->options_merge_id,
-                           OPTIONS_MENU_PATH,
-                           actionname, actionname,
-                           GTK_UI_MANAGER_MENUITEM, FALSE);
-
-    aisleriot_game_option_free (option);
-  }
-
-  g_list_free (options);
-#endif // 0
-}
-
 /* The "Recent Games" menu */
 
 /*
@@ -1352,16 +1187,6 @@ sync_game_state (AisleriotGame *game,
 
   state = aisleriot_game_get_state (priv->game);
 
-#if 0 // fixme
-  /* Can only change options before the game start.
-   * Set all the options insensitive, not the menu item in the main menu,
-   * since the HIG disapproves of that.
-   */
-  if (priv->options_group != NULL) {
-    gtk_action_group_set_sensitive (priv->options_group, state <= GAME_BEGIN);
-  }
-#endif
-
   /* Can only get hints while the game is running */
   action = g_action_map_lookup_action (G_ACTION_MAP (window), "hint");
   g_simple_action_set_enabled (G_SIMPLE_ACTION (action),
@@ -1440,11 +1265,6 @@ game_type_changed_cb (AisleriotGame *game,
 
   game_name = aisleriot_game_get_name (game);
 
-#if 0 // fixme
-  g_object_set (priv->action[ACTION_HELP_GAME], "label", game_name, NULL);
-  g_object_set (priv->action[ACTION_OPTIONS_MENU], "label", game_name, NULL);
-#endif
-
   gtk_window_set_title (GTK_WINDOW (window), game_name);
 
   g_free (game_name);
@@ -1452,11 +1272,7 @@ game_type_changed_cb (AisleriotGame *game,
   game_module = aisleriot_game_get_game_module (game);
   add_recently_played_game (window, game_module);
 
-  g_clear_object (&priv->game_options_settings);
-  priv->game_options_settings = ar_application_options_settings_new (AR_APPLICATION (g_application_get_default ()),
-                                                                     game_module);
-
-  install_options_menu (window);
+  /* install_options_menu (window); */
 
   update_statistics_display (window);
 
@@ -1999,7 +1815,6 @@ aisleriot_window_dispose (GObject *object)
   }
 
   g_clear_object (&priv->state_settings);
-  g_clear_object (&priv->game_options_settings);
 
   G_OBJECT_CLASS (aisleriot_window_parent_class)->dispose (object);
 }
@@ -2205,4 +2020,13 @@ aisleriot_window_get_game_module (AisleriotWindow *window)
   AisleriotWindowPrivate *priv = window->priv;
 
   return aisleriot_game_get_game_module (priv->game);
+}
+
+
+AisleriotGame *
+ar_window_get_game (AisleriotWindow *window)
+{
+  AisleriotWindowPrivate *priv = window->priv;
+
+  return priv->game;
 }
