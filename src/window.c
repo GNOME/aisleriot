@@ -1378,170 +1378,30 @@ aisleriot_window_take_card_theme (AisleriotWindow *window,
   ar_style_set_card_theme (priv->board_style, theme);
 }
 
-#if 0
 static void
-card_theme_changed_cb (GtkToggleAction *action,
+card_theme_changed_cb (GSettings *settings,
+                       const char *key,
                        AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  ArCardThemeInfo *current_theme_info = NULL, *new_theme_info;
-  ArCardTheme *theme;
   const char *theme_name;
+  ArCardTheme *theme;
 
-  if (!gtk_toggle_action_get_active (action))
-    return;
+  g_settings_get (settings, key, "&s", &theme_name);
 
-  new_theme_info = g_object_get_data (G_OBJECT (action), "theme-info");
-  g_assert (new_theme_info != NULL);
-
-  if (priv->theme) {
-    current_theme_info = ar_card_theme_get_theme_info (priv->theme);
-  }
-
-  if (ar_card_theme_info_equal (new_theme_info, current_theme_info))
-    return;
-
-  theme = ar_card_themes_get_theme (priv->theme_manager, new_theme_info);
+  theme = ar_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
   if (!theme) {
-    GSList *group, *l;
-
-    gtk_widget_error_bell (GTK_WIDGET (window));
-
-    /* Set this action insensitive so we don't try again */
-    gtk_action_set_sensitive (GTK_ACTION (action), FALSE);
-
-    /* Re-set the radio action of the current theme to active */
-    group = gtk_radio_action_get_group (GTK_RADIO_ACTION (action));
-    for (l = group; l != NULL; l = l->next) {
-      GtkToggleAction *theme_action = GTK_TOGGLE_ACTION (l->data);
-      ArCardThemeInfo *info;
-
-      if (theme_action == action)
-        continue;
-
-      info = g_object_get_data (G_OBJECT (theme_action), "theme-info");
-      if (!ar_card_theme_info_equal (info, current_theme_info))
-        continue;
-
-      /* The check at the top will prevent an infinite loop */
-      gtk_toggle_action_set_active (theme_action, TRUE);
-      break;
-    }
-
-    return;
+    /* Last-ditch fallback: try getting *any* theme */
+    theme = ar_card_themes_get_theme_any (priv->theme_manager);
   }
-
-  aisleriot_window_take_card_theme (window, theme);
-
-  theme_name = ar_card_theme_info_get_persistent_name (new_theme_info);
-  g_settings_set_string (priv->settings, AR_SETTINGS_CARD_THEME_KEY, theme_name);
-}
-#endif // 0
-
-static void
-install_card_theme_menu (ArCardThemes *theme_manager,
-                         AisleriotWindow *window)
-{
-#if 0
-  AisleriotWindowPrivate *priv = window->priv;
-  GList *list, *l;
-  GSList *radio_group = NULL;
-  ArCardThemeInfo *current_theme_info;
-  guint i = 0;
-
-  /* Clean out the old menu */
-  if (priv->card_themes_merge_id != 0) {
-    gtk_ui_manager_remove_ui (priv->ui_manager, priv->card_themes_merge_id);
-    priv->card_themes_merge_id = 0;
-  }
-  if (priv->card_themes_group != NULL) {
-    gtk_ui_manager_remove_action_group (priv->ui_manager, priv->card_themes_group);
-    priv->card_themes_group = NULL;
-  }
-
-  /* See gtk bug #424448 */
-  gtk_ui_manager_ensure_update (priv->ui_manager);
-
-  list = ar_card_themes_get_themes (priv->theme_manager);
-
-  /* No need to install the menu when there's only one theme available anyway */
-  if (list == NULL || list->next == NULL) {
-    g_list_foreach (list, (GFunc) ar_card_theme_info_unref, NULL);
-    g_list_free (list);
-    return;
-  }
-
-  priv->card_themes_group = gtk_action_group_new ("Theme");
-  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->card_themes_group, -1);
-  g_object_unref (priv->card_themes_group);
-
-  priv->card_themes_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
-
-  if (priv->theme) {
-    current_theme_info = ar_card_theme_get_theme_info (priv->theme);
+  if (theme) {
+    aisleriot_window_take_card_theme (window, theme /* adopts */);
   } else {
-    current_theme_info = NULL;
+    /* FIXMEchpe: FUCK, what now? Panic! */
+    /* Put up some UI, and exit! */
+    g_assert_not_reached ();
   }
-
-  for (l = list; l != NULL; l = l->next) {
-    ArCardThemeInfo *info = (ArCardThemeInfo *) l->data;
-    GtkRadioAction *action;
-    char actionname[32];
-    char *display_name, *tooltip;
-
-    display_name = g_strdup (ar_card_theme_info_get_display_name (info));
-
-    g_snprintf (actionname, sizeof (actionname), "Theme%d", i);
-    tooltip = g_strdup_printf (_("Display cards with “%s” card theme"), display_name);
-    action = gtk_radio_action_new (actionname, display_name, tooltip, NULL, i);
-    g_free (display_name);
-    g_free (tooltip);
-
-    gtk_radio_action_set_group (action, radio_group);
-    radio_group = gtk_radio_action_get_group (action);
-
-    /* Check if this is the current theme's action. Do this before connecting the callback */
-    if (ar_card_theme_info_equal (info, current_theme_info)) {
-      gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
-    }
-
-    /* We steal the data from the list */
-    g_object_set_data_full (G_OBJECT (action), "theme-info",
-                            l->data, (GDestroyNotify) ar_card_theme_info_unref);
-    l->data = NULL;
-
-    g_signal_connect (action, "toggled",
-                      G_CALLBACK (card_theme_changed_cb), window);
-    gtk_action_group_add_action (priv->card_themes_group, GTK_ACTION (action));
-    g_object_unref (action);
-
-    gtk_ui_manager_add_ui (priv->ui_manager,
-                           priv->card_themes_merge_id,
-                           CARD_THEMES_MENU_PATH,
-                           actionname, actionname,
-                           GTK_UI_MANAGER_MENUITEM, FALSE);
-
-    ++i;
-  }
-
-  /* The list elements' data's refcount has been adopted above */
-  g_list_free (list);
-#endif // 0
 }
-
-#if 0 //fixme
-static void
-view_menu_activate_cb (GtkAction *action,
-                       AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-
-  /* Request the list of themes. If it wasn't updated yet, the "changed"
-   * callback will build the card themes submenu.
-   */
-  ar_card_themes_request_themes (priv->theme_manager);
-}
-#endif
 
 /* Callbacks */
 
@@ -1967,26 +1827,24 @@ aisleriot_window_init (AisleriotWindow *window)
   AisleriotWindowPrivate *priv;
   GtkWidget *main_vbox;
   GAction *action;
-  const char *theme_name;
-  ArCardTheme *theme;
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *label, *time_box;
 #ifdef HAVE_CLUTTER
   ClutterContainer *stage;
 #endif
+  ArApplication *app = AR_APP;
 
   priv = window->priv = AISLERIOT_WINDOW_GET_PRIVATE (window);
 
   priv->settings = g_settings_new (AR_SETTINGS_SCHEMA);
 
-  priv->state_settings = ar_application_state_settings_new (AR_APPLICATION (g_application_get_default ()),
-                                                            AR_STATE_SCHEMA);
+  priv->state_settings = ar_application_state_settings_new (app, AR_STATE_SCHEMA);
 
   priv->fullscreen = FALSE;
 
   priv->game = aisleriot_game_new ();
 
-  priv->theme_manager = ar_card_themes_new ();
+  priv->theme_manager = ar_application_get_card_themes (app);
 
   priv->board_style = ar_style_new ();
 
@@ -2018,20 +1876,6 @@ aisleriot_window_init (AisleriotWindow *window)
 #else
   priv->board = AISLERIOT_BOARD (aisleriot_board_new (priv->board_style, priv->game));
 #endif /* HAVE_CLUTTER */
-
-  g_settings_get (priv->settings, AR_SETTINGS_CARD_THEME_KEY, "&s", &theme_name);
-  theme = ar_card_themes_get_theme_by_name (priv->theme_manager, theme_name);
-  if (!theme) {
-    /* Last-ditch fallback: try getting *any* theme */
-    theme = ar_card_themes_get_theme_any (priv->theme_manager);
-  }
-  if (theme) {
-    aisleriot_window_take_card_theme (window, theme /* adopts */);
-  } else {
-    /* FIXMEchpe: FUCK, what now? Panic! */
-    /* Put up some UI, and exit! */
-    g_assert_not_reached ();
-  }
 
   /* GAction setup */
   g_action_map_add_action_entries (G_ACTION_MAP (window),
@@ -2101,24 +1945,6 @@ aisleriot_window_init (AisleriotWindow *window)
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->toolbar),
                                GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
 #endif
-
-#if 0 // fixme
-  /* Defer building the card themes menu until its parent's menu is opened */
-  action = gtk_action_group_get_action (priv->action_group, "ViewMenu");
-  g_signal_connect (action, "activate",
-                    G_CALLBACK (view_menu_activate_cb), window);
-#endif
-
-  /* It's possible that the themes list has already been loaded (e.g.
-   * if the theme loading above involved the fallback); in that case
-   * we need to update the menu right now.
-   */
-  if (ar_card_themes_get_themes_loaded (priv->theme_manager))
-    install_card_theme_menu (priv->theme_manager, window);
-
-  /* Rebuild the themes menu when the themes list changes */
-  g_signal_connect (priv->theme_manager, "changed",
-                    G_CALLBACK (install_card_theme_menu), window);
 
   /* The actions and menus are done. The
    * recent games menu will be updated when the initial game loads.
@@ -2195,6 +2021,10 @@ aisleriot_window_init (AisleriotWindow *window)
                     G_CALLBACK (enable_animations_changed_cb), window);
 #endif
 
+  card_theme_changed_cb (priv->settings, AR_SETTINGS_CARD_THEME_KEY, window);
+  g_signal_connect (priv->settings, "changed::" AR_SETTINGS_CARD_THEME_KEY,
+                    G_CALLBACK (card_theme_changed_cb), window);
+
   /* Restore window state */
   ar_gsettings_bind_window_state (AR_SETTINGS_WINDOW_STATE_PATH, GTK_WINDOW (window));
 
@@ -2247,7 +2077,6 @@ aisleriot_window_dispose (GObject *object)
     priv->load_idle_id = 0;
   }
 
-  g_clear_object (&priv->settings);
   g_clear_object (&priv->state_settings);
   g_clear_object (&priv->game_options_settings);
 
@@ -2264,11 +2093,12 @@ aisleriot_window_finalize (GObject *object)
   g_object_unref (priv->board_style);
 #endif /* HAVE_CLUTTER */
 
-  if (priv->theme) {
-    g_object_unref (priv->theme);
-  }
+  g_clear_object (&priv->theme);
 
-  g_object_unref (priv->theme_manager);
+  g_signal_handlers_disconnect_matched (priv->settings,
+                                        G_SIGNAL_MATCH_DATA,
+                                        0, 0, NULL, NULL, window);
+  g_clear_object (&priv->settings);
 
   g_signal_handlers_disconnect_matched (priv->game,
                                         G_SIGNAL_MATCH_DATA,

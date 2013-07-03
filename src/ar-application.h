@@ -19,6 +19,7 @@
 #define AR_APPLICATION_H
 
 #include <gtk/gtk.h>
+#include "ar-card-themes.h"
 
 G_BEGIN_DECLS
 
@@ -46,6 +47,10 @@ GSettings *ar_application_scores_settings_new (ArApplication *application,
 
 GSettings *ar_application_options_settings_new (ArApplication *application,
                                                 const char *game);
+
+ArCardThemes *ar_application_get_card_themes (ArApplication *application);
+
+#define AR_APP (AR_APPLICATION (g_application_get_default ()))
 
 G_END_DECLS
 

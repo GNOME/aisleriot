@@ -24,6 +24,7 @@
 #include "ar-application.h"
 #include "ar-defines.h"
 #include "ar-runtime.h"
+#include "ar-card-themes.h"
 
 #include <errno.h>
 #include <stdlib.h>
@@ -67,13 +68,10 @@ struct _ArApplicationPrivate
   gint seed; /* unused */
   gboolean freecell; /* unused */
 
+  ArCardThemes *card_themes;
   GSettingsBackend *state_keyfile_backend;
   GSettingsBackend *scores_keyfile_backend;
 };
-
-#if !GTK_CHECK_VERSION (3, 6, 0)
-#define gtk_application_get_active_window(w) NULL
-#endif
 
 G_DEFINE_TYPE (ArApplication, ar_application, GTK_TYPE_APPLICATION)
 
@@ -304,6 +302,7 @@ ar_application_dispose (GObject *object)
   g_free (self->priv->variation);
   self->priv->variation = NULL;
 
+  g_clear_object (&priv->card_themes);
   g_clear_object (&priv->state_keyfile_backend);
   g_clear_object (&priv->scores_keyfile_backend);
 
@@ -396,3 +395,19 @@ ar_application_options_settings_new (ArApplication *application,
 
   return settings;
 }
+
+ArCardThemes *
+ar_application_get_card_themes (ArApplication *application)
+{
+  ArApplicationPrivate *priv;
+
+  g_return_val_if_fail (AR_IS_APPLICATION (application), NULL);
+
+  priv = application->priv;
+
+  if (priv->card_themes == NULL)
+    priv->card_themes = ar_card_themes_new ();
+
+  return priv->card_themes;
+}
+
