@@ -16,6 +16,95 @@
             <style>
               <class name="primary-toolbar"/>
             </style>
+            <child>
+              <object class="GtkToolButton" id="new_game_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">win.new-game</property>
+                <property name="label" translatable="yes">New Game</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="restart_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">win.restart-game</property>
+                <property name="label" translatable="yes">Restart</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSeparatorToolItem" id="toolbar_separator">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="draw">False</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="undo_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">win.undo</property>
+                <property name="label" translatable="yes">Undo</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="redo_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">win.redo</property>
+                <property name="label" translatable="yes">Redo</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="deal_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">win.deal</property>
+                <property name="label" translatable="yes">Deal</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkToolButton" id="hint_button">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="action_name">win.hint</property>
+                <property name="label" translatable="yes">Hint</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="homogeneous">True</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>

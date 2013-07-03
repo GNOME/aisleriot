@@ -102,7 +102,6 @@ struct _AisleriotWindowPrivate
   GtkWidget *clock;
 
   GtkWidget *toolbar;
-  GtkWidget *headerbar;
 
   GtkWidget *game_over_dialog;
   GtkWidget *game_choice_dialog;
@@ -1863,11 +1862,7 @@ aisleriot_window_new (GtkApplication *application)
 {
   return g_object_new (AISLERIOT_TYPE_WINDOW,
                        "application", application,
-#ifdef GNOME_ENABLE_DEBUG
-                       "show-menubar", ar_debug_on (AR_DEBUG_APPMENU),
-#else
-                       "show-menubar", FALSE,
-#endif
+                       "show-menubar", TRUE,
                        NULL);
 }
 
