@@ -1274,83 +1274,6 @@ add_recently_played_game (AisleriotWindow *window,
 #endif
 }
 
-#if 0
-static void
-recent_game_cb (GtkAction *action,
-                AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  const char *game_module;
-
-  game_module = g_object_get_data (G_OBJECT (action), "game");
-  g_return_if_fail (game_module != NULL);
-
-  aisleriot_window_set_game_module (window, game_module, NULL);
-
-  g_settings_set_string (priv->state_settings, AR_STATE_LAST_GAME_KEY, game_module);
-}
-
-#endif // 0
-
-static void
-install_recently_played_menu (AisleriotWindow *window)
-{
-#if 0
-  AisleriotWindowPrivate *priv = window->priv;
-  char **recent_games;
-  gsize i, n_recent = 0;
-
-  /* Clean out the old menu */
-  if (priv->recent_games_merge_id != 0) {
-    gtk_ui_manager_remove_ui (priv->ui_manager, priv->recent_games_merge_id);
-  }
-  if (priv->recent_games_group != NULL) {
-    gtk_ui_manager_remove_action_group (priv->ui_manager, priv->recent_games_group);
-  }
-
-  /* See gtk bug #424448 */
-  gtk_ui_manager_ensure_update (priv->ui_manager);
-
-  priv->recent_games_group = gtk_action_group_new ("Recent");
-  gtk_ui_manager_insert_action_group (priv->ui_manager, priv->recent_games_group, -1);
-  g_object_unref (priv->recent_games_group);
-
-  priv->recent_games_merge_id = gtk_ui_manager_new_merge_id (priv->ui_manager);
-
-  g_settings_get (priv->state_settings, AR_STATE_RECENT_GAMES_KEY, "^as", &recent_games);
-
-  for (i = 0; recent_games[i]; ++i) {
-    GtkAction *action;
-    char actionname[32];
-    char *game_name, *tooltip;
-
-    g_snprintf (actionname, sizeof (actionname), "Recent%"G_GSIZE_FORMAT, i);
-    game_name = ar_filename_to_display_name (recent_games[i]);
-    tooltip = g_strdup_printf (_("Play “%s”"), game_name);
-    action = gtk_action_new (actionname, game_name, tooltip, NULL);
-    g_free (game_name);
-    g_free (tooltip);
- 
-    g_object_set_data_full (G_OBJECT (action), "game",
-                            ar_filename_to_game_module (recent_games[i]),
-                            (GDestroyNotify) g_free);
-    g_signal_connect (action, "activate",
-                      G_CALLBACK (recent_game_cb), window);
-    gtk_action_group_add_action (priv->recent_games_group, action);
-    g_object_unref (action);
-
-    gtk_ui_manager_add_ui (priv->ui_manager,
-                           priv->recent_games_merge_id,
-                           RECENT_GAMES_MENU_PATH,
-                           actionname, actionname,
-                           GTK_UI_MANAGER_MENUITEM, FALSE);
-  }
-
-  /* The strings themselves are now owned by gobject data on the action */
-  g_free (recent_games);
-#endif // 0
-}
-
 /* Card Theme menu */
 
 static void
@@ -1528,8 +1451,6 @@ game_type_changed_cb (AisleriotGame *game,
 
   game_module = aisleriot_game_get_game_module (game);
   add_recently_played_game (window, game_module);
-
-  install_recently_played_menu (window);
 
   g_clear_object (&priv->game_options_settings);
   priv->game_options_settings = ar_application_options_settings_new (AR_APPLICATION (g_application_get_default ()),
