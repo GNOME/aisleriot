@@ -185,7 +185,6 @@ ar_conf_get_accel_map_path (ArConf *conf,
   ArConfPrivate *priv = conf->priv;
   char *game_name, *conf_dir;
   char *conf_file = NULL;
-  const char *override;
   char *accelmap_filename;
 
   game_name = g_ascii_strdown (priv->game_name, -1);

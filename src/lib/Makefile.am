@@ -18,8 +18,6 @@ libaisleriot_la_SOURCES = \
 	ar-card-theme-private.h \
 	ar-card-themes.c \
 	ar-card-themes.h \
-	ar-conf.c \
-	ar-conf.h \
 	ar-debug.c \
 	ar-debug.h \
 	ar-gsettings.c \
