@@ -26,7 +26,7 @@
 #include <gtk/gtk.h>
 
 #ifdef HAVE_RSVG
-#include <librsvg/librsvg-features.h>
+#include <librsvg/rsvg.h>
 #endif
 
 #include "ar-svg.h"

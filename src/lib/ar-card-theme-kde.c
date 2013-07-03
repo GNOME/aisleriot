@@ -24,7 +24,6 @@
 #include <gtk/gtk.h>
 
 #include <librsvg/rsvg.h>
-#include <librsvg/rsvg-cairo.h>
 
 #include "ar-debug.h"
 #include "ar-profile.h"
