@@ -328,7 +328,7 @@ ar_game_chooser_constructor (GType type,
   gtk_box_set_spacing (GTK_BOX (content_area), 2);
 
   gtk_dialog_add_buttons (dialog,
-                          GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                          _("_Cancel"), GTK_RESPONSE_CANCEL,
                           _("_Select"), GTK_RESPONSE_OK,
                           NULL);
   gtk_dialog_set_alternative_button_order (dialog,
@@ -353,7 +353,7 @@ ar_game_chooser_constructor (GType type,
                                    0, (GtkTreeIterCompareFunc)sort_func,
                                    NULL, NULL);
 
-  hbox = gtk_hbox_new (FALSE, 12);
+  hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 5);
   gtk_box_pack_start (GTK_BOX (content_area), hbox, TRUE, TRUE, 0);
 
