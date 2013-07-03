@@ -206,8 +206,8 @@ show_game_over_dialog (AisleriotWindow *window)
 
   if (game_won) {
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                            AR_STOCK_START_NEW_GAME, RESPONSE_NEW_GAME,
+                            _("_Close"), GTK_RESPONSE_CLOSE,
+                            _("_New Game"), RESPONSE_NEW_GAME,
                             NULL);
     gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
                                              RESPONSE_NEW_GAME,
@@ -215,10 +215,10 @@ show_game_over_dialog (AisleriotWindow *window)
                                              -1);
   } else {
     gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-			    AR_STOCK_UNDO_MOVE, RESPONSE_UNDO,
-                            GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                            AR_STOCK_RESTART_GAME, RESPONSE_RESTART,
-                            AR_STOCK_START_NEW_GAME, RESPONSE_NEW_GAME,
+                            _("_Undo Move"), RESPONSE_UNDO,
+                            _("_Close"), GTK_RESPONSE_CLOSE,
+                            _("_Restart"), RESPONSE_RESTART,
+                            _("_New Game"), RESPONSE_NEW_GAME,
                             NULL);
     gtk_dialog_set_alternative_button_order (GTK_DIALOG (dialog),
                                              RESPONSE_NEW_GAME,
@@ -1634,12 +1634,7 @@ aisleriot_window_init (AisleriotWindow *window)
 
   statusbar = priv->statusbar;
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "game-message");
-#if 0 //fixme
-  ar_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
-                                              GTK_WIDGET (priv->statusbar));
-#endif
-
-  priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
+  priv->board_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
 
 #ifdef HAVE_CLUTTER
   g_signal_connect (priv->board_actor, "status-message",

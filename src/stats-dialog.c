@@ -167,8 +167,8 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
   pack_in_frame (hbox, GTK_WIDGET (table), _("Time"));
 
   gtk_dialog_add_buttons (dialog,
-                          AR_STOCK_RESET, GTK_RESPONSE_REJECT,
-                          GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+                          _("_Reset"), GTK_RESPONSE_REJECT,
+                          _("_Close"), GTK_RESPONSE_CLOSE,
                           NULL);
   gtk_dialog_set_alternative_button_order (dialog,
                                            GTK_RESPONSE_CLOSE,

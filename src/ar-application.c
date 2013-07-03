@@ -42,7 +42,6 @@
 #endif
 
 #include "ar-debug.h"
-#include "ar-stock.h"
 #include "ar-sound.h"
 #include "ar-string-utils.h"
 
@@ -233,7 +232,6 @@ ar_application_startup (GApplication *application)
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
   ar_sound_enable (FALSE);
-  ar_stock_init ();
 
   path = g_build_filename (g_get_user_config_dir (), "aisleriot", NULL);
   if (g_mkdir_with_parents (path, 0700 /* as per XDG base dir spec */) < 0 && errno != EEXIST)
