@@ -93,6 +93,7 @@ struct _AisleriotWindowPrivate
   ArCardThemes *theme_manager;
   ArCardTheme *theme;
 
+  GtkWidget *main_vbox;
   GtkStatusbar *statusbar;
   guint game_message_id;
   guint board_message_id;
@@ -101,6 +102,7 @@ struct _AisleriotWindowPrivate
   GtkWidget *clock;
 
   GtkWidget *toolbar;
+  GtkWidget *headerbar;
 
   GtkWidget *game_over_dialog;
   GtkWidget *game_choice_dialog;
@@ -1562,7 +1564,6 @@ aisleriot_window_init (AisleriotWindow *window)
     { "fullscreen",          action_toggle_state_cb,   NULL, "false", action_fullscreen_state_cb        },
   };
   AisleriotWindowPrivate *priv;
-  GtkWidget *main_vbox;
   GAction *action;
   GtkStatusbar *statusbar;
   GtkWidget *statusbar_hbox, *label, *time_box;
@@ -1572,6 +1573,8 @@ aisleriot_window_init (AisleriotWindow *window)
   ArApplication *app = AR_APP;
 
   priv = window->priv = AISLERIOT_WINDOW_GET_PRIVATE (window);
+
+  gtk_widget_init_template (GTK_WIDGET (window));
 
   priv->settings = g_settings_new (AR_SETTINGS_SCHEMA);
 
@@ -1630,7 +1633,7 @@ aisleriot_window_init (AisleriotWindow *window)
   g_object_set (action, "short-label", _("Select Game"), NULL);
 #endif
 
-  statusbar = priv->statusbar = GTK_STATUSBAR (gtk_statusbar_new ());
+  statusbar = priv->statusbar;
   priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "game-message");
 #if 0 //fixme
   ar_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
@@ -1646,8 +1649,6 @@ aisleriot_window_init (AisleriotWindow *window)
   g_signal_connect (priv->board, "status-message",
                     G_CALLBACK (board_status_message_cb), window);
 #endif
-
-  gtk_window_set_has_resize_grip (GTK_WINDOW (window), TRUE);
 
   statusbar_hbox = gtk_statusbar_get_message_area (statusbar);
   gtk_box_set_spacing (GTK_BOX (statusbar_hbox), 24);
@@ -1676,13 +1677,6 @@ aisleriot_window_init (AisleriotWindow *window)
   ar_atk_util_add_atk_relation (label, priv->clock, ATK_RELATION_LABEL_FOR);
   ar_atk_util_add_atk_relation (priv->clock, label, ATK_RELATION_LABELLED_BY);
 
-  priv->toolbar = gtk_toolbar_new (); // FIXME
-
-#if GTK_CHECK_VERSION (3, 0, 3)
-  gtk_style_context_add_class (gtk_widget_get_style_context (priv->toolbar),
-                               GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
-#endif
-
   /* The actions and menus are done. The
    * recent games menu will be updated when the initial game loads.
    */
@@ -1703,14 +1697,7 @@ aisleriot_window_init (AisleriotWindow *window)
   set_fullscreen_actions (window, FALSE);
 
   /* Now set up the widgets */
-  main_vbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (window), main_vbox);
-  gtk_widget_show (main_vbox);
-
-  gtk_box_pack_start (GTK_BOX (main_vbox), priv->toolbar, FALSE, FALSE, 0);
-  gtk_box_pack_end (GTK_BOX (main_vbox), GTK_WIDGET (priv->statusbar), FALSE, FALSE, 0);
-
-  gtk_box_pack_start (GTK_BOX (main_vbox), GTK_WIDGET (priv->board), TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->main_vbox), GTK_WIDGET (priv->board), TRUE, TRUE, 0);
   gtk_widget_show (GTK_WIDGET (priv->board));
 
   /* Synchronise */
@@ -1857,6 +1844,11 @@ aisleriot_window_class_init (AisleriotWindowClass *klass)
   widget_class->style_set = aisleriot_window_style_set;
 
   g_type_class_add_private (gobject_class, sizeof (AisleriotWindowPrivate));
+
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/aisleriot/ui/window.ui");
+  gtk_widget_class_bind_child (widget_class, AisleriotWindowPrivate, main_vbox);
+  gtk_widget_class_bind_child (widget_class, AisleriotWindowPrivate, toolbar);
+  gtk_widget_class_bind_child (widget_class, AisleriotWindowPrivate, statusbar);
 }
 
 /* public API */
