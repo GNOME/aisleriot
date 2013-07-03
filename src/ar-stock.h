@@ -44,8 +44,6 @@ G_BEGIN_DECLS
 #define AR_STOCK_DEAL_CARDS       "aisleriot-game-deal"
 
 void   ar_stock_init (void);
-void   ar_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
-                                                   GtkWidget * statusbar);
 gchar *ar_get_licence (const gchar * game_name);
 
 G_END_DECLS
