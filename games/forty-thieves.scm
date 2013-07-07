@@ -243,14 +243,20 @@
 
 (define (find-tableau-place-helper from-slot card to-slots)
   (if (null? to-slots)
-      (list #f)
-      (if (and (tableau-droppable? from-slot (list card) (car to-slots)) (<> from-slot (car to-slots)))
+      #f
+      (if (and
+            (not (empty-slot? (car to-slots)))
+            (tableau-droppable? from-slot (list card) (car to-slots))
+            (<> from-slot (car to-slots)))
           (list #t from-slot (car to-slots))
           (find-tableau-place-helper from-slot card (cdr to-slots)))))
 
 (define (find-tableau-place from-slot card )
   (if (not (empty-slot? from-slot))
-      (find-tableau-place-helper from-slot card tableau)
+      (or
+        (find-tableau-place-helper from-slot card tableau)
+        (and (find-empty-slot tableau) (list #t from-slot (find-empty-slot tableau)))
+        (list #f))
       (list #f)))
 
 
