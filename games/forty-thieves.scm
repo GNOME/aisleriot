@@ -16,6 +16,11 @@
 
 (use-modules (aisleriot interface) (aisleriot api))
 
+(define stock 0)
+(define foundation '(1 2 3 4 5 6 7 8))
+(define waste 9)
+(define tableau '(10 11 12 13 14 15 16 17 18 19))
+
 (define (new-game)
   (initialize-playing-area)
   (set-ace-low)
@@ -53,10 +58,10 @@
   (add-extended-slot '() down 'tableau)
 
 ; these are the forty theives in the tableau
-  (deal-cards-face-up 0 '(10 11 12 13 14 15 16 17 18 19))
-  (deal-cards-face-up 0 '(10 11 12 13 14 15 16 17 18 19))
-  (deal-cards-face-up 0 '(10 11 12 13 14 15 16 17 18 19))
-  (deal-cards-face-up 0 '(10 11 12 13 14 15 16 17 18 19))
+  (deal-cards-face-up 0 tableau)
+  (deal-cards-face-up 0 tableau)
+  (deal-cards-face-up 0 tableau)
+  (deal-cards-face-up 0 tableau)
 
   (give-status-message)
 ; this is the return list of (new-game) and sets the size of the 
@@ -220,61 +225,33 @@
 ; no cards are actually moved this is a helper for both double-click
 ; and get-hint features.
 
+(define (try-all-foundations-helper from-slot card to-slots)
+  (if (null? to-slots)
+      (list #f)
+      (if (foundation-droppable? (list card) (car to-slots))
+          (list #t from-slot (car to-slots))
+          (try-all-foundations-helper from-slot card (cdr to-slots)))))
+
 (define (try-all-foundations from-slot card )
-    (if (not (empty-slot? from-slot))
-      (if (foundation-droppable? (list card) 1) 
-        (list #t from-slot 1)
-        (if (foundation-droppable? (list card) 2) 
-	  (list #t from-slot 2)
-          (if (foundation-droppable? (list card) 3) 
-	    (list #t from-slot 3)
-            (if (foundation-droppable? (list card) 4) 
-	      (list #t from-slot 4)
-              (if (foundation-droppable? (list card) 5) 
-	         (list #t from-slot 5)
-                 (if (foundation-droppable? (list card) 6) 
-	           (list #t from-slot 6)
-		   (if (foundation-droppable? (list card) 7) 
-	             (list #t from-slot 7)
-                     (if (foundation-droppable? (list card) 8) 
-	               (list #t from-slot 8)
-                       (list #f)
-       ) ) ) ) ) ) ) )
-       (list #f)
-     )
-)
+  (if (not (empty-slot? from-slot))
+      (try-all-foundations-helper from-slot card foundation)
+      (list #f)))
 
 
 ; return a move if a card can be moved from from-slot to a tableau
 ; slot. This is a helper for hint, and double-click
-(define (find-tableau-place from-slot card )
-    (if (not (empty-slot? from-slot))
-      (if (and (tableau-droppable? from-slot (list card) 10) (<> from-slot 10) )
-        (list #t from-slot 10)
-        (if (and (tableau-droppable? from-slot (list card) 11) (<> from-slot 11) )
-	  (list #t from-slot 11)
-          (if (and (tableau-droppable? from-slot (list card) 12) (<> from-slot 12) )
-	    (list #t from-slot 12)
-            (if (and (tableau-droppable? from-slot (list card) 13) (<> from-slot 13) )
-	      (list #t from-slot 13)
-              (if (and (tableau-droppable? from-slot (list card) 14) (<> from-slot 14) )
-	        (list #t from-slot 14)
-                (if (and (tableau-droppable? from-slot (list card) 15) (<> from-slot 15) )
-	          (list #t from-slot 15)
-                  (if (and (tableau-droppable? from-slot (list card) 16) (<> from-slot 16) )
-	            (list #t from-slot 16)
-                    (if (and (tableau-droppable? from-slot (list card) 17) (<> from-slot 17) )
-	              (list #t from-slot 17)
-                      (if (and (tableau-droppable? from-slot (list card) 18) (<> from-slot 18) )
-	                (list #t from-slot 18)
-                        (if (and (tableau-droppable? from-slot (list card) 19) (<> from-slot 19) )
-	                  (list #t from-slot 19)
-                          (list #f)
-      ) ) ) ) ) ) ) ) ) ) 
-      (list #f)
-    )
-)
 
+(define (find-tableau-place-helper from-slot card to-slots)
+  (if (null? to-slots)
+      (list #f)
+      (if (and (tableau-droppable? from-slot (list card) (car to-slots)) (<> from-slot (car to-slots)))
+          (list #t from-slot (car to-slots))
+          (find-tableau-place-helper from-slot card (cdr to-slots)))))
+
+(define (find-tableau-place from-slot card )
+  (if (not (empty-slot? from-slot))
+      (find-tableau-place-helper from-slot card tableau)
+      (list #f)))
 
 
 (define (dealable?)
