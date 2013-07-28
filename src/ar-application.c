@@ -216,8 +216,8 @@ ar_application_startup (GApplication *application)
     ENTRY ("redo",         "<primary><shift>Z"),
     ENTRY ("hint",         "<primary>H"       ),
     ENTRY ("deal",         "<primary>D"       ),
-    ENTRY_FULL ("help", "F1",        "s",  "'general'" ),
-    ENTRY_FULL ("help", "<shift>F1", "s",  "'general'" ),
+    ENTRY_FULL ("help", "F1",        "s",  "'general'"),
+    ENTRY_FULL ("help", "<shift>F1", "s",  "'rules'"  ),
 #undef ENTRY
 #undef ENTRY_FULL
   };
