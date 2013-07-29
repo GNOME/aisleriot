@@ -2,7 +2,7 @@
 
 NULL =
 
-HELP_LINGUAS = ca de el en_GB es eu fr gl oc ru sl sr sr@latin sv zh_CN
+HELP_LINGUAS = ca de el en_GB es eu fr gl oc pt_BR ru sl sr sr@latin sv zh_CN
 
 HELP_ID = aisleriot
 
