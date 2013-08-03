@@ -65,6 +65,16 @@ static const guint8 key_name_offsets[] = {
 
 #endif /* HAVE_GNOME */
 
+static char *
+game_module_to_game_name (const char *game_module)
+{
+  char *game_name;
+
+  game_name = g_strdelimit (g_strconcat (game_module, ".scm", NULL), "-", '_');
+
+  return game_name;
+}
+
 #ifdef HAVE_GNOME
 
 static GConfClient *gconf_client;
@@ -76,16 +86,6 @@ options_gconf_key (const char *game_module)
   static const char basekey[] = "/apps/aisleriot/rules/";
 
   return g_strdelimit (g_strconcat (basekey, game_module, ".scm", NULL), "-", '_');
-}
-
-static char *
-game_module_to_game_name (const char *game_module)
-{
-  char *game_name;
-
-  game_name = g_strdelimit (g_strconcat (game_module, ".scm", NULL), "-", '_');
-
-  return game_name;
 }
 
 static void
