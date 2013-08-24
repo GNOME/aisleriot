@@ -7,14 +7,15 @@
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2001-2009.
 # KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
+# Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-11-23 16:52+0000\n"
-"PO-Revision-Date: 2012-10-24 12:34+0900\n"
-"Last-Translator: OKANO Takayoshi <kano@na.rim.or.jp>\n"
+"POT-Creation-Date: 2013-08-03 12:33+0000\n"
+"PO-Revision-Date: 2013-08-03 23:21+0900\n"
+"Last-Translator: Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -28,15 +29,15 @@ msgstr "AisleRiot ソリティア"
 
 #: ../data/sol.desktop.in.in.h:2
 msgid "Play many different solitaire games"
-msgstr "いろいろなソリティア・ゲームを楽しんでください"
+msgstr "いろいろなソリティアゲームを楽しんでください"
 
 #: ../data/sol.desktop.in.in.h:3
 msgid "solitaire;cards;klondike;spider;freecell;patience;"
-msgstr ""
+msgstr "solitaire;cards;klondike;spider;freecell;patience;ソリティア;ソリテア;トランプ;カード;クロンダイク;スパイダー;フリーセル;ペイシェンス;ペーシェンス;game;ゲーム;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
-msgstr "テーマ・ファイルの名前"
+msgstr "テーマファイルの名前"
 
 #: ../src/aisleriot.schemas.in.h:2
 msgid "The name of the file with the graphics for the cards."
@@ -76,11 +77,11 @@ msgstr "カードを移動する際にアニメーションを使用するかど
 
 #: ../src/aisleriot.schemas.in.h:11
 msgid "The game file to use"
-msgstr "使用するゲーム・ファイル"
+msgstr "使用するゲームファイル"
 
 #: ../src/aisleriot.schemas.in.h:12
 msgid "The name of the scheme file containing the solitaire game to play."
-msgstr "プレイするソリティア・ゲームを格納したスキーマ・ファイルの名前です。"
+msgstr "プレイするソリティアゲームを格納したスキーマファイルの名前です。"
 
 #: ../src/aisleriot.schemas.in.h:13
 msgid "Statistics of games played"
@@ -88,7 +89,7 @@ msgstr "プレイしたゲームの成績"
 
 #: ../src/aisleriot.schemas.in.h:14
 msgid "A list of strings that come in the form of a quintuple: name, wins, total games played, best time (in seconds) and worst time (also in seconds). Unplayed games do not need to be represented."
-msgstr "5つからなる文字列のリストです: 名前、勝ち数、プレイ数、ベスト・タイム (秒)、ワースト・タイム(秒)。ここにプレイしていない数を指定する必要はありません。"
+msgstr "5つからなる文字列のリストです: 名前、勝ち数、プレイ数、ベストタイム (秒)、ワーストタイム(秒)。ここにプレイしていない数を指定する必要はありません。"
 
 #: ../src/aisleriot.schemas.in.h:15
 msgid "Recently played games"
@@ -98,12 +99,40 @@ msgstr "最近プレイしたゲーム"
 msgid "A list of recently played games."
 msgstr "最近プレイしたゲームのリストです。"
 
+#: ../src/ar-application.c:216
+msgid "New Game"
+msgstr "新ゲーム"
+
+#: ../src/ar-application.c:217
+msgid "Change Game"
+msgstr "ゲームの変更"
+
+#: ../src/ar-application.c:221 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "成績"
+
+#: ../src/ar-application.c:222
+msgid "Fullscreen"
+msgstr "フルスクリーン"
+
+#: ../src/ar-application.c:226
+msgid "Help"
+msgstr "ヘルプ"
+
+#: ../src/ar-application.c:227
+msgid "About Aisleriot"
+msgstr "このアプリケーションについて"
+
+#: ../src/ar-application.c:228
+msgid "Quit"
+msgstr "終了"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2194
 msgid "Select Game"
 msgstr "ゲームの選択"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "選択する(_S)"
 
@@ -172,77 +201,78 @@ msgstr "%s は有用とは思いますが、その頒布にあたっては市場
 
 #: ../src/ar-stock.c:277
 msgid "You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
-msgstr "あなたはこのプログラムと一緒に GNU 一般公衆利用許諾契約書の写しを受け取っているはずです。そうでない場合は、<http://www.gnu.org/licenses/> を参照してください。"
+msgstr "あなたは %s と一緒に GNU 一般公衆利用許諾契約書の写しを受け取っているはずです。そうでない場合は、<http://www.gnu.org/licenses/> を参照してください。"
 
+# foundation を台札と訳す
+# https://l10n.gnome.org/vertimus/aisleriot/master/po/ja
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1437
-#, fuzzy
 msgctxt "slot type"
 msgid "foundation"
-msgstr "組札の山"
+msgstr "台札"
 
+# reserve を 予備札 と訳す
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1441
-#, fuzzy
 msgctxt "slot type"
 msgid "reserve"
-msgstr "予約済"
+msgstr "予備札"
 
+# stock を 手札と訳す
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1445
-#, fuzzy
 msgctxt "slot type"
 msgid "stock"
-msgstr "時計"
+msgstr "手札"
 
+# tableau を場札と訳す
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1449
-#, fuzzy
 msgctxt "slot type"
 msgid "tableau"
-msgstr "テーブル:"
+msgstr "場札"
 
+# waste を 捨て札と訳す
 #. Translators: this is the name of a type of card slot
 #: ../src/game.c:1453
-#, fuzzy
 msgctxt "slot type"
 msgid "waste"
-msgstr "高速"
+msgstr "捨て札"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
 #: ../src/game.c:1485
-#, fuzzy, c-format
+#, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
-msgstr "空の組札のスロット"
+msgstr "台札の %s"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
 #: ../src/game.c:1489
-#, fuzzy, c-format
+#, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
-msgstr "空のリザーブ"
+msgstr "予備札の %s"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
 #: ../src/game.c:1493
-#, fuzzy, c-format
+#, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
-msgstr "捨て札を場に置きなさい"
+msgstr "手札の %s"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
 #: ../src/game.c:1497
-#, fuzzy, c-format
+#, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
-msgstr "絵札を開きなさい"
+msgstr "場札の %s"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
 #: ../src/game.c:1501
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
-msgstr ""
+msgstr "捨て札の %s"
 
 #: ../src/game.c:2168
 msgid "This game does not have hint support yet."
@@ -255,7 +285,7 @@ msgstr "未だこのゲームではヒントをサポートしていません。
 #: ../src/game.c:2203 ../src/game.c:2229
 #, c-format
 msgid "Move %s onto %s."
-msgstr "%sを%sの上に置きなさい"
+msgstr "%s を %s の上に置きなさい。"
 
 #: ../src/game.c:2249
 msgid "This game is unable to provide a hint."
@@ -334,15 +364,15 @@ msgstr "パン屋のダース"
 msgid "Bakers Game"
 msgstr "パン屋のゲーム"
 
+# https://itunes.apple.com/jp/app/soritia-*/id418794073?mt=8 参照
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
 #: ../src/game-names.h:63
-#, fuzzy
 msgid "Bear River"
-msgstr "盤の大きさ"
+msgstr "ベアーリバー"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -387,7 +417,7 @@ msgstr "キャメロット"
 #.
 #: ../src/game-names.h:98
 msgid "Canfield"
-msgstr "カンフィールド"
+msgstr "キャンフィールド"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -488,16 +518,15 @@ msgstr "エイト・オフ"
 msgid "Elevator"
 msgstr "エレベーター"
 
+# http://iphoneac.com/solitairecity4.html#eliminator 参照
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
 #: ../src/game-names.h:182
-#, fuzzy
-#| msgid "Elevator"
 msgid "Eliminator"
-msgstr "エレベーター"
+msgstr "エリミネーター"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -892,10 +921,8 @@ msgstr "トミー伯爵"
 #. freely, literally, or not at all, at your option.
 #.
 #: ../src/game-names.h:490
-#, fuzzy
-#| msgid "Sol_ve"
 msgid "Sol"
-msgstr "解決する(_V)"
+msgstr "ソリティア"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -1397,7 +1424,7 @@ msgstr "赤のジョーカー"
 #: ../src/lib/ar-help.c:108
 #, c-format
 msgid "Help file “%s.%s” not found"
-msgstr "ヘルプ・ファイルの \"%s.%s\" が見つかりませんでした"
+msgstr "ヘルプファイル \"%s.%s\" が見つかりませんでした"
 
 #: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
 #, c-format
@@ -1406,30 +1433,30 @@ msgstr "\"%s\" のヘルプを表示できませんでした"
 
 #: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
 msgid "Whether the window is maximized"
-msgstr ""
+msgstr "ウィンドウが最大化されているかどうか"
 
 #: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:2
 msgid "Whether the window is fullscreen"
-msgstr ""
+msgstr "ウィンドウがフルスクリーンかどうか"
 
 #: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:3
 msgid "Window width"
-msgstr ""
+msgstr "ウィンドウの幅"
 
 #: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:4
 msgid "Window height"
-msgstr ""
+msgstr "ウィンドウの高さ"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "ソリティア"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME ソリティア"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "このアプリケーションについて"
 
@@ -1441,11 +1468,11 @@ msgstr "プレイするゲームを選択する"
 msgid "NAME"
 msgstr "NAME"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "フリーセル・ソリティア"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:420
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1488,10 +1515,6 @@ msgstr "ワースト:"
 msgid "Time"
 msgstr "タイム"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "成績"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1525,39 +1548,35 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
-msgstr "おめでとうございます。あなたの勝利です!"
+msgstr "おめでとうございます。あなたの勝ちです!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "残念ながら手詰まりです"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
-msgstr "メイン・ゲーム:"
+msgstr "メインゲーム:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
-msgstr "カード・ゲーム:"
+msgstr "カードゲーム:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "カードのテーマ:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "このアプリケーションについて"
-
-#: ../src/window.c:417
+#: ../src/window.c:422
 msgid "About AisleRiot"
 msgstr "このアプリケーションについて"
 
-#: ../src/window.c:421
+#: ../src/window.c:424
 msgid "AisleRiot provides a rule-based solitaire card engine that allows many different games to be played."
-msgstr "AisleRiot はいろいろな種類のカード・ゲームをプレイできるソリティア型ゲーム・エンジン (ルール集) を提供しています。"
+msgstr "AisleRiot はいろいろな種類のカードゲームをプレイできるソリティア型ゲームエンジン (ルール集) を提供しています。"
 
-#: ../src/window.c:430
+#: ../src/window.c:433
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
@@ -1569,187 +1588,185 @@ msgstr ""
 "Yukihiro Nakai <Nakai@technologist.com>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp>"
 
-#: ../src/window.c:434
+#: ../src/window.c:436
 msgid "GNOME Games web site"
 msgstr "GNOME ゲーム集のウェブサイト"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1302
 #, c-format
 msgid "Play “%s”"
 msgstr "\"%s\" をプレイします"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1464
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "\"%s\" というテーマでカードを表示します"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1758
 msgid "A scheme exception occurred"
 msgstr "スキーマの例外が発生しました"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1761
 msgid "Please report this bug to the developers."
 msgstr "このバグを開発者に報告してください。"
 
-#: ../src/window.c:1756
+#: ../src/window.c:1767
 msgid "_Don't report"
 msgstr "報告しない(_D)"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1768
 msgid "_Report"
 msgstr "報告する(_R)"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "フリーセル・ソリティア"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1975
 msgid "_Game"
 msgstr "ゲーム(_G)"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1976
 msgid "_View"
 msgstr "表示(_V)"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1977
 msgid "_Control"
 msgstr "操作(_C)"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1979
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1984
 msgid "Start a new game"
 msgstr "新しいゲームを開始します"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1987
 msgid "Restart the game"
 msgstr "ゲームをやり直します"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1989
 msgid "_Select Game…"
 msgstr "ゲームの選択(_S)…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1991
 msgid "Play a different game"
 msgstr "別のゲームをプレイします"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1993
 msgid "_Recently Played"
 msgstr "最近プレイしたゲーム(_R)"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1994
 msgid "S_tatistics"
 msgstr "ゲームの成績(_T)"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1995
 msgid "Show gameplay statistics"
 msgstr "ゲームの成績を表示します"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1998
 msgid "Close this window"
 msgstr "このウィンドウを閉じます"
 
-#: ../src/window.c:2016
+#: ../src/window.c:2001
 msgid "Undo the last move"
 msgstr "直前の操作を取り消します"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2004
 msgid "Redo the undone move"
 msgstr "直前の操作を取り消します"
 
-#: ../src/window.c:2022
+#: ../src/window.c:2007
 msgid "Deal next card or cards"
 msgstr "次のカードまたはカードの山を引きます"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2010
 msgid "Get a hint for your next move"
 msgstr "次の操作のヒントを得ます"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2013
 msgid "View help for Aisleriot"
 msgstr "AisleRiot のヘルプを表示します"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2017
 msgid "View help for this game"
 msgstr "このゲームのヘルプを表示します"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2020
 msgid "About this game"
 msgstr "このゲームの情報を表示します"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2022
 msgid "Install card themes…"
 msgstr "テーマのインストール"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2023
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "パッケージから新しいカードのテーマをインストールします"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2029
 msgid "_Card Style"
 msgstr "カードのスタイル(_C)"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2063
 msgid "_Toolbar"
 msgstr "ツールバー(_T)"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2064
 msgid "Show or hide the toolbar"
 msgstr "ツールバーの表示/非表示を切り替えます"
 
-#: ../src/window.c:2083
+#: ../src/window.c:2068
 msgid "_Statusbar"
 msgstr "ステータスバー(_S)"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2069
 msgid "Show or hide statusbar"
 msgstr "ステータスバーの表示/非表示を切り替えます"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2073
 msgid "_Click to Move"
 msgstr "クリックで移動する(_C)"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2074
 msgid "Pick up and drop cards by clicking"
 msgstr "クリックしてカードを選択しドロップできるようにします"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2077
 msgid "_Sound"
 msgstr "効果音(_S)"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2078
 msgid "Whether or not to play event sounds"
 msgstr "効果音を鳴らすかどうかです"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2081
 msgid "_Animations"
 msgstr "アニメーション(_A)"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2082
 msgid "Whether or not to animate card moves"
 msgstr "カードの移動にアニメーションを使用するかどうかです"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2218
 msgid "Score:"
 msgstr "得点:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2230
 msgid "Time:"
 msgstr "タイム:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2528
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "\"%s\" というゲームを起動できません"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2535
 msgid "Aisleriot cannot find the last game you played."
-msgstr "最後にプレイしたゲームが見つかりません"
+msgstr "最後にプレイしたゲームが見つかりません。"
 
-#: ../src/window.c:2643
+#: ../src/window.c:2536
 msgid "This usually occurs when you run an older version of Aisleriot which does not have the game you last played. The default game, Klondike, is being started instead."
 msgstr "これは古いバージョンの AisleRiot を起動した際に、以前プレイしたゲームが存在しない場合に発生します。代わりに、デフォルトのゲームであるクロンダイクを起動します。"
 
@@ -1760,28 +1777,28 @@ msgstr "ベースのカード: ~a"
 
 #: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
 #: ../games/chessboard.scm:94 ../games/eagle-wing.scm:104
-#: ../games/glenwood.scm:87 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/glenwood.scm:87 ../games/kansas.scm:88 ../games/lady-jane.scm:111
 #: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
 msgid "Base Card: Ace"
 msgstr "ベースのカード: A"
 
 #: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
 #: ../games/chessboard.scm:96 ../games/eagle-wing.scm:106
-#: ../games/glenwood.scm:89 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/glenwood.scm:89 ../games/kansas.scm:90 ../games/lady-jane.scm:113
 #: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
 msgid "Base Card: Jack"
 msgstr "ベースのカード: J"
 
 #: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
 #: ../games/chessboard.scm:98 ../games/eagle-wing.scm:108
-#: ../games/glenwood.scm:91 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/glenwood.scm:91 ../games/kansas.scm:92 ../games/lady-jane.scm:115
 #: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
 msgid "Base Card: Queen"
 msgstr "ベースのカード: Q"
 
 #: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
 #: ../games/chessboard.scm:100 ../games/eagle-wing.scm:110
-#: ../games/glenwood.scm:93 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/glenwood.scm:93 ../games/kansas.scm:94 ../games/lady-jane.scm:117
 #: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
 msgid "Base Card: King"
 msgstr "ベースのカード: K"
@@ -1792,12 +1809,12 @@ msgstr "ベースのカード: K"
 #: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:92
 #: ../games/easthaven.scm:56 ../games/elevator.scm:98
 #: ../games/escalator.scm:123 ../games/first-law.scm:42
-#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:97
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
 #: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
-#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
-#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/lady-jane.scm:122 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:339 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
 #: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
 #: ../games/straight-up.scm:64 ../games/terrace.scm:159
@@ -1807,11 +1824,11 @@ msgstr "ベースのカード: K"
 #: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
 #: ../games/zebra.scm:71
 msgid "Stock left:"
-msgstr "残りの場数:"
+msgstr "残りの手札:"
 
-#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:124
 msgid "Stock left: 0"
-msgstr "残りの場数: 0"
+msgstr "残りの手札: 0"
 
 #: ../games/agnes.scm:264 ../games/easthaven.scm:232
 #: ../games/labyrinth.scm:189 ../games/monte-carlo.scm:196
@@ -1819,10 +1836,10 @@ msgstr "残りの場数: 0"
 msgid "Deal more cards"
 msgstr "もっとカードを引きなさい"
 
-#: ../games/agnes.scm:270 ../games/backbone.scm:295
-#: ../games/bakers-dozen.scm:194 ../games/beleaguered-castle.scm:171
+#: ../games/agnes.scm:270 ../games/backbone.scm:288
+#: ../games/bakers-dozen.scm:194 ../games/beleaguered-castle.scm:169
 #: ../games/canfield.scm:303 ../games/jumbo.scm:333
-#: ../games/king-albert.scm:286 ../games/lady-jane.scm:428
+#: ../games/king-albert.scm:286 ../games/lady-jane.scm:422
 #: ../games/streets-and-alleys.scm:180
 msgid "Try rearranging the cards"
 msgstr "カードの並びを整理してみよう"
@@ -2053,423 +2070,580 @@ msgid "the king of diamonds"
 msgstr "ダイアのK"
 
 #: ../games/api.scm:473
-#, fuzzy, scheme-format
-#| msgid "Move a card to the Foundation"
+#, scheme-format
 msgid "Move ~a onto the foundation."
-msgstr "カードを組み札に置きなさい"
+msgstr "~a を台札に置きなさい。"
 
 #: ../games/api.scm:473
-#, fuzzy, scheme-format
-#| msgid "Move ~a to an empty foundation"
+#, scheme-format
 msgid "Move ~a onto an empty foundation slot."
-msgstr "~a を空の組札に置きなさい"
+msgstr "~a を空の台札スロットに置きなさい。"
 
 #: ../games/api.scm:474
-#, fuzzy, scheme-format
-#| msgid "Move a King on to the empty tableau slot"
+#, scheme-format
 msgid "Move ~a onto the tableau."
-msgstr "空の絵札の上にKを置きなさい"
+msgstr "~a を場札に置きなさい。"
 
 #: ../games/api.scm:474
-#, fuzzy, scheme-format
-#| msgid "Move a King on to the empty tableau slot"
+#, scheme-format
 msgid "Move ~a onto an empty tableau slot."
-msgstr "空の絵札の上にKを置きなさい"
+msgstr "~a を空の場札スロットに置きなさい。"
 
 #: ../games/api.scm:475
-#, fuzzy, scheme-format
-#| msgid "Move waste on to a reserve slot"
+#, scheme-format
 msgid "Move ~a onto the reserve."
-msgstr "捨て札の山から場に戻しなさい"
+msgstr "~a を予備札に置きなさい。"
 
 #: ../games/api.scm:475
-#, fuzzy, scheme-format
-#| msgid "Move waste on to a reserve slot"
+#, scheme-format
 msgid "Move ~a onto an empty reserve slot."
-msgstr "捨て札の山から場に戻しなさい"
+msgstr "~a を空の予備札スロットに置きなさい。"
 
 #: ../games/api.scm:476
-#, fuzzy, scheme-format
-#| msgid "Move ~a to an empty field"
+#, scheme-format
 msgid "Move ~a onto an empty edge slot."
-msgstr "~a を空の場に置きなさい"
+msgstr "~a を空のエッジスロットに置きなさい。"
 
 #: ../games/api.scm:477
-#, fuzzy, scheme-format
-#| msgid "Move a card to an empty temporary slot"
+#, scheme-format
 msgid "Move ~a onto an empty corner slot."
-msgstr "カードを空のテンポラリなスポットに置きなさい"
+msgstr "~a を空の角のスロットに置きなさい。"
 
 #: ../games/api.scm:478
-#, fuzzy, scheme-format
-#| msgid "Move a card to an empty temporary slot"
+#, scheme-format
 msgid "Move ~a onto an empty top slot."
-msgstr "カードを空のテンポラリなスポットに置きなさい"
+msgstr "~a を空の上のスロットに置きなさい。"
 
 #: ../games/api.scm:479
-#, fuzzy, scheme-format
-#| msgid "an empty bottom slot"
+#, scheme-format
 msgid "Move ~a onto an empty bottom slot."
-msgstr "空の最下位スロット"
+msgstr "~a を空の下のスロットに置きなさい。"
 
 #: ../games/api.scm:480
-#, fuzzy, scheme-format
-#| msgid "Move ~a to an empty field"
+#, scheme-format
 msgid "Move ~a onto an empty left slot."
-msgstr "~a を空の場に置きなさい"
+msgstr "~a を空の左のスロットに置きなさい。"
 
 #: ../games/api.scm:481
-#, fuzzy, scheme-format
-#| msgid "Move ~a to an empty field"
+#, scheme-format
 msgid "Move ~a onto an empty right slot."
-msgstr "~a を空の場に置きなさい"
+msgstr "~a を空の右のスロットに置きなさい。"
 
 #: ../games/api.scm:482
-#, fuzzy, scheme-format
-#| msgid "Move ~a to an empty field"
+#, scheme-format
 msgid "Move ~a onto an empty slot."
-msgstr "~a を空の場に置きなさい"
+msgstr "~a を空のスロットに置きなさい。"
 
 #: ../games/api.scm:485
-#, fuzzy, scheme-format
-#| msgid "Move ~a off the board"
+#, scheme-format
 msgid "Move ~a onto the black joker."
-msgstr "~a を場から取り去りなさい"
+msgstr "~a を黒のジョーカーの上に置きなさい。"
 
 #: ../games/api.scm:485
-#, fuzzy, scheme-format
-#| msgid "Move ~a off the board"
+#, scheme-format
 msgid "Move ~a onto the red joker."
-msgstr "~a を場から取り去りなさい"
+msgstr "~a を赤のジョーカーの上に置きなさい。"
 
 #: ../games/api.scm:487
-#, fuzzy, scheme-format
-#| msgid "the ace of clubs"
+#, scheme-format
 msgid "Move ~a onto the ace of clubs."
-msgstr "クラブのA"
+msgstr "~a をクラブの A の上に置きなさい。"
 
 #: ../games/api.scm:488
-#, fuzzy, scheme-format
-#| msgid "the two of clubs"
+#, scheme-format
 msgid "Move ~a onto the two of clubs."
-msgstr "クラブの2"
+msgstr "~a をクラブの 2 の上に置きなさい。"
 
 #: ../games/api.scm:489
-#, fuzzy, scheme-format
-#| msgid "the three of clubs"
+#, scheme-format
 msgid "Move ~a onto the three of clubs."
-msgstr "クラブの3"
+msgstr "~a をクラブの 3 の上に置きなさい。"
 
 #: ../games/api.scm:490
-#, fuzzy, scheme-format
-#| msgid "the four of clubs"
+#, scheme-format
 msgid "Move ~a onto the four of clubs."
-msgstr "クラブの4"
+msgstr "~a をクラブの 4 の上に置きなさい。"
 
 #: ../games/api.scm:491
-#, fuzzy, scheme-format
-#| msgid "the five of clubs"
+#, scheme-format
 msgid "Move ~a onto the five of clubs."
-msgstr "クラブの5"
+msgstr "~a をクラブの 5 の上に置きなさい。"
 
 #: ../games/api.scm:492
-#, fuzzy, scheme-format
-#| msgid "the six of clubs"
+#, scheme-format
 msgid "Move ~a onto the six of clubs."
-msgstr "クラブの6"
+msgstr "~a をクラブの 6 の上に置きなさい。"
 
 #: ../games/api.scm:493
-#, fuzzy, scheme-format
-#| msgid "the seven of clubs"
+#, scheme-format
 msgid "Move ~a onto the seven of clubs."
-msgstr "クラブの7"
+msgstr "~a をクラブの 7 の上に置きなさい。"
 
 #: ../games/api.scm:494
-#, fuzzy, scheme-format
-#| msgid "the eight of clubs"
+#, scheme-format
 msgid "Move ~a onto the eight of clubs."
-msgstr "クラブの8"
+msgstr "~a をクラブの 8 の上に置きなさい。"
 
 #: ../games/api.scm:495
-#, fuzzy, scheme-format
-#| msgid "the nine of clubs"
+#, scheme-format
 msgid "Move ~a onto the nine of clubs."
-msgstr "クラブの9"
+msgstr "~a をクラブの 9 の上に置きなさい。"
 
 #: ../games/api.scm:496
-#, fuzzy, scheme-format
-#| msgid "the ten of clubs"
+#, scheme-format
 msgid "Move ~a onto the ten of clubs."
-msgstr "クラブの10"
+msgstr "~a をクラブの 10 の上に置きなさい。"
 
 #: ../games/api.scm:497
-#, fuzzy, scheme-format
-#| msgid "the jack of clubs"
+#, scheme-format
 msgid "Move ~a onto the jack of clubs."
-msgstr "クラブのJ"
+msgstr "~a をクラブの J の上に置きなさい。"
 
 #: ../games/api.scm:498
-#, fuzzy, scheme-format
-#| msgid "the queen of clubs"
+#, scheme-format
 msgid "Move ~a onto the queen of clubs."
-msgstr "クラブのQ"
+msgstr "~a をクラブの Q の上に置きなさい。"
 
 #: ../games/api.scm:499
-#, fuzzy, scheme-format
-#| msgid "the king of clubs"
+#, scheme-format
 msgid "Move ~a onto the king of clubs."
-msgstr "クラブのK"
+msgstr "~a をクラブの K の上に置きなさい。"
 
 #: ../games/api.scm:500 ../games/api.scm:515 ../games/api.scm:530
 #: ../games/api.scm:545 ../games/api.scm:546
-#, fuzzy, scheme-format
-#| msgid "Move ~a off the board"
+#, scheme-format
 msgid "Move ~a onto the unknown card."
-msgstr "~a を場から取り去りなさい"
+msgstr "~a を不明のカードの上に置きなさい。"
 
 #: ../games/api.scm:502
-#, fuzzy, scheme-format
-#| msgid "the ace of spades"
+#, scheme-format
 msgid "Move ~a onto the ace of spades."
-msgstr "スペードのA"
+msgstr "~a をスペードの A の上に置きなさい。"
 
 #: ../games/api.scm:503
-#, fuzzy, scheme-format
-#| msgid "the two of spades"
+#, scheme-format
 msgid "Move ~a onto the two of spades."
-msgstr "スペードの2"
+msgstr "~a をスペードの 2 の上に置きなさい。"
 
 #: ../games/api.scm:504
-#, fuzzy, scheme-format
-#| msgid "the three of spades"
+#, scheme-format
 msgid "Move ~a onto the three of spades."
-msgstr "スペードの3"
+msgstr "~a をスペードの 3 の上に置きなさい。"
 
 #: ../games/api.scm:505
-#, fuzzy, scheme-format
-#| msgid "the four of spades"
+#, scheme-format
 msgid "Move ~a onto the four of spades."
-msgstr "スペードの4"
+msgstr "~a をスペードの 4 の上に置きなさい。"
 
 #: ../games/api.scm:506
-#, fuzzy, scheme-format
-#| msgid "the five of spades"
+#, scheme-format
 msgid "Move ~a onto the five of spades."
-msgstr "スペードの5"
+msgstr "~a をスペードの 5 の上に置きなさい。"
 
 #: ../games/api.scm:507
-#, fuzzy, scheme-format
-#| msgid "the six of spades"
+#, scheme-format
 msgid "Move ~a onto the six of spades."
-msgstr "スペードの6"
+msgstr "~a をスペードの 6 の上に置きなさい。"
 
 #: ../games/api.scm:508
-#, fuzzy, scheme-format
-#| msgid "the seven of spades"
+#, scheme-format
 msgid "Move ~a onto the seven of spades."
-msgstr "スペードの7"
+msgstr "~a をスペードの 7 の上に置きなさい。"
 
 #: ../games/api.scm:509
-#, fuzzy, scheme-format
-#| msgid "the eight of spades"
+#, scheme-format
 msgid "Move ~a onto the eight of spades."
-msgstr "スペードの8"
+msgstr "~a をスペードの 8 の上に置きなさい。"
 
 #: ../games/api.scm:510
-#, fuzzy, scheme-format
-#| msgid "the nine of spades"
+#, scheme-format
 msgid "Move ~a onto the nine of spades."
-msgstr "スペードの9"
+msgstr "~a をスペードの 9 の上に置きなさい。"
 
 #: ../games/api.scm:511
-#, fuzzy, scheme-format
-#| msgid "the ten of spades"
+#, scheme-format
 msgid "Move ~a onto the ten of spades."
-msgstr "スペードの10"
+msgstr "~a をスペードの 10 の上に置きなさい。"
 
 #: ../games/api.scm:512
-#, fuzzy, scheme-format
-#| msgid "the jack of spades"
+#, scheme-format
 msgid "Move ~a onto the jack of spades."
-msgstr "スペードのJ"
+msgstr "~a をスペードの J の上に置きなさい。"
 
 #: ../games/api.scm:513
-#, fuzzy, scheme-format
-#| msgid "the queen of spades"
+#, scheme-format
 msgid "Move ~a onto the queen of spades."
-msgstr "スペードのQ"
+msgstr "~a をスペードの Q の上に置きなさい。"
 
 #: ../games/api.scm:514
-#, fuzzy, scheme-format
-#| msgid "the king of spades"
+#, scheme-format
 msgid "Move ~a onto the king of spades."
-msgstr "スペードのK"
+msgstr "~a をスペードの K の上に置きなさい。"
 
 #: ../games/api.scm:517
-#, fuzzy, scheme-format
-#| msgid "the ace of hearts"
+#, scheme-format
 msgid "Move ~a onto the ace of hearts."
-msgstr "ハートのA"
+msgstr "~a をハートの A の上に置きなさい。"
 
 #: ../games/api.scm:518
-#, fuzzy, scheme-format
-#| msgid "the two of hearts"
+#, scheme-format
 msgid "Move ~a onto the two of hearts."
-msgstr "ハートの2"
+msgstr "~a をハートの 2 の上に置きなさい。"
 
 #: ../games/api.scm:519
-#, fuzzy, scheme-format
-#| msgid "the three of hearts"
+#, scheme-format
 msgid "Move ~a onto the three of hearts."
-msgstr "ハートの3"
+msgstr "~a をハートの 3 の上に置きなさい。"
 
 #: ../games/api.scm:520
-#, fuzzy, scheme-format
-#| msgid "the four of hearts"
+#, scheme-format
 msgid "Move ~a onto the four of hearts."
-msgstr "ハートの4"
+msgstr "~a をハートの 4 の上に置きなさい。"
 
 #: ../games/api.scm:521
-#, fuzzy, scheme-format
-#| msgid "the five of hearts"
+#, scheme-format
 msgid "Move ~a onto the five of hearts."
-msgstr "ハートの5"
+msgstr "~a をハートの 5 の上に置きなさい。"
 
 #: ../games/api.scm:522
-#, fuzzy, scheme-format
-#| msgid "the six of hearts"
+#, scheme-format
 msgid "Move ~a onto the six of hearts."
-msgstr "ハートの6"
+msgstr "~a をハートの 6 の上に置きなさい。"
 
 #: ../games/api.scm:523
-#, fuzzy, scheme-format
-#| msgid "the seven of hearts"
+#, scheme-format
 msgid "Move ~a onto the seven of hearts."
-msgstr "ハートの7"
+msgstr "~a をハートの 7 の上に置きなさい。"
 
 #: ../games/api.scm:524
-#, fuzzy, scheme-format
-#| msgid "the eight of hearts"
+#, scheme-format
 msgid "Move ~a onto the eight of hearts."
-msgstr "ハートの8"
+msgstr "~a をハートの 8 の上に置きなさい。"
 
 #: ../games/api.scm:525
-#, fuzzy, scheme-format
-#| msgid "the nine of hearts"
+#, scheme-format
 msgid "Move ~a onto the nine of hearts."
-msgstr "ハートの9"
+msgstr "~a をハートの 9 の上に置きなさい。"
 
 #: ../games/api.scm:526
-#, fuzzy, scheme-format
-#| msgid "the ten of hearts"
+#, scheme-format
 msgid "Move ~a onto the ten of hearts."
-msgstr "ハートの10"
+msgstr "~a をハートの 10 の上に置きなさい。"
 
 #: ../games/api.scm:527
-#, fuzzy, scheme-format
-#| msgid "the jack of hearts"
+#, scheme-format
 msgid "Move ~a onto the jack of hearts."
-msgstr "ハートのJ"
+msgstr "~a をハートの J の上に置きなさい。"
 
 #: ../games/api.scm:528
-#, fuzzy, scheme-format
-#| msgid "the queen of hearts"
+#, scheme-format
 msgid "Move ~a onto the queen of hearts."
-msgstr "ハートのQ"
+msgstr "~a をハートの Q の上に置きなさい。"
 
 #: ../games/api.scm:529
-#, fuzzy, scheme-format
-#| msgid "the king of hearts"
+#, scheme-format
 msgid "Move ~a onto the king of hearts."
-msgstr "ハートのK"
+msgstr "~a をハートの K の上に置きなさい。"
 
 #: ../games/api.scm:532
-#, fuzzy, scheme-format
-#| msgid "the ace of diamonds"
+#, scheme-format
 msgid "Move ~a onto the ace of diamonds."
-msgstr "ダイアのA"
+msgstr "~a をダイアの A の上に置きなさい。"
 
 #: ../games/api.scm:533
-#, fuzzy, scheme-format
-#| msgid "the two of diamonds"
+#, scheme-format
 msgid "Move ~a onto the two of diamonds."
-msgstr "ダイアの2"
+msgstr "~a をダイアの 2 の上に置きなさい。"
 
 #: ../games/api.scm:534
-#, fuzzy, scheme-format
-#| msgid "the three of diamonds"
+#, scheme-format
 msgid "Move ~a onto the three of diamonds."
-msgstr "ダイアの3"
+msgstr "~a をダイアの 3 の上に置きなさい。"
 
 #: ../games/api.scm:535
-#, fuzzy, scheme-format
-#| msgid "the four of diamonds"
+#, scheme-format
 msgid "Move ~a onto the four of diamonds."
-msgstr "ダイアの4"
+msgstr "~a をダイアの 4 の上に置きなさい。"
 
 #: ../games/api.scm:536
-#, fuzzy, scheme-format
-#| msgid "the five of diamonds"
+#, scheme-format
 msgid "Move ~a onto the five of diamonds."
-msgstr "ダイアの5"
+msgstr "~a をダイアの 5 の上に置きなさい。"
 
 #: ../games/api.scm:537
-#, fuzzy, scheme-format
-#| msgid "the six of diamonds"
+#, scheme-format
 msgid "Move ~a onto the six of diamonds."
-msgstr "ダイアの6"
+msgstr "~a をダイアの 6 の上に置きなさい。"
 
 #: ../games/api.scm:538
-#, fuzzy, scheme-format
-#| msgid "the seven of diamonds"
+#, scheme-format
 msgid "Move ~a onto the seven of diamonds."
-msgstr "ダイアの7"
+msgstr "~a をダイアの 7 の上に置きなさい。"
 
 #: ../games/api.scm:539
-#, fuzzy, scheme-format
-#| msgid "the eight of diamonds"
+#, scheme-format
 msgid "Move ~a onto the eight of diamonds."
-msgstr "ダイアの8"
+msgstr "~a をダイアの 8 の上に置きなさい。"
 
 #: ../games/api.scm:540
-#, fuzzy, scheme-format
-#| msgid "the nine of diamonds"
+#, scheme-format
 msgid "Move ~a onto the nine of diamonds."
-msgstr "ダイアの9"
+msgstr "~a をダイアの 9 の上に置きなさい。"
 
 #: ../games/api.scm:541
-#, fuzzy, scheme-format
-#| msgid "the ten of diamonds"
+#, scheme-format
 msgid "Move ~a onto the ten of diamonds."
-msgstr "ダイアの10"
+msgstr "~a をダイアの 10 の上に置きなさい。"
 
 #: ../games/api.scm:542
-#, fuzzy, scheme-format
-#| msgid "the jack of diamonds"
+#, scheme-format
 msgid "Move ~a onto the jack of diamonds."
-msgstr "ダイアのJ"
+msgstr "~a をダイアの J の上に置きなさい。"
 
 #: ../games/api.scm:543
-#, fuzzy, scheme-format
-#| msgid "the queen of diamonds"
+#, scheme-format
 msgid "Move ~a onto the queen of diamonds."
-msgstr "ダイアのQ"
+msgstr "~a をダイアの Q の上に置きなさい。"
 
 #: ../games/api.scm:544
-#, fuzzy, scheme-format
-#| msgid "the king of diamonds"
+#, scheme-format
 msgid "Move ~a onto the king of diamonds."
-msgstr "ダイアのK"
+msgstr "~a をダイアの K の上に置きなさい。"
+
+#: ../games/api.scm:559
+msgid "Remove the black joker."
+msgstr "黒のジョーカーを取り去りなさい。"
+
+#: ../games/api.scm:559
+msgid "Remove the red joker."
+msgstr "赤のジョーカーを取り去りなさい。"
+
+#: ../games/api.scm:561
+msgid "Remove the ace of clubs."
+msgstr "クラブの A を取り去りなさい。"
+
+#: ../games/api.scm:562
+msgid "Remove the two of clubs."
+msgstr "クラブの 2 を取り去りなさい。"
+
+#: ../games/api.scm:563
+msgid "Remove the three of clubs."
+msgstr "クラブの 3 を取り去りなさい。"
+
+#: ../games/api.scm:564
+msgid "Remove the four of clubs."
+msgstr "クラブの 4 を取り去りなさい。"
+
+#: ../games/api.scm:565
+msgid "Remove the five of clubs."
+msgstr "クラブの 5 を取り去りなさい。"
+
+#: ../games/api.scm:566
+msgid "Remove the six of clubs."
+msgstr "クラブの 6 を取り去りなさい。"
+
+#: ../games/api.scm:567
+msgid "Remove the seven of clubs."
+msgstr "クラブの 7 を取り去りなさい。"
+
+#: ../games/api.scm:568
+msgid "Remove the eight of clubs."
+msgstr "クラブの 8 を取り去りなさい。"
+
+#: ../games/api.scm:569
+msgid "Remove the nine of clubs."
+msgstr "クラブの 9 を取り去りなさい。"
+
+#: ../games/api.scm:570 ../games/camelot.scm:168
+msgid "Remove the ten of clubs."
+msgstr "クラブの 10 を取り去りなさい。"
+
+#: ../games/api.scm:571
+msgid "Remove the jack of clubs."
+msgstr "クラブの J を取り去りなさい。"
+
+#: ../games/api.scm:572
+msgid "Remove the queen of clubs."
+msgstr "クラブの Q を取り去りなさい。"
+
+#: ../games/api.scm:573 ../games/helsinki.scm:109 ../games/neighbor.scm:141
+#: ../games/thirteen.scm:385 ../games/treize.scm:279 ../games/yield.scm:295
+msgid "Remove the king of clubs."
+msgstr "クラブの K を取り去りなさい。"
+
+#: ../games/api.scm:574 ../games/api.scm:589 ../games/api.scm:604
+#: ../games/api.scm:619 ../games/api.scm:620
+msgid "Remove the unknown card."
+msgstr "不明なカードを取り去りなさい。"
+
+#: ../games/api.scm:576
+msgid "Remove the ace of spades."
+msgstr "スペードの A を取り去りなさい。"
+
+#: ../games/api.scm:577
+msgid "Remove the two of spades."
+msgstr "スペードの 2 を取り去りなさい。"
+
+#: ../games/api.scm:578
+msgid "Remove the three of spades."
+msgstr "スペードの 3 を取り去りなさい。"
+
+#: ../games/api.scm:579
+msgid "Remove the four of spades."
+msgstr "スペードの 4 を取り去りなさい。"
+
+#: ../games/api.scm:580
+msgid "Remove the five of spades."
+msgstr "スペードの 5 を取り去りなさい。"
+
+#: ../games/api.scm:581
+msgid "Remove the six of spades."
+msgstr "スペードの 6 を取り去りなさい。"
+
+#: ../games/api.scm:582
+msgid "Remove the seven of spades."
+msgstr "スペードの 7 を取り去りなさい。"
+
+#: ../games/api.scm:583
+msgid "Remove the eight of spades."
+msgstr "スペードの 8 を取り去りなさい。"
+
+#: ../games/api.scm:584
+msgid "Remove the nine of spades."
+msgstr "スペードの 9 を取り去りなさい。"
+
+#: ../games/api.scm:585 ../games/camelot.scm:171
+msgid "Remove the ten of spades."
+msgstr "スペードの 10 を取り去りなさい。"
+
+#: ../games/api.scm:586
+msgid "Remove the jack of spades."
+msgstr "スペードの J を取り去りなさい。"
+
+#: ../games/api.scm:587
+msgid "Remove the queen of spades."
+msgstr "スペードの Q を取り去りなさい。"
+
+#: ../games/api.scm:588 ../games/helsinki.scm:112 ../games/neighbor.scm:144
+#: ../games/thirteen.scm:388 ../games/treize.scm:282 ../games/yield.scm:298
+msgid "Remove the king of spades."
+msgstr "スペードの K を取り去りなさい。"
+
+#: ../games/api.scm:591
+msgid "Remove the ace of hearts."
+msgstr "ハートの A を取り去りなさい。"
+
+#: ../games/api.scm:592
+msgid "Remove the two of hearts."
+msgstr "ハートの 2 を取り去りなさい。"
+
+#: ../games/api.scm:593
+msgid "Remove the three of hearts."
+msgstr "ハートの 3 を取り去りなさい。"
+
+#: ../games/api.scm:594
+msgid "Remove the four of hearts."
+msgstr "ハートの 4 を取り去りなさい。"
+
+#: ../games/api.scm:595
+msgid "Remove the five of hearts."
+msgstr "ハートの 5 を取り去りなさい。"
+
+#: ../games/api.scm:596
+msgid "Remove the six of hearts."
+msgstr "ハートの 6 を取り去りなさい。"
+
+#: ../games/api.scm:597
+msgid "Remove the seven of hearts."
+msgstr "ハートの 7 を取り去りなさい。"
+
+#: ../games/api.scm:598
+msgid "Remove the eight of hearts."
+msgstr "ハートの 8 を取り去りなさい。"
+
+#: ../games/api.scm:599
+msgid "Remove the nine of hearts."
+msgstr "ハートの 9 を取り去りなさい。"
+
+#: ../games/api.scm:600 ../games/camelot.scm:170
+msgid "Remove the ten of hearts."
+msgstr "ハートの 10 を取り去りなさい。"
+
+#: ../games/api.scm:601
+msgid "Remove the jack of hearts."
+msgstr "ハートの J を取り去りなさい。"
+
+#: ../games/api.scm:602
+msgid "Remove the queen of hearts."
+msgstr "ハートの Q を取り去りなさい。"
+
+#: ../games/api.scm:603 ../games/helsinki.scm:111 ../games/neighbor.scm:143
+#: ../games/thirteen.scm:387 ../games/treize.scm:281 ../games/yield.scm:297
+msgid "Remove the king of hearts."
+msgstr "ハートの K を取り去りなさい。"
+
+#: ../games/api.scm:606
+msgid "Remove the ace of diamonds."
+msgstr "ダイアの A を取り去りなさい。"
+
+#: ../games/api.scm:607
+msgid "Remove the two of diamonds."
+msgstr "ダイアの 2 を取り去りなさい。"
+
+#: ../games/api.scm:608
+msgid "Remove the three of diamonds."
+msgstr "ダイアの 3 を取り去りなさい。"
+
+#: ../games/api.scm:609
+msgid "Remove the four of diamonds."
+msgstr "ダイアの 4 を取り去りなさい。"
+
+#: ../games/api.scm:610
+msgid "Remove the five of diamonds."
+msgstr "ダイアの 5 を取り去りなさい。"
+
+#: ../games/api.scm:611
+msgid "Remove the six of diamonds."
+msgstr "ダイアの 6 を取り去りなさい。"
+
+#: ../games/api.scm:612
+msgid "Remove the seven of diamonds."
+msgstr "ダイアの 7 を取り去りなさい。"
+
+#: ../games/api.scm:613
+msgid "Remove the eight of diamonds."
+msgstr "ダイアの 8 を取り去りなさい。"
+
+#: ../games/api.scm:614
+msgid "Remove the nine of diamonds."
+msgstr "ダイアの 9 を取り去りなさい。"
+
+#: ../games/api.scm:615 ../games/camelot.scm:169
+msgid "Remove the ten of diamonds."
+msgstr "ダイアの 10 を取り去りなさい。"
+
+#: ../games/api.scm:616
+msgid "Remove the jack of diamonds."
+msgstr "ダイアの J を取り去りなさい。"
+
+#: ../games/api.scm:617
+msgid "Remove the queen of diamonds."
+msgstr "ダイアの Q を取り去りなさい。"
+
+#: ../games/api.scm:618 ../games/helsinki.scm:110 ../games/neighbor.scm:142
+#: ../games/thirteen.scm:386 ../games/treize.scm:280 ../games/yield.scm:296
+msgid "Remove the king of diamonds."
+msgstr "ダイアの K を取り去りなさい。"
 
 #: ../games/athena.scm:80 ../games/klondike.scm:293
-#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
+#: ../games/napoleons-tomb.scm:354 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
-msgstr "三枚ひく"
+msgstr "三枚引く"
 
-#: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
-#: ../games/first-law.scm:127 ../games/fortunes.scm:161
-#: ../games/lady-jane.scm:233 ../games/scuffle.scm:140 ../games/spider.scm:290
+#: ../games/auld-lang-syne.scm:122 ../games/bristol.scm:262
+#: ../games/first-law.scm:127 ../games/fortunes.scm:157
+#: ../games/lady-jane.scm:239 ../games/scuffle.scm:138 ../games/spider.scm:290
 #: ../games/thumb-and-pouch.scm:258 ../games/zebra.scm:212
 msgid "Deal another round"
 msgstr "別のラウンドに行きなさい"
@@ -2477,24 +2651,16 @@ msgstr "別のラウンドに行きなさい"
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
 #: ../games/jumbo.scm:68 ../games/klondike.scm:83
-#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
+#: ../games/napoleons-tomb.scm:335 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
 #: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "引き直しの残数:"
 
-#: ../games/backbone.scm:234
-msgid "an empty slot on the tableau"
-msgstr "空の絵札のスロット"
-
-#: ../games/backbone.scm:235
-msgid "an empty slot on the foundation"
-msgstr "空の組札のスロット"
-
-#: ../games/backbone.scm:293 ../games/camelot.scm:209
+#: ../games/backbone.scm:286 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:323
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2507,53 +2673,28 @@ msgid "Base Card: "
 msgstr "ベースのカード: "
 
 #: ../games/bear-river.scm:207
-#, fuzzy
 msgid "Move something onto an empty right-hand tableau slot"
-msgstr "空の絵札のスロットに何か置きなさい"
-
-#: ../games/camelot.scm:168
-#, fuzzy
-#| msgid "the ten of clubs"
-msgid "Remove the ten of clubs."
-msgstr "クラブの10"
-
-#: ../games/camelot.scm:169
-#, fuzzy
-#| msgid "the ten of diamonds"
-msgid "Remove the ten of diamonds."
-msgstr "ダイアの10"
-
-#: ../games/camelot.scm:170
-#, fuzzy
-#| msgid "the ten of hearts"
-msgid "Remove the ten of hearts."
-msgstr "ハートの10"
-
-#: ../games/camelot.scm:171
-#, fuzzy
-#| msgid "the ten of spades"
-msgid "Remove the ten of spades."
-msgstr "スペードの10"
+msgstr "空の右手の場札スロットに何か置いてみよう"
 
 #: ../games/canfield.scm:73 ../games/eagle-wing.scm:96 ../games/kansas.scm:80
 #: ../games/straight-up.scm:68
 msgid "Reserve left:"
-msgstr "左のリザーブ: "
+msgstr "残りの予備札: "
 
 #: ../games/canfield.scm:229 ../games/eagle-wing.scm:335
 #: ../games/glenwood.scm:256 ../games/plait.scm:106
 #: ../games/straight-up.scm:243 ../games/thumb-and-pouch.scm:261
 #: ../games/zebra.scm:215
 msgid "Move waste back to stock"
-msgstr "捨て札を場に戻しなさい"
+msgstr "捨て札を手札に戻しなさい"
 
 #: ../games/chessboard.scm:198
 msgid "Move a card to the Foundation"
-msgstr "カードを組み札に置きなさい"
+msgstr "カードを台札に置きなさい"
 
 #: ../games/chessboard.scm:260
 msgid "Move something into the empty Tableau slot"
-msgstr "空の絵札のスロットに何か置きなさい"
+msgstr "空の場札のスロットに何か置きなさい"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:173
@@ -2598,7 +2739,7 @@ msgstr "森の中で道に迷ったら木を目印にすべし"
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:189
 msgid "Fishing wire makes bad dental floss"
-msgstr "釣り糸はデンタル・フロス (歯間掃除) にはむきません"
+msgstr "釣り糸はデンタルフロス (歯間掃除) にはむきません"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:191
@@ -2622,140 +2763,106 @@ msgstr "残りのカード: ~a"
 
 #: ../games/cruel.scm:200
 msgid "Redeal."
-msgstr "カードを引き直しなさい"
+msgstr "カードを引き直しなさい。"
 
 #: ../games/doublets.scm:157
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for an ace."
-msgstr "%s を検索中です"
+msgstr "A を探しましょう。"
 
 #: ../games/doublets.scm:158
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a two."
-msgstr "%s を検索中です"
+msgstr "2 を探しましょう。"
 
 #: ../games/doublets.scm:159
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a three."
-msgstr "%s を検索中です"
+msgstr "3 を探しましょう。"
 
 #: ../games/doublets.scm:160
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a four."
-msgstr "%s を検索中です"
+msgstr "4 を探しましょう。"
 
 #: ../games/doublets.scm:161
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a five."
-msgstr "%s を検索中です"
+msgstr "5 を探しましょう。"
 
 #: ../games/doublets.scm:162
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a six."
-msgstr "%s を検索中です"
+msgstr "6 を探しましょう。"
 
 #: ../games/doublets.scm:163
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a seven."
-msgstr "%s を検索中です"
+msgstr "7 を探しましょう。"
 
 #: ../games/doublets.scm:164
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for an eight."
-msgstr "%s を検索中です"
+msgstr "8 を探しましょう。"
 
 #: ../games/doublets.scm:165
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a nine."
-msgstr "%s を検索中です"
+msgstr "9 を探しましょう。"
 
 #: ../games/doublets.scm:166
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a ten."
-msgstr "%s を検索中です"
+msgstr "10 を探しましょう。"
 
 #: ../games/doublets.scm:167
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a jack."
-msgstr "%s を検索中です"
+msgstr "J を探しましょう。"
 
 #: ../games/doublets.scm:168
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a queen."
-msgstr "%s を検索中です"
+msgstr "Q を探しましょう。"
 
 #: ../games/doublets.scm:169
-#, fuzzy
-#| msgid "You are searching for a %s."
 msgid "You are searching for a king."
-msgstr "%s を検索中です"
+msgstr "K を探しましょう。"
 
 #: ../games/doublets.scm:170
 msgid "Unknown value"
 msgstr "不明な値"
 
 #: ../games/eagle-wing.scm:332 ../games/elevator.scm:363
-#: ../games/escalator.scm:224 ../games/royal-east.scm:193
-#: ../games/thirteen.scm:415 ../games/treize.scm:305
-#: ../games/triple-peaks.scm:344 ../games/union-square.scm:464
+#: ../games/escalator.scm:222 ../games/royal-east.scm:193
+#: ../games/thirteen.scm:419 ../games/treize.scm:305
+#: ../games/triple-peaks.scm:342 ../games/union-square.scm:464
 #: ../games/westhaven.scm:196 ../games/yield.scm:321
 msgid "Deal a card"
 msgstr "カードを引きなさい"
 
 #: ../games/easthaven.scm:227
-#, fuzzy
-#| msgid "Move a King on to the empty tableau slot"
 msgid "Move a king onto an empty tableau slot."
-msgstr "空の絵札の上にKを置きなさい"
+msgstr "空の場札スロットに K を置きなさい。"
 
 #: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "ヒントはありません"
 
-#: ../games/eight-off.scm:248 ../games/seahaven.scm:316
+#: ../games/eight-off.scm:248 ../games/seahaven.scm:315
 msgid "Move something on to an empty reserve"
-msgstr "空のリザーブの上に何か置きなさい"
+msgstr "空の予備札スロットの上に何か置きなさい"
 
+# 参照 http://iphoneac.com/solitairecity4.html#eliminator
 #: ../games/eliminator.scm:176
-#, fuzzy
 msgid "Six Foundations"
-msgstr "組札の山"
+msgstr "6枠の台札"
 
 #: ../games/eliminator.scm:177
-#, fuzzy
-#| msgid "the foundation"
 msgid "Five Foundations"
-msgstr "組札の山"
+msgstr "5枠の台札"
 
 #: ../games/eliminator.scm:178
-#, fuzzy
 msgid "Four Foundations"
-msgstr "組札の山"
+msgstr "4枠の台札"
 
+# この訳は微妙。
 #: ../games/eliminator.scm:196
-#, fuzzy
-#| msgid "Move a card to the Foundation"
 msgid "Play a card to foundation."
-msgstr "カードを組み札に置きなさい"
+msgstr "カードを台札に戻しなさい。"
 
 #: ../games/eliminator.scm:197
-#, fuzzy
-#| msgid "Track moves"
 msgid "No moves."
-msgstr "トラックの移動"
+msgstr "移動できません。"
 
 #: ../games/first-law.scm:139
 msgid "Remove the aces"
@@ -2813,28 +2920,21 @@ msgstr "Kを取り去りなさい"
 msgid "I'm not sure"
 msgstr "確実ではありません"
 
-#: ../games/first-law.scm:185
+#: ../games/first-law.scm:184
 msgid "Return cards to stock"
-msgstr "カードを場へ戻しなさい"
+msgstr "カードを手札へ戻しなさい"
 
 #: ../games/fortress.scm:212
-#, fuzzy
-#| msgid "Move something into the empty Tableau slot"
 msgid "Move something onto an empty tableau slot."
-msgstr "空の絵札のスロットに何か置きなさい"
+msgstr "空の場札スロットに何か置きなさい。"
 
-#: ../games/fortunes.scm:135 ../games/fortunes.scm:138
-#, scheme-format
-msgid "Move ~a off the board"
-msgstr "~a を場から取り去りなさい"
-
-#: ../games/fortunes.scm:158 ../games/klondike.scm:262
+#: ../games/fortunes.scm:154 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "空のスロットになにかを置いたらどうだろう?"
 
-#: ../games/forty-thieves.scm:374
+#: ../games/forty-thieves.scm:357
 msgid "Deal a card from stock"
-msgstr "場からカードを引きなさい"
+msgstr "手札からカードを引きなさい"
 
 #: ../games/freecell.scm:625
 msgid "No moves are possible. Undo or start again."
@@ -2846,278 +2946,263 @@ msgstr "他に解決方法はありません: 元に戻すか初めからやり�
 
 #: ../games/gaps.scm:280
 msgid "Double click any card to redeal."
-msgstr "カードをダブル・クリックして引き直しなさい"
+msgstr "カードをダブルクリックして引き直しなさい。"
 
 #: ../games/gaps.scm:286
 msgid "No hint available."
-msgstr "ヒントはありません"
+msgstr "ヒントはありません。"
 
 #: ../games/gaps.scm:295
 #, scheme-format
 msgid "Place a two in the leftmost slot of row ~a."
-msgstr "左上 ~a 番目のスロットに2を置きなさい"
+msgstr "~a 行目の左端に 2 を置きなさい。"
 
 #: ../games/gaps.scm:299
 #, scheme-format
 msgid "Add to the sequence in row ~a."
-msgstr "~a がある行に並べなさい"
+msgstr "~a 行目に並べなさい。"
 
 #: ../games/gaps.scm:311
 msgid "Place the two of clubs next to the ace of clubs."
-msgstr ""
+msgstr "クラブの 2 を クラブの A の次に置きなさい。"
 
 #: ../games/gaps.scm:312
 msgid "Place the three of clubs next to the two of clubs."
-msgstr ""
+msgstr "クラブの 3 を クラブの 2 の次に置きなさい。"
 
 #: ../games/gaps.scm:313
 msgid "Place the four of clubs next to the three of clubs."
-msgstr ""
+msgstr "クラブの 4 を クラブの 3 の次に置きなさい。"
 
 #: ../games/gaps.scm:314
 msgid "Place the five of clubs next to the four of clubs."
-msgstr ""
+msgstr "クラブの 5 を クラブの 4 の次に置きなさい。"
 
 #: ../games/gaps.scm:315
 msgid "Place the six of clubs next to the five of clubs."
-msgstr ""
+msgstr "クラブの 6 を クラブの 5 の次に置きなさい。"
 
 #: ../games/gaps.scm:316
 msgid "Place the seven of clubs next to the six of clubs."
-msgstr ""
+msgstr "クラブの 7 を クラブの 6 の次に置きなさい。"
 
 #: ../games/gaps.scm:317
 msgid "Place the eight of clubs next to the seven of clubs."
-msgstr ""
+msgstr "クラブの 8 を クラブの 7 の次に置きなさい。"
 
 #: ../games/gaps.scm:318
 msgid "Place the nine of clubs next to the eight of clubs."
-msgstr ""
+msgstr "クラブの 9 を クラブの 8 の次に置きなさい。"
 
 #: ../games/gaps.scm:319
 msgid "Place the ten of clubs next to the nine of clubs."
-msgstr ""
+msgstr "クラブの 10 を クラブの 9 の次に置きなさい。"
 
 #: ../games/gaps.scm:320
 msgid "Place the jack of clubs next to the ten of clubs."
-msgstr ""
+msgstr "クラブの J を クラブの 10 の次に置きなさい。"
 
 #: ../games/gaps.scm:321
 msgid "Place the queen of clubs next to the jack of clubs."
-msgstr ""
+msgstr "クラブの Q を クラブの J の次に置きなさい。"
 
 #: ../games/gaps.scm:322
 msgid "Place the king of clubs next to the queen of clubs."
-msgstr ""
+msgstr "クラブの K を クラブの Q の次に置きなさい。"
 
 #: ../games/gaps.scm:325
 msgid "Place the two of spades next to the ace of spades."
-msgstr ""
+msgstr "スペードの 2 を スペードの A の次に置きなさい。"
 
 #: ../games/gaps.scm:326
 msgid "Place the three of spades next to the two of spades."
-msgstr ""
+msgstr "スペードの 3 を スペードの 2 の次に置きなさい。"
 
 #: ../games/gaps.scm:327
 msgid "Place the four of spades next to the three of spades."
-msgstr ""
+msgstr "スペードの 4 を スペードの 3 の次に置きなさい。"
 
 #: ../games/gaps.scm:328
 msgid "Place the five of spades next to the four of spades."
-msgstr ""
+msgstr "スペードの 5 を スペードの 4 の次に置きなさい。"
 
 #: ../games/gaps.scm:329
 msgid "Place the six of spades next to the five of spades."
-msgstr ""
+msgstr "スペードの 6 を スペードの 5 の次に置きなさい。"
 
 #: ../games/gaps.scm:330
 msgid "Place the seven of spades next to the six of spades."
-msgstr ""
+msgstr "スペードの 7 を スペードの 6 の次に置きなさい。"
 
 #: ../games/gaps.scm:331
 msgid "Place the eight of spades next to the seven of spades."
-msgstr ""
+msgstr "スペードの 8 を スペードの 7 の次に置きなさい。"
 
 #: ../games/gaps.scm:332
 msgid "Place the nine of spades next to the eight of spades."
-msgstr ""
+msgstr "スペードの 9 を スペードの 8 の次に置きなさい。"
 
 #: ../games/gaps.scm:333
 msgid "Place the ten of spades next to the nine of spades."
-msgstr ""
+msgstr "スペードの 10 を スペードの 9 の次に置きなさい。"
 
 #: ../games/gaps.scm:334
 msgid "Place the jack of spades next to the ten of spades."
-msgstr ""
+msgstr "スペードの J を スペードの 10 の次に置きなさい。"
 
 #: ../games/gaps.scm:335
 msgid "Place the queen of spades next to the jack of spades."
-msgstr ""
+msgstr "スペードの Q を スペードの J の次に置きなさい。"
 
 #: ../games/gaps.scm:336
 msgid "Place the king of spades next to the queen of spades."
-msgstr ""
+msgstr "スペードの K を スペードの Q の次に置きなさい。"
 
 #: ../games/gaps.scm:339
 msgid "Place the two of hearts next to the ace of hearts."
-msgstr ""
+msgstr "ハートの 2 を ハートの A の次に置きなさい。"
 
 #: ../games/gaps.scm:340
 msgid "Place the three of hearts next to the two of hearts."
-msgstr ""
+msgstr "ハートの 3 を ハートの 2 の次に置きなさい。"
 
 #: ../games/gaps.scm:341
 msgid "Place the four of hearts next to the three of hearts."
-msgstr ""
+msgstr "ハートの 4 を ハートの 3 の次に置きなさい。"
 
 #: ../games/gaps.scm:342
 msgid "Place the five of hearts next to the four of hearts."
-msgstr ""
+msgstr "ハートの 5 を ハートの 4 の次に置きなさい。"
 
 #: ../games/gaps.scm:343
 msgid "Place the six of hearts next to the five of hearts."
-msgstr ""
+msgstr "ハートの 6 を ハートの 5 の次に置きなさい。"
 
 #: ../games/gaps.scm:344
 msgid "Place the seven of hearts next to the six of hearts."
-msgstr ""
+msgstr "ハートの 7 を ハートの 6 の次に置きなさい。"
 
 #: ../games/gaps.scm:345
 msgid "Place the eight of hearts next to the seven of hearts."
-msgstr ""
+msgstr "ハートの 8 を ハートの 7 の次に置きなさい。"
 
 #: ../games/gaps.scm:346
 msgid "Place the nine of hearts next to the eight of hearts."
-msgstr ""
+msgstr "ハートの 9 を ハートの 8 の次に置きなさい。"
 
 #: ../games/gaps.scm:347
 msgid "Place the ten of hearts next to the nine of hearts."
-msgstr ""
+msgstr "ハートの 10 を ハートの 9 の次に置きなさい。"
 
 #: ../games/gaps.scm:348
 msgid "Place the jack of hearts next to the ten of hearts."
-msgstr ""
+msgstr "ハートの J を ハートの 10 の次に置きなさい。"
 
 #: ../games/gaps.scm:349
 msgid "Place the queen of hearts next to the jack of hearts."
-msgstr ""
+msgstr "ハートの Q を ハートの J の次に置きなさい。"
 
 #: ../games/gaps.scm:350
 msgid "Place the king of hearts next to the queen of hearts."
-msgstr ""
+msgstr "ハートの K を ハートの Q の次に置きなさい。"
 
 #: ../games/gaps.scm:353
 msgid "Place the two of diamonds next to the ace of diamonds."
-msgstr ""
+msgstr "ダイアの 2 を ダイアの A の次に置きなさい。"
 
 #: ../games/gaps.scm:354
 msgid "Place the three of diamonds next to the two of diamonds."
-msgstr ""
+msgstr "ダイアの 3 を ダイアの 2 の次に置きなさい。"
 
 #: ../games/gaps.scm:355
 msgid "Place the four of diamonds next to the three of diamonds."
-msgstr ""
+msgstr "ダイアの 4 を ダイアの 3 の次に置きなさい。"
 
 #: ../games/gaps.scm:356
 msgid "Place the five of diamonds next to the four of diamonds."
-msgstr ""
+msgstr "ダイアの 5 を ダイアの 4 の次に置きなさい。"
 
 #: ../games/gaps.scm:357
 msgid "Place the six of diamonds next to the five of diamonds."
-msgstr ""
+msgstr "ダイアの 6 を ダイアの 5 の次に置きなさい。"
 
 #: ../games/gaps.scm:358
 msgid "Place the seven of diamonds next to the six of diamonds."
-msgstr ""
+msgstr "ダイアの 7 を ダイアの 6 の次に置きなさい。"
 
 #: ../games/gaps.scm:359
 msgid "Place the eight of diamonds next to the seven of diamonds."
-msgstr ""
+msgstr "ダイアの 8 を ダイアの 7 の次に置きなさい。"
 
 #: ../games/gaps.scm:360
 msgid "Place the nine of diamonds next to the eight of diamonds."
-msgstr ""
+msgstr "ダイアの 9 を ダイアの 8 の次に置きなさい。"
 
 #: ../games/gaps.scm:361
 msgid "Place the ten of diamonds next to the nine of diamonds."
-msgstr ""
+msgstr "ダイアの 10 を ダイアの 9 の次に置きなさい。"
 
 #: ../games/gaps.scm:362
 msgid "Place the jack of diamonds next to the ten of diamonds."
-msgstr ""
+msgstr "ダイアの J を ダイアの 10 の次に置きなさい。"
 
 #: ../games/gaps.scm:363
 msgid "Place the queen of diamonds next to the jack of diamonds."
-msgstr ""
+msgstr "ダイアの Q を ダイアの J の次に置きなさい。"
 
 #: ../games/gaps.scm:364
 msgid "Place the king of diamonds next to the queen of diamonds."
-msgstr ""
+msgstr "ダイアの K を ダイアの Q の次に置きなさい。"
 
-# FIXME: 意味不明
+# ギャップは、通常は未整列の最後に配置されますが、このオプションで未整列でないところにランダムに配置される。
 #: ../games/gaps.scm:383
 msgid "Randomly Placed Gaps on Redeal"
-msgstr "Randomly Placed Gaps on Redeal"
+msgstr "配り直し時にギャップをランダムな位置に移動する"
 
 #: ../games/giant.scm:76
-#, fuzzy, scheme-format
+#, scheme-format
 msgid "Deals left: ~a"
 msgstr "引き直しの残数: ~a"
 
 #: ../games/giant.scm:252
-#, fuzzy
 msgid "Deal a row"
-msgstr "カードを引きなさい"
+msgstr "カードを一列分引きなさい"
 
-#: ../games/giant.scm:259
-#, fuzzy
-msgid "an empty foundation place"
-msgstr "空の組札の山"
-
-#: ../games/giant.scm:260
-#, fuzzy
-msgid "an empty tableau place"
-msgstr "空の絵札"
-
-#: ../games/giant.scm:287
-#, fuzzy
+#: ../games/giant.scm:276
 msgid "Try moving a card to the reserve"
-msgstr "カードの山を他の場に移動してみよう"
+msgstr "カードを予備札に移動してみよう"
 
-#: ../games/giant.scm:288
-#, fuzzy
+#: ../games/giant.scm:277
 msgid "Try dealing a row of cards"
-msgstr "カードの並びを整理してみよう"
+msgstr "カードを一列引いてみよう"
 
 #. this isn't great, but it will get around the premature end-of-game call
-#: ../games/giant.scm:290 ../games/spider.scm:309
+#: ../games/giant.scm:279 ../games/spider.scm:309
 msgid "Try moving card piles around"
 msgstr "カードの山を他の場に移動してみよう"
 
-#: ../games/giant.scm:295
+#: ../games/giant.scm:284
 msgid "Same suit"
-msgstr ""
+msgstr "同じスート"
 
-#: ../games/giant.scm:296
+#: ../games/giant.scm:285
 msgid "Alternating colors"
-msgstr ""
+msgstr "赤黒交互"
 
 #: ../games/glenwood.scm:261
 msgid "Select a card from the reserve for first foundation pile"
-msgstr "最初の組札の山にするためにリザーブにあるカードを選択しなさい"
+msgstr "最初の台札にするために予備札にあるカードを選択しなさい"
 
 #: ../games/glenwood.scm:355
-#, fuzzy
-#| msgid "Move a card from the reserve on to the empty tableau slot"
 msgid "Move a card from the reserve onto the empty tableau slot"
-msgstr "リザーブにあるカードを空の絵札があるスロットへ置きなさい"
+msgstr "予備札スロットから空の場札スロットへカードを移動しなさい"
 
 #: ../games/golf.scm:67 ../games/osmosis.scm:68 ../games/spider.scm:88
 #, scheme-format
 msgid "Stock left: ~a"
-msgstr "残りの場数: ~a"
+msgstr "残りの手札: ~a"
 
-#: ../games/golf.scm:139 ../games/hopscotch.scm:130 ../games/jumbo.scm:298
+#: ../games/golf.scm:138 ../games/hopscotch.scm:130 ../games/jumbo.scm:298
 #: ../games/kansas.scm:219 ../games/sir-tommy.scm:134
 #: ../games/whitehead.scm:252
 msgid "Deal another card"
@@ -3131,46 +3216,18 @@ msgstr "カードまたはカードの山を空の場に置きなさい"
 msgid "Deal another hand"
 msgstr "他のカードを引きなさい"
 
-#: ../games/helsinki.scm:109 ../games/neighbor.scm:141 ../games/treize.scm:279
-#: ../games/yield.scm:295
-#, fuzzy
-#| msgid "the king of clubs"
-msgid "Remove the king of clubs."
-msgstr "クラブのK"
-
-#: ../games/helsinki.scm:110 ../games/neighbor.scm:142 ../games/treize.scm:280
-#: ../games/yield.scm:296
-#, fuzzy
-#| msgid "the king of diamonds"
-msgid "Remove the king of diamonds."
-msgstr "ダイアのK"
-
-#: ../games/helsinki.scm:111 ../games/neighbor.scm:143 ../games/treize.scm:281
-#: ../games/yield.scm:297
-#, fuzzy
-#| msgid "the king of hearts"
-msgid "Remove the king of hearts."
-msgstr "ハートのK"
-
-#: ../games/helsinki.scm:112 ../games/neighbor.scm:144 ../games/treize.scm:282
-#: ../games/yield.scm:298
-#, fuzzy
-#| msgid "the king of spades"
-msgid "Remove the king of spades."
-msgstr "スペードのK"
-
 #: ../games/hopscotch.scm:126
 msgid "Move card from waste"
 msgstr "捨て札からカードを移動しなさい"
 
 #: ../games/jumbo.scm:301
 msgid "Move waste to stock"
-msgstr "捨て札を場に置きなさい"
+msgstr "捨て札を手札に置きなさい"
 
 #: ../games/kings-audience.scm:88
 #, scheme-format
 msgid "Stock remaining: ~a"
-msgstr "残りの場数: ~a"
+msgstr "残りの手札: ~a"
 
 #: ../games/kings-audience.scm:227
 msgid "Deal a new card"
@@ -3178,9 +3235,9 @@ msgstr "新しいカードを引きなさい"
 
 #: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
-msgstr "組札のカードを場に戻してみよう"
+msgstr "台札からカードを戻してみよう"
 
-#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:355
 msgid "Single card deals"
 msgstr "一枚引く"
 
@@ -3189,34 +3246,20 @@ msgid "No redeals"
 msgstr "引き直さない"
 
 #: ../games/klondike.scm:296
-#, fuzzy
-#| msgid "Unlimited"
 msgid "Unlimited redeals"
-msgstr "制限なし"
+msgstr "引き直しの制限なし"
 
-#: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
+#: ../games/lady-jane.scm:109 ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "ベースのカード: "
-
-#: ../games/lady-jane.scm:253
-msgid "an empty foundation pile"
-msgstr "空の組札の山"
-
-#: ../games/lady-jane.scm:397 ../games/lady-jane.scm:409
-msgid "an empty tableau slot"
-msgstr "空の絵札の場"
 
 #: ../games/maze.scm:147
 msgid "Aim to place the suits in the order which fits the current layout most naturally."
 msgstr "カードを、最も自然なレイアウトに合うような順番に配置することを目標にしてください。"
 
-#: ../games/napoleons-tomb.scm:338 ../games/terrace.scm:286
-msgid "the foundation"
-msgstr "組札の山"
-
-#: ../games/napoleons-tomb.scm:373
+#: ../games/napoleons-tomb.scm:357
 msgid "Autoplay"
-msgstr ""
+msgstr "自動実行"
 
 #: ../games/osmosis.scm:74
 #, scheme-format
@@ -3237,7 +3280,7 @@ msgstr "空のスロット"
 
 #: ../games/poker.scm:297
 msgid "Place cards on to the Tableau to form poker hands"
-msgstr "ポーカー側から絵札にカードを置きなさい"
+msgstr "ポーカー側から場札にカードを置きなさい"
 
 #: ../games/poker.scm:300
 msgid "Shuffle mode"
@@ -3247,29 +3290,21 @@ msgstr "シャッフルしなさい"
 msgid "Deal the cards"
 msgstr "カードを引きなさい"
 
-#: ../games/scuffle.scm:142
+#: ../games/scuffle.scm:140
 msgid "Reshuffle cards"
 msgstr "カードをもう一度シャッフルしなさい"
 
-#: ../games/seahaven.scm:245
-msgid "an empty foundation"
-msgstr "空の組札"
-
-#: ../games/seahaven.scm:300
-msgid "an empty tableau"
-msgstr "空の絵札"
-
 #: ../games/sir-tommy.scm:130
 msgid "Move waste on to a reserve slot"
-msgstr "捨て札の山から場に戻しなさい"
+msgstr "捨て札スロットから予備札スロットに戻しなさい"
 
 #: ../games/spider.scm:184 ../games/spider.scm:300
 msgid "Undo until there are enough cards to fill all tableau piles"
-msgstr ""
+msgstr "全ての場札がいっぱいになるまで、十分にカードを戻してください"
 
 #: ../games/spider.scm:185
 msgid "Please fill in empty pile first."
-msgstr "まず最初に空の場を埋めなさい"
+msgstr "まず最初に空の場を埋めなさい。"
 
 #: ../games/spider.scm:285
 msgid "Place something on empty slot"
@@ -3329,5164 +3364,28 @@ msgstr "ブロンドとブルネット"
 msgid "Wood"
 msgstr "森"
 
+#: ../games/terrace.scm:286
+msgid "the foundation"
+msgstr "台札"
+
 #: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "デッキからカードを引きなさい"
 
 #: ../games/thirteen.scm:381
 msgid "Match the top two cards of the waste."
-msgstr "捨て札にある二枚のカードを合わせなさい"
-
-#: ../games/thirteen.scm:391
-msgid "itself"
-msgstr "そのカード自身"
+msgstr "捨て札にある二枚のカードを合わせなさい。"
 
 # FIXME: 意味不明
-#: ../games/triple-peaks.scm:351
+#: ../games/triple-peaks.scm:349
 msgid "Progressive Rounds"
-msgstr "Progressive Rounds"
+msgstr ""
 
 # FIXME: 意味不明
-#: ../games/triple-peaks.scm:352
+#: ../games/triple-peaks.scm:350
 msgid "Multiplier Scoring"
-msgstr "Multiplier Scoring"
+msgstr ""
 
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
-msgstr "カードの山を空の絵札のスロットに置きなさい"
-
-#~ msgid "Play the popular FreeCell card game"
-#~ msgstr "有名なフリーセル・カード・ゲームをお楽しみください"
-
-#~ msgid "empty slot on foundation"
-#~ msgstr "空の組札のスロット"
-
-#~ msgid "on to the empty tableau slot"
-#~ msgstr "空の絵札の場へ"
-
-#~ msgid "Aisleriot cannot load the file “%s”. Please check your Aisleriot installation."
-#~ msgstr "\"%s\" というファイルを読み込めませんでした。AisleRiot のインストールを確認してください。"
-
-#~ msgid "Select the game number"
-#~ msgstr "ゲームの番号を選択する"
-
-#~ msgid "NUMBER"
-#~ msgstr "NUMBER"
-
-#~ msgid "Unknown suit"
-#~ msgstr "不明なマーク"
-
-#~ msgid "ace"
-#~ msgstr "A"
-
-#~ msgid "clubs"
-#~ msgstr "クラブ"
-
-#~ msgid "diamonds"
-#~ msgstr "ダイア"
-
-#~ msgid "eight"
-#~ msgstr "8"
-
-#~ msgid "five"
-#~ msgstr "5"
-
-#~ msgid "four"
-#~ msgstr "4"
-
-#~ msgid "hearts"
-#~ msgstr "ハート"
-
-#~ msgid "jack"
-#~ msgstr "J"
-
-#~ msgid "king"
-#~ msgstr "K"
-
-#~ msgid "nine"
-#~ msgstr "9"
-
-#~ msgid "queen"
-#~ msgstr "Q"
-
-#~ msgid "seven"
-#~ msgstr "7"
-
-#~ msgid "six"
-#~ msgstr "6"
-
-#~ msgid "spades"
-#~ msgstr "スペード"
-
-#~ msgid "ten"
-#~ msgstr "10"
-
-#~ msgid "three"
-#~ msgstr "3"
-
-#~ msgid "two"
-#~ msgstr "2"
-
-#~ msgid "Game Over"
-#~ msgstr "ゲームオーバー"
-
-#~ msgctxt "score"
-#~ msgid "%6d"
-#~ msgstr "%6d"
-
-#~ msgid "Error"
-#~ msgstr "エラー"
-
-#~ msgid "_Select Game..."
-#~ msgstr "ゲームの選択(_S)..."
-
-#~ msgid "End the current game"
-#~ msgstr "このゲームを終了します"
-
-#~ msgid "Toggle fullscreen mode"
-#~ msgstr "フルスクリーンモードを切り替えます"
-
-#~ msgid "Leave fullscreen mode"
-#~ msgstr "フルスクリーンモードを解除します"
-
-#~ msgid "Start a new multiplayer network game"
-#~ msgstr "新しいネットワーク対戦ゲームを開始します"
-
-#~ msgid "End the current network game and return to network server"
-#~ msgstr "現在のネットワーク対戦を終了してネットワーク・サーバに戻ります"
-
-#~ msgid "Pause the game"
-#~ msgstr "ゲームを一時停止します"
-
-#~ msgid "Show a list of players in the network game"
-#~ msgstr "ネットワーク対戦しているプレイヤーの一覧を表示します"
-
-#~ msgid "Resume the paused game"
-#~ msgstr "一時停止していたゲームを再開します"
-
-#~ msgid "View the scores"
-#~ msgstr "得点を表示します"
-
-#~ msgid "Configure the game"
-#~ msgstr "このゲームを設定します"
-
-#~ msgid "Quit this game"
-#~ msgstr "このゲームを終了します"
-
-#~ msgid "Network _Game"
-#~ msgstr "ネットワーク対戦(_G)"
-
-#~ msgid "L_eave Game"
-#~ msgstr "ゲームから抜ける(_E)"
-
-#~ msgid "Player _List"
-#~ msgstr "プレイヤーの一覧(_L)"
-
-#~ msgid "Res_ume"
-#~ msgstr "再開(_U)"
-
-#~ msgid "_Scores"
-#~ msgstr "得点(_S)"
-
-#~ msgid "_End Game"
-#~ msgstr "ゲームの終了(_E)"
-
-#~ msgid "_About"
-#~ msgstr "情報(_A)"
-
-#~ msgid "_Cancel"
-#~ msgstr "キャンセル(_C)"
-
-#~ msgid "_Close"
-#~ msgstr "閉じる(_C)"
-
-#~ msgid "_OK"
-#~ msgstr "OK(_O)"
-
-#~ msgid "You should have received a copy of the GNU General Public License along with %s; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA"
-#~ msgstr "あなたは %s と一緒に GNU 一般公衆利用許諾契約書の写しを受け取っているはずです。そうでない場合は、Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA へ手紙を書いてください。"
-
-#~ msgid "Could not show link"
-#~ msgstr "リンクを表示できませんでした"
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "妥当な .desktop ファイルではありません"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "バージョン '%s' の .desktop ファイルはサポートしていません"
-
-#~ msgid "Starting %s"
-#~ msgstr "%sの起動中です"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "コマンドラインからドキュメントにはアクセスできません"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "不明な起動オプションです: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr "ドキュメントの URI を 'Type=Link' な .desktop エントリには渡せません"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "起動可能なアイテムではありません"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "セッション・マネージャに接続しない"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "設定を保存したファイルを指定する"
-
-#~ msgid "FILE"
-#~ msgstr "FILE"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "セッション管理の ID を指定する"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Session management options:"
-#~ msgstr "セッション管理のオプション:"
-
-#~ msgid "Show session management options"
-#~ msgstr "セッション管理のオプションを表示する"
-
-#, fuzzy
-#~ msgid "an empty foundation slot"
-#~ msgstr "空の組札"
-
-#~ msgid "an empty corner slot"
-#~ msgstr "空のコーナースロット"
-
-#~ msgid "an empty left slot"
-#~ msgstr "空の左スロット"
-
-#~ msgid "an empty right slot"
-#~ msgstr "空の右スロット"
-
-#~ msgid "an empty top slot"
-#~ msgstr "空の上スロット"
-
-#~ msgid "empty space on tableau"
-#~ msgstr "空の絵札の場所"
-
-#~ msgid "the foundation pile"
-#~ msgstr "組札の山"
-
-#~ msgid "an empty slot on tableau"
-#~ msgstr "空の絵札のスロット"
-
-#~ msgid "Bug! make-hint called on false move."
-#~ msgstr "バグ! make-hint called on false move."
-
-#~ msgid "an empty space"
-#~ msgstr "空の場所"
-
-#~ msgid "an empty reserve"
-#~ msgstr "空のリザーブ"
-
-#~ msgid "an open tableau"
-#~ msgstr "絵札を開きなさい"
-
-#~ msgid "Place the ~a next to ~a."
-#~ msgstr "~a を ~a の隣に置きなさい"
-
-#~ msgid "Move ~a from the stock to an empty edge or tableau slot"
-#~ msgstr "場から ~a を空のエッジまたは絵札のスロットへ移動しなさい"
-
-#~ msgid "an empty tableau pile"
-#~ msgstr "空の絵札"
-
-#~ msgid "empty foundation"
-#~ msgstr "空の組札"
-
-#~ msgid "appropriate foundation pile"
-#~ msgstr "適当な組札の山"
-
-#~ msgid "the appropriate Foundation pile"
-#~ msgstr "適切な組札の山"
-
-#~ msgid "%s: option `%s' is ambiguous\n"
-#~ msgstr "%s: オプション '%s' はあいまいです\n"
-
-#~ msgid "%s: option `--%s' doesn't allow an argument\n"
-#~ msgstr "%s: オプション '--%s' は引数を指定できません\n"
-
-#~ msgid "%s: option `%c%s' doesn't allow an argument\n"
-#~ msgstr "%s: オプション '%c%s' は引数を指定できません\n"
-
-#~ msgid "%s: option `%s' requires an argument\n"
-#~ msgstr "%s: オプション '%s' には引数が必要です\n"
-
-#~ msgid "%s: unrecognized option `--%s'\n"
-#~ msgstr "%s: 認識できないオプションです: '--%s'\n"
-
-#~ msgid "%s: unrecognized option `%c%s'\n"
-#~ msgstr "%s: 認識できないオプションです: '%c%s'\n"
-
-#~ msgid "%s: illegal option -- %c\n"
-#~ msgstr "%s: 間違ったオプションです -- %c\n"
-
-#~ msgid "%s: invalid option -- %c\n"
-#~ msgstr "%s: 間違ったオプションです -- %c\n"
-
-#~ msgid "%s: option requires an argument -- %c\n"
-#~ msgstr "%s: オプションには引数が必要です -- %c\n"
-
-#~ msgid "%s: option `-W %s' is ambiguous\n"
-#~ msgstr "%s: オプション '-W %s' はあいまいです\n"
-
-#~ msgid "%s: option `-W %s' doesn't allow an argument\n"
-#~ msgstr "%s: オプション '-W %s' には引数を指定できません\n"
-
-#~ msgid "A flag to allow remote players to watch new games"
-#~ msgstr "リモートから新しいゲームを観戦できるかどうか"
-
-#~ msgid "A flag to enable 3D mode"
-#~ msgstr "3D表示にするかどうか"
-
-#~ msgid "A flag to enable board numbering"
-#~ msgstr "盤面に番号を付与するかどうか"
-
-#~ msgid "A flag to enable fullscreen mode"
-#~ msgstr "フルスクリーンモードにするかどうか"
-
-#~ msgid "A flag to enable maximised mode"
-#~ msgstr "最大モードにするかどうか"
-
-#~ msgid "A flag to enable move hints"
-#~ msgstr "ヒントを利用できるかどうか"
-
-#~ msgid "A flag to enable network game support"
-#~ msgstr "ネットワーク対戦をサポートするかどうか"
-
-#~ msgid "A flag to enable the move history browser"
-#~ msgstr "履歴ブラウザを表示するかどうか"
-
-#~ msgid "A flag to enable the toolbar"
-#~ msgstr "ツールバーを表示するかどうか"
-
-#~ msgid "A flag to show move comments"
-#~ msgstr "移動時のコメントを表示するかどうか"
-
-#~ msgid "A flag to smooth (anti-alias) the 3D display"
-#~ msgstr "アンチエイリアス付きの3D表示にするかどうか"
-
-#~ msgid "The amount of time each player has to move in new games"
-#~ msgstr "新しいゲームで各プレイヤーが駒を移動するのに必要な時間"
-
-#~ msgid "The board side to display"
-#~ msgstr "表示する盤面の向き"
-
-#~ msgid "The default player difficulty for black in new games"
-#~ msgstr "黒のプレイヤーの難易度"
-
-#~ msgid "The default player difficulty for white in new games"
-#~ msgstr "白のプレイヤーの難易度"
-
-#~ msgid "The default player type for black in new games"
-#~ msgstr "黒のプレイヤーの種類"
-
-#~ msgid "The default player type for white in new games"
-#~ msgstr "白のプレイヤーの種類"
-
-#~ msgid "The directory to open the load game dialog in"
-#~ msgstr "ゲームを読み込む際に開くフォルダ"
-
-#~ msgid "The directory to open the save game dialog in"
-#~ msgstr "ゲームを保存する際に開くフォルダ"
-
-#~ msgid "The format to display moves in"
-#~ msgstr "駒の移動を表現する書式"
-
-#~ msgid "The format to display moves in, can be either 'human' (human readable), 'lan' (long algebraic notation) or 'san' (standard algebraic notation)"
-#~ msgstr "駒の移動を表現する際に使用する書式です。指定可能な値: 'human' (可読な書式)、'lan' (長い代数記法)、'san' (標準的な代数記法)"
-
-#~ msgid "The height of the main window in pixels."
-#~ msgstr "メイン・ウィンドウの高さ (ピクセル単位) です。"
-
-#~ msgid "The height of the window"
-#~ msgstr "ウィンドウの高さ"
-
-#, fuzzy
-#~ msgid "The piece style to use"
-#~ msgstr "使用するゲーム・ファイル"
-
-#~ msgid "The piece to promote pawns to"
-#~ msgstr "ポーンがプロモーションすると成る駒"
-
-#~ msgid "The piece to promote to when a human player moves a pawn to the far rank. Can be one of: 'queen', 'knight', 'rook', 'bishop'."
-#~ msgstr "プレイヤー (人間) のポーンが相手側の最終ランクに到達した時に成る駒の種類です。指定可能な値: 'queen'、'knight'、'rook'、'bishop'"
-
-#~ msgid "The side of the board that is in the foreground, either 'white', 'black', 'current' (the current player), 'human' (the side of the current human player) or 'facetoface' (suitable for players on each side of screen, e.g. handhelds)"
-#~ msgstr "正面に持ってくる盤面の向きです。指定可能な値: 'white'、'black'、'current' (現在のプレイヤー)、'human' (現在プレイしている人間のプレイヤー)、'facetoface' (ハンドヘルドなどの画面の両サイドのプレイヤー向き)"
-
-#~ msgid "The width of the main window in pixels."
-#~ msgstr "メイン・ウィンドウの幅 (ピクセル単位) です。"
-
-#~ msgid "The width of the window"
-#~ msgstr "ウィンドウの幅"
-
-#~ msgid "3_D Chess View"
-#~ msgstr "3D 表示にする(_D)"
-
-#~ msgid "Claim _Draw"
-#~ msgstr "引き分けを申し立てる(_D)"
-
-#~ msgid "Logs"
-#~ msgstr "ログ"
-
-#~ msgid "New Game"
-#~ msgstr "新ゲーム"
-
-#~ msgid "Resign"
-#~ msgstr "投了します"
-
-#~ msgid "Rewind to the game start"
-#~ msgstr "ゲームの開始まで戻します"
-
-#~ msgid "Show _Logs"
-#~ msgstr "ログを表示する(_L)"
-
-#~ msgid "Show the current move"
-#~ msgstr "最新の移動を表示します"
-
-#~ msgid "Show the next move"
-#~ msgstr "次の移動を表示します"
-
-#~ msgid "Show the previous move"
-#~ msgstr "直前の移動を表示します"
-
-#~ msgid "There are no active logs."
-#~ msgstr "有効なログはありません。"
-
-#~ msgid "Undo Move"
-#~ msgstr "移動を元に戻す"
-
-#~ msgid "_Resign"
-#~ msgstr "投了する(_R)"
-
-#~ msgid "_Settings"
-#~ msgstr "設定(_S)"
-
-#~ msgid "Load Chess Game"
-#~ msgstr "チェス・ゲームの読み込み"
-
-#~ msgid "Communication:"
-#~ msgstr "コミュニケーション:"
-
-#~ msgid "Executable:"
-#~ msgstr "実行形式:"
-
-#~ msgid "Playing as:"
-#~ msgstr "プレイの内容:"
-
-#~ msgid "<b>Game</b>"
-#~ msgstr "<b>ゲーム</b>"
-
-#~ msgid "<b>Rooms</b>"
-#~ msgstr "<b>ルーム</b>"
-
-#~ msgid "<b>Server</b>"
-#~ msgstr "<b>サーバ</b>"
-
-#~ msgid "<b>Status/_Chat</b>"
-#~ msgstr "<b>状態/チャット(_C)</b>"
-
-#~ msgid "Join Game"
-#~ msgstr "参加する"
-
-#~ msgid "_Join"
-#~ msgstr "参加する(_J)"
-
-#~ msgid "_Leave"
-#~ msgstr "抜ける(_L)"
-
-#~ msgid "_Profile:"
-#~ msgstr "プロファイル(_P):"
-
-#~ msgid "Add Account"
-#~ msgstr "アカウントの追加"
-
-#~ msgid "User _Name:"
-#~ msgstr "ユーザ名(_N):"
-
-#~ msgid "_Add Account"
-#~ msgstr "アカウントの追加(_A)"
-
-#~ msgid "_Host:"
-#~ msgstr "ホスト(_H):"
-
-#~ msgid "_Port:"
-#~ msgstr "ポート番号(_P):"
-
-#~ msgid "_Server:"
-#~ msgstr "サーバ(_S):"
-
-#~ msgid "<b>Difficulty</b>"
-#~ msgstr "<b>難易度</b>"
-
-#~ msgid "<b>Game Properties</b>"
-#~ msgstr "<b>ゲームのプロパティ</b>"
-
-#~ msgid "<b>Players</b>"
-#~ msgstr "<b>プレイヤー</b>"
-
-#~ msgid "B_lack:"
-#~ msgstr "黒(_L):"
-
-#~ msgid "Enter the title for this game"
-#~ msgstr "このゲームのタイトルを指定してください"
-
-#~ msgid "Move _Time:"
-#~ msgstr "移動時間(_T):"
-
-#~ msgid "Start the game. The game can be started once all fields are complete"
-#~ msgstr "ゲームを開始します"
-
-#~ msgid "W_hite:"
-#~ msgstr "白(_H):"
-
-#~ msgid "_Black:"
-#~ msgstr "黒(_B):"
-
-#~ msgid "_Game name:"
-#~ msgstr "ゲームの名前(_G):"
-
-#~ msgid "_Start"
-#~ msgstr "開始(_S)"
-
-#~ msgid "_White:"
-#~ msgstr "白(_W):"
-
-#~ msgid "Board Orientation:"
-#~ msgstr "盤面の向き:"
-
-#~ msgid "Move Format:"
-#~ msgstr "棋譜:"
-
-#, fuzzy
-#~ msgid "Piece Style:"
-#~ msgstr "勝率:"
-
-#~ msgid "Preferences"
-#~ msgstr "設定"
-
-#~ msgid "Promotion Type:"
-#~ msgstr "プロモーションの種類:"
-
-#~ msgid "Show _History"
-#~ msgstr "履歴を表示する(_H)"
-
-#~ msgid "Show _Toolbar"
-#~ msgstr "ツールバーを表示する(_T)"
-
-#~ msgid "Show or hide numbering on the chess board"
-#~ msgstr "盤面に番号の表示するかどうかです"
-
-#~ msgid "Show or hide the game history panel"
-#~ msgstr "ゲームの履歴パネルを表示するかどうかです"
-
-#~ msgid "Shows hints during chess games"
-#~ msgstr "ゲーム中にヒントを表示するかどうかです"
-
-#~ msgid "Smooth edges of the 3D elements (anti-alias)"
-#~ msgstr "滑らかな3D表示 (アンチエイリアス付き) にするかどうかです"
-
-#~ msgid "View the chess board by default in 2D mode, or optionally in 3D mode using OpenGL."
-#~ msgstr "デフォルトの盤面を 2D 表示にするか OpenGL を使った 3D 表示にするかです"
-
-#~ msgid "_Appearance"
-#~ msgstr "外観(_A)"
-
-#~ msgid "_Board Numbering"
-#~ msgstr "盤面に番号を付与する(_B)"
-
-#~ msgid "_Move Hints"
-#~ msgstr "ヒントを出す(_M)"
-
-#~ msgid "_Smooth Display"
-#~ msgstr "滑らかな表示にする(_S)"
-
-#~ msgid "Save Chess Game"
-#~ msgstr "チェス・ゲームの保存"
-
-#~ msgid "Chess"
-#~ msgstr "チェス"
-
-#~ msgid "Play the classic two-player boardgame of chess"
-#~ msgstr "古典的な対戦型のチェス・ゲームをお楽しみください"
-
-#~ msgid "Chess incorrectly installed"
-#~ msgstr "チェスのインストールが間違っています"
-
-#~ msgid "Chess is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed."
-#~ msgstr "必要なアプリケーション・ファイルがインストールされていないのでチェスを起動できません。もしシステムのアップグレードを実施している最中ならば、アップグレードが完了するまでお待ちください。"
-
-#~ msgid "One minute"
-#~ msgstr "1分"
-
-#~ msgid "Five minutes"
-#~ msgstr "5分"
-
-#~ msgid "30 minutes"
-#~ msgstr "30分"
-
-#~ msgid "One hour"
-#~ msgstr "1時間"
-
-#~ msgid "Custom"
-#~ msgstr "指定する"
-
-#~ msgid "seconds"
-#~ msgstr "秒"
-
-#~ msgid "minutes"
-#~ msgstr "分"
-
-#~ msgid "hours"
-#~ msgstr "時間"
-
-#~ msgid "Easy"
-#~ msgstr "簡単"
-
-#~ msgid "Normal"
-#~ msgstr "ふつう"
-
-#~ msgid "Hard"
-#~ msgstr "上級"
-
-#~ msgid "Unable to find %s engine"
-#~ msgstr "%s エンジンが見つかりません"
-
-#~ msgid "Configure loaded game (%i moves)"
-#~ msgstr "読み込んだゲームを設定します (%i 回移動)"
-
-#~ msgid "Game settings changed"
-#~ msgstr "ゲームの設定を変更しました"
-
-#~ msgid "%(white)s versus %(black)s"
-#~ msgstr "%(white)s 対 %(black)s"
-
-#~ msgid "White"
-#~ msgstr "白"
-
-#~ msgid "Black"
-#~ msgstr "黒"
-
-#~ msgid "PGN files"
-#~ msgstr "PGN ファイル"
-
-#~ msgid "All files"
-#~ msgstr "すべてのファイル"
-
-#~ msgid "Please select a file to load"
-#~ msgstr "読み込むファイルを選択してください。"
-
-#~ msgid "Unabled to load game"
-#~ msgstr "ゲームを読み込めませんでした"
-
-#~ msgid "Please enter a file name"
-#~ msgstr "ファイル名を入力してください"
-
-#~ msgid "Unabled to save game"
-#~ msgstr "ゲームを保存できません"
-
-#~ msgid "Human"
-#~ msgstr "可読な記述"
-
-#~ msgid "Standard Algebraic"
-#~ msgstr "標準の座標式"
-
-#~ msgid "Figurine"
-#~ msgstr "駒の表記"
-
-#~ msgid "Long Algebraic"
-#~ msgstr "長い座標式"
-
-#~ msgid "White Side"
-#~ msgstr "白"
-
-#~ msgid "Black Side"
-#~ msgstr "黒"
-
-#~ msgid "Human Side"
-#~ msgstr "人間"
-
-#~ msgid "Current Player"
-#~ msgstr "現在のプレイヤー"
-
-#~ msgctxt "chess-piece"
-#~ msgid "Queen"
-#~ msgstr "Q"
-
-#~ msgctxt "chess-piece"
-#~ msgid "Knight"
-#~ msgstr "騎士"
-
-#~ msgctxt "chess-piece"
-#~ msgid "Rook"
-#~ msgstr "ルーク"
-
-#~ msgctxt "chess-piece"
-#~ msgid "Bishop"
-#~ msgstr "ビショップ"
-
-#, fuzzy
-#~ msgid "Simple"
-#~ msgstr "タイム"
-
-#, fuzzy
-#~ msgid "Fancy"
-#~ msgstr "三色スミレ"
-
-#~ msgid "Chess - *%(game_name)s"
-#~ msgstr "チェス - *%(game_name)s"
-
-#~ msgid "Chess - %(game_name)s"
-#~ msgstr "チェス - %(game_name)s"
-
-#~ msgid "∞"
-#~ msgstr "∞"
-
-#~ msgid "If you don't save the changes to this game will be permanently lost"
-#~ msgstr "ゲームを保存しないと、これまでの経過を失うことになります。"
-
-#~ msgid "Close _without saving"
-#~ msgstr "保存せずに閉じる(_W)"
-
-#~ msgid "Unable to enable 3D mode"
-#~ msgstr "3D 表示にできません"
-
-#~ msgid ""
-#~ "You are unable to play in 3D mode due to the following problems:\n"
-#~ "%(errors)s\n"
-#~ "\n"
-#~ "Please contact your system administrator to resolve these problems, until then you will be able to play chess in 2D mode."
-#~ msgstr ""
-#~ "次の問題が発生したため、3D モードではプレイできません:\n"
-#~ "%(errors)s\n"
-#~ "\n"
-#~ "これらの問題を解決するためにシステム管理者に問い合わせてください。それまでは 2D モードでプレイしてください。"
-
-#~ msgid "Unable to claim draw"
-#~ msgstr "引き分けを申し立てることはできません"
-
-# 参考: http://homepage2.nifty.com/hnishy/chessterms.htm
-#
-#~ msgid ""
-#~ "You may claim a draw when:\n"
-#~ "a) The board has been in the same state three times (Three fold repetition)\n"
-#~ "b) Fifty moves have occurred where no pawn has moved and no piece has been captured (50 move rule)"
-#~ msgstr ""
-#~ "次の場合に引き分けを申し立てることができます:\n"
-#~ "a) 同じ手で同一局面が3回生じた場合 (同形三復)\n"
-#~ "b) ポーンの移動も駒の捕獲もないまま50手を経過した場合 (50手ルール)"
-
-#~ msgid "Unable to display help: %s"
-#~ msgstr "ヘルプを表示できません: %s"
-
-#~ msgid "No Python OpenGL support"
-#~ msgstr "Python OpenGL をサポートしていません"
-
-#~ msgid "No Python GTKGLExt support"
-#~ msgstr "Python GTKGLExt をサポートしていません"
-
-#~ msgid "OpenGL libraries do not support required display mode"
-#~ msgstr "OpenGL ライブラリで必要な表示モードをサポートしていません"
-
-#~ msgid "Game Start"
-#~ msgstr "ゲーム開始"
-
-# チェス英日翻訳用語集: http://www.geocities.jp/transbowler/ChessTrans.html
-#~ msgid "White castles long"
-#~ msgstr "白がクイーン・サイドへキャスリングした"
-
-#~ msgid "Black castles long"
-#~ msgstr "黒がクイーン・サイドへキャスリングした"
-
-#~ msgid "White castles short"
-#~ msgstr "白がキング・サイドへキャスリングした"
-
-#~ msgid "Black castles short"
-#~ msgstr "黒がキング・サイドへキャスリングした"
-
-#~ msgid "White pawn moves from %1$s to %2$s"
-#~ msgstr "白のポーンが %1$s から %2$s へ移動した"
-
-#~ msgid "White pawn at %1$s takes the black pawn at %2$s"
-#~ msgstr "%1$s にある白のポーンが %2$s にある黒のポーンを獲得した"
-
-#~ msgid "White pawn at %1$s takes the black rook at %2$s"
-#~ msgstr "%1$s にある白のポーンが %2$s にある黒のルークを獲得した"
-
-#~ msgid "White pawn at %1$s takes the black knight at %2$s"
-#~ msgstr "%1$s にある白のポーンが %2$s にある黒のナイトを獲得した"
-
-#~ msgid "White pawn at %1$s takes the black bishop at %2$s"
-#~ msgstr "%1$s にある白のポーンが %2$s にある黒のビショップを獲得した"
-
-#~ msgid "White pawn at %1$s takes the black queen at %2$s"
-#~ msgstr "%1$s にある白のポーンが %2$s にある黒のクイーンを獲得した"
-
-#~ msgid "White rook moves from %1$s to %2$s"
-#~ msgstr "白のルークが %1$s から %2$s へ移動した"
-
-#~ msgid "White rook at %1$s takes the black pawn at %2$s"
-#~ msgstr "%1$s にある白のルークが %2$s にある黒のポーンを獲得した"
-
-#~ msgid "White rook at %1$s takes the black rook at %2$s"
-#~ msgstr "%1$s にある白のルークが %2$s にある黒のルークを獲得した"
-
-#~ msgid "White rook at %1$s takes the black knight at %2$s"
-#~ msgstr "%1$s にある白のルークが %2$s にある黒のナイトを獲得した"
-
-#~ msgid "White rook at %1$s takes the black bishop at %2$s"
-#~ msgstr "%1$s にある白のルークが %2$s にある黒のビショップを獲得した"
-
-#~ msgid "White rook at %1$s takes the black queen at %2$s"
-#~ msgstr "%1$s にある白のルークが %2$s にある黒のクイーンを獲得した"
-
-#~ msgid "White knight moves from %1$s to %2$s"
-#~ msgstr "白のナイトが %1$s から %2$s へ移動した"
-
-#~ msgid "White knight at %1$s takes the black pawn at %2$s"
-#~ msgstr "%1$s にある白のキングが %2$s にある黒のポーンを獲得した"
-
-#~ msgid "White knight at %1$s takes the black rook at %2$s"
-#~ msgstr "%1$s にある白のナイトが %2$s にある黒のルークを獲得した"
-
-#~ msgid "White knight at %1$s takes the black knight at %2$s"
-#~ msgstr "%1$s にある白のナイトが %2$s にある黒のナイトを獲得した"
-
-#~ msgid "White knight at %1$s takes the black bishop at %2$s"
-#~ msgstr "%1$s にある白のナイトが %2$s にある黒のビショップを獲得した"
-
-#~ msgid "White knight at %1$s takes the black queen at %2$s"
-#~ msgstr "%1$s にある白のナイトが %2$s にある黒のクイーンを獲得した"
-
-#~ msgid "White bishop moves from %1$s to %2$s"
-#~ msgstr "白のビショップが %1$s から %2$s へ移動した"
-
-#~ msgid "White bishop at %1$s takes the black pawn at %2$s"
-#~ msgstr "%1$s にある白のビショップが %2$s にある黒のポーンを獲得した"
-
-#~ msgid "White bishop at %1$s takes the black rook at %2$s"
-#~ msgstr "%1$s にある白のビショップが %2$s にある黒のルークを獲得した"
-
-#~ msgid "White bishop at %1$s takes the black knight at %2$s"
-#~ msgstr "%1$s にある白のビショップが %2$s にある黒のナイトを獲得した"
-
-#~ msgid "White bishop at %1$s takes the black bishop at %2$s"
-#~ msgstr "%1$s にある白のビショップが %2$s にある黒のビショップを獲得した"
-
-#~ msgid "White bishop at %1$s takes the black queen at %2$s"
-#~ msgstr "%1$s にある白のビショップが %2$s にある黒のクイーンを獲得した"
-
-#~ msgid "White queen moves from %1$s to %2$s"
-#~ msgstr "白のクイーンが %1$s から %2$s へ移動した"
-
-#~ msgid "White queen at %1$s takes the black pawn at %2$s"
-#~ msgstr "%1$s にある白のクイーンが %2$s にある黒のポーンを獲得した"
-
-#~ msgid "White queen at %1$s takes the black rook at %2$s"
-#~ msgstr "%1$s にある白のクイーンが %2$s にある黒のルークを獲得した"
-
-#~ msgid "White queen at %1$s takes the black knight at %2$s"
-#~ msgstr "%1$s にある白のクイーンが %2$s にある黒のナイトを獲得した"
-
-#~ msgid "White queen at %1$s takes the black bishop at %2$s"
-#~ msgstr "%1$s にある白のクイーンが %2$s にある黒のビショップを獲得した"
-
-#~ msgid "White queen at %1$s takes the black queen at %2$s"
-#~ msgstr "%1$s にある白のクイーンが %2$s にある黒のクイーンを獲得した"
-
-#~ msgid "White king moves from %1$s to %2$s"
-#~ msgstr "白のキングが %1$s から %2$s へ移動した"
-
-#~ msgid "White king at %1$s takes the black pawn at %2$s"
-#~ msgstr "%1$s にある白のキングが %2$s にある黒のポーンを獲得した"
-
-#~ msgid "White king at %1$s takes the black rook at %2$s"
-#~ msgstr "%1$s にある白のキングが %2$s にある黒のルークを獲得した"
-
-#~ msgid "White king at %1$s takes the black knight at %2$s"
-#~ msgstr "%1$s にある白のキングが %2$s にある黒のナイトを獲得した"
-
-#~ msgid "White king at %1$s takes the black bishop at %2$s"
-#~ msgstr "%1$s にある白のキングが %2$s にある黒のビショップを獲得した"
-
-#~ msgid "White king at %1$s takes the black queen at %2$s"
-#~ msgstr "%1$s にある白のキングが %2$s にある黒のクイーンを獲得した"
-
-#~ msgid "Black pawn moves from %1$s to %2$s"
-#~ msgstr "黒のポーンが %1$s から %2$s へ移動した"
-
-#~ msgid "Black pawn at %1$s takes the white pawn at %2$s"
-#~ msgstr "%1$s にある黒のポーンが %2$s にある白のポーンを獲得した"
-
-#~ msgid "Black pawn at %1$s takes the white rook at %2$s"
-#~ msgstr "%1$s にある黒のポーンが %2$s にある白のルークを獲得した"
-
-#~ msgid "Black pawn at %1$s takes the white knight at %2$s"
-#~ msgstr "%1$s にある黒のポーンが %2$s にある白のナイトを獲得した"
-
-#~ msgid "Black pawn at %1$s takes the white bishop at %2$s"
-#~ msgstr "%1$s にある黒のポーンが %2$s にある白のビショップを獲得した"
-
-#~ msgid "Black pawn at %1$s takes the white queen at %2$s"
-#~ msgstr "%1$s にある黒のポーンが %2$s にある白のクイーンを獲得した"
-
-#~ msgid "Black rook moves from %1$s to %2$s"
-#~ msgstr "黒のルークが %1$s から %2$s へ移動した"
-
-#~ msgid "Black rook at %1$s takes the white pawn at %2$s"
-#~ msgstr "%1$s にある黒のルークが %2$s にある白のポーンを獲得した"
-
-#~ msgid "Black rook at %1$s takes the white rook at %2$s"
-#~ msgstr "%1$s にある黒のルークが %2$s にある白のルークを獲得した"
-
-#~ msgid "Black rook at %1$s takes the white knight at %2$s"
-#~ msgstr "%1$s にある黒のルークが %2$s にある白のナイトを獲得した"
-
-#~ msgid "Black rook at %1$s takes the white bishop at %2$s"
-#~ msgstr "%1$s にある黒のルークが %2$s にある白のビショップを獲得した"
-
-#~ msgid "Black rook at %1$s takes the white queen at %2$s"
-#~ msgstr "%1$s にある黒のルークが %2$s にある白のクイーンを獲得した"
-
-#~ msgid "Black knight moves from %1$s to %2$s"
-#~ msgstr "黒のナイトが %1$s から %2$s へ移動した"
-
-#~ msgid "Black knight at %1$s takes the white pawn at %2$s"
-#~ msgstr "%1$s にある黒のナイトが %2$s にある白のポーンを獲得した"
-
-#~ msgid "Black knight at %1$s takes the white rook at %2$s"
-#~ msgstr "%1$s にある黒のナイトが %2$s にある白のルークを獲得した"
-
-#~ msgid "Black knight at %1$s takes the white knight at %2$s"
-#~ msgstr "%1$s にある黒のナイトが %2$s にある白のナイトを獲得した"
-
-#~ msgid "Black knight at %1$s takes the white bishop at %2$s"
-#~ msgstr "%1$s にある黒のナイトが %2$s にある白のビショップを獲得した"
-
-#~ msgid "Black knight at %1$s takes the white queen at %2$s"
-#~ msgstr "%1$s にある黒のナイトが %2$s にある白のクイーンを獲得した"
-
-#~ msgid "Black bishop moves from %1$s to %2$s"
-#~ msgstr "黒のビショップが %1$s から %2$s へ移動した"
-
-#~ msgid "Black bishop at %1$s takes the white pawn at %2$s"
-#~ msgstr "%1$s にある黒のビショップが %2$s にある白のポーンを獲得した"
-
-#~ msgid "Black bishop at %1$s takes the white rook at %2$s"
-#~ msgstr "%1$s にある黒のビショップが %2$s にある白のルークを獲得した"
-
-#~ msgid "Black bishop at %1$s takes the white knight at %2$s"
-#~ msgstr "%1$s にある黒のビショップが %2$s にある白のナイトを獲得した"
-
-#~ msgid "Black bishop at %1$s takes the white bishop at %2$s"
-#~ msgstr "%1$s にある黒のビショップが %2$s にある白のビショップを獲得した"
-
-#~ msgid "Black bishop at %1$s takes the white queen at %2$s"
-#~ msgstr "%1$s にある黒のビショップが %2$s にある白のクイーンを獲得した"
-
-#~ msgid "Black queen moves from %1$s to %2$s"
-#~ msgstr "黒のクイーンが %1$s から %2$s へ移動した"
-
-#~ msgid "Black queen at %1$s takes the white pawn at %2$s"
-#~ msgstr "%1$s にある黒のクイーンが %2$s にある白のポーンを獲得した"
-
-#~ msgid "Black queen at %1$s takes the white rook at %2$s"
-#~ msgstr "%1$s にある黒のクイーンが %2$s にある白のルークを獲得した"
-
-#~ msgid "Black queen at %1$s takes the white knight at %2$s"
-#~ msgstr "%1$s にある黒のクイーンが %2$s にある白のナイトを獲得した"
-
-#~ msgid "Black queen at %1$s takes the white bishop at %2$s"
-#~ msgstr "%1$s にある黒のクイーンが %2$s にある白のビショップを獲得した"
-
-#~ msgid "Black queen at %1$s takes the white queen at %2$s"
-#~ msgstr "%1$s にある黒のクイーンが %2$s にある白のクイーンを獲得した"
-
-#~ msgid "Black king moves from %1$s to %2$s"
-#~ msgstr "黒のキングが %1$s から %2$s へ移動した"
-
-#~ msgid "Black king at %1$s takes the white pawn at %2$s"
-#~ msgstr "%1$s にある黒のキングが %2$s にある白のポーンを獲得した"
-
-#~ msgid "Black king at %1$s takes the white rook at %2$s"
-#~ msgstr "%1$s にある黒のキングが %2$s にある白のルークを獲得した"
-
-#~ msgid "Black king at %1$s takes the white knight at %2$s"
-#~ msgstr "%1$s にある黒のキングが %2$s にある白のナイトを獲得した"
-
-#~ msgid "Black king at %1$s takes the white bishop at %2$s"
-#~ msgstr "%1$s にある黒のキングが %2$s にある白のビショップを獲得した"
-
-#~ msgid "Black king at %1$s takes the white queen at %2$s"
-#~ msgstr "%1$s にある黒のキングが %2$s にある白のクイーンを獲得した"
-
-#~ msgid "%(movenum)2iw. %(description)s (Check)"
-#~ msgstr "%(movenum)2iw. %(description)s (チェック)"
-
-#~ msgid "%(movenum)2iw. %(description)s (Checkmate)"
-#~ msgstr "%(movenum)2iw. %(description)s (チェックメイト)"
-
-#~ msgid "%(movenum)2iw. %(description)s (Stalemate)"
-#~ msgstr "%(movenum)2iw. %(description)s (ステイルメイト)"
-
-#~ msgid "%(movenum)2iw. %(description)s"
-#~ msgstr "%(movenum)2iw. %(description)s"
-
-#~ msgid "%(movenum)2ib. %(description)s (Check)"
-#~ msgstr "%(movenum)2ib. %(description)s (チェック)"
-
-#~ msgid "%(movenum)2ib. %(description)s (Checkmate)"
-#~ msgstr "%(movenum)2ib. %(description)s (チェックメイト)"
-
-#~ msgid "%(movenum)2ib. %(description)s (Stalemate)"
-#~ msgstr "%(movenum)2ib. %(description)s (ステイルメイト)"
-
-#~ msgid "%(movenum)2ib. %(description)s"
-#~ msgstr "%(movenum)2ib. %(description)s"
-
-#~ msgid "%s wins"
-#~ msgstr " %s さんの勝利です"
-
-#~ msgid "Game is drawn"
-#~ msgstr "引き分けです"
-
-#~ msgid "Opponent is in check and cannot move (checkmate)"
-#~ msgstr "対戦相手がチェックされ移動できなくなりました (チェックメイト)"
-
-#~ msgid "Opponent cannot move (stalemate)"
-#~ msgstr "対戦相手が移動できなくなりました (ステイルメイト)"
-
-#~ msgid "No piece has been taken or pawn moved in the last fifty moves"
-#~ msgstr "50 手ルール (50 手の内で両プレイヤーともにポーンを動かさず持ち駒がない状態) です"
-
-#~ msgid "Opponent has run out of time"
-#~ msgstr "対戦相手の制限時間が過ぎました"
-
-#~ msgid "The same board state has occurred three times (three fold repetition)"
-#~ msgstr "同一局面が 3 回現れました (千日手)"
-
-#~ msgid "Neither player can cause checkmate (insufficient material)"
-#~ msgstr "両プレイヤーともに相手のキングをチェックメイトできる駒がなくなりました"
-
-#~ msgid "The black player has resigned"
-#~ msgstr "黒のプレイヤーが投了 (リザイン) を受け入れました"
-
-#~ msgid "The white player has resigned"
-#~ msgstr "白のプレイヤーが投了 (リザイン) を受け入れました"
-
-#~ msgid "The game has been abandoned"
-#~ msgstr "ゲームが放棄されました"
-
-#~ msgid "One of the players has died"
-#~ msgstr "相手プレイヤーが \"お亡くなり\" になりました"
-
-#~ msgid "GGZ Gaming Zone"
-#~ msgstr "GGZ ゲーム・ゾーン"
-
-#~ msgid "Disconnected"
-#~ msgstr "切断中"
-
-#~ msgid "New profile..."
-#~ msgstr "新しいプロファイル..."
-
-#~ msgid "Table"
-#~ msgstr "テーブル:"
-
-#~ msgid "Seats"
-#~ msgstr "席"
-
-#~ msgid "Description"
-#~ msgstr "説明"
-
-#~ msgid "Seat"
-#~ msgstr "席"
-
-#~ msgid "Player"
-#~ msgstr "プレイヤー"
-
-#~ msgid "Spectator"
-#~ msgstr "見物人"
-
-#~ msgid "Reserved for %s"
-#~ msgstr "%s さん専用"
-
-#~ msgid "Seat empty"
-#~ msgstr "席が空いています"
-
-#~ msgid "AI (%s)"
-#~ msgstr "AI (%s)"
-
-#~ msgctxt "chess-file"
-#~ msgid "a"
-#~ msgstr "a"
-
-#~ msgctxt "chess-file"
-#~ msgid "b"
-#~ msgstr "b"
-
-#~ msgctxt "chess-file"
-#~ msgid "c"
-#~ msgstr "c"
-
-#~ msgctxt "chess-file"
-#~ msgid "d"
-#~ msgstr "d"
-
-#~ msgctxt "chess-file"
-#~ msgid "e"
-#~ msgstr "e"
-
-#~ msgctxt "chess-file"
-#~ msgid "f"
-#~ msgstr "f"
-
-#~ msgctxt "chess-file"
-#~ msgid "g"
-#~ msgstr "g"
-
-#~ msgctxt "chess-file"
-#~ msgid "h"
-#~ msgstr "h"
-
-#~ msgctxt "chess-rank"
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgctxt "chess-rank"
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgctxt "chess-rank"
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgctxt "chess-rank"
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgctxt "chess-rank"
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgctxt "chess-rank"
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgctxt "chess-rank"
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgctxt "chess-rank"
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgctxt "chess-notation"
-#~ msgid "Q"
-#~ msgstr "Q"
-
-#~ msgctxt "chess-notation"
-#~ msgid "K"
-#~ msgstr "K"
-
-#~ msgid "'%(name)s' in '%(game)s'"
-#~ msgstr "'%(game)s' の '%(name)s'"
-
-#~ msgid "Application Log"
-#~ msgstr "アプリケーションのログ"
-
-#~ msgid "Usage: %s [game]"
-#~ msgstr "用法: %s [ゲーム]"
-
-#~ msgid "Human versus %s"
-#~ msgstr "人間 対 %s"
-
-#~ msgid ""
-#~ "glChess has crashed. Please report this bug to http://bugzilla.gnome.org\n"
-#~ "Debug output:"
-#~ msgstr ""
-#~ "glChess がクラッシュしました。このバグを http://bugzilla.gnome.org まで報告してください。\n"
-#~ "デバッグ情報:"
-
-#~ msgid "Save game before closing?"
-#~ msgstr "閉じる前にゲームを保存しますか?"
-
-#~ msgid "glChess"
-#~ msgstr "glChess"
-
-#~ msgid "Copyright 2005-2008 Robert Ancell (and contributors)"
-#~ msgstr "Copyright 2005-2008 Robert Ancell (といろいろ貢献してくれた皆さん)"
-
-#~ msgid ""
-#~ "The 2D/3D chess game for GNOME. \n"
-#~ "\n"
-#~ "glChess is a part of GNOME Games."
-#~ msgstr ""
-#~ "GNOME 向けの 2D/3D チェス・ゲームです。\n"
-#~ "\n"
-#~ "glChess は GNOME ゲーム集の一部です。"
-
-#~ msgid "%s is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version."
-#~ msgstr "%s はフリーソフトウェアです;フリーソフトウェア財団が提供する GNU 一般公衆利用許諾契約書の第二版、あるいはそれ以降の版が定める条項の下で本プログラムを再頒布または変更することができます。"
-
-#~ msgid "Unable to make data directory %(dir)s: %(error)s"
-#~ msgstr "データ・フォルダ %(dir)s を生成できません: %(error)s"
-
-#~ msgid "Incorrect password"
-#~ msgstr "パスワードが正しくありません"
-
-#~ msgid "Account in use"
-#~ msgstr "アカウントは使用中です"
-
-#~ msgid "Connection closed: %s"
-#~ msgstr "接続を閉じました: %s"
-
-#~ msgid "A password is required"
-#~ msgstr "パスワードを入力してください"
-
-#~ msgid "Disconnected from server"
-#~ msgstr "サーバとの接続を切りました"
-
-#~ msgid "No description"
-#~ msgstr "説明なし"
-
-#~ msgctxt "board size"
-#~ msgid "Small"
-#~ msgstr "小さい"
-
-#~ msgctxt "board size"
-#~ msgid "Medium"
-#~ msgstr "中くらい"
-
-#~ msgctxt "board size"
-#~ msgid "Large"
-#~ msgstr "大きい"
-
-#~ msgid "Could not load theme"
-#~ msgstr "テーマを読み込めませんでした"
-
-#~ msgid ""
-#~ "Unable to locate file:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "The default theme will be loaded instead."
-#~ msgstr ""
-#~ "ファイルを特定できません: '%s'\n"
-#~ "\n"
-#~ "デフォルトのテーマを読み込むことにします。"
-
-#~ msgid ""
-#~ "Unable to locate file:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Please check that Five or More is installed correctly."
-#~ msgstr ""
-#~ "ファイルを特定できません:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "正しく Five or More がインストールされているか確認してください。"
-
-#~ msgid "Match five objects of the same type in a row to score!"
-#~ msgstr "横の列で同じ色の石を5個並べると得点が入ります!"
-
-#~ msgid "GNOME Five or More"
-#~ msgstr "GNOME Five or More"
-
-#~ msgid "_Board size:"
-#~ msgstr "盤の大きさ(_B):"
-
-#~ msgid "Game Over!"
-#~ msgstr "ゲーム・オーバー!"
-
-#~ msgid "You can't move there!"
-#~ msgstr "そこへ移動できません!"
-
-#~ msgid "Five or More"
-#~ msgstr "Five or More"
-
-#~ msgid ""
-#~ "GNOME port of the once-popular Color Lines game.\n"
-#~ "\n"
-#~ "Five or More is a part of GNOME Games."
-#~ msgstr ""
-#~ "一世を風靡したカラーライン・ゲームの GNOME 版です。\n"
-#~ "\n"
-#~ "Five or More は GNOME ゲーム集の一部です。"
-
-#~ msgid "Five or More Preferences"
-#~ msgstr "Five or More の設定"
-
-#~ msgid "Appearance"
-#~ msgstr "外観"
-
-#~ msgid "_Image:"
-#~ msgstr "画像(_I):"
-
-#~ msgid "B_ackground color:"
-#~ msgstr "背景色(_A):"
-
-#~ msgid "Board Size"
-#~ msgstr "盤の大きさ"
-
-#~ msgctxt "preferences"
-#~ msgid "General"
-#~ msgstr "全般"
-
-#~ msgid "_Use fast moves"
-#~ msgstr "素早く移動する(_U)"
-
-#~ msgid "Next:"
-#~ msgstr "次のライン:"
-
-#~ msgid "Remove colored balls from the board by forming lines"
-#~ msgstr "色の付いた玉を並べて盤面から取り去ってください"
-
-#~ msgid "Background color"
-#~ msgstr "背景色"
-
-#~ msgid "Background color. The hex specification of the background color."
-#~ msgstr "背景色 (16進表記)"
-
-#~ msgid "Ball style"
-#~ msgstr "玉のスタイル"
-
-#~ msgid "Ball style. The filename of the images to use for the balls."
-#~ msgstr "玉のスタイルで、玉に使用する画像のファイル名です。"
-
-#~ msgid "Game field"
-#~ msgstr "ゲーム・フィールド"
-
-#~ msgid "Game field from last saved session."
-#~ msgstr "最後にプレイしたセッションを保存したゲーム・フィールドです。"
-
-#~ msgid "Game preview"
-#~ msgstr "ゲームのプレビュー"
-
-#~ msgid "Game preview from last saved session."
-#~ msgstr "最後にプレイしたセッションを保存したゲーム・プレビューです。"
-
-#~ msgid "Game score"
-#~ msgstr "ゲームの得点"
-
-#~ msgid "Game score from last saved session."
-#~ msgstr "最後にプレイしたセッションを保存したゲームの得点です。"
-
-#~ msgid "Playing field size"
-#~ msgstr "プレイするフィールドの大きさ"
-
-#~ msgid "Playing field size. 1=Small, 2=Medium, 3=Large. Any other value is invalid."
-#~ msgstr "プレイするフィールドの大きさです。指定可能な値: 1=小さい、2=中ぐらい、3=大きい (それ以外の値は無効です)"
-
-#~ msgid "Time between moves"
-#~ msgstr "移動する時間"
-
-#~ msgid "Time between moves in milliseconds."
-#~ msgstr "玉の移動に必要な時間 (ミリ秒単位) です。"
-
-#~ msgid "Four-in-a-Row"
-#~ msgstr "四目並べ"
-
-#~ msgid "Make lines of the same color to win"
-#~ msgstr "同じ色のラインを作って競い合ってください"
-
-#~ msgid "A number specifying the preferred theme."
-#~ msgstr "お好みのテーマを表す番号です。"
-
-#~ msgid "Animate"
-#~ msgstr "アニメーションするかどうか"
-
-#~ msgid "Drop marble"
-#~ msgstr "石を落とす"
-
-#~ msgid "Key press to drop a marble."
-#~ msgstr "石を落とすキーです"
-
-#~ msgid "Key press to move left."
-#~ msgstr "左に移動するキーです。"
-
-#~ msgid "Key press to move right."
-#~ msgstr "右に移動するキーです。"
-
-#~ msgid "Level of Player One"
-#~ msgstr "プレイヤー1のレベル"
-
-#~ msgid "Level of Player Two"
-#~ msgstr "プレイヤー2のレベル"
-
-#~ msgid "Move left"
-#~ msgstr "左へ移動する"
-
-#~ msgid "Move right"
-#~ msgstr "右へ移動する"
-
-#~ msgid "Theme ID"
-#~ msgstr "テーマの ID"
-
-#~ msgid "Whether or not to use animation."
-#~ msgstr "アニメーションを使用するかどうかです。"
-
-#~ msgid "Zero is human; one through three correspond to the level of the computer player."
-#~ msgstr "0 = 人間; 1〜3 = コンピュータのレベル"
-
-#~ msgid ""
-#~ "Unable to load image:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "画像を読み込めません:\n"
-#~ "%s"
-
-#~ msgid "It's a draw!"
-#~ msgstr "引き分けです!"
-
-#~ msgid "You win!"
-#~ msgstr "あなたの勝ちです!"
-
-#~ msgid "It is your move."
-#~ msgstr "あなたの番です"
-
-#~ msgid "I win!"
-#~ msgstr "コンピュータの勝利です!"
-
-#~ msgid "Thinking..."
-#~ msgstr "思考中..."
-
-#~ msgid "%s wins!"
-#~ msgstr " %s さんの勝利です!"
-
-#~ msgid "Waiting for %s to move."
-#~ msgstr "%s さんが移動するまで待機します"
-
-#~ msgid "Hint: Column %d"
-#~ msgstr "ヒント: %d列目"
-
-#~ msgid "You:"
-#~ msgstr "あなた:"
-
-#~ msgid "Me:"
-#~ msgstr "わたし:"
-
-#~ msgid "Scores"
-#~ msgstr "得点"
-
-#~ msgid "Drawn:"
-#~ msgstr "引き分け:"
-
-#~ msgid ""
-#~ "\"Four in a Row\" for GNOME, with a computer player driven by Giuliano Bertoletti's Velena Engine.\n"
-#~ "\n"
-#~ "\"Four in a Row\" is a part of GNOME Games."
-#~ msgstr ""
-#~ "これは GNOME 向けの \"四目並べ\" です (Giuliano Bertoletti's Velena エンジンを使用しています)。\n"
-#~ "\n"
-#~ "\"四目並べ\" は GNOME ゲーム集の一部です。"
-
-#~ msgid ""
-#~ "Player One:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "プレイヤー1:\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Player Two:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "プレイヤー2:\n"
-#~ "%s"
-
-#~ msgid "Level one"
-#~ msgstr "レベル1"
-
-#~ msgid "Level two"
-#~ msgstr "レベル2"
-
-#~ msgid "Level three"
-#~ msgstr "レベル3"
-
-#~ msgid "Four-in-a-Row Preferences"
-#~ msgstr "四目並べの設定"
-
-#~ msgid "Game"
-#~ msgstr "ゲーム"
-
-#~ msgid "_Theme:"
-#~ msgstr "テーマ(_T):"
-
-#~ msgid "Enable _animation"
-#~ msgstr "アニメーションを有効にする(_A)"
-
-#~ msgid "E_nable sounds"
-#~ msgstr "サウンドを有効にする(_N)"
-
-#~ msgid "Keyboard Controls"
-#~ msgstr "キーボードの操作"
-
-#~ msgid "Classic"
-#~ msgstr "クラシック"
-
-#~ msgid "Red"
-#~ msgstr "赤色"
-
-#~ msgid "Yellow"
-#~ msgstr "黄色"
-
-#~ msgid "High Contrast"
-#~ msgstr "ハイ・コントラスト"
-
-#~ msgid "Light"
-#~ msgstr "白"
-
-#~ msgid "Dark"
-#~ msgstr "黒"
-
-#~ msgid "High Contrast Inverse"
-#~ msgstr "ハイ・コントラストの反転"
-
-#~ msgid "Cream Marbles"
-#~ msgstr "クリーム色のマーブル"
-
-#~ msgid "Blue"
-#~ msgstr "青色"
-
-#~ msgid "Glass Marbles"
-#~ msgstr "ビー玉"
-
-#~ msgid "Nightfall"
-#~ msgstr "たそがれ"
-
-#~ msgid "Blocks"
-#~ msgstr "ブロック"
-
-#~ msgid "Orange"
-#~ msgstr "オレンジ色"
-
-#~ msgid ""
-#~ "Nibbles couldn't load level file:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Please check your Nibbles installation"
-#~ msgstr ""
-#~ "レベル・ファイルを読み込めませんでした:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Nibbles のインストールを確認してください。"
-
-#~ msgid ""
-#~ "Level file appears to be damaged:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Please check your Nibbles installation"
-#~ msgstr ""
-#~ "レベル・ファイルが壊れているようです:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Nibbles のインストールを確認してください。"
-
-#~ msgid ""
-#~ "Nibbles couldn't find pixmap file:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Please check your Nibbles installation"
-#~ msgstr ""
-#~ "Pixmap ファイルが見つけられませんでした:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Nibbles のインストールを確認してください。"
-
-#~ msgid "Nibbles Scores"
-#~ msgstr "Nibble の得点"
-
-#~ msgid "Speed:"
-#~ msgstr "スピード:"
-
-#~ msgid "Congratulations!"
-#~ msgstr "おめでとうございます!"
-
-#~ msgid "Your score is the best!"
-#~ msgstr "あなたがトップです!"
-
-#~ msgid "Your score has made the top ten."
-#~ msgstr "トップ 10 に入りました。"
-
-#~ msgid "Guide a worm around a maze"
-#~ msgstr "迷路をさまよう虫を導いてください"
-
-#~ msgid "Nibbles"
-#~ msgstr "Nibbles"
-
-#~ msgid "Color to use for worm"
-#~ msgstr "いも虫の色"
-
-#~ msgid "Color to use for worm."
-#~ msgstr "いも虫の色です。"
-
-#~ msgid "Enable fake bonuses"
-#~ msgstr "偽物のボーナスを有効にする"
-
-#~ msgid "Enable fake bonuses."
-#~ msgstr "偽物のボーナスを出します。"
-
-#~ msgid "Enable sounds"
-#~ msgstr "サウンドを有効にする"
-
-#~ msgid "Enable sounds."
-#~ msgstr "サウンドを有効にします。"
-
-#~ msgid "Game level to start on"
-#~ msgstr "ゲーム開始時のレベル"
-
-#~ msgid "Game level to start on."
-#~ msgstr "ゲーム開始時のレベルです"
-
-#~ msgid "Game speed"
-#~ msgstr "ゲームのスピード"
-
-#~ msgid "Game speed (1=fast, 4=slow)."
-#~ msgstr "ゲームの進行スピードです (1=高速 4=低速)。"
-
-#~ msgid "Key to use for motion down."
-#~ msgstr "下へ移動する際に使用するキーです。"
-
-#~ msgid "Key to use for motion left."
-#~ msgstr "左へ移動する際に使用するキーです。"
-
-#~ msgid "Key to use for motion right."
-#~ msgstr "右へ移動する際に使用するキーです。"
-
-#~ msgid "Key to use for motion up."
-#~ msgstr "上へ移動する際に使用するキーです。"
-
-#~ msgid "Move down"
-#~ msgstr "下へ移動する"
-
-#~ msgid "Move up"
-#~ msgstr "上へ移動する"
-
-#~ msgid "Number of AI players"
-#~ msgstr "AI プレイヤーの数"
-
-#~ msgid "Number of AI players."
-#~ msgstr "プレイする AI (人工知能) の数です。"
-
-#~ msgid "Number of human players"
-#~ msgstr "プレイヤーの人数"
-
-#~ msgid "Number of human players."
-#~ msgstr "プレイする人の数です。"
-
-#~ msgid "Play levels in random order"
-#~ msgstr "プレイするレベルをランダムに切り替える"
-
-#~ msgid "Play levels in random order."
-#~ msgstr "プレイするゲーム・レベルをランダムに切り替えます。"
-
-#~ msgid "Size of game tiles"
-#~ msgstr "ゲーム盤のサイズ"
-
-#~ msgid "Size of game tiles."
-#~ msgstr "プレイするゲーム盤の大きさです。"
-
-#~ msgid "Use relative movement"
-#~ msgstr "相対移動にする"
-
-#~ msgid "Use relative movement (ie. left or right only)."
-#~ msgstr "相対的に移動させるようにします (つまり左または右のみ移動可)。"
-
-#~ msgctxt "game speed"
-#~ msgid "Beginner"
-#~ msgstr "初心者"
-
-#~ msgctxt "game speed"
-#~ msgid "Slow"
-#~ msgstr "低速"
-
-#~ msgctxt "game speed"
-#~ msgid "Medium"
-#~ msgstr "中速"
-
-#~ msgctxt "game speed"
-#~ msgid "Fast"
-#~ msgstr "高速"
-
-#~ msgctxt "game speed"
-#~ msgid "Beginner with Fakes"
-#~ msgstr "まやかしの初心者"
-
-#~ msgctxt "game speed"
-#~ msgid "Slow with Fakes"
-#~ msgstr "まやかしの低速"
-
-#~ msgctxt "game speed"
-#~ msgid "Medium with Fakes"
-#~ msgstr "まやかしの中速"
-
-#~ msgctxt "game speed"
-#~ msgid "Fast with Fakes"
-#~ msgstr "まやかしの高速"
-
-#~ msgid ""
-#~ "A worm game for GNOME.\n"
-#~ "\n"
-#~ "Nibbles is a part of GNOME Games."
-#~ msgstr ""
-#~ "GNOME 版のいも虫ゲームです。\n"
-#~ "\n"
-#~ "Nibbles は GNOME ゲーム集の一部です。"
-
-#~ msgid "Game over! The game has been won by %s!"
-#~ msgstr "ゲーム・オーバーです! %s の勝利です!"
-
-#~ msgid "The game is over."
-#~ msgstr "ゲーム・オーバーです"
-
-#~ msgid "A worm game for GNOME."
-#~ msgstr "〜 GNOME 版のいも虫ゲーム 〜"
-
-#~ msgid "Nibbles Preferences"
-#~ msgstr "Nibbles の設定"
-
-#~ msgid "Speed"
-#~ msgstr "スピード"
-
-#~ msgid "Nibbles newbie"
-#~ msgstr "Nibbles の初心者です"
-
-#~ msgid "My second day"
-#~ msgstr "遊び初めて二日目です"
-
-#~ msgid "Not too shabby"
-#~ msgstr "ちょっと自慢できます"
-
-#~ msgid "Finger-twitching good"
-#~ msgstr "指の動きは絶好調です"
-
-#~ msgid "Options"
-#~ msgstr "オプション"
-
-#~ msgid "_Play levels in random order"
-#~ msgstr "プレイするレベルをランダムに切り替える(_P)"
-
-#~ msgid "_Enable fake bonuses"
-#~ msgstr "偽物のボーナスを有効にする(_E)"
-
-#~ msgid "_Starting level:"
-#~ msgstr "開始時のレベル(_S):"
-
-#~ msgid "Number of _human players:"
-#~ msgstr "プレイヤーの人数(_H):"
-
-#~ msgid "Number of _AI players:"
-#~ msgstr "AI プレイヤーの数(_A):"
-
-#~ msgid "Worm"
-#~ msgstr "いも虫"
-
-#~ msgid "_Use relative movement"
-#~ msgstr "相対移動にする(_U)"
-
-#~ msgid "_Worm color:"
-#~ msgstr "いも虫の色(_W):"
-
-#~ msgid "Green"
-#~ msgstr "緑色"
-
-#~ msgid "Cyan"
-#~ msgstr "シアン"
-
-#~ msgid "Purple"
-#~ msgstr "紫色"
-
-#~ msgid "Gray"
-#~ msgstr "灰色"
-
-#~ msgid "Worm %d:"
-#~ msgstr "いも虫 %d: "
-
-#~ msgid "Game over!"
-#~ msgstr "ゲームオーバー!"
-
-#~ msgid "Great work, but unfortunately your score did not make the top ten."
-#~ msgstr "素晴らしい活躍ですが、残念ながらトップ 10 入りできませんでした。"
-
-#~ msgid "Robots Scores"
-#~ msgstr "ロボットの得点"
-
-#~ msgid "Map:"
-#~ msgstr "マップ:"
-
-#~ msgid ""
-#~ "Congratulations, You Have Defeated the Robots!! \n"
-#~ "But Can You do it Again?"
-#~ msgstr ""
-#~ "おめでとうございます。ロボット達をやっつけました!!\n"
-#~ "でも、もう一度やっつけることができるかな?"
-
-#~ msgid "There are no teleport locations left!!"
-#~ msgstr "残っているテレポート可能な場所がありません!!"
-
-#~ msgid "There are no safe locations to teleport to!!"
-#~ msgstr "安全にテレポートできる場所がありません!"
-
-#~ msgid "Set game scenario"
-#~ msgstr "シナリオをセットする"
-
-#~ msgid "Set game configuration"
-#~ msgstr "ゲームを設定する"
-
-#~ msgid "Initial window position"
-#~ msgstr "ウィンドウの位置を初期化する"
-
-#~ msgid "X"
-#~ msgstr "X"
-
-#~ msgid "Y"
-#~ msgstr "Y"
-
-#~ msgid "Classic robots"
-#~ msgstr "旧式のロボット"
-
-#~ msgid "Classic robots with safe moves"
-#~ msgstr "旧式のロボット (安全モードで移動)"
-
-#~ msgid "Classic robots with super-safe moves"
-#~ msgstr "旧式のロボット (超安全モードで移動)"
-
-#~ msgid "Nightmare"
-#~ msgstr "悪夢"
-
-#~ msgid "Nightmare with safe moves"
-#~ msgstr "悪夢 (安全モードで移動)"
-
-#~ msgid "Nightmare with super-safe moves"
-#~ msgstr "悪夢 (超安全モードで移動)"
-
-#~ msgid "Robots2"
-#~ msgstr "ロボット2"
-
-#~ msgid "Robots2 with safe moves"
-#~ msgstr "ロボット2 (安全モードで移動)"
-
-#~ msgid "Robots2 with super-safe moves"
-#~ msgstr "ロボット2 (超安全モードで移動)"
-
-#~ msgid "Robots2 easy"
-#~ msgstr "ロボット2 (簡単)"
-
-#~ msgid "Robots2 easy with safe moves"
-#~ msgstr "ロボット2 (安全モードで移動)"
-
-#~ msgid "Robots2 easy with super-safe moves"
-#~ msgstr "ロボット2 (超安全モードで移動)"
-
-#~ msgid "Robots with safe teleport"
-#~ msgstr "安全なテレポート付きロボット"
-
-#~ msgid "Robots with safe teleport with safe moves"
-#~ msgstr "安全なテレポート付きロボット (安全モードで移動)"
-
-#~ msgid "Robots with safe teleport with super-safe moves"
-#~ msgstr "安全なテレポート付きロボット (超安全モードで移動)"
-
-#~ msgid "Robots"
-#~ msgstr "Robots"
-
-#~ msgid "No game data could be found."
-#~ msgstr "ゲーム用データが見つかりませんでした。"
-
-#~ msgid "The program Robots was unable to find any valid game configuration files. Please check that the program is installed correctly."
-#~ msgstr "\"GNOME Robots\" は適切なゲーム用の設定ファイルを見つけることができませんでした。このプログラムが正しくインストールされたか確認してください。"
-
-#~ msgid "Some graphics files are missing or corrupt."
-#~ msgstr "いくつかの画像ファイルが存在しないか壊れています。"
-
-#~ msgid "The program Robots was unable to load all the necessary graphics files. Please check that the program is installed correctly."
-#~ msgstr "\"GNOME Robots\" は必要な画像ファイルを読み込めませんでした。このプログラムが正しくインストールされたか確認してください。"
-
-#~ msgid "Avoid the robots and make them crash into each other"
-#~ msgstr "ロボットを避けながらロボット同士を破壊してください"
-
-#~ msgid "Enable game sounds"
-#~ msgstr "ゲーム・サウンドを有効にする"
-
-#~ msgid "Enable game sounds. Play sounds for various events throughout the game."
-#~ msgstr "ゲーム・サウンドを有効にします。ゲームをとおしていろいろなイベントで演奏します。"
-
-#~ msgid "Game type"
-#~ msgstr "ゲームの種類"
-
-#~ msgid "Game type. The name of the game variation to use."
-#~ msgstr "ゲームの種類です。プレイするいろいろなゲームの名前になります。"
-
-#~ msgid "Key to hold"
-#~ msgstr "\"保留\" のキー"
-
-#~ msgid "Key to move E"
-#~ msgstr "\"E (東) へ移動\" のキー"
-
-#~ msgid "Key to move N"
-#~ msgstr "\"N (北) へ移動\" のキー"
-
-#~ msgid "Key to move NE"
-#~ msgstr "\"NE (北東) へ移動\" のキー"
-
-#~ msgid "Key to move NW"
-#~ msgstr "\"NW (北西) へ移動\" のキー"
-
-#~ msgid "Key to move S"
-#~ msgstr "\"S (南) へ移動\" のキー"
-
-#~ msgid "Key to move SE"
-#~ msgstr "\"SE (南東) へ移動\" のキー"
-
-#~ msgid "Key to move SW"
-#~ msgstr "\"SW (南西) へ移動\" のキー"
-
-#~ msgid "Key to move W"
-#~ msgstr "\"W (西) へ移動\" のキー"
-
-#~ msgid "Key to teleport"
-#~ msgstr "\"テレポート\" のキー"
-
-#~ msgid "Key to teleport randomly"
-#~ msgstr "\"ランダムなテレポート\" のキー"
-
-#~ msgid "Key to wait"
-#~ msgstr "\"待機\" のキー"
-
-#~ msgid "Robot image theme"
-#~ msgstr "ロボットのテーマ"
-
-#~ msgid "Robot image theme. The theme of the images to use for the robots."
-#~ msgstr "ロボットのテーマ画像です。ロボットに使用する画像になります。"
-
-#~ msgid "Show toolbar"
-#~ msgstr "ツールバーを表示します"
-
-#~ msgid "Show toolbar. A standard option for toolbars."
-#~ msgstr "ツールバーを表示します (ツールバーの標準オプションです)。"
-
-#~ msgid "The name of the key used to hold still. The name is a standard X key name."
-#~ msgstr "保留のままにする際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move east. The name is a standard X key name."
-#~ msgstr "東へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move north-east. The name is a standard X key name."
-#~ msgstr "北東へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move north-west. The name is a standard X key name."
-#~ msgstr "北西へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move north. The name is a standard X key name."
-#~ msgstr "北へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move south-east. The name is a standard X key name."
-#~ msgstr "南東へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move south-west. The name is a standard X key name."
-#~ msgstr "南西へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move south. The name is a standard X key name."
-#~ msgstr "南へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to move west. The name is a standard X key name."
-#~ msgstr "西へ移動する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to teleport randomly. The name is a standard X key name."
-#~ msgstr "ランダムなテレポートを行う際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to teleport safely (if possible). The name is a standard X key name."
-#~ msgstr "(可能ならば) 安全にテレポートを行う際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "The name of the key used to wait. The name is a standard X key name."
-#~ msgstr "待機する際に使用するキーの名前 (標準的な X-ウィンドウ・システムのキーの名前) です。"
-
-#~ msgid "Use safe moves"
-#~ msgstr "安全モードを使う"
-
-#~ msgid "Use safe moves. The safe moves option will help you to avoid being killed due to a mistake. If you try to make a move that would lead to your death when there is a safe move available you will not be allowed to proceed."
-#~ msgstr "安全に移動します。このオプションは、誤ってプレイヤーを死なせることがありません。安全な移動が有効な場合、危険を目前に迫っている場所に移動させようとしても、それ以上進むことができなくなります。"
-
-#~ msgid "Use super safe moves"
-#~ msgstr "超安全モードを使う"
-
-#~ msgid "Use super safe moves. The player is alerted when there is no safe move and the only option is to teleport out."
-#~ msgstr "超安全に移動します。プレイヤーが安全ではない方向に移動する際に警告を発します。このオプションはテレポートした後のみ有効になります。"
-
-#~ msgid "Could not find '%s' pixmap file\n"
-#~ msgstr "'%s' の画像ファイルを見つけられませんでした。\n"
-
-#~ msgid "_Move"
-#~ msgstr "移動(_M)"
-
-#~ msgid "_Teleport"
-#~ msgstr "テレポート(_T)"
-
-#~ msgid "Teleport, safely if possible"
-#~ msgstr "テレポートします (可能ならば安全に移動します)"
-
-#~ msgid "_Random"
-#~ msgstr "ランダム(_R)"
-
-#~ msgid "Teleport randomly"
-#~ msgstr "ランダムな場所にテレポートします"
-
-#~ msgid "_Wait"
-#~ msgstr "待機(_W)"
-
-#~ msgid "Wait for the robots"
-#~ msgstr "その場に待機します"
-
-#~ msgid ""
-#~ "Based on classic BSD Robots.\n"
-#~ "\n"
-#~ "Robots is a part of GNOME Games."
-#~ msgstr ""
-#~ "BSD の古典的なロボット・ゲームです。\n"
-#~ "\n"
-#~ "GNOMEロボットは GNOME ゲーム集の一部です。"
-
-#~ msgid "classic robots"
-#~ msgstr "旧式のロボット"
-
-#~ msgid "robots2"
-#~ msgstr "ロボット2"
-
-#~ msgid "robots2 easy"
-#~ msgstr "ロボット2 (Easy)"
-
-#~ msgid "robots with safe teleport"
-#~ msgstr "安全なテレポート付きロボット"
-
-#~ msgid "nightmare"
-#~ msgstr "悪夢"
-
-#~ msgid "robots"
-#~ msgstr "ロボット"
-
-#~ msgid "cows"
-#~ msgstr "牛"
-
-#~ msgid "eggs"
-#~ msgstr "たまご"
-
-#~ msgid "gnomes"
-#~ msgstr "ノーム (地の精)"
-
-#~ msgid "mice"
-#~ msgstr "ねずみ"
-
-#~ msgid "ufo"
-#~ msgstr "UFO"
-
-#~ msgid "boo"
-#~ msgstr "おばけ"
-
-#~ msgid "Robots Preferences"
-#~ msgstr "GNOME ロボットの設定"
-
-#~ msgid "Game Type"
-#~ msgstr "ゲームの種類"
-
-#~ msgid "_Use safe moves"
-#~ msgstr "安全モードを使う(_U)"
-
-#~ msgid "Prevent accidental moves that result in getting killed."
-#~ msgstr "お亡くなりになった後の思いがけない移動を避けます。"
-
-#~ msgid "U_se super safe moves"
-#~ msgstr "超安全モードを使う(_S)"
-
-#~ msgid "Prevents all moves that result in getting killed."
-#~ msgstr "お亡くなりになった後の思いがけないすべての移動を避けます。"
-
-#~ msgid "_Enable sounds"
-#~ msgstr "サウンドを有効にする(_E)"
-
-#~ msgid "Play sounds for events like winning a level and dying."
-#~ msgstr "勝利レベルとお亡くなりになった時のイベントのサウンドを演奏します。"
-
-#~ msgid "Graphics Theme"
-#~ msgstr "ゲームのテーマ"
-
-#~ msgid "_Image theme:"
-#~ msgstr "画像のテーマ(_I):"
-
-#~ msgid "_Background color:"
-#~ msgstr "背景色(_B):"
-
-#~ msgid "_Restore Defaults"
-#~ msgstr "デフォルトにする(_R)"
-
-#~ msgid "Keyboard"
-#~ msgstr "キーボード"
-
-#~ msgid "Safe Teleports:"
-#~ msgstr "安全なテレポートの数:"
-
-#~ msgid "Level:"
-#~ msgstr "レベル:"
-
-#~ msgid "Remaining:"
-#~ msgstr "残り:"
-
-#~ msgid "Fit falling blocks together"
-#~ msgstr "落ちてくるブロックを組み合わせて消し去ってください"
-
-#~ msgid "Drop"
-#~ msgstr "落とすキー"
-
-#~ msgid "Image to use for drawing blocks"
-#~ msgstr "ブロックの描画に使用する画像"
-
-#~ msgid "Image to use for drawing blocks."
-#~ msgstr "ブロックの描画に使用する画像です。"
-
-#~ msgid "Key press to drop."
-#~ msgstr "落とす時に使用するキーです。"
-
-#~ msgid "Key press to move down."
-#~ msgstr "下へ移動する時に使用するキーです。"
-
-#~ msgid "Key press to pause."
-#~ msgstr "プレイを一時停止する時に使用するキーです。"
-
-#~ msgid "Key press to rotate."
-#~ msgstr "回転させる時に使用するキーです。"
-
-#~ msgid "Level to start with"
-#~ msgstr "ゲーム開始時のレベル"
-
-#~ msgid "Level to start with."
-#~ msgstr "ゲーム開始時のレベルです。"
-
-#~ msgid "Pause"
-#~ msgstr "一時停止"
-
-#~ msgid "Rotate"
-#~ msgstr "回転させるキー"
-
-#~ msgid "The background color"
-#~ msgstr "背景色"
-
-#~ msgid "The background color, in a format gdk_color_parse understands."
-#~ msgstr "背景の色を gdk_color_parse が理解する書式で指定してください。"
-
-#~ msgid "The density of blocks in rows filled at the start of the game. The value is between 0 (for no blocks) and 10 (for a completely filled row)."
-#~ msgstr "ゲーム開始時に予め埋めておくブロックの密度です。指定可能な値は 0 (ブロックなし) 〜 10 (すべて埋める) です。"
-
-#~ msgid "The density of filled rows"
-#~ msgstr "予め埋めておくブロックの密度"
-
-#~ msgid "The name of the theme used for rendering the blocks and the background."
-#~ msgstr "ブロックと背景を描画する際に使用するテーマの名前です。"
-
-#~ msgid "The number of rows that are filled with random blocks at the start of the game."
-#~ msgstr "ゲーム開始時にランダムなブロックで予め埋めておく桁の番号です。"
-
-#~ msgid "The number of rows to fill"
-#~ msgstr "予め埋めておく桁の番号"
-
-#~ msgid "The theme used for rendering the blocks"
-#~ msgstr "ブロックの描画に使用するテーマ"
-
-#~ msgid "This selects whether or not to draw the background image over the background color."
-#~ msgstr "背景色の上に背景画像を描画するかどうかです。"
-
-#~ msgid "Whether to give blocks random colors"
-#~ msgstr "ブロックの色をランダムにするかどうか"
-
-#~ msgid "Whether to give blocks random colors."
-#~ msgstr "ブロックの色をランダムにするかどうかです。"
-
-#~ msgid "Whether to preview the next block"
-#~ msgstr "次のブロックのプレビューを表示するかどうか"
-
-#~ msgid "Whether to preview the next block."
-#~ msgstr "次のブロックのプレビューを表示するかどうかです。"
-
-#~ msgid "Whether to provide a graphical representation of where a block will land."
-#~ msgstr "ブロックを落とす場所を視覚効果を使って表示するかどうかです。"
-
-#~ msgid "Whether to provide a target"
-#~ msgstr "ブロックを落とす箇所を表示するかどうか"
-
-#~ msgid "Whether to rotate counter clock wise"
-#~ msgstr "反時計周りに回転させるかどうか"
-
-#~ msgid "Whether to rotate counter clock wise."
-#~ msgstr "反時計周りに回転させるかどうかです。"
-
-#~ msgid "Whether to use the background image"
-#~ msgstr "背景として画像を利用するかどうか"
-
-#~ msgid "Set starting level (1 or greater)"
-#~ msgstr "開始時のレベルをセットする (1 以上)"
-
-#~ msgid "LEVEL"
-#~ msgstr "レベル"
-
-#~ msgid "Plain"
-#~ msgstr "プレーン"
-
-#~ msgid "Tango Flat"
-#~ msgstr "Tango フラット"
-
-#~ msgid "Tango Shaded"
-#~ msgstr "Tango 影付き"
-
-#~ msgid "Lines:"
-#~ msgstr "ライン数:"
-
-#~ msgid "Quadrapassel Preferences"
-#~ msgstr "Quadrapassel の設定"
-
-#~ msgid "Setup"
-#~ msgstr "事前設定"
-
-#~ msgid "_Number of pre-filled rows:"
-#~ msgstr "事前に埋めておくブロックの高さ(_N):"
-
-#~ msgid "_Density of blocks in a pre-filled row:"
-#~ msgstr "事前に埋めておくブロックの幅(_D):"
-
-#~ msgid "Operation"
-#~ msgstr "操作"
-
-#~ msgid "_Preview next block"
-#~ msgstr "次のブロックを表示する(_P)"
-
-#~ msgid "_Use random block colors"
-#~ msgstr "ブロックの色をランダムに変更する(_U)"
-
-#~ msgid "_Rotate blocks counterclockwise"
-#~ msgstr "反時計周りに回転させる(_R)"
-
-#~ msgid "Show _where the block will land"
-#~ msgstr "ブロックを落とす場所を表示する(_W)"
-
-#~ msgid "Theme"
-#~ msgstr "テーマ"
-
-#~ msgid "Controls"
-#~ msgstr "操作"
-
-#~ msgid "Block Style"
-#~ msgstr "ブロックのスタイル"
-
-#~ msgid ""
-#~ "A classic game of fitting falling blocks together.\n"
-#~ "\n"
-#~ "Quadrapassel is a part of GNOME Games."
-#~ msgstr ""
-#~ "落ちてくるブロックを組み合わせていく古典ゲームの一つです。\n"
-#~ "\n"
-#~ "Quadrapassel は GNOME ゲーム集の一部です。"
-
-#~ msgid "Quadrapassel Scores"
-#~ msgstr "Quadrapassel の得点"
-
-#~ msgid "Paused"
-#~ msgstr "一時停止"
-
-#~ msgid "Sudoku"
-#~ msgstr "GNOME 数独"
-
-#~ msgid "Test your logic skills in this number grid puzzle"
-#~ msgstr "あなたの思考能力を番号の付いたマス目のパズルでテストしてみます"
-
-#, fuzzy
-#~ msgid "Color of the grid border"
-#~ msgstr "いも虫の色"
-
-#, fuzzy
-#~ msgid "Height of application window in pixels"
-#~ msgstr "メイン・ウィンドウの高さ (ピクセル単位) です。"
-
-#~ msgid "Number of puzzles to print on a page"
-#~ msgstr "1ページ上に印刷する数独の数"
-
-#, fuzzy
-#~ msgid "Show hint highlights"
-#~ msgstr "ゲーム中にヒントを表示するかどうかです"
-
-#, fuzzy
-#~ msgid "Show hints"
-#~ msgstr "ヒントを提示します"
-
-#, fuzzy
-#~ msgid "Show the application toolbar"
-#~ msgstr "ツールバーの表示/非表示を切り替えます"
-
-#, fuzzy
-#~ msgid "The number of seconds between automatic saves"
-#~ msgstr "カスタム・ゲームでの地雷の数"
-
-#, fuzzy
-#~ msgid "Width of application window in pixels"
-#~ msgstr "メイン・ウィンドウの幅 (ピクセル単位) です。"
-
-#~ msgid "Details"
-#~ msgstr "詳細"
-
-#, fuzzy
-#~ msgid "Levels of difficulty to print"
-#~ msgstr "<b><i>印刷する難易度</i></b>"
-
-#~ msgid "Print Games"
-#~ msgstr "ゲームを印刷する"
-
-#~ msgid "Print Sudokus"
-#~ msgstr "数独の印刷"
-
-#~ msgid "_Easy"
-#~ msgstr "初級(_E)"
-
-#~ msgid "_Hard"
-#~ msgstr "上級(_H)"
-
-#~ msgid "_Include games you've already played in list of games to print"
-#~ msgstr "既にプレイしたゲームも印刷一覧に含める(_I)"
-
-#~ msgid "_Mark games as played once you've printed them."
-#~ msgstr "既にプレイした旨も印刷する(_M)"
-
-#~ msgid "_Medium"
-#~ msgstr "中くらい(_M)"
-
-#~ msgid "_Number of sudoku to print: "
-#~ msgstr "印刷する数独の数(_N): "
-
-#~ msgid "_Sudokus per page: "
-#~ msgstr "数独/ページ(_S):"
-
-#~ msgid "_Very Hard"
-#~ msgstr "超難関(_V)"
-
-#~ msgid "_Saved Games"
-#~ msgstr "保存したゲーム(_S)"
-
-#~ msgid "Add a new tracker"
-#~ msgstr "新しいトラッカの追加"
-
-#~ msgid "H_ide"
-#~ msgstr "隠す(_I)"
-
-#, fuzzy
-#~ msgid "Remove the selected tracker"
-#~ msgstr "指定したトラッカで監視しているすべての移動をクリアします"
-
-#~ msgid "Sudoku incorrectly installed"
-#~ msgstr "GNOME 数独のインストールが間違っています"
-
-#~ msgid "Sudoku is not able to start because required application files are not installed. If you are currently upgrading your system please wait until the upgrade has completed."
-#~ msgstr "必要なアプリケーション・ファイルがインストールされていないので GNOME 数独を起動できません。もしシステムのアップグレードを実施している最中ならば、アップグレードが完了するまでお待ちください。"
-
-#~ msgid "GNOME Sudoku"
-#~ msgstr "GNOME 数独"
-
-#~ msgid ""
-#~ "GNOME Sudoku is a simple Sudoku generator and player. Sudoku is a Japanese logic puzzle.\n"
-#~ "\n"
-#~ "GNOME Sudoku is a part of GNOME Games."
-#~ msgstr ""
-#~ "GNOME 数独は数独パターンを生成しゲーム提供します。数独は日本で生まれた思考型のパズルです。\n"
-#~ "\n"
-#~ "GNOME 数独は GNOME ゲーム集の一部です。"
-
-#~ msgid "No Space"
-#~ msgstr "空き容量なし"
-
-#~ msgid "No space left on disk"
-#~ msgstr "ディスクに空き容量がありません"
-
-#, fuzzy
-#~ msgid "Unable to create data folder %(path)s."
-#~ msgstr "GNOME 数独は %(path)s というデータ・フォルダを生成できませんでした。"
-
-#~ msgid "There is no disk space left!"
-#~ msgstr "ディスクに空き容量がありません!"
-
-#~ msgid "Error %(errno)s: %(error)s"
-#~ msgstr "%(errno)s のエラー: %(error)s"
-
-#~ msgid "Sudoku unable to save game."
-#~ msgstr "GNOME 数独でゲームを保存できません。"
-
-#~ msgid "Unable to save file %(filename)s."
-#~ msgstr "%(filename)s というファイルを保存できません。"
-
-#~ msgid "Sudoku unable to mark game as finished."
-#~ msgstr "GNOME 数独の終了処理を完了できません。"
-
-#~ msgid "New game"
-#~ msgstr "新規にゲームを始めます"
-
-#~ msgid "_Undo"
-#~ msgstr "元に戻す(_U)"
-
-#~ msgid "Undo last action"
-#~ msgstr "最後の操作に戻します"
-
-#~ msgid "_Redo"
-#~ msgstr "やり直す(_R)"
-
-#~ msgid "Redo last action"
-#~ msgstr "最後の操作を取り消します"
-
-#~ msgid "Puzzle _Statistics..."
-#~ msgstr "パズルの成績(_S)..."
-
-#~ msgid "Show statistics about current puzzle"
-#~ msgstr "このパズルの成績を表示します"
-
-#~ msgid "_Print..."
-#~ msgstr "印刷(_P)..."
-
-#~ msgid "Print current game"
-#~ msgstr "このゲームを印刷します"
-
-#~ msgid "Print _Multiple Sudokus..."
-#~ msgstr "複数個の数独の印刷(_M)..."
-
-#~ msgid "Print more than one sudoku at a time."
-#~ msgstr "一度にたくさんの数独を印刷します"
-
-#~ msgid "Close Sudoku"
-#~ msgstr "数独を終了します"
-
-#~ msgid "_Tools"
-#~ msgstr "ツール(_T)"
-
-#~ msgid "Clear _Top Notes"
-#~ msgstr "上のメモのクリア(_T)"
-
-#~ msgid "Clear _Bottom Notes"
-#~ msgstr "下のメモのクリア(_B)"
-
-#~ msgid "Show _Possible Numbers"
-#~ msgstr "妥当な数値の表示(_P)"
-
-#~ msgid "Always show possible numbers in a square"
-#~ msgstr "ブロックの中に妥当な数値を常に表示します"
-
-#~ msgid "Warn About _Unfillable Squares"
-#~ msgstr "埋められないブロックを警告する(_U)"
-
-#~ msgid "Warn about squares made unfillable by a move"
-#~ msgstr "未だ埋められていないブロックについて警告します"
-
-#~ msgid "_Track Additions"
-#~ msgstr "トラッカの追加(_T)"
-
-#~ msgid "Mark new additions in a separate color so you can keep track of them."
-#~ msgstr "別の色の新しいトラッカを追加して数値の動きを監視します"
-
-#~ msgid "_Highlighter"
-#~ msgstr "強調表示する(_H)"
-
-#~ msgid "Highlight the current row, column and box"
-#~ msgstr "現在のタテ列やヨコ列、そしてブロックを強調表示します"
-
-#~ msgid "You completed the puzzle in %(totalTime)s (%(activeTime)s active)."
-#~ msgstr "あなたは %(totalTime)s (%(activeTime)s active) でパズルを解きました。"
-
-#~ msgid "You completed the puzzle in %(totalTime)s."
-#~ msgstr "あなたは %(totalTime)s でパズルを解きました。"
-
-#~ msgid "You got %(n)s hint."
-#~ msgid_plural "You got %(n)s hints."
-#~ msgstr[0] "%(n)s 個のヒントを得ました"
-
-#~ msgid "Save this game before starting new one?"
-#~ msgstr "新ゲームを始める前にこのゲームを保存しますか?"
-
-#~ msgid "_Save game for later"
-#~ msgstr "後で保存する(_S)"
-
-#~ msgid "_Abandon game"
-#~ msgstr "ゲームの放棄(_A)"
-
-#~ msgid "Puzzle Information"
-#~ msgstr "パズルの情報"
-
-#~ msgid "There is no current puzzle."
-#~ msgstr "現在、パズルはありません"
-
-#~ msgid "Calculated difficulty: "
-#~ msgstr "計算した難易度:"
-
-#~ msgid "Number of moves instantly fillable by elimination: "
-#~ msgstr "削除することで埋め込むことが可能な移動数: "
-
-#~ msgid "Number of moves instantly fillable by filling: "
-#~ msgstr "そのまま埋め込みが可能な移動数: "
-
-#~ msgid "Amount of trial-and-error required to solve: "
-#~ msgstr "トライ&エラーが必要な数: "
-
-#~ msgid "Puzzle Statistics"
-#~ msgstr "パズルの成績"
-
-#~ msgid "_Remove"
-#~ msgstr "削除(_R)"
-
-#~ msgid "Delete selected tracker."
-#~ msgstr "選択したと落下を削除します。"
-
-#~ msgid "A_pply"
-#~ msgstr "適用(_P)"
-
-#, fuzzy
-#~ msgid "Apply all tracked values and remove the tracker."
-#~ msgstr "指定したトラッカで監視しているすべての移動をクリアします"
-
-#~ msgid "Tracker %s"
-#~ msgstr "トラッカ %s"
-
-#~ msgid "Last played %(timeAgo)s"
-#~ msgstr "最後に挑戦したのは %(timeAgo)s"
-
-#~ msgid "%(level)s puzzle"
-#~ msgstr "レベルが%(level)sのパズル"
-
-#~ msgid "Played for %(duration)s"
-#~ msgstr "%(duration)s プレイした"
-
-#~ msgid "Very hard"
-#~ msgstr "超難問"
-
-#~ msgid "Medium"
-#~ msgstr "中くらい"
-
-#~ msgid "Do you really want to do this?"
-#~ msgstr "本当にこれを行ってよろしいですか?"
-
-#~ msgid "Don't ask me this again."
-#~ msgstr "次回から表示しない"
-
-#~ msgid "%(n)s year"
-#~ msgid_plural "%(n)s years"
-#~ msgstr[0] " %(n)s年"
-
-#~ msgid "%(n)s month"
-#~ msgid_plural "%(n)s months"
-#~ msgstr[0] " %(n)sヶ月"
-
-#~ msgid "%(n)s week"
-#~ msgid_plural "%(n)s weeks"
-#~ msgstr[0] " %(n)s週間"
-
-#~ msgid "%(n)s day"
-#~ msgid_plural "%(n)s days"
-#~ msgstr[0] " %(n)s日"
-
-#~ msgid "%(n)s hour"
-#~ msgid_plural "%(n)s hours"
-#~ msgstr[0] " %(n)s時間"
-
-#~ msgid "%(n)s minute"
-#~ msgid_plural "%(n)s minutes"
-#~ msgstr[0] " %(n)s分"
-
-#~ msgid "%(n)s second"
-#~ msgid_plural "%(n)s seconds"
-#~ msgstr[0] " %(n)s秒"
-
-#~ msgid " and "
-#~ msgstr " と "
-
-#~ msgid ", "
-#~ msgstr "、"
-
-#~ msgid " "
-#~ msgstr " "
-
-#~ msgid "%(n)s second ago"
-#~ msgid_plural "%(n)s seconds ago"
-#~ msgstr[0] " %(n)s秒前"
-
-#~ msgid "%(n)s minute ago"
-#~ msgid_plural "%(n)s minutes ago"
-#~ msgstr[0] " %(n)s分前"
-
-#~ msgid "at %I:%M %p"
-#~ msgstr "%p%l:%M"
-
-#~ msgid "yesterday at %I:%M %p"
-#~ msgstr "昨日の%p%I:%M"
-
-#~ msgid "%A %I:%M %p"
-#~ msgstr "%Aの%p%I:%M"
-
-#~ msgid "%B %e"
-#~ msgstr "%B%e日"
-
-#~ msgid "_Clear"
-#~ msgstr "クリア(_C)"
-
-#~ msgid "Mines"
-#~ msgstr "GNOME マインスィーパ"
-
-#~ msgctxt "board size"
-#~ msgid "Custom"
-#~ msgstr "指定する"
-
-#~ msgid "Flags: %d/%d"
-#~ msgstr "フラグ: %d/%d"
-
-#~ msgid "The Mines Have Been Cleared!"
-#~ msgstr "クリアしました!"
-
-#~ msgid "Mines Scores"
-#~ msgstr "マインスィーパの得点"
-
-#~ msgid "Size:"
-#~ msgstr "大きさ:"
-
-#~ msgid "Click a square, any square"
-#~ msgstr "四角い升目を次から次へとクリックしてください"
-
-#~ msgid "Maybe they're all mines ..."
-#~ msgstr "おそらくそれらはすべて地雷です..."
-
-#~ msgid "Resizing and SVG support:"
-#~ msgstr "サイズ変更と SVG サポート:"
-
-#~ msgid "Faces:"
-#~ msgstr "フェイス:"
-
-#~ msgid "Graphics:"
-#~ msgstr "グラフィックス:"
-
-#~ msgid ""
-#~ "The popular logic puzzle minesweeper. Clear mines from a board using hints from squares you have already uncovered.\n"
-#~ "\n"
-#~ "Mines is a part of GNOME Games."
-#~ msgstr ""
-#~ "人気のある \"理詰め\" 式パズルのマインスィーパです。ヒントに従って盤面上のマス目からマインを除去してください。\n"
-#~ "\n"
-#~ "gnomine は GNOME ゲーム集の一部です。"
-
-#~ msgid "Field Size"
-#~ msgstr "フィールドの大きさ"
-
-#~ msgid "Custom Size"
-#~ msgstr "大きさのカスタマイズ"
-
-#~ msgid "_Number of mines:"
-#~ msgstr "地雷の数(_N):"
-
-#~ msgid "_Horizontal:"
-#~ msgstr "水平(_H):"
-
-#~ msgid "_Vertical:"
-#~ msgstr "垂直(_V):"
-
-#~ msgid "Flags"
-#~ msgstr "フラグ"
-
-#~ msgid "_Use \"I'm not sure\" flags"
-#~ msgstr "\"確認していません\" フラグを使う(_U)"
-
-#~ msgid "Warnings"
-#~ msgstr "警告"
-
-#~ msgid "_Use \"Too many flags\" warning"
-#~ msgstr "フラグを置きすぎたら警告する(_U)"
-
-#~ msgid "Mines Preferences"
-#~ msgstr "GNOME マインスイーパの設定"
-
-#~ msgid "Width of grid"
-#~ msgstr "グリッドの幅"
-
-#~ msgid "Height of grid"
-#~ msgstr "グリッドの高さ"
-
-#~ msgid "Number of mines"
-#~ msgstr "地雷の数"
-
-#~ msgid "Size of the board (0-2 = small-large, 3=custom)"
-#~ msgstr "ボードの大きさ (0-2 = 小さい〜大きい、3=その他)"
-
-#~ msgid "X location of window"
-#~ msgstr "ウィンドウのX座標"
-
-#~ msgid "Y location of window"
-#~ msgstr "ウィンドウのY座標"
-
-#~ msgid "Press to Resume"
-#~ msgstr "ここを押すと再開します"
-
-#~ msgid "Time: "
-#~ msgstr "経過時間: "
-
-#~ msgid "Clear hidden mines from a minefield"
-#~ msgstr "地雷原から見えない地雷を除去してください"
-
-#~ msgid "Board size"
-#~ msgstr "盤の大きさ"
-
-#~ msgid "Enable automatic placing of flags"
-#~ msgstr "フラグを自動的に置くかどうか"
-
-#~ msgid "Number of columns in a custom game"
-#~ msgstr "カスタマイズしたゲームでの盤面の桁数"
-
-#~ msgid "Number of rows in a custom game"
-#~ msgstr "カスタマイズしたゲームでの盤面の行数"
-
-#~ msgid "Set to true to be able to mark squares as unknown."
-#~ msgstr "不明なエリアをマークできるようにする場合は TRUE にセットしてください。"
-
-#~ msgid "Set to true to enable warning icons when too many flags are placed."
-#~ msgstr "フラグをたくさん置いた時に警告アイコンを表示する場合は TRUE にセットしてください。"
-
-#~ msgid "Set to true to have gnomine automatically flag squares as mined when enough squares are revealed"
-#~ msgstr "マス目に地雷が埋まっていることが明らかであることを表すフラグを自動的に付与する場合は TRUE です。"
-
-#~ msgid "The number of mines in a custom game"
-#~ msgstr "カスタム・ゲームでの地雷の数"
-
-#~ msgid "Use the unknown flag"
-#~ msgstr "不明なフラグを使う"
-
-#~ msgid "Warning about too many flags"
-#~ msgstr "フラグを置きすぎたら警告する"
-
-#~ msgid ""
-#~ "Unable to find required images.\n"
-#~ "\n"
-#~ "Please check your gnome-games installation."
-#~ msgstr ""
-#~ "必要な画像が見つかりませんでした。\n"
-#~ "\n"
-#~ "gnome-games のインストールを確認してください。"
-
-#~ msgid ""
-#~ "Required images have been found, but refused to load.\n"
-#~ "\n"
-#~ "Please check your installation of gnome-games and its dependencies."
-#~ msgstr ""
-#~ "必要な画像ファイルが見つからなかったので読み込みを停止しました。\n"
-#~ "\n"
-#~ "gnome-games と関連するインストールを確認してください。"
-
-#~ msgid "Could not load images"
-#~ msgstr "画像を読み込めませんでした"
-
-#~ msgid "Tetravex"
-#~ msgstr "Tetravex"
-
-#~ msgid "2×2"
-#~ msgstr "2×2"
-
-#~ msgid "3×3"
-#~ msgstr "3×3"
-
-#~ msgid "4×4"
-#~ msgstr "4×4"
-
-#~ msgid "5×5"
-#~ msgstr "5×5"
-
-#~ msgid "6×6"
-#~ msgstr "6×6"
-
-#~ msgid "_2×2"
-#~ msgstr "_2×2"
-
-#~ msgid "Play on a 2×2 board"
-#~ msgstr "2×2 のボードでプレイします"
-
-#~ msgid "_3×3"
-#~ msgstr "_3×3"
-
-#~ msgid "Play on a 3×3 board"
-#~ msgstr "3×3 のボードでプレイします"
-
-#~ msgid "_4×4"
-#~ msgstr "_4×4"
-
-#~ msgid "Play on a 4×4 board"
-#~ msgstr "4×4 のボードでプレイします"
-
-#~ msgid "_5×5"
-#~ msgstr "_5×5"
-
-#~ msgid "Play on a 5×5 board"
-#~ msgstr "5×5 のボードでプレイします"
-
-#~ msgid "_6×6"
-#~ msgstr "_6×6"
-
-#~ msgid "Play on a 6×6 board"
-#~ msgstr "6×6 のボードでプレイします"
-
-#~ msgid "Size of board (2-6)"
-#~ msgstr "盤の大きさ(2-6)"
-
-#~ msgid "SIZE"
-#~ msgstr "大きさ"
-
-#~ msgctxt "number"
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgctxt "number"
-#~ msgid "1"
-#~ msgstr "1"
-
-#~ msgctxt "number"
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgctxt "number"
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgctxt "number"
-#~ msgid "4"
-#~ msgstr "4"
-
-#~ msgctxt "number"
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgctxt "number"
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgctxt "number"
-#~ msgid "7"
-#~ msgstr "7"
-
-#~ msgctxt "number"
-#~ msgid "8"
-#~ msgstr "8"
-
-#~ msgctxt "number"
-#~ msgid "9"
-#~ msgstr "9"
-
-#~ msgid "Game paused"
-#~ msgstr "ゲームを一時停止しました"
-
-#~ msgid "Playing %d×%d board"
-#~ msgstr "%d×%d のボードでプレイ中です"
-
-#~ msgid "Tetravex Scores"
-#~ msgstr "Tetravex の得点"
-
-#~ msgid "Puzzle solved! Well done!"
-#~ msgstr "解決しました!やったね!"
-
-#~ msgid "Puzzle solved!"
-#~ msgstr "解決しました!"
-
-#~ msgid ""
-#~ "GNOME Tetravex is a simple puzzle where pieces must be positioned so that the same numbers are touching each other.\n"
-#~ "\n"
-#~ "Tetravex is a part of GNOME Games."
-#~ msgstr ""
-#~ "GNOME Tetravex は同じ数字をお互いに向かい合わせる位置にパズルのピースを配置するゲームです。\n"
-#~ "\n"
-#~ "GNOME Tetravex は GNOME ゲーム集の一部です。"
-
-#~ msgid "_Size"
-#~ msgstr "大きさ(_S)"
-
-#~ msgid "Solve the game"
-#~ msgstr "このゲームを解きます"
-
-#~ msgid "_Up"
-#~ msgstr "上(_U)"
-
-#~ msgid "Move the pieces up"
-#~ msgstr "上に移動します"
-
-#~ msgid "_Left"
-#~ msgstr "左(_L)"
-
-#~ msgid "Move the pieces left"
-#~ msgstr "左に移動します"
-
-#~ msgid "_Right"
-#~ msgstr "右(_R)"
-
-#~ msgid "Move the pieces right"
-#~ msgstr "右に移動します"
-
-#~ msgid "_Down"
-#~ msgstr "下(_D)"
-
-#~ msgid "Move the pieces down"
-#~ msgstr "下に移動します"
-
-#~ msgid "Complete the puzzle by matching numbered tiles"
-#~ msgstr "同じ数字が隣接するように並べながらパズルを完成させてください"
-
-#~ msgid "Select whether to drag the tiles or to click on the source then the destination."
-#~ msgstr "タイルの移動方法で、タイルをドラッグして移動するか、またはクリックするとそのまま移動するかです。"
-
-#~ msgid "The size of the playing grid"
-#~ msgstr "プレイするグリッドのサイズ"
-
-#~ msgid "The value of this key is used to decide the size of the playing grid. The valid values are 2 to 8, anything else gets set to 3."
-#~ msgstr "このキーの値はプレイする盤面のサイズを決定するのに使用します。設定可能な値は 2〜8 で、それ以外は強制的に 3 になります。"
-
-#~ msgid "Klotski"
-#~ msgstr "Klotski"
-
-#~ msgid "Only 18 steps"
-#~ msgstr "Only 18 steps"
-
-#~ msgid "Daisy"
-#~ msgstr "ヒナギク"
-
-#~ msgid "Violet"
-#~ msgstr "スミレ"
-
-#~ msgid "Poppy"
-#~ msgstr "ケシ"
-
-#~ msgid "Pansy"
-#~ msgstr "三色スミレ"
-
-#~ msgid "Snowdrop"
-#~ msgstr "Snowdrop"
-
-#~ msgid "Red Donkey"
-#~ msgstr "赤いロバ"
-
-#~ msgid "Trail"
-#~ msgstr "トレイル"
-
-#~ msgid "Ambush"
-#~ msgstr "待ち伏せ"
-
-#~ msgid "Agatka"
-#~ msgstr "Agatka"
-
-#~ msgid "Success"
-#~ msgstr "大当たり"
-
-#~ msgid "Bone"
-#~ msgstr "骨"
-
-#~ msgid "Fortune"
-#~ msgstr "運命"
-
-#~ msgid "Fool"
-#~ msgstr "道化師"
-
-#~ msgid "Solomon"
-#~ msgstr "ソロモン"
-
-#~ msgid "Cleopatra"
-#~ msgstr "クレオパトラ"
-
-#~ msgid "Shark"
-#~ msgstr "サメ"
-
-#~ msgid "Rome"
-#~ msgstr "ローマ"
-
-#~ msgid "Pennant Puzzle"
-#~ msgstr "パズル大会"
-
-#~ msgid "Ithaca"
-#~ msgstr "イサカ"
-
-#~ msgid "Pelopones"
-#~ msgstr "Pelopones"
-
-#~ msgid "Transeuropa"
-#~ msgstr "Transeuropa"
-
-#~ msgid "Lodzianka"
-#~ msgstr "Lodzianka"
-
-#~ msgid "Polonaise"
-#~ msgstr "ポロネーズ"
-
-#~ msgid "Baltic Sea"
-#~ msgstr "バルト海"
-
-#~ msgid "American Pie"
-#~ msgstr "アメリカン・パイ"
-
-#~ msgid "Traffic Jam"
-#~ msgstr "渋滞"
-
-#~ msgid "Sunshine"
-#~ msgstr "日の輝き"
-
-#~ msgid "Only 18 Steps"
-#~ msgstr "18ステップ"
-
-#~ msgid "HuaRong Trail"
-#~ msgstr "HuaRong Trail"
-
-#~ msgid "Challenge Pack"
-#~ msgstr "チャレンジ・パック"
-
-#~ msgid "Skill Pack"
-#~ msgstr "スキル・パック"
-
-#~ msgid "_Restart Puzzle"
-#~ msgstr "パズルの再スタート(_R)"
-
-#~ msgid "Next Puzzle"
-#~ msgstr "次のパズル"
-
-#~ msgid "Previous Puzzle"
-#~ msgstr "前のパズル"
-
-#~ msgid "Level completed."
-#~ msgstr "レベルを制覇しました"
-
-#~ msgid "The Puzzle Has Been Solved!"
-#~ msgstr "パズルを解くのに成功しました!"
-
-#~ msgid "Klotski Scores"
-#~ msgstr "Klotski の得点"
-
-#~ msgid "Puzzle:"
-#~ msgstr "パズル:"
-
-#~ msgid ""
-#~ "The theme for this game failed to render.\n"
-#~ "\n"
-#~ "Please check that Klotski is installed correctly."
-#~ msgstr ""
-#~ "このゲームのテーマの描画が失敗しました。\n"
-#~ "\n"
-#~ "正しく Klotski がインストールされているか確認してください。"
-
-#~ msgid ""
-#~ "Could not find the image:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "Please check that Klotski is installed correctly."
-#~ msgstr ""
-#~ "画像ファイルが見つかりませんでした:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "正しく Klotski がインストールされているか確認してください。"
-
-#~ msgid "Moves: %d"
-#~ msgstr "移動数: %d"
-
-#~ msgid ""
-#~ "Sliding Block Puzzles\n"
-#~ "\n"
-#~ "Klotski is a part of GNOME Games."
-#~ msgstr ""
-#~ "ブロックをずらしてしくパズルです。\n"
-#~ "\n"
-#~ "Klotski は GNOME ゲーム集の一部です。"
-
-#~ msgid "Slide blocks to solve the puzzle"
-#~ msgstr "ブロックをずらしながらパズルを解いてください"
-
-#~ msgid "The number of the puzzle being played."
-#~ msgstr "プレイするパズルの数です。"
-
-#~ msgid "The puzzle in play"
-#~ msgstr "プレイするパズル"
-
-#~ msgid "Already used! Where do you want to put that?"
-#~ msgstr "その役は既に使用済です! どの役を適用しますか?"
-
-#~ msgid "Score: %d"
-#~ msgstr "得点: %d"
-
-#~ msgid "Field used"
-#~ msgstr "使用したフィールド"
-
-#~ msgid "Beat the odds in a poker-style dice game"
-#~ msgstr "ポーカー・スタイルのダイス・ゲームを楽しんでください"
-
-#~ msgid "Tali"
-#~ msgstr "Tali"
-
-#~ msgid "Choose whether or not to insert a delay between the computer's dice rolls so the player can follow what it is doing."
-#~ msgstr "コンピュータがサイコロを振る際に遅延時間を入れるかどうか選択してください。プレイヤーは何の目になったか知ることができます。"
-
-#~ msgid "Delay between rolls"
-#~ msgstr "ゆっくり実行する"
-
-#~ msgid "Display the computer's thoughts"
-#~ msgstr "コンピュータの思考を出力する"
-
-#~ msgid "If set to true, a dump of the AI's working will be done to standard output."
-#~ msgstr "TRUE の場合、コンピュータの AI 思考情報が標準出力に出力されます。"
-
-#~ msgid "Regular"
-#~ msgstr "標準"
-
-#~ msgid "[Human,Wilber,Bill,Monica,Kenneth,Janet]"
-#~ msgstr "[人間,ウィルバー,ビル,モニカ,ケニス,ジャネット]"
-
-#~ msgid "Delay computer moves"
-#~ msgstr "コンピュータのプレイを遅くする"
-
-#~ msgid "Display computer thoughts"
-#~ msgstr "コンピュータの思考を表示する"
-
-#~ msgid "Number of computer opponents"
-#~ msgstr "コンピュータがプレイする人数を指定する"
-
-#~ msgid "Number of human opponents"
-#~ msgstr "人間のプレイヤーの数を指定する"
-
-#~ msgid "Game choice: Regular or Colors"
-#~ msgstr "ゲームを選択する (RegularまたはColors)"
-
-#~ msgid "STRING"
-#~ msgstr "STRING"
-
-#~ msgid "Number of computer-only games to play"
-#~ msgstr "プレイするコンピュータ同士のゲーム数を指定する"
-
-#~ msgid "Number of trials for each roll for the computer"
-#~ msgstr "コンピュータが試行する回数を指定する"
-
-#~ msgctxt "game type"
-#~ msgid "Regular"
-#~ msgstr "標準"
-
-#~ msgctxt "game type"
-#~ msgid "Colors"
-#~ msgstr "色付き"
-
-#~ msgid "Roll all!"
-#~ msgstr "すべてのサイを振る!"
-
-#~ msgid "Roll!"
-#~ msgstr "サイを振る!"
-
-#~ msgid "The game is a draw!"
-#~ msgstr "引き分けです!"
-
-#~ msgid "Tali Scores"
-#~ msgstr "Tali の得点"
-
-#~ msgid "%s wins the game with %d point"
-#~ msgid_plural "%s wins the game with %d points"
-#~ msgstr[0] "%s さんが %d点で勝利しました"
-
-#~ msgid "Computer playing for %s"
-#~ msgstr "%s (コンピュータ)の番です"
-
-#~ msgid "%s! -- You're up."
-#~ msgstr "%s! -- あなたの番です"
-
-#~ msgid "Select dice to roll or choose a score slot."
-#~ msgstr "振り直すサイを選ぶか、または得点スロットを選択してください"
-
-#~ msgid "Roll"
-#~ msgstr "振り"
-
-#~ msgid "You are only allowed three rolls. Choose a score slot."
-#~ msgstr "3回までしかサイを振れません!: 得点スロットを選択してください"
-
-#~ msgid "GNOME version (1998):"
-#~ msgstr "GNOME バージョン (1998):"
-
-#~ msgid "Console version (1992):"
-#~ msgstr "端末バージョン (1992):"
-
-#~ msgid "Colors game and multi-level AI (2006):"
-#~ msgstr "色つきでマルチレベルな AI (2006):"
-
-#~ msgid ""
-#~ "A variation on poker with dice and less money.\n"
-#~ "\n"
-#~ "Tali is a part of GNOME Games."
-#~ msgstr ""
-#~ "サイコロと少ないお金を使ったポーカーの一種です。\n"
-#~ "\n"
-#~ "gtali は GNOME ゲーム集の一部です。"
-
-#~ msgid "Current game will complete with original number of players."
-#~ msgstr "現在実行中のゲームは設定し直す前の人数でプレイすることになります。"
-
-#~ msgid "Tali Preferences"
-#~ msgstr "Tali の設定"
-
-#~ msgid "Human Players"
-#~ msgstr "人間のプレイヤー"
-
-#~ msgid "_Number of players:"
-#~ msgstr "プレイヤーの人数(_N):"
-
-#~ msgid "Computer Opponents"
-#~ msgstr "コンピュータのプレイヤー"
-
-#~ msgid "_Delay between rolls"
-#~ msgstr "ゆっくり実行する(_D)"
-
-#~ msgid "N_umber of opponents:"
-#~ msgstr "人数(_U):"
-
-#~ msgid "_Difficulty:"
-#~ msgstr "難易度(_D):"
-
-#~ msgctxt "difficulty"
-#~ msgid "Easy"
-#~ msgstr "初級"
-
-#~ msgctxt "difficulty"
-#~ msgid "Medium"
-#~ msgstr "中級"
-
-#~ msgctxt "difficulty"
-#~ msgid "Hard"
-#~ msgstr "上級"
-
-#~ msgid "Player Names"
-#~ msgstr "プレイヤーの名前"
-
-#~ msgid "1s [total of 1s]"
-#~ msgstr "1 [1の目の合計]"
-
-#~ msgid "2s [total of 2s]"
-#~ msgstr "2 [2の目の合計]"
-
-#~ msgid "3s [total of 3s]"
-#~ msgstr "3 [3の目の合計]"
-
-#~ msgid "4s [total of 4s]"
-#~ msgstr "4 [4の目の合計]"
-
-#~ msgid "5s [total of 5s]"
-#~ msgstr "5 [5の目の合計]"
-
-#~ msgid "6s [total of 6s]"
-#~ msgstr "6 [6の目の合計]"
-
-#~ msgid "3 of a Kind [total]"
-#~ msgstr "同種が3つ [合計]"
-
-#~ msgid "4 of a Kind [total]"
-#~ msgstr "同種が4つ [合計]"
-
-#~ msgid "Full House [25]"
-#~ msgstr "フルハウス   [25]"
-
-#~ msgid "Small Straight [30]"
-#~ msgstr "小ストレート [30]"
-
-#~ msgid "Large Straight [40]"
-#~ msgstr "大ストレート [40]"
-
-#~ msgid "5 of a Kind [50]"
-#~ msgstr "同種が5つ [50]"
-
-#~ msgid "Chance [total]"
-#~ msgstr "チャンス   [合計]"
-
-#~ msgid "Lower Total"
-#~ msgstr "下半分の合計"
-
-#~ msgid "Grand Total"
-#~ msgstr "すべての合計"
-
-#~ msgid "Upper total"
-#~ msgstr "上半分の合計"
-
-#~ msgid "Bonus if >62"
-#~ msgstr ">62 の場合はボーナス"
-
-#~ msgid "2 pair Same Color [total]"
-#~ msgstr "2ペアで同じ色 [合計]"
-
-#~ msgid "Full House [15 + total]"
-#~ msgstr "フルハウス [15 + 合計]"
-
-#~ msgid "Full House Same Color [20 + total]"
-#~ msgstr "フルハウスで同じ色 [20 + 合計]"
-
-#~ msgid "Flush (all same color) [35]"
-#~ msgstr "フラッシュ (すべて同じ色) [35]"
-
-#~ msgid "4 of a Kind [25 + total]"
-#~ msgstr "一種の4 [25 + 合計]"
-
-#~ msgid "5 of a Kind [50 + total]"
-#~ msgstr "一種の5 [50 + 合計]"
-
-#~ msgid "Choose a score slot."
-#~ msgstr "得点スロットを選択してください"
-
-#~ msgid "5 of a Kind [total]"
-#~ msgstr "一種の5 [合計]"
-
-#~ msgid "Iagno"
-#~ msgstr "Iagno"
-
-#~ msgid ""
-#~ "A disk flipping game derived from Reversi.\n"
-#~ "\n"
-#~ "Iagno is a part of GNOME Games."
-#~ msgstr ""
-#~ "石をひっくり返すリバーシから派生したゲームです。\n"
-#~ "\n"
-#~ "Iagno は GNOME ゲーム集の一部です。"
-
-#~ msgid "Invalid move."
-#~ msgstr "おかしな移動です"
-
-#~ msgid "%.2d"
-#~ msgstr "%.2d"
-
-#~ msgid "It is your turn to place a dark piece"
-#~ msgstr "黒の番です"
-
-#~ msgid "It is your turn to place a light piece"
-#~ msgstr "白の番です"
-
-#~ msgid "Waiting for %s to move"
-#~ msgstr "%s さんが置くまで待機します"
-
-#~ msgid "Dark's move"
-#~ msgstr "黒の番です"
-
-#~ msgid "Light's move"
-#~ msgstr "白の番です"
-
-#~ msgid "Dark:"
-#~ msgstr "黒:"
-
-#~ msgid "Light:"
-#~ msgstr "白:"
-
-#~ msgid "Welcome to Iagno!"
-#~ msgstr "Iagno へようこそ!"
-
-#~ msgid "Dominate the board in a classic version of Reversi"
-#~ msgstr "有名なリバーシの古典版で盤上を支配してください"
-
-#~ msgid "Light player wins!"
-#~ msgstr "白の勝ちです!"
-
-#~ msgid "Dark player wins!"
-#~ msgstr "黒の勝ちです!"
-
-#~ msgid "The game was a draw."
-#~ msgstr "引き分けです!"
-
-#~ msgid "Light must pass, Dark's move"
-#~ msgstr "白は置く場所がありません。黒の番です"
-
-#~ msgid "Dark must pass, Light's move"
-#~ msgstr "黒は置く場所がありません。白の番です"
-
-#~ msgid "Iagno Preferences"
-#~ msgstr "Iagno の設定"
-
-#~ msgid "_Use quick moves"
-#~ msgstr "素早く移動する(_U)"
-
-#~ msgid "Animation"
-#~ msgstr "アニメーション"
-
-#~ msgid "None"
-#~ msgstr "無し"
-
-#~ msgid "Partial"
-#~ msgstr "部分的に"
-
-#~ msgid "Complete"
-#~ msgstr "常に"
-
-#~ msgid "_Stagger flips"
-#~ msgstr "交互にめくる(_S)"
-
-#~ msgid "S_how grid"
-#~ msgstr "グリッドを表示する(_H)"
-
-#~ msgid "_Flip final results"
-#~ msgstr "最終結果を石で表示する(_F)"
-
-#~ msgid "_Tile set:"
-#~ msgstr "絵柄(_T):"
-
-#~ msgid "Unknown Command"
-#~ msgstr "不明なコマンド"
-
-#~ msgid "X Padding"
-#~ msgstr "X方向のパディング"
-
-#~ msgid "Extra space to add to the width allocation."
-#~ msgstr "横方向に挿入する余分なスペースです。"
-
-#~ msgid "Extra space to add to the height allocation."
-#~ msgstr "縦方向に挿入する余分なスペースです。"
-
-#~ msgid "Width Multiple"
-#~ msgstr "横方向の倍率"
-
-#~ msgid "What multiple to constrain the width to."
-#~ msgstr "横幅に掛け合わせる倍率です。"
-
-#~ msgid "Height Multiple"
-#~ msgstr "縦方向の倍率"
-
-#~ msgid "What multiple to constrain the height to."
-#~ msgstr "高さに掛け合わせる倍率です。"
-
-#~ msgid "X align"
-#~ msgstr "X方向の位置"
-
-#~ msgid "The horizontal alignment, from 0 (left) to 1 (right)"
-#~ msgstr "水平方向の位置: 0 (左) 〜 1 (右)"
-
-#~ msgid "Y align"
-#~ msgstr "Y方向の位置"
-
-#~ msgid "The vertical alignment, from 0 (top) to 1 (bottom)"
-#~ msgstr "垂直方向の位置: 0 (上) 〜 1 (下)"
-
-#~ msgid "Score"
-#~ msgstr "得点"
-
-#~ msgid "%dm %ds"
-#~ msgstr "%d分 %d秒"
-
-#~ msgid "Name"
-#~ msgstr "名前"
-
-#~ msgid "Lights Off"
-#~ msgstr "ライトを消す"
-
-#~ msgid "Turn off all the lights"
-#~ msgstr "すべての光を消します"
-
-#~ msgid "The current score"
-#~ msgstr "現在のスコア"
-
-#~ msgid "The theme to use"
-#~ msgstr "使用するテーマ・ファイル"
-
-#~ msgid "The title of the tile theme to use."
-#~ msgstr "使用するタイルテーマのタイトルです。"
-
-#~ msgid "Whether or not to use the GNOME theme colors"
-#~ msgstr "GNOME のテーマの色を使用するかどうか"
-
-#~ msgid "Theme:"
-#~ msgstr "テーマ:"
-
-#, fuzzy
-#~ msgid ""
-#~ "Turn off all the lights\n"
-#~ "\n"
-#~ "Lights Off is a part of GNOME Games."
-#~ msgstr ""
-#~ "ブロックをずらしてしくパズルです。\n"
-#~ "\n"
-#~ "Klotski は GNOME ゲーム集の一部です。"
-
-#~ msgid "Copyright  2009 Tim Horton"
-#~ msgstr "Copyright  2009 Tim Horton"
-
-#~ msgid ""
-#~ "The selected theme failed to render.\n"
-#~ "\n"
-#~ "Please check that Mahjongg is installed correctly."
-#~ msgstr ""
-#~ "選択したテーマの読み込みに失敗しました:\n"
-#~ "\n"
-#~ "正しく Mahjongg がインストールされているか確認してください。"
-
-#~ msgid ""
-#~ "Unable to render file:\n"
-#~ "'%s'\n"
-#~ "\n"
-#~ "Please check that Mahjongg is installed correctly."
-#~ msgstr ""
-#~ "ファイルを読み込めません:\n"
-#~ "%s\n"
-#~ "\n"
-#~ "正しく Mahjongg がインストールされているか確認してください。"
-
-#~ msgid "Mahjongg"
-#~ msgstr "GNOME 上海"
-
-#~ msgid "Could not load tile set"
-#~ msgstr "牌を読み込めませんでした"
-
-#~ msgid "Do you want to start a new game with this map?"
-#~ msgstr "このマップで新しいゲームを開始しますか?"
-
-#~ msgid "If you continue playing the next game will use the new map."
-#~ msgstr "プレイを続行すると、次のゲームでは新しいマップを使用します。"
-
-#~ msgid "_Continue playing"
-#~ msgstr "続行する(_C)"
-
-#~ msgid "Use _new map"
-#~ msgstr "新しいマップ(_N)"
-
-#~ msgid "There are no more moves."
-#~ msgstr "残念ながら、手詰まりです。"
-
-#~ msgid "_New game"
-#~ msgstr "新ゲーム(_N)"
-
-#~ msgid "_Shuffle"
-#~ msgstr "シャッフル(_S)"
-
-#~ msgid "Mahjongg Scores"
-#~ msgstr "GNOME 上海の得点"
-
-#~ msgid "Mahjongg Preferences"
-#~ msgstr "GNOME 上海の設定"
-
-#~ msgid "Tiles"
-#~ msgstr "牌"
-
-#~ msgid "Maps"
-#~ msgstr "マップ"
-
-#~ msgid "_Select map:"
-#~ msgstr "マップの選択(_S):"
-
-#~ msgid "Colors"
-#~ msgstr "色付き"
-
-#~ msgid "Maps:"
-#~ msgstr "マップ:"
-
-#~ msgid "Tiles:"
-#~ msgstr "牌:"
-
-#~ msgid ""
-#~ "A matching game played with Mahjongg tiles.\n"
-#~ "\n"
-#~ "Mahjongg is a part of GNOME Games."
-#~ msgstr ""
-#~ "同じ麻雀牌を見つけていくゲームです。\n"
-#~ "\n"
-#~ "GNOME 上海は GNOME ゲーム集の一部です。"
-
-#~ msgid "Mahjongg - %s"
-#~ msgstr "GNOME 上海 - %s"
-
-#~ msgid "Restart the current game"
-#~ msgstr "ゲームをやり直します"
-
-#~ msgid "Redo the last move"
-#~ msgstr "最後の移動を取り消します"
-
-#~ msgid "Show a hint"
-#~ msgstr "ヒントを提示します"
-
-#~ msgid "Tiles Left:"
-#~ msgstr "牌の残り:"
-
-#~ msgid "Moves Left:"
-#~ msgstr "取れる牌:"
-
-#~ msgid "Remove matching pairs of tiles."
-#~ msgstr "同じ絵柄の牌を見つけて削除してください"
-
-#~ msgid "Disassemble a pile of tiles by removing matching pairs"
-#~ msgstr "同じ牌を取り去って牌の山を崩してください"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Easy"
-#~ msgstr "初級"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "The Ziggurat"
-#~ msgstr "ジッグラト"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Four Bridges"
-#~ msgstr "四つの橋"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Cloud"
-#~ msgstr "雲"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Tic-Tac-Toe"
-#~ msgstr "三目並べ"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Red Dragon"
-#~ msgstr "赤い龍"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Pyramid's Walls"
-#~ msgstr "ピラミッドの壁"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Confounding Cross"
-#~ msgstr "交差する十字"
-
-#~ msgctxt "mahjongg map name"
-#~ msgid "Difficult"
-#~ msgstr "上級"
-
-#~ msgid "Board size:"
-#~ msgstr "盤の大きさ:"
-
-#~ msgid "Number of colors:"
-#~ msgstr "色の数:"
-
-#, fuzzy
-#~ msgid "Clear the screen by removing groups of colored and shaped tiles"
-#~ msgstr "同じ色の玉を一気に削除しながらゲームをクリアしてください"
-
-#, fuzzy
-#~ msgid "Board color count"
-#~ msgstr "背景色"
-
-#, fuzzy
-#~ msgid "The number of colors of tiles to use in the game."
-#~ msgstr "カスタム・ゲームでの地雷の数"
-
-#, fuzzy
-#~ msgid "The size of the game board."
-#~ msgstr "プレイするグリッドのサイズ"
-
-#, fuzzy
-#~ msgid "Use more flashy, but slower, animations."
-#~ msgstr "高速描画するかどうか"
-
-#, fuzzy
-#~ msgid "Zealous animation"
-#~ msgstr "高速描画するかどうか"
-
-#, fuzzy
-#~ msgid ""
-#~ "I want to play that game! You know, they all go whirly-round and you click on them and they vanish!\n"
-#~ "\n"
-#~ "Swell Foop is a part of GNOME Games."
-#~ msgstr ""
-#~ "私はゲームを楽しみたい! 知ってのとおり、同じ色の玉をクリックすると消えてなくなります!\n"
-#~ "\n"
-#~ "さめGNOMEは GNOME ゲーム集の一部です。"
-
-#~ msgid "No points"
-#~ msgstr "ポイントなし"
-
-#~ msgid "%d point"
-#~ msgid_plural "%d points"
-#~ msgstr[0] "%dポイント"
-
-#, fuzzy
-#~ msgid "Swell Foop Scores"
-#~ msgstr "ロボットの得点"
-
-#, fuzzy
-#~ msgid "Small"
-#~ msgstr "小さい"
-
-#, fuzzy
-#~ msgid "Large"
-#~ msgstr "大きい"
-
-#~ msgid "Could not show Aisleriot help"
-#~ msgstr "AisleRiot のヘルプを表示できませんでした"
-
-#~ msgid "Blackjack"
-#~ msgstr "ブラックジャック"
-
-#~ msgid "Play the casino card game Blackjack"
-#~ msgstr "カジノのカード・ゲームであるブラックジャックをお楽しみください"
-
-#~ msgid "Display probabilities"
-#~ msgstr "確率を表示するかどうか"
-
-#~ msgid "Display the probabilities of each dealer hand outcome and the expected value of your hand."
-#~ msgstr "各ディーラーの手の内の確率とプレイヤーの手で期待された値を表示するかどうかです。"
-
-#~ msgid "Never take insurance"
-#~ msgstr "保険を受け取るかどうか"
-
-#~ msgid "Never take insurance with a dealer showing an ace."
-#~ msgstr "エースを見せている親に保険を掛けるかどうかです。"
-
-#~ msgid "The amount of money in your bank"
-#~ msgstr "プレイヤーの銀行に蓄えられている金額"
-
-#~ msgid "The amount of money in your bank."
-#~ msgstr "プレイヤーの銀行に蓄えられている金額です。"
-
-#~ msgid "The name of the rules file containing the variation of the rules to play."
-#~ msgstr "プレイするいろいろなルールを格納したルール・ファイルの名前です。"
-
-#~ msgid "The variation of the rules file to use"
-#~ msgstr "使用するルール・ファイル"
-
-#~ msgid "Use a quick deal"
-#~ msgstr "素早くカードを配るかどうか"
-
-#~ msgid "Use a quick deal with no delay between each card."
-#~ msgstr "カードを一枚単位で配らずに素早く配るかどうかです。"
-
-#~ msgid "Whether or not to show the toolbar."
-#~ msgstr "ツールバーを表示するかどうかです。"
-
-#~ msgid "Blackjack - %s"
-#~ msgstr "ブラックジャック - %s"
-
-#~ msgid "Deal a new hand"
-#~ msgstr "新しいカードを引きます"
-
-#~ msgid "_Hit"
-#~ msgstr "ヒット(_H)"
-
-#~ msgid "Add a card to the hand"
-#~ msgstr "カードを追加します"
-
-#~ msgid "_Stand"
-#~ msgstr "スタンド(_S)"
-
-#~ msgid "Stop adding cards to the hand"
-#~ msgstr "カードの追加を止めます"
-
-#~ msgid "S_urrender"
-#~ msgstr "サレンダー(_U)"
-
-#~ msgid "Forfeit this hand for half of your wager"
-#~ msgstr "勝ち目がない時に現在の手を降ろします (掛け金をは半分になります)"
-
-#~ msgid "_Double down"
-#~ msgstr "ダブル・ダウン(_D)"
-
-#~ msgid "Double your wager for a single hit"
-#~ msgstr "カードをもう 1枚だけ引いて勝負します (掛け金は倍になります)"
-
-#~ msgid "S_plit the hand"
-#~ msgstr "スプリット(_P)"
-
-#~ msgid "Split cards in two new hands"
-#~ msgstr "手札を 2枚に分けて別々に勝負します"
-
-#~ msgid "Cards left:"
-#~ msgstr "残りのカード:"
-
-#~ msgid "Wager:"
-#~ msgstr "チップ:"
-
-#~ msgid "Balance:"
-#~ msgstr "残高:"
-
-#~ msgid "Place your wager or deal a hand"
-#~ msgstr "賭け金のチップを置くか手札を配りなさい"
-
-#~ msgid "Blackjack rule set to use"
-#~ msgstr "使用するブラックジャックのルール"
-
-#~ msgid "Would you like insurance?"
-#~ msgstr "保険に興味がありますか?"
-
-#~ msgid "Insurance is a side wager of 50% of the original wager that the dealer has a natural 21 (aka blackjack) that is offered when the dealer's face up card is an ace. If the dealer has a natural 21 then the player is paid double."
-#~ msgstr "\"保険\" とは親のアップカードがエースの際に賭け金の 50% までを保険として掛けると、親がブラックジャックした時に掛金の倍額が戻ってきます。もし親のカードが何もせずに 21 になったらプレイヤーが倍額払わなければなりません。"
-
-#~ msgid "Set your wager and click in the white outline to deal a new hand."
-#~ msgstr "賭け金のチップをセットして、新しい手札を配るために白色の枠をクリックしなさい"
-
-#~ msgid "Set your wager or click on the cards to deal a new hand."
-#~ msgstr "賭け金のチップをおくか、新しい手札を配るためにカードをクリックしなさい"
-
-#~ msgid "Blackjack Preferences"
-#~ msgstr "ブラックジャックの設定"
-
-#~ msgid "_Display hand probabilities"
-#~ msgstr "確率を表示する(_D)"
-
-#~ msgid "_Quick deals (no delay between each card)"
-#~ msgstr "素早く配る (一枚単位で配らない)(_Q)"
-
-#~ msgid "_Never take insurance"
-#~ msgstr "保険を掛けない(_N)"
-
-#~ msgid "_Reset Balance"
-#~ msgstr "残高のリセット(_R)"
-
-#~ msgid "Rules"
-#~ msgstr "ルール"
-
-#~ msgid "Decks"
-#~ msgstr "デック"
-
-#~ msgid "Hit Soft 17"
-#~ msgstr "Hit Soft 17"
-
-#~ msgid "Double Any Total"
-#~ msgstr "Double Any Total"
-
-#~ msgid "Double 9"
-#~ msgstr "Double 9"
-
-#~ msgid "Double Soft"
-#~ msgstr "Double Soft"
-
-#~ msgid "Double After Hit"
-#~ msgstr "Double After Hit"
-
-#~ msgid "Double After Split"
-#~ msgstr "Double After Split"
-
-#~ msgid "Resplit"
-#~ msgstr "Resplit"
-
-#~ msgid "Resplit Aces"
-#~ msgstr "Resplit Aces"
-
-#~ msgid "Surrender"
-#~ msgstr "サレンダー"
-
-#~ msgid "Dealer Speed"
-#~ msgstr "親のスピード"
-
-#~ msgid "Click to double your wager"
-#~ msgstr "クリックするとチップが倍になります"
-
-#~ msgid "Double click to increase your wager by %.2f"
-#~ msgstr "ダブル・クリックするとチップが %.2f に増えます"
-
-#~ msgid "Double click to decrease your wager by %.2f"
-#~ msgstr "ダブル・クリックするとチップが %.2f に減ります"
-
-#~ msgid "Click to deal another card; drag card to split pair"
-#~ msgstr "クリックすると別のカードを引きます; カードをスプリットの組みにドラッグしてください"
-
-#~ msgid "Click to deal another card"
-#~ msgstr "クリックすると別のカードを引きます"
-
-#~ msgid "Click to finish adding cards to your hand"
-#~ msgstr "クリックするとカードの追加が終了します"
-
-#~ msgid "Click to deal a new hand"
-#~ msgstr "クリックすると新しい手が引けます"
-
-#~ msgid "Blackjack can't load the requested file"
-#~ msgstr "ブラックジャックは指定したファイルを読み込めません"
-
-#~ msgid "Please check your Blackjack installation"
-#~ msgstr "ブラックジャックのインストールを確認してください"
-
-#~ msgid "The best option is to stand"
-#~ msgstr "スタンドすることが最善のオプションです"
-
-#~ msgid "To stand means to stop adding cards to your hand.  Do this by clicking on the dealer's cards or by selecting the option from the Control menu."
-#~ msgstr "\"スタンド\" とは、配札に対して、もうそれ以上のカードをもらわずに勝負することです。親のカードをクリックするか、メニューの [コントロール] からオプションを選択します。"
-
-#~ msgid "The best option is to hit"
-#~ msgstr "ヒットすることが最善のオプションです"
-
-#~ msgid "To hit means to add another card to your hand.  Do this by clicking once on your cards or by selecting the option from the Control menu."
-#~ msgstr "\"ヒット\" とは、配札に対してさらに1枚カードをもらうことです。自分のカードの上で一回クリックするか、メニューの [コントロール] からオプションを選択します。"
-
-#~ msgid "The best option is to double down"
-#~ msgstr "ダブル・ダウンすることが最善のオプションです"
-
-#~ msgid "To double down means to double the initial wager and receive exactly one more card.  Do this by clicking once on the chips at the bottom of the window or by selecting the option from the Control menu."
-#~ msgstr "\"ダブル・ダウン\" とは、配札に対して、もう一枚だけ引くことを条件に倍額まで掛けて勝負できることです。ウィンドウの下にあるヒップを一回クリックするか、メニューの [コントロール] からオプションを選択します。"
-
-#~ msgid "The best option is to split"
-#~ msgstr "スプリットすることが最善のオプションです"
-
-#~ msgid "To split means to divide your current hand into two separate hands.  Do this by dragging one of your cards and dropping it off to the side or by selecting the option from the Control menu."
-#~ msgstr "\"スプリット\" とは、配札が同じ数字のカードのとき、二つに分けてそれぞれで勝負をやり直せることです。手札をドラッグして横にドロップするか、メニューの [コントロール] からオプションを選択します。"
-
-#~ msgid "The best option is to surrender"
-#~ msgstr "サレンダーすることが最善のオプションです"
-
-#~ msgid "To surrender means to give up half your wager and not complete the hand.  Do this by selecting the option from the Control menu."
-#~ msgstr "\"サレンダー\" とは、親の見せ札をもとに勝負をあきらめて降りることです。メニューの [コントロール] からオプションを選択します。"
-
-#~ msgid ""
-#~ "Blackjack is a casino-style card game.\n"
-#~ "\n"
-#~ "Blackjack is a part of GNOME Games."
-#~ msgstr ""
-#~ "ブラックジャックはカジノ・スタイルのカード・ゲームです。\n"
-#~ "\n"
-#~ "ブラックジャックは GNOME ゲーム集の一部です。"
-
-#~ msgid "Computing basic strategy..."
-#~ msgstr "基本戦略の思考中..."
-
-#~ msgid "Bust"
-#~ msgstr "バースト"
-
-#~ msgid "Blackjack!"
-#~ msgstr "ブラックジャック!"
-
-#~ msgid "Soft"
-#~ msgstr "ソフト"
-
-#~ msgid "Win"
-#~ msgstr "ウィン"
-
-#~ msgid "Push"
-#~ msgstr "プッシュ"
-
-#~ msgid "Lose"
-#~ msgstr "ルーズ"
-
-#~ msgid "Player expected values"
-#~ msgstr "プレイヤーが予想した値"
-
-#~ msgid "Stand"
-#~ msgstr "スタンド"
-
-#~ msgid "Hit"
-#~ msgstr "ヒット"
-
-#~ msgid "Double"
-#~ msgstr "ダブル"
-
-#~ msgid "Split"
-#~ msgstr "スプリット"
-
-#~ msgid "Dealer hand probabilities"
-#~ msgstr "確率を表示する"
-
-#~ msgid "Error connecting to server: %s"
-#~ msgstr "サーバへ接続する際にエラー: %s"
-
-#~ msgid "Your new password is %s"
-#~ msgstr "新しいパスワードは %s です"
-
-#~ msgid "New password"
-#~ msgstr "新しいパスワード"
-
-#~ msgid "Players on server: %d"
-#~ msgstr "このサーバに居るプレイヤーの総数: %d"
-
-#~ msgid "Current Room: %s"
-#~ msgstr "現在の部屋: %s"
-
-#~ msgid "You've joined room \"%s\"."
-#~ msgstr "\"%s\" という部屋に入りました"
-
-#~ msgid "Error joining room: %s"
-#~ msgstr "部屋に入る際にエラー: %s"
-
-#~ msgid "You can't chat while not in a room."
-#~ msgstr "部屋に入っていない間はチャットできません"
-
-#~ msgid "You don't have permission to chat here."
-#~ msgstr "ここでチャットする権限がありません"
-
-#~ msgid "No private chatting at a table!"
-#~ msgstr "テーブルで個人的なチャットはしないでください!"
-
-#~ msgid "That player isn't in the room!"
-#~ msgstr "そのプレイヤーは部屋に居ません!"
-
-#~ msgid "There was an error sending the chat."
-#~ msgstr "チャットのメッセージを送信する際にエラーが発生しました"
-
-#~ msgid "You're not at a table."
-#~ msgstr "テーブルについていません"
-
-#~ msgid "Chat failed: %s."
-#~ msgstr "チャットに失敗しました: %s"
-
-#~ msgid "Error launching table: %s"
-#~ msgstr "テーブルを起動する際にエラー: %s"
-
-#~ msgid "You have joined table %d."
-#~ msgstr "%d 番のテーブルにつきました"
-
-#~ msgid "Error joining table: %s"
-#~ msgstr "テーブルにつく際にエラー: %s"
-
-#~ msgid "You have been booted from the table by %s."
-#~ msgstr "%s があなたをテーブルから起動しました"
-
-#~ msgid "You have left the table."
-#~ msgstr "テーブルから出ました"
-
-#~ msgid "There was an error with the game server."
-#~ msgstr "ゲーム・サーバでエラーが発生しました"
-
-#~ msgid "Error leaving table: %s"
-#~ msgstr "テーブルから離れる際にエラー: %s"
-
-#~ msgid "Current Room:"
-#~ msgstr "現在の部屋:"
-
-#~ msgid "**none**"
-#~ msgstr "**なし**"
-
-#~ msgid "Offline"
-#~ msgstr "オフラインです"
-
-#~ msgid "Connecting"
-#~ msgstr "接続中です"
-
-#~ msgid "Reconnecting"
-#~ msgstr "再接続中です"
-
-#~ msgid "Online"
-#~ msgstr "オンラインです"
-
-#~ msgid "Logging In"
-#~ msgstr "ログイン中です"
-
-#~ msgid "Logged In"
-#~ msgstr "ログイン完了です"
-
-#~ msgid "--> Room"
-#~ msgstr "--> 部屋"
-
-#~ msgid "Chatting"
-#~ msgstr "チャット中です"
-
-#~ msgid "--> Table"
-#~ msgstr "--> テーブル"
-
-#~ msgid "Playing"
-#~ msgstr "プレイ中"
-
-#~ msgid "<-- Table"
-#~ msgstr "<-- テーブル"
-
-#~ msgid "Logging Out"
-#~ msgstr "ログアウト中です"
-
-#~ msgid "Server error: %s"
-#~ msgstr "サーバ・エラー: %s"
-
-#~ msgid "Disconnected from server."
-#~ msgstr "サーバから切断しました"
-
-#~ msgid "Login"
-#~ msgstr "ログイン"
-
-#~ msgid "That username is already in use."
-#~ msgstr "そのユーザ名は既に使われています"
-
-#~ msgid ""
-#~ "Authentication has failed.\n"
-#~ "Please supply the correct password."
-#~ msgstr ""
-#~ "認証に失敗しました\n"
-#~ "正しいパスワードを指定してください"
-
-#~ msgid "The username is too long!"
-#~ msgstr "そのユーザ名は長すぎます!"
-
-#~ msgid "Invalid username, do not use special characters!"
-#~ msgstr "ユーザ名が間違っています (特殊な文字を使用しないこと!)"
-
-#~ msgid "Login failed for unknown reason: %s"
-#~ msgstr "原因不明なエラーによりログインに失敗しました: %s"
-
-#~ msgid "Unable to open help file"
-#~ msgstr "ヘルプ・ファイルを表示できません"
-
-#~ msgid "Network Game"
-#~ msgstr "ネットワーク対戦ゲーム"
-
-#~ msgid "Server Profile"
-#~ msgstr "サーバの情報"
-
-#~ msgid "Profile:"
-#~ msgstr "プロファイル:"
-
-#~ msgid "Edit Profiles"
-#~ msgstr "プロファイルの編集"
-
-#~ msgid "Server:"
-#~ msgstr "サーバ:"
-
-#~ msgid "Port:"
-#~ msgstr "ポート:"
-
-#~ msgid "User Information"
-#~ msgstr "ユーザの情報"
-
-#~ msgid "Username:"
-#~ msgstr "ユーザ名:"
-
-#~ msgid "Password:"
-#~ msgstr "パスワード:"
-
-#~ msgid "Email:"
-#~ msgstr "E-メール:"
-
-#~ msgid "Authentication type"
-#~ msgstr "認証方法の種類"
-
-#~ msgid "Normal Login"
-#~ msgstr "普通にログインする"
-
-#~ msgid "Guest Login"
-#~ msgstr "ゲストでログインする"
-
-#~ msgid "First-time Login"
-#~ msgstr "初めてログインする"
-
-#~ msgid "Connect"
-#~ msgstr "接続"
-
-#~ msgid "Wizard"
-#~ msgstr "魔法使い"
-
-#~ msgid "Deity"
-#~ msgstr "神"
-
-#~ msgid "Sentinel"
-#~ msgstr "歩哨"
-
-#~ msgid "Captain"
-#~ msgstr "大尉"
-
-#~ msgid "Angel"
-#~ msgstr "天使"
-
-#~ msgid "Silverlord"
-#~ msgstr "シルバーロード"
-
-#~ msgid "Eagle"
-#~ msgstr "鷹"
-
-#~ msgid "Vampire"
-#~ msgstr "吸血鬼"
-
-#~ msgid "Chief"
-#~ msgstr "ボス"
-
-#~ msgid "Colonel"
-#~ msgstr "大佐"
-
-#~ msgid "General"
-#~ msgstr "将軍"
-
-#~ msgid "Major"
-#~ msgstr "少佐"
-
-#~ msgid "Scout"
-#~ msgstr "偵察"
-
-#~ msgid "Lieutenant"
-#~ msgstr "中尉"
-
-#~ msgid "Stalker"
-#~ msgstr "ストーカー"
-
-#~ msgid "Scientist"
-#~ msgstr "科学者"
-
-#~ msgid "Scholar"
-#~ msgstr "学者"
-
-#~ msgid "Entity"
-#~ msgstr "エンティティ"
-
-#~ msgid "Creator"
-#~ msgstr "クリエイタ"
-
-#~ msgid "GGZ Community (fast)"
-#~ msgstr "GGZ コミュニティ (高速)"
-
-#~ msgid "Local developer server"
-#~ msgstr "ローカルの開発サーバ"
-
-#~ msgid "This is the first time you are running the GTK+ GGZ Gaming Zone client. Would you like to create some default server profiles?"
-#~ msgstr "初めて GTK+ 版の GGZ ゲーム・ゾーン・クライアントを起動したようです。デフォルトで使用するサーバのプロファイルを作成しますか?"
-
-#~ msgid "/msg <username> <message> . Private message a player"
-#~ msgstr "/msg <ユーザ名> <メッセージ> . 個人的なメッセージを送る"
-
-#~ msgid "/table <message> .......... Message to your table"
-#~ msgstr "/table <メッセージ> .......... テーブルの皆にメッセージに送る"
-
-#~ msgid "/wall <message> ........... Admin command"
-#~ msgstr "/wall <メッセージ> ........... 管理者用のコマンド"
-
-#~ msgid "/beep <username> .......... Beep a player"
-#~ msgstr "/beep <ユーザ名> .......... プレイヤーに警告音を送る"
-
-#~ msgid "/help ..................... Get help"
-#~ msgstr "/help ..................... ヘルプを取得する"
-
-#~ msgid "/friends .................. List your friends"
-#~ msgstr "/friends .................. 仲間の一覧を表示する"
-
-#~ msgid "/ignore ................... List people you're ignoring"
-#~ msgstr "/ignore ................... 無視するプレイヤーの一覧を表示する"
-
-#~ msgid "/kick <username> .......... Kick a player from the room"
-#~ msgstr "/kick <ユーザ名> .......... 部屋からプレイヤーを追い出す"
-
-#~ msgid "/gag <username> ........... Gag a player to prevent them from talking"
-#~ msgstr "/gag <ユーザ名> ........... メッセージを送信できないようにする"
-
-#~ msgid "/ungag <username> ......... Reverse the gag operation to allow a player to talk"
-#~ msgstr "/ungag <ユーザ名> ......... メッセージを送信できるようにする"
-
-#~ msgid "/ban <username> ........... Ban a player from the server"
-#~ msgstr "/ban <ユーザ名> ........... サーバからプレイヤーを追い出す"
-
-#~ msgid "You have received an unknown message from %s."
-#~ msgstr "%s さんから不明なメッセージを受け取りました"
-
-#~ msgid "You've been beeped by %s."
-#~ msgstr "%s さんから警告を受け取りました"
-
-#~ msgid "Usage: /msg <username> <message>"
-#~ msgstr "用法: /msg <ユーザ名> <メッセージ>"
-
-#~ msgid "    Sends a private message to a user on the network."
-#~ msgstr "    ネットワーク上のユーザに個人的なメッセージを送信する"
-
-#~ msgid "Beep sent to %s."
-#~ msgstr "%s さんに警告音を送りました"
-
-#~ msgid "%s (logged on)"
-#~ msgstr "%s (ログイン済)"
-
-#~ msgid "%s (logged off)"
-#~ msgstr "%s (ログアウト済)"
-
-#~ msgid "Chat Commands"
-#~ msgstr "チャット・コマンド"
-
-#~ msgid "-------------"
-#~ msgstr "-------------"
-
-#~ msgid "/me <action> .............. Send an action"
-#~ msgstr "/me <アクション> .............. アクションを送信する"
-
-#~ msgid "Added %s to your friends list."
-#~ msgstr "%s さんを仲間の一覧に追加しました"
-
-#~ msgid "Removed %s from your friends list."
-#~ msgstr "%s さんを仲間の一覧から削除しました"
-
-#~ msgid "Added %s to your ignore list."
-#~ msgstr "%s さんを無視する一覧に加えました"
-
-#~ msgid "Removed %s from your ignore list."
-#~ msgstr "%s さんを無視する一覧から削除しました"
-
-#~ msgid "People currently your friends"
-#~ msgstr "ここにいる人達は皆あなたの仲間です"
-
-#~ msgid "People you're currently ignoring"
-#~ msgstr "ここにいる人達は皆無視します"
-
-#~ msgid "Multiple matches:"
-#~ msgstr "複数個に一致:"
-
-#~ msgid ""
-#~ "You don't have this game installed. You can download\n"
-#~ "it from %s."
-#~ msgstr ""
-#~ "このゲームをインストールしていません\n"
-#~ "(%s からダウンロードできます)"
-
-#~ msgid "Launch Error"
-#~ msgstr "起動エラー"
-
-#~ msgid ""
-#~ "Failed to execute game module.\n"
-#~ " Launch aborted."
-#~ msgstr ""
-#~ "ゲームのモジュールを実行できませんでした\n"
-#~ "(起動を中止しました)"
-
-#~ msgid "Launched game"
-#~ msgstr "ゲームを起動しました"
-
-#~ msgid "Launch failed"
-#~ msgstr "起動に失敗しました"
-
-#~ msgid "You can only play one game at a time."
-#~ msgstr "一度に一個のゲームしかプレイできません"
-
-#~ msgid "Game Error"
-#~ msgstr "ゲーム・エラー"
-
-#~ msgid "You're still at a table."
-#~ msgstr "未だテーブルにいます"
-
-#~ msgid ""
-#~ "You must be in a room to launch a game.\n"
-#~ "Launch aborted"
-#~ msgstr ""
-#~ "ゲームを起動するには部屋に入らなければなりません\n"
-#~ "(起動を中止します)"
-
-#~ msgid ""
-#~ "No game types defined for this server.\n"
-#~ "Launch aborted."
-#~ msgstr ""
-#~ "このサーバではゲームの種類が定義されていません\n"
-#~ "(起動を中止します)"
-
-#~ msgid "This game doesn't support spectators."
-#~ msgstr "このゲームの見物はサポートされていません"
-
-#~ msgid ""
-#~ "You need to launch the GGZ client directly\n"
-#~ "to be able to play this game."
-#~ msgstr ""
-#~ "このゲームをプレイできるようにするには\n"
-#~ "GGZ クライアントを直接起動する必要があります"
-
-#~ msgid "About"
-#~ msgstr "情報"
-
-#~ msgid "Message of the Day"
-#~ msgstr "今日の一言"
-
-#~ msgid ""
-#~ "Room filtering is not implemented yet. If\n"
-#~ "you would like to help head over to\n"
-#~ "http://www.ggzgamingzone.org/"
-#~ msgstr ""
-#~ "部屋のフィルタリングは未だ実装されていません\n"
-#~ "(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧ください)"
-
-#~ msgid "Not Implemented"
-#~ msgstr "未実装"
-
-#~ msgid "Web Address"
-#~ msgstr "ウェブのアドレス"
-
-#~ msgid "Author"
-#~ msgstr "作者"
-
-#~ msgid "Game Types"
-#~ msgstr "ゲームの種類"
-
-#~ msgid "Room List Filter:"
-#~ msgstr "部屋の一覧のフィルタ:"
-
-#~ msgid "Set"
-#~ msgstr "セット"
-
-#~ msgid "Player Information"
-#~ msgstr "プレイヤーの情報"
-
-#~ msgid "Player Handle:"
-#~ msgstr "ハンドル名:"
-
-#~ msgid "Table:"
-#~ msgstr "テーブル:"
-
-#~ msgid "Account:"
-#~ msgstr "アカウント:"
-
-#~ msgid "Record:"
-#~ msgstr "記録:"
-
-#~ msgid "Rating:"
-#~ msgstr "評価:"
-
-#~ msgid "Rank:"
-#~ msgstr "ランク:"
-
-#~ msgid "Message:"
-#~ msgstr "メッセージ:"
-
-#~ msgid "Unknown"
-#~ msgstr "不明"
-
-#~ msgid "Registered"
-#~ msgstr "登録済"
-
-#~ msgid "Guest"
-#~ msgstr "ゲスト"
-
-#~ msgid "Host"
-#~ msgstr "ホスト"
-
-#~ msgid "Administrator"
-#~ msgstr "管理者"
-
-#~ msgid "Bot"
-#~ msgstr "ボット"
-
-#~ msgid "Info"
-#~ msgstr "情報"
-
-#~ msgid "Friends"
-#~ msgstr "仲間にする"
-
-#~ msgid "Ignore"
-#~ msgstr "無視する"
-
-#~ msgid "#%d"
-#~ msgstr "#%d"
-
-#~ msgid "L"
-#~ msgstr "L"
-
-#~ msgid "T#"
-#~ msgstr "T#"
-
-#~ msgid "Stats"
-#~ msgstr "状態"
-
-#~ msgid "Which client would you like to use to play this game?"
-#~ msgstr "このゲームをプレイする際に使用するクライアントはどれですか?"
-
-#~ msgid "Don't ask me again."
-#~ msgstr "次回から表示しない"
-
-#~ msgid "Join"
-#~ msgstr "参加する"
-
-#~ msgid "Leave"
-#~ msgstr "抜ける"
-
-#~ msgid "No description available."
-#~ msgstr "説明なし"
-
-#~ msgid "Room Information"
-#~ msgstr "部屋の情報"
-
-#~ msgid "Game Name:"
-#~ msgstr "ゲームの名前:"
-
-#~ msgid "Author:"
-#~ msgstr "作者:"
-
-#~ msgid "Homepage:"
-#~ msgstr "ホームページ:"
-
-#~ msgid "Room Description:"
-#~ msgstr "部屋の説明:"
-
-#~ msgid "This room has no game"
-#~ msgstr "この部屋にはゲームはありません"
-
-#~ msgid "Unknown room"
-#~ msgstr "不明な部屋"
-
-#~ msgid "You can't join a room; you're not logged in"
-#~ msgstr "ログインしていないので部屋に入れません"
-
-#~ msgid "You're already in between rooms"
-#~ msgstr "既に複数の部屋の間にいます"
-
-#~ msgid "You can't switch rooms while playing a game"
-#~ msgstr "プレイ中は部屋を移ることはできません"
-
-#~ msgid "Unknown error"
-#~ msgstr "原因不明のエラー"
-
-#~ msgid "Error joining room"
-#~ msgstr "部屋に入る際にエラー"
-
-#~ msgid "Other Rooms"
-#~ msgstr "他の部屋"
-
-#~ msgid "Game Type:  %s"
-#~ msgstr "ゲームの種類:  %s"
-
-#~ msgid "Author:  %s"
-#~ msgstr "作者:  %s"
-
-#~ msgid "Description:  %s"
-#~ msgstr "説明:  %s"
-
-#~ msgid "Home Page:  %s"
-#~ msgstr "ホームページ:  %s"
-
-#~ msgid ""
-#~ "Failed to launch table.\n"
-#~ " Launch aborted."
-#~ msgstr ""
-#~ "テーブルの起動に失敗しました\n"
-#~ "(起動を中止します)"
-
-#~ msgid "Invalid number of bots specified"
-#~ msgstr "指定したボットの数が間違っています"
-
-#~ msgid "Error launching game module."
-#~ msgstr "ゲーム・モジュールを起動する際にエラー"
-
-#~ msgid "Seat Assignments"
-#~ msgstr "席の割り当て"
-
-#~ msgid "Game Type:"
-#~ msgstr "ゲームの種類:"
-
-#~ msgid "Number of seats"
-#~ msgstr "席の数"
-
-#~ msgid "Description:"
-#~ msgstr "説明:"
-
-#~ msgid "Seat %d:"
-#~ msgstr "席 %d:"
-
-#~ msgid "Computer"
-#~ msgstr "コンピュータ"
-
-#~ msgid "Open"
-#~ msgstr "オープン"
-
-#~ msgid "Reserved for"
-#~ msgstr "次の人専用: "
-
-#~ msgid "Game Description   "
-#~ msgstr "ゲームの説明   "
-
-#~ msgid "Launch"
-#~ msgstr "起動する"
-
-#~ msgid "Are you sure you want to quit?"
-#~ msgstr "本当に終了してもよろしいですか?"
-
-#~ msgid "Quit?"
-#~ msgstr "終了しますか?"
-
-#~ msgid ""
-#~ "Server stats are not implemented yet. If\n"
-#~ "you would like to help head over to\n"
-#~ "http://www.ggzgamingzone.org/"
-#~ msgstr ""
-#~ "サーバ状態の取得は未だ実装されていません。\n"
-#~ "(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧ください)"
-
-#~ msgid ""
-#~ "Player stats are not implemented yet. If\n"
-#~ "you would like to help head over to\n"
-#~ "http://www.ggzgamingzone.org/"
-#~ msgstr ""
-#~ "プレイヤー状態の取得は未だ実装されていません\n"
-#~ "(お手伝いを希望される方は http://www.ggzgamingzone.org/ をご覧ください)"
-
-#~ msgid "You must highlight a table before you can join it."
-#~ msgstr "テーブルにつく前にそのテーブルをクリックして強調表示にしてください"
-
-#~ msgid "Error Joining"
-#~ msgstr "部屋に入る際にエラー"
-
-#~ msgid "That table is full."
-#~ msgstr "そのテーブルは満員です"
-
-#~ msgid "You must highlight a table before you can watch it."
-#~ msgstr "テーブルを監視する前にそのテーブルをクリックして強調表示にしてください"
-
-#~ msgid "Error Spectating"
-#~ msgstr "監視する際にエラー"
-
-#~ msgid ""
-#~ "Failed to join table.\n"
-#~ "Join aborted."
-#~ msgstr ""
-#~ "テーブルにつけませんでした\n"
-#~ "(参加を中止します)"
-
-#~ msgid "Join Error"
-#~ msgstr "参加エラー"
-
-#~ msgid "Disconnect from the GGZ Gaming Zone server"
-#~ msgstr "GGZ ゲーム・ゾーンのサーバとの接続を切ります"
-
-#~ msgid "Start playing a game at a new table"
-#~ msgstr "新しいテーブルでゲームを開始します"
-
-#~ msgid "Join an existing game"
-#~ msgstr "既存のゲームに参加します"
-
-#~ msgid "Watch an existing game - become a spectator of the table"
-#~ msgstr "既存のゲームを観察します (テーブルを見学します)"
-
-#~ msgid "Leave the game you're currently playing"
-#~ msgstr "現在プレイ中のゲームを離れます"
-
-#~ msgid "Show the properties dialog to change the client settings"
-#~ msgstr "クライアントの設定を変更するためのプロパティダイアログを表示します"
-
-#~ msgid "Show the game stats for the current room's game type"
-#~ msgstr "この部屋にあるゲームの状態を表示します"
-
-#~ msgid "Exit the GGZ client application."
-#~ msgstr "GGZ クライアントを終了します"
-
-#~ msgid "Compiled with debugging."
-#~ msgstr "(デバッグ付きでビルド済)"
-
-#~ msgid "GGZ"
-#~ msgstr "GGZ"
-
-#~ msgid "Disconnect"
-#~ msgstr "切断"
-
-#~ msgid "Quit"
-#~ msgstr "終了"
-
-#~ msgid "Watch"
-#~ msgstr "待機する"
-
-#~ msgid "Edit"
-#~ msgstr "編集"
-
-#~ msgid "Properties"
-#~ msgstr "プロパティ"
-
-#~ msgid "View"
-#~ msgstr "表示"
-
-#~ msgid "Room List"
-#~ msgstr "部屋の一覧"
-
-#~ msgid "Player List"
-#~ msgstr "プレイヤーの一覧"
-
-#~ msgid "Server Stats"
-#~ msgstr "サーバの状態"
-
-#~ msgid "Player Stats"
-#~ msgstr "プレイヤーの状態"
-
-#~ msgid "MOTD"
-#~ msgstr "MOTD"
-
-#~ msgid "Help"
-#~ msgstr "ヘルプ"
-
-#~ msgid "Contents"
-#~ msgstr "目次"
-
-#~ msgid "Send"
-#~ msgstr "送信"
-
-#~ msgid "Properties Updated"
-#~ msgstr "プロパティを更新しました"
-
-#~ msgid "Confirm:"
-#~ msgstr "確認:"
-
-#~ msgid "Modify"
-#~ msgstr "変更"
-
-#~ msgid "Servers"
-#~ msgstr "サーバ"
-
-#~ msgid "Chat Font:"
-#~ msgstr "フォント:"
-
-#~ msgid "Change"
-#~ msgstr "変更する"
-
-#~ msgid "Ignore Join/Part Messages"
-#~ msgstr "Join/Part なメッセージを無視する"
-
-#~ msgid "Play Sounds"
-#~ msgstr "効果音を鳴らす"
-
-#~ msgid "Auto Indent"
-#~ msgstr "自動的にインデントする"
-
-#~ msgid "Timestamp Chats"
-#~ msgstr "タイムスタンプを付与する"
-
-#~ msgid "Word Wrap"
-#~ msgstr "単語をラップする"
-
-#~ msgid "Chat Color"
-#~ msgstr "文字の色"
-
-#~ msgid "Default chat color assigned to your friends"
-#~ msgstr "(仲間の名前を表示する際に使用する色です)"
-
-#~ msgid "Chat color used when your name is typed"
-#~ msgstr "(あなたの名前を表示する際に使用する色です)"
-
-#~ msgid "Chat color used for all other chats"
-#~ msgstr "(それ以外のメッセージで使用する色です)"
-
-#~ msgid "Normal Color"
-#~ msgstr "通常の色"
-
-#~ msgid "Highlight Color"
-#~ msgstr "強調表示の色"
-
-#~ msgid "Friend Color"
-#~ msgstr "仲間の色"
-
-#~ msgid "Black Background"
-#~ msgstr "背景を黒にする"
-
-#~ msgid "White Background"
-#~ msgstr "背景を白にする"
-
-#~ msgid "Chat"
-#~ msgstr "チャット"
-
-#~ msgid "All of the following information is optional."
-#~ msgstr "次の情報はすべてオプションです:"
-
-#~ msgid "Name:"
-#~ msgstr "名前:"
-
-#~ msgid "City:"
-#~ msgstr "都市:"
-
-#~ msgid "State:"
-#~ msgstr "状態:"
-
-#~ msgid "Country:"
-#~ msgstr "国:"
-
-#~ msgid "Comments, Hobbies, Etc."
-#~ msgstr "コメントや趣味など"
-
-#~ msgid "Single Click Room Entry"
-#~ msgstr "シングル・クリックで部屋に入る"
-
-#~ msgid "Display All"
-#~ msgstr "すべて表示する"
-
-#~ msgid "Display New"
-#~ msgstr "新しいものだけ表示する"
-
-#~ msgid "Display Important"
-#~ msgstr "重要なものだけ表示する"
-
-#~ msgid "Display None"
-#~ msgstr "何も表示しない"
-
-#~ msgid "Select Font"
-#~ msgstr "フォントの選択"
-
-#~ msgid "Leave _Fullscreen"
-#~ msgstr "フルスクリーンの解除(_F)"
-
-#~ msgid "Load a saved game"
-#~ msgstr "保存したゲームを読み込みます"
-
-#~ msgid "Save the current game"
-#~ msgstr "現在の状態を保存します"
-
-#~ msgid "chess-piece|Queen"
-#~ msgstr "クイーン"
-
-#~ msgid "chess-piece|Knight"
-#~ msgstr "ナイト"
-
-#~ msgid "chess-piece|Rook"
-#~ msgstr "ルーク"
-
-#~ msgid "chess-piece|Bishop"
-#~ msgstr "ビショップ"
-
-#~ msgid "No comment"
-#~ msgstr "コメントなし"
-
-#~ msgid "chess-file|a"
-#~ msgstr "a"
-
-#~ msgid "chess-file|b"
-#~ msgstr "b"
-
-#~ msgid "chess-file|c"
-#~ msgstr "c"
-
-#~ msgid "chess-file|d"
-#~ msgstr "d"
-
-#~ msgid "chess-file|e"
-#~ msgstr "e"
-
-#~ msgid "chess-file|f"
-#~ msgstr "f"
-
-#~ msgid "chess-file|g"
-#~ msgstr "g"
-
-#~ msgid "chess-file|h"
-#~ msgstr "h"
-
-#~ msgid "chess-rank|1"
-#~ msgstr "1"
-
-#~ msgid "chess-rank|2"
-#~ msgstr "2"
-
-#~ msgid "chess-rank|3"
-#~ msgstr "3"
-
-#~ msgid "chess-rank|4"
-#~ msgstr "4"
-
-#~ msgid "chess-rank|5"
-#~ msgstr "5"
-
-#~ msgid "chess-rank|6"
-#~ msgstr "6"
-
-#~ msgid "chess-rank|7"
-#~ msgstr "7"
-
-#~ msgid "chess-rank|8"
-#~ msgstr "8"
-
-#~ msgid "chess-notation|P"
-#~ msgstr "P"
-
-#~ msgid "chess-notation|N"
-#~ msgstr "N"
-
-#~ msgid "chess-notation|B"
-#~ msgstr "B"
-
-#~ msgid "chess-notation|R"
-#~ msgstr "R"
-
-#~ msgid "chess-notation|Q"
-#~ msgstr "Q"
-
-#~ msgid "chess-notation|K"
-#~ msgstr "K"
-
-#~ msgid "Themes"
-#~ msgstr "テーマ"
-
-#~ msgid "Connect four tiles in a row"
-#~ msgstr "四目並べに接続しました"
-
-#~ msgid "A network error has occurred."
-#~ msgstr "ネットワーク・エラーが発生しました"
-
-#~ msgid "Waiting for an opponent to join the game."
-#~ msgstr "相手のプレイヤーがゲームに参加するまで待機します"
-
-#~ msgid "Welcome to a network game of %s."
-#~ msgstr "%s のネットワーク対戦へようこそ。"
-
-#~ msgid "%s joined the game.\n"
-#~ msgstr "%s さんがゲームに参加しました。\n"
-
-#~ msgid "The game ended because the host %s left the game.\n"
-#~ msgstr "ホスト役の %s さんがゲームを抜けたので終了します\n"
-
-#~ msgid "%s left the game.\n"
-#~ msgstr "%s さんがゲームから抜けました。\n"
-
-#~ msgid "Gnibbles"
-#~ msgstr "Gnibbles"
-
-#~ msgid "Gnibbles is a worms game for GNOME."
-#~ msgstr "Gnibbles は GNOME 版のいも虫ゲームです。"
-
-#~ msgid "Enable splats"
-#~ msgstr "スプラッタ風にする"
-
-#~ msgid "Enable splats. Play a sound and show a \"Splat!\" on the screen."
-#~ msgstr "アニメーションをスプラッタ風にします。画面で \"血しぶき!\" が表示され音が流れます。"
-
-#~ msgid "E_nable splats"
-#~ msgstr "スプラッタ風にする(_N)"
-
-#~ msgid "Play the most common, and potentially the most annoying, sound."
-#~ msgstr "一番共通で、潜在的に一番苛立たせてくれるサウンドを演奏します。"
-
-#~ msgid "Gnometris"
-#~ msgstr "GNOMEトリス"
-
-#~ msgid "Joined"
-#~ msgstr "連結"
-
-#~ msgid "Gnometris Preferences"
-#~ msgstr "GNOME トリスの設定"
-
-#~ msgid "Gnometris Scores"
-#~ msgstr "GNOMEトリスの得点"
-
-#~ msgid "<b><i>Details</i></b>"
-#~ msgstr "<b><i>詳細</i></b>"
-
-#~ msgid "<span size=\"larger\" weight=\"bold\">Print Games</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">ゲームの印刷</span>"
-
-#~ msgid "<i><u>Number of Puzzles</u></i>"
-#~ msgstr "<i><u>パズルの数</u></i>"
-
-#~ msgid "<i>Easy:</i>"
-#~ msgstr "<i>簡単:</i>"
-
-#~ msgid "<i>Hard:</i>"
-#~ msgstr "<i>難しい:</i>"
-
-#~ msgid "<i>Medium:</i>"
-#~ msgstr "<i>中くらい</i>"
-
-#~ msgid "<i>Very Hard:</i>"
-#~ msgstr "<i>超難関</i>"
-
-#~ msgid "<span size=\"larger\" weight=\"bold\">Puzzle Generator</span>"
-#~ msgstr "<span size=\"larger\" weight=\"bold\">パズルの生成</span>"
-
-#~ msgid "Criteria:"
-#~ msgstr "条件:"
-
-#~ msgid "Generate Policy"
-#~ msgstr "生成ポリシー"
-
-#~ msgid "Generate new puzzles _until stopped"
-#~ msgstr "停止するまで新しいパズルを生成する(_U)"
-
-#~ msgid "Generate until _reaching target"
-#~ msgstr "数を指定して生成する(_R)"
-
-#~ msgid "Puzzle Generator"
-#~ msgstr "パズルの生成"
-
-#~ msgid "Target _number of sudokus:"
-#~ msgstr "生成する数(_N):"
-
-#~ msgid "_Generate"
-#~ msgstr "生成(_G)"
-
-#~ msgid "<b><span size=\"large\">_New Game</span></b>"
-#~ msgstr "<b><span size=\"large\">新しいゲーム(_N)</span></b>"
-
-#~ msgid "<b><span size=\"large\">_Saved Games</span></b>"
-#~ msgstr "<b><span size=\"large\">保存したゲーム(_S)</span></b>"
-
-#~ msgid "Clear _Others"
-#~ msgstr "他のクリア(_O)"
-
-#~ msgid "_Clear Tracker"
-#~ msgstr "トラッカのクリア(_C)"
-
-#~ msgid "_Trackers"
-#~ msgstr "トラッカ(_T)"
-
-#~ msgid "Sudoku was unable to create data folder %(path)s."
-#~ msgstr "GNOME 数独は %(path)s というデータ・フォルダを生成できませんでした。"
-
-#~ msgid "Full Screen"
-#~ msgstr "フルスクリーン表示"
-
-#~ msgid "Show which numbers could go in the current square."
-#~ msgstr "この時点で指定できる数値を提示します"
-
-#~ msgid "_Fill"
-#~ msgstr "埋める(_F)"
-
-#~ msgid "Automatically fill in the current square if possible."
-#~ msgstr "現在のブロックの中を自動的に埋めます (可能な部分だけ)"
-
-#~ msgid "Fill _all squares"
-#~ msgstr "すべて埋める(_F)"
-
-#~ msgid "Automatically fill in all squares for which there is only one valid value."
-#~ msgstr "妥当な数値だけ指定できるすべてのブロックの中を自動的に埋めます"
-
-#~ msgid "_Always show hint"
-#~ msgstr "常にヒントを表示する(_A)"
-
-#~ msgid "Generate new puzzles _while you play"
-#~ msgstr "プレイ中に新しいパズルを生成する(_W)"
-
-#~ msgid "Generate new puzzles in the background while you play. This will automatically pause when the game goes into the background."
-#~ msgstr "プレイ中にバックグラウンドで新しいパズルを生成します (ゲームをバックグランドに移動したら生成を自動的に一時停止します)"
-
-#~ msgid "_Edit"
-#~ msgstr "編集(_E)"
-
-#~ msgid "Clear entries you've filled in"
-#~ msgstr "指定した格子をクリアします"
-
-#~ msgid "Clear notes and hints"
-#~ msgstr "メモやヒントをクリアします"
-
-#~ msgid "No Tracker"
-#~ msgstr "トラッカなし"
-
-#~ msgid "_Generate new puzzles"
-#~ msgstr "新しいパズルの生成(_G)"
-
-#~ msgid "Generate new puzzles."
-#~ msgstr "新しいパズルを生成します"
-
-#~ msgid "Entering custom grid..."
-#~ msgstr "格子をカスタマイズしてください..."
-
-#~ msgid "_Play game"
-#~ msgstr "プレイする(_P)"
-
-#~ msgid "You used the auto-fill %(n)s time"
-#~ msgid_plural "You used the auto-fill %(n)s times"
-#~ msgstr[0] "You used the auto-fill %(n)s time"
-
-#~ msgid "Playing %(difficulty)s puzzle."
-#~ msgstr "難易度が%(difficulty)sのパズルに挑戦中です"
-
-#~ msgid "_Clear Others"
-#~ msgstr "他のクリア(_C)"
-
-#~ msgid "Clear all moves not tracked by selected tracker."
-#~ msgstr "指定したトラックで監視していないすべての移動をクリアします"
-
-#~ msgid "Print Sudoku"
-#~ msgid_plural "Print Sudokus"
-#~ msgstr[0] "数独の印刷"
-
-#~ msgid "Print Preview"
-#~ msgstr "印刷プレビュー"
-
-#~ msgid "%(n)s puzzle"
-#~ msgid_plural "%(n)s puzzles"
-#~ msgstr[0] " %(n)s個のパズル"
-
-#~ msgid "Stopped"
-#~ msgstr "停止中"
-
-#~ msgid "Generated %(n)s out of %(total)s puzzle"
-#~ msgid_plural "Generated %(n)s out of %(total)s puzzles"
-#~ msgstr[0] "%(n)s/%(total)s 個のパズルの生成中"
-
-#~ msgid "Generated %(n)s puzzle"
-#~ msgid_plural "Generated %(n)s puzzles"
-#~ msgstr[0] " %(n)s個のパズルの生成中"
-
-#~ msgid "_Stop"
-#~ msgstr "停止(_S)"
-
-#~ msgid "Today %R %p"
-#~ msgstr "今日の%p%R"
-
-#~ msgid "Yesterday %R %p"
-#~ msgstr "昨日の%p%R"
-
-#~ msgid "%A %H:%M"
-#~ msgstr "%Aの%H:%M"
-
-#~ msgid "%A %B %d %R %p"
-#~ msgstr "%B%e日 %A %p%R"
-
-#~ msgid "Tile _Colours"
-#~ msgstr "色付きのタイル(_C)"
-
-#~ msgid "A flag to enable coloured tiles."
-#~ msgstr "タイルに色を付けるかどうかです。"
-
-#~ msgid "Control coloured tiles"
-#~ msgstr "タイルに色を付けるかどうか"
-
-#~ msgid "The GNOME version of Reversi. The goal is to control the most disks on the board."
-#~ msgstr "有名なリバーシの GNOME 版です。盤上にある石をたくさん敷き詰めた方が勝ちです。"
-
-#~ msgid "Player Chat"
-#~ msgstr "プレイヤーのチャット"
-
-#~ msgid "Occupied"
-#~ msgstr "登録済"
-
-#~ msgid "Empty"
-#~ msgstr "空"
-
-#~ msgid "Abandoned"
-#~ msgstr "放棄済"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgid "Status"
-#~ msgstr "状態"
-
-#~ msgid "Boot player"
-#~ msgstr "ホスト役のプレイヤー"
-
-#~ msgid "Sit here"
-#~ msgstr "ここに居座る"
-
-#~ msgid "Move here"
-#~ msgstr "ここに移動する"
-
-#~ msgid "Play with bot"
-#~ msgstr "ボットとプレイする"
-
-#~ msgid "Drop reservation"
-#~ msgstr "予約を取り消す"
-
-#~ msgid "Card Style"
-#~ msgstr "カードのスタイル"
-
-#~ msgid "No key"
-#~ msgstr "キーなし"
-
-#~ msgid "<Press a Key>"
-#~ msgstr "<何かキーを押してください>"
-
-#~ msgid "1000 point bonus for clearing the board!"
-#~ msgstr "ゲームのクリアで 1000 ポイントのボーナスです!"
-
-#~ msgid "Set the theme"
-#~ msgstr "テーマをセットする"
-
-#~ msgid "For backwards compatibility"
-#~ msgstr "バージョン互換のため"
-
-#~ msgid "Game size (1=small, 3=large)"
-#~ msgstr "盤の大きさ (1=小さい、3=大きい)"
-
-#~ msgid "Same GNOME"
-#~ msgstr "さめGNOME"
-
-#~ msgid "Height of the custom board"
-#~ msgstr "盤の高さ"
-
-#~ msgid "Setting this to FALSE means the pieces fall slowly, but gracefully. A setting of TRUE causes the pieces to fall quickly and jerkily."
-#~ msgstr "これを FALSE にすると玉が落ちる速度が遅くなりますが、描画する効果が綺麗です。TRUE にすると玉の落ちる速度が速く描画する効果はありません。"
-
-#~ msgid "The board size"
-#~ msgstr "盤の大きさ"
-
-#~ msgid "The height of the custom board, 101 &gt; height &gt; 3."
-#~ msgstr "カスタム盤の高さ (101 &gt; 高さ &gt; 3) です。"
-
-#~ msgid "The size of the board to use. 1 = Custom, 2 = Small, 3 = Medium, 4 = Large."
-#~ msgstr "使用する盤の大きさです。指定可能な値: 1 = カスタム、2 = 小さい、3 = 中くらい、4 = 大きい"
-
-#~ msgid "The width of the custom board, 101 &gt; width &gt; 3."
-#~ msgstr "カスタム盤の幅 (101 < 幅 < 3) です。"
-
-#~ msgid "Width of the custom board"
-#~ msgstr "盤の幅"
-
-#~ msgid "Unfortunately your score did not make the top ten."
-#~ msgstr "残念ながら、トップ 10 入りになりませんでした"
-
-#~ msgid "Same GNOME Theme"
-#~ msgstr "さめGNOMEのテーマ"
-
-#~ msgid "_Theme..."
-#~ msgstr "テーマ(_T)..."
-
-#~ msgid "_Small"
-#~ msgstr "小さい(_S)"
-
-#~ msgid "_Large"
-#~ msgstr "大きい(_L)"
-
-#~ msgid "No theme data was found."
-#~ msgstr "テーマが見つかりませんでした。"
-
-#~ msgid "It is impossible to play the game. Please check that the game has been installed correctly and try again."
-#~ msgstr "そのゲームをプレイできません。ゲームが正しくインストールされているか確認してもう一度実行してみてください。"
+msgstr "カードの山を空の場札スロットに置きなさい"
