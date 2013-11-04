@@ -894,6 +894,7 @@ drag_begin (AisleriotBoard *board)
 
   priv->moving_cards_window = gdk_window_new (window, &attributes,
                                               GDK_WA_VISUAL | GDK_WA_X | GDK_WA_Y);
+  gdk_window_ensure_native (priv->moving_cards_window);
 
   surface = gdk_window_create_similar_surface (priv->moving_cards_window, CAIRO_CONTENT_COLOR_ALPHA,
                                                width, height);
