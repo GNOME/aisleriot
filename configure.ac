@@ -564,12 +564,7 @@ if test "$with_help_method" = "file"; then
   AC_DEFINE_UNQUOTED([HELP_FILE_FORMAT],["$with_help_file_format"],[The help file format])
 fi
 
-YELP_HELP_INIT([3.1.1],
-  [have_yelptools=yes],
-  [have_yelptools=no
-   if test "$with_help_method" = "ghelp"; then
-     AC_MSG_ERROR([ghelp requested, but yelp-tools not found!])
-   fi])
+YELP_HELP_INIT([no-lc-media-links])
 
 AM_CONDITIONAL([BUILD_HELP],[test "$with_help_method" = "ghelp"])
 
