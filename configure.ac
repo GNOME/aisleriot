@@ -564,7 +564,7 @@ if test "$with_help_method" = "file"; then
   AC_DEFINE_UNQUOTED([HELP_FILE_FORMAT],["$with_help_file_format"],[The help file format])
 fi
 
-YELP_HELP_INIT([no-lc-media-links])
+YELP_HELP_INIT([no-lc-media-links no-lc-dist])
 
 AM_CONDITIONAL([BUILD_HELP],[test "$with_help_method" = "ghelp"])
 
