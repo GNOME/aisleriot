@@ -224,7 +224,7 @@ ar_application_startup (GApplication *application)
 
   section = g_menu_new ();
   g_menu_append (section, _("Help"), "app.help");
-  g_menu_append (section, _("About Aisleriot"), "app.about");
+  g_menu_append (section, _("About"), "app.about");
   g_menu_append (section, _("Quit"), "app.quit");
 
   g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
