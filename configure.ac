@@ -437,7 +437,7 @@ CC_CHECK_CFLAGS_APPEND([ \
   -Wpointer-arith -Wwrite-strings -Wstrict-prototypes \
   -Waggregate-return -Wcast-align -Wimplicit -Wuninitialized \
   -Wmissing-prototypes -Wmissing-declarations -Wnested-externs \
-  -Wpacked -Wmissing-format-attribute -Wshadow \
+  -Wpacked -Wmissing-format-attribute -Wshadow -Wlogical-op \
   -Wstrict-aliasing=2 -Winit-self -Wunsafe-loop-optimizations \
   -Wdeclaration-after-statement -Wold-style-definition \
   -Wno-missing-field-initializers -Wno-unused-parameter \
