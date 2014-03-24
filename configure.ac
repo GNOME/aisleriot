@@ -5,7 +5,7 @@
 m4_divert_once([BINSH], [@%:@! /usr/bin/env bash])
 
 AC_PREREQ([2.53])
-AC_INIT([GNOME Patience], [3.12.1],
+AC_INIT([GNOME Patience], [3.13.0],
   [http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot],
   [aisleriot])
 
