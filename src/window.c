@@ -419,9 +419,9 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
                          "program-name",
                          _("AisleRiot"),
                          "version", VERSION,
-                         "title", _("About AisleRiot"),
+                         "title", _("About Aisleriot"),
                          "comments",
-                         _("AisleRiot provides a rule-based solitaire "
+                         _("Aisleriot provides a rule-based solitaire "
                            "card engine that allows many different "
                            "games to be played."),
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
@@ -431,9 +431,9 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
                          "artists", artists,
                          "documenters", documenters,
                          "translator-credits", _("translator-credits"),
-                         "logo-icon-name", "gnome-aisleriot",
-                         "website", "http://www.gnome.org/projects/gnome-games/",
-                         "website-label", _("GNOME Games web site"),
+                         "logo-icon-name", "aisleriot",
+                         "website", "http://wiki.gnome.org/Apps/Aisleriot",
+                         "website-label", _("Aisleriot web site"),
                          "wrap-license", TRUE,
                         NULL);
   g_free (licence);
