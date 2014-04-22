@@ -30,7 +30,7 @@ typedef enum {
   AR_LAST_CURSOR
 } ArCursorType;
 
-GdkCursor *ar_cursor_new (GdkWindow *window,
+GdkCursor *ar_cursor_new (GdkDisplay *display,
                           ArCursorType cursor_type);
 
 G_END_DECLS
