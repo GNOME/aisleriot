@@ -198,7 +198,7 @@ static const guint8 hand_open_data[] =
 #define CURSOR_HOT_Y 10
 
 static GdkCursor *
-ar_cursor_new_from_data (GdkWindow *window,
+ar_cursor_new_from_data (GdkDisplay *display,
                          const guint8 *data,
                          gsize data_len)
 {
@@ -206,7 +206,7 @@ ar_cursor_new_from_data (GdkWindow *window,
   GdkPixbuf *pixbuf;
 
   pixbuf = gdk_pixbuf_new_from_inline (data_len, data, FALSE, NULL);
-  cursor = gdk_cursor_new_from_pixbuf (gdk_window_get_display (window),
+  cursor = gdk_cursor_new_from_pixbuf (display,
                                        pixbuf,
                                        CURSOR_HOT_X, CURSOR_HOT_Y);
   g_object_unref (pixbuf);
@@ -214,15 +214,25 @@ ar_cursor_new_from_data (GdkWindow *window,
   return cursor;
 }
 
-GdkCursor *ar_cursor_new (GdkWindow *window,
+GdkCursor *ar_cursor_new (GdkDisplay *display,
                           ArCursorType cursor_type)
 {
+  GdkCursor *cursor;
+
   switch (cursor_type) {
     case AR_CURSOR_OPEN:
-      return ar_cursor_new_from_data (window, hand_open_data, sizeof (hand_open_data));
+      if ((cursor = gdk_cursor_new_from_name (display, "openhand")))
+          return cursor;
+      if ((cursor = gdk_cursor_new_from_name (display, "hand1")))
+          return cursor;
+      return ar_cursor_new_from_data (display, hand_open_data, sizeof (hand_open_data));
 
     case AR_CURSOR_CLOSED:
-      return ar_cursor_new_from_data (window, hand_closed_data, sizeof (hand_closed_data));
+      if ((cursor = gdk_cursor_new_from_name (display, "closedhand")))
+          return cursor;
+      if ((cursor = gdk_cursor_new_from_name (display, "grabbing")))
+          return cursor;
+      return ar_cursor_new_from_data (display, hand_closed_data, sizeof (hand_closed_data));
 
     default:
       g_assert_not_reached ();
