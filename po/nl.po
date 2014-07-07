@@ -37,13 +37,14 @@
 # Wouter Bolsterlee <wbolster@gnome.org>, 2008.
 # Pjotr12345, 2012.
 # Rachid <rachidbm@ubuntu.com>, 2012.
-# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2012.
+# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2012, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-25 16:58+0200\n"
-"PO-Revision-Date: 2012-06-22 09:54+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=aisleriot&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-07-07 02:27+0000\n"
+"PO-Revision-Date: 2014-07-07 11:52+0200\n"
 "Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "Language: nl\n"
@@ -51,17 +52,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-05-07 11:56+0000\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-
-#: ../data/freecell.desktop.in.in.h:1 ../src/sol.c:117 ../src/window.c:409
-#: ../src/window.c:413
-msgid "FreeCell Solitaire"
-msgstr "FreeCell patience"
-
-#: ../data/freecell.desktop.in.in.h:2
-msgid "Play the popular FreeCell card game"
-msgstr "Speel het populaire FreeCell kaartspel"
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
@@ -70,6 +62,10 @@ msgstr "AisleRiot patience"
 #: ../data/sol.desktop.in.in.h:2
 msgid "Play many different solitaire games"
 msgstr "Speel veel verschillende soorten patiencespellen"
+
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "solitaire;cards;klondike;spider;freecell;patience;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -145,12 +141,44 @@ msgstr "Onlangs gespeelde spellen"
 msgid "A list of recently played games."
 msgstr "Een lijst met onlangs gespeelde spellen."
 
+#: ../src/ar-application.c:216
+#| msgid "_New Game"
+msgid "New Game"
+msgstr "Nieuw spel"
+
+#: ../src/ar-application.c:217
+#| msgid "Bakers Game"
+msgid "Change Game"
+msgstr "Ander spel"
+
+#: ../src/ar-application.c:221 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Statistieken"
+
+#: ../src/ar-application.c:222
+#| msgid "_Fullscreen"
+msgid "Fullscreen"
+msgstr "_Schermvullend"
+
+#: ../src/ar-application.c:226
+#| msgid "_Help"
+msgid "Help"
+msgstr "Hulp"
+
+#: ../src/ar-application.c:227
+msgid "About"
+msgstr "Info"
+
+#: ../src/ar-application.c:228
+msgid "Quit"
+msgstr "Afsluiten"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2194
 msgid "Select Game"
 msgstr "Spel kiezen"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_Selecteren"
 
@@ -1481,15 +1509,15 @@ msgid "Window height"
 msgstr "Vensterhoogte"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Patience"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "GNOME patience"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Over Patience"
 
@@ -1501,7 +1529,11 @@ msgstr "Kies het soort spel dat u wilt spelen"
 msgid "NAME"
 msgstr "NAAM"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117
+msgid "FreeCell Solitaire"
+msgstr "FreeCell patience"
+
+#: ../src/sol.c:117 ../src/window.c:420
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1544,10 +1576,6 @@ msgstr "Slechtste:"
 msgid "Time"
 msgstr "Tijd"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Statistieken"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1581,35 +1609,31 @@ msgstr "N.v.t."
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:215
 msgid "Congratulations, you have won!"
 msgstr "Gefeliciteerd, u heeft gewonnen!"
 
-#: ../src/window.c:224
+#: ../src/window.c:219
 msgid "There are no more moves"
 msgstr "Er zijn geen geldige handelingen meer"
 
-#: ../src/window.c:365
+#: ../src/window.c:370
 msgid "Main game:"
 msgstr "Hoofdspel:"
 
-#: ../src/window.c:373
+#: ../src/window.c:378
 msgid "Card games:"
 msgstr "Kaartspellen:"
 
-#: ../src/window.c:388
+#: ../src/window.c:393
 msgid "Card themes:"
 msgstr "Kaartthema's:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Over FreeCell patience"
-
-#: ../src/window.c:417
+#: ../src/window.c:422
 msgid "About AisleRiot"
 msgstr "Over AisleRiot"
 
-#: ../src/window.c:421
+#: ../src/window.c:424
 msgid ""
 "AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1617,7 +1641,7 @@ msgstr ""
 "AisleRiot biedt een regelgebaseerde kaarttechniek voor patience, waardoor "
 "het mogelijk is veel verschillende soorten spellen te spelen."
 
-#: ../src/window.c:430
+#: ../src/window.c:433
 msgid "translator-credits"
 msgstr ""
 "Tino Meinen\n"
@@ -1632,191 +1656,189 @@ msgstr ""
 "  Fabian Bakkum https://launchpad.net/~fabianbakkum\n"
 "  Pjotr12345 https://launchpad.net/~computertip"
 
-#: ../src/window.c:434
+#: ../src/window.c:436
 msgid "GNOME Games web site"
 msgstr "GNOME spellenwebsite"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1302
 #, c-format
 msgid "Play “%s”"
 msgstr "‘%s’ spelen"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1464
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Kaarten afbeelden met het ‘%s’-kaartthema"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1758
 msgid "A scheme exception occurred"
 msgstr "Er is een schema-uitzondering opgetreden"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1761
 msgid "Please report this bug to the developers."
 msgstr "Meld deze fout a.u.b. aan de ontwikkelaars."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1767
 msgid "_Don't report"
 msgstr "_Niet melden"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1768
 msgid "_Report"
 msgstr "_Melden"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Freecell patience"
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1975
 msgid "_Game"
 msgstr "_Spel"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1976
 msgid "_View"
 msgstr "Beel_d"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1977
 msgid "_Control"
 msgstr "_Bediening"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1979
 msgid "_Help"
 msgstr "_Hulp"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1984
 msgid "Start a new game"
 msgstr "Een nieuw spel beginnen"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1987
 msgid "Restart the game"
 msgstr "Het spel opnieuw spelen"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1989
 msgid "_Select Game…"
 msgstr "_Spel kiezen…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1991
 msgid "Play a different game"
 msgstr "Speel een ander spel"
 
 # Recentelijk/Onlangs
-#: ../src/window.c:2008
+#: ../src/window.c:1993
 msgid "_Recently Played"
 msgstr "Onlangs ges_peeld"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1994
 msgid "S_tatistics"
 msgstr "S_tatistieken"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1995
 msgid "Show gameplay statistics"
 msgstr "Spelstatistieken weergeven"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1998
 msgid "Close this window"
 msgstr "Dit venster sluiten"
 
-#: ../src/window.c:2016
+#: ../src/window.c:2001
 msgid "Undo the last move"
 msgstr "De laatste handeling ongedaan maken"
 
-#: ../src/window.c:2019
+#: ../src/window.c:2004
 msgid "Redo the undone move"
 msgstr "De ongedaan gemaakte handeling opnieuw uitvoeren"
 
 # delen/geven
-#: ../src/window.c:2022
+#: ../src/window.c:2007
 msgid "Deal next card or cards"
 msgstr "Volgende kaart of kaarten geven"
 
-#: ../src/window.c:2025
+#: ../src/window.c:2010
 msgid "Get a hint for your next move"
 msgstr "Vraag een tip voor uw volgende handeling"
 
-#: ../src/window.c:2028
+#: ../src/window.c:2013
 msgid "View help for Aisleriot"
 msgstr "Hulp voor Aisleriot weergeven"
 
-#: ../src/window.c:2032
+#: ../src/window.c:2017
 msgid "View help for this game"
 msgstr "Hulp voor dit spel weergeven"
 
-#: ../src/window.c:2035
+#: ../src/window.c:2020
 msgid "About this game"
 msgstr "Over dit spel"
 
-#: ../src/window.c:2037
+#: ../src/window.c:2022
 msgid "Install card themes…"
 msgstr "Kaartthema's installeren…"
 
-#: ../src/window.c:2038
+#: ../src/window.c:2023
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Een nieuw kaartthema installeren vanuit de pakketbronnen van de distributie"
 
-#: ../src/window.c:2044
+#: ../src/window.c:2029
 msgid "_Card Style"
 msgstr "_Kaartstijl"
 
-#: ../src/window.c:2078
+#: ../src/window.c:2063
 msgid "_Toolbar"
 msgstr "_Werkbalk"
 
-#: ../src/window.c:2079
+#: ../src/window.c:2064
 msgid "Show or hide the toolbar"
 msgstr "De werkbalk tonen of verbergen"
 
 # toestand/stand/status
-#: ../src/window.c:2083
+#: ../src/window.c:2068
 msgid "_Statusbar"
 msgstr "_Statusbalk"
 
-#: ../src/window.c:2084
+#: ../src/window.c:2069
 msgid "Show or hide statusbar"
 msgstr "De statusbalk tonen of verbergen"
 
-#: ../src/window.c:2088
+#: ../src/window.c:2073
 msgid "_Click to Move"
 msgstr "_Klikken om te verplaatsen"
 
-#: ../src/window.c:2089
+#: ../src/window.c:2074
 msgid "Pick up and drop cards by clicking"
 msgstr "Kaarten pakken en op tafel leggen door te klikken"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:2077
 msgid "_Sound"
 msgstr "_Geluid"
 
-#: ../src/window.c:2094
+#: ../src/window.c:2078
 msgid "Whether or not to play event sounds"
 msgstr "Of er al dan niet geluiden worden afgespeeld bij gebeurtenissen"
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:2081
 msgid "_Animations"
 msgstr "_Animaties"
 
-#: ../src/window.c:2100
+#: ../src/window.c:2082
 msgid "Whether or not to animate card moves"
 msgstr "Of het verplaatsen van kaarten al dan niet geanimeerd moet worden"
 
-#: ../src/window.c:2318
+#: ../src/window.c:2218
 msgid "Score:"
 msgstr "Score:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2230
 msgid "Time:"
 msgstr "Tijd:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2528
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Kan het spel ‘%s’ niet starten"
 
-#: ../src/window.c:2642
+#: ../src/window.c:2535
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot kan uw laatst gespeelde spel niet vinden."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2536
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1833,28 +1855,28 @@ msgstr "Basiskaart: ~a"
 
 #: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
 #: ../games/chessboard.scm:94 ../games/eagle-wing.scm:104
-#: ../games/glenwood.scm:84 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/glenwood.scm:87 ../games/kansas.scm:88 ../games/lady-jane.scm:111
 #: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
 msgid "Base Card: Ace"
 msgstr "Basiskaart: Aas"
 
 #: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
 #: ../games/chessboard.scm:96 ../games/eagle-wing.scm:106
-#: ../games/glenwood.scm:86 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/glenwood.scm:89 ../games/kansas.scm:90 ../games/lady-jane.scm:113
 #: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
 msgid "Base Card: Jack"
 msgstr "Basiskaart: Boer"
 
 #: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
 #: ../games/chessboard.scm:98 ../games/eagle-wing.scm:108
-#: ../games/glenwood.scm:88 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/glenwood.scm:91 ../games/kansas.scm:92 ../games/lady-jane.scm:115
 #: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
 msgid "Base Card: Queen"
 msgstr "Basiskaart: Vrouw"
 
 #: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
 #: ../games/chessboard.scm:100 ../games/eagle-wing.scm:110
-#: ../games/glenwood.scm:90 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/glenwood.scm:93 ../games/kansas.scm:94 ../games/lady-jane.scm:117
 #: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
 msgid "Base Card: King"
 msgstr "Basiskaart: Heer"
@@ -1865,12 +1887,12 @@ msgstr "Basiskaart: Heer"
 #: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:92
 #: ../games/easthaven.scm:56 ../games/elevator.scm:98
 #: ../games/escalator.scm:123 ../games/first-law.scm:42
-#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
-#: ../games/glenwood.scm:72 ../games/gypsy.scm:65 ../games/helsinki.scm:53
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:97
+#: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
-#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
-#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:122 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:339 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
 #: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
 #: ../games/straight-up.scm:64 ../games/terrace.scm:159
@@ -1882,21 +1904,21 @@ msgstr "Basiskaart: Heer"
 msgid "Stock left:"
 msgstr "Kaarten over in de stapel:"
 
-#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:124
 msgid "Stock left: 0"
 msgstr "Kaarten over in de stapel: 0"
 
 #: ../games/agnes.scm:264 ../games/easthaven.scm:232
 #: ../games/labyrinth.scm:189 ../games/monte-carlo.scm:196
-#: ../games/monte-carlo.scm:201 ../games/valentine.scm:138
+#: ../games/monte-carlo.scm:201 ../games/valentine.scm:136
 msgid "Deal more cards"
 msgstr "Geef nogmaals"
 
-#: ../games/agnes.scm:270 ../games/backbone.scm:295
-#: ../games/bakers-dozen.scm:197 ../games/beleaguered-castle.scm:171
-#: ../games/canfield.scm:306 ../games/jumbo.scm:333
-#: ../games/king-albert.scm:286 ../games/lady-jane.scm:428
-#: ../games/streets-and-alleys.scm:182
+#: ../games/agnes.scm:270 ../games/backbone.scm:288
+#: ../games/bakers-dozen.scm:194 ../games/beleaguered-castle.scm:169
+#: ../games/canfield.scm:303 ../games/jumbo.scm:333
+#: ../games/king-albert.scm:286 ../games/lady-jane.scm:422
+#: ../games/streets-and-alleys.scm:180
 msgid "Try rearranging the cards"
 msgstr "Probeer de kaarten te herschikken"
 
@@ -2474,80 +2496,318 @@ msgstr "~a verplaatsen naar de ruiten vrouw."
 msgid "Move ~a onto the king of diamonds."
 msgstr "~a verplaatsen naar de ruiten heer."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
-#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
+#: ../games/api.scm:559
+#| msgid "the black joker"
+msgid "Remove the black joker."
+msgstr "De zwarte joker verwijderen."
+
+#: ../games/api.scm:559
+#| msgid "the red joker"
+msgid "Remove the red joker."
+msgstr "De rode joker verwijderen."
+
+#: ../games/api.scm:561
+#| msgid "Remove the ten of clubs."
+msgid "Remove the ace of clubs."
+msgstr "De klaver aas verwijderen."
+
+#: ../games/api.scm:562
+#| msgid "Remove the ten of clubs."
+msgid "Remove the two of clubs."
+msgstr "De klaver twee verwijderen."
+
+#: ../games/api.scm:563
+#| msgid "Remove the ten of clubs."
+msgid "Remove the three of clubs."
+msgstr "De klaver drie verwijderen."
+
+#: ../games/api.scm:564
+#| msgid "Remove the ten of clubs."
+msgid "Remove the four of clubs."
+msgstr "De klaver vier verwijderen."
+
+#: ../games/api.scm:565
+#| msgid "Remove the ten of clubs."
+msgid "Remove the five of clubs."
+msgstr "De klaver vijf verwijderen."
+
+#: ../games/api.scm:566
+#| msgid "Remove the king of clubs."
+msgid "Remove the six of clubs."
+msgstr "De klaver zes verwijderen."
+
+#: ../games/api.scm:567
+#| msgid "Remove the ten of clubs."
+msgid "Remove the seven of clubs."
+msgstr "De klaver zeven verwijderen."
+
+#: ../games/api.scm:568
+#| msgid "Remove the king of clubs."
+msgid "Remove the eight of clubs."
+msgstr "De klaver acht verwijderen."
+
+#: ../games/api.scm:569
+#| msgid "Remove the king of clubs."
+msgid "Remove the nine of clubs."
+msgstr "De klaver negen verwijderen."
+
+#: ../games/api.scm:570 ../games/camelot.scm:168
+msgid "Remove the ten of clubs."
+msgstr "De klaver tien verwijderen."
+
+#: ../games/api.scm:571
+#| msgid "Remove the king of clubs."
+msgid "Remove the jack of clubs."
+msgstr "De klaver boer verwijderen."
+
+#: ../games/api.scm:572
+#| msgid "Remove the ten of clubs."
+msgid "Remove the queen of clubs."
+msgstr "De klaver vrouw verwijderen."
+
+#: ../games/api.scm:573 ../games/helsinki.scm:109 ../games/neighbor.scm:141
+#: ../games/thirteen.scm:385 ../games/treize.scm:279 ../games/yield.scm:295
+msgid "Remove the king of clubs."
+msgstr "De klaver heer verwijderen."
+
+#: ../games/api.scm:574 ../games/api.scm:589 ../games/api.scm:604
+#: ../games/api.scm:619 ../games/api.scm:620
+#| msgid "the unknown card"
+msgid "Remove the unknown card."
+msgstr "De onbekende kaart verwijderen."
+
+#: ../games/api.scm:576
+#| msgid "Remove the ten of spades."
+msgid "Remove the ace of spades."
+msgstr "De schoppen aas verwijderen."
+
+#: ../games/api.scm:577
+#| msgid "Remove the ten of spades."
+msgid "Remove the two of spades."
+msgstr "De schoppen twee verwijderen."
+
+#: ../games/api.scm:578
+#| msgid "Remove the ten of spades."
+msgid "Remove the three of spades."
+msgstr "De schoppen drie verwijderen."
+
+#: ../games/api.scm:579
+#| msgid "Remove the ten of spades."
+msgid "Remove the four of spades."
+msgstr "De schoppen vier verwijderen."
+
+#: ../games/api.scm:580
+#| msgid "Remove the ten of spades."
+msgid "Remove the five of spades."
+msgstr "De schoppen vijf verwijderen."
+
+#: ../games/api.scm:581
+#| msgid "Remove the king of spades."
+msgid "Remove the six of spades."
+msgstr "De schoppen zes verwijderen."
+
+#: ../games/api.scm:582
+#| msgid "Remove the ten of spades."
+msgid "Remove the seven of spades."
+msgstr "De schoppen zeven verwijderen."
+
+#: ../games/api.scm:583
+#| msgid "Remove the king of spades."
+msgid "Remove the eight of spades."
+msgstr "De schoppen acht verwijderen."
+
+#: ../games/api.scm:584
+#| msgid "Remove the king of spades."
+msgid "Remove the nine of spades."
+msgstr "De schoppen negen verwijderen."
+
+#: ../games/api.scm:585 ../games/camelot.scm:171
+msgid "Remove the ten of spades."
+msgstr "De schoppen tien verwijderen."
+
+#: ../games/api.scm:586
+#| msgid "Remove the king of spades."
+msgid "Remove the jack of spades."
+msgstr "De schoppen boer verwijderen."
+
+#: ../games/api.scm:587
+#| msgid "Remove the ten of spades."
+msgid "Remove the queen of spades."
+msgstr "De schoppen vrouw verwijderen."
+
+#: ../games/api.scm:588 ../games/helsinki.scm:112 ../games/neighbor.scm:144
+#: ../games/thirteen.scm:388 ../games/treize.scm:282 ../games/yield.scm:298
+msgid "Remove the king of spades."
+msgstr "De schoppen heer verwijderen."
+
+#: ../games/api.scm:591
+#| msgid "Remove the ten of hearts."
+msgid "Remove the ace of hearts."
+msgstr "De harten aas verwijderen."
+
+#: ../games/api.scm:592
+#| msgid "Remove the ten of hearts."
+msgid "Remove the two of hearts."
+msgstr "De harten twee verwijderen."
+
+#: ../games/api.scm:593
+#| msgid "Remove the ten of hearts."
+msgid "Remove the three of hearts."
+msgstr "De harten drie verwijderen."
+
+#: ../games/api.scm:594
+#| msgid "Remove the ten of hearts."
+msgid "Remove the four of hearts."
+msgstr "De harten vier verwijderen."
+
+#: ../games/api.scm:595
+#| msgid "Remove the ten of hearts."
+msgid "Remove the five of hearts."
+msgstr "De harten vijf verwijderen."
+
+#: ../games/api.scm:596
+#| msgid "Remove the king of hearts."
+msgid "Remove the six of hearts."
+msgstr "De harten zes verwijderen."
+
+#: ../games/api.scm:597
+#| msgid "Remove the ten of hearts."
+msgid "Remove the seven of hearts."
+msgstr "De harten zeven verwijderen."
+
+#: ../games/api.scm:598
+#| msgid "Remove the king of hearts."
+msgid "Remove the eight of hearts."
+msgstr "De harten acht verwijderen."
+
+#: ../games/api.scm:599
+#| msgid "Remove the king of hearts."
+msgid "Remove the nine of hearts."
+msgstr "De harten negen verwijderen."
+
+#: ../games/api.scm:600 ../games/camelot.scm:170
+msgid "Remove the ten of hearts."
+msgstr "De harten tien verwijderen."
+
+#: ../games/api.scm:601
+#| msgid "Remove the king of hearts."
+msgid "Remove the jack of hearts."
+msgstr "De harten boer verwijderen."
+
+#: ../games/api.scm:602
+#| msgid "Remove the ten of hearts."
+msgid "Remove the queen of hearts."
+msgstr "De harten vrouw verwijderen."
+
+#: ../games/api.scm:603 ../games/helsinki.scm:111 ../games/neighbor.scm:143
+#: ../games/thirteen.scm:387 ../games/treize.scm:281 ../games/yield.scm:297
+msgid "Remove the king of hearts."
+msgstr "De harten heer verwijderen."
+
+#: ../games/api.scm:606
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the ace of diamonds."
+msgstr "De ruiten aas verwijderen."
+
+#: ../games/api.scm:607
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the two of diamonds."
+msgstr "De ruiten twee verwijderen."
+
+#: ../games/api.scm:608
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the three of diamonds."
+msgstr "De ruiten drie verwijderen."
+
+#: ../games/api.scm:609
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the four of diamonds."
+msgstr "De ruiten vier verwijderen."
+
+#: ../games/api.scm:610
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the five of diamonds."
+msgstr "De ruiten vijf verwijderen."
+
+#: ../games/api.scm:611
+#| msgid "Remove the king of diamonds."
+msgid "Remove the six of diamonds."
+msgstr "De ruiten zes verwijderen."
+
+#: ../games/api.scm:612
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the seven of diamonds."
+msgstr "De ruiten zeven verwijderen."
+
+#: ../games/api.scm:613
+#| msgid "Remove the king of diamonds."
+msgid "Remove the eight of diamonds."
+msgstr "De ruiten acht verwijderen."
+
+#: ../games/api.scm:614
+#| msgid "Remove the king of diamonds."
+msgid "Remove the nine of diamonds."
+msgstr "De ruiten negen verwijderen."
+
+#: ../games/api.scm:615 ../games/camelot.scm:169
+msgid "Remove the ten of diamonds."
+msgstr "De ruiten tien verwijderen."
+
+#: ../games/api.scm:616
+#| msgid "Remove the king of diamonds."
+msgid "Remove the jack of diamonds."
+msgstr "De ruiten boer verwijderen."
+
+#: ../games/api.scm:617
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the queen of diamonds."
+msgstr "De ruiten vrouw verwijderen."
+
+#: ../games/api.scm:618 ../games/helsinki.scm:110 ../games/neighbor.scm:142
+#: ../games/thirteen.scm:386 ../games/treize.scm:280 ../games/yield.scm:296
+msgid "Remove the king of diamonds."
+msgstr "De ruiten heer verwijderen."
+
+#: ../games/athena.scm:80 ../games/klondike.scm:293
+#: ../games/napoleons-tomb.scm:354 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "Deel drie kaarten"
 
-#: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
-#: ../games/first-law.scm:127 ../games/fortunes.scm:161
-#: ../games/lady-jane.scm:233 ../games/scuffle.scm:140 ../games/spider.scm:282
-#: ../games/thumb-and-pouch.scm:260 ../games/zebra.scm:212
+#: ../games/auld-lang-syne.scm:122 ../games/bristol.scm:262
+#: ../games/first-law.scm:127 ../games/fortunes.scm:157
+#: ../games/lady-jane.scm:239 ../games/scuffle.scm:138 ../games/spider.scm:290
+#: ../games/thumb-and-pouch.scm:258 ../games/zebra.scm:212
 msgid "Deal another round"
 msgstr "Geef nog een keer"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
-#: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:76
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
-#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
+#: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
+#: ../games/napoleons-tomb.scm:335 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
 #: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "Ronde(n) over:"
 
-#: ../games/backbone.scm:234 ../games/terrace.scm:355
-msgid "an empty slot on the tableau"
-msgstr "een leeg vak op de tafel"
-
-#: ../games/backbone.scm:235 ../games/terrace.scm:293
-msgid "an empty slot on the foundation"
-msgstr "een leeg basisvak"
-
-#: ../games/backbone.scm:293 ../games/camelot.scm:209
-#: ../games/canfield.scm:228 ../games/carpet.scm:175 ../games/glenwood.scm:250
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/backbone.scm:286 ../games/camelot.scm:209
+#: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:323
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
-#: ../games/straight-up.scm:240 ../games/terrace.scm:361
+#: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
 msgstr "Geef een nieuwe kaart van de stapel"
 
-#: ../games/bakers-dozen.scm:156 ../games/eight-off.scm:180
-#: ../games/seahaven.scm:245 ../games/streets-and-alleys.scm:158
-#: ../games/yukon.scm:244
-msgid "an empty foundation"
-msgstr "een lege basis"
-
 #: ../games/bear-river.scm:88 ../games/canfield.scm:79
 #: ../games/chessboard.scm:92 ../games/eagle-wing.scm:102
-#: ../games/glenwood.scm:82 ../games/kansas.scm:86 ../games/plait.scm:240
+#: ../games/glenwood.scm:85 ../games/kansas.scm:86 ../games/plait.scm:240
 msgid "Base Card: "
 msgstr "Basiskaart: "
 
-#: ../games/bear-river.scm:160
-msgid "an empty foundation slot"
-msgstr "een leeg basisvak"
-
-#: ../games/bear-river.scm:209
+#: ../games/bear-river.scm:207
 msgid "Move something onto an empty right-hand tableau slot"
 msgstr "Leg iets op een leeg tafelvak aan de rechterkant"
-
-#: ../games/camelot.scm:168
-msgid "Remove the ten of clubs."
-msgstr "De klaver tien verwijderen."
-
-#: ../games/camelot.scm:169
-msgid "Remove the ten of diamonds."
-msgstr "De ruiten tien verwijderen."
-
-#: ../games/camelot.scm:170
-msgid "Remove the ten of hearts."
-msgstr "De harten tien verwijderen."
-
-#: ../games/camelot.scm:171
-msgid "Remove the ten of spades."
-msgstr "De schoppen tien verwijderen."
 
 #: ../games/canfield.scm:73 ../games/eagle-wing.scm:96 ../games/kansas.scm:80
 #: ../games/straight-up.scm:68
@@ -2555,19 +2815,11 @@ msgid "Reserve left:"
 msgstr "Reserve over:"
 
 #: ../games/canfield.scm:229 ../games/eagle-wing.scm:335
-#: ../games/glenwood.scm:253 ../games/plait.scm:106
-#: ../games/straight-up.scm:243 ../games/thumb-and-pouch.scm:263
+#: ../games/glenwood.scm:256 ../games/plait.scm:106
+#: ../games/straight-up.scm:243 ../games/thumb-and-pouch.scm:261
 #: ../games/zebra.scm:215
 msgid "Move waste back to stock"
 msgstr "Leg verbruikte kaarten terug op de stapel"
-
-#: ../games/canfield.scm:235 ../games/glenwood.scm:283
-msgid "empty slot on foundation"
-msgstr "leeg basisvak"
-
-#: ../games/canfield.scm:257
-msgid "empty space on tableau"
-msgstr "lege plek op tafel"
 
 #: ../games/chessboard.scm:198
 msgid "Move a card to the Foundation"
@@ -2706,11 +2958,11 @@ msgstr "U zoekt naar een koning."
 msgid "Unknown value"
 msgstr "Onbekende waarde"
 
-#: ../games/eagle-wing.scm:332 ../games/elevator.scm:365
-#: ../games/escalator.scm:224 ../games/royal-east.scm:193
-#: ../games/thirteen.scm:415 ../games/treize.scm:301
-#: ../games/triple-peaks.scm:344 ../games/union-square.scm:464
-#: ../games/westhaven.scm:196 ../games/yield.scm:317
+#: ../games/eagle-wing.scm:332 ../games/elevator.scm:363
+#: ../games/escalator.scm:222 ../games/royal-east.scm:193
+#: ../games/thirteen.scm:419 ../games/treize.scm:305
+#: ../games/triple-peaks.scm:342 ../games/union-square.scm:464
+#: ../games/westhaven.scm:196 ../games/yield.scm:321
 msgid "Deal a card"
 msgstr "Geef een kaart"
 
@@ -2718,16 +2970,12 @@ msgstr "Geef een kaart"
 msgid "Move a king onto an empty tableau slot."
 msgstr "Een heer verplaatsen naar een leeg tafelvak."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Momenteel geen tip beschikbaar"
 
-#: ../games/eight-off.scm:233 ../games/seahaven.scm:300
-msgid "an empty tableau"
-msgstr "een lege tafel"
-
-#: ../games/eight-off.scm:249 ../games/seahaven.scm:316
+#: ../games/eight-off.scm:248 ../games/seahaven.scm:315
 msgid "Move something on to an empty reserve"
 msgstr "Een kaart op een leeg reservevak leggen"
 
@@ -2807,7 +3055,7 @@ msgstr "Verwijder de heren"
 msgid "I'm not sure"
 msgstr "Ik twijfel"
 
-#: ../games/first-law.scm:185
+#: ../games/first-law.scm:184
 msgid "Return cards to stock"
 msgstr "Leg kaarten terug op de stapel"
 
@@ -2815,17 +3063,11 @@ msgstr "Leg kaarten terug op de stapel"
 msgid "Move something onto an empty tableau slot."
 msgstr "Leg een kaart op een lege tafelvak."
 
-# gebiedende wijs hier mooier
-#: ../games/fortunes.scm:135 ../games/fortunes.scm:138
-#, scheme-format
-msgid "Move ~a off the board"
-msgstr "Haal ~a van het bord"
-
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:154 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "Overweeg om een kaart op een leeg vak te leggen"
 
-#: ../games/forty-thieves.scm:374
+#: ../games/forty-thieves.scm:357
 msgid "Deal a card from stock"
 msgstr "Geef een kaart van de stapel"
 
@@ -2839,30 +3081,265 @@ msgstr ""
 msgid "The game has no solution. Undo or start again."
 msgstr "Het spel heeft geen oplossing. Ongedaan maken of opnieuw beginnen."
 
-#: ../games/gaps.scm:278
+#: ../games/gaps.scm:280
 msgid "Double click any card to redeal."
 msgstr "Dubbelklik op een kaart om opnieuw te delen."
 
-#: ../games/gaps.scm:284
+#: ../games/gaps.scm:286
 msgid "No hint available."
 msgstr "Geen tip beschikbaar."
 
-#: ../games/gaps.scm:293
+#: ../games/gaps.scm:295
 #, scheme-format
 msgid "Place a two in the leftmost slot of row ~a."
 msgstr "Plaats een twee in het meest linkse vak van rij ~a."
 
-#: ../games/gaps.scm:297
+#: ../games/gaps.scm:299
 #, scheme-format
 msgid "Add to the sequence in row ~a."
 msgstr "Aan de serie toevoegen in rij ~a."
 
+#: ../games/gaps.scm:311
+#| msgid "Move ~a onto the ace of clubs."
+msgid "Place the two of clubs next to the ace of clubs."
+msgstr "Plaats klaver twee naast klaver aas."
+
+#: ../games/gaps.scm:312
+#| msgid "Move ~a onto the two of clubs."
+msgid "Place the three of clubs next to the two of clubs."
+msgstr "Plaats klaver drie naast klaver twee."
+
+#: ../games/gaps.scm:313
+#| msgid "Move ~a onto the three of clubs."
+msgid "Place the four of clubs next to the three of clubs."
+msgstr "Plaats klaver vier naast klaver drie."
+
+#: ../games/gaps.scm:314
+#| msgid "Move ~a onto the four of clubs."
+msgid "Place the five of clubs next to the four of clubs."
+msgstr "Plaats klaver vijf naast klaver vier."
+
+#: ../games/gaps.scm:315
+#| msgid "Move ~a onto the five of clubs."
+msgid "Place the six of clubs next to the five of clubs."
+msgstr "Plaats klaver zes naast klaver vijf."
+
 #: ../games/gaps.scm:316
-#, scheme-format
-msgid "Place the ~a next to ~a."
-msgstr "Leg de ~a naast ~a."
+#| msgid "Move ~a onto the six of clubs."
+msgid "Place the seven of clubs next to the six of clubs."
+msgstr "Plaats klaver zeven naast klaver zes."
+
+#: ../games/gaps.scm:317
+#| msgid "Move ~a onto the seven of clubs."
+msgid "Place the eight of clubs next to the seven of clubs."
+msgstr "Plaats klaver acht naast klaver zeven."
+
+#: ../games/gaps.scm:318
+#| msgid "Move ~a onto the eight of clubs."
+msgid "Place the nine of clubs next to the eight of clubs."
+msgstr "Plaats klaver negen naast klaver acht."
+
+#: ../games/gaps.scm:319
+#| msgid "Move ~a onto the nine of clubs."
+msgid "Place the ten of clubs next to the nine of clubs."
+msgstr "Plaats klaver tien naast klaver negen."
+
+#: ../games/gaps.scm:320
+#| msgid "Move ~a onto the ten of clubs."
+msgid "Place the jack of clubs next to the ten of clubs."
+msgstr "Plaats klaver boer naast klaver tien."
+
+#: ../games/gaps.scm:321
+#| msgid "Move ~a onto the jack of clubs."
+msgid "Place the queen of clubs next to the jack of clubs."
+msgstr "Plaats klaver vrouw naast klaver boer."
+
+#: ../games/gaps.scm:322
+#| msgid "Move ~a onto the queen of clubs."
+msgid "Place the king of clubs next to the queen of clubs."
+msgstr "Plaats klaver heer naast klaver vrouw."
 
 #: ../games/gaps.scm:325
+#| msgid "Move ~a onto the ace of spades."
+msgid "Place the two of spades next to the ace of spades."
+msgstr "Plaats schoppen twee naast schoppen aas."
+
+#: ../games/gaps.scm:326
+#| msgid "Move ~a onto the two of spades."
+msgid "Place the three of spades next to the two of spades."
+msgstr "Plaats schoppen drie naast schoppen twee."
+
+#: ../games/gaps.scm:327
+#| msgid "Move ~a onto the three of spades."
+msgid "Place the four of spades next to the three of spades."
+msgstr "Plaats schoppen vier naast schoppen drie."
+
+#: ../games/gaps.scm:328
+#| msgid "Move ~a onto the four of spades."
+msgid "Place the five of spades next to the four of spades."
+msgstr "Plaats schoppen vijf naast schoppen vier."
+
+#: ../games/gaps.scm:329
+#| msgid "Move ~a onto the five of spades."
+msgid "Place the six of spades next to the five of spades."
+msgstr "Plaats schoppen zes naast schoppen vijf."
+
+#: ../games/gaps.scm:330
+#| msgid "Move ~a onto the six of spades."
+msgid "Place the seven of spades next to the six of spades."
+msgstr "Plaats schoppen zeven naast schoppen zes."
+
+#: ../games/gaps.scm:331
+#| msgid "Move ~a onto the seven of spades."
+msgid "Place the eight of spades next to the seven of spades."
+msgstr "Plaats schoppen acht naast schoppen zeven."
+
+#: ../games/gaps.scm:332
+#| msgid "Move ~a onto the eight of spades."
+msgid "Place the nine of spades next to the eight of spades."
+msgstr "Plaats schoppen negen naast schoppen acht."
+
+#: ../games/gaps.scm:333
+#| msgid "Move ~a onto the nine of spades."
+msgid "Place the ten of spades next to the nine of spades."
+msgstr "Plaats schoppen tien naast schoppen negen."
+
+#: ../games/gaps.scm:334
+#| msgid "Move ~a onto the ten of spades."
+msgid "Place the jack of spades next to the ten of spades."
+msgstr "Plaats schoppen boer naast schoppen tien."
+
+#: ../games/gaps.scm:335
+#| msgid "Move ~a onto the jack of spades."
+msgid "Place the queen of spades next to the jack of spades."
+msgstr "Plaats schoppen vrouw naast schoppen boer."
+
+#: ../games/gaps.scm:336
+#| msgid "Move ~a onto the queen of spades."
+msgid "Place the king of spades next to the queen of spades."
+msgstr "Plaats schoppen heer naast schoppen vrouw."
+
+#: ../games/gaps.scm:339
+#| msgid "Move ~a onto the ace of hearts."
+msgid "Place the two of hearts next to the ace of hearts."
+msgstr "Plaats harten twee naast harten aas."
+
+#: ../games/gaps.scm:340
+#| msgid "Move ~a onto the two of hearts."
+msgid "Place the three of hearts next to the two of hearts."
+msgstr "Plaats harten drie naast harten twee."
+
+#: ../games/gaps.scm:341
+#| msgid "Move ~a onto the three of hearts."
+msgid "Place the four of hearts next to the three of hearts."
+msgstr "Plaats harten vier naast harten drie."
+
+#: ../games/gaps.scm:342
+#| msgid "Move ~a onto the four of hearts."
+msgid "Place the five of hearts next to the four of hearts."
+msgstr "Plaats harten vijf naast harten vier."
+
+#: ../games/gaps.scm:343
+#| msgid "Move ~a onto the five of hearts."
+msgid "Place the six of hearts next to the five of hearts."
+msgstr "Plaats harten zes naast harten vijf."
+
+#: ../games/gaps.scm:344
+#| msgid "Move ~a onto the six of hearts."
+msgid "Place the seven of hearts next to the six of hearts."
+msgstr "Plaats harten zeven naast harten zes."
+
+#: ../games/gaps.scm:345
+#| msgid "Move ~a onto the seven of hearts."
+msgid "Place the eight of hearts next to the seven of hearts."
+msgstr "Plaats harten acht naast harten zeven."
+
+#: ../games/gaps.scm:346
+#| msgid "Move ~a onto the eight of hearts."
+msgid "Place the nine of hearts next to the eight of hearts."
+msgstr "Plaats harten negen naast harten acht."
+
+#: ../games/gaps.scm:347
+#| msgid "Move ~a onto the nine of hearts."
+msgid "Place the ten of hearts next to the nine of hearts."
+msgstr "Plaats harten tien naast harten negen."
+
+#: ../games/gaps.scm:348
+#| msgid "Move ~a onto the ten of hearts."
+msgid "Place the jack of hearts next to the ten of hearts."
+msgstr "Plaats harten boer naast harten tien."
+
+#: ../games/gaps.scm:349
+#| msgid "Move ~a onto the jack of hearts."
+msgid "Place the queen of hearts next to the jack of hearts."
+msgstr "Plaats harten vrouw naast harten boer."
+
+#: ../games/gaps.scm:350
+#| msgid "Move ~a onto the queen of hearts."
+msgid "Place the king of hearts next to the queen of hearts."
+msgstr "Plaats harten heer naast harten vrouw."
+
+#: ../games/gaps.scm:353
+#| msgid "Move ~a onto the ace of diamonds."
+msgid "Place the two of diamonds next to the ace of diamonds."
+msgstr "Plaats ruiten twee naast ruiten aas."
+
+#: ../games/gaps.scm:354
+#| msgid "Move ~a onto the two of diamonds."
+msgid "Place the three of diamonds next to the two of diamonds."
+msgstr "Plaats ruiten drie naast ruiten twee."
+
+#: ../games/gaps.scm:355
+#| msgid "Move ~a onto the three of diamonds."
+msgid "Place the four of diamonds next to the three of diamonds."
+msgstr "Plaats ruiten vier naast ruiten drie."
+
+#: ../games/gaps.scm:356
+#| msgid "Move ~a onto the four of diamonds."
+msgid "Place the five of diamonds next to the four of diamonds."
+msgstr "Plaats ruiten vijf naast ruiten vier."
+
+#: ../games/gaps.scm:357
+#| msgid "Move ~a onto the five of diamonds."
+msgid "Place the six of diamonds next to the five of diamonds."
+msgstr "Plaats ruiten zes naast ruiten vijf."
+
+#: ../games/gaps.scm:358
+#| msgid "Move ~a onto the six of diamonds."
+msgid "Place the seven of diamonds next to the six of diamonds."
+msgstr "Plaats ruiten zeven naast ruiten zes."
+
+#: ../games/gaps.scm:359
+#| msgid "Move ~a onto the seven of diamonds."
+msgid "Place the eight of diamonds next to the seven of diamonds."
+msgstr "Plaats ruiten acht naast ruiten zeven."
+
+#: ../games/gaps.scm:360
+#| msgid "Move ~a onto the eight of diamonds."
+msgid "Place the nine of diamonds next to the eight of diamonds."
+msgstr "Plaats ruiten negen naast ruiten acht."
+
+#: ../games/gaps.scm:361
+#| msgid "Move ~a onto the nine of diamonds."
+msgid "Place the ten of diamonds next to the nine of diamonds."
+msgstr "Plaats ruiten tien naast ruiten negen."
+
+#: ../games/gaps.scm:362
+#| msgid "Move ~a onto the ten of diamonds."
+msgid "Place the jack of diamonds next to the ten of diamonds."
+msgstr "Plaats ruiten boer naast ruiten tien."
+
+#: ../games/gaps.scm:363
+#| msgid "Move ~a onto the jack of diamonds."
+msgid "Place the queen of diamonds next to the jack of diamonds."
+msgstr "Plaats ruiten vrouw naast ruiten boer."
+
+#: ../games/gaps.scm:364
+#| msgid "Move ~a onto the queen of diamonds."
+msgid "Place the king of diamonds next to the queen of diamonds."
+msgstr "Plaats ruiten heer naast ruiten vrouw."
+
+#: ../games/gaps.scm:383
 msgid "Randomly Placed Gaps on Redeal"
 msgstr "Willekeurige gaten bij het opnieuw delen"
 
@@ -2875,53 +3352,42 @@ msgstr "Deelbeurten over: ~a"
 msgid "Deal a row"
 msgstr "Deel een rij"
 
-#: ../games/giant.scm:259
-msgid "an empty foundation place"
-msgstr "een lege basisplek"
-
-#: ../games/giant.scm:260
-msgid "an empty tableau place"
-msgstr "een leeg tafelvak"
-
-#: ../games/giant.scm:287
+#: ../games/giant.scm:276
 msgid "Try moving a card to the reserve"
 msgstr "Probeer eens om een kaart naar de reserve te verplaatsen"
 
-#: ../games/giant.scm:288
+#: ../games/giant.scm:277
 msgid "Try dealing a row of cards"
 msgstr "Probeer eens een rij kaarten te delen"
 
 #. this isn't great, but it will get around the premature end-of-game call
-#: ../games/giant.scm:290 ../games/spider.scm:301
+#: ../games/giant.scm:279 ../games/spider.scm:309
 msgid "Try moving card piles around"
 msgstr "Probeer eens wat kaartstapels te verplaatsen"
 
-#: ../games/giant.scm:295
+#: ../games/giant.scm:284
 msgid "Same suit"
 msgstr "Zelfde kleur"
 
-#: ../games/giant.scm:296
+#: ../games/giant.scm:285
 msgid "Alternating colors"
 msgstr "Afwisselende kleuren"
 
-#: ../games/glenwood.scm:258
+#: ../games/glenwood.scm:261
 msgid "Select a card from the reserve for first foundation pile"
 msgstr "Kies een kaart van de reserve voor de eerste basisstapel"
 
-#: ../games/glenwood.scm:359
-msgid "Move a card from the reserve on to the empty tableau slot"
+#: ../games/glenwood.scm:355
+#| msgid "Move a card from the reserve on to the empty tableau slot"
+msgid "Move a card from the reserve onto the empty tableau slot"
 msgstr "Leg een kaart uit de reserve op het lege tafelvak"
-
-#: ../games/glenwood.scm:361
-msgid "on to the empty tableau slot"
-msgstr "op het lege tafelvak"
 
 #: ../games/golf.scm:67 ../games/osmosis.scm:68 ../games/spider.scm:88
 #, scheme-format
 msgid "Stock left: ~a"
 msgstr "Kaarten over in de stapel: ~a"
 
-#: ../games/golf.scm:139 ../games/hopscotch.scm:130 ../games/jumbo.scm:298
+#: ../games/golf.scm:138 ../games/hopscotch.scm:130 ../games/jumbo.scm:298
 #: ../games/kansas.scm:219 ../games/sir-tommy.scm:134
 #: ../games/whitehead.scm:252
 msgid "Deal another card"
@@ -2934,22 +3400,6 @@ msgstr "Verplaats een kaart of stapel naar het lege vak"
 #: ../games/gypsy.scm:339
 msgid "Deal another hand"
 msgstr "Geef nog een keer"
-
-#: ../games/helsinki.scm:109
-msgid "Remove the king of clubs."
-msgstr "De klaver heer verwijderen."
-
-#: ../games/helsinki.scm:110
-msgid "Remove the king of diamonds."
-msgstr "De ruiten heer verwijderen."
-
-#: ../games/helsinki.scm:111
-msgid "Remove the king of hearts."
-msgstr "De harten heer verwijderen."
-
-#: ../games/helsinki.scm:112
-msgid "Remove the king of spades."
-msgstr "De schoppen heer verwijderen."
 
 #: ../games/hopscotch.scm:126
 msgid "Move card from waste"
@@ -2964,35 +3414,31 @@ msgstr "Verplaats gebruikte kaarten naar de voorraad"
 msgid "Stock remaining: ~a"
 msgstr "Kaarten over in de stapel: ~a"
 
-#: ../games/kings-audience.scm:229
+#: ../games/kings-audience.scm:227
 msgid "Deal a new card"
 msgstr "Geef een nieuwe kaart"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "Probeer kaarten omlaag van het basisvak te leggen"
 
 # vergelijk: deel per drie kaarten/deel per kaart
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:355
 msgid "Single card deals"
 msgstr "Telkens slechts één kaart delen"
 
 # Geen nieuwe deelrondes/niet opnieuw delen
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "Niet opnieuw delen"
 
-#: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
+#: ../games/klondike.scm:296
+msgid "Unlimited redeals"
+msgstr "Ongelimiteerd opnieuw delen"
+
+#: ../games/lady-jane.scm:109 ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "Basiskaart:"
-
-#: ../games/lady-jane.scm:253 ../games/thumb-and-pouch.scm:197
-msgid "an empty foundation pile"
-msgstr "een lege basisstapel"
-
-#: ../games/lady-jane.scm:397 ../games/lady-jane.scm:409
-msgid "an empty tableau slot"
-msgstr "een leeg tafelvak"
 
 #: ../games/maze.scm:147
 msgid ""
@@ -3002,23 +3448,9 @@ msgstr ""
 "Probeer de reeksen te plaatsen in de volgorde die het beste bij de huidige "
 "vormgeving past."
 
-#: ../games/napoleons-tomb.scm:338 ../games/terrace.scm:286
-msgid "the foundation"
-msgstr "het basisvak"
-
-#: ../games/napoleons-tomb.scm:373
+#: ../games/napoleons-tomb.scm:357
 msgid "Autoplay"
 msgstr "Automatisch afspelen"
-
-#: ../games/neighbor.scm:142 ../games/thirteen.scm:391 ../games/treize.scm:285
-#: ../games/yield.scm:301
-msgid "itself"
-msgstr "zichzelf"
-
-#: ../games/odessa.scm:180 ../games/odessa.scm:214 ../games/pileon.scm:158
-#: ../games/pileon.scm:160 ../games/yukon.scm:204
-msgid "an empty slot"
-msgstr "een leeg vak"
 
 #: ../games/osmosis.scm:74
 #, scheme-format
@@ -3033,6 +3465,10 @@ msgstr "Geef nieuwe kaarten van de stapel"
 msgid "something"
 msgstr "iets"
 
+#: ../games/pileon.scm:158 ../games/pileon.scm:160
+msgid "an empty slot"
+msgstr "een leeg vak"
+
 #: ../games/poker.scm:297
 msgid "Place cards on to the Tableau to form poker hands"
 msgstr "Leg kaarten op het tafelvak zoals bij pokeren"
@@ -3041,11 +3477,11 @@ msgstr "Leg kaarten op het tafelvak zoals bij pokeren"
 msgid "Shuffle mode"
 msgstr "Schudden-modus"
 
-#: ../games/scorpion.scm:146
+#: ../games/scorpion.scm:142
 msgid "Deal the cards"
 msgstr "Geef de kaarten"
 
-#: ../games/scuffle.scm:142
+#: ../games/scuffle.scm:140
 msgid "Reshuffle cards"
 msgstr "Kaarten opnieuw schudden"
 
@@ -3053,7 +3489,7 @@ msgstr "Kaarten opnieuw schudden"
 msgid "Move waste on to a reserve slot"
 msgstr "Verplaats gebruikte kaarten naar een reservevak"
 
-#: ../games/spider.scm:184 ../games/spider.scm:292
+#: ../games/spider.scm:184 ../games/spider.scm:300
 msgid "Undo until there are enough cards to fill all tableau piles"
 msgstr ""
 "Ongedaan maken totdat er genoeg kaarten zijn om alle tafelstapels te vullen"
@@ -3062,20 +3498,20 @@ msgstr ""
 msgid "Please fill in empty pile first."
 msgstr "Vul a.u.b. eerst een lege stapel."
 
-#: ../games/spider.scm:277
+#: ../games/spider.scm:285
 msgid "Place something on empty slot"
 msgstr "Plaats een kaart in een leeg vak"
 
-#: ../games/spider.scm:305
+#: ../games/spider.scm:313
 msgid "Four Suits"
 msgstr "Vier kaartspellen"
 
-#: ../games/spider.scm:306
+#: ../games/spider.scm:314
 msgid "Two Suits"
 msgstr "Twee kaartspellen"
 
 # één kaartspel/enkel kaartspel
-#: ../games/spider.scm:307
+#: ../games/spider.scm:315
 msgid "One Suit"
 msgstr "Enkel kaartspel"
 
@@ -3122,6 +3558,10 @@ msgstr "Blondines en brunettes"
 msgid "Wood"
 msgstr "Woud"
 
+#: ../games/terrace.scm:286
+msgid "the foundation"
+msgstr "het basisvak"
+
 #: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "Geef een kaart van de stapel"
@@ -3130,24 +3570,78 @@ msgstr "Geef een kaart van de stapel"
 msgid "Match the top two cards of the waste."
 msgstr "Overeenkomstig de bovenste twee kaarten van de gebruikte stapel."
 
-#: ../games/thumb-and-pouch.scm:165 ../games/thumb-and-pouch.scm:177
-msgid "an empty tableau pile"
-msgstr "een lege tafelstapel"
-
-#: ../games/triple-peaks.scm:351
+#: ../games/triple-peaks.scm:349
 msgid "Progressive Rounds"
 msgstr "Score meenemen naar volgende ronde"
 
 # Points double for every card played in a run. A run of cards will score 1, 2,
 # 4, 16, and 32 points for a total of 55 points.
 # Scoreverdubbeling
-#: ../games/triple-peaks.scm:352
+#: ../games/triple-peaks.scm:350
 msgid "Multiplier Scoring"
 msgstr "Scorevermenigvuldiging"
 
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Leg een stapel kaarten op het lege tafelvak"
+
+#~ msgid "Play the popular FreeCell card game"
+#~ msgstr "Speel het populaire FreeCell kaartspel"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "Over FreeCell patience"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Freecell patience"
+
+#~ msgid "an empty slot on the tableau"
+#~ msgstr "een leeg vak op de tafel"
+
+#~ msgid "an empty slot on the foundation"
+#~ msgstr "een leeg basisvak"
+
+#~ msgid "an empty foundation"
+#~ msgstr "een lege basis"
+
+#~ msgid "an empty foundation slot"
+#~ msgstr "een leeg basisvak"
+
+#~ msgid "empty slot on foundation"
+#~ msgstr "leeg basisvak"
+
+#~ msgid "empty space on tableau"
+#~ msgstr "lege plek op tafel"
+
+#~ msgid "an empty tableau"
+#~ msgstr "een lege tafel"
+
+# gebiedende wijs hier mooier
+#~ msgid "Move ~a off the board"
+#~ msgstr "Haal ~a van het bord"
+
+#~ msgid "Place the ~a next to ~a."
+#~ msgstr "Leg de ~a naast ~a."
+
+#~ msgid "an empty foundation place"
+#~ msgstr "een lege basisplek"
+
+#~ msgid "an empty tableau place"
+#~ msgstr "een leeg tafelvak"
+
+#~ msgid "on to the empty tableau slot"
+#~ msgstr "op het lege tafelvak"
+
+#~ msgid "an empty foundation pile"
+#~ msgstr "een lege basisstapel"
+
+#~ msgid "an empty tableau slot"
+#~ msgstr "een leeg tafelvak"
+
+#~ msgid "itself"
+#~ msgstr "zichzelf"
+
+#~ msgid "an empty tableau pile"
+#~ msgstr "een lege tafelstapel"
 
 #~ msgid "the foundation pile"
 #~ msgstr "de basisstapel"
