@@ -12,9 +12,6 @@ dist_noinst_DATA = \
 	slot.svg \
 	$(NULL)
 
-pkcatalogdir = $(pkgdatadir)
-pkcatalog_DATA = aisleriot.catalog
-
 desktop_in_files = \
 	sol.desktop.in.in \
 	$(NULL)
@@ -51,13 +48,11 @@ EXTRA_DIST = \
 CLEANFILES = \
 	$(nodist_appdata_DATA) \
 	$(nodist_desktop_DATA) \
-	$(pkcatalog_DATA) \
 	$(NULL)
 
 DISTCLEANFILES = \
 	$(nodist_appdata_DATA) \
 	$(nodist_desktop_DATA) \
-	$(pkcatalog_DATA) \
 	$(NULL)
 
 @INTLTOOL_DESKTOP_RULE@
