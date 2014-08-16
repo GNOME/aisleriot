@@ -599,7 +599,6 @@ AC_CONFIG_FILES([
 Makefile
 cards/Makefile
 data/Makefile
-data/aisleriot.catalog
 data/icons/Makefile
 data/sounds/Makefile
 data/sol.desktop.in
