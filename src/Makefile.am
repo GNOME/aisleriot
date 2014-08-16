@@ -40,13 +40,6 @@ sol_SOURCES = \
 	window.h	\
 	$(NULL)
 
-if ENABLE_DEBUG_UI
-sol_SOURCES += \
-	prop-editor.c	\
-	prop-editor.h	\
-	$(NULL)
-endif
-
 sol_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src/lib \
@@ -114,13 +107,6 @@ sol_clutter_SOURCES = \
 	window.c	\
 	window.h	\
 	$(NULL)
-
-if ENABLE_DEBUG_UI
-sol_clutter_SOURCES += \
-	prop-editor.c	\
-	prop-editor.h	\
-	$(NULL)
-endif
 
 sol_clutter_CPPFLAGS = $(sol_CPPFLAGS) -DHAVE_CLUTTER
 sol_clutter_CFLAGS = $(sol_CFLAGS) $(CLUTTER_GTK_CFLAGS) $(CLUTTER_CFLAGS)

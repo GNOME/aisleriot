@@ -3246,6 +3246,26 @@ aisleriot_board_finalize (GObject *object)
 }
 
 static void
+aisleriot_board_get_property (GObject *object,
+                              guint prop_id,
+                              GValue *value,
+                              GParamSpec *pspec)
+{
+  AisleriotBoard *board = AISLERIOT_BOARD (object);
+  AisleriotBoardPrivate *priv = board->priv;
+
+  switch (prop_id) {
+  case PROP_GAME:
+    g_value_set_object (value, priv->game);
+    break;
+
+  case PROP_STYLE:
+    g_value_set_object (value, priv->style);
+    break;
+  }
+}
+
+static void
 aisleriot_board_set_property (GObject *object,
                               guint prop_id,
                               const GValue *value,
@@ -3293,6 +3313,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 
   gobject_class->dispose = aisleriot_board_dispose;
   gobject_class->finalize = aisleriot_board_finalize;
+  gobject_class->get_property = aisleriot_board_get_property;
   gobject_class->set_property = aisleriot_board_set_property;
 
   widget_class->realize = aisleriot_board_realize;
@@ -3389,7 +3410,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
      PROP_GAME,
      g_param_spec_object ("game", NULL, NULL,
                           AISLERIOT_TYPE_GAME,
-                          G_PARAM_WRITABLE |
+                          G_PARAM_READWRITE |
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS));
 
@@ -3398,7 +3419,7 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
      PROP_STYLE,
      g_param_spec_object ("style", NULL, NULL,
                           AR_TYPE_STYLE,
-                          G_PARAM_WRITABLE |
+                          G_PARAM_READWRITE |
                           G_PARAM_CONSTRUCT_ONLY |
                           G_PARAM_STATIC_STRINGS));
 

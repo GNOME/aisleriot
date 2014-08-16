@@ -58,10 +58,6 @@
 
 #include "window.h"
 
-#ifdef ENABLE_DEBUG_UI
-#include "prop-editor.h"
-#endif
-
 #define AISLERIOT_WINDOW_GET_PRIVATE(window)(G_TYPE_INSTANCE_GET_PRIVATE ((window), AISLERIOT_TYPE_WINDOW, AisleriotWindowPrivate))
 
 #define MIN_WIDTH 800
@@ -548,42 +544,6 @@ install_themes_cb (GtkAction *action,
 #ifdef ENABLE_DEBUG_UI
 
 static void
-move_to_next_screen_cb (GtkAction *action,
-                        GtkWidget *widget)
-{
-  GdkScreen *screen;
-  GdkDisplay *display;
-  int number_of_screens, screen_num;
-
-  screen = gtk_widget_get_screen (widget);
-  display = gdk_screen_get_display (screen);
-  screen_num = gdk_screen_get_number (screen);
-  number_of_screens =  gdk_display_get_n_screens (display);
-
-  if ((screen_num + 1) < number_of_screens) {
-    screen = gdk_display_get_screen (display, screen_num + 1);
-  } else {
-    screen = gdk_display_get_screen (display, 0);
-  }
-
-  gtk_window_set_screen (GTK_WINDOW (widget), screen);
-}
-
-static gboolean
-delayed_move_to_next_screen_timeout_cb (GtkWidget *widget)
-{
-  move_to_next_screen_cb (NULL, widget);
-  return FALSE;
-}
-
-static void
-delayed_move_to_next_screen_cb (GtkAction *action,
-                                GtkWidget *widget)
-{
-  g_timeout_add_seconds (10, (GSourceFunc) delayed_move_to_next_screen_timeout_cb, widget);
-}
-
-static void
 debug_exception_cb (GtkAction *action,
                     AisleriotWindow *window)
 {
@@ -801,43 +761,6 @@ debug_choose_seed_cb (GtkAction *action,
   gtk_entry_set_activates_default (GTK_ENTRY (entry), TRUE);
 
   gtk_window_present (GTK_WINDOW (dialog));
-}
-
-static void
-debug_tweak_style_cb (GtkAction *action,
-                      AisleriotWindow *window)
-{
-  AisleriotWindowPrivate *priv = window->priv;
-  GObject *object;
-  GType type;
-  GtkWidget *prop_editor;
-
-  object = G_OBJECT (priv->board_style);
-  type = G_OBJECT_TYPE (object);
-
-  g_assert (object != NULL);
-
-  prop_editor = create_prop_editor (object, type);
-  gtk_window_set_transient_for (GTK_WINDOW (prop_editor), GTK_WINDOW (window));
-  gtk_window_present (GTK_WINDOW (prop_editor));
-}
-
-static void
-debug_tweak_settings_cb (GtkAction *action,
-                         AisleriotWindow *window)
-{
-  GObject *object;
-  GType type;
-  GtkWidget *prop_editor;
-
-  object = G_OBJECT (gtk_widget_get_settings (GTK_WIDGET (window)));
-  type = G_OBJECT_TYPE (object);
-
-  g_assert (object != NULL);
-
-  prop_editor = create_prop_editor (object, type);
-  gtk_window_set_transient_for (GTK_WINDOW (prop_editor), GTK_WINDOW (window));
-  gtk_window_present (GTK_WINDOW (prop_editor));
 }
 
 #endif /* ENABLE_DEBUG_UI */
@@ -2033,10 +1956,6 @@ aisleriot_window_init (AisleriotWindow *window)
     { "DebugMenu", NULL, "_Debug" },
     { "DebugChooseSeed", NULL, "_Choose seed", NULL, NULL,
       G_CALLBACK (debug_choose_seed_cb) },
-    { "DebugMoveNextScreen", NULL, "_Move to next screen", NULL, NULL,
-       G_CALLBACK (move_to_next_screen_cb) },
-    { "DebugDelayedMoveNextScreen", NULL, "_Delayed move to next screen", NULL, NULL,
-       G_CALLBACK (delayed_move_to_next_screen_cb) },
     { "DebugException", NULL, "Generate E_xception", NULL, NULL,
       G_CALLBACK (debug_exception_cb) },
     { "DebugCycle", NULL, "Cycle through _all games", NULL, NULL,
@@ -2049,10 +1968,6 @@ aisleriot_window_init (AisleriotWindow *window)
       G_CALLBACK (debug_game_next) },
     { "DebugGamePrev", GTK_STOCK_GO_BACK, NULL, NULL, NULL,
       G_CALLBACK (debug_game_prev) },
-    { "DebugTweakStyle", NULL, "_Tweak Style", NULL, NULL,
-      G_CALLBACK (debug_tweak_style_cb) },
-    { "DebugTweakSettings", NULL, "_Tweak GtkSettings", NULL, NULL,
-      G_CALLBACK (debug_tweak_settings_cb) },
 #endif /* ENABLE_DEBUG_UI */
   };
 
