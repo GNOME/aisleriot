@@ -20,30 +20,47 @@ desktop_in_files = \
 	$(NULL)
 
 desktopdir = $(datadir)/applications
-desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
+nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
-desktop-file-validate: $(desktop_DATA)
+appdatadir = $(datadir)/appdata
+appdata_in_files = aisleriot.appdata.xml.in
+nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+
+APPDATA_VALIDATE_FLAGS = --nonet
+appdata-validate: $(nodist_appdata_DATA)
+	for f in $^; do \
+		$(APPDATA_VALIDATE) $(APPDATA_VALIDATE_FLAGS) $$f; \
+	done
+
+desktop-file-validate: $(nodist_desktop_DATA)
 	for f in $^; do \
 		$(DESKTOP_FILE_VALIDATE) $$f; \
 	done
 
-check-local: desktop-file-validate
 
+check-local: desktop-file-validate
 
 dist_valgrind_DATA = \
 	aisleriot.supp \
 	$(NULL)
 
+EXTRA_DIST = \
+	$(appdata_in_files) \
+	$(NULL)
+
 CLEANFILES = \
-	$(desktop_DATA) \
+	$(nodist_appdata_DATA) \
+	$(nodist_desktop_DATA) \
 	$(pkcatalog_DATA) \
 	$(NULL)
 
 DISTCLEANFILES = \
-	$(desktop_DATA) \
+	$(nodist_appdata_DATA) \
+	$(nodist_desktop_DATA) \
 	$(pkcatalog_DATA) \
 	$(NULL)
 
 @INTLTOOL_DESKTOP_RULE@
+@INTLTOOL_XML_RULE@
 
 -include $(top_srcdir)/git.mk

@@ -386,6 +386,12 @@ if test -z "$DESKTOP_FILE_VALIDATE"; then
   AC_MSG_ERROR([desktop-file-validate not found])
 fi
 
+AC_ARG_VAR([APPDATA_VALIDATE],[the appdata-validate programme])
+AC_PATH_PROG([APPDATA_VALIDATE],[appdata-validate],[])
+if test -z "$APPDATA_VALIDATE"; then
+  AC_MSG_ERROR([appdata-validate not found])
+fi
+
 if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
   AC_CHECK_TOOL([WINDRES],[windres],[no])
   if test "$WINDRES" = "no"; then
