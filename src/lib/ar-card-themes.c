@@ -24,7 +24,6 @@
 #include <glib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
-#include <gio/gio.h>
 
 #ifdef GDK_WINDOWING_X11
 #include <gdk/gdkx.h>
@@ -363,31 +362,6 @@ themes_foreach_any (gpointer key,
   data->theme = ar_card_themes_get_theme (data->theme_manager, theme_info);
 }
 
-static void
-theme_install_reply_cb (GDBusConnection  *connection,
-                        GAsyncResult     *result,
-                        ArCardThemes     *theme_manager)
-{
-  GVariant *variant;
-  GError *error = NULL;
-
-  variant = g_dbus_connection_call_finish (connection, result, &error);
-  if (variant == NULL) {
-    ar_debug_print (AR_DEBUG_CARD_THEME,
-                    "Failed to call InstallCatalogs: %s\n",
-                    error->message);
-    g_error_free (error);
-    g_object_unref (theme_manager);
-    return;
-  }
-
-  /* Installation succeeded. Now re-scan the theme directories */
-  ar_card_themes_load_theme_infos (theme_manager);
-
-  g_variant_unref (variant);
-  g_object_unref (theme_manager);
-}
-
 /* Class implementation */
 
 G_DEFINE_TYPE (ArCardThemes, ar_card_themes, G_TYPE_OBJECT);
@@ -644,60 +618,4 @@ ar_card_themes_install_themes (ArCardThemes *theme_manager,
                                GtkWidget *parent_window,
                                guint user_time)
 {
-  char *path;
-  GDBusConnection *connection;
-  GVariantBuilder builder;
-  GError *error = NULL;
-
-  path = ar_runtime_get_file (AR_RUNTIME_PKG_DATA_DIRECTORY, "aisleriot.catalog");
-
-  /* The gnome-packagekit DBUS API is broken */
-  if (!g_utf8_validate (path, -1, NULL)) {
-    g_free (path);
-    g_warning ("Borked! Cannot call InstallCatalogs with non-UTF-8 path!\n");
-    return;
-  }
-
-  connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-  if (connection == NULL) {
-    ar_debug_print (AR_DEBUG_CARD_THEME,
-                    "Failed to get the session bus: %s\n",
-                    error->message);
-    g_error_free (error);
-    g_free (path);
-    return;
-  }
-
-  g_variant_builder_init (&builder, G_VARIANT_TYPE ("(uass)"));
-
-#ifdef GDK_WINDOWING_X11
-  if (parent_window &&
-      GDK_IS_X11_DISPLAY (gtk_widget_get_display (parent_window))) {
-    g_variant_builder_add (&builder, "u",
-                           (guint) GDK_WINDOW_XID (gtk_widget_get_window (parent_window)));
-  } else
-#endif
-    g_variant_builder_add (&builder, "u", (guint) 0);
-
-  g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
-  g_variant_builder_add (&builder, "s", path);
-  g_variant_builder_close (&builder);
-  g_free (path);
-
-  g_variant_builder_add (&builder, "s", "hide-confirm-search" ","
-                                        "show-confirm-install" ","
-                                        "hide-warning");
-
-  g_dbus_connection_call (connection,
-                          "org.freedesktop.PackageKit",
-                          "/org/freedesktop/PackageKit",
-                          "org.freedesktop.PackageKit.Modify",
-                          "InstallCatalogs",
-                          g_variant_builder_end (&builder),
-                          G_VARIANT_TYPE ("()"),
-                          G_DBUS_CALL_FLAGS_NONE,
-                          G_MAXINT /* no timeout */,
-                          NULL /* cancellable */,
-                          (GAsyncReadyCallback) theme_install_reply_cb,
-                          g_object_ref (theme_manager));
 }
