@@ -326,6 +326,9 @@ ar_svg_new_from_gfile_sync (GFile *file,
                          cancellable,
                          error,
                          "file", file,
+#if LIBRSVG_CHECK_VERSION (2, 40, 3)
+                         "flags", RSVG_HANDLE_FLAG_UNLIMITED,
+#endif
                          NULL);
 }
 
