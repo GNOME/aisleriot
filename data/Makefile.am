@@ -20,7 +20,7 @@ desktopdir = $(datadir)/applications
 nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
 appdatadir = $(datadir)/appdata
-appdata_in_files = aisleriot.appdata.xml.in
+appdata_in_files = sol.appdata.xml.in
 nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 
 APPDATA_VALIDATE_FLAGS = --nonet
