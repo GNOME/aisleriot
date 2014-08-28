@@ -3,31 +3,51 @@
 # Yuri Syrota <rasta@renome.rovno.ua>, 1999-2000.
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2004-2010
 # Wanderlust <wanderlust@ukr.net>, 2009.
-# Korostil Daniel <ted.korostiled@gmail.com>, 2011, 2012.
+# Daniel Korostil <ted.korostiled@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 08:30+0300\n"
-"PO-Revision-Date: 2012-09-13 15:18-0700\n"
-"Last-Translator: Daniel <ted.korostiled@gmail.com>\n"
-"Language-Team: translation@linux.org.ua\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=aisler"
+"iot&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-08-22 02:31+0000\n"
+"PO-Revision-Date: 2014-08-28 15:59+0300\n"
+"Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
+"Language-Team: linux.org.ua\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
+
+#: ../data/sol.appdata.xml.in.h:1
+#| msgid "AisleRiot Solitaire"
+msgid "Aisleriot Solitaire"
+msgstr "Пасьянс Айслеріот"
+
+#: ../data/sol.appdata.xml.in.h:2 ../data/sol.desktop.in.in.h:2
+msgid "Play many different solitaire games"
+msgstr "Дозволяє грати у багато різних пасьянсів"
+
+#: ../data/sol.appdata.xml.in.h:3
+msgid ""
+"Aisleriot — also known as sol or solitaire — is a card game application that "
+"features over 80 different solitaire-type card games which are designed to "
+"play using a mouse, keyboard, or trackpad."
+msgstr ""
+"Айслеріот — також відомий як пасьянс — програма з понад 80 карткових ігор на "
+"кшталт пасьянсу, які створено для гри мишею, клавіатурою та тягучою "
+"панеллю. "
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
 msgstr "Пасьянс Айслеріот"
 
-#: ../data/sol.desktop.in.in.h:2
-msgid "Play many different solitaire games"
-msgstr "Дозволяє грати у багато різних пасьянсів"
+#: ../data/sol.desktop.in.in.h:3
+msgid "solitaire;cards;klondike;spider;freecell;patience;"
+msgstr "пасьянс;карти;павук;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -103,12 +123,44 @@ msgstr "Недавні пасьянси"
 msgid "A list of recently played games."
 msgstr "Список недавно зіграних пасьянсів."
 
+#: ../src/ar-application.c:216
+msgid "New Game"
+msgstr "Нова гра"
+
+#: ../src/ar-application.c:217
+#| msgid "Challenge Pack"
+msgid "Change Game"
+msgstr "Змінити гру"
+
+#: ../src/ar-application.c:221 ../src/stats-dialog.c:199
+msgid "Statistics"
+msgstr "Статистика"
+
+#: ../src/ar-application.c:222
+#| msgid "_Fullscreen"
+msgid "Fullscreen"
+msgstr "На ввесь екран"
+
+#: ../src/ar-application.c:226
+#| msgid "_Help"
+msgid "Help"
+msgstr "Довідка"
+
+#: ../src/ar-application.c:227
+#| msgid "_About"
+msgid "About"
+msgstr "Про програму"
+
+#: ../src/ar-application.c:228
+msgid "Quit"
+msgstr "Вийти"
+
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:178 ../src/window.c:2294
+#: ../src/ar-game-chooser.c:312 ../src/window.c:2109
 msgid "Select Game"
 msgstr "Вибрати гру"
 
-#: ../src/ar-game-chooser.c:192
+#: ../src/ar-game-chooser.c:326
 msgid "_Select"
 msgstr "_Вибір"
 
@@ -307,7 +359,7 @@ msgstr "Аґнес"
 #.
 #: ../src/game-names.h:21
 msgid "Athena"
-msgstr "Афіна"
+msgstr "Атени"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -1073,7 +1125,7 @@ msgstr "Біла голова"
 #.
 #: ../src/game-names.h:616
 msgid "Will O The Wisp"
-msgstr "Блукаючий вогник"
+msgstr "Блудний вогник"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -1228,11 +1280,11 @@ msgstr "десятка жир"
 
 #: ../src/lib/ar-card.c:309
 msgid "jack of clubs"
-msgstr "валет жир"
+msgstr "нижник жировий"
 
 #: ../src/lib/ar-card.c:310
 msgid "queen of clubs"
-msgstr "дама жир"
+msgstr "краля жирова"
 
 #: ../src/lib/ar-card.c:311
 msgid "king of clubs"
@@ -1240,159 +1292,159 @@ msgstr "король жир"
 
 #: ../src/lib/ar-card.c:312
 msgid "ace of diamonds"
-msgstr "туз бубни"
+msgstr "туз дзвінковий"
 
 #: ../src/lib/ar-card.c:313
 msgid "two of diamonds"
-msgstr "двійка бубни"
+msgstr "двійка дзвінкова"
 
 #: ../src/lib/ar-card.c:314
 msgid "three of diamonds"
-msgstr "трійка бубни"
+msgstr "трійка дзвінкова"
 
 #: ../src/lib/ar-card.c:315
 msgid "four of diamonds"
-msgstr "четвірка бубни"
+msgstr "четвірка дзвінкова"
 
 #: ../src/lib/ar-card.c:316
 msgid "five of diamonds"
-msgstr "п'ятірка бубни"
+msgstr "п'ятірка дзвінкова"
 
 #: ../src/lib/ar-card.c:317
 msgid "six of diamonds"
-msgstr "шістка бубни"
+msgstr "шістка дзвінкова"
 
 #: ../src/lib/ar-card.c:318
 msgid "seven of diamonds"
-msgstr "сімка бубни"
+msgstr "сімка дзвінкова"
 
 #: ../src/lib/ar-card.c:319
 msgid "eight of diamonds"
-msgstr "вісімка бубни"
+msgstr "вісімка дзвінкова"
 
 #: ../src/lib/ar-card.c:320
 msgid "nine of diamonds"
-msgstr "дев'ятка бубни"
+msgstr "дев'ятка дзвінкова"
 
 #: ../src/lib/ar-card.c:321
 msgid "ten of diamonds"
-msgstr "десятка бубни"
+msgstr "десятка дзвінкова"
 
 #: ../src/lib/ar-card.c:322
 msgid "jack of diamonds"
-msgstr "валет бубни"
+msgstr "нижник дзвінковий"
 
 #: ../src/lib/ar-card.c:323
 msgid "queen of diamonds"
-msgstr "дама бубни"
+msgstr "краля дзвінкова"
 
 #: ../src/lib/ar-card.c:324
 msgid "king of diamonds"
-msgstr "король бубни"
+msgstr "король дзвінковий"
 
 #: ../src/lib/ar-card.c:325
 msgid "ace of hearts"
-msgstr "туз черва"
+msgstr "туз чирвовий"
 
 #: ../src/lib/ar-card.c:326
 msgid "two of hearts"
-msgstr "двійка черва"
+msgstr "двійка чирвова"
 
 #: ../src/lib/ar-card.c:327
 msgid "three of hearts"
-msgstr "трійка черва"
+msgstr "трійка чирвова"
 
 #: ../src/lib/ar-card.c:328
 msgid "four of hearts"
-msgstr "четвірка черва"
+msgstr "четвірка чирвова"
 
 #: ../src/lib/ar-card.c:329
 msgid "five of hearts"
-msgstr "п'ятірка черва"
+msgstr "п'ятірка чирвова"
 
 #: ../src/lib/ar-card.c:330
 msgid "six of hearts"
-msgstr "шістка черва"
+msgstr "шістка чирвова"
 
 #: ../src/lib/ar-card.c:331
 msgid "seven of hearts"
-msgstr "сімка черва"
+msgstr "сімка чирвова"
 
 #: ../src/lib/ar-card.c:332
 msgid "eight of hearts"
-msgstr "вісімка черва"
+msgstr "вісімка чирвова"
 
 #: ../src/lib/ar-card.c:333
 msgid "nine of hearts"
-msgstr "дев'ятка черва"
+msgstr "дев'ятка чирвова"
 
 #: ../src/lib/ar-card.c:334
 msgid "ten of hearts"
-msgstr "десятка черва"
+msgstr "десятка чирвова"
 
 #: ../src/lib/ar-card.c:335
 msgid "jack of hearts"
-msgstr "валет черва"
+msgstr "нижник чирвовий"
 
 #: ../src/lib/ar-card.c:336
 msgid "queen of hearts"
-msgstr "дама черва"
+msgstr "краля чирвова"
 
 #: ../src/lib/ar-card.c:337
 msgid "king of hearts"
-msgstr "король черва"
+msgstr "король чирвовий"
 
 #: ../src/lib/ar-card.c:338
 msgid "ace of spades"
-msgstr "туз вино"
+msgstr "туз винивий"
 
 #: ../src/lib/ar-card.c:339
 msgid "two of spades"
-msgstr "двійка вино"
+msgstr "двійка винова"
 
 #: ../src/lib/ar-card.c:340
 msgid "three of spades"
-msgstr "трійка вино"
+msgstr "трійка винова"
 
 #: ../src/lib/ar-card.c:341
 msgid "four of spades"
-msgstr "четвірка вино"
+msgstr "четвірка винова"
 
 #: ../src/lib/ar-card.c:342
 msgid "five of spades"
-msgstr "п'ятірка вино"
+msgstr "п'ятірка винова"
 
 #: ../src/lib/ar-card.c:343
 msgid "six of spades"
-msgstr "шістка вино"
+msgstr "шістка винова"
 
 #: ../src/lib/ar-card.c:344
 msgid "seven of spades"
-msgstr "сімка вино"
+msgstr "сімка винова"
 
 #: ../src/lib/ar-card.c:345
 msgid "eight of spades"
-msgstr "вісімка вино"
+msgstr "вісімка винова"
 
 #: ../src/lib/ar-card.c:346
 msgid "nine of spades"
-msgstr "дев'ятка вино"
+msgstr "дев'ятка винова"
 
 #: ../src/lib/ar-card.c:347
 msgid "ten of spades"
-msgstr "десятка вино"
+msgstr "десятка винова"
 
 #: ../src/lib/ar-card.c:348
 msgid "jack of spades"
-msgstr "валет вино"
+msgstr "нижник виновий"
 
 #: ../src/lib/ar-card.c:349
 msgid "queen of spades"
-msgstr "дама вино"
+msgstr "краля винова"
 
 #: ../src/lib/ar-card.c:350
 msgid "king of spades"
-msgstr "король вино"
+msgstr "король виновий"
 
 #: ../src/lib/ar-card.c:367
 msgid "face-down card"
@@ -1436,15 +1488,15 @@ msgid "Window height"
 msgstr "Висота вікна"
 
 #. String reserve
-#: ../src/sol.c:50
+#: ../src/sol.c:51
 msgid "Solitaire"
 msgstr "Пасьянс"
 
-#: ../src/sol.c:51
+#: ../src/sol.c:52
 msgid "GNOME Solitaire"
 msgstr "Пасьянс GNOME"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:53
 msgid "About Solitaire"
 msgstr "Про пасьянс"
 
@@ -1456,11 +1508,11 @@ msgstr "Виберіть гру"
 msgid "NAME"
 msgstr "НАЗВА"
 
-#: ../src/sol.c:117 ../src/window.c:409 ../src/window.c:413
+#: ../src/sol.c:117
 msgid "FreeCell Solitaire"
 msgstr "Пасьянс «Вільна комірка»"
 
-#: ../src/sol.c:117 ../src/window.c:414 ../src/window.c:1873
+#: ../src/sol.c:117 ../src/window.c:416
 msgid "AisleRiot"
 msgstr "Айслеріот"
 
@@ -1503,10 +1555,6 @@ msgstr "Найгірша:"
 msgid "Time"
 msgstr "Час"
 
-#: ../src/stats-dialog.c:199
-msgid "Statistics"
-msgstr "Статистика"
-
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1540,43 +1588,43 @@ msgstr "Н/Д"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:220
+#: ../src/window.c:211
 msgid "Congratulations, you have won!"
 msgstr "Вітаємо, ви виграли!"
 
-#: ../src/window.c:224
+#: ../src/window.c:215
 msgid "There are no more moves"
 msgstr "Більше немає варіантів ходу."
 
-#: ../src/window.c:365
+#: ../src/window.c:366
 msgid "Main game:"
 msgstr "Основна гра:"
 
-#: ../src/window.c:373
+#: ../src/window.c:374
 msgid "Card games:"
 msgstr "Картярські ігри:"
 
-#: ../src/window.c:388
+#: ../src/window.c:389
 msgid "Card themes:"
 msgstr "Стиль карт:"
 
-#: ../src/window.c:416
-msgid "About FreeCell Solitaire"
-msgstr "Про пасьянс \"Вільна комірка\""
-
-#: ../src/window.c:417
-msgid "About AisleRiot"
+#: ../src/window.c:418
+#| msgid "About AisleRiot"
+msgid "About Aisleriot"
 msgstr "Про Айслеріот"
 
-#: ../src/window.c:421
+#: ../src/window.c:420
+#| msgid ""
+#| "AisleRiot provides a rule-based solitaire card engine that allows many "
+#| "different games to be played."
 msgid ""
-"AisleRiot provides a rule-based solitaire card engine that allows many "
+"Aisleriot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr ""
 "Айслеріот є механізмом пасьянсів, з гнучкою системою визначення нових правил "
-"гри,  що дозволяє реалізувати велику кількість різних ігор."
+"гри, що дозволяє реалізувати велику кількість різних ігор."
 
-#: ../src/window.c:430
+#: ../src/window.c:429
 msgid "translator-credits"
 msgstr ""
 "Юрій Сирота\n"
@@ -1584,187 +1632,186 @@ msgstr ""
 "Wanderlust <wanderlust@ukr.net>\n"
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: ../src/window.c:434
-msgid "GNOME Games web site"
-msgstr "Сайт GNOME Games"
+#: ../src/window.c:432
+#| msgid "AisleRiot Solitaire"
+msgid "Aisleriot web site"
+msgstr "Cайт Айслеріоту"
 
-#: ../src/window.c:1288
+#: ../src/window.c:1225
 #, c-format
 msgid "Play “%s”"
 msgstr "Грати в «%s»"
 
-#: ../src/window.c:1450
+#: ../src/window.c:1387
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Використовувати тему карт «%s»"
 
-#: ../src/window.c:1747
+#: ../src/window.c:1681
 msgid "A scheme exception occurred"
 msgstr "Виникла виключна ситуація у scheme"
 
-#: ../src/window.c:1750
+#: ../src/window.c:1684
 msgid "Please report this bug to the developers."
 msgstr "Будь ласка, повідомте про це розробників."
 
-#: ../src/window.c:1756
+#: ../src/window.c:1690
 msgid "_Don't report"
 msgstr "_Не повідомляти"
 
-#: ../src/window.c:1757
+#: ../src/window.c:1691
 msgid "_Report"
 msgstr "_Повідомити"
 
-#: ../src/window.c:1871
-msgid "Freecell Solitaire"
-msgstr "Пасьянс \"Вільна комірка\""
-
 #. Menu actions
-#: ../src/window.c:1990
+#: ../src/window.c:1898
 msgid "_Game"
 msgstr "_Гра"
 
-#: ../src/window.c:1991
+#: ../src/window.c:1899
 msgid "_View"
 msgstr "П_ерегляд"
 
-#: ../src/window.c:1992
+#: ../src/window.c:1900
 msgid "_Control"
 msgstr "_Контроль"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1902
 msgid "_Help"
 msgstr "_Довідка"
 
-#: ../src/window.c:1999
+#: ../src/window.c:1907
 msgid "Start a new game"
 msgstr "Розпочати нову гру"
 
-#: ../src/window.c:2002
+#: ../src/window.c:1910
 msgid "Restart the game"
 msgstr "Перезапустити гру знову"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1912
 msgid "_Select Game…"
 msgstr "_Вибрати гру…"
 
-#: ../src/window.c:2006
+#: ../src/window.c:1914
 msgid "Play a different game"
 msgstr "Вибрати інший пасьянс"
 
-#: ../src/window.c:2008
+#: ../src/window.c:1916
 msgid "_Recently Played"
 msgstr "Недавні п_асьянси"
 
-#: ../src/window.c:2009
+#: ../src/window.c:1917
 msgid "S_tatistics"
 msgstr "С_татистика"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1918
 msgid "Show gameplay statistics"
 msgstr "Показувати статистику гри"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1921
 msgid "Close this window"
 msgstr "Закрити це вікно"
 
-#: ../src/window.c:2016
+#: ../src/window.c:1924
 msgid "Undo the last move"
 msgstr "Вернути останні хід"
 
-#: ../src/window.c:2019
+#: ../src/window.c:1927
 msgid "Redo the undone move"
 msgstr "Повторити скасований хід"
 
-#: ../src/window.c:2022
+#: ../src/window.c:1930
 msgid "Deal next card or cards"
 msgstr "Роздати ще карту"
 
-#: ../src/window.c:2025
+#: ../src/window.c:1933
 msgid "Get a hint for your next move"
 msgstr "Отримати підказку наступного ходу"
 
-#: ../src/window.c:2028
+#: ../src/window.c:1936
 msgid "View help for Aisleriot"
 msgstr "Показати довідку до програми Aisleriot"
 
-#: ../src/window.c:2032
+#: ../src/window.c:1940
 msgid "View help for this game"
 msgstr "Показати довідку з цієї гри"
 
-#: ../src/window.c:2035
+#: ../src/window.c:1943
 msgid "About this game"
 msgstr "Про гру"
 
-#: ../src/window.c:2037
+#: ../src/window.c:1945
 msgid "Install card themes…"
 msgstr "Встановити тему карт..."
 
-#: ../src/window.c:2038
+#: ../src/window.c:1946
 msgid "Install new card themes from the distribution packages repositories"
-msgstr "Встановити нову тему карт з репозиторіїв дистрибутиву"
+msgstr "Встановити нову тему карт зі сховища дистрибутиву"
 
-#: ../src/window.c:2044
+#: ../src/window.c:1952
 msgid "_Card Style"
 msgstr "Стиль _карт"
 
-#: ../src/window.c:2078
+#: ../src/window.c:1978
 msgid "_Toolbar"
 msgstr "_Панель інструментів"
 
-#: ../src/window.c:2079
+#: ../src/window.c:1979
 msgid "Show or hide the toolbar"
-msgstr "Показати чи прибрати панель інструментів"
+msgstr "Показати чи Вилучити панель інструментів"
 
-#: ../src/window.c:2083
+#: ../src/window.c:1983
 msgid "_Statusbar"
 msgstr "Панель _стану"
 
-#: ../src/window.c:2084
+#: ../src/window.c:1984
 msgid "Show or hide statusbar"
-msgstr "Показати чи прибрати панель стану"
+msgstr "Показати чи Вилучити панель стану"
 
-#: ../src/window.c:2088
+#: ../src/window.c:1988
 msgid "_Click to Move"
 msgstr "_Перенесення карт"
 
-#: ../src/window.c:2089
+#: ../src/window.c:1989
 msgid "Pick up and drop cards by clicking"
 msgstr "Вибрати та опускати карти при клацанні"
 
-#: ../src/window.c:2093
+#. not active by default
+#: ../src/window.c:1992
 msgid "_Sound"
 msgstr "_Звук"
 
-#: ../src/window.c:2094
+#: ../src/window.c:1993
 msgid "Whether or not to play event sounds"
 msgstr "Чи супроводжувати події звуками."
 
-#: ../src/window.c:2099
+#. not active by default
+#: ../src/window.c:1996
 msgid "_Animations"
 msgstr "_Анімація"
 
-#: ../src/window.c:2100
+#: ../src/window.c:1997
 msgid "Whether or not to animate card moves"
 msgstr "Чи використовувати анімацію для руху карт."
 
-#: ../src/window.c:2318
+#: ../src/window.c:2133
 msgid "Score:"
 msgstr "Рахунок:"
 
-#: ../src/window.c:2330
+#: ../src/window.c:2145
 msgid "Time:"
 msgstr "Час:"
 
-#: ../src/window.c:2629
+#: ../src/window.c:2443
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Не вдалось запустити гру \"%s\""
 
-#: ../src/window.c:2642
+#: ../src/window.c:2450
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Не вдалось знайти останню зіграну гру."
 
-#: ../src/window.c:2643
+#: ../src/window.c:2451
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1781,28 +1828,28 @@ msgstr "Основна карта: ~a"
 
 #: ../games/agnes.scm:74 ../games/bear-river.scm:90 ../games/canfield.scm:81
 #: ../games/chessboard.scm:94 ../games/eagle-wing.scm:104
-#: ../games/glenwood.scm:87 ../games/kansas.scm:88 ../games/lady-jane.scm:105
+#: ../games/glenwood.scm:87 ../games/kansas.scm:88 ../games/lady-jane.scm:111
 #: ../games/plait.scm:242 ../games/royal-east.scm:85 ../games/terrace.scm:141
 msgid "Base Card: Ace"
 msgstr "Основна карта: Туз"
 
 #: ../games/agnes.scm:76 ../games/bear-river.scm:92 ../games/canfield.scm:83
 #: ../games/chessboard.scm:96 ../games/eagle-wing.scm:106
-#: ../games/glenwood.scm:89 ../games/kansas.scm:90 ../games/lady-jane.scm:107
+#: ../games/glenwood.scm:89 ../games/kansas.scm:90 ../games/lady-jane.scm:113
 #: ../games/plait.scm:244 ../games/royal-east.scm:87 ../games/terrace.scm:143
 msgid "Base Card: Jack"
-msgstr "Основна карта: Валет"
+msgstr "Основна карта: Нижник"
 
 #: ../games/agnes.scm:78 ../games/bear-river.scm:94 ../games/canfield.scm:85
 #: ../games/chessboard.scm:98 ../games/eagle-wing.scm:108
-#: ../games/glenwood.scm:91 ../games/kansas.scm:92 ../games/lady-jane.scm:109
+#: ../games/glenwood.scm:91 ../games/kansas.scm:92 ../games/lady-jane.scm:115
 #: ../games/plait.scm:246 ../games/royal-east.scm:89 ../games/terrace.scm:145
 msgid "Base Card: Queen"
-msgstr "Основна карта: Дама"
+msgstr "Основна карта: Краля"
 
 #: ../games/agnes.scm:80 ../games/bear-river.scm:96 ../games/canfield.scm:87
 #: ../games/chessboard.scm:100 ../games/eagle-wing.scm:110
-#: ../games/glenwood.scm:93 ../games/kansas.scm:94 ../games/lady-jane.scm:111
+#: ../games/glenwood.scm:93 ../games/kansas.scm:94 ../games/lady-jane.scm:117
 #: ../games/plait.scm:248 ../games/royal-east.scm:91 ../games/terrace.scm:147
 msgid "Base Card: King"
 msgstr "Основна карта: Король"
@@ -1813,12 +1860,12 @@ msgstr "Основна карта: Король"
 #: ../games/cover.scm:42 ../games/doublets.scm:67 ../games/eagle-wing.scm:92
 #: ../games/easthaven.scm:56 ../games/elevator.scm:98
 #: ../games/escalator.scm:123 ../games/first-law.scm:42
-#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:92
+#: ../games/fortunes.scm:43 ../games/forty-thieves.scm:97
 #: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
 #: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:86 ../games/labyrinth.scm:74
-#: ../games/lady-jane.scm:116 ../games/monte-carlo.scm:75
-#: ../games/napoleons-tomb.scm:355 ../games/neighbor.scm:75
+#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
+#: ../games/lady-jane.scm:122 ../games/monte-carlo.scm:75
+#: ../games/napoleons-tomb.scm:339 ../games/neighbor.scm:75
 #: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
 #: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
 #: ../games/straight-up.scm:64 ../games/terrace.scm:159
@@ -1830,7 +1877,7 @@ msgstr "Основна карта: Король"
 msgid "Stock left:"
 msgstr "Лишилось в колоді:"
 
-#: ../games/agnes.scm:87 ../games/lady-jane.scm:118
+#: ../games/agnes.scm:87 ../games/lady-jane.scm:124
 msgid "Stock left: 0"
 msgstr "Лишилось в колоді: 0"
 
@@ -1840,10 +1887,10 @@ msgstr "Лишилось в колоді: 0"
 msgid "Deal more cards"
 msgstr "Ще роздати карти"
 
-#: ../games/agnes.scm:270 ../games/backbone.scm:295
-#: ../games/bakers-dozen.scm:194 ../games/beleaguered-castle.scm:171
+#: ../games/agnes.scm:270 ../games/backbone.scm:288
+#: ../games/bakers-dozen.scm:194 ../games/beleaguered-castle.scm:169
 #: ../games/canfield.scm:303 ../games/jumbo.scm:333
-#: ../games/king-albert.scm:286 ../games/lady-jane.scm:428
+#: ../games/king-albert.scm:286 ../games/lady-jane.scm:422
 #: ../games/streets-and-alleys.scm:180
 msgid "Try rearranging the cards"
 msgstr "Спробуйте перетасувати карти"
@@ -1862,55 +1909,55 @@ msgstr "червоний джокер"
 
 #: ../games/api.scm:410
 msgid "the ace of clubs"
-msgstr "туз жир"
+msgstr "туз жировий"
 
 #: ../games/api.scm:411
 msgid "the two of clubs"
-msgstr "двійку жир"
+msgstr "двійка жирова"
 
 #: ../games/api.scm:412
 msgid "the three of clubs"
-msgstr "трійку жир"
+msgstr "трійка жирова"
 
 #: ../games/api.scm:413
 msgid "the four of clubs"
-msgstr "четвірку жир"
+msgstr "четвірка жирова"
 
 #: ../games/api.scm:414
 msgid "the five of clubs"
-msgstr "п'ятірку жир"
+msgstr "п'ятірка жирова"
 
 #: ../games/api.scm:415
 msgid "the six of clubs"
-msgstr "шістку жир"
+msgstr "шістка жирова"
 
 #: ../games/api.scm:416
 msgid "the seven of clubs"
-msgstr "сімку жир"
+msgstr "сімка жирова"
 
 #: ../games/api.scm:417
 msgid "the eight of clubs"
-msgstr "вісімку жир"
+msgstr "вісімка жирова"
 
 #: ../games/api.scm:418
 msgid "the nine of clubs"
-msgstr "дев'ятку жир"
+msgstr "дев'ятка жирова"
 
 #: ../games/api.scm:419
 msgid "the ten of clubs"
-msgstr "десятку жир"
+msgstr "десятка жирова"
 
 #: ../games/api.scm:420
 msgid "the jack of clubs"
-msgstr "валета жир"
+msgstr "нижника жировий"
 
 #: ../games/api.scm:421
 msgid "the queen of clubs"
-msgstr "даму жир"
+msgstr "краля жирова"
 
 #: ../games/api.scm:422
 msgid "the king of clubs"
-msgstr "короля жир"
+msgstr "король жировий"
 
 #: ../games/api.scm:423 ../games/api.scm:438 ../games/api.scm:453
 #: ../games/api.scm:468 ../games/api.scm:469
@@ -1919,159 +1966,159 @@ msgstr "невідома карта"
 
 #: ../games/api.scm:425
 msgid "the ace of spades"
-msgstr "туз вино"
+msgstr "туз виновий"
 
 #: ../games/api.scm:426
 msgid "the two of spades"
-msgstr "двійку вино"
+msgstr "двійка винова"
 
 #: ../games/api.scm:427
 msgid "the three of spades"
-msgstr "трійку вино"
+msgstr "трійка винова"
 
 #: ../games/api.scm:428
 msgid "the four of spades"
-msgstr "четвірку вино"
+msgstr "четвірка винова"
 
 #: ../games/api.scm:429
 msgid "the five of spades"
-msgstr "п'ятірку вино"
+msgstr "п'ятірка винова"
 
 #: ../games/api.scm:430
 msgid "the six of spades"
-msgstr "шістку вино"
+msgstr "шістка винова"
 
 #: ../games/api.scm:431
 msgid "the seven of spades"
-msgstr "сімку вино"
+msgstr "сімка винова"
 
 #: ../games/api.scm:432
 msgid "the eight of spades"
-msgstr "вісімку вино"
+msgstr "вісімка винова"
 
 #: ../games/api.scm:433
 msgid "the nine of spades"
-msgstr "дев'ятку вино"
+msgstr "дев'ятка винова"
 
 #: ../games/api.scm:434
 msgid "the ten of spades"
-msgstr "десятку вино"
+msgstr "десятка винова"
 
 #: ../games/api.scm:435
 msgid "the jack of spades"
-msgstr "валета вино"
+msgstr "нижника виновий"
 
 #: ../games/api.scm:436
 msgid "the queen of spades"
-msgstr "даму вино"
+msgstr "краля винова"
 
 #: ../games/api.scm:437
 msgid "the king of spades"
-msgstr "короля вино"
+msgstr "король виновий"
 
 #: ../games/api.scm:440
 msgid "the ace of hearts"
-msgstr "туз черва"
+msgstr "туз чирвовий"
 
 #: ../games/api.scm:441
 msgid "the two of hearts"
-msgstr "двійку черва"
+msgstr "двійка чирвова"
 
 #: ../games/api.scm:442
 msgid "the three of hearts"
-msgstr "трійку черва"
+msgstr "трійка чирвова"
 
 #: ../games/api.scm:443
 msgid "the four of hearts"
-msgstr "четвірку черва"
+msgstr "четвірка чирвова"
 
 #: ../games/api.scm:444
 msgid "the five of hearts"
-msgstr "п'ятірку черва"
+msgstr "п'ятірка чирвова"
 
 #: ../games/api.scm:445
 msgid "the six of hearts"
-msgstr "шістку черва"
+msgstr "шістка чирвова"
 
 #: ../games/api.scm:446
 msgid "the seven of hearts"
-msgstr "сімку черва"
+msgstr "сімка чирвова"
 
 #: ../games/api.scm:447
 msgid "the eight of hearts"
-msgstr "вісімку черва"
+msgstr "вісімка чирвова"
 
 #: ../games/api.scm:448
 msgid "the nine of hearts"
-msgstr "дев'ятку черва"
+msgstr "дев'ятка чирвова"
 
 #: ../games/api.scm:449
 msgid "the ten of hearts"
-msgstr "десятку черва"
+msgstr "десятка чирвова"
 
 #: ../games/api.scm:450
 msgid "the jack of hearts"
-msgstr "валета черва"
+msgstr "нижника чирвовий"
 
 #: ../games/api.scm:451
 msgid "the queen of hearts"
-msgstr "даму черва"
+msgstr "краля чирвова"
 
 #: ../games/api.scm:452
 msgid "the king of hearts"
-msgstr "короля черва"
+msgstr "король чирвовий"
 
 #: ../games/api.scm:455
 msgid "the ace of diamonds"
-msgstr "туз бубни"
+msgstr "туз дзвінковий"
 
 #: ../games/api.scm:456
 msgid "the two of diamonds"
-msgstr "двійку бубни"
+msgstr "двійка дзвінкова"
 
 #: ../games/api.scm:457
 msgid "the three of diamonds"
-msgstr "трійку бубни"
+msgstr "трійка дзвінкова"
 
 #: ../games/api.scm:458
 msgid "the four of diamonds"
-msgstr "четвірку бубни"
+msgstr "четвірка дзвінкова"
 
 #: ../games/api.scm:459
 msgid "the five of diamonds"
-msgstr "п'ятірку бубни"
+msgstr "п'ятірка дзвінкова"
 
 #: ../games/api.scm:460
 msgid "the six of diamonds"
-msgstr "шістку бубни"
+msgstr "шістка дзвінкова"
 
 #: ../games/api.scm:461
 msgid "the seven of diamonds"
-msgstr "сімку бубни"
+msgstr "сімка дзвінкова"
 
 #: ../games/api.scm:462
 msgid "the eight of diamonds"
-msgstr "вісімку бубни"
+msgstr "вісімка дзвінкова"
 
 #: ../games/api.scm:463
 msgid "the nine of diamonds"
-msgstr "дев'ятку бубни"
+msgstr "дев'ятка дзвінкова"
 
 #: ../games/api.scm:464
 msgid "the ten of diamonds"
-msgstr "десятку бубни"
+msgstr "десятка дзвінкова"
 
 #: ../games/api.scm:465
 msgid "the jack of diamonds"
-msgstr "валета бубни"
+msgstr "нижник дзвінковий"
 
 #: ../games/api.scm:466
 msgid "the queen of diamonds"
-msgstr "даму бубни"
+msgstr "краля дзвінкова"
 
 #: ../games/api.scm:467
 msgid "the king of diamonds"
-msgstr "короля бубни"
+msgstr "король дзвінковий"
 
 #: ../games/api.scm:473
 #, scheme-format
@@ -2201,12 +2248,12 @@ msgstr "Покласти ~a на десятку жир."
 #: ../games/api.scm:497
 #, scheme-format
 msgid "Move ~a onto the jack of clubs."
-msgstr "Покласти ~a на валет жир."
+msgstr "Покласти ~a на нижник жировий."
 
 #: ../games/api.scm:498
 #, scheme-format
 msgid "Move ~a onto the queen of clubs."
-msgstr "Покласти ~a на даму жир."
+msgstr "Покласти ~a на кралю жир."
 
 #: ../games/api.scm:499
 #, scheme-format
@@ -2272,12 +2319,12 @@ msgstr "Покласти ~a на десятку вино."
 #: ../games/api.scm:512
 #, scheme-format
 msgid "Move ~a onto the jack of spades."
-msgstr "Покласти ~a на валет вино."
+msgstr "Покласти ~a на нижник виновий."
 
 #: ../games/api.scm:513
 #, scheme-format
 msgid "Move ~a onto the queen of spades."
-msgstr "Покласти ~a на королеву вино."
+msgstr "Покласти ~a на кралю вино."
 
 #: ../games/api.scm:514
 #, scheme-format
@@ -2337,12 +2384,12 @@ msgstr "Покласти ~a на десятку чирвову."
 #: ../games/api.scm:527
 #, scheme-format
 msgid "Move ~a onto the jack of hearts."
-msgstr "Покласти ~a на валета чирвового."
+msgstr "Покласти ~a на нижник чирвовий."
 
 #: ../games/api.scm:528
 #, scheme-format
 msgid "Move ~a onto the queen of hearts."
-msgstr "Покласти ~a на даму чирвову."
+msgstr "Покласти ~a на кралю чирвову."
 
 #: ../games/api.scm:529
 #, scheme-format
@@ -2402,52 +2449,316 @@ msgstr "Покласти ~a на десятку дзвінкову."
 #: ../games/api.scm:542
 #, scheme-format
 msgid "Move ~a onto the jack of diamonds."
-msgstr "Покласти ~a на валет дзвінковий."
+msgstr "Покласти ~a на нижник дзвінковий."
 
 #: ../games/api.scm:543
 #, scheme-format
 msgid "Move ~a onto the queen of diamonds."
-msgstr "Покласти ~a на королеву дзвінкову."
+msgstr "Покласти ~a на кралю дзвінкову."
 
 #: ../games/api.scm:544
 #, scheme-format
 msgid "Move ~a onto the king of diamonds."
 msgstr "Покласти ~a на короля дзвінкового."
 
-#: ../games/athena.scm:80 ../games/klondike.scm:292
-#: ../games/napoleons-tomb.scm:370 ../games/osmosis.scm:221
+#: ../games/api.scm:559
+#| msgid "the black joker"
+msgid "Remove the black joker."
+msgstr "Вилучити чорного джокера."
+
+#: ../games/api.scm:559
+#| msgid "the red joker"
+msgid "Remove the red joker."
+msgstr "Вилучити червоного джокера."
+
+#: ../games/api.scm:561
+#| msgid "Remove the ten of clubs."
+msgid "Remove the ace of clubs."
+msgstr "Вилучити туз жировий."
+
+#: ../games/api.scm:562
+#| msgid "Remove the ten of clubs."
+msgid "Remove the two of clubs."
+msgstr "Вилучити двійку жирову."
+
+#: ../games/api.scm:563
+#| msgid "Remove the ten of clubs."
+msgid "Remove the three of clubs."
+msgstr "Вилучити трійку жирову."
+
+#: ../games/api.scm:564
+#| msgid "Remove the ten of clubs."
+msgid "Remove the four of clubs."
+msgstr "Вилучити четвірку жирову."
+
+#: ../games/api.scm:565
+#| msgid "Remove the ten of clubs."
+msgid "Remove the five of clubs."
+msgstr "Вилучити п'ятірку жирову."
+
+#: ../games/api.scm:566
+#| msgid "Remove the king of clubs."
+msgid "Remove the six of clubs."
+msgstr "Вилучити шістку жирову."
+
+#: ../games/api.scm:567
+#| msgid "Remove the ten of clubs."
+msgid "Remove the seven of clubs."
+msgstr "Вилучити сімку жирову."
+
+#: ../games/api.scm:568
+#| msgid "Remove the king of clubs."
+msgid "Remove the eight of clubs."
+msgstr "Вилучити вісімку жирову."
+
+#: ../games/api.scm:569
+#| msgid "Remove the king of clubs."
+msgid "Remove the nine of clubs."
+msgstr "Вилучити дев'ятку жирову."
+
+#: ../games/api.scm:570 ../games/camelot.scm:168
+msgid "Remove the ten of clubs."
+msgstr "Вилучити десятку жирову."
+
+#: ../games/api.scm:571
+#| msgid "Remove the king of clubs."
+msgid "Remove the jack of clubs."
+msgstr "Вилучити нижник жировий."
+
+#: ../games/api.scm:572
+#| msgid "Remove the ten of clubs."
+msgid "Remove the queen of clubs."
+msgstr "Вилучити кралю жирову."
+
+#: ../games/api.scm:573 ../games/helsinki.scm:109 ../games/neighbor.scm:141
+#: ../games/thirteen.scm:385 ../games/treize.scm:279 ../games/yield.scm:295
+msgid "Remove the king of clubs."
+msgstr "Вилучити короля жирового."
+
+#: ../games/api.scm:574 ../games/api.scm:589 ../games/api.scm:604
+#: ../games/api.scm:619 ../games/api.scm:620
+#| msgid "the unknown card"
+msgid "Remove the unknown card."
+msgstr "Вилучити невідому карту."
+
+#: ../games/api.scm:576
+#| msgid "Remove the ten of spades."
+msgid "Remove the ace of spades."
+msgstr "Вилучити туз виновий."
+
+#: ../games/api.scm:577
+#| msgid "Remove the ten of spades."
+msgid "Remove the two of spades."
+msgstr "Вилучити двійку винову."
+
+#: ../games/api.scm:578
+#| msgid "Remove the ten of spades."
+msgid "Remove the three of spades."
+msgstr "Вилучити трійку винову."
+
+#: ../games/api.scm:579
+#| msgid "Remove the ten of spades."
+msgid "Remove the four of spades."
+msgstr "Вилучити четвірку винову."
+
+#: ../games/api.scm:580
+#| msgid "Remove the ten of spades."
+msgid "Remove the five of spades."
+msgstr "Вилучити п'ятірку винову."
+
+#: ../games/api.scm:581
+#| msgid "Remove the king of spades."
+msgid "Remove the six of spades."
+msgstr "Вилучити шістку винову."
+
+#: ../games/api.scm:582
+#| msgid "Remove the ten of spades."
+msgid "Remove the seven of spades."
+msgstr "Вилучити сімку винову."
+
+#: ../games/api.scm:583
+#| msgid "Remove the king of spades."
+msgid "Remove the eight of spades."
+msgstr "Вилучити вісімку винову."
+
+#: ../games/api.scm:584
+#| msgid "Remove the king of spades."
+msgid "Remove the nine of spades."
+msgstr "Вилучити дев'ятку винову."
+
+#: ../games/api.scm:585 ../games/camelot.scm:171
+msgid "Remove the ten of spades."
+msgstr "Перетягнути десятку винову."
+
+#: ../games/api.scm:586
+#| msgid "Remove the king of spades."
+msgid "Remove the jack of spades."
+msgstr "Вилучити нижника винового."
+
+#: ../games/api.scm:587
+#| msgid "Remove the ten of spades."
+msgid "Remove the queen of spades."
+msgstr "Вилучити кралю винову."
+
+#: ../games/api.scm:588 ../games/helsinki.scm:112 ../games/neighbor.scm:144
+#: ../games/thirteen.scm:388 ../games/treize.scm:282 ../games/yield.scm:298
+msgid "Remove the king of spades."
+msgstr "Перетягнути короля винового."
+
+#: ../games/api.scm:591
+#| msgid "Remove the ten of hearts."
+msgid "Remove the ace of hearts."
+msgstr "Вилучити туз чирвовий."
+
+#: ../games/api.scm:592
+#| msgid "Remove the ten of hearts."
+msgid "Remove the two of hearts."
+msgstr "Вилучити двійку чирвову."
+
+#: ../games/api.scm:593
+#| msgid "Remove the ten of hearts."
+msgid "Remove the three of hearts."
+msgstr "Вилучити трійку чирвову."
+
+#: ../games/api.scm:594
+#| msgid "Remove the ten of hearts."
+msgid "Remove the four of hearts."
+msgstr "Вилучити четвірку чирвову."
+
+#: ../games/api.scm:595
+#| msgid "Remove the ten of hearts."
+msgid "Remove the five of hearts."
+msgstr "Вилучити п'ятірку чирвову."
+
+#: ../games/api.scm:596
+#| msgid "Remove the king of hearts."
+msgid "Remove the six of hearts."
+msgstr "Вилучити шістку чирвову."
+
+#: ../games/api.scm:597
+#| msgid "Remove the ten of hearts."
+msgid "Remove the seven of hearts."
+msgstr "Вилучити сімку чирвову."
+
+#: ../games/api.scm:598
+#| msgid "Remove the king of hearts."
+msgid "Remove the eight of hearts."
+msgstr "Вилучити вісімку чирвову."
+
+#: ../games/api.scm:599
+#| msgid "Remove the king of hearts."
+msgid "Remove the nine of hearts."
+msgstr "Вилучити дев'ятку чирвову."
+
+#: ../games/api.scm:600 ../games/camelot.scm:170
+msgid "Remove the ten of hearts."
+msgstr "Вилучити десятку чирвову."
+
+#: ../games/api.scm:601
+#| msgid "Remove the king of hearts."
+msgid "Remove the jack of hearts."
+msgstr "Вилучити нижника чирвового."
+
+#: ../games/api.scm:602
+#| msgid "Remove the ten of hearts."
+msgid "Remove the queen of hearts."
+msgstr "Вилучити кралю чирвову."
+
+#: ../games/api.scm:603 ../games/helsinki.scm:111 ../games/neighbor.scm:143
+#: ../games/thirteen.scm:387 ../games/treize.scm:281 ../games/yield.scm:297
+msgid "Remove the king of hearts."
+msgstr "Вилучити короля чирвового."
+
+#: ../games/api.scm:606
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the ace of diamonds."
+msgstr "Вилучити туз дзвінковий."
+
+#: ../games/api.scm:607
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the two of diamonds."
+msgstr "Вилучити двійку дзвінкову."
+
+#: ../games/api.scm:608
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the three of diamonds."
+msgstr "Вилучити трійку дзвінкову."
+
+#: ../games/api.scm:609
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the four of diamonds."
+msgstr "Вилучити четвірку дзвінкову."
+
+#: ../games/api.scm:610
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the five of diamonds."
+msgstr "Вилучити п'ятірку дзвінкову."
+
+#: ../games/api.scm:611
+#| msgid "Remove the king of diamonds."
+msgid "Remove the six of diamonds."
+msgstr "Вилучити шістку дзвінкову."
+
+#: ../games/api.scm:612
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the seven of diamonds."
+msgstr "Вилучити сімку дзвінкову."
+
+#: ../games/api.scm:613
+#| msgid "Remove the king of diamonds."
+msgid "Remove the eight of diamonds."
+msgstr "Вилучити вісімку дзвінкову."
+
+#: ../games/api.scm:614
+#| msgid "Remove the king of diamonds."
+msgid "Remove the nine of diamonds."
+msgstr "Вилучити дев'ятку дзвінкову."
+
+#: ../games/api.scm:615 ../games/camelot.scm:169
+msgid "Remove the ten of diamonds."
+msgstr "Вилучити десятку дзвінкову."
+
+#: ../games/api.scm:616
+#| msgid "Remove the king of diamonds."
+msgid "Remove the jack of diamonds."
+msgstr "Вилучити нижника дзвінкового."
+
+#: ../games/api.scm:617
+#| msgid "Remove the ten of diamonds."
+msgid "Remove the queen of diamonds."
+msgstr "Вилучити кралю дзвінкову."
+
+#: ../games/api.scm:618 ../games/helsinki.scm:110 ../games/neighbor.scm:142
+#: ../games/thirteen.scm:386 ../games/treize.scm:280 ../games/yield.scm:296
+msgid "Remove the king of diamonds."
+msgstr "Вилучити короля дзвінкового."
+
+#: ../games/athena.scm:80 ../games/klondike.scm:293
+#: ../games/napoleons-tomb.scm:354 ../games/osmosis.scm:221
 #: ../games/saratoga.scm:80
 msgid "Three card deals"
 msgstr "Здавати по три карти"
 
-#: ../games/auld-lang-syne.scm:124 ../games/bristol.scm:262
-#: ../games/first-law.scm:127 ../games/fortunes.scm:161
-#: ../games/lady-jane.scm:233 ../games/scuffle.scm:140 ../games/spider.scm:290
+#: ../games/auld-lang-syne.scm:122 ../games/bristol.scm:262
+#: ../games/first-law.scm:127 ../games/fortunes.scm:157
+#: ../games/lady-jane.scm:239 ../games/scuffle.scm:138 ../games/spider.scm:290
 #: ../games/thumb-and-pouch.scm:258 ../games/zebra.scm:212
 msgid "Deal another round"
 msgstr "Здати карти ще раз"
 
 #: ../games/backbone.scm:127 ../games/doublets.scm:71
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
-#: ../games/jumbo.scm:68 ../games/klondike.scm:82
-#: ../games/napoleons-tomb.scm:351 ../games/plait.scm:252
+#: ../games/jumbo.scm:68 ../games/klondike.scm:83
+#: ../games/napoleons-tomb.scm:335 ../games/plait.scm:252
 #: ../games/scuffle.scm:55 ../games/straight-up.scm:72
 #: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
 #: ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "Лишилось роздач:"
 
-#: ../games/backbone.scm:234
-msgid "an empty slot on the tableau"
-msgstr "порожнє поле на столі"
-
-#: ../games/backbone.scm:235
-msgid "an empty slot on the foundation"
-msgstr "порожнє поле на базі"
-
-#: ../games/backbone.scm:293 ../games/camelot.scm:209
+#: ../games/backbone.scm:286 ../games/camelot.scm:209
 #: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:266 ../games/napoleons-tomb.scm:339
+#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:323
 #: ../games/osmosis.scm:215 ../games/plait.scm:103
 #: ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
@@ -2462,22 +2773,6 @@ msgstr "Основна карта: "
 #: ../games/bear-river.scm:207
 msgid "Move something onto an empty right-hand tableau slot"
 msgstr "Покладіть будь-що в порожнє гніздо на столі"
-
-#: ../games/camelot.scm:168
-msgid "Remove the ten of clubs."
-msgstr "Перетягнути десятку жирову."
-
-#: ../games/camelot.scm:169
-msgid "Remove the ten of diamonds."
-msgstr "Перетягнути десятку дзвінкову."
-
-#: ../games/camelot.scm:170
-msgid "Remove the ten of hearts."
-msgstr "Перетягнути десятку чирвову."
-
-#: ../games/camelot.scm:171
-msgid "Remove the ten of spades."
-msgstr "Перетягнути десятку винову."
 
 #: ../games/canfield.scm:73 ../games/eagle-wing.scm:96 ../games/kansas.scm:80
 #: ../games/straight-up.scm:68
@@ -2618,7 +2913,7 @@ msgstr "Ви шукає джокера."
 
 #: ../games/doublets.scm:168
 msgid "You are searching for a queen."
-msgstr "Ви шукає королеву."
+msgstr "Ви шукає кралю."
 
 #: ../games/doublets.scm:169
 msgid "You are searching for a king."
@@ -2629,9 +2924,9 @@ msgid "Unknown value"
 msgstr "Невідоме значення"
 
 #: ../games/eagle-wing.scm:332 ../games/elevator.scm:363
-#: ../games/escalator.scm:224 ../games/royal-east.scm:193
-#: ../games/thirteen.scm:415 ../games/treize.scm:305
-#: ../games/triple-peaks.scm:344 ../games/union-square.scm:464
+#: ../games/escalator.scm:222 ../games/royal-east.scm:193
+#: ../games/thirteen.scm:419 ../games/treize.scm:305
+#: ../games/triple-peaks.scm:342 ../games/union-square.scm:464
 #: ../games/westhaven.scm:196 ../games/yield.scm:321
 msgid "Deal a card"
 msgstr "Здати карту"
@@ -2640,12 +2935,12 @@ msgstr "Здати карту"
 msgid "Move a king onto an empty tableau slot."
 msgstr "Перекладіть короля в порожнє ігрове поле."
 
-#: ../games/easthaven.scm:239 ../games/klondike.scm:270
+#: ../games/easthaven.scm:239 ../games/klondike.scm:271
 #: ../games/union-square.scm:472
 msgid "No hint available right now"
 msgstr "Зараз підказок немає"
 
-#: ../games/eight-off.scm:248 ../games/seahaven.scm:316
+#: ../games/eight-off.scm:248 ../games/seahaven.scm:315
 msgid "Move something on to an empty reserve"
 msgstr "Покладіть будь-що на порожнє місце"
 
@@ -2671,61 +2966,61 @@ msgstr "Без рухів."
 
 #: ../games/first-law.scm:139
 msgid "Remove the aces"
-msgstr "Прибрати тузи"
+msgstr "Вилучити тузи"
 
 #: ../games/first-law.scm:141
 msgid "Remove the twos"
-msgstr "Прибрати двійки"
+msgstr "Вилучити двійки"
 
 #: ../games/first-law.scm:143
 msgid "Remove the threes"
-msgstr "Прибрати трійки"
+msgstr "Вилучити трійки"
 
 #: ../games/first-law.scm:145
 msgid "Remove the fours"
-msgstr "Прибрати четвірки"
+msgstr "Вилучити четвірки"
 
 #: ../games/first-law.scm:147
 msgid "Remove the fives"
-msgstr "Прибрати п'ятірки"
+msgstr "Вилучити п'ятірки"
 
 #: ../games/first-law.scm:149
 msgid "Remove the sixes"
-msgstr "Прибрати шістки"
+msgstr "Вилучити шістки"
 
 #: ../games/first-law.scm:151
 msgid "Remove the sevens"
-msgstr "Прибрати сімки"
+msgstr "Вилучити сімки"
 
 #: ../games/first-law.scm:153
 msgid "Remove the eights"
-msgstr "Прибрати вісімки"
+msgstr "Вилучити вісімки"
 
 #: ../games/first-law.scm:155
 msgid "Remove the nines"
-msgstr "Прибрати дев'ятки"
+msgstr "Вилучити дев'ятки"
 
 #: ../games/first-law.scm:157
 msgid "Remove the tens"
-msgstr "Прибрати десятки"
+msgstr "Вилучити десятки"
 
 #: ../games/first-law.scm:159
 msgid "Remove the jacks"
-msgstr "Прибрати валети"
+msgstr "Вилучити нижники"
 
 #: ../games/first-law.scm:161
 msgid "Remove the queens"
-msgstr "Прибрати дами"
+msgstr "Вилучити кралю"
 
 #: ../games/first-law.scm:163
 msgid "Remove the kings"
-msgstr "Прибрати королі"
+msgstr "Вилучити королі"
 
 #: ../games/first-law.scm:165
 msgid "I'm not sure"
 msgstr "Я не впевнений"
 
-#: ../games/first-law.scm:185
+#: ../games/first-law.scm:184
 msgid "Return cards to stock"
 msgstr "Повернути карти в колоду"
 
@@ -2733,16 +3028,11 @@ msgstr "Повернути карти в колоду"
 msgid "Move something onto an empty tableau slot."
 msgstr "Перекладіть будь-що в порожнє ігрове поле."
 
-#: ../games/fortunes.scm:135 ../games/fortunes.scm:138
-#, scheme-format
-msgid "Move ~a off the board"
-msgstr "Відкладіть ~a за край столу"
-
-#: ../games/fortunes.scm:158 ../games/klondike.scm:261
+#: ../games/fortunes.scm:154 ../games/klondike.scm:262
 msgid "Consider moving something into an empty slot"
 msgstr "Спробуйте перекласти щось на порожнє поле"
 
-#: ../games/forty-thieves.scm:374
+#: ../games/forty-thieves.scm:357
 msgid "Deal a card from stock"
 msgstr "Беріть карту з колоди"
 
@@ -2810,15 +3100,15 @@ msgstr "Помістіть десятку жирову поряд з дев'ят
 
 #: ../games/gaps.scm:320
 msgid "Place the jack of clubs next to the ten of clubs."
-msgstr "Помістіть валет жировий поряд з десяткою жировою."
+msgstr "Помістіть нижник жировий поряд з десяткою жировою."
 
 #: ../games/gaps.scm:321
 msgid "Place the queen of clubs next to the jack of clubs."
-msgstr "Помістіть даму жирову поряд з валетом жировим."
+msgstr "Помістіть кралю жирову поряд з нижником жировим."
 
 #: ../games/gaps.scm:322
 msgid "Place the king of clubs next to the queen of clubs."
-msgstr "Помістіть короля жирового поряд з дамою жировою."
+msgstr "Помістіть короля жирового поряд з кралю жировою."
 
 #: ../games/gaps.scm:325
 msgid "Place the two of spades next to the ace of spades."
@@ -2858,15 +3148,15 @@ msgstr "Помістіть десятку винову поряд з дев'ят
 
 #: ../games/gaps.scm:334
 msgid "Place the jack of spades next to the ten of spades."
-msgstr "Помістіть валет виновий поряд з десяткою виновою."
+msgstr "Помістіть нижник виновий поряд з десяткою виновою."
 
 #: ../games/gaps.scm:335
 msgid "Place the queen of spades next to the jack of spades."
-msgstr "Помістіть даму винову поряд з валетом виновою."
+msgstr "Помістіть кралю винову поряд з нижником виновим."
 
 #: ../games/gaps.scm:336
 msgid "Place the king of spades next to the queen of spades."
-msgstr "Помістіть короля винового поряд з дамою виновою."
+msgstr "Помістіть короля винового поряд з кралею виновою."
 
 #: ../games/gaps.scm:339
 msgid "Place the two of hearts next to the ace of hearts."
@@ -2906,15 +3196,15 @@ msgstr "Помістіть десятку чирвову поряд з дев'я
 
 #: ../games/gaps.scm:348
 msgid "Place the jack of hearts next to the ten of hearts."
-msgstr "Помістіть валета чирвового поряд з десяткою чирвовою."
+msgstr "Помістіть нижник чирвовий поряд з десяткою чирвовою."
 
 #: ../games/gaps.scm:349
 msgid "Place the queen of hearts next to the jack of hearts."
-msgstr "Помістіть даму чирвову поряд з валетом чирвовим."
+msgstr "Помістіть кралю чирвову поряд з нижником чирвовим."
 
 #: ../games/gaps.scm:350
 msgid "Place the king of hearts next to the queen of hearts."
-msgstr "Помістіть короля чирвового поряд з дамою чирвовою."
+msgstr "Помістіть короля чирвового поряд з кралею чирвовою."
 
 #: ../games/gaps.scm:353
 msgid "Place the two of diamonds next to the ace of diamonds."
@@ -2954,15 +3244,15 @@ msgstr "Помістіть десятку дзвінкову поряд з де�
 
 #: ../games/gaps.scm:362
 msgid "Place the jack of diamonds next to the ten of diamonds."
-msgstr "Помістіть валет дзвінковий поряд з десяткою дзвінковою."
+msgstr "Помістіть нижника дзвінкового поряд з десяткою дзвінковою."
 
 #: ../games/gaps.scm:363
 msgid "Place the queen of diamonds next to the jack of diamonds."
-msgstr "Помістіть даму дзвінкову поряд з валетом дзвінковим."
+msgstr "Помістіть кралю дзвінкову поряд з нижником дзвінковим."
 
 #: ../games/gaps.scm:364
 msgid "Place the king of diamonds next to the queen of diamonds."
-msgstr "Помістіть короля дзвінкового поряд з дамою дзвінковою."
+msgstr "Помістіть короля дзвінкового поряд з кралею дзвінковою."
 
 #: ../games/gaps.scm:383
 msgid "Randomly Placed Gaps on Redeal"
@@ -2977,32 +3267,24 @@ msgstr "Лишилось роздач: ~a"
 msgid "Deal a row"
 msgstr "Здати карту"
 
-#: ../games/giant.scm:259
-msgid "an empty foundation place"
-msgstr "порожня основа"
-
-#: ../games/giant.scm:260
-msgid "an empty tableau place"
-msgstr "порожнє поле"
-
-#: ../games/giant.scm:287
+#: ../games/giant.scm:276
 msgid "Try moving a card to the reserve"
 msgstr "Спробуйте перекласти карту в резерв"
 
-#: ../games/giant.scm:288
+#: ../games/giant.scm:277
 msgid "Try dealing a row of cards"
 msgstr "Спробуйте перетасувати карти"
 
 #. this isn't great, but it will get around the premature end-of-game call
-#: ../games/giant.scm:290 ../games/spider.scm:309
+#: ../games/giant.scm:279 ../games/spider.scm:309
 msgid "Try moving card piles around"
 msgstr "Спробуйте перекласти купки карт"
 
-#: ../games/giant.scm:295
+#: ../games/giant.scm:284
 msgid "Same suit"
 msgstr "Той самий комплект"
 
-#: ../games/giant.scm:296
+#: ../games/giant.scm:285
 msgid "Alternating colors"
 msgstr "Зміна кольорів"
 
@@ -3019,7 +3301,7 @@ msgstr "Перекладіть карту з резерву на порожнє 
 msgid "Stock left: ~a"
 msgstr "Лишилось в колоді: ~a"
 
-#: ../games/golf.scm:139 ../games/hopscotch.scm:130 ../games/jumbo.scm:298
+#: ../games/golf.scm:138 ../games/hopscotch.scm:130 ../games/jumbo.scm:298
 #: ../games/kansas.scm:219 ../games/sir-tommy.scm:134
 #: ../games/whitehead.scm:252
 msgid "Deal another card"
@@ -3032,26 +3314,6 @@ msgstr "Перекладіть карту чи зв'язку карт в пор�
 #: ../games/gypsy.scm:339
 msgid "Deal another hand"
 msgstr "Здати ще раз"
-
-#: ../games/helsinki.scm:109 ../games/neighbor.scm:141 ../games/treize.scm:279
-#: ../games/yield.scm:295
-msgid "Remove the king of clubs."
-msgstr "Перетягнути короля жирового."
-
-#: ../games/helsinki.scm:110 ../games/neighbor.scm:142 ../games/treize.scm:280
-#: ../games/yield.scm:296
-msgid "Remove the king of diamonds."
-msgstr "Перетягнути короля дзвінкового."
-
-#: ../games/helsinki.scm:111 ../games/neighbor.scm:143 ../games/treize.scm:281
-#: ../games/yield.scm:297
-msgid "Remove the king of hearts."
-msgstr "Перетягнути короля чирвового."
-
-#: ../games/helsinki.scm:112 ../games/neighbor.scm:144 ../games/treize.scm:282
-#: ../games/yield.scm:298
-msgid "Remove the king of spades."
-msgstr "Перетягнути короля винового."
 
 #: ../games/hopscotch.scm:126
 msgid "Move card from waste"
@@ -3070,29 +3332,26 @@ msgstr "Лишилось в колоді: ~a"
 msgid "Deal a new card"
 msgstr "Здати нову карту"
 
-#: ../games/klondike.scm:269
+#: ../games/klondike.scm:270
 msgid "Try moving cards down from the foundation"
 msgstr "Спробуйте забрати карти з бази"
 
-#: ../games/klondike.scm:293 ../games/napoleons-tomb.scm:371
+#: ../games/klondike.scm:294 ../games/napoleons-tomb.scm:355
 msgid "Single card deals"
 msgstr "Здавати по одній карті"
 
-#: ../games/klondike.scm:294
+#: ../games/klondike.scm:295
 msgid "No redeals"
 msgstr "Без повторної здачі"
 
-#: ../games/lady-jane.scm:103 ../games/royal-east.scm:83
+#: ../games/klondike.scm:296
+#| msgid "Unlimited"
+msgid "Unlimited redeals"
+msgstr "Необмежено роздач"
+
+#: ../games/lady-jane.scm:109 ../games/royal-east.scm:83
 msgid "Base Card:"
 msgstr "Основна карта:"
-
-#: ../games/lady-jane.scm:253
-msgid "an empty foundation pile"
-msgstr "порожня основа"
-
-#: ../games/lady-jane.scm:397 ../games/lady-jane.scm:409
-msgid "an empty tableau slot"
-msgstr "порожнє гніздо на столі"
 
 #: ../games/maze.scm:147
 msgid ""
@@ -3101,11 +3360,7 @@ msgid ""
 msgstr ""
 "Ціллю гри є розташування мастей в порядку, що відповідає  поточному розкладу."
 
-#: ../games/napoleons-tomb.scm:338 ../games/terrace.scm:286
-msgid "the foundation"
-msgstr "основа"
-
-#: ../games/napoleons-tomb.scm:373
+#: ../games/napoleons-tomb.scm:357
 msgid "Autoplay"
 msgstr "Самостійна гра"
 
@@ -3134,21 +3389,13 @@ msgstr "Покладіть карти на поле так, щоб вийшли 
 msgid "Shuffle mode"
 msgstr "Режим перетасовування"
 
-#: ../games/scorpion.scm:146
+#: ../games/scorpion.scm:142
 msgid "Deal the cards"
 msgstr "Роздати карти"
 
-#: ../games/scuffle.scm:142
+#: ../games/scuffle.scm:140
 msgid "Reshuffle cards"
 msgstr "Перетасувати карти"
-
-#: ../games/seahaven.scm:245
-msgid "an empty foundation"
-msgstr "порожня основа"
-
-#: ../games/seahaven.scm:300
-msgid "an empty tableau"
-msgstr "порожнє ігрове поле"
 
 #: ../games/sir-tommy.scm:130
 msgid "Move waste on to a reserve slot"
@@ -3222,6 +3469,10 @@ msgstr "Блондинки та брюнетки"
 msgid "Wood"
 msgstr "Дерево"
 
+#: ../games/terrace.scm:286
+msgid "the foundation"
+msgstr "основа"
+
 #: ../games/thieves.scm:148
 msgid "Deal a card from the deck"
 msgstr "Беріть карту з колоди"
@@ -3230,21 +3481,56 @@ msgstr "Беріть карту з колоди"
 msgid "Match the top two cards of the waste."
 msgstr "Порівняти з двома верхніми картами у відбої."
 
-#: ../games/thirteen.scm:391
-msgid "itself"
-msgstr "собі"
-
-#: ../games/triple-peaks.scm:351
+#: ../games/triple-peaks.scm:349
 msgid "Progressive Rounds"
 msgstr "Прогресивні ігри"
 
-#: ../games/triple-peaks.scm:352
+#: ../games/triple-peaks.scm:350
 msgid "Multiplier Scoring"
 msgstr "Рахунок збільшується"
 
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Перекладіть зв'язку карт в порожнє гніздо на столі"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "Про пасьянс \"Вільна комірка\""
+
+#~ msgid "GNOME Games web site"
+#~ msgstr "Сайт GNOME Games"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Пасьянс \"Вільна комірка\""
+
+#~ msgid "an empty slot on the tableau"
+#~ msgstr "порожнє поле на столі"
+
+#~ msgid "an empty slot on the foundation"
+#~ msgstr "порожнє поле на базі"
+
+#~ msgid "Move ~a off the board"
+#~ msgstr "Відкладіть ~a за край столу"
+
+#~ msgid "an empty foundation place"
+#~ msgstr "порожня основа"
+
+#~ msgid "an empty tableau place"
+#~ msgstr "порожнє поле"
+
+#~ msgid "an empty foundation pile"
+#~ msgstr "порожня основа"
+
+#~ msgid "an empty tableau slot"
+#~ msgstr "порожнє гніздо на столі"
+
+#~ msgid "an empty foundation"
+#~ msgstr "порожня основа"
+
+#~ msgid "an empty tableau"
+#~ msgstr "порожнє ігрове поле"
+
+#~ msgid "itself"
+#~ msgstr "собі"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "Ще одна реалізація популярного пасьянсу."
@@ -3298,8 +3584,8 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ "Street, Fifth Floor, Boston, MA  02110-1301  USA"
 #~ msgstr ""
 #~ "Ви мали отримати копію GNU General Public License разом з %s. Якщо цього "
-#~ "не сталося, напишіть до Free Software Foundation, Inc., 51 Franklin Street, "
-#~ "Fifth Floor, Boston, MA  02110-1301  USA."
+#~ "не сталося, напишіть до Free Software Foundation, Inc., 51 Franklin "
+#~ "Street, Fifth Floor, Boston, MA  02110-1301  USA."
 
 #~ msgid "File is not a valid .desktop file"
 #~ msgstr "Файл не є файлом типу .desktop"
@@ -3400,10 +3686,10 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "десятка"
 
 #~ msgid "jack"
-#~ msgstr "валет"
+#~ msgstr "нижник"
 
 #~ msgid "queen"
-#~ msgstr "дама"
+#~ msgstr "краля"
 
 #~ msgid "king"
 #~ msgstr "король"
@@ -3415,10 +3701,10 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "вино"
 
 #~ msgid "hearts"
-#~ msgstr "черва"
+#~ msgstr "чирва"
 
 #~ msgid "diamonds"
-#~ msgstr "бубни"
+#~ msgstr "дзвінка"
 
 #~ msgid "Unknown suit"
 #~ msgstr "Невідома масть"
@@ -3498,9 +3784,6 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 
 #~ msgid "_End Game"
 #~ msgstr "_Завершити гру"
-
-#~ msgid "_About"
-#~ msgstr "_Про програму"
 
 #~ msgid "_Cancel"
 #~ msgstr "_Скасувати"
@@ -3593,9 +3876,6 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 
 #~ msgid "Claim _Draw"
 #~ msgstr "Запропонувати _нічию"
-
-#~ msgid "New Game"
-#~ msgstr "Нова гра"
 
 #~ msgid "Resign"
 #~ msgstr "Здатися"
@@ -3729,7 +4009,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 
 #~ msgctxt "chess-piece"
 #~ msgid "Queen"
-#~ msgstr "Королева"
+#~ msgstr "Краля"
 
 #~ msgctxt "chess-piece"
 #~ msgid "Rook"
@@ -3803,7 +4083,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Білий пішак з %1$s б'є чорного слона на %2$s"
 
 #~ msgid "White pawn at %1$s takes the black queen at %2$s"
-#~ msgstr "Білий пішак з %1$s б'є чорну королеву на %2$s"
+#~ msgstr "Білий пішак з %1$s б'є чорну кралю на %2$s"
 
 #~ msgid "White rook moves from %1$s to %2$s"
 #~ msgstr "Біла тура рухається з %1$s до %2$s"
@@ -3821,7 +4101,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Біла тура з %1$s б'є чорного слона на %2$s"
 
 #~ msgid "White rook at %1$s takes the black queen at %2$s"
-#~ msgstr "Біла тура з %1$s б'є чорну королеву на %2$s"
+#~ msgstr "Біла тура з %1$s б'є чорну кралю на %2$s"
 
 #~ msgid "White knight moves from %1$s to %2$s"
 #~ msgstr "Білий кінь рухається з %1$s до %2$s"
@@ -3839,7 +4119,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Білий кінь з %1$s б'є чорного слона на %2$s"
 
 #~ msgid "White knight at %1$s takes the black queen at %2$s"
-#~ msgstr "Білий кінь з %1$s б'є чорну королеву на %2$s"
+#~ msgstr "Білий кінь з %1$s б'є чорну кралю на %2$s"
 
 #~ msgid "White bishop moves from %1$s to %2$s"
 #~ msgstr "Білий слон рухається з %1$s до %2$s"
@@ -3857,25 +4137,25 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Білий слон з %1$s б'є чорного слона на %2$s"
 
 #~ msgid "White bishop at %1$s takes the black queen at %2$s"
-#~ msgstr "Білий слон з %1$s б'є чорну королеву на %2$s"
+#~ msgstr "Білий слон з %1$s б'є чорну кралю на %2$s"
 
 #~ msgid "White queen moves from %1$s to %2$s"
-#~ msgstr "Біла королева рухається з %1$s до %2$s"
+#~ msgstr "Біла краля рухається з %1$s до %2$s"
 
 #~ msgid "White queen at %1$s takes the black pawn at %2$s"
-#~ msgstr "Біла королева з %1$s б'є чорного пішака на %2$s"
+#~ msgstr "Біла краля з %1$s б'є чорного пішака на %2$s"
 
 #~ msgid "White queen at %1$s takes the black rook at %2$s"
-#~ msgstr "Біла королева з %1$s б'є чорну туру на %2$s"
+#~ msgstr "Біла краля з %1$s б'є чорну туру на %2$s"
 
 #~ msgid "White queen at %1$s takes the black knight at %2$s"
-#~ msgstr "Біла королева з %1$s б'є чорного коня на %2$s"
+#~ msgstr "Біла краля з %1$s б'є чорного коня на %2$s"
 
 #~ msgid "White queen at %1$s takes the black bishop at %2$s"
-#~ msgstr "Біла королева з %1$s б'є чорного слона на %2$s"
+#~ msgstr "Біла краля з %1$s б'є чорного слона на %2$s"
 
 #~ msgid "White queen at %1$s takes the black queen at %2$s"
-#~ msgstr "Біла королева з %1$s б'є чорну королеву на %2$s"
+#~ msgstr "Біла краля з %1$s б'є чорну кралю на %2$s"
 
 #~ msgid "White king moves from %1$s to %2$s"
 #~ msgstr "Білий король рухається з %1$s до %2$s"
@@ -3893,7 +4173,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Білий король з %1$s б'є чорного слона на %2$s"
 
 #~ msgid "White king at %1$s takes the black queen at %2$s"
-#~ msgstr "Білий король з %1$s б'є чорну королеву на %2$s"
+#~ msgstr "Білий король з %1$s б'є чорну кралю на %2$s"
 
 #~ msgid "Black pawn moves from %1$s to %2$s"
 #~ msgstr "Чорний пішак рухається з %1$s до %2$s"
@@ -3911,7 +4191,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Чорний пішак з %1$s б'є білого слона на %2$s"
 
 #~ msgid "Black pawn at %1$s takes the white queen at %2$s"
-#~ msgstr "Чорний пішак з %1$s б'є білу королеву на %2$s"
+#~ msgstr "Чорний пішак з %1$s б'є білу кралю на %2$s"
 
 #~ msgid "Black rook moves from %1$s to %2$s"
 #~ msgstr "Чорна тура рухається з %1$s до %2$s"
@@ -3929,7 +4209,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Чорна тура з %1$s б'є білого слона на %2$s"
 
 #~ msgid "Black rook at %1$s takes the white queen at %2$s"
-#~ msgstr "Чорна тура з %1$s б'є білу королеву на %2$s"
+#~ msgstr "Чорна тура з %1$s б'є білу кралю на %2$s"
 
 #~ msgid "Black knight moves from %1$s to %2$s"
 #~ msgstr "Чорний кінь рухається з %1$s до %2$s"
@@ -3947,7 +4227,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Чорний кінь з %1$s б'є білого слона на %2$s"
 
 #~ msgid "Black knight at %1$s takes the white queen at %2$s"
-#~ msgstr "Чорний кінь з %1$s б'є білу королеву на %2$s"
+#~ msgstr "Чорний кінь з %1$s б'є білу кралю на %2$s"
 
 #~ msgid "Black bishop moves from %1$s to %2$s"
 #~ msgstr "Чорний слон рухається з %1$s до %2$s"
@@ -3965,25 +4245,25 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Чорний слон з %1$s б'є білого слона на %2$s"
 
 #~ msgid "Black bishop at %1$s takes the white queen at %2$s"
-#~ msgstr "Чорний слон з %1$s б'є білу королеву на %2$s"
+#~ msgstr "Чорний слон з %1$s б'є білу кралю на %2$s"
 
 #~ msgid "Black queen moves from %1$s to %2$s"
-#~ msgstr "Чорна королева рухається з %1$s до %2$s"
+#~ msgstr "Чорна краля рухається з %1$s до %2$s"
 
 #~ msgid "Black queen at %1$s takes the white pawn at %2$s"
-#~ msgstr "Чорна королева з %1$s б'є білого пішака на %2$s"
+#~ msgstr "Чорна краля з %1$s б'є білого пішака на %2$s"
 
 #~ msgid "Black queen at %1$s takes the white rook at %2$s"
-#~ msgstr "Чорна королева з %1$s б'є білу туру на %2$s"
+#~ msgstr "Чорна краля з %1$s б'є білу туру на %2$s"
 
 #~ msgid "Black queen at %1$s takes the white knight at %2$s"
-#~ msgstr "Чорна королева з %1$s б'є білого коня на %2$s"
+#~ msgstr "Чорна краля з %1$s б'є білого коня на %2$s"
 
 #~ msgid "Black queen at %1$s takes the white bishop at %2$s"
-#~ msgstr "Чорна королева з %1$s б'є білого слона на %2$s"
+#~ msgstr "Чорна краля з %1$s б'є білого слона на %2$s"
 
 #~ msgid "Black queen at %1$s takes the white queen at %2$s"
-#~ msgstr "Чорна королева з %1$s б'є білу королеву на %2$s"
+#~ msgstr "Чорна краля з %1$s б'є білу кралю на %2$s"
 
 #~ msgid "Black king moves from %1$s to %2$s"
 #~ msgstr "Чорний король рухається з %1$s до %2$s"
@@ -4001,7 +4281,7 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "Чорний король з %1$s б'є білого слона на %2$s"
 
 #~ msgid "Black king at %1$s takes the white queen at %2$s"
-#~ msgstr "Чорний король з %1$s б'є білу королеву на %2$s"
+#~ msgstr "Чорний король з %1$s б'є білу кралю на %2$s"
 
 #~ msgid "White wins"
 #~ msgstr "Білі перемогли"
@@ -5983,9 +6263,6 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgid "HuaRong Trail"
 #~ msgstr "Поїзд HuaRong"
 
-#~ msgid "Challenge Pack"
-#~ msgstr "Набір відкриттів"
-
 #~ msgid "Skill Pack"
 #~ msgstr "Важкий набір"
 
@@ -6845,10 +7122,10 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr "_Білі:"
 
 #~ msgid "Show or hide numbering on the chess board"
-#~ msgstr "Показати чи прибрати нумерацію дошки"
+#~ msgstr "Показати чи Вилучити нумерацію дошки"
 
 #~ msgid "Show or hide the game history panel"
-#~ msgstr "Показати чи прибрати панель історії гри"
+#~ msgstr "Показати чи Вилучити панель історії гри"
 
 #~ msgid "Shows hints during chess games"
 #~ msgstr "Підказувати під час гри в шахи"
@@ -6876,9 +7153,6 @@ msgstr "Перекладіть зв'язку карт в порожнє гніз
 #~ msgstr ""
 #~ "Шахи не запускаються, оскільки не встановлено необхідних файлів. Якщо ж "
 #~ "Ви наразі оновлюєте систему, дочекайтеся завершення процесу оновлення."
-
-#~ msgid "Unlimited"
-#~ msgstr "Необмежено"
 
 #~ msgid "Unable to find %s engine"
 #~ msgstr "Не вдалось знайти програму гри %s"
