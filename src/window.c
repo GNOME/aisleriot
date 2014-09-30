@@ -427,7 +427,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
                          "artists", artists,
                          "documenters", documenters,
                          "translator-credits", _("translator-credits"),
-                         "logo-icon-name", "aisleriot",
+                         "logo-icon-name", "gnome-aisleriot",
                          "website", "http://wiki.gnome.org/Apps/Aisleriot",
                          "website-label", _("Aisleriot web site"),
                          "wrap-license", TRUE,
