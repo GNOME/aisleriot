@@ -45,6 +45,7 @@ games_GUILE = \
 	gold-mine.scm \
 	golf.scm \
 	gypsy.scm \
+	hamilton.scm \
 	helsinki.scm \
 	hopscotch.scm \
 	isabel.scm \

@@ -49,6 +49,7 @@ HELP_FILES = \
 	glenwood.xml \
 	golf.xml \
 	gypsy.xml \
+	hamilton.xml \
 	helsinki.xml \
 	hopscotch.xml \
 	isabel.xml \

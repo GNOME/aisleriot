@@ -284,6 +284,13 @@ N_("Gypsy")
  locale, use that; otherwise you can translate this string
  freely, literally, or not at all, at your option.
  */
+N_("Hamilton")
+
+/* Translators: this string is the name of a game of patience.
+ If there is an established standard name for this game in your
+ locale, use that; otherwise you can translate this string
+ freely, literally, or not at all, at your option.
+ */
 N_("Helsinki")
 
 /* Translators: this string is the name of a game of patience.
@@ -341,13 +348,6 @@ N_("Kings Audience")
  freely, literally, or not at all, at your option.
  */
 N_("Klondike")
-
-/* Translators: this string is the name of a game of patience.
- If there is an established standard name for this game in your
- locale, use that; otherwise you can translate this string
- freely, literally, or not at all, at your option.
- */
-N_("Klondike Three Decks")
 
 /* Translators: this string is the name of a game of patience.
  If there is an established standard name for this game in your
