@@ -162,6 +162,14 @@ main (int argc, char *argv[])
   g_setenv ("GUILE_WARN_DEPRECATED", "detailed", TRUE);
   g_setenv ("GUILE_AUTO_COMPILE", "0", TRUE);
 
+  /* Set some env vars to disable ubuntu crap. They'll certainly patch this
+   * out in their package, but anyone running from git will get the right
+   * behaviour.
+   */
+  g_setenv ("LIBOVERLAY_SCROLLBAR", "0", TRUE);
+  g_setenv ("UBUNTU_MENUPROXY", "0", TRUE);
+  g_setenv ("NO_UNITY_GTK_MODULE", "1", TRUE);
+
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 
   return 0;
