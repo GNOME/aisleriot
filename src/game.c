@@ -626,7 +626,9 @@ cscmi_add_slot (SCM slot_data)
   /* 3rd argument is the slot type (optionally) */
   slot_type = SCM_CDDDR (slot_data);
   if (slot_type != SCM_EOL) {
-    if (EQUALS_SYMBOL ("foundation", SCM_CAR (slot_type))) {
+    if (EQUALS_SYMBOL ("chooser", SCM_CAR (slot_type))) {
+      type = AR_SLOT_CHOOSER;
+    } else if (EQUALS_SYMBOL ("foundation", SCM_CAR (slot_type))) {
       type = AR_SLOT_FOUNDATION;
     } else if (EQUALS_SYMBOL ("reserve", SCM_CAR (slot_type))) {
       type = AR_SLOT_RESERVE;
@@ -643,7 +645,7 @@ cscmi_add_slot (SCM slot_data)
 
 #ifdef GNOME_ENABLE_DEBUG
   _AR_DEBUG_IF (AR_DEBUG_SCHEME) {
-    static const char *types[] = { "unknown", "foundation", "reserve", "stock", "tableau", "waste" };
+    static const char *types[] = { "unknown", "chooser", "foundation", "reserve", "stock", "tableau", "waste" };
 
     ar_debug_print (AR_DEBUG_SCHEME,
                         "Adding new slot %d type %s\n",
@@ -1432,6 +1434,10 @@ ar_slot_get_type_string (ArSlot *slot)
     case AR_SLOT_UNKNOWN:
       text = NULL;
       break;
+    case AR_SLOT_CHOOSER:
+      /* Translators: this is the name of a type of card slot */
+      text = C_("slot type", "chooser");
+      break;
     case AR_SLOT_FOUNDATION:
       /* Translators: this is the name of a type of card slot */
       text = C_("slot type", "foundation");
@@ -1480,6 +1486,10 @@ ar_slot_get_hint_string (ArSlot *slot,
   card_name = ar_card_get_locale_name (CARD (slot->cards->data[cardid]));
 
   switch (slot->type) {
+    case AR_SLOT_CHOOSER:
+      /* Translators: %s is the name of the card; "chooser" is the name of a type of card slot */
+      return g_strdup_printf (C_("slot hint", "%s on chooser"), card_name);
+
     case AR_SLOT_FOUNDATION:
       /* Translators: %s is the name of the card; "foundation" is the name of a type of card slot */
       return g_strdup_printf (C_("slot hint", "%s on foundation"), card_name);
