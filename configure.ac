@@ -6,6 +6,11 @@ AC_INIT([GNOME Patience], [3.15.0],
   [http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot],
   [aisleriot])
 
+# Must run under bash; see bug 726780
+if test -z "$BASH_VERSION"; then
+  AC_MSG_ERROR([Set CONFIG_SHELL to bash and try again.])
+fi
+
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/sol.c])
 AC_CONFIG_HEADERS([config.h])
