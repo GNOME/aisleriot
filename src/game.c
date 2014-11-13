@@ -323,7 +323,7 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
 
   port = scm_open_output_string ();
   scm_display (throw_args, port);
-  string = scm_to_locale_string (scm_get_output_string (port));
+  string = scm_to_utf8_string (scm_get_output_string (port));
   scm_dynwind_free (string);
   scm_close_output_port (port);
   g_string_append (message, string);
@@ -331,7 +331,7 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
   port = scm_open_output_string ();
   g_string_append (message, "\nScheme tag:\n\t");
   scm_display (tag, port);
-  string = scm_to_locale_string (scm_get_output_string (port));
+  string = scm_to_utf8_string (scm_get_output_string (port));
   scm_dynwind_free (string);
   scm_close_output_port (port);
   g_string_append (message, string);
@@ -341,7 +341,7 @@ cscmi_exception_get_backtrace (SCM tag, SCM throw_args)
   if (!scm_is_false (stack)) {
     port = scm_open_output_string ();
     scm_display_backtrace (stack, port, SCM_UNDEFINED, SCM_UNDEFINED);
-    string = scm_to_locale_string (scm_get_output_string (port));
+    string = scm_to_utf8_string (scm_get_output_string (port));
     scm_dynwind_free (string);
     scm_close_output_port (port);
     g_string_append (message, string);
@@ -603,7 +603,7 @@ cscmi_add_slot (SCM slot_data)
 
   if (game->state > GAME_BEGIN) {
     return scm_throw (scm_from_locale_symbol ("aisleriot-invalid-call"),
-                      scm_list_1 (scm_from_locale_string ("Cannot add a new slot after the game has started.")));
+                      scm_list_1 (scm_from_utf8_string ("Cannot add a new slot after the game has started.")));
   }
 
 #define EQUALS_SYMBOL(string,object) (scm_is_true (scm_equal_p (scm_from_locale_symbol (string), object)))
@@ -699,7 +699,7 @@ scm_gettext (SCM message)
 
   scm_dynwind_begin (0);
 
-  input = scm_to_locale_string (message);
+  input = scm_to_utf8_string (message);
   scm_dynwind_free (input);
   if (!input)
     goto out;
@@ -707,7 +707,7 @@ scm_gettext (SCM message)
   output = g_dgettext (NULL, input);
 
   if (input != output) {
-    translated = scm_from_locale_string (output);
+    translated = scm_from_utf8_string (output);
   } else {
     translated = message;
   }
@@ -787,7 +787,7 @@ scm_set_statusbar_message (SCM message)
 
   scm_dynwind_begin (0);
 
-  str = scm_to_locale_string (message);
+  str = scm_to_utf8_string (message);
   scm_dynwind_free (str);
   if (!str)
     goto out;
@@ -954,7 +954,7 @@ scm_set_lambda_x (SCM symbol,
   }
 
   return scm_throw (scm_from_locale_symbol ("aisleriot-invalid-call"),
-                    scm_list_1 (scm_from_locale_string ("Unknown lambda name in set-lambda!")));
+                    scm_list_1 (scm_from_utf8_string ("Unknown lambda name in set-lambda!")));
 }
 
 static SCM
@@ -982,7 +982,7 @@ scm_update_score (SCM new_score)
   AisleriotGame *game = app_game;
   char *score;
 
-  score = scm_to_locale_string (new_score);
+  score = scm_to_utf8_string (new_score);
   if (g_strcmp0 (score, game->score) != 0) {
     free (game->score);
     game->score = score;
@@ -1054,7 +1054,7 @@ scm_delayed_call (SCM callback)
   /* We can only have one pending delayed call! */
   if (game->delayed_call_timeout_id != 0) {
     return scm_throw (scm_from_locale_symbol ("aisleriot-invalid-call"),
-                      scm_list_1 (scm_from_locale_string ("Already have a delayed callback pending.")));
+                      scm_list_1 (scm_from_utf8_string ("Already have a delayed callback pending.")));
   }
 
   /* We need to protect the callback data from being GC'd until the
@@ -1388,7 +1388,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                            NULL);
   variable = scm_c_module_lookup (scm_the_root_module (), "%load-path");
   scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
-                                                          scm_list_1 (scm_from_locale_string (path)))));
+                                                          scm_list_1 (scm_from_utf8_string (path)))));
   g_free (path);
 
   path = g_build_filename (ar_runtime_get_directory (AR_RUNTIME_PKG_LIBRARY_DIRECTORY),
@@ -1397,7 +1397,7 @@ aisleriot_game_class_init (AisleriotGameClass *klass)
                            NULL);
   variable = scm_c_module_lookup (scm_the_root_module (), "%load-compiled-path");
   scm_variable_set_x (variable, scm_append_x (scm_list_2 (scm_variable_ref (variable),
-                                                          scm_list_1 (scm_from_locale_string (path)))));
+                                                          scm_list_1 (scm_from_utf8_string (path)))));
   g_free (path);
 }
 
@@ -1692,12 +1692,12 @@ game_scm_load_game (void *user_data)
 
   scm_dynwind_begin (0);
 
-  scm_primitive_load_path (scm_from_locale_string (game_module));
+  scm_primitive_load_path (scm_from_utf8_string (game_module));
 
   for (i = 0; i <= LAST_MANDATORY_LAMBDA; ++i) {
     if (scm_is_false (scm_procedure_p (game->lambdas[i]))) {
       scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
-                 scm_list_3 (scm_from_locale_string ("Not a procedure"),
+                 scm_list_3 (scm_from_utf8_string ("Not a procedure"),
                              scm_from_int (i),
                              game->lambdas[i]));
     }
@@ -1705,13 +1705,13 @@ game_scm_load_game (void *user_data)
   if ((game->features & FEATURE_DROPPABLE) &&
       scm_is_false (scm_procedure_p (game->lambdas[DROPPABLE_LAMBDA])))
     scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
-               scm_list_3 (scm_from_locale_string ("Not a procedure"),
+               scm_list_3 (scm_from_utf8_string ("Not a procedure"),
                            scm_from_int (DROPPABLE_LAMBDA),
                            game->lambdas[i]));
   if ((game->features & FEATURE_DEALABLE) &&
       scm_is_false (scm_procedure_p (game->lambdas[DEALABLE_LAMBDA])))
     scm_throw (scm_from_locale_symbol ("aisleriot-invalid-lambda"),
-               scm_list_3 (scm_from_locale_string ("Not a procedure"),
+               scm_list_3 (scm_from_utf8_string ("Not a procedure"),
                            scm_from_int (DEALABLE_LAMBDA),
                            game->lambdas[i]));
 
@@ -2184,7 +2184,7 @@ aisleriot_game_get_hint (AisleriotGame *game)
       if (!scm_is_string (string1))
         break;
 
-      str1 = scm_to_locale_string (string1);
+      str1 = scm_to_utf8_string (string1);
       scm_dynwind_free (str1);
       if (!str1)
         break;
@@ -2199,12 +2199,12 @@ aisleriot_game_get_hint (AisleriotGame *game)
       if (!scm_is_string (string1) || !scm_is_string (string2))
         break;
 
-      str1 = scm_to_locale_string (string1);
+      str1 = scm_to_utf8_string (string1);
       scm_dynwind_free (str1);
       if (!str1)
         break;
 
-      str2 = scm_to_locale_string (string2);
+      str2 = scm_to_utf8_string (string2);
       scm_dynwind_free (str2);
       if (!str2)
         break;
@@ -2224,11 +2224,11 @@ aisleriot_game_get_hint (AisleriotGame *game)
       if (!scm_is_string (string1) || !scm_is_string (string2))
         break;
 
-      str1 = scm_to_locale_string (string1);
+      str1 = scm_to_utf8_string (string1);
       scm_dynwind_free (str1);
       if (!str1)
         break;
-      str2 = scm_to_locale_string (string2);
+      str2 = scm_to_utf8_string (string2);
       scm_dynwind_free (str2);
       if (!str2)
         break;
@@ -2324,7 +2324,7 @@ aisleriot_game_get_options (AisleriotGame *game)
       if (!scm_is_string (entryname))
         continue; /* Shouldn't happen */
 
-      entrynamestr = scm_to_locale_string (entryname);
+      entrynamestr = scm_to_utf8_string (entryname);
       scm_dynwind_free (entrynamestr);
       if (!entrynamestr)
         continue;
