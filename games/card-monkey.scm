@@ -7,6 +7,8 @@
 
 (define-module (aisleriot interface))
 
+(add-to-load-path (dirname (current-filename)))
+
 (debug-enable 'backtrace)
 (define _verbose #f)
 
@@ -60,8 +62,10 @@
 (define _apply-options 'undefined)
 (define _timeout 'undefined)
 (define (_droppable? start-slot card-list end-slot) #f)
+(define (_dealable?) _dealable-sensitivity)
+(define _do-deal-next-cards 'undefined)
 
-(define-public (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-continuable game-won get-hint get-options apply-options timeout . droppable-arg)
+(define-public (set-lambda new-game button-pressed button-released button-clicked button-double-clicked game-continuable game-won get-hint get-options apply-options timeout . extra-args)
     (set! _new-game new-game)
     (set! _button-pressed button-pressed)
     (set! _button-released button-released)
@@ -74,8 +78,33 @@
     (set! _apply-options apply-options)
     (set! _timeout timeout)
     (if (= _droppable-feature (logand _features _droppable-feature))
-        (set! _droppable? (car droppable-arg))
-        (assert (null? droppable-arg) "droppable? passed to set-lambda without droppable-feature set")))
+        (begin
+            (set! _droppable? (car extra-args))
+            (set! extra-args (cdr extra-args))))
+    (if (= _dealable-feature (logand _features _dealable-feature))
+        (begin
+            (set! _dealable? (car extra-args))
+            (set! _do-deal-next-cards (cadr extra-args))
+            (set! extra-args (cddr extra-args))))
+    (assert (null? extra-args) "too many arguments to set-lambda"))
+
+
+(define-public (set-lambda! symbol value)
+    (case symbol
+        ((new-game) (set! _new-game value))
+        ((button-pressed) (set! _button-pressed value))
+        ((button-released) (set! _button-released value))
+        ((button-clicked) (set! _button-clicked value))
+        ((button-double-clicked) (set! _button-double-clicked value))
+        ((game-over) (set! _game-continuable value))
+        ((winning-game) (set! _game-won value))
+        ((hint) (set! _get-hint value))
+        ((get-options) (set! _get-options value))
+        ((apply-options) (set! _apply-options value))
+        ((timeout) (set! _timeout value))
+        ((droppable) (set! _droppable? value))
+        ((dealable) (set! _dealable? value))
+        (else (assert #f "unknown symbol name passed to set-lambda!"))))
 
 
 (define _slots 'undefined)
@@ -262,14 +291,14 @@
 (define (_list-deal)
     (set-status-info! "dealing!")
     (if (and (= (logand _features dealable-feature) dealable-feature)
-             _dealable-sensitivity)
+             (_dealable?))
         (begin
-            (do-deal-next-cards)
+            (_do-deal-next-cards)
             (assert (_changed-game-state?) "do-deal-next-cards didn't change game state")
             (and (> _score _old-score)
-                 (set! _score-increasing-moves (cons (list do-deal-next-cards) _score-increasing-moves)))
+                 (set! _score-increasing-moves (cons (list _do-deal-next-cards) _score-increasing-moves)))
             (_revert-game-state)
-            (list (list do-deal-next-cards)))
+            (list (list _do-deal-next-cards)))
         '()))
 
 (define (_list-clicks slot-id acc-list)
