@@ -10,14 +10,13 @@
 # Szabolcs Varga <shirokuma at shirokuma dot hu>, 2005.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
 # Balázs Úr <urbalazs at gmail dot com>, 2013, 2014.
-# Balázs Úr <urbalazs@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-11 14:31+0000\n"
-"PO-Revision-Date: 2014-09-11 19:09+0200\n"
+"POT-Creation-Date: 2014-11-28 15:32+0000\n"
+"PO-Revision-Date: 2014-11-28 23:13+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -28,7 +27,6 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 
 #: ../data/sol.appdata.xml.in.h:1
-#| msgid "AisleRiot Solitaire"
 msgid "Aisleriot Solitaire"
 msgstr "Aisleriot pasziánsz"
 
@@ -254,71 +252,86 @@ msgstr ""
 "kapta meg, a <http://www.gnu.org/licenses/> oldalon elolvashatja."
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1437
+#: ../src/game.c:1439
+msgctxt "slot type"
+msgid "chooser"
+msgstr "választó"
+
+#. Translators: this is the name of a type of card slot
+#: ../src/game.c:1443
 msgctxt "slot type"
 msgid "foundation"
 msgstr "alap"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1441
+#: ../src/game.c:1447
 msgctxt "slot type"
 msgid "reserve"
 msgstr "tartalék"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1445
+#: ../src/game.c:1451
 msgctxt "slot type"
 msgid "stock"
 msgstr "pakli"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1449
+#: ../src/game.c:1455
 msgctxt "slot type"
 msgid "tableau"
 msgstr "tabló"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1453
+#: ../src/game.c:1459
 msgctxt "slot type"
 msgid "waste"
 msgstr "szemétdomb"
 
+#. Translators: %s is the name of the card; "chooser" is the name of a type of card slot
+#: ../src/game.c:1491
+#, c-format
+#| msgctxt "slot hint"
+#| msgid "%s on reserve"
+msgctxt "slot hint"
+msgid "%s on chooser"
+msgstr "%s a választón"
+
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1485
+#: ../src/game.c:1495
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s az alapon"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1489
+#: ../src/game.c:1499
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s a tartalékon"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1493
+#: ../src/game.c:1503
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "   a pakliban                                  %s"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1497
+#: ../src/game.c:1507
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s a tablón"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1501
+#: ../src/game.c:1511
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s a szemétdombon"
 
-#: ../src/game.c:2168
+#: ../src/game.c:2178
 msgid "This game does not have hint support yet."
 msgstr "Ebben a játékban nincs javaslat. Egyelőre."
 
@@ -326,12 +339,12 @@ msgstr "Ebben a játékban nincs javaslat. Egyelőre."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2203 ../src/game.c:2229
+#: ../src/game.c:2213 ../src/game.c:2239
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Rakja a(z) %s lapot a következőre: %s."
 
-#: ../src/game.c:2249
+#: ../src/game.c:2259
 msgid "This game is unable to provide a hint."
 msgstr "Ebben a játékban nincs javaslat."
 
