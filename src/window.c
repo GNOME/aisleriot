@@ -320,12 +320,6 @@ aisleriot_window_change_game (AisleriotWindow *window)
 }
 
 void
-aisleriot_window_show_set_fullscreen (AisleriotWindow *window,
-                                      gboolean         active)
-{
-}
-
-void
 aisleriot_window_show_statistics_dialog (AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
