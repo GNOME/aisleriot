@@ -45,6 +45,7 @@ sol_CPPFLAGS = \
 	-I$(top_srcdir)/src/lib \
 	-Ilib \
 	-DDOC_MODULE=\"$(DOC_MODULE)\" \
+	-DGDK_DISABLE_DEPRECATION_WARNINGS \
 	$(AM_CPPFLAGS)
 
 sol_CFLAGS = \

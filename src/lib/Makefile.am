@@ -77,6 +77,7 @@ libaisleriot_la_CPPFLAGS = \
 	-DDATADIR="\"$(datadir)\"" \
 	-DCOMMON_DATADIR="\"$(datadir)/gnome-games-common\"" \
 	-DSCORESDIR="\"$(scoredir)\"" \
+	-DGDK_DISABLE_DEPRECATION_WARNINGS \
 	$(AM_CPPFLAGS)
 
 libaisleriot_la_CFLAGS = \
