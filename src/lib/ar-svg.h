@@ -61,12 +61,12 @@ void ar_svg_set_font_options (ArSvg *svg,
                               const cairo_font_options_t *font_options);
 
 void ar_svg_render_cairo (ArSvg *svg,
-                                  cairo_t *cr,
+                          cairo_surface_t *surface,
                                   gint width,
                                   gint height);
 
 void ar_svg_render_cairo_sub (ArSvg *svg,
-                                      cairo_t *cr,
+                              cairo_surface_t *surface,
                                       const char *node,
                                       int width,
                                       int height,

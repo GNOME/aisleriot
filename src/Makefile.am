@@ -53,6 +53,7 @@ sol_CFLAGS = \
 	$(AM_CFLAGS)
 
 sol_LDFLAGS = \
+	$(EXTRA_CXX_LIBS) \
 	$(AM_LDFLAGS)
 
 sol_LDADD = \

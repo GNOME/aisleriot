@@ -51,7 +51,7 @@ G_DEFINE_TYPE (ArCardThemeSVG, ar_card_theme_svg, AR_TYPE_CARD_THEME_PREIMAGE);
 
 static void
 ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
-                              cairo_t *cr,
+                              cairo_surface_t *surface,
                               int card_id)
 {
   ArCardThemePreimage *preimage_card_theme = (ArCardThemePreimage *) card_theme;
@@ -65,7 +65,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
 
   if (G_UNLIKELY (card_id == AR_CARD_SLOT)) {
     ar_svg_render_cairo (preimage_card_theme->slot_preimage,
-                                 cr,
+                                 surface,
                                  preimage_card_theme->card_size.width,
                                  preimage_card_theme->card_size.height);
     return;
@@ -89,7 +89,7 @@ ar_card_theme_svg_paint_card (ArCardTheme *card_theme,
   ar_card_get_node_by_suit_and_rank_snprintf (node, sizeof (node), suit, rank);
 
   ar_svg_render_cairo_sub (svg,
-                                   cr,
+                                   surface,
                                    node,
                                    preimage_card_theme->card_size.width,
                                    preimage_card_theme->card_size.height,
@@ -139,7 +139,7 @@ ar_card_theme_svg_class_foreach_theme_dir (ArCardThemeClass *klass,
    * from the system prefix.
    */
   if (!ar_runtime_is_system_prefix ())
-    return callback (klass, "/usr/share/gnome-games-common/cards", data);
+    return callback (klass, "/usr/share/aisleriot/cards", data);
 
   return TRUE;
 }

@@ -95,7 +95,7 @@ GdkPixbuf *ar_card_theme_get_card_pixbuf (ArCardTheme * theme,
                                           int cardid);
 
 void ar_card_theme_paint_card (ArCardTheme *theme,
-                                cairo_t *cr,
+                                cairo_surface_t *surface,
                                 int cardid);
 
 G_END_DECLS

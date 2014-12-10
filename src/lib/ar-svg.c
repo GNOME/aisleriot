@@ -200,7 +200,7 @@ ar_svg_initable_iface_init (GInitableIface *iface)
 /**
  * ar_svg_render_cairo:
  * @svg: a #ArSvg
- * @cr: a #cairo_t
+ * @surface: a #cairo_surface_t
  * @width: the desired width
  * @height: the desired height
  *
@@ -208,14 +208,14 @@ ar_svg_initable_iface_init (GInitableIface *iface)
  **/
 void
 ar_svg_render_cairo (ArSvg *svg,
-                             cairo_t *cr,
+                     cairo_surface_t *surface,
                              gint width,
                              gint height)
 {
   g_return_if_fail (width > 0 && height > 0);
 
     ar_svg_render_cairo_sub (svg,
-                                     cr,
+                                     surface,
                                      NULL,
                                      width,
                                      height,
@@ -229,7 +229,7 @@ ar_svg_render_cairo (ArSvg *svg,
 /**
  * ar_svg_render_cairo_sub:
  * @svg: a #ArSvg
- * @cr: a #cairo_t
+ * @surface: a #cairo_surface_t
  * @node: (allow-none): a SVG node ID (starting with "#"), or %NULL
  * @width: the width of the clip region
  * @height: the height of the clip region
@@ -245,7 +245,7 @@ ar_svg_render_cairo (ArSvg *svg,
  **/
 void
 ar_svg_render_cairo_sub (ArSvg *svg,
-                                 cairo_t *cr,
+                         cairo_surface_t *surface,
                                  const char *node,
                                  int width,
                                  int height,
@@ -254,9 +254,12 @@ ar_svg_render_cairo_sub (ArSvg *svg,
                                  double xzoom,
                                  double yzoom)
 {
+  cairo_t *cr;
   cairo_matrix_t matrix;
 
   g_return_if_fail (AR_IS_SVG (svg));
+
+  cr = cairo_create (surface);
 
   if (svg->font_options) {
     cairo_set_antialias (cr, cairo_font_options_get_antialias (svg->font_options));
@@ -271,6 +274,8 @@ ar_svg_render_cairo_sub (ArSvg *svg,
   cairo_set_matrix (cr, &matrix);
 
   rsvg_handle_render_cairo_sub (RSVG_HANDLE (svg), cr, node);
+
+  cairo_destroy (cr);
 }
 
 /**

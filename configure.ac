@@ -31,6 +31,7 @@ PKGS=
 
 AC_PROG_CC
 AC_PROG_CPP
+AC_PROG_CXX
 AC_PROG_LN_S
 AC_PROG_MKDIR_P
 AC_PROG_SED
@@ -125,15 +126,17 @@ AC_ARG_WITH([card-theme-formats],
 
 case "$with_card_theme_formats" in
   default) with_card_theme_formats="svg,pysol" ;;
-  all) with_card_theme_formats="svg,kde,fixed,sliced,pysol" ;;
+  all) with_card_theme_formats="svg,kde,fixed,native,pysol" ;;
 esac
 
 enable_card_theme_format_svg=no
 enable_card_theme_format_kde=no
 enable_card_theme_format_fixed=no
-enable_card_theme_format_sliced=no
+enable_card_theme_format_native=no
 enable_card_theme_format_pysol=no
+need_svg=no
 need_rsvg=no
+need_qtsvg=no
 
 IFS="${IFS=	}"; gg_saved_ifs="$IFS"; IFS=","
 for format in $with_card_theme_formats; do
@@ -141,7 +144,7 @@ for format in $with_card_theme_formats; do
     svg) enable_card_theme_format_svg=yes ;;
     kde) enable_card_theme_format_kde=yes ;;
     fixed) enable_card_theme_format_fixed=yes ;;
-    sliced) enable_card_theme_format_svg=yes ;;
+    native) enable_card_theme_format_native=yes ;;
     pysol) enable_card_theme_format_pysol=yes ;;
     *) IFS="$gg_saved_ifs" AC_MSG_ERROR([unknown card theme format $format requested]) ;;
   esac
@@ -152,17 +155,21 @@ AC_MSG_RESULT([$with_card_theme_formats])
 
 if test "$enable_card_theme_format_svg" = "yes"; then
   AC_DEFINE([ENABLE_CARD_THEME_FORMAT_SVG],[1],[Define to enable SVG card theme format support])
+  need_svg=yes
   need_rsvg=yes
 fi
 if test "$enable_card_theme_format_kde" = "yes"; then
   AC_DEFINE([ENABLE_CARD_THEME_FORMAT_KDE],[1],[Define to enable KDE card theme format support])
-  need_rsvg=yes
+  need_svg=yes
+  need_qtsvg=yes
 fi
 if test "$enable_card_theme_format_fixed" = "yes"; then
   AC_DEFINE([ENABLE_CARD_THEME_FORMAT_FIXED],[1],[Define to enable prerendered card theme format support])
 fi
-if test "$enable_card_theme_format_sliced" = "yes"; then
-  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_SLICED],[1],[Define to enable pre-2.19 card theme format support])
+if test "$enable_card_theme_format_native" = "yes"; then
+  AC_DEFINE([ENABLE_CARD_THEME_FORMAT_NATIVE],[1],[Define to enable native SVG rendering with QtSvg])
+  need_svg=yes
+  need_qtsvg=yes
 fi
 if test "$enable_card_theme_format_pysol" = "yes"; then
   AC_DEFINE([ENABLE_CARD_THEME_FORMAT_PYSOL],[1],[Define to enable PySol card theme format support])
@@ -171,7 +178,7 @@ fi
 AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_SVG],[test "$enable_card_theme_format_svg" = "yes"])
 AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_KDE],[test "$enable_card_theme_format_kde" = "yes"])
 AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_FIXED],[test "$enable_card_theme_format_fixed" = "yes"])
-AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_SLICED],[test "$enable_card_theme_format_sliced" = "yes"])
+AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_NATIVE],[test "$enable_card_theme_format_native" = "yes"])
 AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_PYSOL],[test "$enable_card_theme_format_pysol" = "yes"])
 
 # Card theme paths
@@ -227,7 +234,7 @@ AC_ARG_WITH([default-card-theme-format],
 AC_MSG_RESULT([$with_default_card_theme_format])
 
 case "$with_default_card_theme_format" in
-  svg|kde|fixed|sliced|pysol) ;;
+  svg|kde|fixed|native|pysol) ;;
   *) AC_MSG_ERROR([card theme format $with_default_card_theme_format unknown])
 esac
 
@@ -306,9 +313,9 @@ fi
 
 have_rsvg=no
 if test "$need_rsvg" = "yes"; then
-  have_rsvg=yes
-
   CAIRO_REQUIRED=1.10.0
+
+  PKG_CHECK_EXISTS([librsvg-2.0 >= $RSVG_REQUIRED],[have_rsvg=yes],[have_rsvg=no])
 
   PKGS="$PKGS librsvg-2.0 >= $RSVG_REQUIRED cairo >= $CAIRO_REQUIRED"
 
@@ -316,6 +323,26 @@ if test "$need_rsvg" = "yes"; then
 fi
 
 AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
+
+# Check for QtSvg
+
+have_qtsvg=no
+if test "$need_qtsvg" = "yes"; then
+  QT_SVG_REQUIRED=4.4.0
+
+  PKG_CHECK_EXISTS([QtSvg >= $QT_SVG_REQUIRED],[have_qtsvg=yes],[have_qtsvg=no])
+
+  PKGS="$PKGS QtSvg >= $QT_SVG_REQUIRED"
+  EXTRA_CXX_LIBS="$EXTRA_CXX_LIBS -lstdc++"
+
+  AC_DEFINE([HAVE_QTSVG],[1],[Refine if QtSvg is available])
+fi
+
+AM_CONDITIONAL([HAVE_QTSVG],[test "$have_qtsvg" = "yes"])
+
+if test "$need_svg" = "yes" -a "$have_rsvg" = "no" -a "$have_qtsvg" = "no"; then
+   AC_MSG_ERROR([One of librsvg or QtSvg are required])
+fi
 
 # *****************
 # Extra build tools
@@ -556,6 +583,7 @@ AC_SUBST([AM_CPPFLAGS])
 AC_SUBST([AM_CFLAGS])
 AC_SUBST([AM_CXXFLAGS])
 AC_SUBST([AM_LDFLAGS])
+AC_SUBST([EXTRA_CXX_LIBS])
 
 ##############################################
 ##############################################
@@ -587,6 +615,7 @@ Configuration:
     Platform:              ${with_platform}
     Help method:           ${with_help_method} ${with_help_file_format}
     Using RSVG:            ${have_rsvg}
+    Using QtSvg:           ${have_qtsvg}
     Card theme formats:    ${with_card_theme_formats}
     Default theme format:  ${with_default_card_theme_format}
     Default theme:         ${with_default_card_theme}

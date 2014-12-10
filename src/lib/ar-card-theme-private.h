@@ -16,6 +16,8 @@
   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+G_BEGIN_DECLS
+
 #include "ar-card.h"
 
 #ifdef HAVE_RSVG
@@ -85,7 +87,7 @@ struct _ArCardThemeClass {
                                      int card_id);
 
   void        (* paint_card)        (ArCardTheme *theme,
-                                     cairo_t *cr,
+                                     cairo_surface_t *surface,
                                      int card_id);
   void        (* set_font_options)  (ArCardTheme *theme,
                                      const cairo_font_options_t *font_options);
@@ -97,6 +99,7 @@ struct _ArCardTheme {
   ArCardThemeClass *klass;
 
   ArCardThemeInfo *theme_info;
+  gboolean requires_image_surface;
 };
 
 void _ar_card_theme_class_get_theme_infos (ArCardThemeClass *klass,
@@ -114,6 +117,8 @@ gboolean _ar_card_theme_class_foreach_env (ArCardThemeClass *klass,
                                               gpointer data);
 
 void _ar_card_theme_emit_changed (ArCardTheme *theme);
+
+gboolean _ar_card_theme_requires_image_surface (ArCardTheme *theme);
 
 #ifdef HAVE_RSVG
 
@@ -178,6 +183,42 @@ ArCardTheme* ar_card_theme_svg_new (void);
 
 #endif /* ENABLE_CARD_THEME_FORMAT_SVG */
 
+/* */
+
+#endif /* HAVE_RSVG */
+
+#if 1 //def HAVE_QTSVG
+
+/* ArCardThemeQSvg (abstract) */
+
+#define AR_TYPE_CARD_THEME_QSVG            (ar_card_theme_qsvg_get_type ())
+#define AR_CARD_THEME_QSVG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), AR_TYPE_CARD_THEME_QSVG, ArCardThemeQSvg))
+#define AR_CARD_THEME_QSVG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_CARD_THEME_QSVG, ArCardThemeQSvgClass))
+#define AR_IS_CARD_THEME_QSVG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_CARD_THEME_QSVG))
+#define AR_IS_CARD_THEME_QSVG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_CARD_THEME_QSVG))
+#define AR_CARD_THEME_QSVG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_CARD_THEME_QSVG, ArCardThemeQSvgClass))
+
+typedef struct _ArCardThemeQSvgClass ArCardThemeQSvgClass;
+typedef struct _ArCardThemeQSvg      ArCardThemeQSvg;
+
+GType ar_card_theme_qsvg_get_type (void);
+
+/* ArCardThemeNative */
+
+#define AR_TYPE_CARD_THEME_NATIVE            (ar_card_theme_native_get_type ())
+#define AR_CARD_THEME_NATIVE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), AR_TYPE_CARD_THEME_NATIVE, ArCardThemeNative))
+#define AR_CARD_THEME_NATIVE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), AR_TYPE_CARD_THEME_NATIVE, ArCardThemeNativeClass))
+#define AR_IS_CARD_THEME_NATIVE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_CARD_THEME_NATIVE))
+#define AR_IS_CARD_THEME_NATIVE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), AR_TYPE_CARD_THEME_NATIVE))
+#define AR_CARD_THEME_NATIVE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), AR_TYPE_CARD_THEME_NATIVE, ArCardThemeNativeClass))
+
+typedef struct _ArCardThemeNativeClass ArCardThemeNativeClass;
+typedef struct _ArCardThemeNative      ArCardThemeNative;
+
+GType ar_card_theme_native_get_type (void);
+
+ArCardTheme* ar_card_theme_native_new (void);
+
 /* ArCardThemeKDE */
 
 #ifdef ENABLE_CARD_THEME_FORMAT_KDE
@@ -200,7 +241,7 @@ ArCardTheme* ar_card_theme_kde_new (void);
 
 /* */
 
-#endif /* HAVE_RSVG */
+#endif /* HAVE_QTSVG */
 
 /* ArCardThemeFixed */
 
@@ -240,3 +281,5 @@ GType ar_card_theme_pysol_get_type (void);
 ArCardTheme* ar_card_theme_pysol_new (void);
 
 #endif /* ENABLE_CARD_THEME_FORMAT_PYSOL */
+
+G_END_DECLS

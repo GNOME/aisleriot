@@ -51,6 +51,7 @@ G_DEFINE_ABSTRACT_TYPE (ArCardTheme, ar_card_theme, G_TYPE_OBJECT);
 static void
 ar_card_theme_init (ArCardTheme * theme)
 {
+  theme->requires_image_surface = FALSE;
 }
 
 static GObject *
@@ -151,17 +152,18 @@ cairo_pixels_to_pixbuf (guint8 *pixels,
 /* Two-way adapters cairo <-> pixbuf, so theme classes only need to implement one of them. */
 
 static void ar_card_theme_class_real_paint_card (ArCardTheme *theme,
-                                                 cairo_t *cr,
+                                                 cairo_surface_t *surface,
                                                  int cardid);
 static GdkPixbuf * ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
                                                              int card_id);
 
 static void
 ar_card_theme_class_real_paint_card (ArCardTheme *theme,
-                                     cairo_t *cr,
+                                     cairo_surface_t *surface,
                                      int cardid)
 {
   GdkPixbuf *pixbuf;
+  cairo_t *cr;
 
   g_assert (AR_CARD_THEME_GET_CLASS (theme)->get_card_pixbuf != ar_card_theme_class_real_get_card_pixbuf);
 
@@ -169,11 +171,11 @@ ar_card_theme_class_real_paint_card (ArCardTheme *theme,
   if (pixbuf == NULL)
     return;
 
-  cairo_save (cr);
+  cr = cairo_create (surface);
   gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
   cairo_paint (cr);
-  cairo_restore (cr);
 
+  cairo_destroy (cr);
   g_object_unref (pixbuf);
 }
 
@@ -184,7 +186,6 @@ ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
   int rowstride;
   guint8 *data;
   cairo_surface_t *surface;
-  cairo_t *cr;
   CardSize card_size;
 
   g_assert (AR_CARD_THEME_GET_CLASS (card_theme)->paint_card != ar_card_theme_class_real_paint_card);
@@ -201,9 +202,7 @@ ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
                                                  CAIRO_FORMAT_ARGB32,
                                                  card_size.width, card_size.height,
                                                  rowstride);
-  cr = cairo_create (surface);
-  ar_card_theme_paint_card (card_theme, cr, card_id);
-  cairo_destroy (cr);
+  ar_card_theme_paint_card (card_theme, surface, card_id);
 
   cairo_surface_destroy (surface);
   cairo_pixels_to_pixbuf (data, rowstride, card_size.height);
@@ -266,6 +265,12 @@ void
 _ar_card_theme_emit_changed (ArCardTheme *theme)
 {
   g_signal_emit (theme, signals[CHANGED], 0);
+}
+
+gboolean
+_ar_card_theme_requires_image_surface (ArCardTheme *theme)
+{
+  return theme->requires_image_surface;
 }
 
 ArCardThemeInfo *
@@ -438,21 +443,21 @@ ar_card_theme_get_card_pixbuf (ArCardTheme *theme,
 /**
  * ar_card_theme_paint_card:
  * @theme:
- * @cr:
+ * @surface:
  * @card_id:
  *
  * Paints the card to @cr.
 */
 void
 ar_card_theme_paint_card (ArCardTheme *theme,
-                          cairo_t *cr,
+                          cairo_surface_t *surface,
                           int cardid)
 {
   g_return_if_fail ((cardid >= 0) && (cardid < AR_CARDS_TOTAL));
 
   ar_profilestart ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
 
-  theme->klass->paint_card (theme, cr, cardid);
+  theme->klass->paint_card (theme, surface, cardid);
 
   ar_profileend ("loading card %d from theme %s", cardid, theme->theme_info->display_name);
 }

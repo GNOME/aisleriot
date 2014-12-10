@@ -23,6 +23,7 @@
 
 #include "ar-card-surface-cache.h"
 #include "ar-card-private.h"
+#include "ar-card-theme-private.h"
 
 struct _ArCardSurfaceCachePrivate
 {
@@ -323,7 +324,6 @@ ar_card_surface_cache_get_card_surface_by_id (ArCardSurfaceCache *cache,
 
   if (surface == NULL) {
     CardSize card_size;
-    cairo_t *cr;
 
     LOG_CACHE_MISS (cache);
 
@@ -337,9 +337,22 @@ ar_card_surface_cache_get_card_surface_by_id (ArCardSurfaceCache *cache,
                                             card_size.width, card_size.height);
     }
 
-    cr = cairo_create (surface);
-    ar_card_theme_paint_card (priv->theme, cr, card_id);
-    cairo_destroy (cr);
+    if (!_ar_card_theme_requires_image_surface (priv->theme)) {
+      ar_card_theme_paint_card (priv->theme, surface, card_id);
+    } else {
+      cairo_surface_t *aux_surface;
+      cairo_t *cr;
+
+      /* Use an auxiliary image surface and paint to the similar surface afterwards */
+      aux_surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32,
+                                                card_size.width, card_size.height);
+      ar_card_theme_paint_card (priv->theme, aux_surface, card_id);
+      cr = cairo_create (surface);
+      cairo_set_source_surface (cr, aux_surface, 0, 0);
+      cairo_paint (cr);
+      cairo_destroy (cr);
+      cairo_surface_destroy (aux_surface);
+    }
 
     if (cairo_surface_status (surface) != CAIRO_STATUS_SUCCESS) {
       cairo_surface_destroy (surface);

@@ -70,17 +70,26 @@ theme_type_from_string (const char *type_str,
                         gssize type_str_len)
 {
   const struct {
-    const char name[6];
+    const char name[8];
     GType type;
   } type_strings[] = {
+#ifdef HAVE_QTSVG
+#if defined(ENABLE_CARD_THEME_NATIVE) && !defined(ENABLE_CARD_THEME_FORMAT_SVG)
+    { "svg", AR_TYPE_CARD_THEME_NATIVE },
+#endif /* HAVE_QTSVG */
+#else
 #ifdef HAVE_RSVG
 #ifdef ENABLE_CARD_THEME_FORMAT_SVG
     { "svg", AR_TYPE_CARD_THEME_SVG },
 #endif
+#endif /* HAVE_RSVG */
+#endif /* HAVE_QTSVG */
+#ifdef HAVE_QTSVG
+    { "native", AR_TYPE_CARD_THEME_NATIVE },
 #ifdef ENABLE_CARD_THEME_FORMAT_KDE
     { "kde", AR_TYPE_CARD_THEME_KDE },
 #endif
-#endif /* HAVE_RSVG */
+#endif /* HAVE_QTSVG */
 #ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
     { "pysol", AR_TYPE_CARD_THEME_PYSOL },
 #endif
@@ -202,19 +211,29 @@ ar_card_themes_foreach_theme_dir (GType type,
 
 static gboolean
 ar_card_themes_foreach_theme_type_and_dir (ArCardThemes *theme_manager,
-                                              ArCardThemeForeachFunc callback,
-                                              gpointer data)
+                                           ArCardThemeForeachFunc callback,
+                                           gpointer data)
 {
   const GType types[] = {
   /* List of supported theme types, in order of decreasing precedence */
+#ifdef HAVE_QTSVG
+#ifdef ENABLE_CARD_THEME_NATIVE
+    AR_TYPE_CARD_THEME_NATIVE,
+#endif
+#endif /* HAVE_QTSVG */
 #ifdef HAVE_RSVG
 #ifdef ENABLE_CARD_THEME_FORMAT_SVG
   AR_TYPE_CARD_THEME_SVG,
 #endif
+#endif /* HAVE_RSVG */
+#ifdef HAVE_QTSVG
 #ifdef ENABLE_CARD_THEME_FORMAT_KDE
   AR_TYPE_CARD_THEME_KDE,
 #endif
-#endif /* HAVE_RSVG */
+#if !defined(ENABLE_CARD_THEME_SVG) && !defined(ENABLE_CARD_THEME_NATIVE)
+    AR_TYPE_CARD_THEME_NATIVE,
+#endif
+#endif /* HAVE_QTSVG */
 #ifdef ENABLE_CARD_THEME_FORMAT_PYSOL
   AR_TYPE_CARD_THEME_PYSOL,
 #endif

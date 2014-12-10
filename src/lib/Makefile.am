@@ -53,11 +53,23 @@ if ENABLE_CARD_THEME_FORMAT_SVG
 libaisleriot_la_SOURCES += ar-card-theme-svg.c
 endif
 
+endif # HAVE_RSVG
+
+if HAVE_QTSVG
+
+libaisleriot_la_SOURCES += \
+	ar-card-theme-qsvg.cpp \
+	ar-card-theme-qsvg-private.h \
+	$(NULL)
+
 if ENABLE_CARD_THEME_FORMAT_KDE
-libaisleriot_la_SOURCES += ar-card-theme-kde.c
+libaisleriot_la_SOURCES += ar-card-theme-kde.cpp
+endif
+if ENABLE_CARD_THEME_FORMAT_NATIVE
+libaisleriot_la_SOURCES += ar-card-theme-native.cpp
 endif
 
-endif # HAVE_RSVG
+endif # HAVE_QTSVG
 
 if ENABLE_CARD_THEME_FORMAT_PYSOL
 libaisleriot_la_SOURCES += ar-card-theme-pysol.c
@@ -83,6 +95,10 @@ libaisleriot_la_CPPFLAGS = \
 libaisleriot_la_CFLAGS = \
 	$(AISLERIOT_CFLAGS) \
 	$(AM_CFLAGS)
+
+libaisleriot_la_CXXFLAGS = \
+	$(AISLERIOT_CFLAGS) \
+	$(AM_CXXFLAGS)
 
 libaisleriot_la_LIBADD = \
 	$(AISLERIOT_LIBS)
@@ -121,6 +137,7 @@ ar_cards_renderer_CFLAGS = \
 	$(AM_CFLAGS)
 
 ar_cards_renderer_LDFLAGS = \
+	$(EXTRA_CXX_LIBS) \
 	$(AM_LDFLAGS)
 
 ar_cards_renderer_LDADD = \
