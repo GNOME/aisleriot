@@ -1207,8 +1207,7 @@ install_recently_played_menu (AisleriotWindow *window)
                            GTK_UI_MANAGER_MENUITEM, FALSE);
   }
 
-  /* The strings themselves are now owned by gobject data on the action */
-  g_free (recent_games);
+  g_strfreev (recent_games);
 }
 
 /* Card Theme menu */
