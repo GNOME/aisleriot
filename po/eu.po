@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: aisleriot master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-05 11:53+0200\n"
-"PO-Revision-Date: 2014-07-28 19:01+0200\n"
+"POT-Creation-Date: 2014-12-31 16:59+0100\n"
+"PO-Revision-Date: 2014-12-05 22:53+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -18,15 +18,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: ../data/sol.appdata.xml.in.h:1
+msgid "Aisleriot Solitaire"
+msgstr "AisleRiot bakar-jokoa"
+
+#: ../data/sol.appdata.xml.in.h:2 ../data/sol.desktop.in.in.h:2
+msgid "Play many different solitaire games"
+msgstr "Jolastu hainbat bakar-joko"
+
+#: ../data/sol.appdata.xml.in.h:3
+msgid ""
+"Aisleriot — also known as sol or solitaire — is a card game application that "
+"features over 80 different solitaire-type card games which are designed to "
+"play using a mouse, keyboard, or trackpad."
+msgstr ""
+"Aisleriot — bakar-jokoa bezala ere ezaguna — 80 bakar-joko mota desberdin "
+"baino gehiago eskaintzen dituen karta-jokoen aplikazio bat da sagua, "
+"teklatua edo eta trackpad-a erabiliz jokatzeko."
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
 msgstr "AisleRiot bakar-jokoa"
-
-#: ../data/sol.desktop.in.in.h:2
-msgid "Play many different solitaire games"
-msgstr "Jolastu hainbat bakar-joko"
 
 #: ../data/sol.desktop.in.in.h:3
 msgid "solitaire;cards;klondike;spider;freecell;patience;"
@@ -136,7 +150,7 @@ msgid "Quit"
 msgstr "Irten"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:2194
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1989
 msgid "Select Game"
 msgstr "Hautatu jokoa"
 
@@ -232,71 +246,84 @@ msgstr ""
 "halakorik jaso ez baduzu, ikusi <http://www.gnu.org/licenses/>."
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1437
+#: ../src/game.c:1422
+msgctxt "slot type"
+msgid "chooser"
+msgstr "hautatzailea"
+
+#. Translators: this is the name of a type of card slot
+#: ../src/game.c:1426
 msgctxt "slot type"
 msgid "foundation"
 msgstr "oinarria"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1441
+#: ../src/game.c:1430
 msgctxt "slot type"
 msgid "reserve"
 msgstr "biltegia"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1445
+#: ../src/game.c:1434
 msgctxt "slot type"
 msgid "stock"
 msgstr "sorta"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1449
+#: ../src/game.c:1438
 msgctxt "slot type"
 msgid "tableau"
 msgstr "mahaia"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1453
+#: ../src/game.c:1442
 msgctxt "slot type"
 msgid "waste"
 msgstr "hondarra"
 
+#. Translators: %s is the name of the card; "chooser" is the name of a type of card slot
+#: ../src/game.c:1474
+#, c-format
+msgctxt "slot hint"
+msgid "%s on chooser"
+msgstr "%s hautatzailean"
+
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1485
+#: ../src/game.c:1478
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s oinarrian"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1489
+#: ../src/game.c:1482
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s biltegian"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1493
+#: ../src/game.c:1486
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s sortan"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1497
+#: ../src/game.c:1490
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s mahaian"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1501
+#: ../src/game.c:1494
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s hondarrean"
 
-#: ../src/game.c:2168
+#: ../src/game.c:2161
 msgid "This game does not have hint support yet."
 msgstr "Joko honek ez du oraindik iradokizunik egiten."
 
@@ -304,12 +331,12 @@ msgstr "Joko honek ez du oraindik iradokizunik egiten."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2203 ../src/game.c:2229
+#: ../src/game.c:2196 ../src/game.c:2222
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Eraman %s %s(e)ra."
 
-#: ../src/game.c:2249
+#: ../src/game.c:2242
 msgid "This game is unable to provide a hint."
 msgstr "Joko honek ezin du iradokizunik egin."
 
@@ -1468,31 +1495,31 @@ msgid "Window height"
 msgstr "Leihoaren altuera"
 
 #. String reserve
-#: ../src/sol.c:51
+#: ../src/sol.c:45
 msgid "Solitaire"
 msgstr "Bakar-jokoa"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:46
 msgid "GNOME Solitaire"
 msgstr "GNOMEko bakar-jokoa"
 
-#: ../src/sol.c:53
+#: ../src/sol.c:47
 msgid "About Solitaire"
 msgstr "Bakar-jokoari buruz"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "Select the game type to play"
 msgstr "Hautatu joko mota"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "NAME"
 msgstr "IZENA"
 
-#: ../src/sol.c:117
+#: ../src/sol.c:105
 msgid "FreeCell Solitaire"
 msgstr "FreeCell bakar-jokoa"
 
-#: ../src/sol.c:117 ../src/window.c:420
+#: ../src/sol.c:105 ../src/window.c:397
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1568,31 +1595,31 @@ msgstr "E/E"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:215
+#: ../src/window.c:198
 msgid "Congratulations, you have won!"
 msgstr "Zorionak! Irabazi egin duzu!"
 
-#: ../src/window.c:219
+#: ../src/window.c:202
 msgid "There are no more moves"
 msgstr "Ezin da mugimendu gehiago egin"
 
-#: ../src/window.c:370
+#: ../src/window.c:347
 msgid "Main game:"
 msgstr "Joko nagusia:"
 
-#: ../src/window.c:378
+#: ../src/window.c:355
 msgid "Card games:"
 msgstr "Karta-jokoak:"
 
-#: ../src/window.c:393
+#: ../src/window.c:370
 msgid "Card themes:"
 msgstr "Karten gaiak:"
 
-#: ../src/window.c:422
+#: ../src/window.c:399
 msgid "About Aisleriot"
 msgstr "Aisleriot-i buruz"
 
-#: ../src/window.c:424
+#: ../src/window.c:401
 msgid ""
 "Aisleriot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1600,189 +1627,180 @@ msgstr ""
 "Araututako hainbat karta-joko eskaintzen ditu AisleRiot-ek, bakarka "
 "jolasteko modukoak."
 
-#: ../src/window.c:433
+#: ../src/window.c:410
 msgid "translator-credits"
 msgstr "Hizkuntza Politikarako Sailburuordetza <hizkpol@ej-gv.es>"
 
-#: ../src/window.c:436
+#: ../src/window.c:413
 msgid "Aisleriot web site"
 msgstr "AisleRiot-en webgunea"
 
-#: ../src/window.c:1302
+#: ../src/window.c:1190
 #, c-format
 msgid "Play “%s”"
 msgstr "Jolastu honetan: \"%s\""
 
-#: ../src/window.c:1464
+#: ../src/window.c:1351
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Bistaratu karta-gai hau duten kartak: \"%s\""
 
-#: ../src/window.c:1758
+#: ../src/window.c:1645
 msgid "A scheme exception occurred"
 msgstr "Eskema-salbuespena gertatu da"
 
-#: ../src/window.c:1761
+#: ../src/window.c:1648
 msgid "Please report this bug to the developers."
 msgstr "Eman garatzaileei errore horren berri."
 
-#: ../src/window.c:1767
+#: ../src/window.c:1654
 msgid "_Don't report"
 msgstr "_Ez jakinarazi"
 
-#: ../src/window.c:1768
+#: ../src/window.c:1655
 msgid "_Report"
 msgstr "_Jakinarazi"
 
 #. Menu actions
-#: ../src/window.c:1975
+#: ../src/window.c:1812
 msgid "_Game"
 msgstr "J_okoa"
 
-#: ../src/window.c:1976
+#: ../src/window.c:1813
 msgid "_View"
 msgstr "_Ikuspegia"
 
-#: ../src/window.c:1977
+#: ../src/window.c:1814
 msgid "_Control"
 msgstr "_Kontrola"
 
-#: ../src/window.c:1979
+#: ../src/window.c:1816
 msgid "_Help"
 msgstr "La_guntza"
 
-#: ../src/window.c:1984
+#: ../src/window.c:1821
 msgid "Start a new game"
 msgstr "Beste joko bat hasten du"
 
-#: ../src/window.c:1987
+#: ../src/window.c:1824
 msgid "Restart the game"
 msgstr "Jokoa berrabiarazten du"
 
-#: ../src/window.c:1989
+#: ../src/window.c:1826
 msgid "_Select Game…"
 msgstr "_Hautatu jokoa..."
 
-#: ../src/window.c:1991
+#: ../src/window.c:1828
 msgid "Play a different game"
 msgstr "Beste joko batean jolasteko"
 
-#: ../src/window.c:1993
+#: ../src/window.c:1830
 msgid "_Recently Played"
 msgstr "_Oraintsu jolastutakoak"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1831
 msgid "S_tatistics"
 msgstr "_Estatistikak"
 
-#: ../src/window.c:1995
+#: ../src/window.c:1832
 msgid "Show gameplay statistics"
 msgstr "Jokoen estatistikak erakusten ditu"
 
-#: ../src/window.c:1998
+#: ../src/window.c:1835
 msgid "Close this window"
 msgstr "Leiho hau ixten du"
 
-#: ../src/window.c:2001
+#: ../src/window.c:1838
 msgid "Undo the last move"
 msgstr "Azken mugimendua desegiten du"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1841
 msgid "Redo the undone move"
 msgstr "Desegindako mugimendua berregiten du"
 
-#: ../src/window.c:2007
+#: ../src/window.c:1844
 msgid "Deal next card or cards"
 msgstr "Hurrengo karta(k) banatzen d(it)u"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1847
 msgid "Get a hint for your next move"
 msgstr "Hurrengo mugimendua iradokitzen du"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1850
 msgid "View help for Aisleriot"
 msgstr "Ikusi Aisleriot-en laguntza"
 
-#: ../src/window.c:2017
+#: ../src/window.c:1854
 msgid "View help for this game"
 msgstr "Ikusi joko honen laguntza"
 
-#: ../src/window.c:2020
+#: ../src/window.c:1857
 msgid "About this game"
 msgstr "Joko honi buruz"
 
-#: ../src/window.c:2022
+#: ../src/window.c:1859
 msgid "Install card themes…"
 msgstr "Instalatu karta-gaiak..."
 
-#: ../src/window.c:2023
+#: ../src/window.c:1860
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Instalatu karta-gai berriak banaketako paketeen biltegietatik"
 
-#: ../src/window.c:2029
+#: ../src/window.c:1866
 msgid "_Card Style"
 msgstr "_Karta-estiloa"
 
-#: ../src/window.c:2063
+#: ../src/window.c:1892
 msgid "_Toolbar"
 msgstr "_Tresna-barra"
 
-#: ../src/window.c:2064
+#: ../src/window.c:1893
 msgid "Show or hide the toolbar"
 msgstr "Tresna-barra erakusten edo ezkutatzen du"
 
-#: ../src/window.c:2068
+#: ../src/window.c:1897
 msgid "_Statusbar"
 msgstr "_Egoera-barra"
 
-#: ../src/window.c:2069
+#: ../src/window.c:1898
 msgid "Show or hide statusbar"
 msgstr "Egoera-barra erakusten edo ezkutatzen du"
 
-#: ../src/window.c:2073
+#: ../src/window.c:1902
 msgid "_Click to Move"
 msgstr "_Egin klik mugitzeko"
 
-#: ../src/window.c:2074
+#: ../src/window.c:1903
 msgid "Pick up and drop cards by clicking"
 msgstr "Klik eginez hartzen eta uzten ditu kartak"
 
 #. not active by default
-#: ../src/window.c:2077
+#: ../src/window.c:1906
 msgid "_Sound"
 msgstr "_Soinua"
 
-#: ../src/window.c:2078
+#: ../src/window.c:1907
 msgid "Whether or not to play event sounds"
 msgstr "Gertaera-soinuak erreproduzituko diren ala ez adierazten du."
 
-#. not active by default
-#: ../src/window.c:2081
-msgid "_Animations"
-msgstr "_Animazioak"
-
-#: ../src/window.c:2082
-msgid "Whether or not to animate card moves"
-msgstr "Animazioa erabiliko den karten mugimenduetan ala ez adierazten du"
-
-#: ../src/window.c:2218
+#: ../src/window.c:2008
 msgid "Score:"
 msgstr "Puntuazioa:"
 
-#: ../src/window.c:2230
+#: ../src/window.c:2020
 msgid "Time:"
 msgstr "Denbora:"
 
-#: ../src/window.c:2528
+#: ../src/window.c:2307
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Ezin izan da '%s' jokoa abiarazi"
 
-#: ../src/window.c:2535
+#: ../src/window.c:2314
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot-ek ezin du aurkitu azken jolastutako jokoa"
 
-#: ../src/window.c:2536
+#: ../src/window.c:2315
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3411,6 +3429,12 @@ msgstr "Biderkatzailearen puntuak"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Eraman karta multzoa mahaiko toki hutsera"
+
+#~ msgid "_Animations"
+#~ msgstr "_Animazioak"
+
+#~ msgid "Whether or not to animate card moves"
+#~ msgstr "Animazioa erabiliko den karten mugimenduetan ala ez adierazten du"
 
 #~ msgid "About AisleRiot"
 #~ msgstr "AisleRiot-i buruz"
