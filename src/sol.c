@@ -150,7 +150,7 @@ main (int argc, char *argv[])
   g_setenv ("GUILE_WARN_DEPRECATED", "detailed", TRUE);
   g_setenv ("GUILE_AUTO_COMPILE", "0", TRUE);
 
-  /* Set some env vars to disable ubuntu crap. They'll certainly patch this
+  /* Set some env vars to disable the ubuntu modules. They'll certainly patch this
    * out in their package, but anyone running from git will get the right
    * behaviour.
    */
