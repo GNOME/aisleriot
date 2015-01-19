@@ -14,6 +14,7 @@ endif
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--with-platform=gnome \
+	--with-card-theme-formats=all \
 	--disable-schemas-install \
 	--disable-scrollkeeper \
 	--disable-silent-rules
