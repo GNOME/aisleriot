@@ -1,7 +1,7 @@
 NULL =
 
 XMLLINT_FLAGS = --nonet --noblanks
-GZIP_FLAGS = -9
+GZIP_FLAGS = -9 -n
 
 SVGS = \
 	anglo.svg \
