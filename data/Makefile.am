@@ -23,12 +23,6 @@ appdatadir = $(datadir)/appdata
 appdata_in_files = sol.appdata.xml.in
 nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 
-APPDATA_VALIDATE_FLAGS = --nonet
-appdata-validate: $(nodist_appdata_DATA)
-	for f in $^; do \
-		$(APPDATA_VALIDATE) $(APPDATA_VALIDATE_FLAGS) $$f; \
-	done
-
 desktop-file-validate: $(nodist_desktop_DATA)
 	for f in $^; do \
 		$(DESKTOP_FILE_VALIDATE) $$f; \
