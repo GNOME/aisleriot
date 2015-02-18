@@ -183,11 +183,13 @@ AM_CONDITIONAL([ENABLE_CARD_THEME_FORMAT_PYSOL],[test "$enable_card_theme_format
 
 # Card theme paths
 
+AC_MSG_CHECKING([distribution])
 if test -f /etc/os-release; then
   DISTRO="$(source /etc/os-release && echo $ID)"
 else
   DISTRO="unknown"
 fi
+AC_MSG_RESULT([$DISTRO])
 
 if test "$enable_card_theme_format_kde" = "yes"; then
   AC_MSG_CHECKING([for KDE card themes base path])
@@ -441,7 +443,7 @@ CC_CHECK_CFLAGS_APPEND([ \
   -Wstrict-aliasing=2 -Winit-self -Wunsafe-loop-optimizations \
   -Wdeclaration-after-statement -Wold-style-definition \
   -Wno-missing-field-initializers -Wno-unused-parameter \
-  -Wempty-body \
+  -Wempty-body -Wformat-signedness \
   -fno-common -Wno-switch-enum])
 AM_CFLAGS="$AM_CFLAGS $CFLAGS"
 CFLAGS="$save_CFLAGS"
