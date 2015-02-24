@@ -402,7 +402,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
                            "card engine that allows many different "
                            "games to be played."),
                          "copyright", "Copyright © 1998-2006 Jonathan Blandford\n"
-                                      "Copyright © 2007, 2008, 2009, 2010, 2011, 2012, 2013 Christian Persch",
+                                      "Copyright © 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015 Christian Persch",
                          "license", licence,
                          "authors", authors,
                          "artists", artists,
