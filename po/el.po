@@ -30,21 +30,23 @@
 # Michael Kotsarinis <mk73628@hotmail.com>, 2010.
 # George Stefanakis <george.stefanakis@gmail.com>, 2011.
 # Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013, 2014.
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-28 14:31+0000\n"
-"PO-Revision-Date: 2014-08-28 23:55+0200\n"
-"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
-"Language-Team: www.gnome.gr\n"
+"POT-Creation-Date: 2015-02-27 03:32+0000\n"
+"PO-Revision-Date: 2015-02-27 12:10+0200\n"
+"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"Language-Team: Greek, Modern (1453-) <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/sol.appdata.xml.in.h:1
@@ -178,7 +180,7 @@ msgid "Quit"
 msgstr "Έξοδος"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:2109
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1989
 msgid "Select Game"
 msgstr "Επιλογή παιχνιδιού"
 
@@ -275,71 +277,86 @@ msgstr ""
 "licenses/>."
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1437
+#: ../src/game.c:1422
+msgctxt "slot type"
+msgid "chooser"
+msgstr "επιλεγμένα"
+
+#. Translators: this is the name of a type of card slot
+#: ../src/game.c:1426
 msgctxt "slot type"
 msgid "foundation"
 msgstr "βάση"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1441
+#: ../src/game.c:1430
 msgctxt "slot type"
 msgid "reserve"
 msgstr "ρεζέρβα"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1445
+#: ../src/game.c:1434
 msgctxt "slot type"
 msgid "stock"
 msgstr "μάνα"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1449
+#: ../src/game.c:1438
 msgctxt "slot type"
 msgid "tableau"
 msgstr "ταμπλό"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1453
+#: ../src/game.c:1442
 msgctxt "slot type"
 msgid "waste"
 msgstr "σωρός"
 
+#. Translators: %s is the name of the card; "chooser" is the name of a type of card slot
+#: ../src/game.c:1474
+#, c-format
+#| msgctxt "slot hint"
+#| msgid "%s on reserve"
+msgctxt "slot hint"
+msgid "%s on chooser"
+msgstr "%s στα επιλεγμένα"
+
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1485
+#: ../src/game.c:1478
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s στη βάση"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1489
+#: ../src/game.c:1482
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s στη ρεζέρβα"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1493
+#: ../src/game.c:1486
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s στη μάνα"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1497
+#: ../src/game.c:1490
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s στο ταμπλό"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1501
+#: ../src/game.c:1494
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s στο σωρό"
 
-#: ../src/game.c:2168
+#: ../src/game.c:2161
 msgid "This game does not have hint support yet."
 msgstr "Το παιχνίδι αυτό δεν υποστηρίζει υποδείξεις ακόμα."
 
@@ -347,12 +364,12 @@ msgstr "Το παιχνίδι αυτό δεν υποστηρίζει υποδε�
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2203 ../src/game.c:2229
+#: ../src/game.c:2196 ../src/game.c:2222
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Μετακίνηση του %s στο %s."
 
-#: ../src/game.c:2249
+#: ../src/game.c:2242
 msgid "This game is unable to provide a hint."
 msgstr "Αυτό το παιγνίδι δεν έχει τη δυνατότητα υποδείξεων."
 
@@ -1511,31 +1528,31 @@ msgid "Window height"
 msgstr "Το ύψος του παραθύρου"
 
 #. String reserve
-#: ../src/sol.c:51
+#: ../src/sol.c:45
 msgid "Solitaire"
 msgstr "Πασιέντζα"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:46
 msgid "GNOME Solitaire"
 msgstr "Πασιέντζα του GNOME"
 
-#: ../src/sol.c:53
+#: ../src/sol.c:47
 msgid "About Solitaire"
 msgstr "Περί της Πασιέντζας"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "Select the game type to play"
 msgstr "Επιλέξτε το τύπο παιχνιδιού που θα παίξετε"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "NAME"
 msgstr "ΟΝΟΜΑ"
 
-#: ../src/sol.c:117
+#: ../src/sol.c:105
 msgid "FreeCell Solitaire"
 msgstr "Πασιέντζα FreeCell"
 
-#: ../src/sol.c:117 ../src/window.c:416
+#: ../src/sol.c:105 ../src/window.c:397
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1611,31 +1628,31 @@ msgstr "N/A"
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:211
+#: ../src/window.c:198
 msgid "Congratulations, you have won!"
 msgstr "Συγχαρητήρια, νικήσατε!"
 
-#: ../src/window.c:215
+#: ../src/window.c:202
 msgid "There are no more moves"
 msgstr "Δεν υπάρχουν άλλες κινήσεις"
 
-#: ../src/window.c:366
+#: ../src/window.c:347
 msgid "Main game:"
 msgstr "Κυρίως παιχνίδι:"
 
-#: ../src/window.c:374
+#: ../src/window.c:355
 msgid "Card games:"
 msgstr "Παιχνίδια χαρτιών:"
 
-#: ../src/window.c:389
+#: ../src/window.c:370
 msgid "Card themes:"
 msgstr "Θέματα χαρτιών:"
 
-#: ../src/window.c:418
+#: ../src/window.c:399
 msgid "About Aisleriot"
 msgstr "Περί AisleRiot"
 
-#: ../src/window.c:420
+#: ../src/window.c:401
 msgid ""
 "Aisleriot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1643,7 +1660,7 @@ msgstr ""
 "Το Aisleriot παρέχει μια βασισμένη σε κανόνες μηχανή πασιέντζας, η οποία "
 "επιτρέπει το παίξιμο πολλών διαφορετικών παιχνιδιών."
 
-#: ../src/window.c:429
+#: ../src/window.c:410
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -1657,186 +1674,177 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
 
-#: ../src/window.c:432
+#: ../src/window.c:413
 msgid "Aisleriot web site"
 msgstr "Ιστότοπος Aisleriot"
 
-#: ../src/window.c:1225
+#: ../src/window.c:1190
 #, c-format
 msgid "Play “%s”"
 msgstr "Παίξτε “%s”"
 
-#: ../src/window.c:1387
+#: ../src/window.c:1351
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Εμφάνιση χαρτιών με το θέμα χαρτιού “%s”"
 
-#: ../src/window.c:1681
+#: ../src/window.c:1645
 msgid "A scheme exception occurred"
 msgstr "Προέκυψε μια εξάιρεση σχήματος"
 
-#: ../src/window.c:1684
+#: ../src/window.c:1648
 msgid "Please report this bug to the developers."
 msgstr "Παρακαλώ κάντε μια αναφορά για αυτό στους προγραμματιστές."
 
-#: ../src/window.c:1690
+#: ../src/window.c:1654
 msgid "_Don't report"
 msgstr "Να _μην γίνει αναφορά"
 
-#: ../src/window.c:1691
+#: ../src/window.c:1655
 msgid "_Report"
 msgstr "Ανα_φορά"
 
 #. Menu actions
-#: ../src/window.c:1898
+#: ../src/window.c:1812
 msgid "_Game"
 msgstr "_Παιχνίδι"
 
-#: ../src/window.c:1899
+#: ../src/window.c:1813
 msgid "_View"
 msgstr "Πρ_οβολή"
 
-#: ../src/window.c:1900
+#: ../src/window.c:1814
 msgid "_Control"
 msgstr "Έ_λεγχος"
 
-#: ../src/window.c:1902
+#: ../src/window.c:1816
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/window.c:1907
+#: ../src/window.c:1821
 msgid "Start a new game"
 msgstr "Εκκίνηση νέου παιχνιδιού"
 
-#: ../src/window.c:1910
+#: ../src/window.c:1824
 msgid "Restart the game"
 msgstr "Επανεκκίνηση του παιχνιδιού"
 
-#: ../src/window.c:1912
+#: ../src/window.c:1826
 msgid "_Select Game…"
 msgstr "_Επιλογή παιχνιδιού…"
 
-#: ../src/window.c:1914
+#: ../src/window.c:1828
 msgid "Play a different game"
 msgstr "Παίξτε ένα διαφορετικό παιχνίδι"
 
-#: ../src/window.c:1916
+#: ../src/window.c:1830
 msgid "_Recently Played"
 msgstr "Πρό_σφατο παιχνίδι"
 
-#: ../src/window.c:1917
+#: ../src/window.c:1831
 msgid "S_tatistics"
 msgstr "Σ_τατιστικά"
 
-#: ../src/window.c:1918
+#: ../src/window.c:1832
 msgid "Show gameplay statistics"
 msgstr "Εμφάνιση στατιστικών παιχνιδιού"
 
-#: ../src/window.c:1921
+#: ../src/window.c:1835
 msgid "Close this window"
 msgstr "Κλείσιμο του παραθύρου"
 
-#: ../src/window.c:1924
+#: ../src/window.c:1838
 msgid "Undo the last move"
 msgstr "Αναίρεση της τελευταίας κίνησης"
 
-#: ../src/window.c:1927
+#: ../src/window.c:1841
 msgid "Redo the undone move"
 msgstr "Ακύρωση αναίρεσης της τελευταίας κίνησης"
 
-#: ../src/window.c:1930
+#: ../src/window.c:1844
 msgid "Deal next card or cards"
 msgstr "Μοίρασμα επόμενου χαρτιού ή χαρτιών"
 
-#: ../src/window.c:1933
+#: ../src/window.c:1847
 msgid "Get a hint for your next move"
 msgstr "Υπόδειξη για την επόμενη κίνησή σας"
 
-#: ../src/window.c:1936
+#: ../src/window.c:1850
 msgid "View help for Aisleriot"
 msgstr "Προβολή βοήθειας για το Aisleriot"
 
-#: ../src/window.c:1940
+#: ../src/window.c:1854
 msgid "View help for this game"
 msgstr "Προβολή βοήθειας για αυτό το παιχνίδι"
 
-#: ../src/window.c:1943
+#: ../src/window.c:1857
 msgid "About this game"
 msgstr "Περί αυτού του παιχνιδιού"
 
-#: ../src/window.c:1945
+#: ../src/window.c:1859
 msgid "Install card themes…"
 msgstr "Εγκατάσταση θεμάτων για τα χαρτιά…"
 
-#: ../src/window.c:1946
+#: ../src/window.c:1860
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Εγκατάσταση νέων θεμάτων για τα χαρτιά από τα αποθετήρια πακέτων της διανομής"
 
-#: ../src/window.c:1952
+#: ../src/window.c:1866
 msgid "_Card Style"
 msgstr "Στυλ _χαρτιού"
 
-#: ../src/window.c:1978
+#: ../src/window.c:1892
 msgid "_Toolbar"
 msgstr "_Γραμμή εργαλείων"
 
-#: ../src/window.c:1979
+#: ../src/window.c:1893
 msgid "Show or hide the toolbar"
 msgstr "Προβολή ή απόκρυψη της εργαλειοθήκης"
 
-#: ../src/window.c:1983
+#: ../src/window.c:1897
 msgid "_Statusbar"
 msgstr "_Γραμμή κατάστασης"
 
-#: ../src/window.c:1984
+#: ../src/window.c:1898
 msgid "Show or hide statusbar"
 msgstr "Προβολή ή απόκρυψη της γραμμής κατάστασης"
 
-#: ../src/window.c:1988
+#: ../src/window.c:1902
 msgid "_Click to Move"
 msgstr "_Κλικ για μετακίνηση"
 
-#: ../src/window.c:1989
+#: ../src/window.c:1903
 msgid "Pick up and drop cards by clicking"
 msgstr "Σηκώστε και ρίξτε τα χαρτιά πατώντας"
 
 #. not active by default
-#: ../src/window.c:1992
+#: ../src/window.c:1906
 msgid "_Sound"
 msgstr "Ή_χος"
 
-#: ../src/window.c:1993
+#: ../src/window.c:1907
 msgid "Whether or not to play event sounds"
 msgstr "Αν θα αναπαράγονται ήχοι συμβάντων ή όχι"
 
-#. not active by default
-#: ../src/window.c:1996
-msgid "_Animations"
-msgstr "Κι_νούμενες εικόνες"
-
-#: ../src/window.c:1997
-msgid "Whether or not to animate card moves"
-msgstr "Αν θα χρησιμοποιούνται κινούμενες εικόνες ή όχι"
-
-#: ../src/window.c:2133
+#: ../src/window.c:2008
 msgid "Score:"
 msgstr "Βαθμολογία:"
 
-#: ../src/window.c:2145
+#: ../src/window.c:2020
 msgid "Time:"
 msgstr "Χρόνος:"
 
-#: ../src/window.c:2443
+#: ../src/window.c:2307
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Αδυναμία εκκίνησης του παιχνιδιού “%s”"
 
-#: ../src/window.c:2450
+#: ../src/window.c:2314
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Το Aisleriot δεν μπορεί να βρει το τελευταίο παιχνίδι που παίξατε."
 
-#: ../src/window.c:2451
+#: ../src/window.c:2315
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3470,6 +3478,12 @@ msgstr "Πολλαπλασιαστική βαθμολογία"
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Μετακινήστε ομάδα φύλλων σε κενή θέση του ταμπλό"
+
+#~ msgid "_Animations"
+#~ msgstr "Κι_νούμενες εικόνες"
+
+#~ msgid "Whether or not to animate card moves"
+#~ msgstr "Αν θα χρησιμοποιούνται κινούμενες εικόνες ή όχι"
 
 #~ msgid "About AisleRiot"
 #~ msgstr "Περί AisleRiot"
