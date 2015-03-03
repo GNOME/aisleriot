@@ -281,7 +281,7 @@ ar_game_chooser_constructor (GType type,
   GtkTreePath *path;
   char **games;
   int i;
-  GtkWidget *content_area;
+  GtkWidget *content_area, *action_area;
   GtkDialog *dialog;
 
   object = G_OBJECT_CLASS (ar_game_chooser_parent_class)->constructor
@@ -396,6 +396,13 @@ ar_game_chooser_constructor (GType type,
                                 TRUE,
                                 0.5, 0.0);
   gtk_tree_path_free (path);
+
+  /* Fixup dialogue padding, #735242 */
+  action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
+  gtk_widget_set_margin_left   (action_area, 5);
+  gtk_widget_set_margin_right  (action_area, 5);
+  gtk_widget_set_margin_top    (action_area, 5);
+  gtk_widget_set_margin_bottom (action_area, 5);
 
   return object;
 }

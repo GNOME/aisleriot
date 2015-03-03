@@ -110,7 +110,7 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
 {
   AisleriotStatsDialogPrivate *priv;
   GtkDialog *dialog = GTK_DIALOG (stats_dialog);
-  GtkWidget *vbox, *hbox, *content_area;
+  GtkWidget *vbox, *hbox, *content_area, *action_area;
   GtkTable *table;
 
   priv = stats_dialog->priv = AISLERIOT_STATS_DIALOG_GET_PRIVATE (stats_dialog);
@@ -180,6 +180,13 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
 
   gtk_window_set_title (GTK_WINDOW (dialog), "");
   gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+
+  /* Fixup dialogue padding, #735242 */
+  action_area = gtk_dialog_get_action_area (GTK_DIALOG (dialog));
+  gtk_widget_set_margin_left   (action_area, 5);
+  gtk_widget_set_margin_right  (action_area, 5);
+  gtk_widget_set_margin_top    (action_area, 5);
+  gtk_widget_set_margin_bottom (action_area, 5);
 }
 
 static void
