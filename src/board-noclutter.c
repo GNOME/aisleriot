@@ -112,8 +112,7 @@ struct _AisleriotBoardPrivate
   /* Moving cards */
   ArSlot *moving_cards_origin_slot;
   int moving_cards_origin_card_id; /* The index of the card that was clicked on in hslot->cards; or -1 if the click wasn't on a card */
-  GdkWindow *moving_cards_window;
-  GByteArray *moving_cards;
+  ArSlot *moving_cards_slot; /* if non-NULL, a move is in progress */
 
   /* The 'reveal card' action's slot and card link */
   ArSlot *show_card_slot;
@@ -811,6 +810,12 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
     slot_update_card_images (board, slot);
   }
 
+  if (priv->moving_cards_slot != NULL) {
+    GdkRectangle *rect = &priv->moving_cards_slot->rect;
+    slot_update_geometry (board, priv->moving_cards_slot);
+    slot_update_card_images (board, priv->moving_cards_slot);
+  }
+
   /* Update the focus and selection rects */
   get_focus_rect (board, &priv->focus_rect);
   get_selection_rect (board, &priv->selection_rect);
@@ -821,18 +826,11 @@ drag_begin (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
   GtkWidget *widget = GTK_WIDGET (board);
-  ArSlot *hslot;
-  int delta, height, width;
+  ArSlot *hslot, *mslot;
+  int delta;
   int x, y;
   int num_moving_cards;
-  guint i;
   GByteArray *cards;
-  GdkWindowAttr attributes;
-  GdkWindow *window;
-  cairo_t *cr;
-  cairo_surface_t *surface;
-  cairo_region_t *shape;
-  cairo_pattern_t *pattern;
 
   if (!priv->selection_slot ||
       priv->selection_start_card_id < 0) {
@@ -869,95 +867,30 @@ drag_begin (AisleriotBoard *board)
   priv->last_click_x -= x;
   priv->last_click_y -= y = hslot->rect.y + delta * hslot->pixeldy;;
 
-  g_byte_array_set_size (priv->moving_cards, 0);
-  g_byte_array_append (priv->moving_cards,
+  /* Create temporary slot for moving cards */
+  priv->moving_cards_slot = mslot = g_slice_dup (ArSlot, hslot);
+  mslot->cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
+  g_byte_array_append (mslot->cards,
                        cards->data + priv->moving_cards_origin_card_id,
                        cards->len - priv->moving_cards_origin_card_id);
-
+  mslot->expansion_depth = 0;
+  mslot->exposed = mslot->cards->len;
+  mslot->id = -1;
+  mslot->x = mslot->y = 0.;
+  mslot->card_images = g_ptr_array_sized_new (SLOT_CARDS_N_PREALLOC);
+  mslot->needs_update = TRUE;
+  slot_update_geometry (board, mslot);
+  slot_update_card_images_full (board, mslot, G_MAXINT);
+  mslot->rect.x = x;
+  mslot->rect.y = y;
+  
   /* Take the cards off of the stack */
   g_byte_array_set_size (cards, priv->moving_cards_origin_card_id);
   g_ptr_array_set_size (hslot->card_images, priv->moving_cards_origin_card_id);
-
-  width = priv->card_size.width + (num_moving_cards - 1) * hslot->pixeldx;
-  height = priv->card_size.height + (num_moving_cards - 1) * hslot->pixeldy;
-
-  window = gtk_widget_get_window (widget);
-
-  attributes.wclass = GDK_INPUT_OUTPUT;
-  attributes.window_type = GDK_WINDOW_CHILD;
-  attributes.event_mask = 0;
-  attributes.x = x;
-  attributes.y = y;
-  attributes.width = width;
-  attributes.height = height;
-  attributes.visual = gdk_window_get_visual (window);
-
-  priv->moving_cards_window = gdk_window_new (window, &attributes,
-                                              GDK_WA_VISUAL | GDK_WA_X | GDK_WA_Y);
-
-  /* FIXME: workaround for gtk+ bug #702951 */
-  gdk_window_ensure_native (priv->moving_cards_window);
-
-  surface = gdk_window_create_similar_surface (priv->moving_cards_window, CAIRO_CONTENT_COLOR_ALPHA,
-                                               width, height);
-  cr = cairo_create (surface);
-
-  cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-  cairo_paint (cr);
-
-  cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-
-  /* FIXMEchpe: RTL issue: this doesn't work right when we allow dragging of
-   * more than one card from a expand-right slot. (But right now no game .scm
-   * does allow that.)
-   */
-  x = y = 0;
-  width = priv->card_size.width;
-  height = priv->card_size.height;
-
-  for (i = 0; i < priv->moving_cards->len; ++i) {
-    Card hcard = CARD (priv->moving_cards->data[i]);
-
-    cairo_surface_t *card_surface;
-    cairo_pattern_t *card_pattern;
-    cairo_matrix_t matrix;
-
-    card_surface = ar_card_surface_cache_get_card_surface (priv->card_cache, hcard);
-    if (card_surface == NULL)
-      goto next;
-
-    card_pattern = cairo_pattern_create_for_surface (card_surface);
-    cairo_matrix_init_translate (&matrix, -x, -y);
-    cairo_pattern_set_matrix (card_pattern, &matrix);
-
-    cairo_set_source (cr, card_pattern);
-    cairo_paint (cr);
-
-    cairo_pattern_destroy (card_pattern);
-
-  next:
-
-    x += hslot->pixeldx;
-    y += hslot->pixeldy;
-  }
-
-  cairo_destroy (cr);
-
-  pattern = cairo_pattern_create_for_surface (surface);
-  gdk_window_set_background_pattern (priv->moving_cards_window, pattern);
-  cairo_pattern_destroy (pattern);
-
-  shape = gdk_cairo_region_create_from_surface (surface);
-  gdk_window_shape_combine_region (priv->moving_cards_window, shape, 0, 0);
-  cairo_region_destroy (shape);
-
-  cairo_surface_destroy (surface);
-
-  gdk_window_show (priv->moving_cards_window);
-
   slot_update_geometry (board, hslot);
   slot_update_card_images (board, hslot);
 
+  /* Change cursor */
   set_cursor (board, AR_CURSOR_CLOSED);
 }
 
@@ -966,27 +899,34 @@ drag_end (AisleriotBoard *board,
           gboolean moved)
 {
   AisleriotBoardPrivate *priv = board->priv;
-
-  if (priv->moving_cards_window != NULL) {
-    gdk_window_hide (priv->moving_cards_window);
-    gdk_window_destroy (priv->moving_cards_window);
-    priv->moving_cards_window = NULL;
-  }
+  GtkWidget *widget = GTK_WIDGET (board);
 
   /* FIXMEchpe: check that slot->cards->len == moving_cards_origin_card_id !!! FIXMEchpe what to do if not, abort the game? */
   /* Add the origin cards back to the origin slot */
   if (!moved &&
       priv->moving_cards_origin_slot != NULL &&
-      priv->moving_cards->len > 0) {
+      priv->moving_cards_slot != NULL &&
+      priv->moving_cards_slot->cards->len > 0) {
     aisleriot_game_slot_add_cards (priv->game,
                                    priv->moving_cards_origin_slot,
-                                   priv->moving_cards->data,
-                                   priv->moving_cards->len);
+                                   priv->moving_cards_slot->cards->data,
+                                   priv->moving_cards_slot->cards->len);
   }
 
   priv->click_status = STATUS_NONE;
   priv->moving_cards_origin_slot = NULL;
   priv->moving_cards_origin_card_id = -1;
+
+  if (priv->moving_cards_slot != NULL) {
+    GdkRectangle *rect = &priv->moving_cards_slot->rect;
+
+    gtk_widget_queue_draw_area (widget, rect->x, rect->y, rect->width, rect->height);
+
+    g_byte_array_free (priv->moving_cards_slot->cards, TRUE);
+    g_ptr_array_free (priv->moving_cards_slot->card_images, TRUE);
+    g_slice_free (ArSlot, priv->moving_cards_slot);
+    priv->moving_cards_slot = NULL;
+  }
 }
 
 static gboolean
@@ -996,12 +936,13 @@ cards_are_droppable (AisleriotBoard *board,
   AisleriotBoardPrivate *priv = board->priv;
 
   return slot != NULL &&
-         priv->moving_cards_origin_slot &&
+         priv->moving_cards_origin_slot != NULL &&
+         priv->moving_cards_slot != NULL &&
          aisleriot_game_drop_valid (priv->game,
                                     priv->moving_cards_origin_slot->id,
                                     slot->id,
-                                    priv->moving_cards->data,
-                                    priv->moving_cards->len);
+                                    priv->moving_cards_slot->cards->data,
+                                    priv->moving_cards_slot->cards->len);
 }
 
 static ArSlot *
@@ -1070,8 +1011,8 @@ drop_moving_cards (AisleriotBoard *board,
     moved = aisleriot_game_drop_cards (priv->game,
                                        priv->moving_cards_origin_slot->id,
                                        hslot->id,
-                                       priv->moving_cards->data,
-                                       priv->moving_cards->len);
+                                       priv->moving_cards_slot->cards->data,
+                                       priv->moving_cards_slot->cards->len);
   }
 
   if (moved) {
@@ -2807,8 +2748,9 @@ aisleriot_board_motion_notify (GtkWidget *widget,
   }
 
   if (priv->click_status == STATUS_IS_DRAG) {
-    ArSlot *slot;
+    ArSlot *slot, *mslot;
     int x, y;
+    cairo_region_t *region;
 
     x = event->x - priv->last_click_x;
     y = event->y - priv->last_click_y;
@@ -2816,7 +2758,13 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     slot = find_drop_target (board, x, y);
     highlight_drop_target (board, slot);
 
-    gdk_window_move (priv->moving_cards_window, x, y);
+    mslot = priv->moving_cards_slot;
+    region = cairo_region_create_rectangle (&mslot->rect);
+    mslot->rect.x = x;
+    mslot->rect.y = y;
+    cairo_region_union_rectangle (region, &mslot->rect);
+    gtk_widget_queue_draw_region (widget, region);
+    cairo_region_destroy (region);
 
     set_cursor (board, AR_CURSOR_CLOSED);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
@@ -3130,7 +3078,7 @@ draw_focus:
     /* Check whether this needs to be drawn */
 #ifdef OPTIMISED_EXPOSE
     if (cairo_region_contains_rectangle (region, &priv->focus_rect) == CAIRO_REGION_OVERLAP_OUT)
-      goto expose_done;
+      goto draw_moving_cards;
 #endif /* OPTIMISED_EXPOSE */
 
     if (ar_style_get_interior_focus (priv->style)) {
@@ -3149,11 +3097,61 @@ draw_focus:
                       focus_rect.width, focus_rect.height);
   }
 
-#ifdef OPTIMISED_EXPOSE
-expose_done:
-#endif
-
 #endif /* ENABLE_KEYNAV */
+
+#ifdef OPTIMISED_EXPOSE
+ draw_moving_cards:
+#endif /* OPTIMISED_EXPOSE */
+
+  /* Now draw the moving cards, if any */
+  if (priv->moving_cards_slot != NULL) {
+    ArSlot *hslot = priv->moving_cards_slot;
+    GByteArray *cards = hslot->cards;
+    gpointer *card_images = hslot->card_images->pdata;
+    GdkRectangle card_rect;
+    guint j, n_cards;
+
+    n_cards = cards->len;
+    if (n_cards == 0)
+      goto expose_done;
+
+    card_rect.x = hslot->rect.x;
+    card_rect.y = hslot->rect.y;
+    card_rect.width = priv->card_size.width;
+    card_rect.height = priv->card_size.height;
+
+    if (priv->is_rtl &&
+        hslot->expanded_right) {
+      card_rect.x += hslot->rect.width - priv->card_size.width;
+    }
+
+    for (j = n_cards - hslot->exposed; j < n_cards; ++j) {
+      /* Check whether this card needs to be drawn */
+#ifdef OPTIMISED_EXPOSE
+      if (cairo_region_contains_rectangle (region, &card_rect) == CAIRO_REGION_OVERLAP_OUT)
+        goto next_moving_card;
+#endif /* OPTIMISED_EXPOSE */
+
+      surface = card_images[j];
+      if (surface == NULL)
+        goto next_moving_card;
+
+      pattern = cairo_pattern_create_for_surface (surface);
+      cairo_matrix_init_translate (&matrix, -card_rect.x, -card_rect.y);
+      cairo_pattern_set_matrix (pattern, &matrix);
+      cairo_set_source (cr, pattern);
+      cairo_pattern_destroy (pattern);
+
+      cairo_paint (cr);
+
+    next_moving_card:
+
+      card_rect.x += hslot->pixeldx;
+      card_rect.y += hslot->pixeldy;
+    }
+  }
+
+expose_done:
 
   #if DEBUG_DRAWING
   if (cairo_status (cr) != CAIRO_STATUS_SUCCESS) {
@@ -3165,7 +3163,7 @@ expose_done:
   cairo_region_destroy (region);
 #endif
 
-  /* Parent class has no expose handler, no need to chain up */
+  /* Parent class has no draw handler, no need to chain up */
   return TRUE;
 }
 
@@ -3190,8 +3188,6 @@ aisleriot_board_init (AisleriotBoard *board)
   priv->show_status_messages = FALSE;
 
   priv->show_card_id = -1;
-
-  priv->moving_cards = g_byte_array_sized_new (SLOT_CARDS_N_PREALLOC);
 
   priv->card_cache = ar_card_surface_cache_new ();
   // FIXMEchpe connect changed handler
@@ -3237,8 +3233,6 @@ aisleriot_board_finalize (GObject *object)
                                         G_SIGNAL_MATCH_DATA,
                                         0, 0, NULL, NULL, board);
   g_object_unref (priv->game);
-
-  g_byte_array_free (priv->moving_cards, TRUE);
 
   g_object_unref (priv->card_cache);
 
