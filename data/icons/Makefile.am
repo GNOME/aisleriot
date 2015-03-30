@@ -1,6 +1,6 @@
 NULL =
 
-public_icons_themes = hicolor HighContrast
+public_icons_themes = hicolor
 
 dist_noinst_DATA = \
 	hicolor_apps_16x16_gnome-aisleriot.png \
@@ -15,7 +15,7 @@ dist_noinst_DATA = \
 	hicolor_apps_32x32_gnome-freecell.png \
 	hicolor_apps_48x48_gnome-freecell.png \
 	hicolor_apps_256x256_gnome-freecell.png \
-	HighContrast_apps_scalable_gnome-aisleriot.svg \
+	hicolor_apps_symbolic_gnome-aisleriot-symbolic.svg \
 	$(NULL)
 
 private_icons = \
