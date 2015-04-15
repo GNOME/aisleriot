@@ -287,8 +287,10 @@ ar_runtime_init (const char *name)
   }
 #endif /* G_OS_WIN32 */
 
+#if !GLIB_CHECK_VERSION(2, 35, 0)
   /* This also initialises gthread */
   g_type_init ();
+#endif
 
   /* May call any glib function after this point */
 
