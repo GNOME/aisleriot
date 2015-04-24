@@ -93,6 +93,7 @@ HELP_FILES = \
 	triple_peaks.xml \
 	union_square.xml \
 	valentine.xml \
+	wall.xml \
 	westhaven.xml \
 	whitehead.xml \
 	will_o_the_wisp.xml \

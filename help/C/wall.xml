@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+                   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+]>
+<sect1 id="Wall"><!--<sect1info>
+		<copyright>
+			<year>2015</year>
+			<holder>Otto Wallenius, Markus Tuhkanen</holder>
+		</copyright>
+		<author>
+			<firstname>Otto</firstname>
+			<surname>Wallenius</surname>
+		</author>
+		<address><email>owalleni@gmail.com</email></address>
+	</sect1info>-->
+
+	<title>Wall</title>
+
+	<sect2><title>Setup</title>
+
+	    <informaltable>
+		    <tgroup cols="2">
+			    <tbody>
+	          <row>
+		          <entry>Type of Deck</entry>
+		          <entry>Standard Double Deck</entry>
+	          </row>
+	          <row>
+		          <entry>Stock</entry>
+		          <entry>
+                Bottom left pile of 39 cards. Cards are turned over three at a time to Waste.
+		          </entry>
+	          </row>
+	          <row>
+		          <entry>Waste</entry>
+		          <entry>
+			          Three rightmost piles at the bottom row. To be taken from Stock one on to each at a time.
+		          </entry>
+	          </row>
+	          <row>
+		          <entry>Tableau</entry>
+		          <entry>
+			          Wall, Low Guard Post, High Guard Post and Throne.
+		          </entry>
+	          </row>
+	          <row>
+		          <entry>Wall</entry>
+		          <entry>
+			          45 cards in six rows.
+		          </entry>
+	          </row>
+	          <row>
+		          <entry>Low Guard Post</entry>
+		          <entry>
+			          Four piles of three cards, placed face down initially.
+		          </entry>
+	          </row>
+	          <row>
+		          <entry>High Guard Post</entry>
+		          <entry>
+                Three piles of two cards.
+		          </entry>
+	          </row>
+	          <row>
+		          <entry>Throne</entry>
+		          <entry>
+                A pile with two kings of spades.
+		          </entry>
+	          </row>
+			    </tbody>
+		    </tgroup>
+	    </informaltable>
+    </sect2>
+    
+    <sect2><title>Goal</title>
+        <para>
+        Remove the two kings in Throne.
+        </para>
+    </sect2>
+    
+    <sect2><title>Rules</title>
+
+	    <para>
+    You start from the bottom of Wall and try to move up to Throne by removing cards on the way. You can remove cards by attacking them with Waste cards that are dealt three at a time from Stock. If Stock runs out and you cannot remove the kings in Throne with the remaining cards in Waste, the game is lost.
+	    </para>
+	    <para>
+    Waste cards used in attacks are called <emphasis>attack cards</emphasis>. An attack on any card or pile succeeds if the <emphasis>health</emphasis> of the attack cards exceeds the health of the attacked card or pile. Health is computed as a sum of card values as explained below. A successful attack removes both the attacked cards and the attack cards.
+	    </para>
+	    
+	    <sect3><title>Order of removing cards</title>
+	    <para>The basic rule is to remove cards immediately above and next to already empty Tableau slots.</para>
+            <variablelist>
+            <varlistentry><term>Wall</term>
+              <listitem>
+                <para>From the beginning all cards in the bottom row of Wall can be removed. Furthermore, you can remove any card if a card covering its bottom left or right corner has been removed or a card in the same (horizontal) row next to it has been removed.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry><term>Low Guard Post</term>
+              <listitem>
+                <para>A pile can be removed when one of the two cards in Wall immediately below it has been removed or a pile next to it in Low Guard Post has been removed.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry><term>High Guard Post</term>
+              <listitem>
+                <para>A pile can be removed once the pile closest to its bottom left corner or the pile closest to its bottom right corner in Low Guard Post has been removed, or a pile next to it in High Guard Post has been removed.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry><term>Throne</term>
+              <listitem>
+                <para>Can be removed when all piles in High Guard Post have been removed.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>            
+        </sect3>
+	    
+	    <sect3><title>Health</title>
+	        <para>
+        For attack cards, health is the sum of card values.
+	        </para>
+            <para>	
+        For most Wall cards, health is the sum of values of the card and the cards touching its top left and right corners. For the cards in the top row of Wall, health is just the card's value. For the cards on the left and right edge of Wall, health is the sum of values of the card, the only card touching its top corner and the card immediately above it.
+            </para>
+            <para>
+        For the piles in Low Guard Post, High Guard Post and Throne, a whole pile must be removed at once. A pile's health is the sum of values of the cards in that pile.
+            </para>
+            <para>
+            Ace is low.
+            </para>
+	    </sect3>
+	
+	    <sect3><title>Attacking</title>
+	        <para>
+        You can attack with any combination of Waste cards by piling them and dragging the pile on the card you want to attack. Clicking a Tableau card attacks the clicked card with all cards in Waste. New cards can be dealt from Stock on to Waste at any time. Dealing new cards discards the cards that were in Waste before.
+	        </para>
+            <para>
+The piles in Low Guard Post behave differently from others. The first attack on any of these piles flips the cards in the pile face up and removes the attack cards. If this first attack succeeds, the pile is removed as normal. If the attack fails, subsequent failing attacks on that pile do not cause attack cards to be removed.
+            </para>
+        </sect3>
+        
+        <sect3><title>Other rules</title>
+            <para>
+    Double-clicking a Tableau card is an action shortcut. It has the same effect as clicking (see Attacking) and in addition causes new cards to be dealt from Stock on to Waste regardless of whether the attack was successful or not.
+            </para>
+        </sect3>
+	</sect2>
+	
+    <sect2><title>Scoring</title>
+
+	    <para>
+		    Each successful attack scores the health of the attacked card or pile.
+	    </para>
+
+	</sect2>
+    <sect2><title>Strategy</title>
+
+	    <para>
+	    It is best to move as directly up as possible. Try to find an easy path through Wall before starting off.
+	    </para>
+	    <para>
+	    Try not to waste cards, but make as many attacks as possible before dealing new cards.
+	    </para>
+	    <para>
+	    When trying to remove a Low Guard Post pile, it is often a good idea to first flip the cards over by attacking them with a low-valued card, and after that to decide whether to try through there or through some other Low Guard Post pile. Note that the expectation of a Low Guard Post pile's health is a little less than 21.
+	    </para>
+    </sect2>
+</sect1>

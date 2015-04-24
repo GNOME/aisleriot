@@ -88,6 +88,7 @@ games_GUILE = \
 	triple-peaks.scm \
 	union-square.scm \
 	valentine.scm \
+	wall.scm \
 	westhaven.scm \
 	whitehead.scm \
 	will-o-the-wisp.scm \
