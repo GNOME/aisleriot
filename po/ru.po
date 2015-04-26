@@ -12,27 +12,26 @@
 # Dmitry Dzhus <dima@sphinx.net.ru>, 2008.
 # Andrew Grigorev <andrew@ei-grad.ru>, 2009.
 # Yuri Kozlov <yuray@komyakino.ru>, 2010, 2012.
-# Yuri Myasoedov <ymyasoedov@yandex.ru>, 2012-2014.
+# Yuri Myasoedov <ymyasoedov@yandex.ru>, 2012-2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games trunk\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-09 02:31+0000\n"
-"PO-Revision-Date: 2014-09-09 12:45+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"POT-Creation-Date: 2015-04-26 02:29+0000\n"
+"PO-Revision-Date: 2015-04-26 09:03+0300\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.4\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/sol.appdata.xml.in.h:1
-#| msgid "AisleRiot Solitaire"
 msgid "Aisleriot Solitaire"
 msgstr "Пасьянс Айслериот"
 
@@ -72,19 +71,19 @@ msgstr "Показывать ли панель инструментов"
 
 #: ../src/aisleriot.schemas.in.h:4
 msgid "Whether or not to show the status bar"
-msgstr "Показывать ли строку состояния"
+msgstr "Показывать ли панель состояния"
 
 #: ../src/aisleriot.schemas.in.h:5
 msgid "Select the style of control"
-msgstr "Выбор стиля управления"
+msgstr "Выбор метод управления"
 
 #: ../src/aisleriot.schemas.in.h:6
 msgid ""
 "Select whether to drag the cards or to click on the source then the "
 "destination."
 msgstr ""
-"Нужно ли перетаскивать карты мышью или указывать место, откуда карта берётся "
-"и куда кладётся."
+"Выберите способ переноса карт: перетаскивание карт с помощью мыши или "
+"указание мест, откуда берутся и куда кладутся карты."
 
 #: ../src/aisleriot.schemas.in.h:7
 msgid "Sound"
@@ -140,7 +139,7 @@ msgstr "Новая игра"
 msgid "Change Game"
 msgstr "Изменить игру"
 
-#: ../src/ar-application.c:221 ../src/stats-dialog.c:199
+#: ../src/ar-application.c:221 ../src/stats-dialog.c:206
 msgid "Statistics"
 msgstr "Статистика"
 
@@ -154,14 +153,14 @@ msgstr "Справка"
 
 #: ../src/ar-application.c:227
 msgid "About"
-msgstr "О программе"
+msgstr "О приложении"
 
 #: ../src/ar-application.c:228
 msgid "Quit"
 msgstr "Закончить"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:2109
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1989
 msgid "Select Game"
 msgstr "Выбор игры"
 
@@ -258,86 +257,101 @@ msgstr ""
 ">."
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1437
+#: ../src/game.c:1422
+msgctxt "slot type"
+msgid "chooser"
+msgstr ""
+
+#. Translators: this is the name of a type of card slot
+#: ../src/game.c:1426
 msgctxt "slot type"
 msgid "foundation"
 msgstr "основание"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1441
+#: ../src/game.c:1430
 msgctxt "slot type"
 msgid "reserve"
 msgstr "резерв"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1445
+#: ../src/game.c:1434
 msgctxt "slot type"
 msgid "stock"
 msgstr "колода"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1449
+#: ../src/game.c:1438
 msgctxt "slot type"
 msgid "tableau"
 msgstr "игровое поле"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1453
+#: ../src/game.c:1442
 msgctxt "slot type"
 msgid "waste"
 msgstr "сброс"
 
+#. Translators: %s is the name of the card; "chooser" is the name of a type of card slot
+#: ../src/game.c:1474
+#, fuzzy, c-format
+#| msgctxt "slot hint"
+#| msgid "%s on reserve"
+msgctxt "slot hint"
+msgid "%s on chooser"
+msgstr "%s в резерве"
+
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1485
+#: ../src/game.c:1478
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s в основании"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1489
+#: ../src/game.c:1482
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s в резерве"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1493
+#: ../src/game.c:1486
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s в колоде"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1497
+#: ../src/game.c:1490
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s на игровом поле"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1501
+#: ../src/game.c:1494
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s в сбросе"
 
-#: ../src/game.c:2168
+#: ../src/game.c:2161
 msgid "This game does not have hint support yet."
-msgstr "В этой игре подсказка не реализована."
+msgstr "В этой игре подсказки ещё не реализованы."
 
 #. Both %s are card names
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2203 ../src/game.c:2229
+#: ../src/game.c:2196 ../src/game.c:2222
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Положить %s на %s."
 
-#: ../src/game.c:2249
+#: ../src/game.c:2242
 msgid "This game is unable to provide a hint."
-msgstr "В этой игре нельзя реализовать подсказку."
+msgstr "В этой игре нельзя получить подсказку."
 
 #. This is a generated file; DO NOT EDIT
 #. Translators: this string is the name of a game of patience.
@@ -1494,31 +1508,31 @@ msgid "Window height"
 msgstr "Высота окна"
 
 #. String reserve
-#: ../src/sol.c:51
+#: ../src/sol.c:45
 msgid "Solitaire"
 msgstr "Пасьянс"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:46
 msgid "GNOME Solitaire"
 msgstr "Пасьянс GNOME"
 
-#: ../src/sol.c:53
+#: ../src/sol.c:47
 msgid "About Solitaire"
 msgstr "О пасьянсе"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "Select the game type to play"
 msgstr "Выберите игру"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "NAME"
 msgstr "ИМЯ"
 
-#: ../src/sol.c:117
+#: ../src/sol.c:105
 msgid "FreeCell Solitaire"
 msgstr "Пасьянс Свободная ячейка"
 
-#: ../src/sol.c:117 ../src/window.c:416
+#: ../src/sol.c:105 ../src/window.c:397
 msgid "AisleRiot"
 msgstr "Айслериот"
 
@@ -1564,7 +1578,7 @@ msgstr "Время"
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
-#: ../src/stats-dialog.c:213 ../src/stats-dialog.c:219
+#: ../src/stats-dialog.c:220 ../src/stats-dialog.c:226
 #, c-format
 msgid "%d"
 msgstr "%d"
@@ -1576,49 +1590,49 @@ msgstr "%d"
 #. * instead, or leave it as "%%". If you chose a character other than
 #. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
 #.
-#: ../src/stats-dialog.c:230
+#: ../src/stats-dialog.c:237
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../src/stats-dialog.c:236 ../src/stats-dialog.c:245
-#: ../src/stats-dialog.c:253
+#: ../src/stats-dialog.c:243 ../src/stats-dialog.c:252
+#: ../src/stats-dialog.c:260
 msgid "N/A"
 msgstr "Н/Д"
 
 #. Translators: this represents minutes:seconds.
-#: ../src/stats-dialog.c:240 ../src/stats-dialog.c:248
+#: ../src/stats-dialog.c:247 ../src/stats-dialog.c:255
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:211
+#: ../src/window.c:198
 msgid "Congratulations, you have won!"
 msgstr "Поздравляем, вы выиграли!"
 
-#: ../src/window.c:215
+#: ../src/window.c:202
 msgid "There are no more moves"
 msgstr "Больше нет вариантов ходов"
 
-#: ../src/window.c:366
+#: ../src/window.c:347
 msgid "Main game:"
 msgstr "Основная игра:"
 
-#: ../src/window.c:374
+#: ../src/window.c:355
 msgid "Card games:"
 msgstr "Карточные игры:"
 
-#: ../src/window.c:389
+#: ../src/window.c:370
 msgid "Card themes:"
 msgstr "Стиль карт:"
 
-#: ../src/window.c:418
+#: ../src/window.c:399
 msgid "About Aisleriot"
 msgstr "О программе"
 
-#: ../src/window.c:420
+#: ../src/window.c:401
 msgid ""
 "Aisleriot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
@@ -1626,7 +1640,7 @@ msgstr ""
 "Айслериот предоставляет карточный движок для пасьянсов, который позволяет "
 "играть в различные игры."
 
-#: ../src/window.c:429
+#: ../src/window.c:410
 msgid "translator-credits"
 msgstr ""
 "Валек Филиппов aka frob\n"
@@ -1635,185 +1649,176 @@ msgstr ""
 "Михаил Яхонтов\n"
 "Леонид Кантер"
 
-#: ../src/window.c:432
+#: ../src/window.c:413
 msgid "Aisleriot web site"
 msgstr "Веб-сайт Айслериот"
 
-#: ../src/window.c:1225
+#: ../src/window.c:1190
 #, c-format
 msgid "Play “%s”"
 msgstr "Играть в «%s»"
 
-#: ../src/window.c:1387
+#: ../src/window.c:1351
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Использовать тему карт «%s»"
 
-#: ../src/window.c:1681
+#: ../src/window.c:1645
 msgid "A scheme exception occurred"
 msgstr "Возникло исключение scheme"
 
-#: ../src/window.c:1684
+#: ../src/window.c:1648
 msgid "Please report this bug to the developers."
 msgstr "Пожалуйста, сообщите об этом разработчикам."
 
-#: ../src/window.c:1690
+#: ../src/window.c:1654
 msgid "_Don't report"
 msgstr "_Не сообщать"
 
-#: ../src/window.c:1691
+#: ../src/window.c:1655
 msgid "_Report"
 msgstr "_Сообщить"
 
 #. Menu actions
-#: ../src/window.c:1898
+#: ../src/window.c:1812
 msgid "_Game"
 msgstr "_Игра"
 
-#: ../src/window.c:1899
+#: ../src/window.c:1813
 msgid "_View"
 msgstr "_Вид"
 
-#: ../src/window.c:1900
+#: ../src/window.c:1814
 msgid "_Control"
 msgstr "_Управление"
 
-#: ../src/window.c:1902
+#: ../src/window.c:1816
 msgid "_Help"
 msgstr "_Справка"
 
-#: ../src/window.c:1907
+#: ../src/window.c:1821
 msgid "Start a new game"
 msgstr "Начать новую игру"
 
-#: ../src/window.c:1910
+#: ../src/window.c:1824
 msgid "Restart the game"
 msgstr "Начать игру заново"
 
-#: ../src/window.c:1912
+#: ../src/window.c:1826
 msgid "_Select Game…"
 msgstr "_Выбрать игру…"
 
-#: ../src/window.c:1914
+#: ../src/window.c:1828
 msgid "Play a different game"
 msgstr "Начать другой пасьянс"
 
-#: ../src/window.c:1916
+#: ../src/window.c:1830
 msgid "_Recently Played"
 msgstr "Недавние п_асьянсы"
 
-#: ../src/window.c:1917
+#: ../src/window.c:1831
 msgid "S_tatistics"
 msgstr "_Статистика"
 
-#: ../src/window.c:1918
+#: ../src/window.c:1832
 msgid "Show gameplay statistics"
 msgstr "Показать статистику игры"
 
-#: ../src/window.c:1921
+#: ../src/window.c:1835
 msgid "Close this window"
 msgstr "Закрыть это окно"
 
-#: ../src/window.c:1924
+#: ../src/window.c:1838
 msgid "Undo the last move"
 msgstr "Отменить последний ход"
 
-#: ../src/window.c:1927
+#: ../src/window.c:1841
 msgid "Redo the undone move"
 msgstr "Вернуть отменённый ход"
 
-#: ../src/window.c:1930
+#: ../src/window.c:1844
 msgid "Deal next card or cards"
 msgstr "Раздать ещё карту"
 
-#: ../src/window.c:1933
+#: ../src/window.c:1847
 msgid "Get a hint for your next move"
 msgstr "Подсказать следующий ход"
 
-#: ../src/window.c:1936
+#: ../src/window.c:1850
 msgid "View help for Aisleriot"
 msgstr "Показать справку по Aisleriot"
 
-#: ../src/window.c:1940
+#: ../src/window.c:1854
 msgid "View help for this game"
 msgstr "Показать справку по игре"
 
-#: ../src/window.c:1943
+#: ../src/window.c:1857
 msgid "About this game"
 msgstr "Об игре"
 
-#: ../src/window.c:1945
+#: ../src/window.c:1859
 msgid "Install card themes…"
 msgstr "Установить карточную тему…"
 
-#: ../src/window.c:1946
+#: ../src/window.c:1860
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Установить новые карточные темы из репозитория пакетов дистрибутива"
 
-#: ../src/window.c:1952
+#: ../src/window.c:1866
 msgid "_Card Style"
 msgstr "Стиль _карт"
 
-#: ../src/window.c:1978
+#: ../src/window.c:1892
 msgid "_Toolbar"
 msgstr "Панель _инструментов"
 
-#: ../src/window.c:1979
+#: ../src/window.c:1893
 msgid "Show or hide the toolbar"
 msgstr "Показать или скрыть панель инструментов"
 
-#: ../src/window.c:1983
+#: ../src/window.c:1897
 msgid "_Statusbar"
-msgstr "Строка _состояния"
+msgstr "Панель _состояния"
 
-#: ../src/window.c:1984
+#: ../src/window.c:1898
 msgid "Show or hide statusbar"
-msgstr "Показать или скрыть строку состояния"
+msgstr "Показывать или скрывать панель состояния"
 
-#: ../src/window.c:1988
+#: ../src/window.c:1902
 msgid "_Click to Move"
-msgstr "_Перенос карт"
+msgstr "_Переносить карты нажатием"
 
-#: ../src/window.c:1989
+#: ../src/window.c:1903
 msgid "Pick up and drop cards by clicking"
-msgstr "Брать и опускать карты по щелчку"
+msgstr "Брать или класть карты с помощью нажатия"
 
 #. not active by default
-#: ../src/window.c:1992
+#: ../src/window.c:1906
 msgid "_Sound"
 msgstr "_Звук"
 
-#: ../src/window.c:1993
+#: ../src/window.c:1907
 msgid "Whether or not to play event sounds"
 msgstr "Воспроизводить ли звуки событий"
 
-#. not active by default
-#: ../src/window.c:1996
-msgid "_Animations"
-msgstr "_Анимации"
-
-#: ../src/window.c:1997
-msgid "Whether or not to animate card moves"
-msgstr "Использовать ли анимацию карточных перемещений"
-
-#: ../src/window.c:2133
+#: ../src/window.c:2008
 msgid "Score:"
 msgstr "Счёт:"
 
-#: ../src/window.c:2145
+#: ../src/window.c:2020
 msgid "Time:"
 msgstr "Время:"
 
-#: ../src/window.c:2443
+#: ../src/window.c:2307
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Не удалось начать игру «%s»"
 
-#: ../src/window.c:2450
+#: ../src/window.c:2314
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Не удалось найти последнюю сыгранную игру."
 
-#: ../src/window.c:2451
+#: ../src/window.c:2315
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
