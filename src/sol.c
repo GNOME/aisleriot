@@ -158,6 +158,10 @@ main (int argc, char *argv[])
   g_setenv ("UBUNTU_MENUPROXY", "0", TRUE);
   g_setenv ("NO_UNITY_GTK_MODULE", "1", TRUE);
 
+  /* Not interested in silly debug spew polluting the journal, bug #749195 */
+  if (g_getenv ("G_ENABLE_DIAGNOSTIC") == NULL)
+    g_setenv ("G_ENABLE_DIAGNOSTIC", "0", TRUE);
+
   scm_boot_guile (argc, argv, main_prog, NULL); /* no return */
 
   return 0;
