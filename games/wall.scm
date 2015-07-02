@@ -135,7 +135,7 @@
   (set-statusbar-message (get-attacks-left-string)))
 
 (define (get-attacks-left-string)
-  (string-append (_"Deals  left: ")
+  (string-append (_"Deals left: ")
                  (number->string (/ (length (get-cards stock)) 3))))
 
 (define (in-wall? slot-id)
