@@ -599,6 +599,13 @@ N_("Valentine")
  locale, use that; otherwise you can translate this string
  freely, literally, or not at all, at your option.
  */
+N_("Wall")
+
+/* Translators: this string is the name of a game of patience.
+ If there is an established standard name for this game in your
+ locale, use that; otherwise you can translate this string
+ freely, literally, or not at all, at your option.
+ */
 N_("Westhaven")
 
 /* Translators: this string is the name of a game of patience.
