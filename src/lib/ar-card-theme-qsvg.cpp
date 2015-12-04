@@ -185,7 +185,7 @@ ar_card_theme_qsvg_get_card_size (ArCardTheme *card_theme,
   size->height = theme->card_size.height();
 }
 
-static qreal
+static double
 ar_card_theme_qsvg_get_card_aspect (ArCardTheme* card_theme)
 {
   ArCardThemeQSvg *theme = (ArCardThemeQSvg *) card_theme;
