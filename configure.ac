@@ -304,8 +304,13 @@ GLIB_GSETTINGS
 
 # Check for GNOME modules
 
-AM_GCONF_SOURCE_2
-AC_PATH_PROG([GCONFTOOL],[gconftool-2])
+m4_ifdef([AM_GCONF_SOURCE_2],
+  [AM_GCONF_SOURCE_2
+   AC_PATH_PROG([GCONFTOOL],[gconftool-2])
+  ],
+  [AM_CONDITIONAL([GCONF_SCHEMAS_INSTALL],[false])
+   with_platform=gtk-only]
+)
 
 if test "$with_platform" = "gnome"; then
   PKGS="$PKGS gconf-2.0 >= $GCONF_REQUIRED"
