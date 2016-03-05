@@ -18,6 +18,16 @@
 
 (use-modules (aisleriot interface) (ice-9 format) (ice-9 i18n))
 
+;; This is the encoding of strings returned from e.g. 'format',
+;; so we need to set this to "UTF-8" since that's what the C side
+;; of aisleriot expects.  Otherwise as per docs, guile sets this
+;; from the locale encoding, which would be wrong if the locale is
+;; an not UTF-8 locale, and also it seems that even though we call
+;; setlocale(3), the guile side does not pick this up, for whatever
+;; reason.
+;; Bug #733881.
+(fluid-set! %default-port-encoding "UTF-8")
+
 ;; Define the usual alias for gettext
 (define-public (_ msg) (gettext msg "aisleriot"))
 
