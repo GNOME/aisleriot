@@ -134,23 +134,28 @@ free_window_state (WindowState *state)
   g_slice_free (WindowState, state);
 }
 
-static gboolean
-window_configure_event_cb (GtkWidget *widget,
-                           GdkEventConfigure *event,
-                           WindowState *state)
+static void
+window_size_allocate_cb (GtkWidget *widget,
+                         GtkAllocation *allocation,
+                         WindowState *state)
 {
+  int width, height;
+
+  gtk_window_get_size (GTK_WINDOW (widget), &width, &height);
+
+
   ar_debug_print (AR_DEBUG_WINDOW_STATE,
-                      "[window %p] configure event current %dx%d new %dx%d [state: is-maximised:%s is-fullscreen:%s]\n",
+                  "[window %p] size allocate %dx%d new %dx%d [state: is-maximised:%s is-fullscreen:%s]\n",
                       state->window,
                       state->width, state->height,
-                      event->width, event->height,
+                      width, height,
                       state->is_maximised ? "t" : "f",
                       state->is_fullscreen ? "t" : "f");
 
   if (!state->is_maximised && !state->is_fullscreen &&
-      (state->width != event->width || state->height != event->height)) {
-    state->width = event->width;
-    state->height = event->height;
+      (state->width != width || state->height != height)) {
+    state->width = width;
+    state->height = height;
 
   ar_debug_print (AR_DEBUG_WINDOW_STATE,
                       "[window %p] scheduling save of new window size\n",
@@ -162,8 +167,6 @@ window_configure_event_cb (GtkWidget *widget,
                                                  state);
     }
   }
-
-  return FALSE;
 }
 
 static gboolean
@@ -1284,8 +1287,8 @@ ar_conf_add_window (GtkWindow *window,
   g_object_set_data_full (G_OBJECT (window), "ArConf::WindowState",
                           state, (GDestroyNotify) free_window_state);
 
-  g_signal_connect (window, "configure-event",
-                    G_CALLBACK (window_configure_event_cb), state);
+  g_signal_connect_after (window, "size-allocate",
+                          G_CALLBACK (window_size_allocate_cb), state);
   g_signal_connect (window, "window-state-event",
                     G_CALLBACK (window_state_event_cb), state);
 
