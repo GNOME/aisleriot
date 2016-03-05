@@ -670,36 +670,6 @@ cscmi_add_slot (SCM slot_data)
 }
 
 /* Scheme functions */
-static SCM
-scm_gettext (SCM message)
-{
-  char *input;
-  const char *output;
-  SCM translated = SCM_UNDEFINED;
-
-  if (!scm_is_string (message))
-    return message;
-
-  scm_dynwind_begin (0);
-
-  input = scm_to_utf8_string (message);
-  scm_dynwind_free (input);
-  if (!input)
-    goto out;
-
-  output = g_dgettext (NULL, input);
-
-  if (input != output) {
-    translated = scm_from_utf8_string (output);
-  } else {
-    translated = message;
-  }
-
-out:
-  scm_dynwind_end ();
-
-  return translated;
-}
 
 static SCM
 scm_undo_set_sensitive (SCM in_state)
@@ -1078,7 +1048,6 @@ cscm_init (void *data G_GNUC_UNUSED)
   scm_c_define_gsubr ("get-timeout", 0, 0, 0, scm_get_timeout);
   scm_c_define_gsubr ("set-timeout!", 1, 0, 0, scm_set_timeout);
   scm_c_define_gsubr ("delayed-call", 1, 0, 0, scm_delayed_call);
-  scm_c_define_gsubr ("_", 1, 0, 0, scm_gettext);
   scm_c_define_gsubr ("undo-set-sensitive", 1, 0, 0, scm_undo_set_sensitive);
   scm_c_define_gsubr ("redo-set-sensitive", 1, 0, 0, scm_redo_set_sensitive);
   scm_c_define_gsubr ("dealable-set-sensitive", 1, 0, 0, scm_dealable_set_sensitive);

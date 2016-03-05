@@ -18,6 +18,9 @@
 
 (use-modules (aisleriot interface) (ice-9 format) (ice-9 i18n))
 
+;; Define the usual alias for gettext
+(define-public (_ msg) (gettext msg "aisleriot"))
+
 ;; Feature masks:
 (define-public droppable-feature 1)
 (define-public scores-disabled 2)
