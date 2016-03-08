@@ -1069,7 +1069,6 @@ cscm_init (void *data G_GNUC_UNUSED)
                 "get-timeout", 
                 "set-timeout!", 
                 "delayed-call", 
-                "_", 
                 "undo-set-sensitive", 
                 "redo-set-sensitive", 
                 "dealable-set-sensitive",
