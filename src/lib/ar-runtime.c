@@ -256,8 +256,14 @@ gboolean
 ar_runtime_init (const char *name)
 {
   gboolean retval;
+  const char *charset;
 
   setlocale (LC_ALL, "");
+
+  if (!g_get_charset (&charset)) {
+    g_printerr ("Non UTF-8 locale (%s) is not supported!\n", charset);
+    return FALSE;
+  }
 
 #ifdef G_OS_WIN32
   /* On Windows, when called from a console, get console output. This works
