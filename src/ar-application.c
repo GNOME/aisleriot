@@ -28,12 +28,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#ifdef HAVE_CLUTTER
-#include <cogl/cogl.h>
-#include <clutter/clutter.h>
-#include <clutter-gtk/clutter-gtk.h>
-#endif
-
 #include "ar-debug.h"
 #include "ar-stock.h"
 #include "ar-sound.h"

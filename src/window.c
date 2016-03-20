@@ -432,11 +432,7 @@ undo_cb (GtkAction *action,
   AisleriotWindowPrivate *priv = window->priv;
 
   /* If a move is in progress, cancel it before changing the game! */
-#ifdef HAVE_CLUTTER
-  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
-#else
   aisleriot_board_abort_move (priv->board);
-#endif
 
   aisleriot_game_undo_move (priv->game);
 }
@@ -447,11 +443,7 @@ redo_cb (GtkAction *action,
 {
   AisleriotWindowPrivate *priv = window->priv;
 
-#ifdef HAVE_CLUTTER
-  aisleriot_board_abort_move (AISLERIOT_BOARD (priv->board_actor));
-#else
   aisleriot_board_abort_move (priv->board);
-#endif
 
   aisleriot_game_redo_move (priv->game);
 }

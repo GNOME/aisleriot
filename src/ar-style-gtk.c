@@ -44,15 +44,10 @@
 static GtkStyleProvider *
 ar_style_provider_new (void)
 {
-#ifdef HAVE_CLUTTER
-#define NAME "ArClutterEmbed"
-#else
-#define NAME "AisleriotBoard"
-#endif
   static const char css[] =
-    "" NAME "{\n"
+    " AisleriotBoard {\n"
       "background-color: " DEFAULT_BACKGROUND_COLOR_STRING ";\n"
-      "-" NAME "-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
+      "-AisleriotBoard-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
       "background-image: url('resource:///org/gnome/aisleriot/art/baize.png');\n"
       "background-repeat: repeat;\n"
   "}\n";
