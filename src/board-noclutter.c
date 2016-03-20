@@ -3419,6 +3419,10 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 
   _ar_style_gtk_class_install_style_properties (widget_class);
 
+#if GTK_CHECK_VERSION (3, 19, 5)
+  gtk_widget_class_set_css_name(widget_class, "aisleriot-board");
+#endif
+
 #ifdef ENABLE_KEYNAV
   /* Keybindings */
   binding_set = gtk_binding_set_by_class (klass);

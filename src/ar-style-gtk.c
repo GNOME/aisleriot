@@ -45,7 +45,7 @@ static GtkStyleProvider *
 ar_style_provider_new (void)
 {
   static const char css[] =
-    " AisleriotBoard {\n"
+    " AisleriotBoard, aisleriot-board {\n"
       "background-color: " DEFAULT_BACKGROUND_COLOR_STRING ";\n"
       "-AisleriotBoard-selection-color: " DEFAULT_SELECTION_COLOR_STRING ";\n"
       "background-image: url('resource:///org/gnome/aisleriot/art/baize.png');\n"
