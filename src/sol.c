@@ -144,6 +144,13 @@ cleanup:
 int
 main (int argc, char *argv[])
 {
+#if !GTK_CHECK_VERSION (3, 19, 5)
+  if (!gtk_check_version(3, 19, 5)) {
+    g_printerr("Aisleriot needs to be recompiled against gtk+ >= 3.19.5 in order to run with gtk+ >= 3.19.5\n");
+    return 1;
+  }
+#endif
+
   if (!ar_runtime_init ("aisleriot"))
     return 1;
 
