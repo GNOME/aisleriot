@@ -8,24 +8,37 @@ msgstr ""
 "Project-Id-Version: gnome-games master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-28 02:10+0000\n"
-"PO-Revision-Date: 2013-12-27 20:45+0800\n"
-"Last-Translator: Sphinx Jiang <yishanj13@gmail.com>\n"
+"POT-Creation-Date: 2016-03-05 19:30+0000\n"
+"PO-Revision-Date: 2015-11-11 08:06+0800\n"
+"Last-Translator: liushuyu <liushuyu_011@126.com>\n"
 "Language-Team: Chinese Simplified <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#: ../data/sol.appdata.xml.in.h:1
+msgid "Aisleriot Solitaire"
+msgstr "AisleRiot 纸牌游戏"
+
+#: ../data/sol.appdata.xml.in.h:2 ../data/sol.desktop.in.in.h:2
+msgid "Play many different solitaire games"
+msgstr "玩各种纸牌游戏"
+
+#: ../data/sol.appdata.xml.in.h:3
+msgid ""
+"Aisleriot — also known as sol or solitaire — is a card game application that "
+"features over 80 different solitaire-type card games which are designed to "
+"play using a mouse, keyboard, or trackpad."
+msgstr ""
+"Aisleriot —— 又称 sol 或 solitaire（纸牌）—— 带有超过 80 种设计给鼠标、键盘或"
+"触摸板的纸牌类型游戏。"
 
 #: ../data/sol.desktop.in.in.h:1
 msgid "AisleRiot Solitaire"
 msgstr "AisleRiot 接龙游戏"
-
-#: ../data/sol.desktop.in.in.h:2
-msgid "Play many different solitaire games"
-msgstr "玩各种纸牌游戏"
 
 #: ../data/sol.desktop.in.in.h:3
 msgid "solitaire;cards;klondike;spider;freecell;patience;"
@@ -111,7 +124,7 @@ msgstr "新游戏"
 msgid "Change Game"
 msgstr "换游戏"
 
-#: ../src/ar-application.c:221 ../src/stats-dialog.c:199
+#: ../src/ar-application.c:221 ../src/stats-dialog.c:206
 msgid "Statistics"
 msgstr "统计"
 
@@ -132,7 +145,7 @@ msgid "Quit"
 msgstr "退出"
 
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:2194
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1989
 msgid "Select Game"
 msgstr "选择游戏"
 
@@ -224,71 +237,84 @@ msgstr ""
 "<http://www.gnu.org/licenses/>。"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1437
+#: ../src/game.c:1422
+msgctxt "slot type"
+msgid "chooser"
+msgstr "选牌器"
+
+#. Translators: this is the name of a type of card slot
+#: ../src/game.c:1426
 msgctxt "slot type"
 msgid "foundation"
 msgstr "收牌区"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1441
+#: ../src/game.c:1430
 msgctxt "slot type"
 msgid "reserve"
 msgstr "保留区"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1445
+#: ../src/game.c:1434
 msgctxt "slot type"
 msgid "stock"
 msgstr "发牌区"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1449
+#: ../src/game.c:1438
 msgctxt "slot type"
 msgid "tableau"
 msgstr "空位"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1453
+#: ../src/game.c:1442
 msgctxt "slot type"
 msgid "waste"
 msgstr "废牌堆"
 
+#. Translators: %s is the name of the card; "chooser" is the name of a type of card slot
+#: ../src/game.c:1474
+#, c-format
+msgctxt "slot hint"
+msgid "%s on chooser"
+msgstr "选牌器的 %s"
+
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1485
+#: ../src/game.c:1478
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "收牌区的 %s"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1489
+#: ../src/game.c:1482
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "保留区的 %s"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1493
+#: ../src/game.c:1486
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "发牌区的 %s"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1497
+#: ../src/game.c:1490
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "空位中的 %s"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1501
+#: ../src/game.c:1494
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "废牌堆的 %s"
 
-#: ../src/game.c:2168
+#: ../src/game.c:2161
 msgid "This game does not have hint support yet."
 msgstr "该游戏尚不支持提示功能。"
 
@@ -296,12 +322,12 @@ msgstr "该游戏尚不支持提示功能。"
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2203 ../src/game.c:2229
+#: ../src/game.c:2196 ../src/game.c:2222
 #, c-format
 msgid "Move %s onto %s."
 msgstr "将 %s 移动到 %s 上。"
 
-#: ../src/game.c:2249
+#: ../src/game.c:2242
 msgid "This game is unable to provide a hint."
 msgstr "该游戏无法提供提示。"
 
@@ -672,6 +698,15 @@ msgstr "吉普赛"
 #. freely, literally, or not at all, at your option.
 #.
 #: ../src/game-names.h:287
+msgid "Hamilton"
+msgstr "哈密尔顿"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:294
 msgid "Helsinki"
 msgstr "赫尔辛基"
 
@@ -680,7 +715,7 @@ msgstr "赫尔辛基"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:294
+#: ../src/game-names.h:301
 msgid "Hopscotch"
 msgstr "跳房子"
 
@@ -689,7 +724,7 @@ msgstr "跳房子"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:301
+#: ../src/game-names.h:308
 msgid "Isabel"
 msgstr "依莎贝尔"
 
@@ -698,7 +733,7 @@ msgstr "依莎贝尔"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:308
+#: ../src/game-names.h:315
 msgid "Jamestown"
 msgstr "詹姆斯敦"
 
@@ -707,7 +742,7 @@ msgstr "詹姆斯敦"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:315
+#: ../src/game-names.h:322
 msgid "Jumbo"
 msgstr "强伯"
 
@@ -716,7 +751,7 @@ msgstr "强伯"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:322
+#: ../src/game-names.h:329
 msgid "Kansas"
 msgstr "堪萨斯"
 
@@ -725,7 +760,7 @@ msgstr "堪萨斯"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:329
+#: ../src/game-names.h:336
 msgid "King Albert"
 msgstr "阿尔伯特王"
 
@@ -734,7 +769,7 @@ msgstr "阿尔伯特王"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:336
+#: ../src/game-names.h:343
 msgid "Kings Audience"
 msgstr "国王会议"
 
@@ -743,18 +778,9 @@ msgstr "国王会议"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:343
+#: ../src/game-names.h:350
 msgid "Klondike"
 msgstr "克朗代克"
-
-#. Translators: this string is the name of a game of patience.
-#. If there is an established standard name for this game in your
-#. locale, use that; otherwise you can translate this string
-#. freely, literally, or not at all, at your option.
-#.
-#: ../src/game-names.h:350
-msgid "Klondike Three Decks"
-msgstr "克朗代克(三副)"
 
 #. Translators: this string is the name of a game of patience.
 #. If there is an established standard name for this game in your
@@ -1078,6 +1104,15 @@ msgstr "情人节"
 #. freely, literally, or not at all, at your option.
 #.
 #: ../src/game-names.h:602
+msgid "Wall"
+msgstr "隔开"
+
+#. Translators: this string is the name of a game of patience.
+#. If there is an established standard name for this game in your
+#. locale, use that; otherwise you can translate this string
+#. freely, literally, or not at all, at your option.
+#.
+#: ../src/game-names.h:609
 msgid "Westhaven"
 msgstr "西港"
 
@@ -1086,7 +1121,7 @@ msgstr "西港"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:609
+#: ../src/game-names.h:616
 msgid "Whitehead"
 msgstr "白头"
 
@@ -1095,7 +1130,7 @@ msgstr "白头"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:616
+#: ../src/game-names.h:623
 msgid "Will O The Wisp"
 msgstr "白日梦"
 
@@ -1104,7 +1139,7 @@ msgstr "白日梦"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:623
+#: ../src/game-names.h:630
 msgid "Yield"
 msgstr "屈服"
 
@@ -1113,7 +1148,7 @@ msgstr "屈服"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:630
+#: ../src/game-names.h:637
 msgid "Yukon"
 msgstr "育空"
 
@@ -1122,7 +1157,7 @@ msgstr "育空"
 #. locale, use that; otherwise you can translate this string
 #. freely, literally, or not at all, at your option.
 #.
-#: ../src/game-names.h:637
+#: ../src/game-names.h:644
 msgid "Zebra"
 msgstr "斑马"
 
@@ -1460,31 +1495,31 @@ msgid "Window height"
 msgstr "窗口高度"
 
 #. String reserve
-#: ../src/sol.c:51
+#: ../src/sol.c:45
 msgid "Solitaire"
 msgstr "Solitaire"
 
-#: ../src/sol.c:52
+#: ../src/sol.c:46
 msgid "GNOME Solitaire"
 msgstr "GNOME Solitaire"
 
-#: ../src/sol.c:53
+#: ../src/sol.c:47
 msgid "About Solitaire"
 msgstr "关于 Solitaire"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "Select the game type to play"
 msgstr "选择要玩的游戏类型"
 
-#: ../src/sol.c:68
+#: ../src/sol.c:62
 msgid "NAME"
 msgstr "名称"
 
-#: ../src/sol.c:117
+#: ../src/sol.c:105
 msgid "FreeCell Solitaire"
 msgstr "空当接龙"
 
-#: ../src/sol.c:117 ../src/window.c:420
+#: ../src/sol.c:105 ../src/window.c:397
 msgid "AisleRiot"
 msgstr "AisleRiot"
 
@@ -1530,7 +1565,7 @@ msgstr "时间"
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
-#: ../src/stats-dialog.c:213 ../src/stats-dialog.c:219
+#: ../src/stats-dialog.c:220 ../src/stats-dialog.c:226
 #, c-format
 msgid "%d"
 msgstr "%d"
@@ -1542,55 +1577,55 @@ msgstr "%d"
 #. * instead, or leave it as "%%". If you chose a character other than
 #. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
 #.
-#: ../src/stats-dialog.c:230
+#: ../src/stats-dialog.c:237
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../src/stats-dialog.c:236 ../src/stats-dialog.c:245
-#: ../src/stats-dialog.c:253
+#: ../src/stats-dialog.c:243 ../src/stats-dialog.c:252
+#: ../src/stats-dialog.c:260
 msgid "N/A"
 msgstr "N/A"
 
 #. Translators: this represents minutes:seconds.
-#: ../src/stats-dialog.c:240 ../src/stats-dialog.c:248
+#: ../src/stats-dialog.c:247 ../src/stats-dialog.c:255
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
 
-#: ../src/window.c:215
+#: ../src/window.c:198
 msgid "Congratulations, you have won!"
 msgstr "恭喜，您赢了！"
 
-#: ../src/window.c:219
+#: ../src/window.c:202
 msgid "There are no more moves"
 msgstr "没有更多着法了"
 
-#: ../src/window.c:370
+#: ../src/window.c:347
 msgid "Main game:"
 msgstr "主游戏："
 
-#: ../src/window.c:378
+#: ../src/window.c:355
 msgid "Card games:"
 msgstr "纸牌游戏："
 
-#: ../src/window.c:393
+#: ../src/window.c:370
 msgid "Card themes:"
 msgstr "纸牌样式："
 
-#: ../src/window.c:422
-msgid "About AisleRiot"
-msgstr "关于 AisleRiot"
+#: ../src/window.c:399
+msgid "About Aisleriot"
+msgstr "关于 Aisleriot"
 
-#: ../src/window.c:424
+#: ../src/window.c:401
 msgid ""
-"AisleRiot provides a rule-based solitaire card engine that allows many "
+"Aisleriot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
-msgstr "AisleRiot 提供了一个基于规则的纸牌游戏引擎，支持各种不同的纸牌游戏。"
+msgstr "AisleRiot 提供一个基于规则的纸牌游戏引擎，支持许多不同的纸牌游戏。"
 
-#: ../src/window.c:433
+#: ../src/window.c:410
 msgid "translator-credits"
 msgstr ""
 "Yang Zhang <zyangmath@gmail.com>, 2007\n"
@@ -1598,185 +1633,176 @@ msgstr ""
 "Xhacker Liu <liu.dongyuan@gmail.com>, 2010\n"
 "Sphinx Jiang <yishanj13@gmail.com>, 2013"
 
-#: ../src/window.c:436
-msgid "GNOME Games web site"
-msgstr "GNOME 游戏网站"
+#: ../src/window.c:413
+msgid "Aisleriot web site"
+msgstr "Aisleriot 站点"
 
-#: ../src/window.c:1302
+#: ../src/window.c:1190
 #, c-format
 msgid "Play “%s”"
 msgstr "玩“%s”"
 
-#: ../src/window.c:1464
+#: ../src/window.c:1351
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "使用纸牌样式“%s”"
 
-#: ../src/window.c:1758
+#: ../src/window.c:1645
 msgid "A scheme exception occurred"
 msgstr "发生了一个 scheme 异常"
 
-#: ../src/window.c:1761
+#: ../src/window.c:1648
 msgid "Please report this bug to the developers."
 msgstr "请将这个 bug 报告给开发人员。"
 
-#: ../src/window.c:1767
+#: ../src/window.c:1654
 msgid "_Don't report"
 msgstr "不报告(_D)"
 
-#: ../src/window.c:1768
+#: ../src/window.c:1655
 msgid "_Report"
 msgstr "报告(_R)"
 
 #. Menu actions
-#: ../src/window.c:1975
+#: ../src/window.c:1812
 msgid "_Game"
 msgstr "游戏(_G)"
 
-#: ../src/window.c:1976
+#: ../src/window.c:1813
 msgid "_View"
 msgstr "查看(_V)"
 
-#: ../src/window.c:1977
+#: ../src/window.c:1814
 msgid "_Control"
 msgstr "控制(_C)"
 
-#: ../src/window.c:1979
+#: ../src/window.c:1816
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/window.c:1984
+#: ../src/window.c:1821
 msgid "Start a new game"
 msgstr "开始新游戏"
 
-#: ../src/window.c:1987
+#: ../src/window.c:1824
 msgid "Restart the game"
 msgstr "重新开始游戏"
 
-#: ../src/window.c:1989
+#: ../src/window.c:1826
 msgid "_Select Game…"
 msgstr "选择游戏(_S)..."
 
-#: ../src/window.c:1991
+#: ../src/window.c:1828
 msgid "Play a different game"
 msgstr "玩多种不同的游戏"
 
-#: ../src/window.c:1993
+#: ../src/window.c:1830
 msgid "_Recently Played"
 msgstr "最近玩过的游戏(_R)"
 
-#: ../src/window.c:1994
+#: ../src/window.c:1831
 msgid "S_tatistics"
 msgstr "统计(_T)"
 
-#: ../src/window.c:1995
+#: ../src/window.c:1832
 msgid "Show gameplay statistics"
 msgstr "显示游戏统计"
 
-#: ../src/window.c:1998
+#: ../src/window.c:1835
 msgid "Close this window"
 msgstr "关闭此窗口"
 
-#: ../src/window.c:2001
+#: ../src/window.c:1838
 msgid "Undo the last move"
 msgstr "撤消最后一着"
 
-#: ../src/window.c:2004
+#: ../src/window.c:1841
 msgid "Redo the undone move"
 msgstr "重做撤消的一着"
 
-#: ../src/window.c:2007
+#: ../src/window.c:1844
 msgid "Deal next card or cards"
 msgstr "继续发牌"
 
-#: ../src/window.c:2010
+#: ../src/window.c:1847
 msgid "Get a hint for your next move"
 msgstr "获取您的下一步的提示"
 
-#: ../src/window.c:2013
+#: ../src/window.c:1850
 msgid "View help for Aisleriot"
 msgstr "查看 Aisleriot 的帮助"
 
-#: ../src/window.c:2017
+#: ../src/window.c:1854
 msgid "View help for this game"
 msgstr "查看此游戏的帮助"
 
-#: ../src/window.c:2020
+#: ../src/window.c:1857
 msgid "About this game"
 msgstr "关于此游戏"
 
-#: ../src/window.c:2022
+#: ../src/window.c:1859
 msgid "Install card themes…"
 msgstr "安装纸牌样式..."
 
-#: ../src/window.c:2023
+#: ../src/window.c:1860
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "从发行版软件库安装新的纸牌样式"
 
-#: ../src/window.c:2029
+#: ../src/window.c:1866
 msgid "_Card Style"
 msgstr "纸牌样式(_C)"
 
-#: ../src/window.c:2063
+#: ../src/window.c:1892
 msgid "_Toolbar"
 msgstr "工具栏(_T)"
 
-#: ../src/window.c:2064
+#: ../src/window.c:1893
 msgid "Show or hide the toolbar"
 msgstr "显示或隐藏工具栏"
 
-#: ../src/window.c:2068
+#: ../src/window.c:1897
 msgid "_Statusbar"
 msgstr "状态栏(_S)"
 
-#: ../src/window.c:2069
+#: ../src/window.c:1898
 msgid "Show or hide statusbar"
 msgstr "显示或隐藏状态栏"
 
-#: ../src/window.c:2073
+#: ../src/window.c:1902
 msgid "_Click to Move"
 msgstr "单击移动(_C)"
 
-#: ../src/window.c:2074
+#: ../src/window.c:1903
 msgid "Pick up and drop cards by clicking"
 msgstr "通过点击来抓起或放下牌"
 
 #. not active by default
-#: ../src/window.c:2077
+#: ../src/window.c:1906
 msgid "_Sound"
 msgstr "声音(_S)"
 
-#: ../src/window.c:2078
+#: ../src/window.c:1907
 msgid "Whether or not to play event sounds"
 msgstr "是否播放事件声音"
 
-#. not active by default
-#: ../src/window.c:2081
-msgid "_Animations"
-msgstr "动画(_A)"
-
-#: ../src/window.c:2082
-msgid "Whether or not to animate card moves"
-msgstr "是否在移动纸牌时使用动画"
-
-#: ../src/window.c:2218
+#: ../src/window.c:2008
 msgid "Score:"
 msgstr "得分:"
 
-#: ../src/window.c:2230
+#: ../src/window.c:2020
 msgid "Time:"
 msgstr "时间:"
 
-#: ../src/window.c:2528
+#: ../src/window.c:2307
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "无法开始游戏“%s”"
 
-#: ../src/window.c:2535
+#: ../src/window.c:2314
 msgid "Aisleriot cannot find the last game you played."
 msgstr "AisleRiot 无法找到您上次玩的游戏。"
 
-#: ../src/window.c:2536
+#: ../src/window.c:2315
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1825,19 +1851,18 @@ msgstr "底牌：K"
 #: ../games/easthaven.scm:56 ../games/elevator.scm:98
 #: ../games/escalator.scm:123 ../games/first-law.scm:42
 #: ../games/fortunes.scm:43 ../games/forty-thieves.scm:97
-#: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/helsinki.scm:53
-#: ../games/hopscotch.scm:55 ../games/jamestown.scm:54 ../games/jumbo.scm:72
-#: ../games/kansas.scm:76 ../games/klondike.scm:87 ../games/labyrinth.scm:74
-#: ../games/lady-jane.scm:122 ../games/monte-carlo.scm:75
-#: ../games/napoleons-tomb.scm:339 ../games/neighbor.scm:75
-#: ../games/plait.scm:234 ../games/quatorze.scm:75 ../games/royal-east.scm:77
-#: ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
-#: ../games/straight-up.scm:64 ../games/terrace.scm:159
-#: ../games/thieves.scm:48 ../games/thirteen.scm:105
-#: ../games/thumb-and-pouch.scm:61 ../games/treize.scm:102
-#: ../games/triple-peaks.scm:104 ../games/union-square.scm:96
-#: ../games/westhaven.scm:66 ../games/whitehead.scm:58 ../games/yield.scm:108
-#: ../games/zebra.scm:71
+#: ../games/glenwood.scm:75 ../games/gypsy.scm:65 ../games/hamilton.scm:104
+#: ../games/helsinki.scm:53 ../games/hopscotch.scm:55 ../games/jamestown.scm:54
+#: ../games/jumbo.scm:72 ../games/kansas.scm:76 ../games/klondike.scm:87
+#: ../games/labyrinth.scm:74 ../games/lady-jane.scm:122
+#: ../games/monte-carlo.scm:75 ../games/napoleons-tomb.scm:339
+#: ../games/neighbor.scm:75 ../games/plait.scm:234 ../games/quatorze.scm:75
+#: ../games/royal-east.scm:77 ../games/scuffle.scm:59 ../games/sir-tommy.scm:49
+#: ../games/straight-up.scm:64 ../games/terrace.scm:159 ../games/thieves.scm:48
+#: ../games/thirteen.scm:105 ../games/thumb-and-pouch.scm:61
+#: ../games/treize.scm:102 ../games/triple-peaks.scm:104
+#: ../games/union-square.scm:96 ../games/westhaven.scm:66
+#: ../games/whitehead.scm:58 ../games/yield.scm:108 ../games/zebra.scm:71
 msgid "Stock left:"
 msgstr "发牌区剩下："
 
@@ -1845,9 +1870,9 @@ msgstr "发牌区剩下："
 msgid "Stock left: 0"
 msgstr "发牌区中剩下：0"
 
-#: ../games/agnes.scm:264 ../games/easthaven.scm:232
-#: ../games/labyrinth.scm:189 ../games/monte-carlo.scm:196
-#: ../games/monte-carlo.scm:201 ../games/valentine.scm:136
+#: ../games/agnes.scm:264 ../games/easthaven.scm:232 ../games/labyrinth.scm:189
+#: ../games/monte-carlo.scm:196 ../games/monte-carlo.scm:201
+#: ../games/valentine.scm:136
 msgid "Deal more cards"
 msgstr "发更多的牌"
 
@@ -1859,793 +1884,793 @@ msgstr "发更多的牌"
 msgid "Try rearranging the cards"
 msgstr "尝试重新排列纸牌"
 
-#: ../games/api.scm:285
+#: ../games/api.scm:295
 msgid "Unknown color"
 msgstr "未知颜色"
 
-#: ../games/api.scm:401
+#: ../games/api.scm:411
 msgid "the black joker"
 msgstr "小王"
 
-#: ../games/api.scm:401
+#: ../games/api.scm:411
 msgid "the red joker"
 msgstr "大王"
 
-#: ../games/api.scm:410
+#: ../games/api.scm:420
 msgid "the ace of clubs"
 msgstr "梅花 A"
 
-#: ../games/api.scm:411
+#: ../games/api.scm:421
 msgid "the two of clubs"
 msgstr "梅花 2"
 
-#: ../games/api.scm:412
+#: ../games/api.scm:422
 msgid "the three of clubs"
 msgstr "梅花 3"
 
-#: ../games/api.scm:413
+#: ../games/api.scm:423
 msgid "the four of clubs"
 msgstr "梅花 4"
 
-#: ../games/api.scm:414
+#: ../games/api.scm:424
 msgid "the five of clubs"
 msgstr "梅花 5"
 
-#: ../games/api.scm:415
+#: ../games/api.scm:425
 msgid "the six of clubs"
 msgstr "梅花 6"
 
-#: ../games/api.scm:416
+#: ../games/api.scm:426
 msgid "the seven of clubs"
 msgstr "梅花 7"
 
-#: ../games/api.scm:417
+#: ../games/api.scm:427
 msgid "the eight of clubs"
 msgstr "梅花 8"
 
-#: ../games/api.scm:418
+#: ../games/api.scm:428
 msgid "the nine of clubs"
 msgstr "梅花 9"
 
-#: ../games/api.scm:419
+#: ../games/api.scm:429
 msgid "the ten of clubs"
 msgstr "梅花 10"
 
-#: ../games/api.scm:420
+#: ../games/api.scm:430
 msgid "the jack of clubs"
 msgstr "梅花 J"
 
-#: ../games/api.scm:421
+#: ../games/api.scm:431
 msgid "the queen of clubs"
 msgstr "梅花 Q"
 
-#: ../games/api.scm:422
+#: ../games/api.scm:432
 msgid "the king of clubs"
 msgstr "梅花 K"
 
-#: ../games/api.scm:423 ../games/api.scm:438 ../games/api.scm:453
-#: ../games/api.scm:468 ../games/api.scm:469
+#: ../games/api.scm:433 ../games/api.scm:448 ../games/api.scm:463
+#: ../games/api.scm:478 ../games/api.scm:479
 msgid "the unknown card"
 msgstr "未知牌面"
 
-#: ../games/api.scm:425
+#: ../games/api.scm:435
 msgid "the ace of spades"
 msgstr "黑桃 A"
 
-#: ../games/api.scm:426
+#: ../games/api.scm:436
 msgid "the two of spades"
 msgstr "黑桃 2"
 
-#: ../games/api.scm:427
+#: ../games/api.scm:437
 msgid "the three of spades"
 msgstr "黑桃 3"
 
-#: ../games/api.scm:428
+#: ../games/api.scm:438
 msgid "the four of spades"
 msgstr "黑桃 4"
 
-#: ../games/api.scm:429
+#: ../games/api.scm:439
 msgid "the five of spades"
 msgstr "黑桃 5"
 
-#: ../games/api.scm:430
+#: ../games/api.scm:440
 msgid "the six of spades"
 msgstr "黑桃 6"
 
-#: ../games/api.scm:431
+#: ../games/api.scm:441
 msgid "the seven of spades"
 msgstr "黑桃 7"
 
-#: ../games/api.scm:432
+#: ../games/api.scm:442
 msgid "the eight of spades"
 msgstr "黑桃 8"
 
-#: ../games/api.scm:433
+#: ../games/api.scm:443
 msgid "the nine of spades"
 msgstr "黑桃 9"
 
-#: ../games/api.scm:434
+#: ../games/api.scm:444
 msgid "the ten of spades"
 msgstr "黑桃 10"
 
-#: ../games/api.scm:435
+#: ../games/api.scm:445
 msgid "the jack of spades"
 msgstr "黑桃 J"
 
-#: ../games/api.scm:436
+#: ../games/api.scm:446
 msgid "the queen of spades"
 msgstr "黑桃 Q"
 
-#: ../games/api.scm:437
+#: ../games/api.scm:447
 msgid "the king of spades"
 msgstr "黑桃 K"
 
-#: ../games/api.scm:440
+#: ../games/api.scm:450
 msgid "the ace of hearts"
 msgstr "红桃 A"
 
-#: ../games/api.scm:441
+#: ../games/api.scm:451
 msgid "the two of hearts"
 msgstr "红桃 2"
 
-#: ../games/api.scm:442
+#: ../games/api.scm:452
 msgid "the three of hearts"
 msgstr "红桃 3"
 
-#: ../games/api.scm:443
+#: ../games/api.scm:453
 msgid "the four of hearts"
 msgstr "红桃 4"
 
-#: ../games/api.scm:444
+#: ../games/api.scm:454
 msgid "the five of hearts"
 msgstr "红桃 5"
 
-#: ../games/api.scm:445
+#: ../games/api.scm:455
 msgid "the six of hearts"
 msgstr "红桃 6"
 
-#: ../games/api.scm:446
+#: ../games/api.scm:456
 msgid "the seven of hearts"
 msgstr "红桃 7"
 
-#: ../games/api.scm:447
+#: ../games/api.scm:457
 msgid "the eight of hearts"
 msgstr "红桃 8"
 
-#: ../games/api.scm:448
+#: ../games/api.scm:458
 msgid "the nine of hearts"
 msgstr "红桃 9"
 
-#: ../games/api.scm:449
+#: ../games/api.scm:459
 msgid "the ten of hearts"
 msgstr "红桃 10"
 
-#: ../games/api.scm:450
+#: ../games/api.scm:460
 msgid "the jack of hearts"
 msgstr "红桃 J"
 
-#: ../games/api.scm:451
+#: ../games/api.scm:461
 msgid "the queen of hearts"
 msgstr "红桃 Q"
 
-#: ../games/api.scm:452
+#: ../games/api.scm:462
 msgid "the king of hearts"
 msgstr "红桃 K"
 
-#: ../games/api.scm:455
+#: ../games/api.scm:465
 msgid "the ace of diamonds"
 msgstr "方片 A"
 
-#: ../games/api.scm:456
+#: ../games/api.scm:466
 msgid "the two of diamonds"
 msgstr "方片 2"
 
-#: ../games/api.scm:457
+#: ../games/api.scm:467
 msgid "the three of diamonds"
 msgstr "方片 3"
 
-#: ../games/api.scm:458
+#: ../games/api.scm:468
 msgid "the four of diamonds"
 msgstr "方片 4"
 
-#: ../games/api.scm:459
+#: ../games/api.scm:469
 msgid "the five of diamonds"
 msgstr "方片 5"
 
-#: ../games/api.scm:460
+#: ../games/api.scm:470
 msgid "the six of diamonds"
 msgstr "方片 6"
 
-#: ../games/api.scm:461
+#: ../games/api.scm:471
 msgid "the seven of diamonds"
 msgstr "方片 7"
 
-#: ../games/api.scm:462
+#: ../games/api.scm:472
 msgid "the eight of diamonds"
 msgstr "方片 8"
 
-#: ../games/api.scm:463
+#: ../games/api.scm:473
 msgid "the nine of diamonds"
 msgstr "方片 9"
 
-#: ../games/api.scm:464
+#: ../games/api.scm:474
 msgid "the ten of diamonds"
 msgstr "方片 10"
 
-#: ../games/api.scm:465
+#: ../games/api.scm:475
 msgid "the jack of diamonds"
 msgstr "方片 J"
 
-#: ../games/api.scm:466
+#: ../games/api.scm:476
 msgid "the queen of diamonds"
 msgstr "方片 Q"
 
-#: ../games/api.scm:467
+#: ../games/api.scm:477
 msgid "the king of diamonds"
 msgstr "方片 K"
 
-#: ../games/api.scm:473
+#: ../games/api.scm:483
 #, scheme-format
 msgid "Move ~a onto the foundation."
 msgstr "将 ~a 移入收牌区。"
 
-#: ../games/api.scm:473
+#: ../games/api.scm:483
 #, scheme-format
 msgid "Move ~a onto an empty foundation slot."
 msgstr "将 ~a 移入空的收牌区。"
 
-#: ../games/api.scm:474
+#: ../games/api.scm:484
 #, scheme-format
 msgid "Move ~a onto the tableau."
 msgstr "将 ~a 移动到排列区的空位上"
 
-#: ../games/api.scm:474
+#: ../games/api.scm:484
 #, scheme-format
 msgid "Move ~a onto an empty tableau slot."
 msgstr "将 ~a 移动到排列区的空位上。"
 
-#: ../games/api.scm:475
+#: ../games/api.scm:485
 #, scheme-format
 msgid "Move ~a onto the reserve."
 msgstr "将 ~a 移动到保留区。"
 
-#: ../games/api.scm:475
+#: ../games/api.scm:485
 #, scheme-format
 msgid "Move ~a onto an empty reserve slot."
 msgstr "将 ~a 移至保留区中的空位。"
 
-#: ../games/api.scm:476
+#: ../games/api.scm:486
 #, scheme-format
 msgid "Move ~a onto an empty edge slot."
 msgstr "将 ~a 移动到边缘空位。"
 
-#: ../games/api.scm:477
+#: ../games/api.scm:487
 #, scheme-format
 msgid "Move ~a onto an empty corner slot."
 msgstr "将 ~a 移动到角落空位。"
 
-#: ../games/api.scm:478
+#: ../games/api.scm:488
 #, scheme-format
 msgid "Move ~a onto an empty top slot."
 msgstr "将 ~a 移动到顶部空位。"
 
-#: ../games/api.scm:479
+#: ../games/api.scm:489
 #, scheme-format
 msgid "Move ~a onto an empty bottom slot."
 msgstr "将 ~a 移动到下方空位。"
 
-#: ../games/api.scm:480
+#: ../games/api.scm:490
 #, scheme-format
 msgid "Move ~a onto an empty left slot."
 msgstr "将 ~a 移动到左空位。"
 
-#: ../games/api.scm:481
+#: ../games/api.scm:491
 #, scheme-format
 msgid "Move ~a onto an empty right slot."
 msgstr "将 ~a 移动到右空位。"
 
-#: ../games/api.scm:482
+#: ../games/api.scm:492
 #, scheme-format
 msgid "Move ~a onto an empty slot."
 msgstr "将 ~a 移动到空位。"
 
-#: ../games/api.scm:485
+#: ../games/api.scm:495
 #, scheme-format
 msgid "Move ~a onto the black joker."
 msgstr "将 ~a 移动到小王上。"
 
-#: ../games/api.scm:485
+#: ../games/api.scm:495
 #, scheme-format
 msgid "Move ~a onto the red joker."
 msgstr "将 ~a 移动到大王上。"
 
-#: ../games/api.scm:487
+#: ../games/api.scm:497
 #, scheme-format
 msgid "Move ~a onto the ace of clubs."
 msgstr "将 ~a 移动到梅花 A 上。"
 
-#: ../games/api.scm:488
+#: ../games/api.scm:498
 #, scheme-format
 msgid "Move ~a onto the two of clubs."
 msgstr "将 ~a 移动到梅花 2 上。"
 
-#: ../games/api.scm:489
+#: ../games/api.scm:499
 #, scheme-format
 msgid "Move ~a onto the three of clubs."
 msgstr "将 ~a 移动到梅花 3 上。"
 
-#: ../games/api.scm:490
+#: ../games/api.scm:500
 #, scheme-format
 msgid "Move ~a onto the four of clubs."
 msgstr "将 ~a 移动到梅花 4 上。"
 
-#: ../games/api.scm:491
+#: ../games/api.scm:501
 #, scheme-format
 msgid "Move ~a onto the five of clubs."
 msgstr "将 ~a 移动到梅花 5 上。"
 
-#: ../games/api.scm:492
+#: ../games/api.scm:502
 #, scheme-format
 msgid "Move ~a onto the six of clubs."
 msgstr "将 ~a 移动到梅花 6 上。"
 
-#: ../games/api.scm:493
+#: ../games/api.scm:503
 #, scheme-format
 msgid "Move ~a onto the seven of clubs."
 msgstr "将 ~a 移动到梅花 7 上。"
 
-#: ../games/api.scm:494
+#: ../games/api.scm:504
 #, scheme-format
 msgid "Move ~a onto the eight of clubs."
 msgstr "将 ~a 移动到梅花 8 上。"
 
-#: ../games/api.scm:495
+#: ../games/api.scm:505
 #, scheme-format
 msgid "Move ~a onto the nine of clubs."
 msgstr "将 ~a 移动到梅花 9 上。"
 
-#: ../games/api.scm:496
+#: ../games/api.scm:506
 #, scheme-format
 msgid "Move ~a onto the ten of clubs."
 msgstr "将 ~a 移动到梅花 10 上。"
 
-#: ../games/api.scm:497
+#: ../games/api.scm:507
 #, scheme-format
 msgid "Move ~a onto the jack of clubs."
 msgstr "将 ~a 移动到梅花 J 上。"
 
-#: ../games/api.scm:498
+#: ../games/api.scm:508
 #, scheme-format
 msgid "Move ~a onto the queen of clubs."
 msgstr "将 ~a 移动到梅花 Q 上。"
 
-#: ../games/api.scm:499
+#: ../games/api.scm:509
 #, scheme-format
 msgid "Move ~a onto the king of clubs."
 msgstr "将 ~a 移动到梅花 K 上。"
 
-#: ../games/api.scm:500 ../games/api.scm:515 ../games/api.scm:530
-#: ../games/api.scm:545 ../games/api.scm:546
+#: ../games/api.scm:510 ../games/api.scm:525 ../games/api.scm:540
+#: ../games/api.scm:555 ../games/api.scm:556
 #, scheme-format
 msgid "Move ~a onto the unknown card."
 msgstr "将 ~a 移动到未知纸牌上。"
 
-#: ../games/api.scm:502
+#: ../games/api.scm:512
 #, scheme-format
 msgid "Move ~a onto the ace of spades."
 msgstr "将 ~a 移动到黑桃 A 上。"
 
-#: ../games/api.scm:503
+#: ../games/api.scm:513
 #, scheme-format
 msgid "Move ~a onto the two of spades."
 msgstr "将 ~a 移动到黑桃 2 上。"
 
-#: ../games/api.scm:504
+#: ../games/api.scm:514
 #, scheme-format
 msgid "Move ~a onto the three of spades."
 msgstr "将 ~a 移动到黑桃 3 上。"
 
-#: ../games/api.scm:505
+#: ../games/api.scm:515
 #, scheme-format
 msgid "Move ~a onto the four of spades."
 msgstr "将 ~a 移动到黑桃 4 上。"
 
-#: ../games/api.scm:506
+#: ../games/api.scm:516
 #, scheme-format
 msgid "Move ~a onto the five of spades."
 msgstr "将 ~a 移动到黑桃 5 上。"
 
-#: ../games/api.scm:507
+#: ../games/api.scm:517
 #, scheme-format
 msgid "Move ~a onto the six of spades."
 msgstr "将 ~a 移动到黑桃 6 上。"
 
-#: ../games/api.scm:508
+#: ../games/api.scm:518
 #, scheme-format
 msgid "Move ~a onto the seven of spades."
 msgstr "将 ~a 移动到黑桃 7 上。"
 
-#: ../games/api.scm:509
+#: ../games/api.scm:519
 #, scheme-format
 msgid "Move ~a onto the eight of spades."
 msgstr "将 ~a 移动到黑桃 8 上。"
 
-#: ../games/api.scm:510
+#: ../games/api.scm:520
 #, scheme-format
 msgid "Move ~a onto the nine of spades."
 msgstr "将 ~a 移动到黑桃 9 上。"
 
-#: ../games/api.scm:511
+#: ../games/api.scm:521
 #, scheme-format
 msgid "Move ~a onto the ten of spades."
 msgstr "将 ~a 移动到黑桃 10 上。"
 
-#: ../games/api.scm:512
+#: ../games/api.scm:522
 #, scheme-format
 msgid "Move ~a onto the jack of spades."
 msgstr "将 ~a 移动到黑桃 J 上。"
 
-#: ../games/api.scm:513
+#: ../games/api.scm:523
 #, scheme-format
 msgid "Move ~a onto the queen of spades."
 msgstr "将 ~a 移动到黑桃 Q 上。"
 
-#: ../games/api.scm:514
+#: ../games/api.scm:524
 #, scheme-format
 msgid "Move ~a onto the king of spades."
 msgstr "将 ~a 移动到黑桃 K 上。"
 
-#: ../games/api.scm:517
+#: ../games/api.scm:527
 #, scheme-format
 msgid "Move ~a onto the ace of hearts."
 msgstr "将 ~a 移动到红桃 A 上。"
 
-#: ../games/api.scm:518
+#: ../games/api.scm:528
 #, scheme-format
 msgid "Move ~a onto the two of hearts."
 msgstr "将 ~a 移动到红桃 2 上。"
 
-#: ../games/api.scm:519
+#: ../games/api.scm:529
 #, scheme-format
 msgid "Move ~a onto the three of hearts."
 msgstr "将 ~a 移动到红桃 3 上。"
 
-#: ../games/api.scm:520
+#: ../games/api.scm:530
 #, scheme-format
 msgid "Move ~a onto the four of hearts."
 msgstr "将 ~a 移动到红桃 4 上。"
 
-#: ../games/api.scm:521
+#: ../games/api.scm:531
 #, scheme-format
 msgid "Move ~a onto the five of hearts."
 msgstr "将 ~a 移动到红桃 5 上。"
 
-#: ../games/api.scm:522
+#: ../games/api.scm:532
 #, scheme-format
 msgid "Move ~a onto the six of hearts."
 msgstr "将 ~a 移动到红桃 6 上。"
 
-#: ../games/api.scm:523
+#: ../games/api.scm:533
 #, scheme-format
 msgid "Move ~a onto the seven of hearts."
 msgstr "将 ~a 移动到红桃 7 上。"
 
-#: ../games/api.scm:524
+#: ../games/api.scm:534
 #, scheme-format
 msgid "Move ~a onto the eight of hearts."
 msgstr "将 ~a 移动到红桃 8 上。"
 
-#: ../games/api.scm:525
+#: ../games/api.scm:535
 #, scheme-format
 msgid "Move ~a onto the nine of hearts."
 msgstr "将 ~a 移动到红桃 9 上。"
 
-#: ../games/api.scm:526
+#: ../games/api.scm:536
 #, scheme-format
 msgid "Move ~a onto the ten of hearts."
 msgstr "将 ~a 移动到红桃 10 上。"
 
-#: ../games/api.scm:527
+#: ../games/api.scm:537
 #, scheme-format
 msgid "Move ~a onto the jack of hearts."
 msgstr "将 ~a 移动到红桃 J 上。"
 
-#: ../games/api.scm:528
+#: ../games/api.scm:538
 #, scheme-format
 msgid "Move ~a onto the queen of hearts."
 msgstr "将 ~a 移动到红桃 Q 上。"
 
-#: ../games/api.scm:529
+#: ../games/api.scm:539
 #, scheme-format
 msgid "Move ~a onto the king of hearts."
 msgstr "将 ~a 移动到红桃 K 上。"
 
-#: ../games/api.scm:532
+#: ../games/api.scm:542
 #, scheme-format
 msgid "Move ~a onto the ace of diamonds."
 msgstr "将 ~a 移动到方片 A 上。"
 
-#: ../games/api.scm:533
+#: ../games/api.scm:543
 #, scheme-format
 msgid "Move ~a onto the two of diamonds."
 msgstr "将 ~a 移动到方片 2 上。"
 
-#: ../games/api.scm:534
+#: ../games/api.scm:544
 #, scheme-format
 msgid "Move ~a onto the three of diamonds."
 msgstr "将 ~a 移动到方片 3 上。"
 
-#: ../games/api.scm:535
+#: ../games/api.scm:545
 #, scheme-format
 msgid "Move ~a onto the four of diamonds."
 msgstr "将 ~a 移动到方片 4 上。"
 
-#: ../games/api.scm:536
+#: ../games/api.scm:546
 #, scheme-format
 msgid "Move ~a onto the five of diamonds."
 msgstr "将 ~a 移动到方片 5 上。"
 
-#: ../games/api.scm:537
+#: ../games/api.scm:547
 #, scheme-format
 msgid "Move ~a onto the six of diamonds."
 msgstr "将 ~a 移动到方片 6 上。"
 
-#: ../games/api.scm:538
+#: ../games/api.scm:548
 #, scheme-format
 msgid "Move ~a onto the seven of diamonds."
 msgstr "将 ~a 移动到方片 7 上。"
 
-#: ../games/api.scm:539
+#: ../games/api.scm:549
 #, scheme-format
 msgid "Move ~a onto the eight of diamonds."
 msgstr "将 ~a 移动到方片 8 上。"
 
-#: ../games/api.scm:540
+#: ../games/api.scm:550
 #, scheme-format
 msgid "Move ~a onto the nine of diamonds."
 msgstr "将 ~a 移动到方片 9 上。"
 
-#: ../games/api.scm:541
+#: ../games/api.scm:551
 #, scheme-format
 msgid "Move ~a onto the ten of diamonds."
 msgstr "将 ~a 移动到方片 10 上。"
 
-#: ../games/api.scm:542
+#: ../games/api.scm:552
 #, scheme-format
 msgid "Move ~a onto the jack of diamonds."
 msgstr "将 ~a 移动到方片 J 上。"
 
-#: ../games/api.scm:543
+#: ../games/api.scm:553
 #, scheme-format
 msgid "Move ~a onto the queen of diamonds."
 msgstr "将 ~a 移动到方片 Q 上。"
 
-#: ../games/api.scm:544
+#: ../games/api.scm:554
 #, scheme-format
 msgid "Move ~a onto the king of diamonds."
 msgstr "将 ~a 移动到方片 K 上。"
 
-#: ../games/api.scm:559
+#: ../games/api.scm:569
 msgid "Remove the black joker."
 msgstr "移除小王。"
 
-#: ../games/api.scm:559
+#: ../games/api.scm:569
 msgid "Remove the red joker."
 msgstr "移除大王"
 
-#: ../games/api.scm:561
+#: ../games/api.scm:571
 msgid "Remove the ace of clubs."
 msgstr "移除梅花 A。"
 
-#: ../games/api.scm:562
+#: ../games/api.scm:572
 msgid "Remove the two of clubs."
 msgstr "移除梅花 2。"
 
-#: ../games/api.scm:563
+#: ../games/api.scm:573
 msgid "Remove the three of clubs."
 msgstr "移除梅花 3。"
 
-#: ../games/api.scm:564
+#: ../games/api.scm:574
 msgid "Remove the four of clubs."
 msgstr "移除梅花 4。"
 
-#: ../games/api.scm:565
+#: ../games/api.scm:575
 msgid "Remove the five of clubs."
 msgstr "移除梅花 8。"
 
-#: ../games/api.scm:566
+#: ../games/api.scm:576
 msgid "Remove the six of clubs."
 msgstr "移除梅花 6。"
 
-#: ../games/api.scm:567
+#: ../games/api.scm:577
 msgid "Remove the seven of clubs."
 msgstr "移除梅花 7。"
 
-#: ../games/api.scm:568
+#: ../games/api.scm:578
 msgid "Remove the eight of clubs."
 msgstr "移除梅花 8。"
 
-#: ../games/api.scm:569
+#: ../games/api.scm:579
 msgid "Remove the nine of clubs."
 msgstr "移除梅花 9。"
 
-#: ../games/api.scm:570 ../games/camelot.scm:168
+#: ../games/api.scm:580 ../games/camelot.scm:168
 msgid "Remove the ten of clubs."
 msgstr "移除梅花 10。"
 
-#: ../games/api.scm:571
+#: ../games/api.scm:581
 msgid "Remove the jack of clubs."
 msgstr "移除梅花 J。"
 
-#: ../games/api.scm:572
+#: ../games/api.scm:582
 msgid "Remove the queen of clubs."
 msgstr "移除梅花 Q。"
 
-#: ../games/api.scm:573 ../games/helsinki.scm:109 ../games/neighbor.scm:141
+#: ../games/api.scm:583 ../games/helsinki.scm:109 ../games/neighbor.scm:141
 #: ../games/thirteen.scm:385 ../games/treize.scm:279 ../games/yield.scm:295
 msgid "Remove the king of clubs."
 msgstr "移除梅花 K。"
 
-#: ../games/api.scm:574 ../games/api.scm:589 ../games/api.scm:604
-#: ../games/api.scm:619 ../games/api.scm:620
+#: ../games/api.scm:584 ../games/api.scm:599 ../games/api.scm:614
+#: ../games/api.scm:629 ../games/api.scm:630
 msgid "Remove the unknown card."
 msgstr "移除未知牌面"
 
-#: ../games/api.scm:576
+#: ../games/api.scm:586
 msgid "Remove the ace of spades."
 msgstr "移除黑桃 A。"
 
-#: ../games/api.scm:577
+#: ../games/api.scm:587
 msgid "Remove the two of spades."
 msgstr "移除黑桃 2。"
 
-#: ../games/api.scm:578
+#: ../games/api.scm:588
 msgid "Remove the three of spades."
 msgstr "移除黑桃 3。"
 
-#: ../games/api.scm:579
+#: ../games/api.scm:589
 msgid "Remove the four of spades."
 msgstr "移除黑桃 4。"
 
-#: ../games/api.scm:580
+#: ../games/api.scm:590
 msgid "Remove the five of spades."
 msgstr "移除黑桃 5。"
 
-#: ../games/api.scm:581
+#: ../games/api.scm:591
 msgid "Remove the six of spades."
 msgstr "移除黑桃 6。"
 
-#: ../games/api.scm:582
+#: ../games/api.scm:592
 msgid "Remove the seven of spades."
 msgstr "移除黑桃 7。"
 
-#: ../games/api.scm:583
+#: ../games/api.scm:593
 msgid "Remove the eight of spades."
 msgstr "移除黑桃 8。"
 
-#: ../games/api.scm:584
+#: ../games/api.scm:594
 msgid "Remove the nine of spades."
 msgstr "移除黑桃 9。"
 
-#: ../games/api.scm:585 ../games/camelot.scm:171
+#: ../games/api.scm:595 ../games/camelot.scm:171
 msgid "Remove the ten of spades."
 msgstr "移除黑桃 10。"
 
-#: ../games/api.scm:586
+#: ../games/api.scm:596
 msgid "Remove the jack of spades."
 msgstr "移除黑桃 J。"
 
-#: ../games/api.scm:587
+#: ../games/api.scm:597
 msgid "Remove the queen of spades."
 msgstr "移除黑桃 Q。"
 
-#: ../games/api.scm:588 ../games/helsinki.scm:112 ../games/neighbor.scm:144
+#: ../games/api.scm:598 ../games/helsinki.scm:112 ../games/neighbor.scm:144
 #: ../games/thirteen.scm:388 ../games/treize.scm:282 ../games/yield.scm:298
 msgid "Remove the king of spades."
 msgstr "移除黑桃 K。"
 
-#: ../games/api.scm:591
+#: ../games/api.scm:601
 msgid "Remove the ace of hearts."
 msgstr "移除红桃 A。"
 
-#: ../games/api.scm:592
+#: ../games/api.scm:602
 msgid "Remove the two of hearts."
 msgstr "移除红桃 2。"
 
-#: ../games/api.scm:593
+#: ../games/api.scm:603
 msgid "Remove the three of hearts."
 msgstr "移除红桃 3。"
 
-#: ../games/api.scm:594
+#: ../games/api.scm:604
 msgid "Remove the four of hearts."
 msgstr "移除红桃 4。"
 
-#: ../games/api.scm:595
+#: ../games/api.scm:605
 msgid "Remove the five of hearts."
 msgstr "移除红桃 5。"
 
-#: ../games/api.scm:596
+#: ../games/api.scm:606
 msgid "Remove the six of hearts."
 msgstr "移除红桃 6。"
 
-#: ../games/api.scm:597
+#: ../games/api.scm:607
 msgid "Remove the seven of hearts."
 msgstr "移除红桃 7。"
 
-#: ../games/api.scm:598
+#: ../games/api.scm:608
 msgid "Remove the eight of hearts."
 msgstr "移除红桃 8。"
 
-#: ../games/api.scm:599
+#: ../games/api.scm:609
 msgid "Remove the nine of hearts."
 msgstr "移除红桃 9。"
 
-#: ../games/api.scm:600 ../games/camelot.scm:170
+#: ../games/api.scm:610 ../games/camelot.scm:170
 msgid "Remove the ten of hearts."
 msgstr "移除红桃 10。"
 
-#: ../games/api.scm:601
+#: ../games/api.scm:611
 msgid "Remove the jack of hearts."
 msgstr "移除红桃 J。"
 
-#: ../games/api.scm:602
+#: ../games/api.scm:612
 msgid "Remove the queen of hearts."
 msgstr "移除红桃 Q。"
 
-#: ../games/api.scm:603 ../games/helsinki.scm:111 ../games/neighbor.scm:143
+#: ../games/api.scm:613 ../games/helsinki.scm:111 ../games/neighbor.scm:143
 #: ../games/thirteen.scm:387 ../games/treize.scm:281 ../games/yield.scm:297
 msgid "Remove the king of hearts."
 msgstr "移除红桃 K。"
 
-#: ../games/api.scm:606
+#: ../games/api.scm:616
 msgid "Remove the ace of diamonds."
 msgstr "移除方片 A。"
 
-#: ../games/api.scm:607
+#: ../games/api.scm:617
 msgid "Remove the two of diamonds."
 msgstr "移除方片 2。"
 
-#: ../games/api.scm:608
+#: ../games/api.scm:618
 msgid "Remove the three of diamonds."
 msgstr "移除方片 3。"
 
-#: ../games/api.scm:609
+#: ../games/api.scm:619
 msgid "Remove the four of diamonds."
 msgstr "移除方片 4。"
 
-#: ../games/api.scm:610
+#: ../games/api.scm:620
 msgid "Remove the five of diamonds."
 msgstr "移除方片 5。"
 
-#: ../games/api.scm:611
+#: ../games/api.scm:621
 msgid "Remove the six of diamonds."
 msgstr "移除方片 6。"
 
-#: ../games/api.scm:612
+#: ../games/api.scm:622
 msgid "Remove the seven of diamonds."
 msgstr "移除方片 7。"
 
-#: ../games/api.scm:613
+#: ../games/api.scm:623
 msgid "Remove the eight of diamonds."
 msgstr "移除方片 8。"
 
-#: ../games/api.scm:614
+#: ../games/api.scm:624
 msgid "Remove the nine of diamonds."
 msgstr "移除方片 9。"
 
-#: ../games/api.scm:615 ../games/camelot.scm:169
+#: ../games/api.scm:625 ../games/camelot.scm:169
 msgid "Remove the ten of diamonds."
 msgstr "移除方片 10。"
 
-#: ../games/api.scm:616
+#: ../games/api.scm:626
 msgid "Remove the jack of diamonds."
 msgstr "移除方片 J。"
 
-#: ../games/api.scm:617
+#: ../games/api.scm:627
 msgid "Remove the queen of diamonds."
 msgstr "移除方片 Q。"
 
-#: ../games/api.scm:618 ../games/helsinki.scm:110 ../games/neighbor.scm:142
+#: ../games/api.scm:628 ../games/helsinki.scm:110 ../games/neighbor.scm:142
 #: ../games/thirteen.scm:386 ../games/treize.scm:280 ../games/yield.scm:296
 msgid "Remove the king of diamonds."
 msgstr "移除方片 K。"
@@ -2667,17 +2692,15 @@ msgstr "发另一轮牌"
 #: ../games/eagle-wing.scm:114 ../games/gaps.scm:106 ../games/glenwood.scm:79
 #: ../games/jumbo.scm:68 ../games/klondike.scm:83
 #: ../games/napoleons-tomb.scm:335 ../games/plait.scm:252
-#: ../games/scuffle.scm:55 ../games/straight-up.scm:72
-#: ../games/terrace.scm:153 ../games/thumb-and-pouch.scm:65
-#: ../games/zebra.scm:75
+#: ../games/scuffle.scm:55 ../games/straight-up.scm:72 ../games/terrace.scm:153
+#: ../games/thumb-and-pouch.scm:65 ../games/zebra.scm:75
 msgid "Redeals left:"
 msgstr "剩余重发次数："
 
-#: ../games/backbone.scm:286 ../games/camelot.scm:209
-#: ../games/canfield.scm:228 ../games/carpet.scm:173 ../games/glenwood.scm:253
-#: ../games/klondike.scm:267 ../games/napoleons-tomb.scm:323
-#: ../games/osmosis.scm:215 ../games/plait.scm:103
-#: ../games/straight-up.scm:240 ../games/terrace.scm:358
+#: ../games/backbone.scm:286 ../games/camelot.scm:209 ../games/canfield.scm:228
+#: ../games/carpet.scm:173 ../games/glenwood.scm:253 ../games/klondike.scm:267
+#: ../games/napoleons-tomb.scm:323 ../games/osmosis.scm:215
+#: ../games/plait.scm:103 ../games/straight-up.scm:240 ../games/terrace.scm:358
 msgid "Deal a new card from the deck"
 msgstr "从牌垛中发一张新牌"
 
@@ -2755,7 +2778,7 @@ msgstr "假如您在丛林中迷路，就拥抱大树吧"
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:189
 msgid "Fishing wire makes bad dental floss"
-msgstr "钓鱼钢丝弄坏牙用棉花"
+msgstr "小狗又来看提示了!!!"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:191
@@ -2833,7 +2856,7 @@ msgstr "您正在寻找一个 Q。"
 msgid "You are searching for a king."
 msgstr "您正在寻找一个 K。"
 
-#: ../games/doublets.scm:170
+#: ../games/doublets.scm:170 ../games/hamilton.scm:95
 msgid "Unknown value"
 msgstr "未知的值"
 
@@ -3229,6 +3252,83 @@ msgstr "把一张牌或是牌的组堆移到空位上"
 msgid "Deal another hand"
 msgstr "发另一手牌"
 
+#: ../games/hamilton.scm:82
+msgid "ace"
+msgstr "A"
+
+#: ../games/hamilton.scm:83
+msgid "two"
+msgstr "2"
+
+#: ../games/hamilton.scm:84
+msgid "three"
+msgstr "3"
+
+#: ../games/hamilton.scm:85
+msgid "four"
+msgstr "4"
+
+#: ../games/hamilton.scm:86
+msgid "five"
+msgstr "5"
+
+#: ../games/hamilton.scm:87
+msgid "six"
+msgstr "6"
+
+#: ../games/hamilton.scm:88
+msgid "seven"
+msgstr "7"
+
+#: ../games/hamilton.scm:89
+msgid "eight"
+msgstr "8"
+
+#: ../games/hamilton.scm:90
+msgid "nine"
+msgstr "9"
+
+#: ../games/hamilton.scm:91
+msgid "ten"
+msgstr "10"
+
+#: ../games/hamilton.scm:92
+msgid "jack"
+msgstr "J"
+
+#: ../games/hamilton.scm:93
+msgid "queen"
+msgstr "Q"
+
+#: ../games/hamilton.scm:94
+msgid "king"
+msgstr "K"
+
+#: ../games/hamilton.scm:100
+msgid "Start card:"
+msgstr "初始卡牌:"
+
+#: ../games/hamilton.scm:101
+msgid "Choices left:"
+msgstr "剩下的选择："
+
+#: ../games/hamilton.scm:277
+msgid "Turn over the top card of the stock."
+msgstr "翻开牌堆顶部的牌"
+
+#: ../games/hamilton.scm:324
+msgid "Fill an empty slot."
+msgstr "填充一个空位"
+
+#: ../games/hamilton.scm:330
+msgid "Deal a new round."
+msgstr "发一轮新牌"
+
+#. If all else fails.
+#: ../games/hamilton.scm:332
+msgid "Try moving cards down from the foundations."
+msgstr "可以尝试从收牌区取回一些牌"
+
 #: ../games/hopscotch.scm:126
 msgid "Move card from waste"
 msgstr "将牌放到废牌堆"
@@ -3399,12 +3499,36 @@ msgstr "本回合积分累积到下一回合"
 msgid "Multiplier Scoring"
 msgstr "积分翻倍"
 
+#: ../games/wall.scm:138
+msgid "Deals left: "
+msgstr "剩余可发牌次数: "
+
+#: ../games/wall.scm:437
+msgid "Deal cards."
+msgstr "发牌"
+
+#: ../games/wall.scm:447
+msgid "Attack a face-down pile."
+msgstr "攻击牌面朝下的牌堆"
+
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "把组牌移动到排列区的空位上"
 
-#~ msgid "About Aisleriot"
-#~ msgstr "关于 Aisleriot"
+#~ msgid "Klondike Three Decks"
+#~ msgstr "克朗代克(三副)"
+
+#~ msgid "About AisleRiot"
+#~ msgstr "关于 AisleRiot"
+
+#~ msgid "GNOME Games web site"
+#~ msgstr "GNOME 游戏网站"
+
+#~ msgid "_Animations"
+#~ msgstr "动画(_A)"
+
+#~ msgid "Whether or not to animate card moves"
+#~ msgstr "是否在移动纸牌时使用动画"
 
 #~ msgid "Play the popular FreeCell card game"
 #~ msgstr "玩流行的空当接龙纸牌游戏"
@@ -3563,56 +3687,17 @@ msgstr "把组牌移动到排列区的空位上"
 #~ msgid "Unknown suit"
 #~ msgstr "未知花色"
 
-#~ msgid "ace"
-#~ msgstr "A"
-
 #~ msgid "clubs"
 #~ msgstr "梅花"
 
 #~ msgid "diamonds"
 #~ msgstr "方片"
 
-#~ msgid "eight"
-#~ msgstr "8"
-
-#~ msgid "five"
-#~ msgstr "5"
-
-#~ msgid "four"
-#~ msgstr "4"
-
 #~ msgid "hearts"
 #~ msgstr "红桃"
 
-#~ msgid "jack"
-#~ msgstr "J"
-
-#~ msgid "king"
-#~ msgstr "K"
-
-#~ msgid "nine"
-#~ msgstr "9"
-
-#~ msgid "queen"
-#~ msgstr "Q"
-
-#~ msgid "seven"
-#~ msgstr "7"
-
-#~ msgid "six"
-#~ msgstr "6"
-
 #~ msgid "spades"
 #~ msgstr "黑桃"
-
-#~ msgid "ten"
-#~ msgstr "10"
-
-#~ msgid "three"
-#~ msgstr "3"
-
-#~ msgid "two"
-#~ msgstr "2"
 
 #~ msgid "appropriate foundation pile"
 #~ msgstr "适当的收牌区牌堆"
@@ -7612,9 +7697,6 @@ msgstr "把组牌移动到排列区的空位上"
 #~ msgid "Split cards in two new hands"
 #~ msgstr "将一手牌拆为两手牌"
 
-#~ msgid "Cards left:"
-#~ msgstr "剩下的牌："
-
 #~ msgid "Wager:"
 #~ msgstr "赌注："
 
@@ -9117,9 +9199,6 @@ msgstr "把组牌移动到排列区的空位上"
 #~ msgid "Difficulty"
 #~ msgstr "难度"
 
-#~ msgid "Started"
-#~ msgstr "已开始"
-
 #~ msgid "Printed %s ago"
 #~ msgstr "%s 以前已打印的"
 
@@ -9259,9 +9338,6 @@ msgstr "把组牌移动到排列区的空位上"
 
 #~ msgid "_Cards..."
 #~ msgstr "纸牌(_C)..."
-
-#~ msgid "Aisleriot"
-#~ msgstr "Aisleriot"
 
 #~ msgid "<b>Wins</b>"
 #~ msgstr "<b>赢数</b>"
