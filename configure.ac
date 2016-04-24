@@ -356,33 +356,43 @@ fi
 # *****************
 
 AC_ARG_VAR([GLIB_GENMARSHAL],[the glib-genmarshal programme])
-AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
 if test -z "$GLIB_GENMARSHAL"; then
-  AC_MSG_ERROR([glib-genmarshal not found])
+  AC_PATH_PROG([GLIB_GENMARSHAL],[glib-genmarshal],[])
+  if test -z "$GLIB_GENMARSHAL"; then
+    AC_MSG_ERROR([glib-genmarshal not found])
+  fi
 fi
 
 AC_ARG_VAR([GLIB_COMPILE_RESOURCES],[the glib-compile-resources programme])
-AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
 if test -z "$GLIB_COMPILE_RESOURCES"; then
-  AC_MSG_ERROR([glib-compile-resources not found])
+  AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
+  if test -z "$GLIB_COMPILE_RESOURCES"; then
+    AC_MSG_ERROR([glib-compile-resources not found])
+  fi
 fi
 
 AC_ARG_VAR([GZIP],[the gzip programme])
-AC_PATH_PROG([GZIP],[gzip],[])
 if test -z "$GZIP"; then
-  AC_MSG_ERROR([gzip not found])
+  AC_PATH_PROG([GZIP],[gzip],[])
+  if test -z "$GZIP"; then
+    AC_MSG_ERROR([gzip not found])
+  fi
 fi
 
 AC_ARG_VAR([XMLLINT],[the xmllint programme])
-AC_PATH_PROG([XMLLINT],[xmllint],[])
 if test -z "$XMLLINT"; then
-  AC_MSG_ERROR([xmllint not found])
+  AC_PATH_PROG([XMLLINT],[xmllint],[])
+  if test -z "$XMLLINT"; then
+    AC_MSG_ERROR([xmllint not found])
+  fi
 fi
 
 AC_ARG_VAR([DESKTOP_FILE_VALIDATE],[the desktop-file-validate programme])
-AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
 if test -z "$DESKTOP_FILE_VALIDATE"; then
-  AC_MSG_ERROR([desktop-file-validate not found])
+  AC_PATH_PROG([DESKTOP_FILE_VALIDATE],[desktop-file-validate],[])
+  if test -z "$DESKTOP_FILE_VALIDATE"; then
+    AC_MSG_ERROR([desktop-file-validate not found])
+  fi
 fi
 
 if test "$platform_win32" = "yes" -a "$os_win32" = "yes"; then
@@ -506,9 +516,11 @@ PKGS="$PKGS $GUILE_PKGS"
 AC_SUBST([GUILE_EFFECTIVE_VERSION],[$with_guile])
 
 AC_ARG_VAR([GUILE],[the guile programme])
-AC_PATH_PROG([GUILE],[guile],[false])
-if test "$GUILE" = "false"; then
-  AC_MSG_ERROR([guile not found])
+if test -z "$GUILE"; then
+  AC_PATH_PROG([GUILE],[guile],[false])
+  if test "$GUILE" = "false"; then
+    AC_MSG_ERROR([guile not found])
+  fi
 fi
 
 # ************
