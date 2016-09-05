@@ -336,11 +336,11 @@ AM_CONDITIONAL([HAVE_RSVG],[test "$have_rsvg" = "yes"])
 
 have_qtsvg=no
 if test "$need_qtsvg" = "yes"; then
-  QT_SVG_REQUIRED=4.4.0
+  QT_SVG_REQUIRED=5.0.0
 
-  PKG_CHECK_EXISTS([QtSvg >= $QT_SVG_REQUIRED],[have_qtsvg=yes],[have_qtsvg=no])
+  PKG_CHECK_EXISTS([Qt5Svg >= $QT_SVG_REQUIRED],[have_qtsvg=yes],[have_qtsvg=no])
 
-  PKGS="$PKGS QtSvg >= $QT_SVG_REQUIRED"
+  PKGS="$PKGS Qt5Svg >= $QT_SVG_REQUIRED"
   EXTRA_CXX_LIBS="$EXTRA_CXX_LIBS -lstdc++"
 
   AC_DEFINE([HAVE_QTSVG],[1],[Refine if QtSvg is available])
@@ -349,7 +349,7 @@ fi
 AM_CONDITIONAL([HAVE_QTSVG],[test "$have_qtsvg" = "yes"])
 
 if test "$need_svg" = "yes" -a "$have_rsvg" = "no" -a "$have_qtsvg" = "no"; then
-   AC_MSG_ERROR([One of librsvg or QtSvg are required])
+   AC_MSG_ERROR([One of librsvg or Qt5Svg are required])
 fi
 
 # *****************

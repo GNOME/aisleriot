@@ -94,10 +94,12 @@ libaisleriot_la_CPPFLAGS = \
 
 libaisleriot_la_CFLAGS = \
 	$(AISLERIOT_CFLAGS) \
+	-fPIC \
 	$(AM_CFLAGS)
 
 libaisleriot_la_CXXFLAGS = \
 	$(AISLERIOT_CFLAGS) \
+	-fPIC \
 	$(AM_CXXFLAGS)
 
 libaisleriot_la_LIBADD = \
