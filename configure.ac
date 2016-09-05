@@ -26,6 +26,8 @@ AM_MAINTAINER_MODE([enable])
 
 # *****************************************************************************
 
+GNOME_DEBUG_CHECK
+
 PKG_PROG_PKG_CONFIG([0.15])
 PKGS=
 
@@ -38,8 +40,6 @@ AC_PROG_SED
 AM_PROG_CC_C_O
 
 AC_PROG_LIBTOOL
-
-GNOME_DEBUG_CHECK
 
 # ************
 # Dependencies
