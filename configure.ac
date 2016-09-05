@@ -196,7 +196,8 @@ if test "$enable_card_theme_format_kde" = "yes"; then
   AC_ARG_WITH([kde-card-theme-path],
     [AS_HELP_STRING([--with-kde-card-theme-path],[The base path to the KDE card themes])],
     [],[case "$DISTRO" in
-          debian|fedora|rhel|centos|opensuse|ubuntu) with_kde_card_theme_path="/usr/share/kde4/apps/carddecks" ;;
+           debian|opensuse|ubuntu) with_kde_card_theme_path="/usr/share/kde4/apps/carddecks" ;;
+	   fedora|rhel|centos) with_kde_card_theme_path="/usr/share/carddecks" ;;
           *) AC_MSG_ERROR([When enabling the KDE card theme format, you must specify the KDE card themes base path.]) ;;
         esac])
   AC_MSG_RESULT([$with_kde_card_theme_path])
