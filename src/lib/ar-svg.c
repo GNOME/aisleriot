@@ -32,7 +32,6 @@
 #include <gdk/gdk.h>
 
 #include <librsvg/rsvg.h>
-#include <librsvg/rsvg-cairo.h>
 
 #include "ar-profile.h"
 
