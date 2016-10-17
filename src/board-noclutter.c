@@ -220,7 +220,7 @@ set_cursor_by_location (AisleriotBoard *board,
 
   get_slot_and_card_from_point (board, x, y, &slot, &card_id);
 
-  if (priv->click_to_move &&
+  if (priv->click_status == STATUS_IS_DRAG &&
       slot != NULL &&
       selection_slot != NULL &&
       slot != selection_slot &&
@@ -2180,10 +2180,10 @@ aisleriot_board_realize (GtkWidget *widget)
   display = gtk_widget_get_display (widget);
 
   /* Create cursors */
-  priv->cursor[AR_CURSOR_DEFAULT] = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
+  priv->cursor[AR_CURSOR_DEFAULT] = ar_cursor_new (display, AR_CURSOR_DEFAULT);
   priv->cursor[AR_CURSOR_OPEN] = ar_cursor_new (display, AR_CURSOR_OPEN);
   priv->cursor[AR_CURSOR_CLOSED] = ar_cursor_new (display, AR_CURSOR_CLOSED);
-  priv->cursor[AR_CURSOR_DROPPABLE] = gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
+  priv->cursor[AR_CURSOR_DROPPABLE] = ar_cursor_new (display, AR_CURSOR_DROPPABLE);
 
   aisleriot_board_setup_geometry (board);
 }
@@ -2765,8 +2765,10 @@ aisleriot_board_motion_notify (GtkWidget *widget,
     cairo_region_union_rectangle (region, &mslot->rect);
     gtk_widget_queue_draw_region (widget, region);
     cairo_region_destroy (region);
-
-    set_cursor (board, AR_CURSOR_CLOSED);
+    if (!slot)
+             set_cursor (board, AR_CURSOR_CLOSED);
+    else
+             set_cursor (board, AR_CURSOR_DROPPABLE);
   } else if (priv->click_status == STATUS_MAYBE_DRAG &&
              gtk_drag_check_threshold (widget,
                                        priv->last_click_x,

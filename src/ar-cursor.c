@@ -220,19 +220,29 @@ GdkCursor *ar_cursor_new (GdkDisplay *display,
   GdkCursor *cursor;
 
   switch (cursor_type) {
-    case AR_CURSOR_OPEN:
-      if ((cursor = gdk_cursor_new_from_name (display, "openhand")))
+    case AR_CURSOR_DEFAULT:
+      if ((cursor = gdk_cursor_new_from_name (display, "default")))
           return cursor;
-      if ((cursor = gdk_cursor_new_from_name (display, "hand1")))
+      return gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
+
+    case AR_CURSOR_OPEN:
+      if ((cursor = gdk_cursor_new_from_name (display, "grab")))
+          return cursor;
+      if ((cursor = gdk_cursor_new_from_name (display, "openhand")))
           return cursor;
       return ar_cursor_new_from_data (display, hand_open_data, sizeof (hand_open_data));
 
     case AR_CURSOR_CLOSED:
-      if ((cursor = gdk_cursor_new_from_name (display, "closedhand")))
-          return cursor;
       if ((cursor = gdk_cursor_new_from_name (display, "grabbing")))
           return cursor;
+      if ((cursor = gdk_cursor_new_from_name (display, "closedhand")))
+          return cursor;
       return ar_cursor_new_from_data (display, hand_closed_data, sizeof (hand_closed_data));
+
+    case AR_CURSOR_DROPPABLE:
+      if ((cursor = gdk_cursor_new_from_name (display, "crosshair")))
+          return cursor;
+      return gdk_cursor_new_for_display (display, GDK_DOUBLE_ARROW); /* FIXMEchpe: better cursor */
 
     default:
       g_assert_not_reached ();
