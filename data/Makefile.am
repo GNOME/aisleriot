@@ -19,7 +19,7 @@ desktop_in_files = \
 desktopdir = $(datadir)/applications
 nodist_desktop_DATA = $(desktop_in_files:.desktop.in.in=.desktop)
 
-appdatadir = $(datadir)/appdata
+appdatadir = $(datadir)/metainfo
 appdata_in_files = sol.appdata.xml.in
 nodist_appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 
