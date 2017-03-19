@@ -39,7 +39,10 @@ AC_PROG_MKDIR_P
 AC_PROG_SED
 AM_PROG_CC_C_O
 
-AC_PROG_LIBTOOL
+LT_PREREQ([2.2])
+LT_INIT
+LT_LANG([C])
+LT_LANG([C++])
 
 # ************
 # Dependencies
@@ -473,56 +476,24 @@ IT_PROG_INTLTOOL([0.35.0])
 # Guile
 # *****
 
-GUILE_2_0_REQUIRED=2.0.0
-GUILE_2_2_REQUIRED=2.1.0
-
-GUILE_PKGS=
-
+guile_versions_all="2.2 2.0"
 AC_MSG_CHECKING([which guile version to use])
 AC_ARG_WITH([guile],
-  [AS_HELP_STRING([--with-guile=2.0|2.2|auto],[Which guile version to use (default: 2.0)])],
+  [AS_HELP_STRING([--with-guile=2.2|2.0|auto],[Which guile version to use (default: auto)])],
   [case "$with_guile" in
      1.8) AC_MSG_ERROR([unsupported guile version $with_guile requested]) ;;
-     2.0|2.2|auto) ;;
+     2.0|2.2) guile_versions="$withval" ;;
+     auto) guile_versions="$guile_versions_all" ;;
      *) AC_MSG_ERROR([unsupported guile version $with_guile requested]) ;;
     esac],
-   [with_guile=2.0])
+   [guile_versions="$guile_versions_all" with_guile=auto])
+AC_MSG_RESULT([$with_guile])
 
-if test "$with_guile" = "auto"; then
-  with_guile=
-  for version in 2.2 2.0; do
-    GUILE_REQUIRED=AS_TR_SH([GUILE_${version}_REQUIRED])
-    GUILE_PKGS="guile-$version >= ${!GUILE_REQUIRED}"
-    if $PKG_CONFIG --exists $GUILE_PKGS; then
-      with_guile=$version
-      break
-    fi
-  done
+GUILE_PKG([$guile_versions])
+# not using GUILE_FLAGS due to config.rpath issue
+PKGS="$PKGS guile-$GUILE_EFFECTIVE_VERSION"
 
-  if test -z "$with_guile"; then
-    AC_MSG_ERROR([no supported guile version found])
-  fi
-
-  with_guile_result="$with_guile (auto)"
-else
-  GUILE_REQUIRED=AS_TR_SH([GUILE_${with_guile}_REQUIRED])
-  GUILE_PKGS="guile-$with_guile >= ${!GUILE_REQUIRED}"
-  with_guile_result="$with_guile"
-fi
-
-AC_MSG_RESULT([$with_guile_result])
-
-PKGS="$PKGS $GUILE_PKGS"
-
-AC_SUBST([GUILE_EFFECTIVE_VERSION],[$with_guile])
-
-AC_ARG_VAR([GUILE],[the guile programme])
-if test -z "$GUILE"; then
-  AC_PATH_PROG([GUILE],[guile],[false])
-  if test "$GUILE" = "false"; then
-    AC_MSG_ERROR([guile not found])
-  fi
-fi
+GUILE_PROGS
 
 # ************
 # Dependencies
