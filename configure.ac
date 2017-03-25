@@ -595,7 +595,7 @@ Configuration:
     Source code location:  ${srcdir}
     Compiler:              ${CC}
 
-    Guile version:         ${with_guile_result}
+    Guile version:         ${GUILE_EFFECTIVE_VERSION}
     GTK+ API version:      ${GTK_API_VERSION}
     Platform:              ${with_platform}
     Help method:           ${with_help_method} ${with_help_file_format}
