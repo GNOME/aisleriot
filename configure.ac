@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.53])
-AC_INIT([GNOME Patience], [3.22.3],
+AC_INIT([GNOME Patience], [3.22.4],
   [http://bugzilla.gnome.org/enter_bug.cgi?product=aisleriot],
   [aisleriot])
 
