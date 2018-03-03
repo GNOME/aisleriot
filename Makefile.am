@@ -23,6 +23,7 @@ EXTRA_DIST = \
 	aisleriot.doap \
 	autogen.sh \
 	COPYING.GFDL \
+	COPYING.GFDL1.3 \
 	COPYING.GPL3 \
 	COPYING.LGPL3 \
 	ChangeLog \
