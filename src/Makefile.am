@@ -103,7 +103,8 @@ EXTRA_DIST = \
 	$(schema_in_files)	\
 	aisleriot-ui.xml	\
 	aisleriot-debug-ui.xml	\
-	game-names.h
+	game-names.h		\
+	help-overlay.ui
 
 CLEANFILES = \
 	$(BUILT_SOURCES) \

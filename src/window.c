@@ -490,6 +490,13 @@ help_on_game_cb (GtkAction *action,
 }
 
 static void
+help_overlay_cb (GSimpleAction *action,
+                 AisleriotWindow *window)
+{
+    g_action_group_activate_action (G_ACTION_GROUP (window), "show-help-overlay", NULL);
+}
+
+static void
 close_window_cb (GtkAction *action,
                  AisleriotWindow *window)
 {
@@ -1848,6 +1855,10 @@ aisleriot_window_init (AisleriotWindow *window)
     { "About", GTK_STOCK_ABOUT, NULL, NULL,
       N_("About this game"),
       G_CALLBACK (help_about_cb) },
+    { "KeyboardShortcuts", NULL, N_("_Keyboard Shortcuts"),
+      NULL,
+      NULL,
+      G_CALLBACK (help_overlay_cb) },
     { "InstallThemes", NULL, N_("Install card themes…"), NULL,
       N_("Install new card themes from the distribution packages repositories"),
       G_CALLBACK (install_themes_cb) },
