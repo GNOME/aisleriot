@@ -252,7 +252,7 @@ AC_DEFINE_UNQUOTED([AR_CARD_THEME_DEFAULT_FORMAT_STRING],["$with_default_card_th
 
 AC_MSG_CHECKING([whether extra debugging UI in Aisleriot is requested])
 AC_ARG_ENABLE([debug-ui],
-  [AS_HELP_STRING([--debug-ui],[Enable extra debugging UI in Aisleriot (default: disabled)])],
+  [AS_HELP_STRING([--enable-debug-ui],[Enable extra debugging UI in Aisleriot (default: disabled)])],
   [],[enable_debug_ui=no])
 AC_MSG_RESULT([$enable_debug_ui])
 
