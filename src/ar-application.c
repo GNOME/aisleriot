@@ -190,8 +190,6 @@ ar_application_startup (GApplication *application)
 {
   ArApplication *self = AR_APPLICATION (application);
   ArApplicationPrivate *priv = self->priv;
-  GMenu *menu;
-  GMenu *section;
 
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
@@ -203,28 +201,6 @@ ar_application_startup (GApplication *application)
   g_action_map_add_action_entries (G_ACTION_MAP (self),
                                    app_entries, G_N_ELEMENTS (app_entries),
                                    self);
-
-  menu = g_menu_new ();
-
-  section = g_menu_new ();
-  g_menu_append (section, _("New Game"), "app.new-game");
-  g_menu_append (section, _("Change Game"), "app.change-game");
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-
-  section = g_menu_new ();
-  g_menu_append (section, _("Statistics"), "app.statistics");
-  g_menu_append (section, _("Fullscreen"), "app.fullscreen");
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-
-  section = g_menu_new ();
-  g_menu_append (section, _("Help"), "app.help");
-  g_menu_append (section, _("About"), "app.about");
-  g_menu_append (section, _("Quit"), "app.quit");
-
-  g_menu_append_section (menu, NULL, G_MENU_MODEL (section));
-
-  gtk_application_set_app_menu (GTK_APPLICATION (application),
-                                G_MENU_MODEL (menu));
 
   gtk_application_add_accelerator (GTK_APPLICATION (application),
                                    "F11", "app.fullscreen", NULL);
