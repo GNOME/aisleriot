@@ -267,7 +267,7 @@ AM_CONDITIONAL([ENABLE_DEBUG_UI],[test "$enable_debug_ui" = "yes"])
 # ********************
 
 case "$with_gtk" in
-  3.0) GTK_REQUIRED=3.4.0
+  3.0) GTK_REQUIRED=3.18.0
        RSVG_REQUIRED=2.32.0
        LIBCANBERRA_GTK_REQUIRED=0.26
        LIBCANBERRA_GTK_PKGS="libcanberra-gtk3 >= $LIBCANBERRA_GTK_REQUIRED"
