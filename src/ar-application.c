@@ -258,7 +258,7 @@ ar_application_new (const char *variation,
   ArApplication *app;
 
   app = g_object_new (AR_TYPE_APPLICATION,
-                      "application-id", "org.gnome.Aisleriot",
+                      "application-id", "org.gnome.aisleriot",
                       "flags", G_APPLICATION_NON_UNIQUE,
                       NULL);
   app->priv->variation = g_strdup (variation);
