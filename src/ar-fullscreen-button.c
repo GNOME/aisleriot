@@ -97,11 +97,7 @@ update_position (ArFullscreenButton *button)
   gtk_widget_size_request (widget, &requisition);
 
   screen = gtk_widget_get_screen (widget);
-#if GTK_CHECK_VERSION (3, 3, 5)
   gdk_screen_get_monitor_workarea
-#else
-  gdk_screen_get_monitor_geometry
-#endif
     (screen,
      gtk_widget_get_realized (widget)
         ? gdk_screen_get_monitor_at_window (screen, gtk_widget_get_window (widget))

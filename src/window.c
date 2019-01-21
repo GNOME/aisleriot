@@ -2043,10 +2043,8 @@ aisleriot_window_init (AisleriotWindow *window)
   priv->main_menu = gtk_ui_manager_get_widget (priv->ui_manager, MAIN_MENU_UI_PATH);
   priv->toolbar = gtk_ui_manager_get_widget (priv->ui_manager, TOOLBAR_UI_PATH);
 
-#if GTK_CHECK_VERSION (3, 0, 3)
   gtk_style_context_add_class (gtk_widget_get_style_context (priv->toolbar),
                                GTK_STYLE_CLASS_PRIMARY_TOOLBAR);
-#endif
 
   /* Defer building the card themes menu until its parent's menu is opened */
   action = gtk_action_group_get_action (priv->action_group, "ViewMenu");

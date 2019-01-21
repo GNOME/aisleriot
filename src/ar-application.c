@@ -57,10 +57,6 @@ struct _ArApplicationPrivate
   gboolean freecell; /* unused */
 };
 
-#if !GTK_CHECK_VERSION (3, 6, 0)
-#define gtk_application_get_active_window(w) NULL
-#endif
-
 G_DEFINE_TYPE (ArApplication, ar_application, GTK_TYPE_APPLICATION)
 
 static void
