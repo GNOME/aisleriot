@@ -4,27 +4,26 @@
 #
 # Matej Erman <matej.erman@guest.arnes.si>, 2002.
 # Tadej Janež <tadej_janez@email.si>, 2003.
-# Matic Žgur <mr.zgur@gmail.com>, 2006 - 2007.
+# Matic Žgur <mr.zgur@gmail.com>, 2006–2007.
 # Martin Srebotnjak  <miles@filmsi.net>, 2011.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007-2016.
+# Matej Urbančič <mateju@svn.gnome.org>, +2007–2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: aisleriot master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-05 21:21+0100\n"
-"PO-Revision-Date: 2016-03-05 21:21+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/aisleriot/issues\n"
+"POT-Creation-Date: 2019-01-23 14:38+0000\n"
+"PO-Revision-Date: 2019-01-25 17:22+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: sl\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: ../data/sol.appdata.xml.in.h:1
 msgid "Aisleriot Solitaire"
@@ -49,7 +48,7 @@ msgstr "Pasjansa AisleRiot"
 
 #: ../data/sol.desktop.in.in.h:3
 msgid "solitaire;cards;klondike;spider;freecell;patience;"
-msgstr "solitaire;karte,klondike;spider;freecell;patience;"
+msgstr "solitaire;karte,klondike;patience;pesjansa"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -123,36 +122,8 @@ msgstr "Nedavno igrane igre"
 msgid "A list of recently played games."
 msgstr "Seznam nedavno igranih iger."
 
-#: ../src/ar-application.c:216
-msgid "New Game"
-msgstr "Nova igra"
-
-#: ../src/ar-application.c:217
-msgid "Change Game"
-msgstr "Spremeni igro"
-
-#: ../src/ar-application.c:221 ../src/stats-dialog.c:206
-msgid "Statistics"
-msgstr "Statistika"
-
-#: ../src/ar-application.c:222
-msgid "Fullscreen"
-msgstr "Celozaslonski način"
-
-#: ../src/ar-application.c:226
-msgid "Help"
-msgstr "Pomoč"
-
-#: ../src/ar-application.c:227
-msgid "About"
-msgstr "O programu"
-
-#: ../src/ar-application.c:228
-msgid "Quit"
-msgstr "Končaj"
-
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:1989
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1992
 msgid "Select Game"
 msgstr "Izberi igro"
 
@@ -222,8 +193,8 @@ msgid ""
 "version."
 msgstr ""
 "%s je prosta programska oprema; lahko jo razširjate in spreminjate pod "
-"pogoji GNU Splošne javne licence kot je to objavljeno preko Free Software "
-"Foundation; različice %d ali katerekoli kasnejše."
+"pogoji Splošnega Javnega dovoljenja GNU (GNU GPL) kot jo objavlja Free "
+"Software Foundation; različice %d ali katerekoli kasnejše."
 
 #: ../src/ar-stock.c:272
 #, c-format
@@ -233,97 +204,98 @@ msgid ""
 "FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
 "details."
 msgstr ""
-"%s se razširja v upanju, da bo uporaben, vendar BREZ VSAKRŠNEGA JAMSTVA; "
-"tudi brez posredne zagotovitve CENOVNE VREDNOSTI ali PRIMERNOSTI ZA DOLOČEN "
-"NAMEN.  Za podrobnosti glejte besedilo GNU General Public License."
+"%s se razširja v upanju, da ima neko uporabnost, vendar BREZ VSAKRŠNEGA "
+"JAMSTVA; tudi brez posredne zagotovitve CENOVNE VREDNOSTI ali PRIMERNOSTI ZA "
+"DOLOČEN NAMEN. Za podrobnosti glejte besedilo Splošnega javnega dovoljenja "
+"GNU (GNU General Public License)."
 
 #: ../src/ar-stock.c:277
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"Skupaj s programom bi morali dobiti tudi kopijo GNU splošne javne licence. V "
+"Skupaj s programom bi morali prejeti tudi kopijo dovoljenja GNU GPL. V "
 "primeru, da je niste, si oglejte <http://www.gnu.org/licenses/>."
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1422
+#: ../src/game.c:1390
 msgctxt "slot type"
 msgid "chooser"
 msgstr "izbirnik"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1426
+#: ../src/game.c:1394
 msgctxt "slot type"
 msgid "foundation"
 msgstr "osnovni talon"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1430
+#: ../src/game.c:1398
 msgctxt "slot type"
 msgid "reserve"
 msgstr "zaloga"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1434
+#: ../src/game.c:1402
 msgctxt "slot type"
 msgid "stock"
 msgstr "kupček"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1438
+#: ../src/game.c:1406
 msgctxt "slot type"
 msgid "tableau"
 msgstr "okvir"
 
 #. Translators: this is the name of a type of card slot
-#: ../src/game.c:1442
+#: ../src/game.c:1410
 msgctxt "slot type"
 msgid "waste"
 msgstr "neuporabne karte"
 
 #. Translators: %s is the name of the card; "chooser" is the name of a type of card slot
-#: ../src/game.c:1474
+#: ../src/game.c:1442
 #, c-format
 msgctxt "slot hint"
 msgid "%s on chooser"
 msgstr "%s na izbirniku"
 
 #. Translators: %s is the name of the card; "foundation" is the name of a type of card slot
-#: ../src/game.c:1478
+#: ../src/game.c:1446
 #, c-format
 msgctxt "slot hint"
 msgid "%s on foundation"
 msgstr "%s v osnovnem talonu"
 
 #. Translators: %s is the name of the card; "reserve" is the name of a type of card slot
-#: ../src/game.c:1482
+#: ../src/game.c:1450
 #, c-format
 msgctxt "slot hint"
 msgid "%s on reserve"
 msgstr "%s v zalogi"
 
 #. Translators: %s is the name of the card; "stock" is the name of a type of card slot
-#: ../src/game.c:1486
+#: ../src/game.c:1454
 #, c-format
 msgctxt "slot hint"
 msgid "%s on stock"
 msgstr "%s v kupčku"
 
 #. Translators: %s is the name of the card; "tableau" is the name of a type of card slot
-#: ../src/game.c:1490
+#: ../src/game.c:1458
 #, c-format
 msgctxt "slot hint"
 msgid "%s on tableau"
 msgstr "%s v polju okvirja"
 
 #. Translators: %s is the name of the card; "waste" is the name of a type of card slot
-#: ../src/game.c:1494
+#: ../src/game.c:1462
 #, c-format
 msgctxt "slot hint"
 msgid "%s on waste"
 msgstr "%s med neuporabnimi kartami"
 
-#: ../src/game.c:2161
+#: ../src/game.c:2129
 msgid "This game does not have hint support yet."
 msgstr "Ta igra še nima podpore za prikaz namigov."
 
@@ -331,12 +303,12 @@ msgstr "Ta igra še nima podpore za prikaz namigov."
 #. The first %s is a card name, the 2nd %s a sentence fragment.
 #. * Yes, we know this is bad for i18n.
 #.
-#: ../src/game.c:2196 ../src/game.c:2222
+#: ../src/game.c:2164 ../src/game.c:2190
 #, c-format
 msgid "Move %s onto %s."
 msgstr "Premaknite %s na %s."
 
-#: ../src/game.c:2242
+#: ../src/game.c:2210
 msgid "This game is unable to provide a hint."
 msgstr "Ta igra nima možnosti prikaza namigov."
 
@@ -1170,6 +1142,66 @@ msgstr "Yukon"
 msgid "Zebra"
 msgstr "Zebra"
 
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Splošno"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Start a new game"
+msgstr "Začni novo igro"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Deal"
+msgstr "Razdeli"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Razveljavi"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Ponovno uveljavi"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Celozaslonski način"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Končaj"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Pomoč"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Show a hint"
+msgstr "Pokaži namig\t"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Pokaži pomoč"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Show Help for this game"
+msgstr "Pokaže pomoč za to igro"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Show Keyboard Shortcuts"
+msgstr "Pokaži tipkovne bližnjice"
+
 #. Translators: this is the symbol that's on a Joker card
 #: ../src/lib/ar-card.c:237
 msgctxt "card symbol"
@@ -1480,12 +1512,12 @@ msgstr "rdeči joker"
 #: ../src/lib/ar-help.c:108
 #, c-format
 msgid "Help file “%s.%s” not found"
-msgstr "Datoteke pomoči “%s.%s” ni mogoče najti"
+msgstr "Datoteke pomoči »%s.%s« ni mogoče najti"
 
 #: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
 #, c-format
 msgid "Could not show help for “%s”"
-msgstr "Ni mogoče prikazati pomoči za program “%s”."
+msgstr "Ni mogoče prikazati pomoči za program »%s«."
 
 #: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
 msgid "Whether the window is maximized"
@@ -1533,48 +1565,52 @@ msgid "AisleRiot"
 msgstr "AisleRiot"
 
 #. Translators: this is the total number of won games
-#: ../src/stats-dialog.c:148
+#: ../src/stats-dialog.c:145
 msgid "Wins:"
 msgstr "Zmage:"
 
 #. Translators: this is the number of games played
-#: ../src/stats-dialog.c:150
+#: ../src/stats-dialog.c:147
 msgid "Total:"
 msgstr "Skupaj:"
 
 #. Translators: this is the percentage of games won out of all games played
-#: ../src/stats-dialog.c:152
+#: ../src/stats-dialog.c:149
 msgid "Percentage:"
 msgstr "Odstotek:"
 
 #. Translators: this is the section title of a section which contains the n
 #. * number of games played, number of games won, and the ratio of these 2 numbers.
 #.
-#: ../src/stats-dialog.c:156
+#: ../src/stats-dialog.c:153
 msgid "Wins"
 msgstr "Zmage"
 
 #. Translators: this is the best time of all wins
-#: ../src/stats-dialog.c:163
+#: ../src/stats-dialog.c:160
 msgid "Best:"
 msgstr "Najboljši:"
 
 #. Translators: this is the worst time of all wins
-#: ../src/stats-dialog.c:165
+#: ../src/stats-dialog.c:162
 msgid "Worst:"
 msgstr "Najslabši:"
 
 #. Translators: this is the section title of a section containing the
 #. * best and worst time taken to win a game.
 #.
-#: ../src/stats-dialog.c:169
+#: ../src/stats-dialog.c:166
 msgid "Time"
 msgstr "Čas"
+
+#: ../src/stats-dialog.c:203
+msgid "Statistics"
+msgstr "Statistika"
 
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
-#: ../src/stats-dialog.c:220 ../src/stats-dialog.c:226
+#: ../src/stats-dialog.c:217 ../src/stats-dialog.c:223
 #, c-format
 msgid "%d"
 msgstr "%d"
@@ -1586,20 +1622,20 @@ msgstr "%d"
 #. * instead, or leave it as "%%". If you chose a character other than
 #. * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
 #.
-#: ../src/stats-dialog.c:237
+#: ../src/stats-dialog.c:234
 #, c-format
 msgid "%d%%"
 msgstr "%d%%"
 
 #. For translators: N/A means "Not Applicable", use whatever
 #. * abbreviation you have for a value that has no meaning.
-#: ../src/stats-dialog.c:243 ../src/stats-dialog.c:252
-#: ../src/stats-dialog.c:260
+#: ../src/stats-dialog.c:240 ../src/stats-dialog.c:249
+#: ../src/stats-dialog.c:257
 msgid "N/A"
 msgstr "N/A"
 
 #. Translators: this represents minutes:seconds.
-#: ../src/stats-dialog.c:247 ../src/stats-dialog.c:255
+#: ../src/stats-dialog.c:244 ../src/stats-dialog.c:252
 #, c-format
 msgid "%d:%02d"
 msgstr "%d:%02d"
@@ -1625,12 +1661,12 @@ msgid "Card themes:"
 msgstr "Teme igralnih kart:"
 
 #: ../src/window.c:399
-msgid "About Aisleriot"
-msgstr "O programu"
+msgid "About AisleRiot"
+msgstr "O igri AisleRiot"
 
 #: ../src/window.c:401
 msgid ""
-"Aisleriot provides a rule-based solitaire card engine that allows many "
+"AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr ""
 "Pesjansa AisleRiot ponuja programski paket pasjanse, ki omogoča igranje več "
@@ -1639,182 +1675,186 @@ msgstr ""
 #: ../src/window.c:410
 msgid "translator-credits"
 msgstr ""
-"Matic Žgur <mr.zgur@gmail.com>\n"
-"Matej Erman <matej.erman@guest.arnes.si>\n"
-"Tadej Janež <tadej_janez@email.si>\n"
 "Matej Urbančič <mateju@svn.gnome.org>\n"
-"Martin Srebotnjak  <miles@filmsi.net>"
+"Matic Žgur\n"
+"Matej Erman\n"
+"Tadej Janež\n"
+"Martin Srebotnjak"
 
 #: ../src/window.c:413
-msgid "Aisleriot web site"
-msgstr "Spletna stran Pesjanse"
+msgid "AisleRiot web site"
+msgstr "Spletna stran Pesjanse AisleRiot"
 
-#: ../src/window.c:1190
+#: ../src/window.c:1189
 #, c-format
 msgid "Play “%s”"
-msgstr "Igraj “%s”"
+msgstr "Igraj »%s«"
 
-#: ../src/window.c:1351
+#: ../src/window.c:1350
 #, c-format
 msgid "Display cards with “%s” card theme"
-msgstr "Pokaži karte v “%s” slogu kart"
+msgstr "Pokaži karte v »%s« slogu kart"
 
-#: ../src/window.c:1645
+#: ../src/window.c:1644
 msgid "A scheme exception occurred"
 msgstr "Prišlo je do izjemne napake sheme"
 
-#: ../src/window.c:1648
+#: ../src/window.c:1647
 msgid "Please report this bug to the developers."
 msgstr "Pošljite sporočilo o napaki razvijalcem programa."
 
-#: ../src/window.c:1654
+#: ../src/window.c:1653
 msgid "_Don't report"
 msgstr "_Ne pošlji poročila"
 
-#: ../src/window.c:1655
+#: ../src/window.c:1654
 msgid "_Report"
 msgstr "_Poročilo"
 
 #. Menu actions
-#: ../src/window.c:1812
+#: ../src/window.c:1811
 msgid "_Game"
 msgstr "_Igra"
 
-#: ../src/window.c:1813
+#: ../src/window.c:1812
 msgid "_View"
 msgstr "P_ogled"
 
-#: ../src/window.c:1814
+#: ../src/window.c:1813
 msgid "_Control"
 msgstr "_Nadzor"
 
-#: ../src/window.c:1816
+#: ../src/window.c:1815
 msgid "_Help"
 msgstr "Pomo_č"
 
-#: ../src/window.c:1821
+#: ../src/window.c:1820
 msgid "Start a new game"
 msgstr "Začni novo igro"
 
-#: ../src/window.c:1824
+#: ../src/window.c:1823
 msgid "Restart the game"
 msgstr "Znova začni igro"
 
-#: ../src/window.c:1826
+#: ../src/window.c:1825
 msgid "_Select Game…"
 msgstr "Izbor _igre ..."
 
-#: ../src/window.c:1828
+#: ../src/window.c:1827
 msgid "Play a different game"
 msgstr "Igrajte drugo igro"
 
-#: ../src/window.c:1830
+#: ../src/window.c:1829
 msgid "_Recently Played"
 msgstr "_Nedavno igrano"
 
-#: ../src/window.c:1831
+#: ../src/window.c:1830
 msgid "S_tatistics"
 msgstr "S_tatistika"
 
-#: ../src/window.c:1832
+#: ../src/window.c:1831
 msgid "Show gameplay statistics"
 msgstr "Pokaži igralno statistiko"
 
-#: ../src/window.c:1835
+#: ../src/window.c:1834
 msgid "Close this window"
 msgstr "Zapri trenutno okno"
 
-#: ../src/window.c:1838
+#: ../src/window.c:1837
 msgid "Undo the last move"
 msgstr "Razveljavi zadnjo potezo"
 
-#: ../src/window.c:1841
+#: ../src/window.c:1840
 msgid "Redo the undone move"
 msgstr "Obnovi razveljavljeno potezo"
 
-#: ../src/window.c:1844
+#: ../src/window.c:1843
 msgid "Deal next card or cards"
 msgstr "Razdeli novo karto ali karte"
 
-#: ../src/window.c:1847
+#: ../src/window.c:1846
 msgid "Get a hint for your next move"
 msgstr "Namig za vašo naslednjo potezo"
 
-#: ../src/window.c:1850
+#: ../src/window.c:1849
 msgid "View help for Aisleriot"
 msgstr "Poglejte pomoč za Aisleriot"
 
-#: ../src/window.c:1854
+#: ../src/window.c:1853
 msgid "View help for this game"
 msgstr "Poglejte pomoč za to igro"
 
-#: ../src/window.c:1857
+#: ../src/window.c:1856
 msgid "About this game"
 msgstr "O tej igri"
 
-#: ../src/window.c:1859
+#: ../src/window.c:1858
+msgid "_Keyboard Shortcuts"
+msgstr "_Tipkovne bližnjice"
+
+#: ../src/window.c:1862
 msgid "Install card themes…"
 msgstr "Namestitev teme kart ..."
 
-#: ../src/window.c:1860
+#: ../src/window.c:1863
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Namestitev nove teme kart iz oblikovnih paketov v odložiščih"
 
-#: ../src/window.c:1866
+#: ../src/window.c:1869
 msgid "_Card Style"
 msgstr "_Slog kart"
 
-#: ../src/window.c:1892
+#: ../src/window.c:1895
 msgid "_Toolbar"
 msgstr "_Orodna vrstica"
 
-#: ../src/window.c:1893
+#: ../src/window.c:1896
 msgid "Show or hide the toolbar"
 msgstr "Pokaži ali skrij orodno vrstico"
 
-#: ../src/window.c:1897
+#: ../src/window.c:1900
 msgid "_Statusbar"
 msgstr "_Vrstica stanja"
 
-#: ../src/window.c:1898
+#: ../src/window.c:1901
 msgid "Show or hide statusbar"
 msgstr "Pokaži ali skrij vrstico stanja"
 
-#: ../src/window.c:1902
+#: ../src/window.c:1905
 msgid "_Click to Move"
 msgstr "_Klikni za potezo"
 
-#: ../src/window.c:1903
+#: ../src/window.c:1906
 msgid "Pick up and drop cards by clicking"
 msgstr "Izberi in spusti karte s klikanjem"
 
 #. not active by default
-#: ../src/window.c:1906
+#: ../src/window.c:1909
 msgid "_Sound"
 msgstr "_Zvok"
 
-#: ../src/window.c:1907
+#: ../src/window.c:1910
 msgid "Whether or not to play event sounds"
 msgstr "Izbrana možnost omogoča predvajanje zvokov ob dogodkih."
 
-#: ../src/window.c:2008
+#: ../src/window.c:2011
 msgid "Score:"
 msgstr "Rezultat:"
 
-#: ../src/window.c:2020
+#: ../src/window.c:2023
 msgid "Time:"
 msgstr "Čas:"
 
-#: ../src/window.c:2307
+#: ../src/window.c:2308
 #, c-format
 msgid "Cannot start the game “%s”"
-msgstr "Ni mogoče začeti igre “%s”"
+msgstr "Ni mogoče začeti igre »%s«"
 
-#: ../src/window.c:2314
+#: ../src/window.c:2315
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Ni mogoče najti zadnje igrane igre Aisleriot."
 
-#: ../src/window.c:2315
+#: ../src/window.c:2316
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -1897,793 +1937,793 @@ msgstr "Razdeli več kart"
 msgid "Try rearranging the cards"
 msgstr "Poskusite prerazporediti karte"
 
-#: ../games/api.scm:295
+#: ../games/api.scm:298
 msgid "Unknown color"
 msgstr "Neznana barva"
 
-#: ../games/api.scm:411
+#: ../games/api.scm:414
 msgid "the black joker"
 msgstr "črni joker"
 
-#: ../games/api.scm:411
+#: ../games/api.scm:414
 msgid "the red joker"
 msgstr "rdeči joker"
 
-#: ../games/api.scm:420
+#: ../games/api.scm:423
 msgid "the ace of clubs"
 msgstr "križev as"
 
-#: ../games/api.scm:421
+#: ../games/api.scm:424
 msgid "the two of clubs"
 msgstr "križeva dvojka"
 
-#: ../games/api.scm:422
+#: ../games/api.scm:425
 msgid "the three of clubs"
 msgstr "križeva trojka"
 
-#: ../games/api.scm:423
+#: ../games/api.scm:426
 msgid "the four of clubs"
 msgstr "križeva štirica"
 
-#: ../games/api.scm:424
+#: ../games/api.scm:427
 msgid "the five of clubs"
 msgstr "križeva petica"
 
-#: ../games/api.scm:425
+#: ../games/api.scm:428
 msgid "the six of clubs"
 msgstr "križeva šestica"
 
-#: ../games/api.scm:426
+#: ../games/api.scm:429
 msgid "the seven of clubs"
 msgstr "križeva sedmica"
 
-#: ../games/api.scm:427
+#: ../games/api.scm:430
 msgid "the eight of clubs"
 msgstr "križeva osmica"
 
-#: ../games/api.scm:428
+#: ../games/api.scm:431
 msgid "the nine of clubs"
 msgstr "križeva devetica"
 
-#: ../games/api.scm:429
+#: ../games/api.scm:432
 msgid "the ten of clubs"
 msgstr "križeva desetica"
 
-#: ../games/api.scm:430
+#: ../games/api.scm:433
 msgid "the jack of clubs"
 msgstr "križev fant"
 
-#: ../games/api.scm:431
+#: ../games/api.scm:434
 msgid "the queen of clubs"
 msgstr "križeva kraljica"
 
-#: ../games/api.scm:432
+#: ../games/api.scm:435
 msgid "the king of clubs"
 msgstr "križev kralj"
 
-#: ../games/api.scm:433 ../games/api.scm:448 ../games/api.scm:463
-#: ../games/api.scm:478 ../games/api.scm:479
+#: ../games/api.scm:436 ../games/api.scm:451 ../games/api.scm:466
+#: ../games/api.scm:481 ../games/api.scm:482
 msgid "the unknown card"
 msgstr "Neznana karta"
 
-#: ../games/api.scm:435
+#: ../games/api.scm:438
 msgid "the ace of spades"
 msgstr "pikov as"
 
-#: ../games/api.scm:436
+#: ../games/api.scm:439
 msgid "the two of spades"
 msgstr "pikova dvojka"
 
-#: ../games/api.scm:437
+#: ../games/api.scm:440
 msgid "the three of spades"
 msgstr "pikova trojka"
 
-#: ../games/api.scm:438
+#: ../games/api.scm:441
 msgid "the four of spades"
 msgstr "pikova štirica"
 
-#: ../games/api.scm:439
+#: ../games/api.scm:442
 msgid "the five of spades"
 msgstr "pikova petica"
 
-#: ../games/api.scm:440
+#: ../games/api.scm:443
 msgid "the six of spades"
 msgstr "pikova šestica"
 
-#: ../games/api.scm:441
+#: ../games/api.scm:444
 msgid "the seven of spades"
 msgstr "pikova sedmica"
 
-#: ../games/api.scm:442
+#: ../games/api.scm:445
 msgid "the eight of spades"
 msgstr "pikova osmica"
 
-#: ../games/api.scm:443
+#: ../games/api.scm:446
 msgid "the nine of spades"
 msgstr "pikova devetica"
 
-#: ../games/api.scm:444
+#: ../games/api.scm:447
 msgid "the ten of spades"
 msgstr "pikova desetica"
 
-#: ../games/api.scm:445
+#: ../games/api.scm:448
 msgid "the jack of spades"
 msgstr "pikov fant"
 
-#: ../games/api.scm:446
+#: ../games/api.scm:449
 msgid "the queen of spades"
 msgstr "pikova kraljica"
 
-#: ../games/api.scm:447
+#: ../games/api.scm:450
 msgid "the king of spades"
 msgstr "pikov kralj"
 
-#: ../games/api.scm:450
+#: ../games/api.scm:453
 msgid "the ace of hearts"
 msgstr "srčev as"
 
-#: ../games/api.scm:451
+#: ../games/api.scm:454
 msgid "the two of hearts"
 msgstr "srčeva dvojka"
 
-#: ../games/api.scm:452
+#: ../games/api.scm:455
 msgid "the three of hearts"
 msgstr "srčeva trojka"
 
-#: ../games/api.scm:453
+#: ../games/api.scm:456
 msgid "the four of hearts"
 msgstr "srčeva štirica"
 
-#: ../games/api.scm:454
+#: ../games/api.scm:457
 msgid "the five of hearts"
 msgstr "srčeva petica"
 
-#: ../games/api.scm:455
+#: ../games/api.scm:458
 msgid "the six of hearts"
 msgstr "srčeva šestica"
 
-#: ../games/api.scm:456
+#: ../games/api.scm:459
 msgid "the seven of hearts"
 msgstr "srčeva sedmica"
 
-#: ../games/api.scm:457
+#: ../games/api.scm:460
 msgid "the eight of hearts"
 msgstr "srčeva osmica"
 
-#: ../games/api.scm:458
+#: ../games/api.scm:461
 msgid "the nine of hearts"
 msgstr "srčeva devetica"
 
-#: ../games/api.scm:459
+#: ../games/api.scm:462
 msgid "the ten of hearts"
 msgstr "srčeva desetica"
 
-#: ../games/api.scm:460
+#: ../games/api.scm:463
 msgid "the jack of hearts"
 msgstr "srčev fant"
 
-#: ../games/api.scm:461
+#: ../games/api.scm:464
 msgid "the queen of hearts"
 msgstr "srčeva kraljica"
 
-#: ../games/api.scm:462
+#: ../games/api.scm:465
 msgid "the king of hearts"
 msgstr "srčev kralj"
 
-#: ../games/api.scm:465
+#: ../games/api.scm:468
 msgid "the ace of diamonds"
 msgstr "karov as"
 
-#: ../games/api.scm:466
+#: ../games/api.scm:469
 msgid "the two of diamonds"
 msgstr "karova dvojka"
 
-#: ../games/api.scm:467
+#: ../games/api.scm:470
 msgid "the three of diamonds"
 msgstr "karova trojka"
 
-#: ../games/api.scm:468
+#: ../games/api.scm:471
 msgid "the four of diamonds"
 msgstr "karova štirica"
 
-#: ../games/api.scm:469
+#: ../games/api.scm:472
 msgid "the five of diamonds"
 msgstr "karova petica"
 
-#: ../games/api.scm:470
+#: ../games/api.scm:473
 msgid "the six of diamonds"
 msgstr "karova šestica"
 
-#: ../games/api.scm:471
+#: ../games/api.scm:474
 msgid "the seven of diamonds"
 msgstr "karova sedmica"
 
-#: ../games/api.scm:472
+#: ../games/api.scm:475
 msgid "the eight of diamonds"
 msgstr "karova osmica"
 
-#: ../games/api.scm:473
+#: ../games/api.scm:476
 msgid "the nine of diamonds"
 msgstr "karova devetica"
 
-#: ../games/api.scm:474
+#: ../games/api.scm:477
 msgid "the ten of diamonds"
 msgstr "karova desetica"
 
-#: ../games/api.scm:475
+#: ../games/api.scm:478
 msgid "the jack of diamonds"
 msgstr "karov fant"
 
-#: ../games/api.scm:476
+#: ../games/api.scm:479
 msgid "the queen of diamonds"
 msgstr "karova kraljica"
 
-#: ../games/api.scm:477
+#: ../games/api.scm:480
 msgid "the king of diamonds"
 msgstr "karov kralj"
 
-#: ../games/api.scm:483
+#: ../games/api.scm:486
 #, scheme-format
 msgid "Move ~a onto the foundation."
 msgstr "Premaknite ~a na osnovni talon."
 
-#: ../games/api.scm:483
+#: ../games/api.scm:486
 #, scheme-format
 msgid "Move ~a onto an empty foundation slot."
 msgstr "Premaknite ~a na prazno polje osnovnega talona."
 
-#: ../games/api.scm:484
+#: ../games/api.scm:487
 #, scheme-format
 msgid "Move ~a onto the tableau."
 msgstr "Premaknite ~a na talon."
 
-#: ../games/api.scm:484
+#: ../games/api.scm:487
 #, scheme-format
 msgid "Move ~a onto an empty tableau slot."
 msgstr "Premaknite ~a na prazno polje talona."
 
-#: ../games/api.scm:485
+#: ../games/api.scm:488
 #, scheme-format
 msgid "Move ~a onto the reserve."
 msgstr "Premaknite ~a na zalogo."
 
-#: ../games/api.scm:485
+#: ../games/api.scm:488
 #, scheme-format
 msgid "Move ~a onto an empty reserve slot."
 msgstr "Premaknite ~a na prazno polje zaloge."
 
-#: ../games/api.scm:486
+#: ../games/api.scm:489
 #, scheme-format
 msgid "Move ~a onto an empty edge slot."
 msgstr "Premaknite ~a na prazno robno polje."
 
-#: ../games/api.scm:487
+#: ../games/api.scm:490
 #, scheme-format
 msgid "Move ~a onto an empty corner slot."
 msgstr "Premaknite ~a na prazno kotno polje."
 
-#: ../games/api.scm:488
+#: ../games/api.scm:491
 #, scheme-format
 msgid "Move ~a onto an empty top slot."
 msgstr "Premaknite ~a na prazno vrhnje polje."
 
-#: ../games/api.scm:489
+#: ../games/api.scm:492
 #, scheme-format
 msgid "Move ~a onto an empty bottom slot."
 msgstr "Premaknite ~a na prazno spodnje polje."
 
-#: ../games/api.scm:490
+#: ../games/api.scm:493
 #, scheme-format
 msgid "Move ~a onto an empty left slot."
 msgstr "Premaknite ~a na prazno levo polje."
 
-#: ../games/api.scm:491
+#: ../games/api.scm:494
 #, scheme-format
 msgid "Move ~a onto an empty right slot."
 msgstr "Premaknite ~a na prazno desno polje."
 
-#: ../games/api.scm:492
+#: ../games/api.scm:495
 #, scheme-format
 msgid "Move ~a onto an empty slot."
 msgstr "Premaknite ~a na prazno polje."
 
-#: ../games/api.scm:495
+#: ../games/api.scm:498
 #, scheme-format
 msgid "Move ~a onto the black joker."
 msgstr "Premaknite ~a na črnega jokerja."
 
-#: ../games/api.scm:495
+#: ../games/api.scm:498
 #, scheme-format
 msgid "Move ~a onto the red joker."
 msgstr "Premaknite ~a iz na rdečega jokerja."
 
-#: ../games/api.scm:497
+#: ../games/api.scm:500
 #, scheme-format
 msgid "Move ~a onto the ace of clubs."
 msgstr "Premaknite ~a na križev as."
 
-#: ../games/api.scm:498
+#: ../games/api.scm:501
 #, scheme-format
 msgid "Move ~a onto the two of clubs."
 msgstr "Premaknite ~a na križevo dvojko."
 
-#: ../games/api.scm:499
+#: ../games/api.scm:502
 #, scheme-format
 msgid "Move ~a onto the three of clubs."
 msgstr "Premaknite ~a na križevo trojko."
 
-#: ../games/api.scm:500
+#: ../games/api.scm:503
 #, scheme-format
 msgid "Move ~a onto the four of clubs."
 msgstr "Premaknite ~a na križevo štirico."
 
-#: ../games/api.scm:501
+#: ../games/api.scm:504
 #, scheme-format
 msgid "Move ~a onto the five of clubs."
 msgstr "Premaknite ~a na križevo petico."
 
-#: ../games/api.scm:502
+#: ../games/api.scm:505
 #, scheme-format
 msgid "Move ~a onto the six of clubs."
 msgstr "Premaknite ~a na križevo šestico."
 
-#: ../games/api.scm:503
+#: ../games/api.scm:506
 #, scheme-format
 msgid "Move ~a onto the seven of clubs."
 msgstr "Premaknite ~a na križevo sedmico."
 
-#: ../games/api.scm:504
+#: ../games/api.scm:507
 #, scheme-format
 msgid "Move ~a onto the eight of clubs."
 msgstr "Premaknite ~a na križevo osmico."
 
-#: ../games/api.scm:505
+#: ../games/api.scm:508
 #, scheme-format
 msgid "Move ~a onto the nine of clubs."
 msgstr "Premaknite ~a na križevo devetko."
 
-#: ../games/api.scm:506
+#: ../games/api.scm:509
 #, scheme-format
 msgid "Move ~a onto the ten of clubs."
 msgstr "Premaknite ~a na križevo desetko."
 
-#: ../games/api.scm:507
+#: ../games/api.scm:510
 #, scheme-format
 msgid "Move ~a onto the jack of clubs."
 msgstr "Premaknite ~a na križevega fanta."
 
-#: ../games/api.scm:508
+#: ../games/api.scm:511
 #, scheme-format
 msgid "Move ~a onto the queen of clubs."
 msgstr "Premaknite ~a na križevo kraljico."
 
-#: ../games/api.scm:509
+#: ../games/api.scm:512
 #, scheme-format
 msgid "Move ~a onto the king of clubs."
 msgstr "Premaknite ~a na križevega kralja."
 
-#: ../games/api.scm:510 ../games/api.scm:525 ../games/api.scm:540
-#: ../games/api.scm:555 ../games/api.scm:556
+#: ../games/api.scm:513 ../games/api.scm:528 ../games/api.scm:543
+#: ../games/api.scm:558 ../games/api.scm:559
 #, scheme-format
 msgid "Move ~a onto the unknown card."
 msgstr "Premaknite ~a na neznano karto."
 
-#: ../games/api.scm:512
+#: ../games/api.scm:515
 #, scheme-format
 msgid "Move ~a onto the ace of spades."
 msgstr "Premaknite ~a na pikov as."
 
-#: ../games/api.scm:513
+#: ../games/api.scm:516
 #, scheme-format
 msgid "Move ~a onto the two of spades."
 msgstr "Premaknite ~a na pikovo dvojko."
 
-#: ../games/api.scm:514
+#: ../games/api.scm:517
 #, scheme-format
 msgid "Move ~a onto the three of spades."
 msgstr "Premaknite ~a na pikovo trojko."
 
-#: ../games/api.scm:515
+#: ../games/api.scm:518
 #, scheme-format
 msgid "Move ~a onto the four of spades."
 msgstr "Premaknite ~a na pikovo štirico."
 
-#: ../games/api.scm:516
+#: ../games/api.scm:519
 #, scheme-format
 msgid "Move ~a onto the five of spades."
 msgstr "Premaknite ~a na pikovo petico."
 
-#: ../games/api.scm:517
+#: ../games/api.scm:520
 #, scheme-format
 msgid "Move ~a onto the six of spades."
 msgstr "Premaknite ~a na pikovo šestico."
 
-#: ../games/api.scm:518
+#: ../games/api.scm:521
 #, scheme-format
 msgid "Move ~a onto the seven of spades."
 msgstr "Premaknite ~a na pikovo sedmico."
 
-#: ../games/api.scm:519
+#: ../games/api.scm:522
 #, scheme-format
 msgid "Move ~a onto the eight of spades."
 msgstr "Premaknite ~a na pikovo osmico."
 
-#: ../games/api.scm:520
+#: ../games/api.scm:523
 #, scheme-format
 msgid "Move ~a onto the nine of spades."
 msgstr "Premaknite ~a na pikovo devetko."
 
-#: ../games/api.scm:521
+#: ../games/api.scm:524
 #, scheme-format
 msgid "Move ~a onto the ten of spades."
 msgstr "Premaknite ~a na pikovo desetko."
 
-#: ../games/api.scm:522
+#: ../games/api.scm:525
 #, scheme-format
 msgid "Move ~a onto the jack of spades."
 msgstr "Premaknite ~a na pikovega fanta."
 
-#: ../games/api.scm:523
+#: ../games/api.scm:526
 #, scheme-format
 msgid "Move ~a onto the queen of spades."
 msgstr "Premaknite ~a na pikovo kraljico."
 
-#: ../games/api.scm:524
+#: ../games/api.scm:527
 #, scheme-format
 msgid "Move ~a onto the king of spades."
 msgstr "Premaknite ~a na pikovega kralja."
 
-#: ../games/api.scm:527
+#: ../games/api.scm:530
 #, scheme-format
 msgid "Move ~a onto the ace of hearts."
 msgstr "Premaknite ~a na srčev as."
 
-#: ../games/api.scm:528
+#: ../games/api.scm:531
 #, scheme-format
 msgid "Move ~a onto the two of hearts."
 msgstr "Premaknite ~a na srčevo dvojko."
 
-#: ../games/api.scm:529
+#: ../games/api.scm:532
 #, scheme-format
 msgid "Move ~a onto the three of hearts."
 msgstr "Premaknite ~a na srčevo trojko."
 
-#: ../games/api.scm:530
+#: ../games/api.scm:533
 #, scheme-format
 msgid "Move ~a onto the four of hearts."
 msgstr "Premaknite ~a na srčevo štirico."
 
-#: ../games/api.scm:531
+#: ../games/api.scm:534
 #, scheme-format
 msgid "Move ~a onto the five of hearts."
 msgstr "Premaknite ~a na srčevo petico."
 
-#: ../games/api.scm:532
+#: ../games/api.scm:535
 #, scheme-format
 msgid "Move ~a onto the six of hearts."
 msgstr "Premaknite ~a na srčevo šestico."
 
-#: ../games/api.scm:533
+#: ../games/api.scm:536
 #, scheme-format
 msgid "Move ~a onto the seven of hearts."
 msgstr "Premaknite ~a na srčevo sedmico."
 
-#: ../games/api.scm:534
+#: ../games/api.scm:537
 #, scheme-format
 msgid "Move ~a onto the eight of hearts."
 msgstr "Premaknite ~a na srčevo osmico."
 
-#: ../games/api.scm:535
+#: ../games/api.scm:538
 #, scheme-format
 msgid "Move ~a onto the nine of hearts."
 msgstr "Premaknite ~a na srčevo devetko."
 
-#: ../games/api.scm:536
+#: ../games/api.scm:539
 #, scheme-format
 msgid "Move ~a onto the ten of hearts."
 msgstr "Premaknite ~a na srčevo desetko."
 
-#: ../games/api.scm:537
+#: ../games/api.scm:540
 #, scheme-format
 msgid "Move ~a onto the jack of hearts."
 msgstr "Premaknite ~a na srčevega fanta."
 
-#: ../games/api.scm:538
+#: ../games/api.scm:541
 #, scheme-format
 msgid "Move ~a onto the queen of hearts."
 msgstr "Premaknite ~a na srčevo kraljico."
 
-#: ../games/api.scm:539
+#: ../games/api.scm:542
 #, scheme-format
 msgid "Move ~a onto the king of hearts."
 msgstr "Premaknite ~a na srčevega kralja."
 
-#: ../games/api.scm:542
+#: ../games/api.scm:545
 #, scheme-format
 msgid "Move ~a onto the ace of diamonds."
 msgstr "Premaknite ~a na karin as."
 
-#: ../games/api.scm:543
+#: ../games/api.scm:546
 #, scheme-format
 msgid "Move ~a onto the two of diamonds."
 msgstr "Premaknite ~a na karino dvojko."
 
-#: ../games/api.scm:544
+#: ../games/api.scm:547
 #, scheme-format
 msgid "Move ~a onto the three of diamonds."
 msgstr "Premaknite ~a na karino trojko."
 
-#: ../games/api.scm:545
+#: ../games/api.scm:548
 #, scheme-format
 msgid "Move ~a onto the four of diamonds."
 msgstr "Premaknite ~a na karino štirico."
 
-#: ../games/api.scm:546
+#: ../games/api.scm:549
 #, scheme-format
 msgid "Move ~a onto the five of diamonds."
 msgstr "Premaknite ~a na karino petico."
 
-#: ../games/api.scm:547
+#: ../games/api.scm:550
 #, scheme-format
 msgid "Move ~a onto the six of diamonds."
 msgstr "Premaknite ~a na karino šestico."
 
-#: ../games/api.scm:548
+#: ../games/api.scm:551
 #, scheme-format
 msgid "Move ~a onto the seven of diamonds."
 msgstr "Premaknite ~a na karino sedmico."
 
-#: ../games/api.scm:549
+#: ../games/api.scm:552
 #, scheme-format
 msgid "Move ~a onto the eight of diamonds."
 msgstr "Premaknite ~a na karino osmico."
 
-#: ../games/api.scm:550
+#: ../games/api.scm:553
 #, scheme-format
 msgid "Move ~a onto the nine of diamonds."
 msgstr "Premaknite ~a na karino devetko."
 
-#: ../games/api.scm:551
+#: ../games/api.scm:554
 #, scheme-format
 msgid "Move ~a onto the ten of diamonds."
 msgstr "Premaknite ~a na karino desetko."
 
-#: ../games/api.scm:552
+#: ../games/api.scm:555
 #, scheme-format
 msgid "Move ~a onto the jack of diamonds."
 msgstr "Premaknite ~a na karinega fanta."
 
-#: ../games/api.scm:553
+#: ../games/api.scm:556
 #, scheme-format
 msgid "Move ~a onto the queen of diamonds."
 msgstr "Premaknite ~a na karino kraljico."
 
-#: ../games/api.scm:554
+#: ../games/api.scm:557
 #, scheme-format
 msgid "Move ~a onto the king of diamonds."
 msgstr "Premaknite ~a na karinega kralja."
 
-#: ../games/api.scm:569
+#: ../games/api.scm:572
 msgid "Remove the black joker."
 msgstr "Odstranite črnega jokerja."
 
-#: ../games/api.scm:569
+#: ../games/api.scm:572
 msgid "Remove the red joker."
 msgstr "Odstranite rdečega jokerja."
 
-#: ../games/api.scm:571
+#: ../games/api.scm:574
 msgid "Remove the ace of clubs."
 msgstr "Odstranite križevega asa."
 
-#: ../games/api.scm:572
+#: ../games/api.scm:575
 msgid "Remove the two of clubs."
 msgstr "Odstranite križevo dvojko."
 
-#: ../games/api.scm:573
+#: ../games/api.scm:576
 msgid "Remove the three of clubs."
 msgstr "Odstranite križevo trojko."
 
-#: ../games/api.scm:574
+#: ../games/api.scm:577
 msgid "Remove the four of clubs."
 msgstr "Odstranite križevo štirico."
 
-#: ../games/api.scm:575
+#: ../games/api.scm:578
 msgid "Remove the five of clubs."
 msgstr "Odstranite križevo petico."
 
-#: ../games/api.scm:576
+#: ../games/api.scm:579
 msgid "Remove the six of clubs."
 msgstr "Odstranite križevo šestico."
 
-#: ../games/api.scm:577
+#: ../games/api.scm:580
 msgid "Remove the seven of clubs."
 msgstr "Odstranite križevo sedmico."
 
-#: ../games/api.scm:578
+#: ../games/api.scm:581
 msgid "Remove the eight of clubs."
 msgstr "Odstranite križevo osmico."
 
-#: ../games/api.scm:579
+#: ../games/api.scm:582
 msgid "Remove the nine of clubs."
 msgstr "Odstranite križevo devetko."
 
-#: ../games/api.scm:580 ../games/camelot.scm:168
+#: ../games/api.scm:583 ../games/camelot.scm:168
 msgid "Remove the ten of clubs."
 msgstr "Odstranite križevo desetko."
 
-#: ../games/api.scm:581
+#: ../games/api.scm:584
 msgid "Remove the jack of clubs."
 msgstr "Odstranite križevega fanta."
 
-#: ../games/api.scm:582
+#: ../games/api.scm:585
 msgid "Remove the queen of clubs."
 msgstr "Odstranite križevo damo."
 
-#: ../games/api.scm:583 ../games/helsinki.scm:109 ../games/neighbor.scm:141
+#: ../games/api.scm:586 ../games/helsinki.scm:109 ../games/neighbor.scm:141
 #: ../games/thirteen.scm:385 ../games/treize.scm:279 ../games/yield.scm:295
 msgid "Remove the king of clubs."
 msgstr "Odstranite križevega kralja."
 
-#: ../games/api.scm:584 ../games/api.scm:599 ../games/api.scm:614
-#: ../games/api.scm:629 ../games/api.scm:630
+#: ../games/api.scm:587 ../games/api.scm:602 ../games/api.scm:617
+#: ../games/api.scm:632 ../games/api.scm:633
 msgid "Remove the unknown card."
 msgstr "Odstranite neznano karto."
 
-#: ../games/api.scm:586
+#: ../games/api.scm:589
 msgid "Remove the ace of spades."
 msgstr "Odstranite pikovega asa."
 
-#: ../games/api.scm:587
+#: ../games/api.scm:590
 msgid "Remove the two of spades."
 msgstr "Odstranite pikovo dvojko."
 
-#: ../games/api.scm:588
+#: ../games/api.scm:591
 msgid "Remove the three of spades."
 msgstr "Odstranite pikovo trojko."
 
-#: ../games/api.scm:589
+#: ../games/api.scm:592
 msgid "Remove the four of spades."
 msgstr "Odstranite pikovo štirico."
 
-#: ../games/api.scm:590
+#: ../games/api.scm:593
 msgid "Remove the five of spades."
 msgstr "Odstranite pikovo petico."
 
-#: ../games/api.scm:591
+#: ../games/api.scm:594
 msgid "Remove the six of spades."
 msgstr "Odstranite pikovo šestico."
 
-#: ../games/api.scm:592
+#: ../games/api.scm:595
 msgid "Remove the seven of spades."
 msgstr "Odstranite pikovo sedmico."
 
-#: ../games/api.scm:593
+#: ../games/api.scm:596
 msgid "Remove the eight of spades."
 msgstr "Odstranite pikovo osmico."
 
-#: ../games/api.scm:594
+#: ../games/api.scm:597
 msgid "Remove the nine of spades."
 msgstr "Odstranite pikovo devetko."
 
-#: ../games/api.scm:595 ../games/camelot.scm:171
+#: ../games/api.scm:598 ../games/camelot.scm:171
 msgid "Remove the ten of spades."
 msgstr "Odstranite pikovo desetko."
 
-#: ../games/api.scm:596
+#: ../games/api.scm:599
 msgid "Remove the jack of spades."
 msgstr "Odstranite pikovega fanta."
 
-#: ../games/api.scm:597
+#: ../games/api.scm:600
 msgid "Remove the queen of spades."
 msgstr "Odstranite pikovo damo."
 
-#: ../games/api.scm:598 ../games/helsinki.scm:112 ../games/neighbor.scm:144
+#: ../games/api.scm:601 ../games/helsinki.scm:112 ../games/neighbor.scm:144
 #: ../games/thirteen.scm:388 ../games/treize.scm:282 ../games/yield.scm:298
 msgid "Remove the king of spades."
 msgstr "Odstranite pikovega kralja."
 
-#: ../games/api.scm:601
+#: ../games/api.scm:604
 msgid "Remove the ace of hearts."
 msgstr "Odstranite srčevega asa."
 
-#: ../games/api.scm:602
+#: ../games/api.scm:605
 msgid "Remove the two of hearts."
 msgstr "Odstranite srčevo dvojko."
 
-#: ../games/api.scm:603
+#: ../games/api.scm:606
 msgid "Remove the three of hearts."
 msgstr "Odstranite srčevo trojko."
 
-#: ../games/api.scm:604
+#: ../games/api.scm:607
 msgid "Remove the four of hearts."
 msgstr "Odstranite srčevo štirico."
 
-#: ../games/api.scm:605
+#: ../games/api.scm:608
 msgid "Remove the five of hearts."
 msgstr "Odstranite srčevo petico."
 
-#: ../games/api.scm:606
+#: ../games/api.scm:609
 msgid "Remove the six of hearts."
 msgstr "Odstranite srčevo šestico."
 
-#: ../games/api.scm:607
+#: ../games/api.scm:610
 msgid "Remove the seven of hearts."
 msgstr "Odstranite srčevo sedmico."
 
-#: ../games/api.scm:608
+#: ../games/api.scm:611
 msgid "Remove the eight of hearts."
 msgstr "Odstranite srčevo osmico."
 
-#: ../games/api.scm:609
+#: ../games/api.scm:612
 msgid "Remove the nine of hearts."
 msgstr "Odstranite srčevo devetko."
 
-#: ../games/api.scm:610 ../games/camelot.scm:170
+#: ../games/api.scm:613 ../games/camelot.scm:170
 msgid "Remove the ten of hearts."
 msgstr "Odstranite srčevo desetko."
 
-#: ../games/api.scm:611
+#: ../games/api.scm:614
 msgid "Remove the jack of hearts."
 msgstr "Odstranite srčevega fanta."
 
-#: ../games/api.scm:612
+#: ../games/api.scm:615
 msgid "Remove the queen of hearts."
 msgstr "Odstranite srčevo damo."
 
-#: ../games/api.scm:613 ../games/helsinki.scm:111 ../games/neighbor.scm:143
+#: ../games/api.scm:616 ../games/helsinki.scm:111 ../games/neighbor.scm:143
 #: ../games/thirteen.scm:387 ../games/treize.scm:281 ../games/yield.scm:297
 msgid "Remove the king of hearts."
 msgstr "Odstranite srčevega kralja."
 
-#: ../games/api.scm:616
+#: ../games/api.scm:619
 msgid "Remove the ace of diamonds."
 msgstr "Odstranite karinega asa."
 
-#: ../games/api.scm:617
+#: ../games/api.scm:620
 msgid "Remove the two of diamonds."
 msgstr "Odstranite karino dvojko."
 
-#: ../games/api.scm:618
+#: ../games/api.scm:621
 msgid "Remove the three of diamonds."
 msgstr "Odstranite karino trojko."
 
-#: ../games/api.scm:619
+#: ../games/api.scm:622
 msgid "Remove the four of diamonds."
 msgstr "Odstranite karino štirico."
 
-#: ../games/api.scm:620
+#: ../games/api.scm:623
 msgid "Remove the five of diamonds."
 msgstr "Odstranite karino petico."
 
-#: ../games/api.scm:621
+#: ../games/api.scm:624
 msgid "Remove the six of diamonds."
 msgstr "Odstranite karino šestico."
 
-#: ../games/api.scm:622
+#: ../games/api.scm:625
 msgid "Remove the seven of diamonds."
 msgstr "Odstranite karino sedmico."
 
-#: ../games/api.scm:623
+#: ../games/api.scm:626
 msgid "Remove the eight of diamonds."
 msgstr "Odstranite karino osmico."
 
-#: ../games/api.scm:624
+#: ../games/api.scm:627
 msgid "Remove the nine of diamonds."
 msgstr "Odstranite karino devetko."
 
-#: ../games/api.scm:625 ../games/camelot.scm:169
+#: ../games/api.scm:628 ../games/camelot.scm:169
 msgid "Remove the ten of diamonds."
 msgstr "Odstranite karino desetko."
 
-#: ../games/api.scm:626
+#: ../games/api.scm:629
 msgid "Remove the jack of diamonds."
 msgstr "Odstranite karinega fanta."
 
-#: ../games/api.scm:627
+#: ../games/api.scm:630
 msgid "Remove the queen of diamonds."
 msgstr "Odstranite karino damo."
 
-#: ../games/api.scm:628 ../games/helsinki.scm:110 ../games/neighbor.scm:142
+#: ../games/api.scm:631 ../games/helsinki.scm:110 ../games/neighbor.scm:142
 #: ../games/thirteen.scm:386 ../games/treize.scm:280 ../games/yield.scm:296
 msgid "Remove the king of diamonds."
 msgstr "Odstranite karinega kralja."
@@ -3430,7 +3470,7 @@ msgstr "Premaknite neuporabne karte na polje zaloge"
 
 #: ../games/spider.scm:184 ../games/spider.scm:300
 msgid "Undo until there are enough cards to fill all tableau piles"
-msgstr "Razveljavi do točke, ko je na plošči dovolj kart za zapolnjenje talona"
+msgstr "Razveljavi do točke, ko je na plošči dovolj kart za zapolnitev talona"
 
 #: ../games/spider.scm:185
 msgid "Please fill in empty pile first."
@@ -3529,3 +3569,217 @@ msgstr "Napadi pokrit talon."
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Premakni več kart na prazno polje okvirja"
+
+#~ msgid "New Game"
+#~ msgstr "Nova igra"
+
+#~ msgid "Change Game"
+#~ msgstr "Spremeni igro"
+
+#~ msgid "About"
+#~ msgstr "O programu"
+
+#~ msgid "About Aisleriot"
+#~ msgstr "O programu"
+
+#~ msgid "Klondike Three Decks"
+#~ msgstr "Klondike Three Decks"
+
+#~ msgid "_Animations"
+#~ msgstr "_Animacije"
+
+#~ msgid "Whether or not to animate card moves"
+#~ msgstr "Izbrana možnost omogoča prikaz animacij gibanja kart."
+
+#~ msgid "GNOME Games web site"
+#~ msgstr "Spletna stran GNOME iger"
+
+#~ msgid "an empty slot on the tableau"
+#~ msgstr "prazno polje okvirja"
+
+#~ msgid "an empty slot on the foundation"
+#~ msgstr "prazno polje na osnovnem talonu"
+
+#~ msgid "Move ~a off the board"
+#~ msgstr "Premakni ~a iz igralne plošče"
+
+#~ msgid "an empty foundation place"
+#~ msgstr "prazni osnovni talon"
+
+#~ msgid "an empty tableau place"
+#~ msgstr "prazen talon"
+
+#~ msgid "an empty foundation pile"
+#~ msgstr "prazni osnovni talon"
+
+#~ msgid "an empty tableau slot"
+#~ msgstr "prazno polje okvirja"
+
+#~ msgid "an empty foundation"
+#~ msgstr "prazen osnovni talon"
+
+#~ msgid "an empty tableau"
+#~ msgstr "prazen okvir"
+
+#~ msgid "itself"
+#~ msgstr "samo vase"
+
+#~ msgid "About FreeCell Solitaire"
+#~ msgstr "O igri Pasjansa Freecell"
+
+#~ msgid "Freecell Solitaire"
+#~ msgstr "Pasjansa Freecell"
+
+#~ msgid "Play the popular FreeCell card game"
+#~ msgstr "Igrajte priljubljeno igro s kartami FreeCell"
+
+#~ msgid "an empty foundation slot"
+#~ msgstr "prazno polje osnovnega talona"
+
+#~ msgid "empty slot on foundation"
+#~ msgstr "prazno polje na osnovnem talonu"
+
+#~ msgid "empty space on tableau"
+#~ msgstr "prazno polje okvirja"
+
+#~ msgid "Place the ~a next to ~a."
+#~ msgstr "Premakni ~a ob ~a"
+
+#~ msgid "on to the empty tableau slot"
+#~ msgstr "na prazno polje okvirja"
+
+#~ msgid "an empty tableau pile"
+#~ msgstr "prazen talon"
+
+#~ msgid "an empty reserve"
+#~ msgstr "prazna zaloga"
+
+#~ msgid "an open tableau"
+#~ msgstr "odprto polje okvirja"
+
+#~ msgid "the foundation pile"
+#~ msgstr "osnovni talon"
+
+#~ msgid "Move ~a to an empty foundation"
+#~ msgstr "Premakni ~a na prazen osnovni talon"
+
+#~ msgid "an empty slot on tableau"
+#~ msgstr "prazno polje v okvirju"
+
+#~ msgid "Move a King on to the empty tableau slot"
+#~ msgstr "Premaknite kralja na prazno polje okvirja"
+
+#~ msgid "the appropriate Foundation pile"
+#~ msgstr "ustrezni osnovni talon"
+
+#~ msgctxt "score"
+#~ msgid "%6d"
+#~ msgstr "%6d"
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with %s; if not, write to the Free Software Foundation, Inc., 51 Franklin "
+#~ "Street, Fifth Floor, Boston, MA  02110-1301  USA"
+#~ msgstr ""
+#~ "Skupaj s tem programom %s bi morali prejeti izvod Splošnega javnega "
+#~ "dovoljenja GNU (GNU General Public License); v primeru da ga niste, "
+#~ "pišite na Free Software Foundation, Inc., 51 Franklin Street, Fifth "
+#~ "Floor, Boston, MA  02110-1301  USA"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Datoteka ni veljavna .desktop datoteka"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Neznana različica datoteke namizja '%s'"
+
+#~ msgid "Starting %s"
+#~ msgstr "Zaganjanje %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Program ne sprejme dokumentov preko ukazne vrstice"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Nepoznana možnost zagona: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta "
+#~ "namizja"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Predmet ni zagonljiv"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Onemogoči povezavo z upravljalnikom seje"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Določitev datoteke s shranjenimi nastavitvami"
+
+#~ msgid "FILE"
+#~ msgstr "DATOTEKA"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Določi ID upravljanja seje"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Možnosti upravljanja seje:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Pokaži možnosti upravljanja seje"
+
+#~ msgid "an empty corner slot"
+#~ msgstr "prazno stransko polje"
+
+#~ msgid "an empty top slot"
+#~ msgstr "prazno zgornje polje"
+
+#~ msgid "an empty bottom slot"
+#~ msgstr "prazno spodnje polje"
+
+#~ msgid "an empty left slot"
+#~ msgstr "prazno levo polje"
+
+#~ msgid "an empty right slot"
+#~ msgstr "prazno desno polje"
+
+#~ msgid "an empty space"
+#~ msgstr "prazno polje"
+
+#~ msgid "Bug! make-hint called on false move."
+#~ msgstr "Hrošč! make-hint je klican ob napačnem premiku."
+
+#~ msgid "Move ~a to an empty field"
+#~ msgstr "Premakni ~a na prazno polje"
+
+#~ msgid "Move ~a from the stock to an empty edge or tableau slot"
+#~ msgstr "Premakni ~a iz kupčka na prazen rob ali polje okvirja"
+
+#~ msgid "empty foundation"
+#~ msgstr "prazen osnovni talon"
+
+#~ msgid "clubs"
+#~ msgstr "križi"
+
+#~ msgid "spades"
+#~ msgstr "piki"
+
+#~ msgid "hearts"
+#~ msgstr "srca"
+
+#~ msgid "diamonds"
+#~ msgstr "kare"
+
+#~ msgid "Unknown suit"
+#~ msgstr "Neznana barva karte"
+
+#~ msgid "appropriate foundation pile"
+#~ msgstr "ustrezni osnovni talon"
+
+#~ msgid "Select the game number"
+#~ msgstr "Izberite številko igre za igranje"
+
+#~ msgid "NUMBER"
+#~ msgstr "ŠTEVILKA"
