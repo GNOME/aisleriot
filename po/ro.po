@@ -11,11 +11,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games.HEAD.ro\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/"
-"enter_bug.cgi?product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-26 11:57+0000\n"
-"PO-Revision-Date: 2018-04-09 18:56+0200\n"
-"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/aisleriot/issues\n"
+"POT-Creation-Date: 2019-01-21 19:12+0000\n"
+"PO-Revision-Date: 2019-01-27 02:06+0200\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
+"com>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Launchpad-Export-Date: 2009-11-27 09:12+0000\n"
 "X-Project-Style: gnome\n"
 
@@ -53,8 +53,8 @@ msgstr "Solitaire AisleRiot"
 #: ../data/sol.desktop.in.in.h:3
 msgid "solitaire;cards;klondike;spider;freecell;patience;"
 msgstr ""
-"solitaire;cards;klondike;spider;freecell;patience;cărți;păianjen;paciență;răb"
-"dare;"
+"solitaire;cards;klondike;spider;freecell;patience;cărți;păianjen;paciență;"
+"răbdare;"
 
 #: ../src/aisleriot.schemas.in.h:1
 msgid "Theme file name"
@@ -70,7 +70,7 @@ msgstr "Dacă să se arate sau nu bara de instrumente"
 
 #: ../src/aisleriot.schemas.in.h:4
 msgid "Whether or not to show the status bar"
-msgstr "Dacă să se afișeze sau nu bara de stare"
+msgstr "Dacă să se arate sau nu bara de stare"
 
 #: ../src/aisleriot.schemas.in.h:5
 msgid "Select the style of control"
@@ -130,36 +130,8 @@ msgstr "Jocuri jucate recent"
 msgid "A list of recently played games."
 msgstr "O listă a jocurilor jucate recent."
 
-#: ../src/ar-application.c:210
-msgid "New Game"
-msgstr "Joc nou"
-
-#: ../src/ar-application.c:211
-msgid "Change Game"
-msgstr "Schimbă jocul"
-
-#: ../src/ar-application.c:215 ../src/stats-dialog.c:206
-msgid "Statistics"
-msgstr "Statistici"
-
-#: ../src/ar-application.c:216
-msgid "Fullscreen"
-msgstr "Ecran complet"
-
-#: ../src/ar-application.c:220
-msgid "Help"
-msgstr "Ajutor"
-
-#: ../src/ar-application.c:221
-msgid "About"
-msgstr "Despre"
-
-#: ../src/ar-application.c:222
-msgid "Quit"
-msgstr "Ieșire"
-
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:1981
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1992
 msgid "Select Game"
 msgstr "Selectează jocul"
 
@@ -1179,6 +1151,66 @@ msgstr "Yukon"
 msgid "Zebra"
 msgstr "Zebra"
 
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Generale"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Start a new game"
+msgstr "Începe un joc nou"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Deal"
+msgstr "Împarte"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Refă"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Repetă"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Ecran complet"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Ieșire"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Ajutor"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Show a hint"
+msgstr "Arată un indiciu"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Arată ajutorul"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Show Help for this game"
+msgstr "Arată ajutorul pentru acest joc"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Show Keyboard Shortcuts"
+msgstr "Arată scurtăturile de tastatură"
+
 #. Translators: this is the symbol that's on a Joker card
 #: ../src/lib/ar-card.c:237
 msgctxt "card symbol"
@@ -1494,7 +1526,7 @@ msgstr "Fișierul de ajutor „%s.%s” nu a fost găsit"
 #: ../src/lib/ar-help.c:146 ../src/util.c:86 ../src/util.c:90
 #, c-format
 msgid "Could not show help for “%s”"
-msgstr "Nu se poate afișa ajutorul pentru „%s”"
+msgstr "Nu se poate arăta ajutorul pentru „%s”"
 
 #: ../src/lib/org.gnome.Patience.WindowState.gschema.xml.in.h:1
 msgid "Whether the window is maximized"
@@ -1580,6 +1612,10 @@ msgstr "Cel mai rău:"
 msgid "Time"
 msgstr "Timp"
 
+#: ../src/stats-dialog.c:206
+msgid "Statistics"
+msgstr "Statistici"
+
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1634,193 +1670,197 @@ msgid "Card themes:"
 msgstr "Teme de cărți:"
 
 #: ../src/window.c:399
-msgid "About Aisleriot"
-msgstr "Despre Aisleriot"
+msgid "About AisleRiot"
+msgstr "Despre AisleRiot"
 
 #: ../src/window.c:401
 msgid ""
-"Aisleriot provides a rule-based solitaire card engine that allows many "
+"AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr ""
-"Aisleriot oferă un motor de cărți solitaire bazat pe reguli care vă permite "
+"AisleRiot oferă un motor de cărți solitaire bazat pe reguli care vă permite "
 "să jucați multe jocuri diferite."
 
 #: ../src/window.c:410
 msgid "translator-credits"
 msgstr ""
 "Maruta Catalin Ionut\n"
-"Florentina Mușat <florentina.musat.28@gmail.com>"
+"Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2019"
 
 #: ../src/window.c:413
-msgid "Aisleriot web site"
-msgstr "Pagina web Aisleriot"
+msgid "AisleRiot web site"
+msgstr "Pagina web AisleRiot"
 
-#: ../src/window.c:1182
+#: ../src/window.c:1189
 #, c-format
 msgid "Play “%s”"
 msgstr "Joacă „%s”"
 
-#: ../src/window.c:1343
+#: ../src/window.c:1350
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Afișează cărțile cu „%s” drept tema de cărți"
 
-#: ../src/window.c:1637
+#: ../src/window.c:1644
 msgid "A scheme exception occurred"
 msgstr "A apărut o excepție de schemă"
 
-#: ../src/window.c:1640
+#: ../src/window.c:1647
 msgid "Please report this bug to the developers."
 msgstr "Raportați această defecțiune la dezvoltatori."
 
-#: ../src/window.c:1646
+#: ../src/window.c:1653
 msgid "_Don't report"
 msgstr "_Nu raportați"
 
-#: ../src/window.c:1647
+#: ../src/window.c:1654
 msgid "_Report"
 msgstr "_Raportați"
 
 #. Menu actions
-#: ../src/window.c:1804
+#: ../src/window.c:1811
 msgid "_Game"
 msgstr "_Joc"
 
-#: ../src/window.c:1805
+#: ../src/window.c:1812
 msgid "_View"
 msgstr "_Vizualizare"
 
-#: ../src/window.c:1806
+#: ../src/window.c:1813
 msgid "_Control"
 msgstr "_Control"
 
-#: ../src/window.c:1808
+#: ../src/window.c:1815
 msgid "_Help"
 msgstr "_Ajutor"
 
-#: ../src/window.c:1813
+#: ../src/window.c:1820
 msgid "Start a new game"
 msgstr "Începe un joc nou"
 
-#: ../src/window.c:1816
+#: ../src/window.c:1823
 msgid "Restart the game"
 msgstr "Reîncepe jocul"
 
-#: ../src/window.c:1818
+#: ../src/window.c:1825
 msgid "_Select Game…"
 msgstr "_Selectează jocul…"
 
-#: ../src/window.c:1820
+#: ../src/window.c:1827
 msgid "Play a different game"
 msgstr "Jucați un alt joc"
 
-#: ../src/window.c:1822
+#: ../src/window.c:1829
 msgid "_Recently Played"
 msgstr "_Jucate recent"
 
-#: ../src/window.c:1823
+#: ../src/window.c:1830
 msgid "S_tatistics"
 msgstr "S_tatistici"
 
-#: ../src/window.c:1824
+#: ../src/window.c:1831
 msgid "Show gameplay statistics"
-msgstr "Afișează statisticile jocului"
+msgstr "Arată statisticile jocului"
 
-#: ../src/window.c:1827
+#: ../src/window.c:1834
 msgid "Close this window"
 msgstr "Închideți această fereastră"
 
-#: ../src/window.c:1830
+#: ../src/window.c:1837
 msgid "Undo the last move"
 msgstr "Anulați ultima mutare"
 
-#: ../src/window.c:1833
+#: ../src/window.c:1840
 msgid "Redo the undone move"
 msgstr "Refă mutarea anulată"
 
-#: ../src/window.c:1836
+#: ../src/window.c:1843
 msgid "Deal next card or cards"
 msgstr "Împarte următoarea carte sau cărți"
 
-#: ../src/window.c:1839
+#: ../src/window.c:1846
 msgid "Get a hint for your next move"
 msgstr "Obține un indiciu pentru următoarea mișcare"
 
-#: ../src/window.c:1842
+#: ../src/window.c:1849
 msgid "View help for Aisleriot"
 msgstr "Vizualizează ajutorul pentru Aisleriot"
 
-#: ../src/window.c:1846
+#: ../src/window.c:1853
 msgid "View help for this game"
 msgstr "Vizualizează ajutorul pentru acest joc"
 
-#: ../src/window.c:1849
+#: ../src/window.c:1856
 msgid "About this game"
 msgstr "Despre acest joc"
 
-#: ../src/window.c:1851
+#: ../src/window.c:1858
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtături de _tastatură"
+
+#: ../src/window.c:1862
 msgid "Install card themes…"
 msgstr "Instalează teme de cărți…"
 
-#: ../src/window.c:1852
+#: ../src/window.c:1863
 msgid "Install new card themes from the distribution packages repositories"
 msgstr "Instalați teme de cărți noi din depozitele pachetelor de distribuție"
 
-#: ../src/window.c:1858
+#: ../src/window.c:1869
 msgid "_Card Style"
 msgstr "_Stil de carte"
 
-#: ../src/window.c:1884
+#: ../src/window.c:1895
 msgid "_Toolbar"
 msgstr "_Bară de instrumente"
 
-#: ../src/window.c:1885
+#: ../src/window.c:1896
 msgid "Show or hide the toolbar"
-msgstr "Afișează sau ascunde bara de instrumente"
+msgstr "Arată sau ascunde bara de instrumente"
 
-#: ../src/window.c:1889
+#: ../src/window.c:1900
 msgid "_Statusbar"
 msgstr "_Bara de stare"
 
-#: ../src/window.c:1890
+#: ../src/window.c:1901
 msgid "Show or hide statusbar"
-msgstr "Afișează sau ascunde bara de stare"
+msgstr "Arată sau ascunde bara de stare"
 
-#: ../src/window.c:1894
+#: ../src/window.c:1905
 msgid "_Click to Move"
 msgstr "_Clic pentru a muta"
 
-#: ../src/window.c:1895
+#: ../src/window.c:1906
 msgid "Pick up and drop cards by clicking"
 msgstr "Alegeți și abandonați cărți prin apăsare"
 
 #. not active by default
-#: ../src/window.c:1898
+#: ../src/window.c:1909
 msgid "_Sound"
 msgstr "_Sunet"
 
-#: ../src/window.c:1899
+#: ../src/window.c:1910
 msgid "Whether or not to play event sounds"
 msgstr "Dacă se redau sau nu sunetele de evenimente"
 
-#: ../src/window.c:2000
+#: ../src/window.c:2011
 msgid "Score:"
 msgstr "Scor:"
 
-#: ../src/window.c:2012
+#: ../src/window.c:2023
 msgid "Time:"
 msgstr "Timp:"
 
-#: ../src/window.c:2299
+#: ../src/window.c:2310
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Nu se poate începe jocul „%s”"
 
-#: ../src/window.c:2306
+#: ../src/window.c:2317
 msgid "Aisleriot cannot find the last game you played."
 msgstr "Aisleriot nu poate găsi ultimul joc pe care l-ați jucat."
 
-#: ../src/window.c:2307
+#: ../src/window.c:2318
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -2795,7 +2835,8 @@ msgstr ""
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:187
 msgid "If you're ever lost and alone in the woods, hug a tree"
-msgstr "Dacă sunteți vreodată singur și pierdut în păduri, îmbrățișați un copac"
+msgstr ""
+"Dacă sunteți vreodată singur și pierdut în păduri, îmbrățișați un copac"
 
 #. Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
 #: ../games/clock.scm:189
@@ -3540,3 +3581,12 @@ msgstr "Atacă un teanc cu fața în jos."
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Mută o adunare de cărți pe un slot de tablou gol"
+
+#~ msgid "New Game"
+#~ msgstr "Joc nou"
+
+#~ msgid "Change Game"
+#~ msgstr "Schimbă jocul"
+
+#~ msgid "About"
+#~ msgstr "Despre"
