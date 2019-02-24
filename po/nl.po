@@ -38,22 +38,22 @@
 # Pjotr12345, 2012.
 # Rachid <rachidbm@ubuntu.com>, 2012.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2012, 2014, 2016.
-# Justin van Steijn <justin50@live.nl>, 2015, 2016.
+# Justin van Steijn <jvs@fsfe.org>, 2015, 2016.
+# Nathan Follens <nthn@unseen.is>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-games\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=aisleriot&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-09-05 21:26+0000\n"
-"PO-Revision-Date: 2016-09-06 12:29+0100\n"
-"Last-Translator: Justin van Steijn <justin50@live.nl>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/aisleriot/issues\n"
+"POT-Creation-Date: 2019-01-21 19:12+0000\n"
+"PO-Revision-Date: 2019-02-24 15:08+0100\n"
+"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2012-05-07 11:56+0000\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/sol.appdata.xml.in.h:1
@@ -157,36 +157,8 @@ msgstr "Onlangs gespeelde spellen"
 msgid "A list of recently played games."
 msgstr "Een lijst met onlangs gespeelde spellen."
 
-#: ../src/ar-application.c:210
-msgid "New Game"
-msgstr "Nieuw spel"
-
-#: ../src/ar-application.c:211
-msgid "Change Game"
-msgstr "Ander spel"
-
-#: ../src/ar-application.c:215 ../src/stats-dialog.c:206
-msgid "Statistics"
-msgstr "Statistieken"
-
-#: ../src/ar-application.c:216
-msgid "Fullscreen"
-msgstr "_Schermvullend"
-
-#: ../src/ar-application.c:220
-msgid "Help"
-msgstr "Hulp"
-
-#: ../src/ar-application.c:221
-msgid "About"
-msgstr "Info"
-
-#: ../src/ar-application.c:222
-msgid "Quit"
-msgstr "Afsluiten"
-
 #. Now construct the window contents
-#: ../src/ar-game-chooser.c:312 ../src/window.c:1981
+#: ../src/ar-game-chooser.c:312 ../src/window.c:1992
 msgid "Select Game"
 msgstr "Spel kiezen"
 
@@ -1208,6 +1180,66 @@ msgstr "Rijn"
 msgid "Zebra"
 msgstr "Zebra"
 
+#: ../src/help-overlay.ui.h:1
+msgctxt "shortcut window"
+msgid "General"
+msgstr "Algemeen"
+
+#: ../src/help-overlay.ui.h:2
+msgctxt "shortcut window"
+msgid "Start a new game"
+msgstr "Een nieuw spel beginnen"
+
+#: ../src/help-overlay.ui.h:3
+msgctxt "shortcut window"
+msgid "Deal"
+msgstr "Delen"
+
+#: ../src/help-overlay.ui.h:4
+msgctxt "shortcut window"
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: ../src/help-overlay.ui.h:5
+msgctxt "shortcut window"
+msgid "Redo"
+msgstr "Opnieuw uitvoeren"
+
+#: ../src/help-overlay.ui.h:6
+msgctxt "shortcut window"
+msgid "Fullscreen"
+msgstr "Volledig scherm"
+
+#: ../src/help-overlay.ui.h:7
+msgctxt "shortcut window"
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: ../src/help-overlay.ui.h:8
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Hulp"
+
+#: ../src/help-overlay.ui.h:9
+msgctxt "shortcut window"
+msgid "Show a hint"
+msgstr "Een hint tonen"
+
+#: ../src/help-overlay.ui.h:10
+msgctxt "shortcut window"
+msgid "Show Help"
+msgstr "Hulp tonen"
+
+#: ../src/help-overlay.ui.h:11
+msgctxt "shortcut window"
+msgid "Show Help for this game"
+msgstr "Hulp voor dit spel weergeven"
+
+#: ../src/help-overlay.ui.h:12
+msgctxt "shortcut window"
+msgid "Show Keyboard Shortcuts"
+msgstr "Sneltoetsen tonen"
+
 #. Translators: this is the symbol that's on a Joker card
 #: ../src/lib/ar-card.c:237
 msgctxt "card symbol"
@@ -1610,6 +1642,10 @@ msgstr "Slechtste:"
 msgid "Time"
 msgstr "Tijd"
 
+#: ../src/stats-dialog.c:206
+msgid "Statistics"
+msgstr "Statistieken"
+
 #. Translators: Translate this to "%Id" if you want to use localised digits,
 #. * and to "%d" otherwise. Do not translate it to anything else!
 #.
@@ -1664,12 +1700,12 @@ msgid "Card themes:"
 msgstr "Kaartthema's:"
 
 #: ../src/window.c:399
-msgid "About Aisleriot"
+msgid "About AisleRiot"
 msgstr "Over AisleRiot"
 
 #: ../src/window.c:401
 msgid ""
-"Aisleriot provides a rule-based solitaire card engine that allows many "
+"AisleRiot provides a rule-based solitaire card engine that allows many "
 "different games to be played."
 msgstr ""
 "AisleRiot bevat een op regels gebaseerde kaarttechniek voor patience, "
@@ -1685,187 +1721,192 @@ msgstr ""
 "Erik Kruijswijk\n"
 "Justin van Steijn\n"
 "Hannie Dumoleyn\n"
+"Nathan Follens\n"
 "\n"
-"Kijk voor meer informatie op http://nl.gnome.org/\n"
+"Meer info over Gnome-NL http://nl.gnome.org/\n"
 "\n"
 "Launchpad Contributions:\n"
 "  Fabian Bakkum https://launchpad.net/~fabianbakkum\n"
 "  Pjotr12345 https://launchpad.net/~computertip"
 
 #: ../src/window.c:413
-msgid "Aisleriot web site"
-msgstr "Website Aisleriot"
+msgid "AisleRiot web site"
+msgstr "AisleRiot-website"
 
-#: ../src/window.c:1182
+#: ../src/window.c:1189
 #, c-format
 msgid "Play “%s”"
 msgstr "‘%s’ spelen"
 
-#: ../src/window.c:1343
+#: ../src/window.c:1350
 #, c-format
 msgid "Display cards with “%s” card theme"
 msgstr "Kaarten afbeelden met het ‘%s’-kaartthema"
 
-#: ../src/window.c:1637
+#: ../src/window.c:1644
 msgid "A scheme exception occurred"
 msgstr "Er is een schema-uitzondering opgetreden"
 
-#: ../src/window.c:1640
+#: ../src/window.c:1647
 msgid "Please report this bug to the developers."
 msgstr "Meld deze fout a.u.b. aan de ontwikkelaars."
 
-#: ../src/window.c:1646
+#: ../src/window.c:1653
 msgid "_Don't report"
 msgstr "_Niet melden"
 
-#: ../src/window.c:1647
+#: ../src/window.c:1654
 msgid "_Report"
 msgstr "_Melden"
 
 #. Menu actions
-#: ../src/window.c:1804
+#: ../src/window.c:1811
 msgid "_Game"
 msgstr "_Spel"
 
-#: ../src/window.c:1805
+#: ../src/window.c:1812
 msgid "_View"
 msgstr "Beel_d"
 
-#: ../src/window.c:1806
+#: ../src/window.c:1813
 msgid "_Control"
 msgstr "_Bediening"
 
-#: ../src/window.c:1808
+#: ../src/window.c:1815
 msgid "_Help"
 msgstr "_Hulp"
 
-#: ../src/window.c:1813
+#: ../src/window.c:1820
 msgid "Start a new game"
 msgstr "Een nieuw spel beginnen"
 
-#: ../src/window.c:1816
+#: ../src/window.c:1823
 msgid "Restart the game"
 msgstr "Het spel opnieuw spelen"
 
-#: ../src/window.c:1818
+#: ../src/window.c:1825
 msgid "_Select Game…"
 msgstr "_Spel kiezen…"
 
-#: ../src/window.c:1820
+#: ../src/window.c:1827
 msgid "Play a different game"
 msgstr "Speel een ander spel"
 
 # Recentelijk/Onlangs
-#: ../src/window.c:1822
+#: ../src/window.c:1829
 msgid "_Recently Played"
 msgstr "Onlangs ges_peeld"
 
-#: ../src/window.c:1823
+#: ../src/window.c:1830
 msgid "S_tatistics"
 msgstr "S_tatistieken"
 
-#: ../src/window.c:1824
+#: ../src/window.c:1831
 msgid "Show gameplay statistics"
 msgstr "Spelstatistieken weergeven"
 
-#: ../src/window.c:1827
+#: ../src/window.c:1834
 msgid "Close this window"
 msgstr "Dit venster sluiten"
 
-#: ../src/window.c:1830
+#: ../src/window.c:1837
 msgid "Undo the last move"
 msgstr "De laatste handeling ongedaan maken"
 
-#: ../src/window.c:1833
+#: ../src/window.c:1840
 msgid "Redo the undone move"
 msgstr "De ongedaan gemaakte handeling opnieuw uitvoeren"
 
 # delen/geven
-#: ../src/window.c:1836
+#: ../src/window.c:1843
 msgid "Deal next card or cards"
 msgstr "Volgende kaart of kaarten geven"
 
-#: ../src/window.c:1839
+#: ../src/window.c:1846
 msgid "Get a hint for your next move"
 msgstr "Vraag een tip voor uw volgende handeling"
 
-#: ../src/window.c:1842
+#: ../src/window.c:1849
 msgid "View help for Aisleriot"
 msgstr "Hulp voor AisleRiot weergeven"
 
-#: ../src/window.c:1846
+#: ../src/window.c:1853
 msgid "View help for this game"
 msgstr "Hulp voor dit spel weergeven"
 
-#: ../src/window.c:1849
+#: ../src/window.c:1856
 msgid "About this game"
 msgstr "Over dit spel"
 
-#: ../src/window.c:1851
+#: ../src/window.c:1858
+msgid "_Keyboard Shortcuts"
+msgstr "Snel_toetsen"
+
+#: ../src/window.c:1862
 msgid "Install card themes…"
 msgstr "Kaartthema's installeren…"
 
-#: ../src/window.c:1852
+#: ../src/window.c:1863
 msgid "Install new card themes from the distribution packages repositories"
 msgstr ""
 "Een nieuw kaartthema installeren vanuit de pakketbronnen van de distributie"
 
-#: ../src/window.c:1858
+#: ../src/window.c:1869
 msgid "_Card Style"
 msgstr "_Kaartstijl"
 
-#: ../src/window.c:1884
+#: ../src/window.c:1895
 msgid "_Toolbar"
 msgstr "_Werkbalk"
 
-#: ../src/window.c:1885
+#: ../src/window.c:1896
 msgid "Show or hide the toolbar"
 msgstr "De werkbalk tonen of verbergen"
 
 # toestand/stand/status
-#: ../src/window.c:1889
+#: ../src/window.c:1900
 msgid "_Statusbar"
 msgstr "_Statusbalk"
 
-#: ../src/window.c:1890
+#: ../src/window.c:1901
 msgid "Show or hide statusbar"
 msgstr "De statusbalk tonen of verbergen"
 
-#: ../src/window.c:1894
+#: ../src/window.c:1905
 msgid "_Click to Move"
 msgstr "_Klikken om te verplaatsen"
 
-#: ../src/window.c:1895
+#: ../src/window.c:1906
 msgid "Pick up and drop cards by clicking"
 msgstr "Kaarten pakken en op tafel leggen door te klikken"
 
 #. not active by default
-#: ../src/window.c:1898
+#: ../src/window.c:1909
 msgid "_Sound"
 msgstr "_Geluid"
 
-#: ../src/window.c:1899
+#: ../src/window.c:1910
 msgid "Whether or not to play event sounds"
 msgstr "Of er al dan niet geluiden worden afgespeeld bij gebeurtenissen"
 
-#: ../src/window.c:2000
+#: ../src/window.c:2011
 msgid "Score:"
 msgstr "Score:"
 
-#: ../src/window.c:2012
+#: ../src/window.c:2023
 msgid "Time:"
 msgstr "Tijd:"
 
-#: ../src/window.c:2299
+#: ../src/window.c:2310
 #, c-format
 msgid "Cannot start the game “%s”"
 msgstr "Kan het spel ‘%s’ niet starten"
 
-#: ../src/window.c:2306
+#: ../src/window.c:2317
 msgid "Aisleriot cannot find the last game you played."
 msgstr "AisleRiot kan uw laatst gespeelde spel niet vinden."
 
-#: ../src/window.c:2307
+#: ../src/window.c:2318
 msgid ""
 "This usually occurs when you run an older version of Aisleriot which does "
 "not have the game you last played. The default game, Klondike, is being "
@@ -3588,7 +3629,7 @@ msgstr "Scorevermenigvuldiging"
 
 #: ../games/wall.scm:138
 msgid "Deals left: "
-msgstr "Deelbeurten over:"
+msgstr "Deelbeurten over: "
 
 #: ../games/wall.scm:437
 msgid "Deal cards."
@@ -3601,3 +3642,12 @@ msgstr "Een omgekeerde stapel aanvallen."
 #: ../games/whitehead.scm:243
 msgid "Move a build of cards on to the empty Tableau slot"
 msgstr "Leg een stapel kaarten op het lege tafelvak"
+
+#~ msgid "New Game"
+#~ msgstr "Nieuw spel"
+
+#~ msgid "Change Game"
+#~ msgstr "Ander spel"
+
+#~ msgid "About"
+#~ msgstr "Info"
