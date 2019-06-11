@@ -78,6 +78,8 @@
 					  fields fields fields
 					  half-fields))))
 
+
+	
 ;;
 ;; Utilities
 ;;
@@ -267,49 +269,54 @@
 	)
 )
 
-(define (max-auto-red)
-	(min
-		(+ 2 (min highest-club highest-spade))
-		(+ 3 (min highest-diamond highest-heart))
+(define autoplay #t)
+
+(define (get-options) 
+	(list
+		'begin-exclusive 
+		(list (_"Autoplay On") autoplay)
+		(list (_"Autoplay Off") (not autoplay))
+		'end-exclusive
 	)
 )
-
-(define (max-auto-black)
-	(min
-		(+ 2 (min highest-diamond highest-heart))
-		(+ 3 (min highest-club highest-spade))
+		
+(define (apply-options options)
+  (set! autoplay (cadr (list-ref options 1)))
+)
+          
+(define (move-low-cards slot)	;;; this is routine which auto moves cards including the final
+								;;; batch when near the end of a winning game. Examines the freecells
+								;;; and all the fields; skips over the home cells of course.
+								;;; Scans slots 0 (freecell-1) to 15 (field-8) recursively looking for
+								;;; any cards that can be moved to the home cells.
+	(if autoplay	;; Only do the auto play if the option is checked.
+		(begin
+	
+			(or				;;; try to move a card from the current slot; if not, then
+								;;; move on to the next slot; If a card is moved, then make a
+								;;; recursive call, starting over at slot 0 (freecell-1), looking
+								;;; for more cards to move.
+								
+				(and		;;; try to move a card. If successfull, remove it from the slot
+								;;; and start scanning again.
+					(not (homecell? slot))
+					(not (empty-slot? slot))
+					(let ((card (get-top-card slot)))
+						(and
+							(move-card-to-homecell card (homecell-by-suit (get-suit card)))  				;; move if one higher than the card in the home cell
+							(remove-card slot)  ;; card was moved ok, now remove it from old slot
+							(delayed-call ((lambda (x) (lambda () (move-low-cards x))) freecell-1))	;; card was moved. start fresh search
+						)
+					)
+				)
+				(if (< slot field-8)					;; no card moved - try next slot if more to go
+					(move-low-cards (+ 1 slot))	;; try next slot;
+					#t													;; all slots have been checked; exit/return.
+				)
+			)
+		)
 	)
 )
-
-(define (move-low-cards slot)
-  (or
-   (and
-    (not (homecell? slot))
-    (not (empty-slot? slot))
-    (let ((card (get-top-card slot)))
-      (if (= (get-color card) red)
-	  (and
-	   (<= (get-value card) (max-auto-red))
-	   (move-card-to-homecell card (homecell-by-suit (get-suit card)))
-	   (remove-card slot)
-	   (delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
-	   )
-	  (and
-	   (<= (get-value card) (max-auto-black))
-	   (move-card-to-homecell card (homecell-by-suit (get-suit card)))
-	   (remove-card slot)
-	   (delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
-					;	(move-low-cards 0)
-	   )
-	  )
-      )
-    )
-   (if (< slot field-8)
-       (move-low-cards (+ 1 slot))
-       #t
-       )
-   )
-  )
 
 ;;
 ;; Callbacks & Initialize the game
@@ -363,7 +370,6 @@
 
   (set! board-hash (make-hash-table hash-size))
   
-
   (list 8 3.5)
 )
 
@@ -420,12 +426,6 @@
        (= 13 (length (get-cards homecell-2)))
        (= 13 (length (get-cards homecell-3)))
        (= 13 (length (get-cards homecell-4)))))
-
-(define (get-options) 
-  #f)
-
-(define (apply-options options) 
-  #f)
 
 (define (timeout) 
   ; (FIXME)
