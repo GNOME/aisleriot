@@ -1,4 +1,3 @@
-(display "freecell.scm-working")
 ;;; freecell.scm -- Free Cell game for AisleRiot.
 
 ;; Copyright (C) 1998, 2003 Changwoo Ryu
