@@ -1,3 +1,4 @@
+(display "freecell.scm-working")
 ;;; freecell.scm -- Free Cell game for AisleRiot.
 
 ;; Copyright (C) 1998, 2003 Changwoo Ryu
@@ -269,50 +270,107 @@
 	)
 )
 
-(define autoplay #t)
+(define (max-auto-red)
+	(min
+		(+ 2 (min highest-club highest-spade))
+		(+ 3 (min highest-diamond highest-heart))
+	)
+)
+
+(define (max-auto-black)
+	(min
+		(+ 2 (min highest-diamond highest-heart))
+		(+ 3 (min highest-club highest-spade))
+	)
+)
+
+
+(define autoplay 'orig)							;; original version which was always on.
 
 (define (get-options) 
 	(list
 		'begin-exclusive 
-		(list (_"Autoplay On") autoplay)
-		(list (_"Autoplay Off") (not autoplay))
+		(list (_"Autoplay") #t)					;; original version which was always on.
+		(list (_"Autoplay Off") #f)
+		(list (_"Autoplay for all possible cards") #f)
 		'end-exclusive
 	)
 )
-		
+
 (define (apply-options options)
-  (set! autoplay (cadr (list-ref options 1)))
+
+	(cond
+		((cadr (list-ref options 1)) (set! autoplay 'orig))
+		((cadr (list-ref options 2)) (set! autoplay 'off))
+		((cadr (list-ref options 3)) (set! autoplay 'full))
+	)
 )
-          
-(define (move-low-cards slot)	;;; this is routine which auto moves cards including the final
-								;;; batch when near the end of a winning game. Examines the freecells
+
+(define (move-low-cards slot)
+	(cond
+		((eq? autoplay 'orig) (move-low-cards-orig slot))
+		((eq? autoplay 'full) (move-low-cards-full slot))
+	)
+)
+
+(define (move-low-cards-orig slot)
+	(or
+		(and
+			(not (homecell? slot))
+			(not (empty-slot? slot))
+			(let ((card (get-top-card slot)))
+				(if (= (get-color card) red)
+					(and
+						(<= (get-value card) (max-auto-red))
+						(move-card-to-homecell card (homecell-by-suit (get-suit card)))
+						(remove-card slot)
+						(delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
+					)
+					(and
+						(<= (get-value card) (max-auto-black))
+						(move-card-to-homecell card (homecell-by-suit (get-suit card)))
+						(remove-card slot)
+						(delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
+					)
+				)
+      )
+    )
+		(if (< slot field-8)
+       (move-low-cards (+ 1 slot))
+       #t
+    )
+  )
+)
+
+
+(define (move-low-cards-full slot)	
+								;;; Move all possible cards to home cells. The above version moves some
+								;;; but not all possible cards. Examines the freecells
 								;;; and all the fields; skips over the home cells of course.
 								;;; Scans slots 0 (freecell-1) to 15 (field-8) recursively looking for
 								;;; any cards that can be moved to the home cells.
-	(if autoplay	;; Only do the auto play if the option is checked.
-		(begin
+	(begin
 	
-			(or				;;; try to move a card from the current slot; if not, then
+		(or					;;; try to move a card from the current slot; if not, then
 								;;; move on to the next slot; If a card is moved, then make a
 								;;; recursive call, starting over at slot 0 (freecell-1), looking
 								;;; for more cards to move.
 								
-				(and		;;; try to move a card. If successfull, remove it from the slot
+			(and			;;; try to move a card. If successfull, remove it from the slot
 								;;; and start scanning again.
-					(not (homecell? slot))
-					(not (empty-slot? slot))
-					(let ((card (get-top-card slot)))
-						(and
-							(move-card-to-homecell card (homecell-by-suit (get-suit card)))  				;; move if one higher than the card in the home cell
-							(remove-card slot)  ;; card was moved ok, now remove it from old slot
-							(delayed-call ((lambda (x) (lambda () (move-low-cards x))) freecell-1))	;; card was moved. start fresh search
-						)
+				(not (homecell? slot))
+				(not (empty-slot? slot))
+				(let ((card (get-top-card slot)))
+					(and
+						(move-card-to-homecell card (homecell-by-suit (get-suit card)))  				;; move if one higher than the card in the home cell
+						(remove-card slot)  ;; card was moved ok, now remove it from old slot
+						(delayed-call ((lambda (x) (lambda () (move-low-cards x))) freecell-1))	;; card was moved. start fresh search
 					)
 				)
-				(if (< slot field-8)					;; no card moved - try next slot if more to go
-					(move-low-cards (+ 1 slot))	;; try next slot;
-					#t													;; all slots have been checked; exit/return.
-				)
+			)
+			(if (< slot field-8)					;; no card moved - try next slot if more to go
+				(move-low-cards (+ 1 slot))	;; try next slot;
+				#t													;; all slots have been checked; exit/return.
 			)
 		)
 	)
@@ -561,7 +619,6 @@
 (define board-hash #()) ; This variable is initialized in new-game
 (define visited-nodes 0) ; Number of board positions created for this search.
 (define traversed-nodes 0) ; Number of board positions traversed through
-
 
 ;;-----------------------------------------------------------------------------
 ;; Functions
@@ -857,7 +914,7 @@
 ;   board - a board vector
 ;   move - list in the form (source-slot card card-count dest-slot)
 ;          (This is more precisely a move-cdr)
-(define (perform-move board move)
+(define (perform-move board move)											;;;;;<<<<< original
   (set! visited-nodes (+ 1 visited-nodes))
   (let ((new-board (list->vector (vector->list board)))
 	(source-stack (vector-ref board (car move)))
