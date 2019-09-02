@@ -349,7 +349,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     "Felix Bellaby <felix@pooh.u-net.com>",
     "Rosanna Yuen <zana@webwynk.net>",
     "Callum McKenzie <callum@physics.otago.ac.nz>",
-    "Christian Persch <chpe" "\100" "gnome.org>",
+    "Christian Persch <chpe" "\100" "src.gnome.org>",
     "Andreas Røsdal <andreasr" "\100" "gnome.org>",
     "",
     _("Card games:"),
