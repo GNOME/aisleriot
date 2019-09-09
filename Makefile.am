@@ -58,7 +58,7 @@ MAINTAINERCLEANFILES = \
 
 # Build ChangeLog from git log
 ChangeLog:
-	$(AM_V_GEN) if test -f $(top_srcdir)/.git/HEAD; then \
+	$(AM_V_GEN) if test -e $(top_srcdir)/.git; then \
 		git log --stat --no-color --since=2008-06-21 > $@; \
 	fi
 
@@ -67,4 +67,3 @@ dist: ChangeLog
 .PHONY: ChangeLog
 
 -include $(top_srcdir)/git.mk
-	
