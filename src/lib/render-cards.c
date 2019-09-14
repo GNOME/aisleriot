@@ -184,7 +184,7 @@ main (int argc, char *argv[])
 
     ar_card_theme_set_size (theme, size, -1, 1.0);
 
-    g_snprintf (sizestr, sizeof (sizestr), "%d", size);
+    g_snprintf (sizestr, sizeof (sizestr), "%u", size);
     sizepath = g_build_filename (basepath, sizestr, NULL);
 
     if (g_mkdir_with_parents (sizepath, 0755) < 0) {

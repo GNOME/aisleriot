@@ -278,8 +278,13 @@ ar_get_licence (const gchar *game_name)
        "along with this program.  If not, see <http://www.gnu.org/licenses/>.");
 
   license_trans = g_strjoin ("\n\n", _(license0), _(license1), _(license3), NULL);
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
   license_str =
     g_strdup_printf (license_trans, game_name, version, game_name, game_name);
+#pragma GCC diagnostic pop
+
   g_free (license_trans);
 
   return license_str;

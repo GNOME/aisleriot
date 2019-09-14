@@ -1,0 +1,144 @@
+# Copyright © 2019 Christian Persch
+#
+# This programme is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or (at your
+# option) any later version.
+#
+# This programme is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this programme.  If not, see <https://www.gnu.org/licenses/>.
+
+option(
+  'binreloc',
+  type: 'boolean',
+  value: false,
+  description: 'Binary relocation',
+)
+
+option(
+  'dbg',
+  type: 'boolean',
+  value: false,
+  description: 'Enable extra debugging functionality',
+)
+
+option(
+  'dbgui',
+  type: 'boolean',
+  value: false,
+  description: 'Enable extra debugging functionality UI',
+)
+
+option(
+  'default_theme_format',
+  type: 'combo',
+  choices: ['fixed', 'kde', 'pysol', 'svg-rsvg', 'svg-qtsvg',],
+  value: 'svg-rsvg',
+  description: 'The default card theme format',
+)
+
+option(
+  'default_theme',
+  type: 'string',
+  value: 'gnomangelo_bitmap.svgz',
+  description: 'The default card theme',
+)
+
+option(
+  'docs',
+  type: 'boolean',
+  value: true,
+  description: 'Enable documentation',
+)
+
+option(
+  'gconf',
+  type: 'boolean',
+  value: false,
+  description: 'Enable GConf support',
+)
+
+option(
+  'guile',
+  type: 'combo',
+  choices: ['2.2', '2.0', 'auto',],
+  value: 'auto',
+  description: 'Which guile version to use',
+)
+
+option(
+  'help_format',
+  type: 'combo',
+  choices: ['html', 'xhtml',],
+  value: 'html',
+  description: 'Which help format to use for file method',
+)
+
+option(
+  'help_method',
+  type: 'combo',
+  choices: ['ghelp', 'file', 'library',],
+  value: 'ghelp', # FIXME: this may need to be different per platform
+  description: 'Which help method to use',
+)
+
+option(
+  'sound',
+  type: 'boolean',
+  value: true,
+  description: 'Enable sound support',
+)
+
+option(
+  'theme_fixed',
+  type: 'boolean',
+  value: true,
+  description: 'Enable support for prerendered card themes',
+)
+
+option(
+  'theme_kde',
+  type: 'boolean',
+  value: true,
+  description: 'Enable support for KDE card themes',
+)
+
+option(
+  'theme_kde_path',
+  type: 'string',
+  value: '',
+  description: 'Base path to KDE card themes',
+)
+
+option(
+  'theme_pysol',
+  type: 'boolean',
+  value: false,
+  description: 'Enable support for PySolFC card themes',
+)
+
+option(
+  'theme_pysol_path',
+  type: 'string',
+  value: '',
+  description: 'Base path to PySolFC card themes',
+)
+
+option(
+  'theme_svg_qtsvg',
+  type: 'boolean',
+  value: false,
+  description: 'Enable support for SVG card themes (using QtSvg)',
+)
+
+option(
+  'theme_svg_rsvg',
+  type: 'boolean',
+  value: true,
+  description: 'Enable support for SVG card themes (using Rsvg)',
+)

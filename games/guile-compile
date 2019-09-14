@@ -1,6 +1,17 @@
 #!/bin/sh
 # -*- scheme -*-
-exec $GUILE $GUILE_FLAGS -e '(@@ (guild) main)' -s "$0" "$@"
+this="$0"
+srcdir="$1"
+builddir="$2"
+GUILE="$3"
+
+shift 3
+
+export GUILE_AUTO_COMPILE=0
+export GUILE_LOAD_PATH=".:${srcdir}"
+export GUILE_LOAD_COMPILED_PATH=.
+
+exec ${GUILE:-/bin/false} -e '(@@ (guild) main)' -s "$this" "$@"
 !#
 
 ;;;; guild --- running scripts bundled with Guile

@@ -187,9 +187,9 @@ ArCardTheme* ar_card_theme_svg_new (void);
 
 #endif /* HAVE_RSVG */
 
-#if 1 //def HAVE_QTSVG
+#ifdef HAVE_QTSVG
 
-/* ArCardThemeQSvg (abstract) */
+/* ArCardThemeQSvg */
 
 #define AR_TYPE_CARD_THEME_QSVG            (ar_card_theme_qsvg_get_type ())
 #define AR_CARD_THEME_QSVG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), AR_TYPE_CARD_THEME_QSVG, ArCardThemeQSvg))
@@ -202,6 +202,8 @@ typedef struct _ArCardThemeQSvgClass ArCardThemeQSvgClass;
 typedef struct _ArCardThemeQSvg      ArCardThemeQSvg;
 
 GType ar_card_theme_qsvg_get_type (void);
+
+ArCardTheme* ar_card_theme_qsvg_new (void);
 
 /* ArCardThemeNative */
 
