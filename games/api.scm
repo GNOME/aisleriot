@@ -143,14 +143,20 @@
       (cons (make-card value suit) 
 	    (make-deck-list-ace-high init-value (+ 1 value) suit))))
  
-
+; shuffle the card list
+(define (shuffle-card-list card-list)
+  (let* ((vec (list->vector card-list))
+	 (len (vector-length vec)))
+    (shuffle-deck-helper vec '() 0 len)))
 
 ; shuffle the card list in DECK
 (define-public (shuffle-deck)
-  (let* ((vec (list->vector DECK))
-	 (len (vector-length vec)))
-    (set! DECK (shuffle-deck-helper vec '() 0 len))))
-					     
+  (set! DECK (shuffle-card-list DECK)))
+
+; shuffle the card list in slot
+(define-public (shuffle-slot slot-id)
+  (set-cards! slot-id (shuffle-card-list (get-cards slot-id))))
+
 ; The playing area is divided into slots, where cards can be placed.
 ; Each slot can hold any amount of cards.  The slots are identified 
 ; using numbers assigned in order of their creation. The deck of cards
