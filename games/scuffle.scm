@@ -93,7 +93,7 @@
 		  (flip-deck 0 6)
 		  (flip-deck 0 7)
 		  (flip-deck 0 8)
-		  (shuffle-deck))))))
+		  (shuffle-slot 0))))))
 
 (define (check-end-slot? slot1 slot2)
   (if (and (not (empty-slot? slot1))
