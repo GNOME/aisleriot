@@ -92,7 +92,7 @@
   (flip-deck 1 2)
   (add-cards! 0 (get-cards 1))
   (remove-n-cards 1 (length (get-cards 1)))
-  (shuffle-deck)
+  (shuffle-slot 0)
   (deal-cards 0 ' (3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20))
   (deal-cards-face-up 0 ' (21 22 23 24 25 26 27 28 29 30 2))
 )
