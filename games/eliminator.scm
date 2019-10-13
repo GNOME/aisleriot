@@ -72,8 +72,6 @@
 	;	(if (< found-amt 5) (add-card! 5 down))
 	;)
 	
-	(give-status-message)
-	
 	(list found-amt 4)
 )
 
