@@ -1030,7 +1030,7 @@ cscm_init (void *data G_GNUC_UNUSED)
   /* Let the scheme side of things know about our C functions. */
   scm_c_define_gsubr ("set-feature-word!", 1, 0, 0, scm_set_feature_word);
   scm_c_define_gsubr ("get-feature-word", 0, 0, 0, scm_get_feature_word);
-  scm_c_define_gsubr ("set-statusbar-message", 1, 0, 0,
+  scm_c_define_gsubr ("set-statusbar-message-c", 1, 0, 0,
                       scm_set_statusbar_message);
   scm_c_define_gsubr ("reset-surface", 0, 0, 0, scm_reset_surface);
   scm_c_define_gsubr ("add-slot", 1, 0, 0, cscmi_add_slot);
@@ -1054,7 +1054,7 @@ cscm_init (void *data G_GNUC_UNUSED)
 
   scm_c_export ("set-feature-word!", 
                 "get-feature-word", 
-                "set-statusbar-message",
+                "set-statusbar-message-c",
                 "reset-surface",
                 "add-slot", 
                 "get-slot", 

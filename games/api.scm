@@ -734,6 +734,11 @@
 (define-public (add-to-score! delta)
   (set-score! (+ (get-score) delta)))
 
+(define-public (set-statusbar-message message)
+  (set! STATUSBAR-MESSAGE message)
+  (set-statusbar-message-c message)
+)
+
 ;; INTERNAL procedures
 
 ; global variables
@@ -755,6 +760,7 @@
 (define-public LEFT-SLOTS '())
 (define-public RIGHT-SLOTS '())
 (define-public SCORE 0)
+(define-public STATUSBAR-MESSAGE "")
 
 ; called from C:
 (define-public (start-game)
@@ -779,13 +785,9 @@
        (set-cards! slot-id (car card-positions))
        (return-cards (cdr card-positions) (+ 1 slot-id))))
 
-(define-public (give-status-message)
-  #t)
-
 (define-public (eval-move move)
   (return-cards (caddr move) 0)
-  ((car move) (cadr move))
-  (give-status-message))
+  ((car move) (cadr move)))
 
 ; called from C:
 (define-public (undo)
@@ -814,7 +816,8 @@
 (define-public (undo-func data)
   (set-score! (car data))
   (set! FLIP-COUNTER (cadr data))
-  (restore-variables variable-list (caddr data)))
+  (set-statusbar-message (caddr data))
+  (restore-variables variable-list (cadddr data)))
 ;(register-undo-function undo-func '(score FLIP-COUNTER))
 	     
 (define-public (snapshot-board slot-id moving-slot old-cards)
@@ -831,6 +834,7 @@
 (define-public (record-move slot-id old-cards)
   (set! MOVE (list undo-func 
                    (list (get-score) FLIP-COUNTER 
+                         STATUSBAR-MESSAGE
                          (save-variables variable-list))
                    (snapshot-board 0 slot-id old-cards))))
 
