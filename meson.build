@@ -46,6 +46,7 @@ glib_req_version            = '2.32.0'
 gtk_req_version             = '3.18.0'
 guile_2_0_req_version       = '2.0.0'
 guile_2_2_req_version       = '2.2.0'
+guile_3_0_req_version       = '3.0.0'
 libcanberra_gtk_req_version = '0.26'
 qt5svg_req_version          = '5.0.0'
 rsvg_req_version            = '2.32.0'
@@ -315,7 +316,9 @@ config_h.set_quoted('PYSOL_CARD_THEME_PATH', theme_pysol_path,)
 # Guile
 
 if get_option('guile') == 'auto'
-  if dependency('guile-2.2', required: false,).found()
+  if dependency('guile-3.0', required: false,).found()
+    guile_version = '3.0'
+  elif dependency('guile-2.2', required: false,).found()
     guile_version = '2.2'
   elif dependency('guile-2.0', required: false,).found()
     guile_version = '2.0'
@@ -328,7 +331,9 @@ endif
 
 guile_req = 'guile-' + guile_version
 
-if guile_version == '2.2'
+if guile_version == '3.0'
+  guile_req_version = guile_3_0_req_version
+elif guile_version == '2.2'
   guile_req_version = guile_2_2_req_version
 elif guile_version == '2.0'
   guile_req_version = guile_2_0_req_version
