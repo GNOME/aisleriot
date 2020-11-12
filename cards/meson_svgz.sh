@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Copyright © 2019 Christian Persch
 #
 # This programme is free software; you can redistribute it and/or modify it
