@@ -444,6 +444,12 @@ if get_option('theme_svg_rsvg') or get_option('theme_svg_qtsvg')
   subdir('cards')
 endif
 
+# Dist
+
+meson.add_dist_script(
+  find_program('meson_changelog.sh'),
+)
+
 # Simple compat Makefile
 
 makefile_conf = configuration_data()
