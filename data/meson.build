@@ -18,7 +18,6 @@
 metainfodir = ar_prefix / ar_datadir / 'metainfo'
 
 i18n.merge_file(
-  'sol.metainfo.xml',
   input: 'sol.metainfo.xml.in',
   output: '@BASENAME@',
   po_dir: po_dir,
@@ -35,7 +34,6 @@ desktop_in = files(
 )
 
 i18n.merge_file(
-  'sol.desktop',
   input: desktop_in,
   output: '@BASENAME@',
   type: 'desktop',
