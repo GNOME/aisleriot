@@ -139,7 +139,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 (_"Deal the cards"))))
+       (list 0 (G_"Deal the cards"))))
 
 (define (check-slot-cards slot1 slot2 count card card-list)
   (cond ((or (= (length card-list) 0)

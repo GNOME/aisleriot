@@ -72,25 +72,25 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
+  (string-append (G_"Redeals left:") " "
 		 (number->string (- 1 FLIP-COUNTER))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (_"Base Card: ") (number->string BASE-VAL)))
+	 (string-append (G_"Base Card: ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (_"Base Card: Ace"))
+	 (G_"Base Card: Ace"))
 	((= BASE-VAL 11)
-	 (_"Base Card: Jack"))
+	 (G_"Base Card: Jack"))
 	((= BASE-VAL 12)
-	 (_"Base Card: Queen"))
+	 (G_"Base Card: Queen"))
 	((= BASE-VAL 13)
-	 (_"Base Card: King"))
+	 (G_"Base Card: King"))
 	(#t "")))
 
 (define (button-pressed slot-id card-list)
@@ -250,15 +250,15 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (_"Deal a new card from the deck"))
+      (list 0 (G_"Deal a new card from the deck"))
       (if (and (< FLIP-COUNTER 1)
 	       (not (empty-slot? 1)))
-	  (list 0 (_"Move waste back to stock"))
+	  (list 0 (G_"Move waste back to stock"))
 	  #f)))
 
 (define (base-not-set?)
   (and (empty-slot? 2)
-       (list 0 (_"Select a card from the reserve for first foundation pile"))))
+       (list 0 (G_"Select a card from the reserve for first foundation pile"))))
 
 (define (check-a-foundation slot-id foundation-id)
   (cond ((= foundation-id 6)
@@ -352,7 +352,7 @@
 		 (not (empty-slot? 11))
 		 (not (empty-slot? 12))
 		 (not (empty-slot? 13)))
-	     (list 0 (_"Move a card from the reserve onto the empty tableau slot")))
+	     (list 0 (G_"Move a card from the reserve onto the empty tableau slot")))
 	    ((not (empty-slot? 1))
 	     (hint-move 1 1 (find-empty-slot tableau)))
 	    (#t #f))

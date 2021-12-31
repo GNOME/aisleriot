@@ -63,7 +63,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (next-card card-list number)
@@ -193,7 +193,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (_"Deal a card"))
+      (list 0 (G_"Deal a card"))
       #f))
 
 (define (to-foundations? slot-id)

@@ -102,7 +102,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -378,14 +378,14 @@
 	   (= (+ (get-value (get-nth-card waste-slot 1))
 		 (get-value (get-nth-card waste-slot 2))) 
 	      magic-total))
-      (list 0 (_"Match the top two cards of the waste."))
+      (list 0 (G_"Match the top two cards of the waste."))
       #f))
 
 (define (hint-remove-king suit)
-  (cond ((eq? suit club) (_"Remove the king of clubs."))
-        ((eq? suit diamond) (_"Remove the king of diamonds."))
-        ((eq? suit heart) (_"Remove the king of hearts."))
-        ((eq? suit spade) (_"Remove the king of spades."))))
+  (cond ((eq? suit club) (G_"Remove the king of clubs."))
+        ((eq? suit diamond) (G_"Remove the king of diamonds."))
+        ((eq? suit heart) (G_"Remove the king of hearts."))
+        ((eq? suit spade) (G_"Remove the king of spades."))))
 
 (define (check-move slot1 slot2)
   (if (or (empty-slot? slot1)
@@ -416,7 +416,7 @@
   (or (check-waste-for-move) 
       (check-move waste-slot 2)
       (if (not (empty-slot? 0))
-          (list 0 (_"Deal a card"))
+          (list 0 (G_"Deal a card"))
           #f)))
 
 (define (get-options) 

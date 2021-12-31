@@ -64,7 +64,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (format #f (_"Stock left: ~a") (number->string (length (get-cards stock)))))
+  (format #f (G_"Stock left: ~a") (number->string (length (get-cards stock)))))
 
 (define (button-pressed slot-id card-list)
   (and (not (empty-slot? slot-id))
@@ -135,7 +135,7 @@
 
 (define (dealable?)
   (and (not (empty-slot? stock))
-       (list 0 (_"Deal another card"))))
+       (list 0 (G_"Deal another card"))))
 
 (define (get-hint)
   (or (check-slots (car tableau))

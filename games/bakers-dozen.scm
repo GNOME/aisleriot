@@ -191,7 +191,7 @@
 (define (get-hint)
   (or (foundation-possible? 4 0)
       (tableau-moves? 4 5)
-      (list 0 (_"Try rearranging the cards"))))
+      (list 0 (G_"Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

@@ -135,7 +135,7 @@
   (set-statusbar-message (get-attacks-left-string)))
 
 (define (get-attacks-left-string)
-  (string-append (_"Deals left: ")
+  (string-append (G_"Deals left: ")
                  (number->string (/ (length (get-cards stock)) 3))))
 
 (define (in-wall? slot-id)
@@ -434,7 +434,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? stock))
-      (list 0 (_"Deal cards."))
+      (list 0 (G_"Deal cards."))
       #f))
 
 (define (get-hint)
@@ -444,7 +444,7 @@
     (if (and (hidden-exposed-low-guard?)
              (or (not winnable-slot)
                  (in-wall? winnable-slot)))
-        (list 0 (_"Attack a face-down pile."))
+        (list 0 (G_"Attack a face-down pile."))
         (if winnable-slot
             (hint-remove-top-card winnable-slot)
             (dealable?)))))

@@ -45,7 +45,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 7)))))
 
 (define (values-match? c1 c2)
@@ -145,7 +145,7 @@
       (hint-move-from 4)
       (hint-move-from 5)
       (hint-move-from 6)
-      (list 0 (_"Deal a card from the deck"))))
+      (list 0 (G_"Deal a card from the deck"))))
 
 (define (get-options) #f)
 (define (apply-options options) #f)

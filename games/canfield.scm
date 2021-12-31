@@ -66,25 +66,25 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
 		 (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append (_"Reserve left:") " "
+  (string-append (G_"Reserve left:") " "
 		 (number->string (length (get-cards 6)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (_"Base Card: ") (number->string BASE-VAL)))
+	 (string-append (G_"Base Card: ") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (_"Base Card: Ace"))
+	 (G_"Base Card: Ace"))
 	((= BASE-VAL 11)
-	 (_"Base Card: Jack"))
+	 (G_"Base Card: Jack"))
 	((= BASE-VAL 12)
-	 (_"Base Card: Queen"))
+	 (G_"Base Card: Queen"))
 	((= BASE-VAL 13)
-	 (_"Base Card: King"))
+	 (G_"Base Card: King"))
 	(#t "")))
 
 (define (button-pressed slot-id card-list)
@@ -225,8 +225,8 @@
 
 (define (deal-possible?)
   (if (not (empty-slot? 0))
-      (list 0 (_"Deal a new card from the deck"))
-      (list 0 (_"Move waste back to stock"))))
+      (list 0 (G_"Deal a new card from the deck"))
+      (list 0 (G_"Move waste back to stock"))))
 
 (define (move-up? from-slot card slot)
   (or (if (empty-slot? slot)
@@ -300,7 +300,7 @@
       (to-tableau? '(6 1))
       (move-column? '(7 8 9 10))
       (deal-possible?)
-      (list 0 (_"Try rearranging the cards"))))
+      (list 0 (G_"Try rearranging the cards"))))
 
 (define (get-options) #f)
 

@@ -36,19 +36,19 @@
 (define variation-names
   (list
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"Terrace")
+        (G_"Terrace")
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"General's Patience")
+        (G_"General's Patience")
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"Falling Stars")
+        (G_"Falling Stars")
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"Signora")
+        (G_"Signora")
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"Redheads")
+        (G_"Redheads")
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"Blondes and Brunettes")
+        (G_"Blondes and Brunettes")
         ; Translators: this string is the name of a variant of this game. If there is an established standard name for this game or game variant in your locale, use that; otherwise you can translate this string freely or literally, at your option.
-        (_"Wood")))
+        (G_"Wood")))
 
 (define current-variation 0)
 
@@ -136,27 +136,27 @@
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
               (< BASE-VAL 11))
-         (format #f (_"Base Card: ~a") (number->string BASE-VAL)))
+         (format #f (G_"Base Card: ~a") (number->string BASE-VAL)))
         ((= BASE-VAL 1)
-         (_"Base Card: Ace"))
+         (G_"Base Card: Ace"))
         ((= BASE-VAL 11)
-         (_"Base Card: Jack"))
+         (G_"Base Card: Jack"))
         ((= BASE-VAL 12)
-         (_"Base Card: Queen"))
+         (G_"Base Card: Queen"))
         ((= BASE-VAL 13)
-         (_"Base Card: King"))
+         (G_"Base Card: King"))
         (#t "")))
 
 (define (get-redeals-string)
   (if (or (< max-redeal 1) (= BASE-VAL 0))
       ""
-      (string-append "   " (_"Redeals left:") " "
+      (string-append "   " (G_"Redeals left:") " "
                      (number->string (- max-redeal FLIP-COUNTER)))))
 
 (define (get-stock-no-string)
   (if (= BASE-VAL 0)
       ""
-      (string-append (_"Stock left:") " " 
+      (string-append (G_"Stock left:") " " 
                      (number->string (length (get-cards stock))))))
 
 (define (descending-values? a b)
@@ -283,7 +283,7 @@
 
 (define (hint-start-foundation)
   (and (= BASE-VAL 0)
-       (list 2 (_"something") (_"the foundation"))))
+       (list 2 (G_"something") (G_"the foundation"))))
 
 (define (hint-slot-to-foundation start-slot end-slots)
   (and (not (null? end-slots))
@@ -355,7 +355,7 @@
 
 (define (hint-deal)
   (and (dealable?)
-       (list 0 (_"Deal a new card from the deck"))))
+       (list 0 (G_"Deal a new card from the deck"))))
 
 (define (get-hint)
   (or (hint-start-foundation)

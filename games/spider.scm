@@ -85,7 +85,7 @@
 
 (define (get-stock-no-string)
   (format #f
-          (_"Stock left: ~a")
+          (G_"Stock left: ~a")
 	  (number->string (length (get-cards stock)))))
 
 ;internal procedures/variables
@@ -181,8 +181,8 @@
                 (any-slot-empty? tableau))
 	   (begin
 	     (if (must-undo-to-deal?)
-	         (set-statusbar-message (_"Undo until there are enough cards to fill all tableau piles"))
-	         (set-statusbar-message (_"Please fill in empty pile first.")))
+	         (set-statusbar-message (G_"Undo until there are enough cards to fill all tableau piles"))
+	         (set-statusbar-message (G_"Please fill in empty pile first.")))
              #f)
 	   (begin
 	     (deal-new-cards tableau)
@@ -282,12 +282,12 @@
   (if (eq? slots '())
       #f
       (if (empty-slot? (car slots))
-	  (list 0 (_"Place something on empty slot"))
+	  (list 0 (G_"Place something on empty slot"))
 	  (open-slots? (cdr slots)))))
 
 (define (dealable?)
   (if (not (empty-slot? stock))
-      (list 0 (_"Deal another round"))
+      (list 0 (G_"Deal another round"))
       #f))
 
 (define (count-cards slots acc)
@@ -297,7 +297,7 @@
 
 (define (hint-few-tableau-cards)
   (and (must-undo-to-deal?)
-       (list 0 (_"Undo until there are enough cards to fill all tableau piles"))))
+       (list 0 (G_"Undo until there are enough cards to fill all tableau piles"))))
 
 (define (get-hint)
   (or (hint-few-tableau-cards)
@@ -306,13 +306,13 @@
       (open-slots? tableau)
       (dealable?)
 ; this isn't great, but it will get around the premature end-of-game call
-      (list 0 (_"Try moving card piles around"))))
+      (list 0 (G_"Try moving card piles around"))))
 
 (define (get-options)
   (list 'begin-exclusive 
-	(list (_"Four Suits") suits-four)
-	(list (_"Two Suits") suits-two)
-	(list (_"One Suit") suits-one)
+	(list (G_"Four Suits") suits-four)
+	(list (G_"Two Suits") suits-two)
+	(list (G_"One Suit") suits-one)
 	'end-exclusive))
 
 (define (apply-options options)

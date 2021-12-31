@@ -65,11 +65,11 @@
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
+  (string-append (G_"Redeals left:") " "
 		 (number->string (- 1 FLIP-COUNTER))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -295,10 +295,10 @@
 
 (define (dealable?)
   (or (and (not (empty-slot? 0))
-	   (list 0 (_"Deal another card")))
+	   (list 0 (G_"Deal another card")))
       (and (not (empty-slot? 1))
 	   (< FLIP-COUNTER 1)
-	   (list 0 (_"Move waste to stock")))))
+	   (list 0 (G_"Move waste to stock")))))
 
 (define (get-min-happy-foundation fslot value)
   (cond ((= fslot 10)
@@ -330,7 +330,7 @@
       (check-foundation-for-waste 2)
       (dealable?)
       (check-to-foundations 1 2)
-      (list 0 (_"Try rearranging the cards"))))
+      (list 0 (G_"Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

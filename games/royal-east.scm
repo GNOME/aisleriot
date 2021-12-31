@@ -74,21 +74,21 @@
 					(get-base-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (string-append (_"Base Card:") " " (number->string BASE-VAL)))
+	 (string-append (G_"Base Card:") " " (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (_"Base Card: Ace"))
+	 (G_"Base Card: Ace"))
 	((= BASE-VAL 11)
-	 (_"Base Card: Jack"))
+	 (G_"Base Card: Jack"))
 	((= BASE-VAL 12)
-	 (_"Base Card: Queen"))
+	 (G_"Base Card: Queen"))
 	((= BASE-VAL 13)
-	 (_"Base Card: King"))
+	 (G_"Base Card: King"))
 	(#t "")))
 
 (define (button-pressed slot-id card-list)
@@ -190,7 +190,7 @@
 
 (define (dealable?)
   (if (not (empty-slot? 0))
-      (list 0 (_"Deal a card"))
+      (list 0 (G_"Deal a card"))
       #f))
 
 (define (check-a-foundation card f-slot)

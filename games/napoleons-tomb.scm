@@ -320,7 +320,7 @@
 ;;;;
 (define (get-hint)
   (or (get-reserve-hint (cons waste reserve-slots) (cons center-slot corner-slots))
-     	(list 0 (_"Deal a new card from the deck"))))
+     	(list 0 (G_"Deal a new card from the deck"))))
 
 
 ;;;;
@@ -332,11 +332,11 @@
   ;;
   (define (get-redeals-string)
     (if (not deal-three) ""
-	(string-append (_"Redeals left:") " "
+	(string-append (G_"Redeals left:") " "
 		       (number->string (- max-redeals FLIP-COUNTER)))))
   ;;
   (define (get-stock-string)
-    (string-append (_"Stock left:") " " 
+    (string-append (G_"Stock left:") " " 
 		   (number->string (length (get-cards stock)))))
 
   (set-statusbar-message (string-append (get-stock-string)
@@ -351,10 +351,10 @@
 ;;;;
 (define (get-options) 
   (list 'begin-exclusive 
-	(list (_"Three card deals") deal-three)
-	(list (_"Single card deals") (not deal-three))
+	(list (G_"Three card deals") deal-three)
+	(list (G_"Single card deals") (not deal-three))
 	'end-exclusive
-	(list (_"Autoplay") autoplay)))
+	(list (G_"Autoplay") autoplay)))
 
 
 ;;;;

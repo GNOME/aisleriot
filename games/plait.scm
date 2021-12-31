@@ -100,10 +100,10 @@
 
 (define (deal-possible?)
   (if (not (empty-slot? deck))
-      (list 0 (_"Deal a new card from the deck"))
+      (list 0 (G_"Deal a new card from the deck"))
       (if (and (< FLIP-COUNTER 2)
 	       (not (empty-slot? stock)))
-	  (list 0 (_"Move waste back to stock"))
+	  (list 0 (G_"Move waste back to stock"))
 	  #f)))
 
 (define (move-upwards-possible? top-card-value new-card-value)
@@ -231,25 +231,25 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
 		 (number->string (length (get-cards deck)))))
 
 (define (get-base-string)
   (cond ((and (> start-value 1)
 	      (< start-value 11))
-	 (string-append (_"Base Card: ") (number->string start-value)))
+	 (string-append (G_"Base Card: ") (number->string start-value)))
 	((= start-value 1)
-	 (_"Base Card: Ace"))
+	 (G_"Base Card: Ace"))
 	((= start-value 11)
-	 (_"Base Card: Jack"))
+	 (G_"Base Card: Jack"))
 	((= start-value 12)
-	 (_"Base Card: Queen"))
+	 (G_"Base Card: Queen"))
 	((= start-value 13)
-	 (_"Base Card: King"))
+	 (G_"Base Card: King"))
 	(#t "")))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
+  (string-append (G_"Redeals left:") " "
 		 (number->string (- 2 FLIP-COUNTER))))
 
 ;; Move cards automatically from the plait to one of the edge slots

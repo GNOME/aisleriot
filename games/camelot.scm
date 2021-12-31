@@ -74,7 +74,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
 		 (number->string (length (get-cards 16)))))
 
 (define (button-pressed slot-id card-list)
@@ -165,10 +165,10 @@
        (empty-slot? 10)))
 
 (define (hint-remove-ten suit)
-  (cond ((eq? suit club) (_"Remove the ten of clubs."))
-        ((eq? suit diamond) (_"Remove the ten of diamonds."))
-        ((eq? suit heart) (_"Remove the ten of hearts."))
-        ((eq? suit spade) (_"Remove the ten of spades."))))
+  (cond ((eq? suit club) (G_"Remove the ten of clubs."))
+        ((eq? suit diamond) (G_"Remove the ten of diamonds."))
+        ((eq? suit heart) (G_"Remove the ten of hearts."))
+        ((eq? suit spade) (G_"Remove the ten of spades."))))
 
 (define (find-match slot1 slot2)
   (cond ((= slot2 16) (find-match (+ 1 slot1) 0))
@@ -206,7 +206,7 @@
 	  (and (not (empty-slot? 17))
 	       (hint-move 17 1 (placeable? (get-top-card 17))))
 	  (find-match 0 0))
-      (list 0 (_"Deal a new card from the deck"))))
+      (list 0 (G_"Deal a new card from the deck"))))
 
 (define (get-options) #f)
 

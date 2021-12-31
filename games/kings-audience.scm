@@ -85,7 +85,7 @@
 
 (define (give-status)
   (set-statusbar-message (format #f
-                                 (_"Stock remaining: ~a")
+                                 (G_"Stock remaining: ~a")
                                  (number->string (length (get-cards stock)))
                          )
   )
@@ -224,7 +224,7 @@
   )
   (if move
       (hint-move (car move) 1 (cadr move))
-      (and (not (empty-slot? stock)) (list 0 (_"Deal a new card")))
+      (and (not (empty-slot? stock)) (list 0 (G_"Deal a new card")))
   )
 )
 

@@ -79,29 +79,29 @@
                                         (get-start-value-string))))
 
 (define (get-value-name value)
-  (cond ((eq? value ace) (_"ace"))
-        ((eq? value 2) (_"two"))
-        ((eq? value 3) (_"three"))
-        ((eq? value 4) (_"four"))
-        ((eq? value 5) (_"five"))
-        ((eq? value 6) (_"six"))
-        ((eq? value 7) (_"seven"))
-        ((eq? value 8) (_"eight"))
-        ((eq? value 9) (_"nine"))
-        ((eq? value 10) (_"ten"))
-        ((eq? value jack) (_"jack"))
-        ((eq? value queen) (_"queen"))
-        ((eq? value king) (_"king"))
-        (#t (_"Unknown value"))))
+  (cond ((eq? value ace) (G_"ace"))
+        ((eq? value 2) (G_"two"))
+        ((eq? value 3) (G_"three"))
+        ((eq? value 4) (G_"four"))
+        ((eq? value 5) (G_"five"))
+        ((eq? value 6) (G_"six"))
+        ((eq? value 7) (G_"seven"))
+        ((eq? value 8) (G_"eight"))
+        ((eq? value 9) (G_"nine"))
+        ((eq? value 10) (G_"ten"))
+        ((eq? value jack) (G_"jack"))
+        ((eq? value queen) (G_"queen"))
+        ((eq? value king) (G_"king"))
+        (#t (G_"Unknown value"))))
 
 (define (get-start-value-string)
   (if
     (> start-value 0)
-    (string-append (_"Start card:") " " (get-value-name start-value))
-    (string-append (_"Choices left:") " " (number->string choices))))
+    (string-append (G_"Start card:") " " (get-value-name start-value))
+    (string-append (G_"Choices left:") " " (number->string choices))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
                  (number->string (length (get-cards 0)))))
 
 ;; Interactions
@@ -274,7 +274,7 @@
   (and
     (= start-value 0)
     (if (= choices 3)
-        (hint-click chooser (_"Turn over the top card of the stock."))
+        (hint-click chooser (G_"Turn over the top card of the stock."))
         (hint-move chooser 1 (car foundation)))))
 
 (define (valid-move? start end)
@@ -321,15 +321,15 @@
     ; Empty slot?
     (and
       (or-map empty-slot? tableau)
-      (list 0 (_"Fill an empty slot.")))
+      (list 0 (G_"Fill an empty slot.")))
     ; Colour matches are the last resort...
     (or-map maybe-hint t-t-pairs)
     ; ... apart from dealing, of course.
     (and
       (not (empty-slot? stock))
-      (hint-click stock (_"Deal a new round.")))
+      (hint-click stock (G_"Deal a new round.")))
     ; If all else fails.
-    (list 0 (_"Try moving cards down from the foundations."))))
+    (list 0 (G_"Try moving cards down from the foundations."))))
 
 (define (game-won) (= (get-score) 52))
 

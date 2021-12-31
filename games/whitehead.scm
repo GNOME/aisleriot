@@ -55,7 +55,7 @@
   (set-statusbar-message (string-append (get-stock-no-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -240,7 +240,7 @@
 		  (and (not (empty-slot? 12))
 		       (or (not (check-same-suit-list (get-cards 12)))
 			   (not (check-straight-descending-list (get-cards 12))))))
-	      (list 0 (_"Move a build of cards on to the empty Tableau slot"))))
+	      (list 0 (G_"Move a build of cards on to the empty Tableau slot"))))
 	(#t (empty-tab? (+ 1 slot)))))
 
 (define (get-hint)
@@ -249,7 +249,7 @@
       (check-same-color-builds 1 6)
       (empty-tab? 6)
       (and (not (empty-slot? 0))
-          (list 0 (_"Deal another card")))))
+          (list 0 (G_"Deal another card")))))
 
 (define (get-options) 
   #f)

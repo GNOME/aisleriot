@@ -171,9 +171,9 @@
 ; Options
 (define (get-options)
 	(list 'begin-exclusive 
-		(list (_"Six Foundations")  (= found-amt 6))
-		(list (_"Five Foundations") (= found-amt 5))
-		(list (_"Four Foundations") (= found-amt 4))
+		(list (G_"Six Foundations")  (= found-amt 6))
+		(list (G_"Five Foundations") (= found-amt 5))
+		(list (G_"Four Foundations") (= found-amt 4))
 	'end-exclusive)
 )
 (define (apply-options options)
@@ -191,8 +191,8 @@
 		(if (list? x)
 			(hint-move (car x) 1 (cadr x))
 			(if x
-				(list 0 (_"Play a card to foundation."))
-				(list 0 (_"No moves."))
+				(list 0 (G_"Play a card to foundation."))
+				(list 0 (G_"No moves."))
 			)
 		)
 	)

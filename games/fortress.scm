@@ -209,7 +209,7 @@
 	   (empty-slot? 10)
 	   (empty-slot? 11)
 	   (empty-slot? 13))
-       (list 0 (_"Move something onto an empty tableau slot."))))
+       (list 0 (G_"Move something onto an empty tableau slot."))))
 
 (define (get-hint)
   (or (to-foundations? 0 3)

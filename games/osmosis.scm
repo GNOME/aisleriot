@@ -65,13 +65,13 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (format #f (_"Stock left: ~a") (number->string (length (get-cards 8))))
+  (format #f (G_"Stock left: ~a") (number->string (length (get-cards 8))))
 )
 
 (define (get-redeals-string)
   (if deal-three
     ""
-    (format #f (_"Redeals left: ~a") (number->string (- 2 FLIP-COUNTER)))
+    (format #f (G_"Redeals left: ~a") (number->string (- 2 FLIP-COUNTER)))
   )
 )
 
@@ -211,14 +211,14 @@
 (define (get-hint)
   (or (get-valid-move '(0 2 4 6 9))
       (if deal-three
-        (list 0 (_"Deal new cards from the deck"))
-        (list 0 (_"Deal a new card from the deck"))
+        (list 0 (G_"Deal new cards from the deck"))
+        (list 0 (G_"Deal a new card from the deck"))
       )
   )
 )
 
 (define (get-options)
-  (list (list (_"Three card deals") deal-three)))
+  (list (list (G_"Three card deals") deal-three)))
 
 (define (apply-options options)
   (set! deal-three (cadar options))

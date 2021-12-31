@@ -140,8 +140,8 @@
     '())
 
 
-(define-public (_ x)
-    (assert (string? x) "_ called on a non-string")
+(define-public (G_ x)
+    (assert (string? x) "G_ called on a non-string")
     x)
 
 

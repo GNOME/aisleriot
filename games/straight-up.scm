@@ -61,15 +61,15 @@
 					(get-redeals-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
 		  (number->string (length (get-cards 0)))))
 
 (define (get-reserve-no-string)
-  (string-append (_"Reserve left:") " "
+  (string-append (G_"Reserve left:") " "
 		 (number->string (length (get-cards 6)))))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
+  (string-append (G_"Redeals left:") " "
 		 (number->string (- 2 FLIP-COUNTER))))
 
 (define (button-pressed slot-id card-list)
@@ -237,10 +237,10 @@
       (to-tableau 1)
       (empty-tableau? 7)
       (if (not (empty-slot? 0))
-          (list 0 (_"Deal a new card from the deck"))
+          (list 0 (G_"Deal a new card from the deck"))
           (if (and (< FLIP-COUNTER 2)
                    (not (empty-slot? 1)))
-              (list 0 (_"Move waste back to stock"))
+              (list 0 (G_"Move waste back to stock"))
               #f))))
 
 (define (get-options) 

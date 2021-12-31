@@ -124,11 +124,11 @@
 					(get-redeals-string))))
 
 (define (get-redeals-string)
-  (string-append (_"Redeals left:") " "
+  (string-append (G_"Redeals left:") " "
 		 (number->string (- 1 FLIP-COUNTER))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards stock)))))
 
 (define (empty-slots? slots)
@@ -283,9 +283,9 @@
     (and (or (not (empty-slot? stock))
              (and (< FLIP-COUNTER 1)
                   (not (empty-slot? waste))))
-         (list 0 (_"Deal a new card from the deck")))
+         (list 0 (G_"Deal a new card from the deck")))
     (and (get-legal-move tableau tableau)
-         (list 0 (_"Try rearranging the cards")))))
+         (list 0 (G_"Try rearranging the cards")))))
 
 (define (full-piles? piles)
   (and (= 13 (length (get-cards (car piles))))

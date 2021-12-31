@@ -170,29 +170,29 @@
 	(nth-item 
 	 (list
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-               (_"Just because a crosswalk looks like a hopscotch board doesn't mean it is one")
+               (G_"Just because a crosswalk looks like a hopscotch board doesn't mean it is one")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Look both ways before you cross the street")
+	       (G_"Look both ways before you cross the street")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Have you read the help file?")
+	       (G_"Have you read the help file?")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Odessa is a better game.  Really.")
+	       (G_"Odessa is a better game.  Really.")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Tourniquets are not recommended unless in the direst emergency")
+	       (G_"Tourniquets are not recommended unless in the direst emergency")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"I could sure use a backrub right about now...")
+	       (G_"I could sure use a backrub right about now...")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Monitors won't give you Vitamin D -- but sunlight will...")
+	       (G_"Monitors won't give you Vitamin D -- but sunlight will...")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"If you're ever lost and alone in the woods, hug a tree")
+	       (G_"If you're ever lost and alone in the woods, hug a tree")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Fishing wire makes bad dental floss")
+	       (G_"Fishing wire makes bad dental floss")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Consistency is key")
+	       (G_"Consistency is key")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"When without a stapler, a staple and a ruler will work")
+	       (G_"When without a stapler, a staple and a ruler will work")
                ; Translators: This is one of the sentences that are used when the user wants to get a hint. Since the 'clock' game is a joke in itself, the sentence it nonsensical and/or a joke. So you can substitute anything you like here; you don't have to translate the original sentence!
-	       (_"Never blow in a dog's ear"))
+	       (G_"Never blow in a dog's ear"))
 	 (aisleriot-random 12))))
 
 (define (get-options) #f)

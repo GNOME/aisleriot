@@ -80,11 +80,11 @@
 
 (define (get-redeals-string)
   (if (< max-redeal 0) ""
-      (string-append (_"Redeals left:") " "
+      (string-append (G_"Redeals left:") " "
 		     (number->string (- max-redeal FLIP-COUNTER)))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (is-tableau-build? card-list)
@@ -259,16 +259,16 @@
       (and (not kings-only)
            (any-slot-empty? tableau)
            (any-slot-nonempty? (cons waste tableau))
-           (list 0 (_"Consider moving something into an empty slot")))
+           (list 0 (G_"Consider moving something into an empty slot")))
       (and (or (and (or (= max-redeal -1)
 			(< FLIP-COUNTER max-redeal))
 		    (not (empty-slot? waste)))
 	       (not (empty-slot? stock))) 
-	   (hint-click stock (_"Deal a new card from the deck")))
+	   (hint-click stock (G_"Deal a new card from the deck")))
 ; FIXME: need to give proper hints for this case too ...
       (and (not (and-map empty-slot? foundation))
-           (list 0 (_"Try moving cards down from the foundation")))
-      (list 0 (_"No hint available right now"))))
+           (list 0 (G_"Try moving cards down from the foundation")))
+      (list 0 (G_"No hint available right now"))))
 
 (define (game-won)
   (and (= 13 (length (get-cards 2)))
@@ -290,10 +290,10 @@
 
 (define (get-options)
   (list 'begin-exclusive 
-	(list (_"Three card deals") deal-three)
-	(list (_"Single card deals") deal-one)
-	(list (_"No redeals") no-redeal)
-	(list (_"Unlimited redeals") unl-redeal)
+	(list (G_"Three card deals") deal-three)
+	(list (G_"Single card deals") deal-one)
+	(list (G_"No redeals") no-redeal)
+	(list (G_"Unlimited redeals") unl-redeal)
 	'end-exclusive))
 
 (define (apply-options options)

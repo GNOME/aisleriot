@@ -294,10 +294,10 @@
       (> (get-score) 74)))
 
 (define (get-hint)
-  (list 0 (_"Place cards on to the Tableau to form poker hands")))
+  (list 0 (G_"Place cards on to the Tableau to form poker hands")))
 
 (define (get-options)
-  (list (list (_"Shuffle mode") shuffle-mode)))
+  (list (list (G_"Shuffle mode") shuffle-mode)))
 
 (define (apply-options options)
   (set! shuffle-mode (cadar options)))

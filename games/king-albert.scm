@@ -283,7 +283,7 @@
       (check-empty-tslot 4)
       (check-foundation-for-uncover 4)
       (check-to-foundations 4 0)
-      (list 0 (_"Try rearranging the cards"))))
+      (list 0 (G_"Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

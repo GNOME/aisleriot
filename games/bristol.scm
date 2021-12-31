@@ -75,7 +75,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
 		 (number->string (length (get-cards 0)))))
 
 (define (check-for-kings slot-id)
@@ -259,7 +259,7 @@
 
 (define (check-deal)
   (and (dealable?)
-       (list 0 (_"Deal another round"))))
+       (list 0 (G_"Deal another round"))))
 
 (define (get-hint)
   (or (check-to-foundations 1)

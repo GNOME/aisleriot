@@ -53,7 +53,7 @@
   (set-statusbar-message (string-append (get-stock-no-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " "
+  (string-append (G_"Stock left:") " "
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -224,19 +224,19 @@
 	 #f)
 	((and (empty-slot? slot)
 	      (kings-avail 5))
-	 (list 0 (_"Move a king onto an empty tableau slot.")))
+	 (list 0 (G_"Move a king onto an empty tableau slot.")))
 	(#t (fill-empties (+ 1 slot)))))
 
 (define (dealable?)
   (and (not (empty-slot? 0))
-       (list 0 (_"Deal more cards"))))
+       (list 0 (G_"Deal more cards"))))
 
 (define (get-hint)
   (or (to-foundations? 5 1)
       (check-tableau 5 6)
       (fill-empties 5)
       (dealable?)
-      (list 0 (_"No hint available right now"))))
+      (list 0 (G_"No hint available right now"))))
 
 (define (get-options) 
   #f)

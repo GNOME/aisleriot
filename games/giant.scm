@@ -73,7 +73,7 @@
 
 (define (get-stock-no-string)
   (format #f
-          (_"Deals left: ~a")
+          (G_"Deals left: ~a")
           (number->string (/ (length (get-cards stock-slot)) 8 ))
   )
 )
@@ -249,7 +249,7 @@
         (not (empty-slot? stock-slot ))
         (or allow-empty-slots
             (not (any-slot-empty? tableau))))
-      (list 0 (_"Deal a row"))
+      (list 0 (G_"Deal a row"))
       #f))
 
 
@@ -273,16 +273,16 @@
             (hint-move (car t-result1) 1 (cadr t-result1)))
            ( t-result2
             (hint-move (car t-result2) 1 (cadr t-result2)))
-           ( (empty-slot? reserve-slot) (list 0 (_"Try moving a card to the reserve")))
-           ( (dealable?) (list 0 (_"Try dealing a row of cards")))
+           ( (empty-slot? reserve-slot) (list 0 (G_"Try moving a card to the reserve")))
+           ( (dealable?) (list 0 (G_"Try dealing a row of cards")))
 ; this isn't great, but it will get around the premature end-of-game call
-           (else (list 0 (_"Try moving card piles around")))
+           (else (list 0 (G_"Try moving card piles around")))
      )))
 
 (define (get-options)
   (list 'begin-exclusive
-        (list (_"Same suit") same-suit)
-        (list (_"Alternating colors") (not same-suit))
+        (list (G_"Same suit") same-suit)
+        (list (G_"Alternating colors") (not same-suit))
         'end-exclusive))
 
 (define (apply-options options)

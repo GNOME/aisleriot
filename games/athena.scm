@@ -77,7 +77,7 @@
 )
 
 (define (get-options)
-  (list (list (_"Three card deals") deal-three)))
+  (list (list (G_"Three card deals") deal-three)))
 
 (define (apply-options options)
   (set! deal-three (cadar options)))

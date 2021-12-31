@@ -100,7 +100,7 @@
   (set-statusbar-message (string-append (get-stock-no-string))))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -170,7 +170,7 @@
 
 (define (hint-flip-stock)
   (and (not (empty-slot? stock))
-       (list 0 (_"Deal a new card from the deck"))))
+       (list 0 (G_"Deal a new card from the deck"))))
 
 (define (get-hint)
   (or (hint-tableau-to-foundation 6)

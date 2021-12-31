@@ -154,7 +154,7 @@
 
 (define (give-status)
   (set-statusbar-message (format #f 
-                                 (_"Cards remaining: ~a") 
+                                 (G_"Cards remaining: ~a") 
 				 (number->string (- 48 (get-score)))))
                          
 )
@@ -197,7 +197,7 @@
 
 (define (get-hint)
   (or (check-moves from-list to-list)
-      (list 0 (_"Redeal."))
+      (list 0 (G_"Redeal."))
   )
 )
 

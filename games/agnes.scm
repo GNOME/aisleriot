@@ -69,22 +69,22 @@
 (define (get-base-string)
   (cond ((and (> BASE-VAL 1)
 	      (< BASE-VAL 11))
-	 (format #f (_"Base Card: ~a") (number->string BASE-VAL)))
+	 (format #f (G_"Base Card: ~a") (number->string BASE-VAL)))
 	((= BASE-VAL 1)
-	 (_"Base Card: Ace"))
+	 (G_"Base Card: Ace"))
 	((= BASE-VAL 11)
-	 (_"Base Card: Jack"))
+	 (G_"Base Card: Jack"))
 	((= BASE-VAL 12)
-	 (_"Base Card: Queen"))
+	 (G_"Base Card: Queen"))
 	((= BASE-VAL 13)
-	 (_"Base Card: King"))
+	 (G_"Base Card: King"))
 	(#t "")))
 
 (define (get-stock-no-string)
   (if (> (length (get-cards 0)) 1)
-      (string-append (_"Stock left:") " "
+      (string-append (G_"Stock left:") " "
 		     (number->string (length (get-cards 0))))
-      (string-append (_"Stock left: 0")))) 
+      (string-append (G_"Stock left: 0")))) 
 
 (define (check-straight-descending-list-base-low card-list)
   (or (< (length card-list) 2)
@@ -261,13 +261,13 @@
 
 (define (check-deal?)
   (and (dealable?)
-       (list 0 (_"Deal more cards"))))
+       (list 0 (G_"Deal more cards"))))
 
 (define (get-hint)
   (or (check-to-foundation? 5)
       (check-to-tableau? 5 6)
       (check-deal?)
-      (list 0 (_"Try rearranging the cards"))))
+      (list 0 (G_"Try rearranging the cards"))))
 
 (define (get-options) 
   #f)

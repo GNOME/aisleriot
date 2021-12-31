@@ -245,7 +245,7 @@
 
 (define (check-for-empty-reserve)
   (and (> free-reserves 0)
-       (list 0 (_"Move something on to an empty reserve"))))
+       (list 0 (G_"Move something on to an empty reserve"))))
 
 (define (get-hint)
   (or (check-to-foundations? 4 0)

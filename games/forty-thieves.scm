@@ -94,7 +94,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))
   )
 )
@@ -354,7 +354,7 @@
 ;this is the last-straw hint maker
 (define (check-for-deal)
   (if (not (empty-slot? stock-pile)) 
-        (list 0 (_"Deal a card from stock"))
+        (list 0 (G_"Deal a card from stock"))
 	 #f
   )
 )

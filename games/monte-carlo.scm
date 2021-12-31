@@ -72,7 +72,7 @@
   (set-statusbar-message (get-stock-no-string)))
 
 (define (get-stock-no-string)
-  (string-append (_"Stock left:") " " 
+  (string-append (G_"Stock left:") " " 
 		 (number->string (length (get-cards 0)))))
 
 (define (button-pressed slot-id card-list)
@@ -193,12 +193,12 @@
   (cond ((= slot 26)
 	 (if (and yesblank
 		  (not (empty-slot? 0)))
-	     (list 0 (_"Deal more cards"))
+	     (list 0 (G_"Deal more cards"))
 	     #f))
 	((empty-slot? slot)
 	 (empty? (+ 1 slot) #t))
 	(yesblank
-	 (list 0 (_"Deal more cards")))
+	 (list 0 (G_"Deal more cards")))
 	(#t (empty? (+ 1 slot) yesblank))))
 
 (define (get-hint)

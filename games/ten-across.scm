@@ -211,8 +211,8 @@
    (test-stack-move (append tmp-spots tableau))
    (and allow-two-spot-use
         (have-empty-slot? tmp-spots)
-        (list 0 (_"Move a card to an empty temporary slot")))
-   (list 0 (_"No hint available"))))
+        (list 0 (G_"Move a card to an empty temporary slot")))
+   (list 0 (G_"No hint available"))))
 
 (define final-stack-helper
   (lambda (the-list num suit)
@@ -248,7 +248,7 @@
   (not (game-won)))
 
 (define (get-options)
-  (list (list (_"Allow temporary spots use") allow-two-spot-use)))
+  (list (list (G_"Allow temporary spots use") allow-two-spot-use)))
 
 (define (apply-options options)
   (set! allow-two-spot-use (cadar options)))
