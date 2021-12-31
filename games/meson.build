@@ -119,6 +119,11 @@ guile_warnings = [
   '-Wunsupported-warning',
   '-Wunused-toplevel',
   '-Wunused-variable',
+  '-W1',
+]
+
+guile_flags = [
+  '-Ono-letrectify',
 ]
 
 # FIXME: this should use files('...') (allowed as per docs),
@@ -131,6 +136,7 @@ guile_compile = [
   meson.current_build_dir(),
   guile,
   'compile',
+  guile_flags,
   guile_warnings,
   '-o',
   '@OUTPUT@',
