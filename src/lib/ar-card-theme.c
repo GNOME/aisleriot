@@ -324,6 +324,23 @@ _ar_card_theme_class_foreach_env (ArCardThemeClass *klass,
   return retval;
 }
 
+gboolean
+_ar_card_theme_class_foreach_user_dir (ArCardThemeClass *klass,
+				       const char *name,
+				       ArCardThemeForeachFunc callback,
+				       gpointer data)
+{
+  const char *udd = g_get_user_data_dir();
+  if (!udd)
+    return TRUE;
+
+  char *path = g_build_filename(udd, "aisleriot", name, NULL);
+  gboolean rv = callback(klass, path, data);
+  g_free(path);
+
+  return rv;
+}
+
 /* public API */
 
 /**

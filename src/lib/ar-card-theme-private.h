@@ -115,6 +115,10 @@ gboolean _ar_card_theme_class_foreach_env (ArCardThemeClass *klass,
                                               const char *env,
                                               ArCardThemeForeachFunc callback,
                                               gpointer data);
+gboolean _ar_card_theme_class_foreach_user_dir (ArCardThemeClass *klass,
+						const char *name,
+						ArCardThemeForeachFunc callback,
+						gpointer data);
 
 void _ar_card_theme_emit_changed (ArCardTheme *theme);
 

@@ -138,8 +138,14 @@ ar_card_theme_svg_class_foreach_theme_dir (ArCardThemeClass *klass,
   /* If we're installed in a non-system prefix, also load the card themes
    * from the system prefix.
    */
-  if (!ar_runtime_is_system_prefix ())
-    return callback (klass, "/usr/share/aisleriot/cards", data);
+  if (!ar_runtime_is_system_prefix ()) {
+    if (!callback (klass, "/usr/share/aisleriot/cards", data))
+      return FALSE;
+  }
+
+  /* Load user-installed themes */
+  if (!_ar_card_theme_class_foreach_user_dir (klass, "cards", callback, data))
+    return FALSE;
 
   return TRUE;
 }
