@@ -122,9 +122,13 @@ guile_warnings = [
   '-W1',
 ]
 
-guile_flags = [
-  '-Ono-letrectify',
-]
+guile_flags = []
+
+if guile_version.version_compare('>= 3.0')
+  guile_flags += [
+    '-Ono-letrectify',
+  ]
+endif
 
 # FIXME: this should use files('...') (allowed as per docs),
 # but that crashes meson, see https://gitlab.gnome.org/chpe/meson/issues/2
