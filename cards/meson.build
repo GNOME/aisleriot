@@ -29,6 +29,7 @@ cards_sources = [
   'ancient_french.svg',
   'anglo.svg',
   'anglo_bitmap.svg',
+  'atlasnye.svg',
   'bellot.svg',
   'bonded.svg',
   'dondorf.svg',
