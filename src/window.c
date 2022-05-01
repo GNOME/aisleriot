@@ -385,7 +385,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     "\"Thom-10\"",
     /* Tango Nuevo, Ancient French, Simplistic,
      * Атласные (Atlasnye), Atlasnye (International), Atlasnye Skat,
-     * Tigullio, Plastic,
+     * Tigullio, Plastic, Neoclassical, Neoclassical 4 Color,
      * fixes and improvements to other decks.
      */
     "Vincent Bermel",
@@ -396,6 +396,8 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     "Luciano Montanaro",
     /* Plastic */
     "Gifford Cheung",
+    /* Neoclassical */
+    "Charles Esquiaqui",
 
     NULL
   };
