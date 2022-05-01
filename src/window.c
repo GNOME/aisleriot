@@ -387,6 +387,8 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
      * fixes and improvements to other decks.
      */
     "Vincent Bermel",
+    /* Атласные (Atlasnye) */
+    "Дмитрий Фомин",
     NULL
   };
   const char *documenters[] = {
