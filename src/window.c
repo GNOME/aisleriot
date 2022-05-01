@@ -384,11 +384,13 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     /* Tango Nuevo */
     "\"Thom-10\"",
     /* Tango Nuevo, Ancient French, Simplistic,
-     * Атласные (Atlasnye), Atlasnye (International), Tigullio,
+     * Атласные (Atlasnye), Atlasnye (International), Atlasnye Skat,
+     * Tigullio,
      * fixes and improvements to other decks.
      */
     "Vincent Bermel",
-    /* Атласные (Atlasnye), Atlasnye (International) */
+    /* Атласные (Atlasnye), Atlasnye (International), Atlasnye Skat,
+     */
     "Дмитрий Фомин",
     /* Tigullio */
     "Luciano Montanaro",

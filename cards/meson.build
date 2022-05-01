@@ -30,6 +30,7 @@ cards_sources = [
   'anglo.svg',
   'anglo_bitmap.svg',
   'atlasnye.svg',
+  'atlasnye_skat.svg',
   'bellot.svg',
   'bonded.svg',
   'dondorf.svg',
