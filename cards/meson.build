@@ -38,6 +38,7 @@ cards_sources = [
   'paris.svg',
   'swiss-xvii.svg',
   'tango.svg',
+  'tango_nuevo.svg',
 ]
 
 cardsdir = ar_pkgdatadir / 'cards'
