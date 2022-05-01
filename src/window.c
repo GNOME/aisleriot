@@ -381,8 +381,12 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     /* Guyenne Classic and Swiss cards */
     "Mario Frasca <mariotomo@gmail.com>",
     /* FIXMEchpe: who did the Bonded cards? */
-    "\"Thom-10\"", /* Tango Nuevo */
-    "Vincent Bermel", /* Tango Nuevo */
+    /* Tango Nuevo */
+    "\"Thom-10\"",
+    /* Tango Nuevo,Ancient French,
+     * fixes and improvements to other decks.
+     */
+    "Vincent Bermel",
     NULL
   };
   const char *documenters[] = {

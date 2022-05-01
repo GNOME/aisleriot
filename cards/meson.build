@@ -26,6 +26,7 @@ gzip_flags = [
 ]
 
 cards_sources = [
+  'ancient_french.svg',
   'anglo.svg',
   'anglo_bitmap.svg',
   'bellot.svg',
