@@ -15,5 +15,9 @@
 
 i18n.gettext(
   ar_gettext_domain,
+  args: [
+    '--keyword=G_',
+    '--flag=G_:1:pass-scheme-format',
+  ],
   preset: 'glib',
 )
