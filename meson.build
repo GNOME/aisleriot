@@ -326,7 +326,7 @@ if get_option('guile') == 'auto'
     assert(false, 'Guile not found')
   endif
 else
-  guile_version = get_option('guile').to_string()
+  guile_version = get_option('guile')
 endif
 
 guile_req = 'guile-' + guile_version
