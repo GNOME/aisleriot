@@ -20,7 +20,7 @@ project(
     'buildtype=release',
     'c_std=gnu11',
     'cpp_std=gnu++11',
-    'warning_level=' + (meson.version().version_compare('>= 0.50.0') ? '0' : '1'),
+    'warning_level=0',
     'b_ndebug=false',
   ],
   license: [
@@ -29,7 +29,7 @@ project(
     'GFDL-1.1-or-later',
     'GFDL-1.3-only',
   ],
-  meson_version: '>= 0.49.0',
+  meson_version: '>= 0.62.0',
   version: '3.22.25',
 )
 
@@ -63,7 +63,6 @@ ar_micro_version = version_split[2].to_int()
 # i18n
 
 ar_gettext_domain = ar_name
-po_dir = meson.current_source_dir() / 'po'
 
 # Directories
 
@@ -439,10 +438,10 @@ configure_file(
 
 top_inc = include_directories('.')
 
+subdir('po')
 subdir('data')
 subdir('games')
 subdir('src')
-subdir('po')
 
 if get_option('docs')
   subdir('help')

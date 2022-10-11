@@ -15,14 +15,20 @@
 
 # Appstream data
 
+metainfo_its = [
+  'metainfo.its',
+]
+
 metainfodir = ar_prefix / ar_datadir / 'metainfo'
 
-i18n.merge_file(
+i18n.itstool_join(
   input: 'sol.metainfo.xml.in',
-  output: '@BASENAME@',
-  po_dir: po_dir,
   install: true,
   install_dir: metainfodir,
+  install_tag: 'metadata',
+  its_files: metainfo_its,
+  mo_targets: gettext_targets[0],
+  output: '@BASENAME@',
 )
 
 # Desktop file
