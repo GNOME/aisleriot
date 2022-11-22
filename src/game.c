@@ -1643,6 +1643,9 @@ game_scm_load_game (void *user_data)
 
   scm_dynwind_begin (0);
 
+  /* Provide a clean environment */
+  scm_set_current_module(scm_c_eval_string("(make-fresh-user-module)"));
+
   scm_primitive_load_path (scm_from_utf8_string (game_module));
 
   for (i = 0; i <= LAST_MANDATORY_LAMBDA; ++i) {
