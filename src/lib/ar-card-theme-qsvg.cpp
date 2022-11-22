@@ -205,8 +205,6 @@ ar_card_theme_qsvg_paint_card (ArCardTheme *card_theme,
   g_assert_cmpint (cairo_surface_get_type (surface), ==, CAIRO_SURFACE_TYPE_IMAGE);
   g_assert_cmpint (cairo_image_surface_get_format (surface), ==, CAIRO_FORMAT_ARGB32);
 
-  /* cairo_surface_flush(surface); */
-
   if (theme->legacy)
     ar_card_get_legacy_node_by_id_snprintf (node, sizeof (node), card_id);
   else
@@ -216,6 +214,8 @@ ar_card_theme_qsvg_paint_card (ArCardTheme *card_theme,
       !theme->renderer->elementExists(QString(node+1))) {
     return;
   }
+
+  cairo_surface_flush(surface);
 
   QImage img(cairo_image_surface_get_data(surface),
              cairo_image_surface_get_width(surface),
