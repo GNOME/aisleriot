@@ -30,8 +30,9 @@ closedir(DIR);
 print OUTFILE "/* This is a generated file; DO NOT EDIT */\n";
 
 foreach $_ (@dir) {
+  next if (/^(api|card-monkey)\.scm$/);
   if (s/^(.)(.*).scm/\u$1$2/) { # Match scm filenames. Upcase first letter.
-    s/_(.)/ \u$1/g;             # Replace underscores and following letter
+    s/-(.)/ \u$1/g;             # Replace underscores and following letter
 				# with space and upcase letter.
     print OUTFILE "/* Translators: this string is the name of a game of patience.\n";
     print OUTFILE " If there is an established standard name for this game in your\n";
