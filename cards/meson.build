@@ -44,7 +44,7 @@ cards_sources = [
   'pixelangelo.svg',
   'plastic.svg',
   'simplistic.svg',
-  'swiss-xvii.svg',
+  'swiss-XVII.svg',
   'tango_nuevo.svg',
   'tarot.svg',
   'tigullio.svg',
