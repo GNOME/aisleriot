@@ -48,6 +48,7 @@ cards_sources = [
   'tango_nuevo.svg',
   'tarot.svg',
   'tigullio.svg',
+  'tragy.svg',
   'XSkat.svg',
   'Атласные.svg',
 ]
