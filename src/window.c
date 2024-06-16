@@ -2014,7 +2014,7 @@ aisleriot_window_init (AisleriotWindow *window)
   ar_stock_prepare_for_statusbar_tooltips (priv->ui_manager,
                                               GTK_WIDGET (priv->statusbar));
 
-  priv->game_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
+  priv->board_message_id = gtk_statusbar_get_context_id (priv->statusbar, "board-message");
 
   g_signal_connect (priv->board, "status-message",
                     G_CALLBACK (board_status_message_cb), window);
