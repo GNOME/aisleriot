@@ -212,16 +212,10 @@ game_over_dialog_response_cb (GtkWidget *dialog,
       break;
     default:
       /* The player closed the dialog window from the window border
-       * close button.
-       * If the game is over, start a new one. Otherwise undo. This latter
-       * one isn't actually the default, but it is probably the most reasonable
-       * thing to do.
+       * close button. Just start a new game.
        */
-      if (game_won) {
-        window_new_game(window);
-      } else {
-        aisleriot_game_undo_move (priv->game);
-      }
+      window_new_game(window);
+      break;
   } 
 }
 
