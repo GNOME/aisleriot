@@ -39,7 +39,7 @@
 
   (set! VERTPOS 0)
 
-  (add-blank-slot)
+  (set! HORIZPOS (+ HORIZPOS 0.5))
   (add-normal-slot '() 'reserve) ; 4
   (add-normal-slot '() 'reserve)
   (add-normal-slot '() 'reserve)
@@ -52,7 +52,7 @@
   (add-carriage-return-slot)
 
   (add-blank-slot)
-  (add-blank-slot)
+  (set! HORIZPOS (+ HORIZPOS 0.5))
 
   (add-extended-slot '() down 'tableau) ; 12
   (add-extended-slot '() down 'tableau)
@@ -70,7 +70,7 @@
 
   (set! free-reserves 4)
 
-  (list 10 4))
+  (list 9.5 4))
 
 (define (button-pressed slot-id card-list)
   (and (> slot-id 3)
