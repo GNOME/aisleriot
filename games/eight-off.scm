@@ -40,28 +40,28 @@
   (set! VERTPOS 0)
 
   (add-blank-slot)
+  (add-normal-slot '() 'reserve) ; 4
   (add-normal-slot '() 'reserve)
   (add-normal-slot '() 'reserve)
   (add-normal-slot '() 'reserve)
   (add-normal-slot '() 'reserve)
   (add-normal-slot '() 'reserve)
   (add-normal-slot '() 'reserve)
-  (add-normal-slot '() 'reserve)
-  (add-normal-slot '() 'reserve)
+  (add-normal-slot '() 'reserve) ; 11
 
   (add-carriage-return-slot)
 
   (add-blank-slot)
   (add-blank-slot)
 
+  (add-extended-slot '() down 'tableau) ; 12
   (add-extended-slot '() down 'tableau)
   (add-extended-slot '() down 'tableau)
   (add-extended-slot '() down 'tableau)
   (add-extended-slot '() down 'tableau)
   (add-extended-slot '() down 'tableau)
   (add-extended-slot '() down 'tableau)
-  (add-extended-slot '() down 'tableau)
-  (add-extended-slot '() down 'tableau)
+  (add-extended-slot '() down 'tableau) ; 19
 
   (deal-cards-face-up 0 '(12 13 14 15 16 17 18 19 12 13 14 15 16 17 18
 			     19 12 13 14 15 16 17 18 19 12 13 14 15 16
@@ -73,7 +73,8 @@
   (list 10 4))
 
 (define (button-pressed slot-id card-list)
-  (and (not (empty-slot? slot-id))
+  (and (> slot-id 3)
+       (not (empty-slot? slot-id))
        (or (= (length card-list) 1)
 	   (and (> slot-id 11)
 		(< (length card-list) (+ 2 free-reserves))
@@ -120,7 +121,8 @@
        (or (> start-slot 3)
            (add-to-score! -1))
        (or (> end-slot 3)
-           (add-to-score! 1))))
+           (add-to-score! 1))
+       (move-low-cards 0)))
 
 (define (button-clicked slot-id)
   #f)
@@ -143,26 +145,70 @@
 	      (deal-cards slot (list f-slot))))
 	(#t (move-to-foundation slot (+ 1 f-slot)))))
 
-(define (autoplay-foundations)
-  (define (autoplay-foundations-tail)
-    (if (or-map button-double-clicked '(4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19))
-        (delayed-call autoplay-foundations-tail)
-        #t))
-  (if (or-map button-double-clicked '(4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19))
-      (autoplay-foundations-tail)
-      #f))
+(define (move-low-cards slot-id)
+  (or
+    (and
+     (> slot-id 3)
+     (not (empty-slot? slot-id))
+     (or (and (= (get-value (get-top-card slot-id))
+                ace)
+             (move-to-empty-foundation slot-id 0))
+        (move-to-foundation slot-id 0))
+     (add-to-score! 1)
+     (or (> slot-id 11)
+        (set! free-reserves (+ 1 free-reserves)))
+     (delayed-call ((lambda (x) (lambda () (move-low-cards x))) 0))
+    )
+    (if (< slot-id 19)
+        (move-low-cards (+ 1 slot-id))
+        #t
+        )
+    )
+  )
+
+(define (any-empty-reserve)
+  (cond
+    ((empty-slot? 4) 4)
+    ((empty-slot? 5) 5)
+    ((empty-slot? 6) 6)
+    ((empty-slot? 7) 7)
+    ((empty-slot? 8) 8)
+    ((empty-slot? 9) 9)
+    ((empty-slot? 10) 10)
+    ((empty-slot? 11) 11)
+    (else #f)))
+
+(define (move-card-to-reserve card reserve-id)
+    (and
+        (not (boolean? reserve-id))
+        (empty-slot? reserve-id)
+        (add-card! reserve-id card)
+        (set! free-reserves (- free-reserves 1))
+    )
+)
 
 (define (button-double-clicked slot-id)
-  (if (> slot-id 3)
-      (and (not (empty-slot? slot-id))
-           (or (and (= (get-value (get-top-card slot-id))
-		       ace)
-		    (move-to-empty-foundation slot-id 0))
-	       (move-to-foundation slot-id 0))
-           (add-to-score! 1)
-           (or (> slot-id 11)
-	       (set! free-reserves (+ 1 free-reserves))))
-       (autoplay-foundations)))
+  (or
+    ; After setup, the reserve may have an ace. Allow double-clicking it.
+    (and
+      (> slot-id 3)
+	  (< slot-id 12)
+      (not (empty-slot? slot-id))
+	  (= (get-value (get-top-card slot-id)) ace)
+      (move-low-cards 0))
+    (and
+      (> slot-id 11)
+      (not (empty-slot? slot-id))
+      (let ((card (get-top-card slot-id)))
+        (and
+          (move-card-to-reserve card (any-empty-reserve))
+          (remove-card slot-id)
+          (move-low-cards 0)
+        )
+      )
+    )
+  )
+)
 
 (define (game-continuable)
   (and (not (game-won))
