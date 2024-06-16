@@ -26,6 +26,7 @@ help_pages = [
   'athena.xml',
   'auld_lang_syne.xml',
   'aunt_mary.xml',
+  'australian_patience.xml',
   'backbone.xml',
   'bakers_dozen.xml',
   'bakers_game.xml',

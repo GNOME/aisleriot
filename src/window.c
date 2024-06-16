@@ -395,6 +395,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     "Richard Hoelscher <rah@rahga.com>",
     "Vincent Povirk",
     "Sapphire Becker",
+    "Gwyneth Morgan",
     NULL
   };
   const char *artists[] = {

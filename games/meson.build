@@ -19,6 +19,7 @@ games_sources = [
   'athena.scm',
   'auld-lang-syne.scm',
   'aunt-mary.scm',
+  'australian-patience.scm',
   'backbone.scm',
   'bakers-dozen.scm',
   'bakers-game.scm',
