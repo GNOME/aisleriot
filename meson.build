@@ -30,7 +30,7 @@ project(
     'GFDL-1.3-only',
   ],
   meson_version: '>= 0.62.0',
-  version: '3.22.34',
+  version: '3.22.35',
 )
 
 # Naming
