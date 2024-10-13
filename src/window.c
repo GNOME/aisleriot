@@ -376,9 +376,9 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
 {
   const char *authors[] = {
     _("Main game:"),
-    "Jonathan Blandford <jrb@redhat.com>",
+    "Jonathan Blandford <jrb@gnome.org>",
     "Felix Bellaby <felix@pooh.u-net.com>",
-    "Rosanna Yuen <zana@webwynk.net>",
+    "Rosanna Yuen <zana@gnome.org>",
     "Callum McKenzie <callum@physics.otago.ac.nz>",
     "Christian Persch <chpe" "\100" "src.gnome.org>",
     "Andreas Røsdal <andreasr" "\100" "gnome.org>",
@@ -390,7 +390,7 @@ aisleriot_window_show_about_dialog (AisleriotWindow * window)
     "Nick Lamb <njl195@zepler.org.uk>",
     "Changwoo Ryu <cwryu@adam.kaist.ac.kr>",
     "Matthew Wilcox <matthew@wil.cx>",
-    "Rosanna Yuen <zana@webwynk.net>",
+    "Rosanna Yuen <zana@gnome.org>",
     "Alan Horkan <horkana@maths.tcd.ie>",
     "Richard Hoelscher <rah@rahga.com>",
     "Vincent Povirk",
