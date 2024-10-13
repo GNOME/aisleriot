@@ -1338,6 +1338,12 @@ card_theme_changed_cb (GtkToggleAction *action,
 }
 
 static void
+list_element_unref_cb (gpointer data,
+                      gpointer user_data)
+{
+  ar_card_theme_info_unref (data);
+}
+static void
 install_card_theme_menu (ArCardThemes *theme_manager,
                          AisleriotWindow *window)
 {
@@ -1364,7 +1370,7 @@ install_card_theme_menu (ArCardThemes *theme_manager,
 
   /* No need to install the menu when there's only one theme available anyway */
   if (list == NULL || list->next == NULL) {
-    g_list_foreach (list, (GFunc) ar_card_theme_info_unref, NULL);
+    g_list_foreach (list, list_element_unref_cb, NULL);
     g_list_free (list);
     return;
   }
