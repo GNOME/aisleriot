@@ -33,7 +33,7 @@
 
 #include "ar-conf.h"
 
-#define AR_CONF_GET_PRIVATE(that)(G_TYPE_INSTANCE_GET_PRIVATE ((that), AR_TYPE_CONF, ArConfPrivate))
+#define AR_CONF_GET_PRIVATE(obj) (ar_conf_get_instance_private(obj))
 
 struct ArConfPrivate {
   char *game_name;
@@ -66,7 +66,8 @@ static guint signals[LAST_SIGNAL];
 
 static ArConf *instance;
 
-G_DEFINE_TYPE (ArConf, ar_conf, G_TYPE_OBJECT);
+G_DEFINE_TYPE_EXTENDED (ArConf, ar_conf, G_TYPE_OBJECT, 0,
+                        G_ADD_PRIVATE (ArConf));
 
 /* helper functions */
 
@@ -206,7 +207,6 @@ ar_conf_get_accel_map_path (ArConf *conf,
   ArConfPrivate *priv = conf->priv;
   char *game_name, *conf_dir;
   char *conf_file = NULL;
-  const char *override;
 
   game_name = g_ascii_strdown (priv->game_name, -1);
 
@@ -526,8 +526,6 @@ ar_conf_class_init (ArConfClass *klass)
                           NULL,
                           G_PARAM_WRITABLE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK | G_PARAM_STATIC_BLURB |
                           G_PARAM_CONSTRUCT_ONLY));
-
-  g_type_class_add_private (gobject_class, sizeof (ArConfPrivate));
 }
 
 /* public API */
