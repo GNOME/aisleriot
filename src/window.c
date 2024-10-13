@@ -1395,7 +1395,7 @@ install_card_theme_menu (ArCardThemes *theme_manager,
 
     display_name = g_strdup (ar_card_theme_info_get_display_name (info));
 
-    g_snprintf (actionname, sizeof (actionname), "Theme%d", i);
+    g_snprintf (actionname, sizeof (actionname), "Theme%u", i);
     tooltip = g_strdup_printf (_("Display cards with “%s” card theme"), display_name);
     action = gtk_radio_action_new (actionname, display_name, tooltip, NULL, i);
     g_free (display_name);
