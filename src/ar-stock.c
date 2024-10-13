@@ -32,10 +32,10 @@
 #include "ar-stock.h"
 
 /* FIXME(porting): Setting this to 1 will turn on the old stock icons,
- * at the  expense of lots of  disabled warnings. Most of  these items
- * will go away once we port to GTK4 so removing them for now.
+ * at the expense of lots of disabled warnings. Most of these items
+ * will go away once we port to GTK4.
  */
-#define ENABLE_STOCK 0
+#define ENABLE_STOCK 1
 
 static void
 menu_item_select_cb (GtkWidget * widget, GtkStatusbar * statusbar)
