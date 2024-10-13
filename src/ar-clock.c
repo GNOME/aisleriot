@@ -9,18 +9,22 @@
  */
 
 #include <config.h>
-
 #include "ar-clock.h"
 
-G_DEFINE_TYPE (ArClock, ar_clock, GTK_TYPE_LABEL)
 
-struct ArClockPrivate {
+struct _ArClock {
+  GtkLabel parent_instance;
+
   guint update_timeout_id;
   gboolean update;
   gboolean started;
   time_t start_time;
   time_t stop_time;
 };
+
+
+G_DEFINE_TYPE (ArClock, ar_clock, GTK_TYPE_LABEL);
+
 
 static void
 clock_paint (ArClock *clock_widget)
@@ -54,19 +58,19 @@ ar_clock_update (ArClock *clock_widget)
 static void
 ar_clock_start_timer (ArClock *clock_widget)
 {
-  if (clock_widget->priv->update_timeout_id != 0)
+  if (clock_widget->update_timeout_id != 0)
     return;
 
-  clock_widget->priv->update_timeout_id =
+  clock_widget->update_timeout_id =
     gdk_threads_add_timeout_seconds (1, (GSourceFunc) ar_clock_update, clock_widget);
 }
 
 static void
 ar_clock_stop_timer (ArClock *clock_widget)
 {
-  if (clock_widget->priv->update_timeout_id != 0) {
-    g_source_remove (clock_widget->priv->update_timeout_id);
-    clock_widget->priv->update_timeout_id = 0;
+  if (clock_widget->update_timeout_id != 0) {
+    g_source_remove (clock_widget->update_timeout_id);
+    clock_widget->update_timeout_id = 0;
   }
 }
 
@@ -86,19 +90,15 @@ ar_clock_class_init (ArClockClass * klass)
   GObjectClass *object_class = (GObjectClass *) klass;
 
   object_class->finalize = ar_clock_finalize;
-
-  g_type_class_add_private (object_class, sizeof (ArClockPrivate));
 }
 
 static void
 ar_clock_init (ArClock *clock_widget)
 {
-  clock_widget->priv = G_TYPE_INSTANCE_GET_PRIVATE (clock_widget, AR_TYPE_CLOCK, ArClockPrivate);
-
-  clock_widget->priv->update_timeout_id = 0;
-  clock_widget->priv->start_time = clock_widget->priv->stop_time = 0;
-  clock_widget->priv->started = FALSE;
-  clock_widget->priv->update = TRUE;
+  clock_widget->update_timeout_id = 0;
+  clock_widget->start_time = clock_widget->stop_time = 0;
+  clock_widget->started = FALSE;
+  clock_widget->update = TRUE;
 
   /* FIXMEchpe: call clock_paint() instead */
   gtk_label_set_text (GTK_LABEL (clock_widget), "00:00:00");
@@ -128,15 +128,15 @@ ar_clock_new (void)
 void
 ar_clock_start (ArClock *clock_widget)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
+  g_return_if_fail (AR_IS_CLOCK (clock_widget));
 
-  if (clock_widget->priv->started)
+  if (clock_widget->started)
     return; /* nothing to do */
 
-  clock_widget->priv->started = TRUE;
-  clock_widget->priv->start_time = time (NULL) - (clock_widget->priv->stop_time - clock_widget->priv->start_time);
+  clock_widget->started = TRUE;
+  clock_widget->start_time = time (NULL) - (clock_widget->stop_time - clock_widget->start_time);
 
-  if (clock_widget->priv->update)
+  if (clock_widget->update)
     ar_clock_start_timer (clock_widget);
 }
 
@@ -149,9 +149,9 @@ ar_clock_start (ArClock *clock_widget)
 gboolean
 ar_clock_is_started   (ArClock *clock_widget)
 {
-  g_return_val_if_fail (GAMES_IS_CLOCK (clock_widget), FALSE);
+  g_return_val_if_fail (AR_IS_CLOCK (clock_widget), FALSE);
 
-  return clock_widget->priv->started;
+  return clock_widget->started;
 }
 
 /**
@@ -164,13 +164,13 @@ ar_clock_is_started   (ArClock *clock_widget)
 void
 ar_clock_stop (ArClock *clock_widget)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
+  g_return_if_fail (AR_IS_CLOCK (clock_widget));
 
-  if (!clock_widget->priv->started)
+  if (!clock_widget->started)
     return;
 
-  clock_widget->priv->started = FALSE;
-  clock_widget->priv->stop_time = time (NULL);
+  clock_widget->started = FALSE;
+  clock_widget->stop_time = time (NULL);
 
   ar_clock_stop_timer (clock_widget);
   clock_paint (clock_widget);
@@ -185,9 +185,9 @@ ar_clock_stop (ArClock *clock_widget)
 void
 ar_clock_reset (ArClock *clock_widget)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
+  g_return_if_fail (AR_IS_CLOCK (clock_widget));
 
-  clock_widget->priv->start_time = clock_widget->priv->stop_time = time (NULL);
+  clock_widget->start_time = clock_widget->stop_time = time (NULL);
 
   clock_paint (clock_widget);
 }
@@ -201,12 +201,12 @@ ar_clock_reset (ArClock *clock_widget)
 time_t
 ar_clock_get_seconds (ArClock *clock_widget)
 {
-  g_return_val_if_fail (GAMES_IS_CLOCK (clock_widget), 0);
+  g_return_val_if_fail (AR_IS_CLOCK (clock_widget), 0);
 
-  if (clock_widget->priv->started)
-    return time (NULL) - clock_widget->priv->start_time;
+  if (clock_widget->started)
+    return time (NULL) - clock_widget->start_time;
   else
-    return clock_widget->priv->stop_time - clock_widget->priv->start_time;
+    return clock_widget->stop_time - clock_widget->start_time;
 }
 
 /**
@@ -218,16 +218,16 @@ ar_clock_get_seconds (ArClock *clock_widget)
  */
 void
 ar_clock_add_seconds (ArClock *clock_widget,
-                         time_t seconds)
+                      time_t   seconds)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
+  g_return_if_fail (AR_IS_CLOCK (clock_widget));
 
-  if (!clock_widget->priv->started) {
+  if (!clock_widget->started) {
     g_warning ("Clock not started, cannot add seconds!\n");
     return;
   }
 
-  clock_widget->priv->start_time -= seconds;
+  clock_widget->start_time -= seconds;
   clock_paint (clock_widget);
 }
 
@@ -241,16 +241,16 @@ ar_clock_add_seconds (ArClock *clock_widget,
  * Use this e.g. to disable updates while the clock is invisible.
  */
 void
-ar_clock_set_update (ArClock *clock_widget,
-                        gboolean do_update)
+ar_clock_set_update (ArClock  *clock_widget,
+                     gboolean  do_update)
 {
-  g_return_if_fail (GAMES_IS_CLOCK (clock_widget));
+  g_return_if_fail (AR_IS_CLOCK (clock_widget));
 
   do_update = do_update != FALSE;
-  if (do_update == clock_widget->priv->update)
+  if (do_update == clock_widget->update)
     return;
 
-  clock_widget->priv->update = do_update;
+  clock_widget->update = do_update;
   if (do_update) {
     ar_clock_start_timer (clock_widget);
     clock_paint (clock_widget);
