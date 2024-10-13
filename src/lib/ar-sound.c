@@ -50,7 +50,9 @@ ar_sound_canberra_play (const char *sound_name,
                            gpointer data)
 {
   char *name, *path;
-  int rv;
+#ifdef GNOME_ENABLE_DEBUG
+  int rv = 0;
+#endif
 
   if (!sound_enabled)
     return;
@@ -78,26 +80,35 @@ ar_sound_canberra_play (const char *sound_name,
       }
 #endif /* GNOME_ENABLE_DEBUG */
 
-      rv =  ca_context_play (
-                             ca_gtk_context_get_for_screen (data),
-                             0,
-                             CA_PROP_MEDIA_NAME, sound_name,
-                             CA_PROP_MEDIA_FILENAME, path,
-                             NULL);
+#ifdef GNOME_ENABLE_DEBUG
+      rv =
+#endif
+        ca_context_play (
+                         ca_gtk_context_get_for_screen (data),
+                         0,
+                         CA_PROP_MEDIA_NAME, sound_name,
+                         CA_PROP_MEDIA_FILENAME, path,
+                         NULL);
       break;
     case GAMES_SOUND_FOR_EVENT:
-      rv =  ca_gtk_play_for_event (data,
-                                   0,
-                                   CA_PROP_MEDIA_NAME, sound_name,
-                                   CA_PROP_MEDIA_FILENAME, path,
-                                   NULL);
+#ifdef GNOME_ENABLE_DEBUG
+      rv =
+#endif
+        ca_gtk_play_for_event (data,
+                               0,
+                               CA_PROP_MEDIA_NAME, sound_name,
+                               CA_PROP_MEDIA_FILENAME, path,
+                               NULL);
       break;
     case GAMES_SOUND_FOR_WIDGET:
-      rv =  ca_gtk_play_for_widget (data,
-                                    0,
-                                    CA_PROP_MEDIA_NAME, sound_name,
-                                    CA_PROP_MEDIA_FILENAME, path,
-                                    NULL);
+#ifdef GNOME_ENABLE_DEBUG
+      rv =
+#endif
+        ca_gtk_play_for_widget (data,
+                                0,
+                                CA_PROP_MEDIA_NAME, sound_name,
+                                CA_PROP_MEDIA_FILENAME, path,
+                                NULL);
       break;
     default:
       g_assert_not_reached ();
