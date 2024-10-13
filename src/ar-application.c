@@ -44,9 +44,6 @@ struct _ArApplicationClass {
 
 struct _ArApplication {
   GtkApplication parent_instance;
-
-  /*< private >*/
-  ArApplicationPrivate *priv;
 };
 
 struct _ArApplicationPrivate
@@ -57,7 +54,8 @@ struct _ArApplicationPrivate
   gboolean freecell; /* unused */
 };
 
-G_DEFINE_TYPE (ArApplication, ar_application, GTK_TYPE_APPLICATION)
+G_DEFINE_TYPE_EXTENDED (ArApplication, ar_application, GTK_TYPE_APPLICATION, 0,
+                        G_ADD_PRIVATE (ArApplication))
 
 static void
 action_new_game (GSimpleAction *action,
@@ -158,17 +156,17 @@ action_quit (GSimpleAction *simple,
              GVariant *parameter,
              gpointer user_data)
 {
-  ArApplication *self = AR_APPLICATION (user_data);
+  ArApplicationPrivate *priv = ar_application_get_instance_private (user_data);
 
-  gtk_widget_destroy (GTK_WIDGET (self->priv->window));
+  gtk_widget_destroy (GTK_WIDGET (priv->window));
 }
 
 static void
 ar_application_activate (GApplication *application)
 {
-  ArApplication *self = AR_APPLICATION (application);
+  ArApplicationPrivate *priv = ar_application_get_instance_private (AR_APPLICATION (application));
 
-  gtk_window_present (GTK_WINDOW (self->priv->window));
+  gtk_window_present (GTK_WINDOW (priv->window));
 }
 
 static GActionEntry app_entries[] = {
@@ -184,8 +182,7 @@ static GActionEntry app_entries[] = {
 static void
 ar_application_startup (GApplication *application)
 {
-  ArApplication *self = AR_APPLICATION (application);
-  ArApplicationPrivate *priv = self->priv;
+  ArApplicationPrivate *priv = ar_application_get_instance_private (AR_APPLICATION (application));
 
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
@@ -194,9 +191,9 @@ ar_application_startup (GApplication *application)
 
   gtk_window_set_default_icon_name (priv->freecell ? "gnome-freecell" : "gnome-aisleriot");
 
-  g_action_map_add_action_entries (G_ACTION_MAP (self),
+  g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries, G_N_ELEMENTS (app_entries),
-                                   self);
+                                   application);
 
   gtk_application_add_accelerator (GTK_APPLICATION (application),
                                    "F11", "app.fullscreen", NULL);
@@ -217,20 +214,17 @@ ar_application_startup (GApplication *application)
 static void
 ar_application_dispose (GObject *object)
 {
-  ArApplication *self = AR_APPLICATION (object);
+  ArApplicationPrivate *priv = ar_application_get_instance_private (AR_APPLICATION (object));
 
   G_OBJECT_CLASS (ar_application_parent_class)->dispose (object);
 
-  g_free (self->priv->variation);
-  self->priv->variation = NULL;
+  g_clear_pointer (&priv->variation, g_free);
 }
 
 static void
 ar_application_init (ArApplication *self)
 {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
-                                            AR_TYPE_APPLICATION,
-                                            ArApplicationPrivate);
+  /* pass */
 }
 
 static void
@@ -243,8 +237,6 @@ ar_application_class_init (ArApplicationClass *class)
 
   application_class->activate = ar_application_activate;
   application_class->startup = ar_application_startup;
-
-  g_type_class_add_private (class, sizeof (ArApplicationPrivate));
 }
 
 GtkApplication *
@@ -252,13 +244,17 @@ ar_application_new (const char *variation,
                     gboolean freecell)
 {
   ArApplication *app;
+  ArApplicationPrivate *priv;
 
   app = g_object_new (AR_TYPE_APPLICATION,
                       "application-id", "org.gnome.aisleriot",
                       "flags", G_APPLICATION_NON_UNIQUE,
                       NULL);
-  app->priv->variation = g_strdup (variation);
-  app->priv->freecell = freecell != FALSE;
+
+  /* FIXME: This should be done in init */
+  priv = ar_application_get_instance_private (app);
+  priv->variation = g_strdup (variation);
+  priv->freecell = freecell != FALSE;
 
   return GTK_APPLICATION (app);
 }
