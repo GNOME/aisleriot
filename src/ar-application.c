@@ -19,7 +19,6 @@
  */
 
 #include "config.h"
-
 #include "ar-application.h"
 
 #include <stdlib.h>
@@ -38,24 +37,18 @@
 #include "game.h"
 #include "util.h"
 
-struct _ArApplicationClass {
-  GtkApplicationClass parent_class;
-};
-
 struct _ArApplication {
   GtkApplication parent_instance;
-};
 
-struct _ArApplicationPrivate
-{
   AisleriotWindow *window;
   char *variation;
   gint seed; /* unused */
   gboolean freecell; /* unused */
 };
 
-G_DEFINE_TYPE_EXTENDED (ArApplication, ar_application, GTK_TYPE_APPLICATION, 0,
-                        G_ADD_PRIVATE (ArApplication))
+
+G_DEFINE_TYPE (ArApplication, ar_application, GTK_TYPE_APPLICATION);
+
 
 static void
 action_new_game (GSimpleAction *action,
@@ -156,17 +149,17 @@ action_quit (GSimpleAction *simple,
              GVariant *parameter,
              gpointer user_data)
 {
-  ArApplicationPrivate *priv = ar_application_get_instance_private (user_data);
+  ArApplication *self = AR_APPLICATION (user_data);
 
-  gtk_widget_destroy (GTK_WIDGET (priv->window));
+  gtk_widget_destroy (GTK_WIDGET (self->window));
 }
 
 static void
 ar_application_activate (GApplication *application)
 {
-  ArApplicationPrivate *priv = ar_application_get_instance_private (AR_APPLICATION (application));
+  ArApplication *self = AR_APPLICATION (application);
 
-  gtk_window_present (GTK_WINDOW (priv->window));
+  gtk_window_present (GTK_WINDOW (self->window));
 }
 
 static GActionEntry app_entries[] = {
@@ -182,14 +175,14 @@ static GActionEntry app_entries[] = {
 static void
 ar_application_startup (GApplication *application)
 {
-  ArApplicationPrivate *priv = ar_application_get_instance_private (AR_APPLICATION (application));
+  ArApplication *self = AR_APPLICATION (application);
 
   G_APPLICATION_CLASS (ar_application_parent_class)->startup (application);
 
   ar_sound_enable (FALSE);
   ar_stock_init ();
 
-  gtk_window_set_default_icon_name (priv->freecell ? "gnome-freecell" : "gnome-aisleriot");
+  gtk_window_set_default_icon_name (self->freecell ? "gnome-freecell" : "gnome-aisleriot");
 
   g_action_map_add_action_entries (G_ACTION_MAP (application),
                                    app_entries, G_N_ELEMENTS (app_entries),
@@ -202,23 +195,23 @@ ar_application_startup (GApplication *application)
 
   gtk_window_set_default_icon_name ("gnome-aisleriot");
 
-  priv->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
+  self->window = AISLERIOT_WINDOW (aisleriot_window_new (GTK_APPLICATION (application)));
 
-  if (priv->freecell) {
-    aisleriot_window_set_game_module (priv->window, FREECELL_VARIATION, NULL);
+  if (self->freecell) {
+    aisleriot_window_set_game_module (self->window, FREECELL_VARIATION, NULL);
   } else {
-    aisleriot_window_set_game_module (priv->window, priv->variation, NULL);
+    aisleriot_window_set_game_module (self->window, self->variation, NULL);
   }
 }
 
 static void
 ar_application_dispose (GObject *object)
 {
-  ArApplicationPrivate *priv = ar_application_get_instance_private (AR_APPLICATION (object));
+  ArApplication *self = AR_APPLICATION (object);
+
+  g_clear_pointer (&self->variation, g_free);
 
   G_OBJECT_CLASS (ar_application_parent_class)->dispose (object);
-
-  g_clear_pointer (&priv->variation, g_free);
 }
 
 static void
@@ -241,20 +234,18 @@ ar_application_class_init (ArApplicationClass *class)
 
 GtkApplication *
 ar_application_new (const char *variation,
-                    gboolean freecell)
+                    gboolean    freecell)
 {
   ArApplication *app;
-  ArApplicationPrivate *priv;
 
   app = g_object_new (AR_TYPE_APPLICATION,
                       "application-id", "org.gnome.aisleriot",
                       "flags", G_APPLICATION_NON_UNIQUE,
                       NULL);
 
-  /* FIXME: This should be done in init */
-  priv = ar_application_get_instance_private (app);
-  priv->variation = g_strdup (variation);
-  priv->freecell = freecell != FALSE;
+  /* FIXME: This should be done as properties */
+  app->variation = g_strdup (variation);
+  app->freecell = freecell != FALSE;
 
   return GTK_APPLICATION (app);
 }
