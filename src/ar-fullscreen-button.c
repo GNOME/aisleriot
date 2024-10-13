@@ -18,10 +18,22 @@
 #include <config.h>
 
 #include "ar-fullscreen-button.h"
-
 #include "ar-stock.h"
 
-struct _ArFullscreenButtonPrivate {
+
+#define AUTOHIDE_TIMEOUT (5 /* s */)
+
+
+enum {
+  PROP_0,
+  PROP_ACTIVE,
+  PROP_CORNER,
+  PROP_WINDOW
+};
+
+
+struct _ArFullscreenButton {
+  GtkWindow parent_instance;
   GtkWindow *window;
 
   GtkCornerType corner;
@@ -31,39 +43,24 @@ struct _ArFullscreenButtonPrivate {
   guint active : 1;
 };
 
-enum {
-  PROP_0,
-  PROP_ACTIVE,
-  PROP_CORNER,
-  PROP_WINDOW
-};
-
-#define AUTOHIDE_TIMEOUT (5 /* s */)
+G_DEFINE_TYPE (ArFullscreenButton, ar_fullscreen_button, GTK_TYPE_WINDOW);
 
 /* private functions */
 
 static gboolean
-autohide_cb (ArFullscreenButton *button)
+autohide_cb (ArFullscreenButton *self)
 {
-  ArFullscreenButtonPrivate *priv = button->priv;
+  self->autohide_timeout_id = 0;
 
-  priv->autohide_timeout_id = 0;
-
-  gtk_widget_hide (GTK_WIDGET (button));
+  gtk_widget_hide (GTK_WIDGET (self));
 
   return FALSE;
 }
 
 static void
-autohide_cancel (ArFullscreenButton *button)
+autohide_cancel (ArFullscreenButton *self)
 {
-  ArFullscreenButtonPrivate *priv = button->priv;
-
-  if (priv->autohide_timeout_id == 0)
-    return;
-
-  g_source_remove (priv->autohide_timeout_id);
-  priv->autohide_timeout_id = 0;
+  g_clear_handle_id (&self->autohide_timeout_id, g_source_remove);
 }
 
 static void
