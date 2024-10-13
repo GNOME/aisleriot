@@ -2368,7 +2368,7 @@ aisleriot_game_change_options (AisleriotGame *game,
 gboolean
 aisleriot_game_timeout_lambda (AisleriotGame *game)
 {
-  SCM retval;
+  SCM retval = SCM_BOOL_F;
 
   if (game_scm_call (game->lambdas[TIMEOUT_LAMBDA], NULL, 0, &retval))
     return FALSE;
