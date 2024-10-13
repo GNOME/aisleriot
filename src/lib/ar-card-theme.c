@@ -179,6 +179,14 @@ ar_card_theme_class_real_paint_card (ArCardTheme *theme,
   g_object_unref (pixbuf);
 }
 
+static void
+card_pixbuf_destroy (guchar   *pixels,
+                     gpointer  data)
+{
+  g_free (pixels);
+}
+
+
 static GdkPixbuf *
 ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
                                           int card_id)
@@ -213,7 +221,7 @@ ar_card_theme_class_real_get_card_pixbuf (ArCardTheme *card_theme,
                                    8,
                                    card_size.width, card_size.height,
                                    rowstride,
-                                   (GdkPixbufDestroyNotify) g_free, data);
+                                   card_pixbuf_destroy, NULL);
 }
 
 static void
