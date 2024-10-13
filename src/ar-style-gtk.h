@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __AR_STYLE_GTK_H__
-#define __AR_STYLE_GTK_H__
+#pragma once
+
 
 #include <gtk/gtk.h>
 
@@ -25,12 +25,10 @@
 G_BEGIN_DECLS
 
 void _ar_style_gtk_class_install_style_properties (GtkWidgetClass *widget_class);
+void _ar_style_gtk_attach                         (ArStyle        *style,
+                                                   GtkWidget      *widget);
+void _ar_style_gtk_detach                         (ArStyle        *style,
+                                                   GtkWidget      *widget);
 
-void _ar_style_gtk_attach (ArStyle *style,
-                           GtkWidget *widget);
-void _ar_style_gtk_detach (ArStyle *style,
-                           GtkWidget *widget);
 
 G_END_DECLS
-
-#endif /* __AR_STYLE_GTK_H__ */
