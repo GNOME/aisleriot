@@ -15,49 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef AISLERIOT_STATS_DIALOG_H
-#define AISLERIOT_STATS_DIALOG_H
+#pragma once
 
 #include <gtk/gtk.h>
-
 #include "conf.h"
 
 G_BEGIN_DECLS
 
 #define AISLERIOT_TYPE_STATS_DIALOG		(aisleriot_stats_dialog_get_type ())
-#define AISLERIOT_STATS_DIALOG(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), AISLERIOT_TYPE_STATS_DIALOG, AisleriotStatsDialog))
-#define AISLERIOT_STATS_DIALOG_CLASS(k)		(G_TYPE_CHECK_CLASS_CAST((k), AISLERIOT_TYPE_STATS_DIALOG, AisleriotStatsDialogClass))
-#define AISLERIOT_IS_STATS_DIALOG(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), AISLERIOT_TYPE_STATS_DIALOG))
-#define AISLERIOT_IS_STATS_DIALOG_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), AISLERIOT_TYPE_STATS_DIALOG))
-#define AISLERIOT_STATS_DIALOG_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), AISLERIOT_TYPE_STATS_DIALOG, AisleriotStatsDialogClass))
+G_DECLARE_FINAL_TYPE(AisleriotStatsDialog, aisleriot_stats_dialog, AISLERIOT, STATS_DIALOG, GtkDialog);
 
-typedef struct _AisleriotStatsDialog		AisleriotStatsDialog;
-typedef struct _AisleriotStatsDialogClass	AisleriotStatsDialogClass;
-typedef struct _AisleriotStatsDialogPrivate	AisleriotStatsDialogPrivate;
 
-struct _AisleriotStatsDialog {
-  GtkDialog parent_instance;
+GType                 aisleriot_stats_dialog_get_type (void);
+AisleriotStatsDialog *aisleriot_stats_dialog_new      (void);
+void                  aisleriot_stats_dialog_update   (AisleriotStatsDialog *dialog,
+                                                       AisleriotStatistic   *statistic);
+void                  aisleriot_stats_dialog_set_name (AisleriotStatsDialog *dialog,
+                                                       const char           *game_name);
 
-  /*< private >*/
-  AisleriotStatsDialogPrivate *priv;
-};
-
-struct _AisleriotStatsDialogClass {
-  GtkDialogClass parent_class;
-
-  /* Signals */
-};
-
-GType aisleriot_stats_dialog_get_type (void);
-
-AisleriotStatsDialog *aisleriot_stats_dialog_new (void);
-
-void aisleriot_stats_dialog_update (AisleriotStatsDialog * dialog,
-                                    AisleriotStatistic * statistic);
-
-void aisleriot_stats_dialog_set_name (AisleriotStatsDialog * dialog,
-                                      const char *game_name);
 
 G_END_DECLS
-
-#endif /* !AISLERIOT_STATS_DIALOG_H */

@@ -31,10 +31,10 @@
 
 #include "stats-dialog.h"
 
-#define AISLERIOT_STATS_DIALOG_GET_PRIVATE(stats_dialog)(G_TYPE_INSTANCE_GET_PRIVATE ((stats_dialog), AISLERIOT_TYPE_STATS_DIALOG, AisleriotStatsDialogPrivate))
-
-struct _AisleriotStatsDialogPrivate
+struct _AisleriotStatsDialog
 {
+  GtkDialog parent_dialog;
+
   GtkLabel *game_label;
   GtkLabel *wins_label;
   GtkLabel *total_label;
@@ -108,12 +108,9 @@ add_row (GtkTable *table,
 static void
 aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
 {
-  AisleriotStatsDialogPrivate *priv;
   GtkDialog *dialog = GTK_DIALOG (stats_dialog);
   GtkWidget *vbox, *hbox, *content_area, *action_area;
   GtkTable *table;
-
-  priv = stats_dialog->priv = AISLERIOT_STATS_DIALOG_GET_PRIVATE (stats_dialog);
 
   gtk_window_set_resizable (GTK_WINDOW (dialog), FALSE);
 
@@ -127,11 +124,11 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
   gtk_box_pack_start (GTK_BOX (content_area), vbox, FALSE, FALSE, 0);
   gtk_widget_show (vbox);
 
-  priv->game_label = GTK_LABEL (gtk_label_new (NULL));
-  gtk_label_set_use_markup (priv->game_label, TRUE);
-  gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (priv->game_label),
+  stats_dialog->game_label = GTK_LABEL (gtk_label_new (NULL));
+  gtk_label_set_use_markup (stats_dialog->game_label, TRUE);
+  gtk_box_pack_start (GTK_BOX (vbox), GTK_WIDGET (stats_dialog->game_label),
                       FALSE, FALSE, 0);
-  gtk_widget_show (GTK_WIDGET (priv->game_label));
+  gtk_widget_show (GTK_WIDGET (stats_dialog->game_label));
 
   hbox = gtk_hbox_new (TRUE, 18);
   gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
@@ -142,11 +139,11 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
   gtk_table_set_col_spacings (table, 12);
 
   /* Translators: this is the total number of won games */
-  priv->wins_label = add_row (table, 0, _("Wins:"));
+  stats_dialog->wins_label = add_row (table, 0, _("Wins:"));
   /* Translators: this is the number of games played */
-  priv->total_label = add_row (table, 1, _("Total:"));
+  stats_dialog->total_label = add_row (table, 1, _("Total:"));
   /* Translators: this is the percentage of games won out of all games played */
-  priv->percentage_label = add_row (table, 2, _("Percentage:"));
+  stats_dialog->percentage_label = add_row (table, 2, _("Percentage:"));
   /* Translators: this is the section title of a section which contains the n
    * number of games played, number of games won, and the ratio of these 2 numbers.
    */
@@ -157,9 +154,9 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
   gtk_table_set_col_spacings (table, 12);
 
   /* Translators: this is the best time of all wins */
-  priv->best_label = add_row (table, 0, _("Best:"));
+  stats_dialog->best_label = add_row (table, 0, _("Best:"));
   /* Translators: this is the worst time of all wins */
-  priv->worst_label = add_row (table, 1, _("Worst:"));
+  stats_dialog->worst_label = add_row (table, 1, _("Worst:"));
   /* Translators: this is the section title of a section containing the
    * best and worst time taken to win a game.
    */
@@ -189,9 +186,7 @@ aisleriot_stats_dialog_init (AisleriotStatsDialog *stats_dialog)
 static void
 aisleriot_stats_dialog_class_init (AisleriotStatsDialogClass *klass)
 {
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (gobject_class, sizeof (AisleriotStatsDialogPrivate));
+  /* Pass */
 }
 
 /* public API */
@@ -205,66 +200,64 @@ aisleriot_stats_dialog_new (void)
 }
 
 void
-aisleriot_stats_dialog_update (AisleriotStatsDialog *dialog,
+aisleriot_stats_dialog_update (AisleriotStatsDialog *stats_dialog,
                                AisleriotStatistic *current_stats)
 {
-  AisleriotStatsDialogPrivate *priv = dialog->priv;
   char text[128];
 
-  /* Translators: Translate this to "%Id" if you want to use localised digits,
+  /* Translators: Translate this to "%Iu" if you want to use localised digits,
    * and to "%d" otherwise. Do not translate it to anything else!
    */
-  g_snprintf (text, sizeof (text), _("%d"), current_stats->wins);
-  gtk_label_set_text (priv->wins_label, text);
+  g_snprintf (text, sizeof (text), _("%u"), current_stats->wins);
+  gtk_label_set_text (stats_dialog->wins_label, text);
 
-  /* Translators: Translate this to "%Id" if you want to use localised digits,
-   * and to "%d" otherwise. Do not translate it to anything else!
+  /* Translators: Translate this to "%Iu" if you want to use localised digits,
+   * and to "%u" otherwise. Do not translate it to anything else!
    */
-  g_snprintf (text, sizeof (text), _("%d"), current_stats->total);
-  gtk_label_set_text (priv->total_label, text);
+  g_snprintf (text, sizeof (text), _("%u"), current_stats->total);
+  gtk_label_set_text (stats_dialog->total_label, text);
 
   if (current_stats->total != 0) {
-    /* Translators: Translate the "%d" in this string this to "%Id" if you
-     * want to use localised digits, and to "%d" otherwise.
-     * Do not translate the "%d" part to anything else!
+    /* Translators: Translate the "%u" in this string this to "%Id" if you
+     * want to use localised digits, and to "%u" otherwise.
+     * Do not translate the "%u" part to anything else!
      * You may translate the "%%" part to use any other percent character(s)
      * instead, or leave it as "%%". If you chose a character other than
      * "%" (U+0025 PERCENT SIGN) you do NOT need to escape it with another "%"!
      */
-    g_snprintf (text, sizeof (text), _("%d%%"),
-                (int) (100.0 * ((double) current_stats->wins) / ((double) current_stats->total) + 0.5));
-    gtk_label_set_text (priv->percentage_label, text);
+    g_snprintf (text, sizeof (text), _("%u%%"),
+                (guint) (100.0 * ((double) current_stats->wins) / ((double) current_stats->total) + 0.5));
+    gtk_label_set_text (stats_dialog->percentage_label, text);
   } else
     /* For translators: N/A means "Not Applicable", use whatever
      * abbreviation you have for a value that has no meaning. */
-    gtk_label_set_text (priv->percentage_label, _("N/A"));
+    gtk_label_set_text (stats_dialog->percentage_label, _("N/A"));
 
   if (current_stats->best != 0) {
     /* Translators: this represents minutes:seconds. */
-    g_snprintf (text, sizeof (text), _("%d:%02d"),
+    g_snprintf (text, sizeof (text), _("%u:%02u"),
                 current_stats->best / 60,
                 current_stats->best % 60);
-    gtk_label_set_text (priv->best_label, text);
+    gtk_label_set_text (stats_dialog->best_label, text);
   } else
-    gtk_label_set_text (priv->best_label, _("N/A"));
+    gtk_label_set_text (stats_dialog->best_label, _("N/A"));
 
   if (current_stats->worst != 0) {
-    g_snprintf (text, sizeof (text), _("%d:%02d"),
+    g_snprintf (text, sizeof (text), _("%u:%02u"),
                 current_stats->worst / 60,
                 current_stats->worst % 60);
-    gtk_label_set_text (priv->worst_label, text);
+    gtk_label_set_text (stats_dialog->worst_label, text);
   } else
-    gtk_label_set_text (priv->worst_label, _("N/A"));
+    gtk_label_set_text (stats_dialog->worst_label, _("N/A"));
 }
 
 void
-aisleriot_stats_dialog_set_name (AisleriotStatsDialog *dialog,
+aisleriot_stats_dialog_set_name (AisleriotStatsDialog *stats_dialog,
                                  const char *game_name)
 {
-  AisleriotStatsDialogPrivate *priv = dialog->priv;
   char *markup;
 
   markup = g_markup_printf_escaped ("<b>%s</b>", game_name);
-  gtk_label_set_markup (priv->game_label, markup);
+  gtk_label_set_markup (stats_dialog->game_label, markup);
   g_free (markup);
 }
