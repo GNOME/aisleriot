@@ -48,14 +48,23 @@ enum
 
 /* GObjectClass impl */
 
-G_DEFINE_TYPE (ArStyle, ar_style, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (ArStyle, ar_style, G_TYPE_OBJECT);
+
+/* FIXME: This is a little evil. It exists to export the style to
+ * ar-style-gtk. We'll have to clean up this relationship later.
+ */
+ArStylePrivate *
+ar_style_get_instance_private_exported (ArStyle *style)
+{
+  return ar_style_get_instance_private (style);
+}
 
 static void
 ar_style_init (ArStyle *style)
 {
   ArStylePrivate *priv;
 
-  priv = style->priv = G_TYPE_INSTANCE_GET_PRIVATE (style, AR_TYPE_STYLE, ArStylePrivate);
+  priv = ar_style_get_instance_private (style);
 
   priv->selection_color = default_selection_color;
   priv->card_slot_ratio = DEFAULT_CARD_SLOT_RATIO;
@@ -81,7 +90,7 @@ static void
 ar_style_finalize (GObject *object)
 {
   ArStyle *style = AR_STYLE (object);
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   if (priv->card_theme) {
     g_object_unref (priv->card_theme);
@@ -97,7 +106,7 @@ ar_style_get_property (GObject    *object,
                        GParamSpec *pspec)
 {
   ArStyle *style = AR_STYLE (object);
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   switch (property_id) {
     case PROP_CARD_OVERHANG:
@@ -180,7 +189,7 @@ ar_style_set_property (GObject      *object,
                        GParamSpec   *pspec)
 {
   ArStyle *style = AR_STYLE (object);
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   switch (property_id) {
     case PROP_CARD_OVERHANG:
@@ -267,8 +276,6 @@ static void
 ar_style_class_init (ArStyleClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (ArStylePrivate));
 
   object_class->set_property = ar_style_set_property;
   object_class->get_property = ar_style_get_property;
@@ -457,7 +464,7 @@ ar_style_new (void)
 gboolean
 ar_style_get_enable_animations (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->enable_animations && priv->enable_animations_gtk;
 }
@@ -474,7 +481,7 @@ void
 ar_style_set_enable_animations (ArStyle *style,
                                 gboolean enable)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   enable = enable != FALSE;
   if (priv->enable_animations == enable)
@@ -493,7 +500,7 @@ ar_style_set_enable_animations (ArStyle *style,
 gboolean
 ar_style_get_enable_sound (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->enable_sound && priv->enable_sound_gtk;
 }
@@ -510,7 +517,7 @@ void
 ar_style_set_enable_sound (ArStyle *style,
                            gboolean enable)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   enable = enable != FALSE;
   if (priv->enable_sound == enable)
@@ -529,7 +536,7 @@ ar_style_set_enable_sound (ArStyle *style,
 gboolean
 ar_style_get_click_to_move (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->click_to_move;
 }
@@ -546,7 +553,7 @@ void
 ar_style_set_click_to_move (ArStyle *style,
                            gboolean enable)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   enable = enable != FALSE;
   if (priv->click_to_move == enable)
@@ -565,7 +572,7 @@ ar_style_set_click_to_move (ArStyle *style,
 ArCardTheme *
 ar_style_get_card_theme (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->card_theme;
 }
@@ -582,7 +589,7 @@ void
 ar_style_set_card_theme (ArStyle *style,
                          ArCardTheme *theme)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   if (priv->card_theme == theme)
     return;
@@ -604,7 +611,7 @@ ar_style_set_card_theme (ArStyle *style,
 gboolean
 ar_style_get_touchscreen_mode (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->touchscreen_mode;
 }
@@ -618,7 +625,7 @@ ar_style_get_touchscreen_mode (ArStyle *style)
 gboolean
 ar_style_get_interior_focus (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->interior_focus;
 }
@@ -632,7 +639,7 @@ ar_style_get_interior_focus (ArStyle *style)
 gboolean
 ar_style_get_rtl (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->rtl;
 }
@@ -646,7 +653,7 @@ ar_style_get_rtl (ArStyle *style)
 gboolean
 ar_style_get_show_tooltips (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->enable_tooltips;
 }
@@ -660,7 +667,7 @@ ar_style_get_show_tooltips (ArStyle *style)
 gboolean
 ar_style_get_show_status_messages (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->enable_status_messages;
 }
@@ -674,7 +681,7 @@ ar_style_get_show_status_messages (ArStyle *style)
 int
 ar_style_get_double_click_time (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->double_click_time;
 }
@@ -688,7 +695,7 @@ ar_style_get_double_click_time (ArStyle *style)
 int
 ar_style_get_focus_line_width (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->focus_line_width;
 }
@@ -701,7 +708,7 @@ ar_style_get_focus_line_width (ArStyle *style)
  */
 int ar_style_get_focus_padding (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->focus_padding;
 }
@@ -715,7 +722,7 @@ int ar_style_get_focus_padding (ArStyle *style)
 double
 ar_style_get_card_slot_ratio (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->card_slot_ratio;
 }
@@ -729,7 +736,7 @@ ar_style_get_card_slot_ratio (ArStyle *style)
 double
 ar_style_get_card_overhang (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->card_overhang;
 }
@@ -743,7 +750,7 @@ ar_style_get_card_overhang (ArStyle *style)
 double
 ar_style_get_card_step (ArStyle *style)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   return priv->card_step;
 }
@@ -758,7 +765,7 @@ void
 ar_style_get_selection_color (ArStyle *style,
                               GdkRGBA * const color)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   *color = priv->selection_color;
 }
@@ -784,7 +791,7 @@ ar_style_check_dnd_drag_threshold (ArStyle *style,
                                    float x2,
                                    float y2)
 {
-  ArStylePrivate *priv = style->priv;
+  ArStylePrivate *priv = ar_style_get_instance_private (style);
 
   /* FIXMEchpe: are these coordinates pixels, or something else? */
   /* FIXMEchpe: shouldn't this be (x2 - x1)**2 + (y2 - y1)**2 >= threshold**2 ? */

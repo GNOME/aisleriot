@@ -15,43 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __AR_STYLE_H__
-#define __AR_STYLE_H__
+#pragma once
 
 #include <glib-object.h>
 #include <gdk/gdk.h>
-
 #include "ar-card-theme.h"
 
-G_BEGIN_DECLS
-
-#define AR_TYPE_STYLE            (ar_style_get_type())
-#define AR_STYLE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), AR_TYPE_STYLE, ArStyle))
-#define AR_STYLE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  AR_TYPE_STYLE, ArStyleClass))
-#define AR_IS_STYLE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), AR_TYPE_STYLE))
-#define AR_IS_STYLE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  AR_TYPE_STYLE))
-#define AR_STYLE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  AR_TYPE_STYLE, ArStyleClass))
-
-typedef struct _ArStyle        ArStyle;
-typedef struct _ArStyleClass   ArStyleClass;
-typedef struct _ArStylePrivate ArStylePrivate;
-
-struct _ArStyle
-{
-  GObject parent;
-
-  /*< private >*/
-  ArStylePrivate *priv;
-};
-
-struct _ArStyleClass
-{
-  GObjectClass parent_class;
-};
-
-GType ar_style_get_type (void);
-
-ArStyle* ar_style_new (void);
 
 #define AR_STYLE_PROP_CARD_SLOT_RATIO     "card-slot-prop"
 #define AR_STYLE_PROP_CARD_THEME          "card-theme"
@@ -70,6 +39,21 @@ ArStyle* ar_style_new (void);
 #define AR_STYLE_PROP_SHOW_TOOLTIPS       "show-tooltips"
 #define AR_STYLE_PROP_SHOW_STATUS_MESSAGES "show-status-messages"
 #define AR_STYLE_PROP_TOUCHSCREEN_MODE    "touchscreen-mode"
+
+G_BEGIN_DECLS
+
+#define AR_TYPE_STYLE    (ar_style_get_type())
+G_DECLARE_DERIVABLE_TYPE (ArStyle, ar_style, AR, STYLE, GObject)
+
+
+struct _ArStyleClass
+{
+  GObjectClass parent_class;
+};
+
+
+GType ar_style_get_type (void);
+ArStyle* ar_style_new   (void);
 
 gboolean ar_style_get_enable_animations (ArStyle *style);
 void     ar_style_set_enable_animations (ArStyle *style,
@@ -112,5 +96,3 @@ gboolean ar_style_check_dnd_drag_threshold (ArStyle *style,
                                             float y2);
 
 G_END_DECLS
-
-#endif /* __AR_STYLE_H__ */

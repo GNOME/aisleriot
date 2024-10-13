@@ -15,8 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __AR_STYLE_PRIVATE_H__
-#define __AR_STYLE_PRIVATE_H__
+#pragma once
 
 G_BEGIN_DECLS
 
@@ -38,6 +37,7 @@ static const GdkRGBA default_selection_color = { 0. /* red */, 0. /* green */, 0
 #define DEFAULT_SHOW_TOOLTIPS (FALSE)
 #define DEFAULT_SHOW_STATUS_MESSAGES (FALSE)
 
+typedef struct _ArStylePrivate ArStylePrivate;
 struct _ArStylePrivate
 {
   ArCardTheme* card_theme;
@@ -72,6 +72,9 @@ struct _ArStylePrivate
   guint show_seleccion          : 1;
 };
 
-G_END_DECLS
+/* This is an exported version of get_instance_private just for
+ * ar-style-gtk */
+ArStylePrivate *ar_style_get_instance_private_exported (ArStyle *style);
 
-#endif /* __AR_STYLE_PRIVATE_H__ */
+
+G_END_DECLS

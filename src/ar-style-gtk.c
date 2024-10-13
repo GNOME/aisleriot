@@ -69,7 +69,7 @@ sync_settings (GtkSettings *settings,
                GParamSpec *pspec,
                ArStyle *style)
 {
-  ArStylePrivate *style_priv = style->priv;
+  ArStylePrivate *style_priv = ar_style_get_instance_private_exported (style);
   GObject *style_object = G_OBJECT (style);
   const char *pspec_name;
 
@@ -155,7 +155,7 @@ direction_changed_cb (GtkWidget *widget,
                       GtkTextDirection previous_direction,
                       ArStyle *style)
 {
-  ArStylePrivate *style_priv = style->priv;
+  ArStylePrivate *style_priv = ar_style_get_instance_private_exported (style);
   GObject *style_object = G_OBJECT (style);
   GtkTextDirection direction;
   gboolean rtl;
@@ -228,7 +228,7 @@ static void
 style_updated_cb (GtkWidget *widget,
                   ArStyle *style)
 {
-  ArStylePrivate *style_priv = style->priv;
+  ArStylePrivate *style_priv = ar_style_get_instance_private_exported (style);
   GObject *style_object = G_OBJECT (style);
   GdkRGBA *selection_color;
   int focus_line_width, focus_padding;
