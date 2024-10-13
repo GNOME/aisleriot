@@ -31,6 +31,12 @@
 
 #include "ar-stock.h"
 
+/* FIXME(porting): Setting this to 1 will turn on the old stock icons,
+ * at the  expense of lots of  disabled warnings. Most of  these items
+ * will go away once we port to GTK4 so removing them for now.
+ */
+#define ENABLE_STOCK 0
+
 static void
 menu_item_select_cb (GtkWidget * widget, GtkStatusbar * statusbar)
 {
@@ -186,6 +192,7 @@ ar_stock_init (void)
     { AR_STOCK_DEAL_CARDS, "cards-deal" }
   };
 
+#if ENABLE_STOCK
   static const GtkStockItem ar_stock_items[] = {
     { AR_STOCK_CONTENTS,         N_("_Contents"),          0, GDK_KEY_F1, NULL },
     { AR_STOCK_FULLSCREEN,       N_("_Fullscreen"),        0, GDK_KEY_F11, NULL },
@@ -204,6 +211,7 @@ ar_stock_init (void)
     { AR_STOCK_LEAVE_FULLSCREEN, N_("_Leave Fullscreen"),  0, GDK_KEY_F11, NULL },
     { AR_STOCK_PAUSE_GAME,       N_("_Pause"),             0, GDK_KEY_Pause, NULL },
   };
+#endif
 
   guint i;
   GtkIconFactory *icon_factory;
@@ -247,8 +255,9 @@ ar_stock_init (void)
   /* FIXME: multi-head! */
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                      ar_runtime_get_directory (AR_RUNTIME_ICON_THEME_DIRECTORY));
- 
+ #if ENABLE_STOCK
   gtk_stock_add_static (ar_stock_items, G_N_ELEMENTS (ar_stock_items));
+#endif
 }
 
 /**
