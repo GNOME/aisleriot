@@ -79,9 +79,10 @@ ar_svg_initable_init (GInitable *initable,
   const char *type;
   char *gz_type;
   GInputStream *stream;
-  RsvgDimensionData data;
   gboolean is_gzip;
   gboolean retval = FALSE;
+  gdouble width = 0;
+  gdouble height = 0;
 
 //   ar_profilestart ("creating ArSvg from %s", svg->filename);
 
@@ -118,8 +119,8 @@ ar_svg_initable_init (GInitable *initable,
   }
   g_object_unref (stream);
 
-  rsvg_handle_get_dimensions (handle, &data);
-  if (data.width == 0 || data.height == 0) {
+  rsvg_handle_get_intrinsic_size_in_pixels (handle, &width, &height);
+  if (width == 0 || height == 0) {
     g_set_error_literal (error,
                          GDK_PIXBUF_ERROR,
                          GDK_PIXBUF_ERROR_FAILED,
@@ -127,8 +128,8 @@ ar_svg_initable_init (GInitable *initable,
     goto out;
   }
 
-  svg->width = data.width;
-  svg->height = data.height;
+  svg->width = (gint) width;
+  svg->height = (gint) height;
 
   retval = TRUE;
 
