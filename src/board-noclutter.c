@@ -229,7 +229,7 @@ set_cursor_by_location (AisleriotBoard *board,
       selection_slot != NULL &&
       slot != selection_slot &&
       selection_start_card_id >= 0) {
-    g_return_if_fail (selection_slot->cards->len > selection_start_card_id);
+    g_return_if_fail (selection_slot->cards->len > (guint) selection_start_card_id);
 
     drop_valid = aisleriot_game_drop_valid (priv->game,
                                             selection_slot->id,
@@ -304,7 +304,7 @@ get_slot_and_card_from_point (AisleriotBoard *board,
         /* if we support exposing more than one card,
          * find the exact card  */
 
-        gint depth = 1;
+        guint depth = 1;
 
         if (hslot->pixeldx > 0)
           depth += (x - hslot->rect.x) / hslot->pixeldx;
@@ -552,7 +552,7 @@ set_selection (AisleriotBoard *board,
   if (!slot)
     return;
 
-  g_assert (card_id < 0 || card_id < slot->cards->len);
+  g_assert (card_id < 0 || card_id < (gint) slot->cards->len);
 
   if (priv->show_selection) {
     get_selection_rect (board, &priv->selection_rect);
