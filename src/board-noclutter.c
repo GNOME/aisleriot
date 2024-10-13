@@ -811,7 +811,6 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
   }
 
   if (priv->moving_cards_slot != NULL) {
-    GdkRectangle *rect = &priv->moving_cards_slot->rect;
     slot_update_geometry (board, priv->moving_cards_slot);
     slot_update_card_images (board, priv->moving_cards_slot);
   }
@@ -825,7 +824,6 @@ static void
 drag_begin (AisleriotBoard *board)
 {
   AisleriotBoardPrivate *priv = board->priv;
-  GtkWidget *widget = GTK_WIDGET (board);
   ArSlot *hslot, *mslot;
   int delta;
   int x, y;

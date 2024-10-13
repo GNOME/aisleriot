@@ -191,9 +191,6 @@ game_over_dialog_response_cb (GtkWidget *dialog,
                               AisleriotWindow *window)
 {
   AisleriotWindowPrivate *priv = window->priv;
-  gboolean game_won;
-
-  game_won = aisleriot_game_get_state (priv->game) == GAME_WON;
 
   gtk_widget_destroy (dialog);
 
