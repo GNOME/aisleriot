@@ -19,8 +19,8 @@
  *      Richard Hoelscher <rah@rahga.com>
  */
 
-#ifndef __AR_STOCK_H__
-#define __AR_STOCK_H__
+#pragma once
+
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -43,11 +43,11 @@ G_BEGIN_DECLS
 /* These belong to us */
 #define AR_STOCK_DEAL_CARDS       "aisleriot-game-deal"
 
-void   ar_stock_init (void);
-void   ar_stock_prepare_for_statusbar_tooltips (GtkUIManager * ui_manager,
-                                                   GtkWidget * statusbar);
-gchar *ar_get_licence (const gchar * game_name);
+
+void   ar_stock_init                           (void);
+void   ar_stock_prepare_for_statusbar_tooltips (GtkUIManager *ui_manager,
+                                                GtkWidget    *statusbar);
+gchar *ar_get_licence                          (const gchar  *game_name);
+
 
 G_END_DECLS
-
-#endif /* __AR_STOCK_H__ */
