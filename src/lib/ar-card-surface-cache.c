@@ -63,9 +63,10 @@ enum
 static void ar_card_surface_cache_dispose (GObject *object);
 static void ar_card_surface_cache_finalize (GObject *object);
 
-G_DEFINE_TYPE (ArCardSurfaceCache, ar_card_surface_cache, G_TYPE_OBJECT);
+G_DEFINE_TYPE_EXTENDED (ArCardSurfaceCache, ar_card_surface_cache, G_TYPE_OBJECT, 0,
+                         G_ADD_PRIVATE (ArCardSurfaceCache));
 
-#define AR_CARD_SURFACE_CACHE_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), AR_TYPE_CARD_SURFACE_CACHE, ArCardSurfaceCachePrivate))
+#define AR_CARD_SURFACE_CACHE_GET_PRIVATE(obj) (ar_card_surface_cache_get_instance_private(obj))
 
 /* Helper functions */
 
@@ -193,8 +194,6 @@ ar_card_surface_cache_class_init (ArCardSurfaceCacheClass *klass)
   gobject_class->finalize = ar_card_surface_cache_finalize;
   gobject_class->set_property = ar_card_surface_cache_set_property;
   gobject_class->get_property = ar_card_surface_cache_get_property;
-
-  g_type_class_add_private (klass, sizeof (ArCardSurfaceCachePrivate));
 
   g_object_class_install_property (gobject_class,
                                    PROP_THEME, 
