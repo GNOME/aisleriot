@@ -28,25 +28,12 @@
 #include "ar-string-utils.h"
 #include "conf.h"
 
-struct _ArGameChooser
-{
-  GtkDialog parent;
 
-  /*< private >*/
-  ArGameChooserPrivate *priv;
-};
+#define SELECT_GAME_DIALOG_MIN_WIDTH (300)
+#define SELECT_GAME_DIALOG_MIN_HEIGHT (256)
+#define SELECTED_PATH_DATA_KEY "selected-path"
+#define MAX_RECENT 5
 
-struct _ArGameChooserClass
-{
-  GtkDialogClass parent_class;
-};
-
-struct _ArGameChooserPrivate {
-  AisleriotWindow *window;
-
-  GtkListStore *store;
-  GtkTreeSelection *selection;
-};
 
 enum {
   PROP_0,
@@ -59,10 +46,20 @@ enum {
   COL_RECENT_RANK
 };
 
-#define SELECT_GAME_DIALOG_MIN_WIDTH (300)
-#define SELECT_GAME_DIALOG_MIN_HEIGHT (256)
-#define SELECTED_PATH_DATA_KEY "selected-path"
-#define MAX_RECENT 5
+
+struct _ArGameChooser
+{
+  GtkDialog parent;
+
+  AisleriotWindow *window;
+
+  GtkListStore *store;
+  GtkTreeSelection *selection;
+};
+
+
+G_DEFINE_TYPE (ArGameChooser, ar_game_chooser, GTK_TYPE_DIALOG);
+
 
 /* private functions */
 
@@ -79,14 +76,13 @@ row_activated_cb (GtkWidget *widget,
 static void
 response_cb (GtkWidget *dialog,
              int response,
-             ArGameChooser *chooser)
+             ArGameChooser *self)
 {
-  ArGameChooserPrivate *priv = chooser->priv;
   GtkTreeModel *model;
   GtkTreeIter iter;
 
   if (response == GTK_RESPONSE_OK &&
-      gtk_tree_selection_get_selected (priv->selection, &model, &iter)) {
+      gtk_tree_selection_get_selected (self->selection, &model, &iter)) {
     char *game_module = NULL;
 
     gtk_tree_model_get (model, &iter,
@@ -94,7 +90,7 @@ response_cb (GtkWidget *dialog,
                         -1);
     g_assert (game_module != NULL);
 
-    aisleriot_window_set_game_module (priv->window, game_module, NULL);
+    aisleriot_window_set_game_module (self->window, game_module, NULL);
 
     g_free (game_module);
   }
@@ -102,16 +98,12 @@ response_cb (GtkWidget *dialog,
   gtk_widget_destroy (dialog);
 }
 
-/* GType impl */
-
-G_DEFINE_TYPE (ArGameChooser, ar_game_chooser, GTK_TYPE_DIALOG)
-
 /* GObjectClass impl */
 
 static void
 ar_game_chooser_init (ArGameChooser *chooser)
 {
-  chooser->priv = G_TYPE_INSTANCE_GET_PRIVATE (chooser, AR_TYPE_GAME_CHOOSER, ArGameChooserPrivate);
+  /* Pass */
 }
 
 static void
@@ -211,23 +203,22 @@ get_unique_recent_modules (const char *current_module)
 }
 
 static void
-add_recent_items (ArGameChooser *chooser)
+add_recent_items (ArGameChooser *self)
 {
-  ArGameChooserPrivate *priv = chooser->priv;
   const char *current_game_module;
   char **games;
   int i;
 
-  current_game_module = aisleriot_window_get_game_module (priv->window);
+  current_game_module = aisleriot_window_get_game_module (self->window);
   games = get_unique_recent_modules (current_game_module);
 
   for (i = 0; games[i] != NULL; ++i) {
-    store_add_module (priv->store, games[i], MAX_RECENT - i);
+    store_add_module (self->store, games[i], MAX_RECENT - i);
   }
 
   g_strfreev (games);
 
-  store_add_separator (priv->store);
+  store_add_separator (self->store);
 }
 
 static int
@@ -269,7 +260,6 @@ ar_game_chooser_constructor (GType type,
 {
   GObject *object;
   ArGameChooser *chooser;
-  ArGameChooserPrivate *priv;
   GtkWindow *window;
   GtkListStore *list;
   GtkWidget *list_view;
@@ -289,11 +279,10 @@ ar_game_chooser_constructor (GType type,
 
   window = GTK_WINDOW (object);
   chooser = AR_GAME_CHOOSER (object);
-  priv = chooser->priv;
 
-  g_assert (priv->window != NULL);
+  g_assert (chooser->window != NULL);
 
-  priv->store = list = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
+  chooser->store = list = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
 
   add_recent_items (chooser);
 
@@ -302,7 +291,7 @@ ar_game_chooser_constructor (GType type,
     for (i = 0; games[i]; ++i) {
       const char *game_module = games[i];
 
-      store_add_module (priv->store, game_module, -1);
+      store_add_module (chooser->store, game_module, -1);
     }
   }
 
@@ -360,7 +349,7 @@ ar_game_chooser_constructor (GType type,
 
   gtk_tree_view_append_column (GTK_TREE_VIEW (list_view), column);
 
-  priv->selection = selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
+  chooser->selection = selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (list_view));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_BROWSE);
 
   scrolled_window = gtk_scrolled_window_new (NULL, NULL);
@@ -414,11 +403,10 @@ ar_game_chooser_set_property (GObject      *object,
                               GParamSpec   *pspec)
 {
   ArGameChooser *chooser = AR_GAME_CHOOSER (object);
-  ArGameChooserPrivate *priv = chooser->priv;
 
   switch (property_id) {
     case PROP_WINDOW:
-      priv->window = g_value_get_object (value);
+      chooser->window = g_value_get_object (value);
       break;
 
     default:
@@ -430,8 +418,6 @@ static void
 ar_game_chooser_class_init (ArGameChooserClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (ArGameChooserPrivate));
 
   object_class->constructor = ar_game_chooser_constructor;
   object_class->set_property = ar_game_chooser_set_property;
