@@ -16,33 +16,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef AISLERIOT_BOARD_H
-#define AISLERIOT_BOARD_H
+#pragma once
 
 #include <gtk/gtk.h>
-
 #include "game.h"
 #include "ar-style.h"
 
+
 G_BEGIN_DECLS
 
+
 #define AISLERIOT_TYPE_BOARD		(aisleriot_board_get_type ())
-#define AISLERIOT_BOARD(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), AISLERIOT_TYPE_BOARD, AisleriotBoard))
-#define AISLERIOT_BOARD_CLASS(k)	(G_TYPE_CHECK_CLASS_CAST((k), AISLERIOT_TYPE_BOARD, AisleriotBoardClass))
-#define AISLERIOT_IS_BOARD(o)		(G_TYPE_CHECK_INSTANCE_TYPE ((o), AISLERIOT_TYPE_BOARD))
-#define AISLERIOT_IS_BOARD_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), AISLERIOT_TYPE_BOARD))
-#define AISLERIOT_BOARD_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), AISLERIOT_TYPE_BOARD, AisleriotBoardClass))
+G_DECLARE_DERIVABLE_TYPE     (AisleriotBoard, aisleriot_board, AISLERIOT, BOARD, GtkDrawingArea);
 
-typedef struct _AisleriotBoard		AisleriotBoard;
-typedef struct _AisleriotBoardPrivate	AisleriotBoardPrivate;
-typedef struct _AisleriotBoardClass	AisleriotBoardClass;
-
-struct _AisleriotBoard {
-  GtkDrawingArea parent_instance;
-
-  /*< private >*/
-  AisleriotBoardPrivate *priv;
-};
 
 struct _AisleriotBoardClass {
   GtkDrawingAreaClass parent_class;
@@ -60,13 +46,10 @@ struct _AisleriotBoardClass {
   void (* deselect_all)     (AisleriotBoard *board);
 };
 
-GType aisleriot_board_get_type (void);
+GType      aisleriot_board_get_type   (void);
+GtkWidget *aisleriot_board_new        (ArStyle        *style,
+                                       AisleriotGame  *game);
+void       aisleriot_board_abort_move (AisleriotBoard *board);
 
-GtkWidget *aisleriot_board_new (ArStyle *style,
-                                AisleriotGame *game);
-
-void aisleriot_board_abort_move (AisleriotBoard * board);
 
 G_END_DECLS
-
-#endif /* !AISLERIOT_BOARD_H */

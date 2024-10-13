@@ -43,7 +43,6 @@
  */
 #undef OPTIMISED_EXPOSE
 
-#define AISLERIOT_BOARD_GET_PRIVATE(board)(G_TYPE_INSTANCE_GET_PRIVATE ((board), AISLERIOT_TYPE_BOARD, AisleriotBoardPrivate))
 
 /* Disable keynav by default */
 #ifndef ENABLE_KEYNAV
@@ -72,7 +71,7 @@ typedef enum {
   LAST_STATUS
 } MoveStatus;
 
-struct _AisleriotBoardPrivate
+typedef struct _AisleriotBoardPrivate
 {
   AisleriotGame *game;
 
@@ -155,7 +154,7 @@ struct _AisleriotBoardPrivate
   guint show_status_messages : 1;
 
   guint force_geometry_update : 1;
-};
+} AisleriotBoardPrivate;
 
 G_STATIC_ASSERT (LAST_STATUS < 16 /* 2^4 */);
 
@@ -191,13 +190,18 @@ static void slot_update_card_images      (AisleriotBoard *board,
 static void slot_update_card_images_full (AisleriotBoard *board,
                                           ArSlot *slot,
                                           int highlight_start_card_id);
+
+
+G_DEFINE_TYPE_WITH_PRIVATE (AisleriotBoard, aisleriot_board, GTK_TYPE_DRAWING_AREA);
+
+
 /* Cursor */
 
 static void
 set_cursor (AisleriotBoard *board,
             ArCursorType cursor)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (board)),
                          priv->cursor[cursor]);
@@ -210,7 +214,7 @@ set_cursor_by_location (AisleriotBoard *board,
                         int x,
                         int y)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
   ArSlot *slot;
@@ -256,7 +260,7 @@ static void
 set_status_message (AisleriotBoard *board,
                     const char *message)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   if (g_strcmp0 (priv->status_message, message) == 0)
     return;
@@ -275,7 +279,7 @@ get_slot_and_card_from_point (AisleriotBoard *board,
                               ArSlot **slot,
                               int *_cardid)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GPtrArray *slots;
   gboolean got_slot = FALSE;
   int num_cards;
@@ -348,7 +352,7 @@ static int
 get_slot_index_from_slot (AisleriotBoard *board,
                           ArSlot *slot)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GPtrArray *slots;
   guint n_slots;
   int slot_index;
@@ -378,7 +382,7 @@ get_rect_by_slot_and_card (AisleriotBoard *board,
                            int num_cards,
                            GdkRectangle *rect)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   guint delta;
   int first_card_id, num;
 
@@ -429,7 +433,7 @@ static void
 get_focus_rect (AisleriotBoard *board,
                 GdkRectangle *rect)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   if (!priv->focus_slot)
     return;
@@ -448,7 +452,7 @@ set_focus (AisleriotBoard *board,
            int card_id,
            gboolean show_focus)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   GdkWindow *window;
   int top_card_id;
@@ -497,7 +501,7 @@ static void
 get_selection_rect (AisleriotBoard *board,
                     GdkRectangle *rect)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   int n_cards;
 
   if (!priv->selection_slot)
@@ -517,7 +521,7 @@ set_selection (AisleriotBoard *board,
                int card_id,
                gboolean show_selection)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   GdkWindow *window;
 
@@ -564,7 +568,7 @@ static void
 slot_update_geometry (AisleriotBoard *board,
                       ArSlot *slot)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   GdkRectangle old_rect;
   GByteArray *cards;
@@ -682,7 +686,7 @@ slot_update_card_images_full (AisleriotBoard *board,
                               ArSlot *slot,
                               int highlight_start_card_id)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GPtrArray *card_images;
   guint n_cards, first_exposed_card_id, i;
   guint8 *cards;
@@ -719,7 +723,7 @@ static void
 slot_update_card_images (AisleriotBoard *board,
                          ArSlot *slot)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   int highlight_start_card_id = G_MAXINT;
 
   if (G_UNLIKELY (slot == priv->highlight_slot &&
@@ -746,7 +750,7 @@ aisleriot_board_error_bell (AisleriotBoard *board)
 static void
 aisleriot_board_setup_geometry (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   GPtrArray *slots;
   guint i, n_slots;
@@ -823,7 +827,7 @@ aisleriot_board_setup_geometry (AisleriotBoard *board)
 static void
 drag_begin (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *hslot, *mslot;
   int delta;
   int x, y;
@@ -896,7 +900,7 @@ static void
 drag_end (AisleriotBoard *board,
           gboolean moved)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
 
   /* FIXMEchpe: check that slot->cards->len == moving_cards_origin_card_id !!! FIXMEchpe what to do if not, abort the game? */
@@ -931,7 +935,7 @@ static gboolean
 cards_are_droppable (AisleriotBoard *board,
                      ArSlot *slot)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   return slot != NULL &&
          priv->moving_cards_origin_slot != NULL &&
@@ -948,7 +952,7 @@ find_drop_target (AisleriotBoard *board,
                   gint x,
                   gint y)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *new_hslot;
   ArSlot *retval = NULL;
   gint i, new_cardid;
@@ -997,7 +1001,7 @@ drop_moving_cards (AisleriotBoard *board,
                    gint x,
                    gint y)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *hslot;
   gboolean moved = FALSE;
 
@@ -1031,7 +1035,7 @@ static void
 highlight_drop_target (AisleriotBoard *board,
                        ArSlot *slot)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   GdkWindow *window;
   GdkRectangle rect;
@@ -1087,7 +1091,7 @@ reveal_card (AisleriotBoard *board,
              ArSlot *slot,
              int cardid)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   Card card;
   GdkRectangle rect;
@@ -1130,7 +1134,7 @@ reveal_card (AisleriotBoard *board,
 static void
 clear_state (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   highlight_drop_target (board, NULL);
   drag_end (board, FALSE /* FIXMEchpe ? */);
@@ -1147,7 +1151,7 @@ static gboolean
 aisleriot_board_move_selected_cards_to_slot (AisleriotBoard *board,
                                              ArSlot *hslot)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *selection_slot = priv->selection_slot;
   int selection_start_card_id = priv->selection_start_card_id;
   gboolean moved;
@@ -1363,7 +1367,7 @@ static gboolean
 aisleriot_board_move_cursor_in_slot (AisleriotBoard *board,
                                      int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot;
   int new_focus_card_id, first_card_id;
 
@@ -1381,7 +1385,7 @@ static gboolean
 aisleriot_board_move_cursor_start_end_in_slot (AisleriotBoard *board,
                                                int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot = priv->focus_slot;
   int first_card_id, top_card_id, new_focus_card_id;
   guint8 *cards;
@@ -1438,7 +1442,7 @@ static gboolean
 aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
                                           int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot, *selection_slot;
   int new_selection_start_card_id, first_card_id;
 
@@ -1487,7 +1491,7 @@ aisleriot_board_extend_selection_in_slot (AisleriotBoard *board,
 static gboolean
 aisleriot_board_extend_selection_in_slot_maximal (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot = priv->focus_slot;
   int new_selection_start_card_id, n_selected;
 
@@ -1516,7 +1520,7 @@ aisleriot_board_move_cursor_left_right_by_slot (AisleriotBoard *board,
                                                 int count,
                                                 gboolean wrap)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   GPtrArray *slots;
   guint n_slots;
@@ -1597,7 +1601,7 @@ static gboolean
 aisleriot_board_move_cursor_up_down_by_slot (AisleriotBoard *board,
                                              int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GPtrArray *slots;
   guint n_slots;
   ArSlot *focus_slot, *new_focus_slot;
@@ -1681,7 +1685,7 @@ static gboolean
 aisleriot_board_move_cursor_start_end_by_slot (AisleriotBoard *board,
                                                int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GPtrArray *slots;
   ArSlot *new_focus_slot;
   int new_focus_card_id;
@@ -1714,7 +1718,7 @@ aisleriot_board_move_cursor_left_right (AisleriotBoard *board,
                                         int count,
                                         gboolean is_control)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   gboolean is_rtl;
 
@@ -1735,7 +1739,7 @@ aisleriot_board_move_cursor_up_down (AisleriotBoard *board,
                                      int count,
                                      gboolean is_control)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   gboolean is_rtl;
 
@@ -1757,7 +1761,7 @@ static gboolean
 aisleriot_board_extend_selection_left_right (AisleriotBoard *board,
                                              int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   if (!priv->focus_slot->expanded_right)
     return FALSE;
@@ -1769,7 +1773,7 @@ static gboolean
 aisleriot_board_extend_selection_up_down (AisleriotBoard *board,
                                           int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   if (!priv->focus_slot->expanded_down)
     return FALSE;
@@ -1781,7 +1785,7 @@ static gboolean
 aisleriot_board_extend_selection_start_end (AisleriotBoard *board,
                                             int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot = priv->focus_slot;
   int new_focus_card_id;
 
@@ -1820,7 +1824,7 @@ static void
 game_type_changed_cb (AisleriotGame *game,
                       AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   guint features;
 
   features = aisleriot_game_get_features (game);
@@ -1833,7 +1837,7 @@ static void
 game_cleared_cb (AisleriotGame *game,
                  AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   priv->geometry_set = FALSE;
 
@@ -1851,7 +1855,7 @@ static void
 game_new_cb (AisleriotGame *game,
              AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   clear_state (board);
 
@@ -1876,7 +1880,7 @@ slot_changed_cb (AisleriotGame *game,
                  ArSlot *slot,
                  AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   slot_update_geometry (board, slot);
   slot_update_card_images (board, slot);
@@ -1918,8 +1922,6 @@ slot_changed_cb (AisleriotGame *game,
 
 /* Class implementation */
 
-G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_DRAWING_AREA);
-
 /* AisleriotBoardClass methods */
 
 #ifdef ENABLE_KEYNAV
@@ -1927,7 +1929,7 @@ G_DEFINE_TYPE (AisleriotBoard, aisleriot_board, GTK_TYPE_DRAWING_AREA);
 static void
 aisleriot_board_activate (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   ArSlot *focus_slot = priv->focus_slot;
   ArSlot *selection_slot = priv->selection_slot;
@@ -2007,7 +2009,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
                              GtkMovementStep step,
                              int count)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   guint state;
   gboolean is_control, is_shift, moved = FALSE;
@@ -2095,7 +2097,7 @@ aisleriot_board_move_cursor (AisleriotBoard *board,
 static void
 aisleriot_board_select_all (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot = priv->focus_slot;
 
   if (!focus_slot ||
@@ -2115,7 +2117,7 @@ aisleriot_board_deselect_all (AisleriotBoard *board)
 static void
 aisleriot_board_toggle_selection (AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *focus_slot;
   int focus_card_id;
 
@@ -2165,7 +2167,7 @@ static void
 aisleriot_board_realize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GdkWindow *window;
   GdkDisplay *display;
 
@@ -2190,7 +2192,7 @@ static void
 aisleriot_board_unrealize (GtkWidget *widget)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   guint i;
 
   priv->geometry_set = FALSE;
@@ -2215,7 +2217,7 @@ aisleriot_board_sync_style (ArStyle *style,
                             GParamSpec *pspec,
                             AisleriotBoard *board)
 {
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkWidget *widget = GTK_WIDGET (board);
   const char *pspec_name;
   gboolean update_geometry = FALSE, redraw_focus = FALSE, queue_redraw = FALSE, redraw_selection = FALSE;
@@ -2351,7 +2353,7 @@ aisleriot_board_size_allocate (GtkWidget *widget,
                                GtkAllocation *allocation)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   gboolean is_same;
 
   is_same = (memcmp (&priv->allocation, allocation, sizeof (GtkAllocation)) == 0);
@@ -2396,7 +2398,7 @@ aisleriot_board_focus (GtkWidget *widget,
                        GtkDirectionType direction)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   if (!priv->focus_slot) {
     int count;
@@ -2436,7 +2438,7 @@ aisleriot_board_focus_in (GtkWidget *widget,
 {
 #ifdef ENABLE_KEYNAV
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   /* Paint focus */
   if (priv->show_focus &&
@@ -2455,7 +2457,7 @@ aisleriot_board_focus_out (GtkWidget *widget,
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
 #ifdef ENABLE_KEYNAV
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 #endif /* ENABLE_KEYNAV */
 
   clear_state (board);
@@ -2477,7 +2479,7 @@ aisleriot_board_button_press (GtkWidget *widget,
                               GdkEventButton *event)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   ArSlot *hslot;
   int cardid;
   guint button;
@@ -2660,7 +2662,7 @@ aisleriot_board_button_release (GtkWidget *widget,
                                 GdkEventButton *event)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   /* guint state; */
 
   /* NOTE: It's ok to just return instead of chaining up, since the
@@ -2723,7 +2725,7 @@ aisleriot_board_motion_notify (GtkWidget *widget,
                                GdkEventMotion *event)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   /* NOTE: It's ok to just return instead of chaining up, since the
    * parent class has no class closure for this event.
@@ -2837,7 +2839,7 @@ aisleriot_board_draw (GtkWidget *widget,
                       cairo_t *cr)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (widget);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
   GtkStyleContext *style_context;
   int i;
   GPtrArray *slots;
@@ -3175,7 +3177,7 @@ aisleriot_board_init (AisleriotBoard *board)
   GtkWidget *widget = GTK_WIDGET (board);
   AisleriotBoardPrivate *priv;
 
-  priv = board->priv = AISLERIOT_BOARD_GET_PRIVATE (board);
+  priv = aisleriot_board_get_instance_private (board);
 
   gtk_widget_set_can_focus (widget, TRUE);
 
@@ -3207,7 +3209,7 @@ static void
 aisleriot_board_dispose (GObject *object)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   if (priv->style != NULL) {
     _ar_style_gtk_detach (priv->style, GTK_WIDGET (board));
@@ -3227,7 +3229,7 @@ static void
 aisleriot_board_finalize (GObject *object)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   g_signal_handlers_disconnect_matched (priv->game,
                                         G_SIGNAL_MATCH_DATA,
@@ -3246,7 +3248,7 @@ aisleriot_board_get_property (GObject *object,
                               GParamSpec *pspec)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   switch (prop_id) {
   case PROP_GAME:
@@ -3266,7 +3268,7 @@ aisleriot_board_set_property (GObject *object,
                               GParamSpec *pspec)
 {
   AisleriotBoard *board = AISLERIOT_BOARD (object);
-  AisleriotBoardPrivate *priv = board->priv;
+  AisleriotBoardPrivate *priv = aisleriot_board_get_instance_private (board);
 
   switch (prop_id) {
     case PROP_GAME:
@@ -3302,8 +3304,6 @@ aisleriot_board_class_init (AisleriotBoardClass *klass)
 #ifdef ENABLE_KEYNAV
   GtkBindingSet *binding_set;
 #endif
-
-  g_type_class_add_private (gobject_class, sizeof (AisleriotBoardPrivate));
 
   gobject_class->dispose = aisleriot_board_dispose;
   gobject_class->finalize = aisleriot_board_finalize;
