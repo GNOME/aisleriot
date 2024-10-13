@@ -15,8 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __AR_CURSOR_H__
-#define __AR_CURSOR_H__
+#pragma once
 
 #include <gdk/gdk.h>
 
@@ -34,5 +33,3 @@ GdkCursor *ar_cursor_new (GdkDisplay *display,
                           ArCursorType cursor_type);
 
 G_END_DECLS
-
-#endif /* __AR_CURSOR_H__ */
