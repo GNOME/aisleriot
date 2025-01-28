@@ -1,0 +1,65 @@
+# Copyright © 2025 Christian Persch
+#
+# This library is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library.  If not, see <https://www.gnu.org/licenses/>.
+
+include:
+  - project: 'chpe/versuch-ci'
+    ref: 3456e47965ee17860dd0fc82b376fc7e7dfe1968
+    file: '/versuch.yml'
+    inputs:
+      release-service: real
+
+variables:
+  VERSUCH_FEDORA_VERSION: 41
+
+  # Increase this serial when changing VERSUCH_FEDORA_PACKAGES
+  # below, and reset to 0 when changing VERSUCH_FEDORA_VERSION
+  # above.
+  VERSUCH_FEDORA_SERIAL: '0'
+
+  VERSUCH_FEDORA_PACKAGES: >-
+    appstream
+    cairo-devel
+    clang
+    clang-analyzer
+    clang-tools-extra
+    desktop-file-utils
+    gcc-c++
+    gettext-devel
+    glib2-devel
+    gtk3-devel
+    guile30-devel
+    itstool
+    libappstream-glib
+    librsvg2-devel
+    librsvg2-tools
+    libxml2
+    libxslt
+    meson
+    pango-devel
+    qt5-qtsvg-devel
+    yelp-tools
+
+  VERSUCH_COMMON_BUILD_OPTIONS: >-
+    --prefix=/usr
+    -Ddocs=true
+    -Dgconf=false
+    -Dguile=3.0
+    -Dsound=false
+    -Dtheme_fixed=true
+    -Dtheme_pysol=true
+    -Dtheme_svg_qtsvg=true
+    -Dtheme_svg_rsvg=true
+
+  VERSUCH_CI_BOT_NAME: "Aisleriot Automation"
