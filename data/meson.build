@@ -22,7 +22,7 @@ metainfo_its = [
 metainfodir = ar_prefix / ar_datadir / 'metainfo'
 
 i18n.itstool_join(
-  input: 'sol.metainfo.xml.in',
+  input: 'org.gnome.Aisleriot.metainfo.xml.in',
   install: true,
   install_dir: metainfodir,
   install_tag: 'metadata',
@@ -36,7 +36,7 @@ i18n.itstool_join(
 desktopdatadir = ar_prefix / ar_datadir / 'applications'
 
 desktop_in = files(
-  'sol.desktop.in',
+  'org.gnome.Aisleriot.desktop.in',
 )
 
 i18n.merge_file(
@@ -51,7 +51,7 @@ i18n.merge_file(
 meson.add_install_script(
   'meson_desktopfile.py',
   desktopdatadir,
-  'sol.desktop',
+  'org.gnome.Aisleriot.desktop',
 )
 
 # Valgrind suppressions
