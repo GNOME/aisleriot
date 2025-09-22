@@ -238,15 +238,6 @@ static void
 ar_card_theme_qsvg_init (ArCardThemeQSvg *theme)
 {
   ArCardTheme *card_theme = (ArCardTheme *) theme;
-  ArCardThemeQSvgClass *klass = AR_CARD_THEME_QSVG_GET_CLASS(theme);
-  static char *argv[] = { (char*)"aisleriot", NULL };
-  static int argc = 1;
-
-  /* guiEnabled = true doesn't work, seems to drag in gtk+2.0 somehow. That
-   * also means we have to use image surfaces.
-   */
-  if (!klass->app)
-    klass->app = new QApplication(argc, argv, false);
 
   card_theme->requires_image_surface = TRUE;
 

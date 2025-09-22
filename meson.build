@@ -18,8 +18,8 @@ project(
   ['c', 'cpp',],
   default_options: [
     'buildtype=release',
-    'c_std=gnu11',
-    'cpp_std=gnu++11',
+    'c_std=c23',
+    'cpp_std=c++23',
     'warning_level=0',
     'b_ndebug=false',
   ],
@@ -48,7 +48,7 @@ guile_2_0_req_version       = '2.0.0'
 guile_2_2_req_version       = '2.2.0'
 guile_3_0_req_version       = '3.0.0'
 libcanberra_gtk_req_version = '0.26'
-qt5svg_req_version          = '5.0.0'
+qt6svg_req_version          = '6.0.0'
 rsvg_req_version            = '2.32.0'
 
 # Versioning
@@ -100,8 +100,8 @@ cxx = meson.get_compiler('cpp')
 # Meson has a misfeature where it allows the user to override the -std option
 # for the C/C++ compiler. Disallow that.
 
-assert(get_option('c_std') == 'gnu11', 'cannot override C std version')
-assert(get_option('cpp_std') == 'gnu++11', 'cannot override C++ std version')
+assert(get_option('c_std') == 'c23', 'cannot override C std version')
+assert(get_option('cpp_std') == 'c++23', 'cannot override C++ std version')
 
 # Asserts must not be disabled
 
@@ -383,10 +383,8 @@ else
 endif
 
 if get_option('theme_svg_qtsvg') or get_option('theme_kde')
-  qt5 = import('qt5')
-  qtsvg_dep = dependency('qt5', modules: ['Svg',],)
-
-#  qtsvg_dep = dependency('Qt5Svg', version: '>=' + qt5svg_req_version, required: true,)
+  qt6 = import('qt6')
+  qtsvg_dep = dependency('qt6', modules: ['Svg',],)
   config_h.set('HAVE_QTSVG', true)
 else
   qtsvg_dep = dependency('', required: false,)
@@ -508,7 +506,7 @@ if get_option('theme_pysol')
   output += '      Base path:           ' + theme_pysol_path + '\n'
 endif
 output += '    SVG using Rsvg:        ' + get_option('theme_svg_rsvg').to_string() + '\n'
-output += '    SVG using Qt5Svg:      ' + get_option('theme_svg_qtsvg').to_string() + '\n'
+output += '    SVG using Qt6Svg:      ' + get_option('theme_svg_qtsvg').to_string() + '\n'
 output += '\n'
 output += '  Documentation:           ' + get_option('docs').to_string() + '\n'
 output += '    Method:                ' + get_option('help_method') + '\n'
