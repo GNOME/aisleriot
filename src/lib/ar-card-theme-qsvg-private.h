@@ -17,15 +17,12 @@
 
 /* Authors:   Callum McKenzie <callum@physics.otago.ac.nz> */
 
-#include <QApplication>
-#include <QtSvg/QtSvg>
+#include <QtSvg>
 
 #define MAX_N_BACKS (10)
 
 struct _ArCardThemeQSvgClass {
   ArCardThemeClass parent_class;
-
-  QApplication *app;
 };
 
 struct _ArCardThemeQSvg {
