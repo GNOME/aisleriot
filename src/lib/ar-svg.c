@@ -81,8 +81,12 @@ ar_svg_initable_init (GInitable *initable,
   GInputStream *stream;
   gboolean is_gzip;
   gboolean retval = FALSE;
+#if LIBRSVG_MAJOR_VERSION > 2 || LIBRSVG_MAJOR_VERSION == 2 && LIBRSVG_MINOR_VERSION >= 52
   gdouble width = 0;
   gdouble height = 0;
+#else
+  RsvgDimensionData data;
+#endif
 
 //   ar_profilestart ("creating ArSvg from %s", svg->filename);
 
@@ -119,6 +123,7 @@ ar_svg_initable_init (GInitable *initable,
   }
   g_object_unref (stream);
 
+#if LIBRSVG_MAJOR_VERSION > 2 || LIBRSVG_MAJOR_VERSION == 2 && LIBRSVG_MINOR_VERSION >= 52
   rsvg_handle_get_intrinsic_size_in_pixels (handle, &width, &height);
   if (width == 0 || height == 0) {
     g_set_error_literal (error,
@@ -130,6 +135,19 @@ ar_svg_initable_init (GInitable *initable,
 
   svg->width = (gint) width;
   svg->height = (gint) height;
+#else
+  rsvg_handle_get_dimensions (handle, &data);
+  if (data.width == 0 || data.height == 0) {
+    g_set_error_literal (error,
+                         GDK_PIXBUF_ERROR,
+                         GDK_PIXBUF_ERROR_FAILED,
+                         "Image has zero extent");
+    goto out;
+  }
+
+  svg->width = data.width;
+  svg->height = data.height;
+#endif
 
   retval = TRUE;
 
